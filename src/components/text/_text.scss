@@ -1,6 +1,8 @@
 @use '../../variables/variables' as variables;
 
 [data-layout~="text"] {
+  --text--max-width: min(var(--measure), 100% - var(--s1));
+
   > * {
     margin-top: 0;
     margin-bottom: 0;
@@ -54,4 +56,10 @@
       --text--margin-top: .5;
     }
   }
+}
+
+[data-layout~="text--center"] > * {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: var(--text--max-width);
 }

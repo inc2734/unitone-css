@@ -4,7 +4,7 @@
 [data-layout~="cluster"] {
   --cluster--justify: flex-start;
   --cluster--align: flex-start;
-  --cluster--gap: calc(var(--s0) / 2) var(--s0);
+  --cluster--gap: calc(var(--s1) / 2) var(--s1);
 
   display: flex;
   flex-wrap: wrap;
@@ -37,10 +37,12 @@
   --cluster--justify: flex-end;
 }
 
-@for $i from 1 through list.length(variables.$fibonacci-sequence) {
-  $slevel: $i - 2;
+[data-layout~="cluster--justify\:space-between"] {
+  --cluster--justify: space-between;
+}
 
-  [data-layout~="cluster--gap\:#{ $slevel }"] {
-    --cluster--gap: var(--s#{ $slevel });
+@for $i from -2 through 4 {
+  [data-layout~="cluster--gap\:#{ $i }"] {
+    --cluster--gap: var(--s#{ $i });
   }
 }

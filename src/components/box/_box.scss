@@ -3,25 +3,21 @@
 
 [data-layout~="box"] {
   --box--background-color: transparent;
-  --box--color: var(--color-text);
+  // --box--color: var(--color-text); // Comment out if you don't want it to be inherited.
   --box--border-color: transparent;
   --box--border-width: 0;
-  --box--padding: var(--s0);
+  --box--border-radius: 0;
+  --box--padding: var(--s1);
 
   padding: var(--box--padding) calc(var(--box--padding) + 1rem * var(--half-leading));
   border: var(--box--border-width) solid var(--box--border-color);
+  border-radius: var(--box--border-radius);
   color: var(--box--color);
   background-color: var(--box--background-color);
-
-  * {
-    color: inherit;
-  }
 }
 
-@for $i from 1 through list.length(variables.$fibonacci-sequence) {
-  $slevel: $i - 2;
-
-  [data-layout~="box--padding\:#{ $slevel }"] {
-    --box--padding: var(--s#{ $slevel });
+@for $i from -2 through 4 {
+  [data-layout~="box--padding\:#{ $i }"] {
+    --box--padding: var(--s#{ $i });
   }
 }

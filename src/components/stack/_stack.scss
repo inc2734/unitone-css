@@ -1,9 +1,12 @@
 @use 'sass:list';
 @use '../../variables/variables' as variables;
 
+/**
+ * @note If stack > stack, the gap of the parent stack will not be reflected correctly.
+ */
 [data-layout~="stack"] {
-  --stack--max-width: min(var(--measure), 100% - var(--s0));
-  --stack--gap: var(--s0);
+  --stack--max-width: min(var(--measure), 100% - var(--s1));
+  --stack--gap: var(--s1);
 
   display: flex;
   flex-direction: column;
@@ -31,10 +34,8 @@
   max-width: var(--stack--max-width);
 }
 
-@for $i from 1 through list.length(variables.$fibonacci-sequence) {
-  $slevel: $i - 2;
-
-  [data-layout~="stack--gap\:#{ $slevel }"] {
-    --stack--gap: var(--s#{ $slevel });
+@for $i from -2 through 4 {
+  [data-layout~="stack--gap\:#{ $i }"] {
+    --stack--gap: var(--s#{ $i });
   }
 }

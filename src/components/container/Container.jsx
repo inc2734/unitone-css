@@ -1,10 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const Container = ({
   maxWidth,
+  style,
   ...props
 }) => {
-  const style = {
+  style = {
+    ...style,
     '--container--max-width': !! maxWidth ? maxWidth : undefined,
   };
 
@@ -16,4 +19,8 @@ export const Container = ({
       { props.children }
     </div>
   );
+};
+
+Container.propTypes = {
+  maxWidth: PropTypes.string,
 };

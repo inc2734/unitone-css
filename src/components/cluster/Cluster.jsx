@@ -5,16 +5,18 @@ export const Cluster = ({
   gap,
   justify,
   align,
+  style,
   ...props
 }) => {
   return (
     <div
       data-layout={ [
         'cluster',
-        !! gap ? `cluster--gap:${ gap }` : undefined,
+        'undefined' !== typeof gap ? `cluster--gap:${ gap }` : undefined,
         !! justify ? `cluster--justify:${ justify }` : undefined,
         !! align ? `cluster--align:${ align }` : undefined,
       ].join( ' ' ).trim() }
+      style={ style }
     >
       { props.children }
     </div>

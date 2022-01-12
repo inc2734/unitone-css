@@ -7,20 +7,24 @@ export const Box = ({
   color,
   borderColor,
   borderWidth,
+  borderRadius,
+  style,
   ...props
 }) => {
-  const style = {
+  style = {
+    ...style,
     '--box--background-color': backgroundColor,
     '--box--color': color,
     '--box--border-color': borderColor,
     '--box--border-width': borderWidth,
+    '--box--border-radius': borderRadius,
   };
 
   return (
     <div
       data-layout={ [
         'box',
-        !! padding ? `box--padding:${ padding }` : undefined,
+        'undefined' !== typeof padding ? `box--padding:${ padding }` : undefined,
       ].join( ' ' ).trim() }
       style={ style }
     >
@@ -35,4 +39,5 @@ Box.propTypes = {
   color: PropTypes.string,
   borderColor: PropTypes.string,
   borderWidth: PropTypes.string,
+  borderRadius: PropTypes.string,
 };

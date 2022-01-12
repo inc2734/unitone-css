@@ -5,7 +5,7 @@
   /**
    * Column width in typography.
    */
-  --measure: 38em;
+  --measure: 38rem;
 
   /**
    * Collors.
@@ -31,16 +31,20 @@
   --font-family: sans-serif;
 
   /**
-   * Reference value of the modular scale for space
+   * Reference value of the modular scale for space.
    */
-  --space-reference-value: .5;
+  --space-reference-value: .25;
 
   /**
    * Modular scales for spaces.
    */
-  @for $i from 1 through list.length(variables.$fibonacci-sequence) {
-    --s#{ $i - 2 }: calc(var(--space-reference-value) * 1rem * #{ list.nth(variables.$fibonacci-sequence, $i) });
-  }
+  --s-2: calc(var(--space-reference-value) * 1rem * #{ list.nth(variables.$fibonacci-sequence, 1) });
+  --s-1: calc(var(--space-reference-value) * 1rem * #{ list.nth(variables.$fibonacci-sequence, 2) });
+  --s0: 0;
+  --s1: calc(var(--space-reference-value) * 1rem * #{ list.nth(variables.$fibonacci-sequence, 3) });
+  --s2: calc(var(--space-reference-value) * 1rem * #{ list.nth(variables.$fibonacci-sequence, 4) });
+  --s3: calc(var(--space-reference-value) * 1rem * #{ list.nth(variables.$fibonacci-sequence, 5) });
+  --s4: calc(var(--space-reference-value) * 1rem * #{ list.nth(variables.$fibonacci-sequence, 6) });
 }
 
 *,
@@ -118,4 +122,15 @@ sub {
     vertical-align: baseline;
     font-size: inherit;
   }
+}
+
+img,
+figure {
+  margin-top: calc(1rem * var(--half-leading));
+  margin-bottom: calc(1rem * var(--half-leading));
+}
+
+figure > img {
+  margin-top: 0;
+  margin-bottom: 0;
 }
