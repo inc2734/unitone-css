@@ -1,0 +1,121 @@
+@use 'sass:list';
+@use '../variables/variables' as variables;
+
+:root {
+  /**
+   * Column width in typography.
+   */
+  --measure: 38em;
+
+  /**
+   * Collors.
+   */
+  --color-white: #fff;
+  --color-black: #000;
+  --color-text: #111;
+
+  /**
+   * Font size level.
+   * It is not recommended to override this value with :root in order to have the size determined based on 0.
+   */
+  --font-size: 0;
+
+  /**
+   * Gutter provided above and below the text in a line.
+   */
+  --half-leading: .3;
+
+  /**
+   * Font family
+   */
+  --font-family: sans-serif;
+
+  /**
+   * Reference value of the modular scale for space
+   */
+  --space-reference-value: .5;
+
+  /**
+   * Modular scales for spaces.
+   */
+  @for $i from 1 through list.length(variables.$fibonacci-sequence) {
+    --s#{ $i - 2 }: calc(var(--space-reference-value) * 1rem * #{ list.nth(variables.$fibonacci-sequence, $i) });
+  }
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+  font-size: calc(1rem * #{ variables.$font-size });
+  line-height: #{ variables.$space };
+}
+
+address,
+article,
+aside,
+blockquote,
+details,
+dialog,
+dd,
+div,
+dl,
+dt,
+fieldset,
+figcaption,
+figure,
+footer,
+form,
+h1, h2, h3, h4, h5, h6,
+header,
+hgroup,
+hr,
+li,
+main,
+nav,
+ol,
+p,
+pre,
+section,
+table,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-white);
+  color: var(--color-text);
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  // -moz-osx-font-smooting: grayscale; // White out elements will activate this.
+  overflow-wrap: break-word;
+}
+
+li {
+  margin-left: 1.5em;
+}
+
+small {
+  font-size: smaller;
+}
+
+sup {
+  font-size: smaller;
+
+  @supports (font-variant-position: super) {
+    font-variant-position: super;
+    vertical-align: baseline;
+    font-size: inherit;
+  }
+}
+
+sub {
+  font-size: smaller;
+
+  @supports (font-variant-position: sub) {
+    font-variant-position: sub;
+    vertical-align: baseline;
+    font-size: inherit;
+  }
+}

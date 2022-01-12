@@ -1,0 +1,13 @@
+[data-layout~="container"] {
+  --container--max-width: min(var(--measure), 100%);
+
+  box-sizing: content-box;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  padding-right: var(--s0);
+  padding-left: var(--s0);
+  max-width: var(--container--max-width);
+}
