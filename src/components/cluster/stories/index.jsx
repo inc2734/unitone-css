@@ -7,15 +7,15 @@ export default {
   component: Cluster,
   argTypes: {
     gap: {
-      options: [ -2, -1, 0, 1, 2, 3, 4 ],
+      options: [-2, -1, 0, 1, 2, 3, 4],
       control: { type: 'select' },
     },
     justify: {
-      options: [ 'start', 'center', 'end', 'space-between' ],
+      options: ['start', 'center', 'end', 'space-between'],
       control: { type: 'select' },
     },
     align: {
-      options: [ 'start', 'center', 'end' ],
+      options: ['start', 'center', 'end'],
       control: { type: 'select' },
     },
   },
@@ -23,12 +23,12 @@ export default {
     gap: 1,
     justify: 'start',
     align: 'start',
-  }
+  },
 };
 
 export const Default = (args) => {
   return (
-    <Cluster { ...args }>
+    <Cluster {...args}>
       <p>Lorem ipsum</p>
       <p>dolor sit</p>
       <p>amet consectetur</p>
@@ -40,9 +40,9 @@ export const Default = (args) => {
 
 export const ExampleHeader = (args) => {
   return (
-    <Cluster gap={ args.gap } justify="space-between" align="center">
+    <Cluster gap={args.gap} justify="space-between" align="center">
       <div>LOGO</div>
-      <Cluster gap={ args.gap }>
+      <Cluster gap={args.gap}>
         <p>Lorem ipsum</p>
         <p>dolor sit</p>
         <p>amet consectetur</p>

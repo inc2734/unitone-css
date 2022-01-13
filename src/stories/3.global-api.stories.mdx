@@ -1,0 +1,44 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="3. Global API" />
+
+# Global API
+
+## Font size
+
+You can scale the font size with the CSS custom property `--font-size`. The minimum value is `1` and the maximum value is `8`. If you scale the font size with this CSS custom property, the `line-height` will be automatically set to an appropriate value.
+
+```html
+<p style="--font-size: 2">
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+  labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+  nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+  esse cill
+</p>
+```
+
+## Line height
+
+The half leading can be set. The default value is `0.3`.
+
+```html
+<p style="--half-leading: .4">
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+  labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+  nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+  esse cill
+</p>
+```
+
+## Margin / Padding
+
+You can set the properly scaled margin and padding by using CSS custom properties. The minimum value is `--s-2` and the maximum value is `--s4`. `--s1` is the base value (`1rem`) and `--s0` is `0`.
+
+```html
+<div style="margin: var(--s2); padding: var(--s1)">
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+  labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+  nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+  esse cill
+</div>
+```

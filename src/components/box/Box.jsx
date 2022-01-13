@@ -22,13 +22,12 @@ export const Box = ({
 
   return (
     <div
-      data-layout={ [
-        'box',
-        'undefined' !== typeof padding ? `box--padding:${ padding }` : undefined,
-      ].join( ' ' ).trim() }
-      style={ style }
+      data-layout={['box', 'undefined' !== typeof padding ? `box--padding:${padding}` : undefined]
+        .join(' ')
+        .trim()}
+      style={style}
     >
-      { props.children }
+      {props.children}
     </div>
   );
 };
