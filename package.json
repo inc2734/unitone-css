@@ -20,7 +20,7 @@
   "scripts": {
     "prepublish": "run-s build",
     "clean": "rimraf dist",
-    "css": "sass --style=compressed --no-source-map src/app.scss:dist/app.css",
+    "css": "sass --no-source-map src/app.scss:dist/app.css && postcss dist/app.css -r",
     "build": "run-s clean css",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format:js": "prettier --write './src/**/*.{js,jsx}'",
@@ -28,20 +28,27 @@
     "public": "npm run build && build-storybook -c ./.storybook -o ./public"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.7",
-    "@storybook/addon-actions": "^6.4.9",
-    "@storybook/addon-essentials": "^6.4.9",
-    "@storybook/addon-links": "^6.4.9",
-    "@storybook/builder-webpack5": "^6.4.9",
-    "@storybook/html": "^6.4.9",
-    "@storybook/manager-webpack5": "^6.4.9",
-    "@storybook/react": "^6.4.9",
+    "@babel/core": "^7.16.10",
+    "@storybook/addon-actions": "^6.4.13",
+    "@storybook/addon-essentials": "^6.4.13",
+    "@storybook/addon-links": "^6.4.13",
+    "@storybook/builder-webpack5": "^6.4.13",
+    "@storybook/html": "^6.4.13",
+    "@storybook/manager-webpack5": "^6.4.13",
+    "@storybook/react": "^6.4.13",
     "babel-loader": "^8.2.3",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.5.1",
     "rimraf": "^3.0.2",
-    "sass": "^1.45.2",
-    "webpack": "^5.65.0"
+    "sass": "^1.49.0",
+    "webpack": "^5.66.0",
+    "autoprefixer": "^10.4.2",
+    "css-mqpacker": "^7.0.0",
+    "cssnano": "^5.0.15",
+    "postcss": "^8.4.5",
+    "postcss-cli": "^9.1.0",
+    "postcss-import": "^14.0.2",
+    "postcss-mq-optimize": "^1.1.0"
   },
   "dependencies": {}
 }

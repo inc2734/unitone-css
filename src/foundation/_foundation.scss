@@ -1,4 +1,5 @@
 @use 'sass:list';
+@use "sass:math";
 @use '../variables/variables' as variables;
 
 :root {
@@ -50,8 +51,12 @@
 *,
 *::before,
 *::after {
+  $min-font-size: #{ variables.$min-font-size };
+  $max-font-size: #{ variables.$max-font-size };
+  $preferred-font-size: calc((1rem * $min-font-size) + (#{ $max-font-size } - #{ $min-font-size }) * ((100vw - #{ 1rem * variables.$min-breakpoint }) / (#{ variables.$max-breakpoint - variables.$min-breakpoint })));
+
 	box-sizing: border-box;
-  font-size: calc(1rem * #{ variables.$font-size });
+  font-size: clamp(1rem * var(--min-font-size, #{ $min-font-size }), #{ $preferred-font-size }, 1rem * var(--max-font-size, #{ $max-font-size }));
   line-height: #{ variables.$space };
 }
 

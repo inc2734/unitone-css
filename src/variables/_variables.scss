@@ -1,5 +1,9 @@
 $harmonic-sequence-base: 8;
-$font-size: calc(#{ $harmonic-sequence-base } * 1 / (#{ $harmonic-sequence-base } - var(--font-size)));
-$space: calc(.4 + .6 / (1 + #{ $font-size } * #{ $font-size } / 3 - #{ $font-size } / 3) + var(--half-leading) * 2);
+$max-font-size: calc(#{ $harmonic-sequence-base } / ( #{ $harmonic-sequence-base } - var(--font-size)));
+$min-font-size: calc(#{ $harmonic-sequence-base + 1 } / (#{ $harmonic-sequence-base + 1 } - var(--font-size)));
+$space: calc(.4 + .6 / (1 + #{ $max-font-size } * #{ $max-font-size } / 3 - #{ $max-font-size } / 3) + var(--half-leading) * 2);
 
 $fibonacci-sequence: 1, 2, 4, 7, 13, 24;
+
+$min-breakpoint: 22.5; // = 360px
+$max-breakpoint: 64;   // = 1024px
