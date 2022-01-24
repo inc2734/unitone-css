@@ -10,11 +10,11 @@
   }
 
   > *:not(:first-child) {
-    margin-top: calc(1em * #{ variables.$space } * var(--text--margin-top, 1));
+    margin-top: calc(1em * #{ variables.$line-height } * var(--text--margin-top, 1));
   }
 
   > *:not(:last-child) {
-    margin-bottom: calc(1em * #{ variables.$space } * var(--text--margin-bottom, 1));
+    margin-bottom: calc(1em * #{ variables.$line-height } * var(--text--margin-bottom, 1));
   }
 
   > h1 {

@@ -39,13 +39,13 @@
   /**
    * Modular scales for spaces.
    */
-  --s-2: calc(var(--space-reference-value) * 1rem * #{ list.nth(variables.$fibonacci-sequence, 1) });
-  --s-1: calc(var(--space-reference-value) * 1rem * #{ list.nth(variables.$fibonacci-sequence, 2) });
+  --s-2: calc(1rem * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 1) });
+  --s-1: calc(1rem * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 2) });
   --s0: 0;
-  --s1: calc(var(--space-reference-value) * 1rem * #{ list.nth(variables.$fibonacci-sequence, 3) });
-  --s2: calc(var(--space-reference-value) * 1rem * #{ list.nth(variables.$fibonacci-sequence, 4) });
-  --s3: calc(var(--space-reference-value) * 1rem * #{ list.nth(variables.$fibonacci-sequence, 5) });
-  --s4: calc(var(--space-reference-value) * 1rem * #{ list.nth(variables.$fibonacci-sequence, 6) });
+  --s1: calc(1rem * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 3) });
+  --s2: calc(1rem * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 4) });
+  --s3: calc(1rem * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 5) });
+  --s4: calc(1rem * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 6) });
 }
 
 *,
@@ -53,11 +53,15 @@
 *::after {
   $min-font-size: #{ variables.$min-font-size };
   $max-font-size: #{ variables.$max-font-size };
-  $preferred-font-size: calc((1rem * $min-font-size) + (#{ $max-font-size } - #{ $min-font-size }) * ((100vw - #{ 1rem * variables.$min-breakpoint }) / (#{ variables.$max-breakpoint - variables.$min-breakpoint })));
+  $max-breakpoint: #{ variables.$max-breakpoint };
+  $min-breakpoint: #{ variables.$min-breakpoint };
+  $slope: calc((#{ $max-font-size } - #{ $min-font-size }) / (#{ $max-breakpoint - $min-breakpoint }) * 100);
+  $intercept: calc((#{ $max-breakpoint } * #{ $min-font-size } - #{ $min-breakpoint } * #{ $max-font-size }) / (#{ $max-breakpoint - $min-breakpoint }));
+  $preferred-font-size: calc(1vw * #{ $slope } + 1rem * #{ $intercept });
 
 	box-sizing: border-box;
   font-size: clamp(1rem * #{ $min-font-size }, #{ $preferred-font-size }, 1rem * #{ $max-font-size });
-  line-height: #{ variables.$space };
+  line-height: #{ variables.$line-height };
 }
 
 address,
