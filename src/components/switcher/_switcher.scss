@@ -1,0 +1,27 @@
+[data-layout~="switcher"] {
+  --switcher--threshold: var(--measure);
+  --switcher--gap: var(--s1);
+  --switcher--item-size: 1;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--switcher--gap);
+
+  > * {
+    flex-grow: var(--switcher--item-size);
+    flex-basis: calc((var(--switcher--threshold) - 100%) * 999);
+  }
+}
+
+@for $i from -2 through 4 {
+  [data-layout~="switcher--gap\:#{ $i }"] {
+    --switcher--gap: var(--s#{ $i });
+  }
+}
+
+@for $i from 3 through 5 {
+  [data-layout~="switcher--limit\:#{ $i }"] > :nth-last-child(n + #{ $i }),
+  [data-layout~="switcher--limit\:#{ $i }"] > :nth-last-child(n + #{ $i }) ~ * {
+    flex-basis: 100%;
+  }
+}

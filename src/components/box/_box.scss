@@ -1,6 +1,3 @@
-@use 'sass:list';
-@use '../../variables/variables' as variables;
-
 [data-layout~="box"] {
   --box--background-color: transparent;
   // --box--color: var(--color-text); // Comment out if you don't want it to be inherited.
