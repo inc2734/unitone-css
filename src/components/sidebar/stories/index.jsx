@@ -52,7 +52,7 @@ Input.storyName = 'Example : Input';
 export const MediaText = (args) => {
   return (
     <Sidebar {...args}>
-      <img src="https://placehold.jp/300x150.jpg" alt="" />
+      <img src="https://placehold.jp/400x300.jpg" alt="" />
       <p>{content}</p>
     </Sidebar>
   );

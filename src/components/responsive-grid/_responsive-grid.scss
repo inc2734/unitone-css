@@ -1,0 +1,14 @@
+[data-layout~="responsive-grid"] {
+  --responsive-grid--gap: var(--s1);
+  --responsive-grid--column-min-width: 250px;
+
+  display: grid;
+  grid-gap: var(--responsive-grid--gap);
+  grid-template-columns: repeat(auto-fit, minmax(min(var(--responsive-grid--column-min-width), 100%), 1fr));
+}
+
+@for $i from -2 through 4 {
+  [data-layout~="responsive-grid--gap\:#{ $i }"] {
+    --responsive-grid--gap: var(--s#{ $i });
+  }
+}
