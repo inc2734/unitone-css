@@ -14,8 +14,8 @@ export const Stack = ({ gap, center, maxWidth, style, ...props }) => {
         'undefined' !== typeof gap ? `stack--gap:${gap}` : undefined,
         true === center ? 'stack--center' : undefined,
       ]
-        .join(' ')
-        .trim()}
+        .filter(Boolean)
+        .join(' ')}
       style={style}
     >
       {props.children}

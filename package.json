@@ -21,9 +21,10 @@
     "prepublish": "run-s build",
     "clean": "rimraf dist",
     "css": "sass --no-source-map src/app.scss:dist/app.css && postcss dist/app.css -r",
-    "build": "run-s clean css",
+    "build": "run-s clean css format",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format:js": "prettier --write './src/**/*.{js,jsx}'",
+    "format": "run-p format:*",
     "server": "start-storybook -p 6006",
     "public": "npm run build && build-storybook -c ./.storybook -o ./public"
   },

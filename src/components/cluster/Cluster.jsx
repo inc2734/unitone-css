@@ -10,8 +10,8 @@ export const Cluster = ({ gap, justify, align, style, ...props }) => {
         !!justify ? `cluster--justify:${justify}` : undefined,
         !!align ? `cluster--align:${align}` : undefined,
       ]
-        .join(' ')
-        .trim()}
+        .filter(Boolean)
+        .join(' ')}
       style={style}
     >
       {props.children}

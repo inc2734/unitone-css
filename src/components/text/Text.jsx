@@ -9,7 +9,7 @@ export const Text = ({ center, maxWidth, style, ...props }) => {
 
   return (
     <div
-      data-layout={['text', true === center ? 'text--center' : undefined].join(' ').trim()}
+      data-layout={['text', true === center ? 'text--center' : undefined].filter(Boolean).join(' ')}
       style={style}
     >
       {props.children}

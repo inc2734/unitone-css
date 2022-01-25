@@ -23,8 +23,8 @@ export const Box = ({
   return (
     <div
       data-layout={['box', 'undefined' !== typeof padding ? `box--padding:${padding}` : undefined]
-        .join(' ')
-        .trim()}
+        .filter(Boolean)
+        .join(' ')}
       style={style}
     >
       {props.children}

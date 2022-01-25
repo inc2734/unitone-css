@@ -1,0 +1,50 @@
+@use 'sass:list';
+@use '../../variables/variables' as variables;
+
+[data-layout~="sidebar"] {
+  --sidebar--gap: var(--s1);
+  --sidebar--aside-width: initial;
+  --sidebar--main-min-width: 50%;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sidebar--gap);
+
+  @mixin _aside() {
+    flex-basis: var(--sidebar--aside-width);
+    flex-grow: 1;
+  }
+
+  @mixin _main() {
+    flex-basis: 0;
+    flex-grow: 999;
+    min-width: var(--sidebar--content-min-width);
+  }
+
+  &:where([data-layout~="sidebar--left"]) {
+    > :first-child {
+      @include _aside();
+    }
+
+    > :last-child {
+      @include _main();
+    }
+  }
+
+  &:where([data-layout~="sidebar--right"]),
+  &:where(:not([data-layout~="sidebar--left"])) {
+    > :first-child {
+      @include _main();
+    }
+
+    > :last-child {
+      @include _aside();
+    }
+  }
+}
+
+@for $i from -2 through 4 {
+  [data-layout~="sidebar--gap\:#{ $i }"] {
+    --sidebar--gap: var(--s#{ $i });
+  }
+}
