@@ -1,0 +1,23 @@
+[data-layout~="float"] {
+  --float--min-width: calc(var(--measure) / 2);
+  --float--gap: var(--s1);
+  --float--min-measure: calc(var(--measure) / 2);
+
+  width: max(
+    min(var(--float--min-width), 100%),
+    min((var(--float--min-width) + var(--float--gap) + var(--float--min-measure) - 100%) * 999, 100%)
+  );
+
+  &:where([data-layout~="float--left"]),
+  &:where(:not([data-layout~="float--right"])) {
+    float: left;
+    margin-right: var(--float--gap);
+    margin-bottom: var(--float--gap);
+  }
+
+  &:where([data-layout~="float--right"]) {
+    float: right;
+    margin-left: var(--float--gap);
+    margin-bottom: var(--float--gap);
+  }
+}
