@@ -1,9 +1,13 @@
 [data-layout~="frame"] {
-  --frame--ratio-width: 16;
-  --frame--ratio-height: 9;
+  --frame--ratio: 16 / 9;
 
   position: relative;
-  padding: calc(var(--frame--ratio-height) / var(--frame--ratio-width) * 100%) 0 0;
+
+  &::before {
+    content: '';
+    display: block;
+    padding: calc(100% / (var(--frame--ratio))) 0 0;
+  }
 
   > * {
     position: absolute;

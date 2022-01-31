@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const Frame = ({ ratioWidth, ratioHeight, style, ...props }) => {
+export const Frame = ({ ratio, style, ...props }) => {
   style = {
     ...style,
-    '--frame--ratio-width': !!ratioWidth ? ratioWidth : undefined,
-    '--frame--ratio-height': !!ratioHeight ? ratioHeight : undefined,
+    '--frame--ratio': !!ratio ? ratio : undefined,
   };
 
   return (
@@ -16,6 +15,5 @@ export const Frame = ({ ratioWidth, ratioHeight, style, ...props }) => {
 };
 
 Frame.propTypes = {
-  ratioWidth: PropTypes.number,
-  ratioHeight: PropTypes.number,
+  ratio: PropTypes.string,
 };

@@ -6,8 +6,7 @@ export default {
   title: 'Components/Frame',
   component: Frame,
   args: {
-    ratioWidth: 16,
-    ratioHeight: 9,
+    ratio: '16 / 9',
   },
 };
 
