@@ -20,7 +20,7 @@ export default {
     },
   },
   args: {
-    gap: 1,
+    gap: 2,
     justify: 'start',
     align: 'start',
   },

@@ -14,7 +14,7 @@ export default {
     },
   },
   args: {
-    gap: 1,
+    gap: 2,
     noPadding: false,
     minHeight: '100vh',
   },

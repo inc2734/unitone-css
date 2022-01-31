@@ -4,7 +4,7 @@
   --box--border-color: transparent;
   --box--border-width: 0;
   --box--border-radius: 0;
-  --box--padding: var(--s1);
+  --box--padding: var(--s2);
 
   padding: var(--box--padding) calc(var(--box--padding) + 1rem * var(--half-leading));
   border: var(--box--border-width) solid var(--box--border-color);

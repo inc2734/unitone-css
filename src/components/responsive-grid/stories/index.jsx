@@ -13,7 +13,7 @@ export default {
     },
   },
   args: {
-    gap: 1,
+    gap: 2,
     columnMinWidth: '250px',
   },
 };

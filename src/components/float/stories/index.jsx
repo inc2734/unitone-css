@@ -10,15 +10,10 @@ export default {
       options: ['right', 'left'],
       control: { type: 'inline-radio' },
     },
-    gap: {
-      options: [-2, -1, 0, 1, 2, 3, 4],
-      control: { type: 'inline-radio' },
-    },
   },
   args: {
     position: 'left',
     minWidth: 'calc(var(--measure) / 2)',
-    gap: 1,
     minMeasure: 'calc(var(--measure) / 2)',
   },
 };

@@ -12,7 +12,7 @@ export default {
     },
   },
   args: {
-    padding: 1,
+    padding: 2,
     borderWidth: '0',
     borderRadius: '0',
   },

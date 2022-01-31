@@ -1,7 +1,7 @@
 [data-layout~="cluster"] {
   --cluster--justify: flex-start;
   --cluster--align: flex-start;
-  --cluster--gap: calc(var(--s1) / 2) var(--s1);
+  --cluster--gap: calc(var(--s2) / 2) var(--s2);
 
   display: flex;
   flex-wrap: wrap;

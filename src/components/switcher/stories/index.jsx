@@ -17,7 +17,7 @@ export default {
     },
   },
   args: {
-    gap: 1,
+    gap: 2,
     threshold: 'var(--measure)',
     limit: 4,
   },

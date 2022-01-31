@@ -17,7 +17,7 @@ export default {
   },
   args: {
     position: 'right',
-    gap: 1,
+    gap: 2,
     asideWidth: 'initial',
     mainMinWidth: '50%',
   },
@@ -48,6 +48,9 @@ export const Input = (args) => {
   );
 };
 Input.storyName = 'Example : Input';
+Input.args = {
+  gap: 1,
+};
 
 export const MediaText = (args) => {
   return (
