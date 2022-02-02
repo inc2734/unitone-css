@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-export const Float = ({ position, minWidth, minMeasure, style, ...props }) => {
+export const Float = ({ minWidth, minMeasure, position, style, ...props }) => {
   style = {
     ...style,
     '--float--min-width': !!minWidth ? minWidth : undefined,
@@ -18,10 +17,4 @@ export const Float = ({ position, minWidth, minMeasure, style, ...props }) => {
       {props.children}
     </div>
   );
-};
-
-Float.propTypes = {
-  position: PropTypes.string,
-  minWidth: PropTypes.string,
-  minMeasure: PropTypes.string,
 };

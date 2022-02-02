@@ -7,9 +7,10 @@ export const parameters = {
     },
   },
   docs: {
-    source: {
-      state: 'open',
-    },
+    extractComponentDescription: ((_, { notes }) => notes?.readme),
+  },
+  previewTabs: {
+    canvas: { hidden: true },
   },
   options: {
     storySort: (a, b) =>

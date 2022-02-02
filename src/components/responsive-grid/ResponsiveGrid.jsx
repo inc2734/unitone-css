@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-export const ResponsiveGrid = ({ gap, columnMinWidth, style, ...props }) => {
+export const ResponsiveGrid = ({ columnMinWidth, gap, style, ...props }) => {
   style = {
     ...style,
     '--responsive-grid--column-min-width': !!columnMinWidth ? columnMinWidth : undefined,
@@ -20,9 +19,4 @@ export const ResponsiveGrid = ({ gap, columnMinWidth, style, ...props }) => {
       {props.children}
     </div>
   );
-};
-
-ResponsiveGrid.propTypes = {
-  gap: PropTypes.number,
-  columnMinWidth: PropTypes.string,
 };

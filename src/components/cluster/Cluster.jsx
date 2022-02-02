@@ -1,9 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-export const Cluster = ({ gap, justify, align, style, ...props }) => {
+export const Cluster = ({ align, gap, justify, tagName = 'div', style, ...props }) => {
+  const Tag = tagName;
+
   return (
-    <div
+    <Tag
       data-layout={[
         'cluster',
         'undefined' !== typeof gap ? `cluster--gap:${gap}` : undefined,
@@ -15,12 +16,6 @@ export const Cluster = ({ gap, justify, align, style, ...props }) => {
       style={style}
     >
       {props.children}
-    </div>
+    </Tag>
   );
-};
-
-Cluster.propTypes = {
-  gap: PropTypes.number,
-  justify: PropTypes.string,
-  align: PropTypes.string,
 };

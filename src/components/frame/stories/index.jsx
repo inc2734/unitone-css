@@ -1,10 +1,22 @@
 import React from 'react';
+import readme from '../README.md';
 
 import { Frame } from '../Frame';
 
 export default {
   title: 'Components/Frame',
   component: Frame,
+  parameters: {
+    notes: { readme },
+  },
+  argTypes: {
+    ratio: {
+      control: { type: 'text' },
+      description: '`--frame--ratio`',
+      table: { defaultValue: { summary: '16 / 9' } },
+      type: { name: 'string', required: false },
+    },
+  },
   args: {
     ratio: '16 / 9',
   },

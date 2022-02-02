@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 export const Container = ({ maxWidth, style, ...props }) => {
   style = {
@@ -12,8 +11,4 @@ export const Container = ({ maxWidth, style, ...props }) => {
       {props.children}
     </div>
   );
-};
-
-Container.propTypes = {
-  maxWidth: PropTypes.string,
 };

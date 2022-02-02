@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 export const Text = ({ center, maxWidth, style, ...props }) => {
   style = {
@@ -15,9 +14,4 @@ export const Text = ({ center, maxWidth, style, ...props }) => {
       {props.children}
     </div>
   );
-};
-
-Text.propTypes = {
-  center: PropTypes.bool,
-  maxWidth: PropTypes.string,
 };

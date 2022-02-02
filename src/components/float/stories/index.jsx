@@ -1,20 +1,41 @@
 import React from 'react';
+import readme from '../README.md';
 
 import { Float } from '../Float';
 
 export default {
   title: 'Components/Float',
   component: Float,
+  parameters: {
+    notes: { readme },
+  },
   argTypes: {
+    gap: {
+      control: { type: 'text' },
+      description: '`--float--gap`',
+      table: { defaultValue: { summary: 'var(--s2)' } },
+      type: { name: 'string', required: false },
+    },
+    minMeasure: {
+      control: { type: 'text' },
+      description: '`--float--min-measure`',
+      table: { defaultValue: { summary: 'calc(var(--measure) / 2)' } },
+      type: { name: 'string', required: false },
+    },
+    minWidth: {
+      control: { type: 'text' },
+      description: '`--float--min-width`',
+      table: { defaultValue: { summary: 'calc(var(--measure) / 2)' } },
+      type: { name: 'string', required: false },
+    },
     position: {
-      options: ['right', 'left'],
-      control: { type: 'inline-radio' },
+      table: { disable: true },
     },
   },
   args: {
-    position: 'left',
-    minWidth: 'calc(var(--measure) / 2)',
     minMeasure: 'calc(var(--measure) / 2)',
+    minWidth: 'calc(var(--measure) / 2)',
+    position: 'left',
   },
 };
 
@@ -30,4 +51,19 @@ export const Default = (args) => {
       <p>{content}</p>
     </>
   );
+};
+
+export const ExampleRight = (args) => {
+  return (
+    <>
+      <Float {...args}>
+        <img src="https://placehold.jp/400x300.jpg" alt="" />
+      </Float>
+      <p>{content}</p>
+    </>
+  );
+};
+ExampleRight.storyName = 'Example : Right';
+ExampleRight.args = {
+  position: 'right',
 };

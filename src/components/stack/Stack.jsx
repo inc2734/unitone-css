@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-export const Stack = ({ gap, center, maxWidth, style, ...props }) => {
+export const Stack = ({ center, gap, maxWidth, style, ...props }) => {
   style = {
     ...style,
     '--stack--max-width': !!maxWidth ? maxWidth : undefined,
@@ -21,10 +20,4 @@ export const Stack = ({ gap, center, maxWidth, style, ...props }) => {
       {props.children}
     </div>
   );
-};
-
-Stack.propTypes = {
-  gap: PropTypes.number,
-  center: PropTypes.bool,
-  maxWidth: PropTypes.string,
 };

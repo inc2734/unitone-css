@@ -1,20 +1,60 @@
 import React from 'react';
+import readme from '../README.md';
 
 import { Box } from '../Box';
 
 export default {
   title: 'Components/Box',
   component: Box,
+  parameters: {
+    notes: { readme },
+  },
   argTypes: {
+    backgroundColor: {
+      control: { type: 'color' },
+      description: '`--box--background-color`',
+      table: { defaultValue: { summary: 'transparent' } },
+      type: { name: 'string', required: false },
+    },
+    borderColor: {
+      control: { type: 'color' },
+      description: '`--box--border-color`',
+      table: { defaultValue: { summary: 'transparent' } },
+      type: { name: 'string', required: false },
+    },
+    borderRadius: {
+      control: { type: 'text' },
+      description: '`--box--border-radius`',
+      table: { defaultValue: { summary: '0' } },
+      type: { name: 'string', required: false },
+    },
+    borderWidth: {
+      control: { type: 'text' },
+      description: '`--box--border-width`',
+      table: { defaultValue: { summary: '0' } },
+      type: { name: 'string', required: false },
+    },
+    color: {
+      control: { type: 'color' },
+      description: '`--box--color`',
+      table: { defaultValue: { summary: 'initial' } },
+      type: { name: 'string', required: false },
+    },
     padding: {
-      options: [-2, -1, 0, 1, 2, 3, 4],
       control: { type: 'inline-radio' },
+      description: '`--box--padding`',
+      options: [-2, -1, 0, 1, 2, 3, 4],
+      table: { defaultValue: { summary: 'var(--s2)' } },
+      type: { name: 'number', required: false },
     },
   },
   args: {
+    backgroundColor: 'transarent',
+    borderColor: 'transparent',
+    borderRadius: '0px',
+    borderWidth: '0px',
+    color: 'initial',
     padding: 2,
-    borderWidth: '0',
-    borderRadius: '0',
   },
 };
 
@@ -31,7 +71,7 @@ export const Default = (args) => {
 
 export const ExampleCombobox = (args) => {
   return (
-    <Box padding="0" borderWidth={args.borderWidth} borderColor={args.backgroundColor}>
+    <Box padding={0} borderWidth={args.borderWidth} borderColor={args.backgroundColor}>
       <Box padding={args.padding} backgroundColor={args.backgroundColor} color="var(--color-white)">
         Combo Box
       </Box>

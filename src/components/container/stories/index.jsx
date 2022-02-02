@@ -1,4 +1,5 @@
 import React from 'react';
+import readme from '../README.md';
 
 import { Container } from '../Container';
 import { Text } from '../../text/Text';
@@ -6,6 +7,20 @@ import { Text } from '../../text/Text';
 export default {
   title: 'Components/Container',
   component: Container,
+  parameters: {
+    notes: { readme },
+  },
+  argTypes: {
+    maxWidth: {
+      control: { type: 'text' },
+      description: '`--container--max-width`',
+      table: { defaultValue: { summary: 'min(var(--measure), 100%)' } },
+      type: { name: 'string', required: false },
+    },
+  },
+  args: {
+    maxWidth: 'min(var(--measure), 100%)',
+  },
 };
 
 export const Default = (args) => {

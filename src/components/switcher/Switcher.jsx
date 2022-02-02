@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-export const Switcher = ({ gap, threshold, limit, style, ...props }) => {
+export const Switcher = ({ gap, limit, threshold, style, ...props }) => {
   style = {
     ...style,
     '--stack--threshold': !!threshold ? threshold : undefined,
@@ -21,10 +20,4 @@ export const Switcher = ({ gap, threshold, limit, style, ...props }) => {
       {props.children}
     </div>
   );
-};
-
-Switcher.propTypes = {
-  gap: PropTypes.number,
-  threshold: PropTypes.string,
-  limit: PropTypes.number,
 };

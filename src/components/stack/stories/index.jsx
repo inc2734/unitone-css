@@ -1,4 +1,5 @@
 import React from 'react';
+import readme from '../README.md';
 
 import { Stack } from '../Stack';
 import { Box } from '../../box/Box';
@@ -7,15 +8,31 @@ import { Cluster } from '../../cluster/Cluster';
 export default {
   title: 'Components/Stack',
   component: Stack,
+  parameters: {
+    notes: { readme },
+  },
   argTypes: {
+    center: {
+      table: { disable: true },
+    },
     gap: {
-      options: [-2, -1, 0, 1, 2, 3, 4],
       control: { type: 'inline-radio' },
+      description: '`--stack--gap`',
+      options: [-2, -1, 0, 1, 2, 3, 4],
+      table: { defaultValue: { summary: 'var(--s1)' } },
+      type: { name: 'number', required: false },
+    },
+    maxWidth: {
+      control: { type: 'text' },
+      description: '`--stack--max-width`',
+      table: { defaultValue: { summary: 'min(var(--measure), 100% - var(--s1))' } },
+      type: { name: 'string', required: false },
     },
   },
   args: {
-    gap: 1,
     center: false,
+    gap: 1,
+    maxWidth: 'min(var(--measure), 100% - var(--s1))',
   },
 };
 

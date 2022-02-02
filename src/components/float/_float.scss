@@ -1,7 +1,7 @@
 [data-layout~="float"] {
-  --float--min-width: calc(var(--measure) / 2);
   --float--gap: var(--s2);
   --float--min-measure: calc(var(--measure) / 2);
+  --float--min-width: calc(var(--measure) / 2);
 
   width: max(
     min(var(--float--min-width), 100%),

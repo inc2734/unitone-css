@@ -1,0 +1,47 @@
+[data-layout~="with-sidebar"] {
+  --with-sidebar--content-min-width: 50%;
+  --with-sidebar--gap: var(--s2);
+  --with-sidebar--sidebar-width: initial;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--with-sidebar--gap);
+
+  @mixin _aside() {
+    flex-basis: var(--with-sidebar--sidebar-width);
+    flex-grow: 1;
+  }
+
+  @mixin _main() {
+    flex-basis: 0;
+    flex-grow: 999;
+    min-width: var(--with-sidebar--content-min-width);
+  }
+
+  &:where([data-layout~="with-sidebar--sidebar\:right"]),
+  &:where(:not([data-layout~="with-sidebar--sidebar\:left"])) {
+    > :first-child {
+      @include _main();
+    }
+
+    > :last-child {
+      @include _aside();
+    }
+  }
+
+  &:where([data-layout~="with-sidebar--sidebar\:left"]) {
+    > :first-child {
+      @include _aside();
+    }
+
+    > :last-child {
+      @include _main();
+    }
+  }
+}
+
+@for $i from -2 through 4 {
+  [data-layout~="with-sidebar--gap\:#{ $i }"] {
+    --with-sidebar--gap: var(--s#{ $i });
+  }
+}

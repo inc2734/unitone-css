@@ -1,14 +1,15 @@
 [data-layout~="switcher"] {
-  --switcher--threshold: var(--measure);
   --switcher--gap: var(--s2);
-  --switcher--item-size: 1;
+  --switcher--threshold: var(--measure);
 
   display: flex;
   flex-wrap: wrap;
   gap: var(--switcher--gap);
 
   > * {
-    flex-grow: var(--switcher--item-size);
+    --switcher__item--grow: 1;
+
+    flex-grow: var(--switcher__item--grow);
     flex-basis: calc((var(--switcher--threshold) - 100%) * 999);
   }
 }

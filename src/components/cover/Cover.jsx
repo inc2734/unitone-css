@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 export const Cover = ({ gap, minHeight, noPadding, style, ...props }) => {
   style = {
@@ -21,11 +20,6 @@ export const Cover = ({ gap, minHeight, noPadding, style, ...props }) => {
       {props.children}
     </div>
   );
-};
-
-Cover.propTypes = {
-  gap: PropTypes.number,
-  minHeight: PropTypes.string,
 };
 
 export const Center = ({ tagName = 'div', ...props }) => {

@@ -1,4 +1,5 @@
 import React from 'react';
+import readme from '../README.md';
 
 import { ResponsiveGrid } from '../ResponsiveGrid';
 import { Stack } from '../../stack/Stack';
@@ -6,15 +7,27 @@ import { Stack } from '../../stack/Stack';
 export default {
   title: 'Components/ResponsiveGrid',
   component: ResponsiveGrid,
+  parameters: {
+    notes: { readme },
+  },
   argTypes: {
+    columnMinWidth: {
+      control: { type: 'text' },
+      description: '`--responsive-grid--column-min-width`',
+      table: { defaultValue: { summary: '250px' } },
+      type: { name: 'string', required: false },
+    },
     gap: {
-      options: [-2, -1, 0, 1, 2, 3, 4],
       control: { type: 'inline-radio' },
+      description: '`--responsive-grid--gap`',
+      options: [-2, -1, 0, 1, 2, 3, 4],
+      table: { defaultValue: { summary: 'var(--s2)' } },
+      type: { name: 'number', required: false },
     },
   },
   args: {
-    gap: 2,
     columnMinWidth: '250px',
+    gap: 2,
   },
 };
 

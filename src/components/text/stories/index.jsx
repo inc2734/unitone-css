@@ -1,12 +1,28 @@
 import React from 'react';
+import readme from '../README.md';
 
 import { Text } from '../Text';
 
 export default {
   title: 'Components/Text',
   component: Text,
+  parameters: {
+    notes: { readme },
+  },
+  argTypes: {
+    center: {
+      table: { disable: true },
+    },
+    maxWidth: {
+      control: { type: 'inline-radio' },
+      description: '`--text--max-width`',
+      table: { defaultValue: { summary: 'min(var(--measure), 100% - var(--s1))' } },
+      type: { name: 'string', required: false },
+    },
+  },
   args: {
     center: false,
+    maxWidth: 'min(var(--measure), 100% - var(--s1))',
   },
 };
 

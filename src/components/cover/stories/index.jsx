@@ -1,4 +1,5 @@
 import React from 'react';
+import readme from '../README.md';
 
 import { Cover, Center, Bottom } from '../Cover';
 import { Box } from '../../box/Box';
@@ -7,16 +8,31 @@ import { Stack } from '../../stack/Stack';
 export default {
   title: 'Components/Cover',
   component: Cover,
+  parameters: {
+    notes: { readme },
+  },
   argTypes: {
     gap: {
-      options: [-2, -1, 0, 1, 2, 3, 4],
       control: { type: 'inline-radio' },
+      description: '`--cover--gap`',
+      options: [-2, -1, 0, 1, 2, 3, 4],
+      table: { defaultValue: { summary: 'var(--s2)' } },
+      type: { name: 'number', required: false },
+    },
+    minHeight: {
+      control: { type: 'text' },
+      description: '`--cover--min-height`',
+      table: { defaultValue: { summary: '100vh' } },
+      type: { name: 'string', required: false },
+    },
+    noPadding: {
+      table: { disable: true },
     },
   },
   args: {
     gap: 2,
-    noPadding: false,
     minHeight: '100vh',
+    noPadding: false,
   },
 };
 

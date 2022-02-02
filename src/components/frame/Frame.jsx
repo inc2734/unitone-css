@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 export const Frame = ({ ratio, style, ...props }) => {
   style = {
@@ -12,8 +11,4 @@ export const Frame = ({ ratio, style, ...props }) => {
       {props.children}
     </div>
   );
-};
-
-Frame.propTypes = {
-  ratio: PropTypes.string,
 };
