@@ -24,7 +24,7 @@ export default {
       type: { name: 'number', required: false },
     },
     threshold: {
-      control: { type: 'inline-radio' },
+      control: { type: 'text' },
       description: '`--switcher--threshold`',
       table: { defaultValue: { summary: 'var(--measure)' } },
       type: { name: 'string', required: false },
@@ -46,7 +46,7 @@ export const Default = (args) => {
   );
 };
 
-export const CustomizeItemSize = (args) => {
+export const GrowItemSize = (args) => {
   return (
     <Switcher {...args}>
       <Box backgroundColor="#decc00">Lorem ipsum</Box>
@@ -57,4 +57,4 @@ export const CustomizeItemSize = (args) => {
     </Switcher>
   );
 };
-CustomizeItemSize.storyName = 'Example : Customize item size';
+GrowItemSize.storyName = 'Example : Grow item size';
