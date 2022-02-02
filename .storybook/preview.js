@@ -9,6 +9,7 @@ export const parameters = {
   docs: {
     extractComponentDescription: ((_, { notes }) => notes?.readme),
   },
+  viewMode: 'docs',
   previewTabs: {
     canvas: { hidden: true },
   },
