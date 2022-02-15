@@ -3,7 +3,7 @@ import React from 'react';
 export const Stack = ({ center, gap, maxWidth, style, ...props }) => {
   style = {
     ...style,
-    '--stack--max-width': !!maxWidth ? maxWidth : undefined,
+    '--max-width': !!maxWidth ? maxWidth : undefined,
   };
 
   return (

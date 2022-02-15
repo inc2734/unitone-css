@@ -3,7 +3,7 @@ import React from 'react';
 export const ResponsiveGrid = ({ columnMinWidth, gap, style, ...props }) => {
   style = {
     ...style,
-    '--responsive-grid--column-min-width': !!columnMinWidth ? columnMinWidth : undefined,
+    '--column-min-width': !!columnMinWidth ? columnMinWidth : undefined,
   };
 
   return (

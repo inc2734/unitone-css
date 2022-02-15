@@ -13,7 +13,7 @@ export default {
   argTypes: {
     maxWidth: {
       control: { type: 'text' },
-      description: '`--container--max-width`',
+      description: '`--max-width`',
       table: { defaultValue: { summary: 'min(var(--measure), 100%)' } },
       type: { name: 'string', required: false },
     },

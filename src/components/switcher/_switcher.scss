@@ -1,22 +1,22 @@
 [data-layout~="switcher"] {
-  --switcher--gap: var(--s2);
-  --switcher--threshold: var(--measure);
+  --gap: var(--s2);
+  --threshold: var(--measure);
 
   display: flex;
   flex-wrap: wrap;
-  gap: var(--switcher--gap);
+  gap: var(--gap);
 
   > * {
-    --switcher__item--grow: 1;
+    --grow: 1;
 
-    flex-grow: var(--switcher__item--grow);
-    flex-basis: calc((var(--switcher--threshold) - 100%) * 999);
+    flex-grow: var(--grow);
+    flex-basis: calc((var(--threshold) - 100%) * 999);
   }
 }
 
 @for $i from -2 through 4 {
   [data-layout~="switcher--gap\:#{ $i }"] {
-    --switcher--gap: var(--s#{ $i });
+    --gap: var(--s#{ $i });
   }
 }
 

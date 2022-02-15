@@ -1,5 +1,5 @@
 ```html
-<div data-layout="box" style="box--background-color: #000, box--color: #fff, box--padding: 0">
+<div data-layout="box" style="--background-color: #000, --color: #fff, --padding: 0">
   <div data-layout="cover">
     <p>Lorem ipsum</p>
     <div data-layout="cover__center">
@@ -18,7 +18,7 @@
 
 ## Bottom
 ```html
-<div data-layout="box" style="box--background-color: #000, box--color: #fff, box--padding: 0">
+<div data-layout="box" style="--background-color: #000, --color: #fff, --padding: 0">
   <div data-layout="cover">
     <p>Lorem ipsum</p>
     <div data-layout="cover_bottom">

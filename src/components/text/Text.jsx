@@ -3,7 +3,7 @@ import React from 'react';
 export const Text = ({ center, maxWidth, style, ...props }) => {
   style = {
     ...style,
-    '--text--max-width': !!maxWidth ? maxWidth : undefined,
+    '--max-width': !!maxWidth ? maxWidth : undefined,
   };
 
   return (

@@ -10,14 +10,14 @@
 
 ## Customizing align
 ```html
-<ul data-layout="cluster cluster--align:center">
+<ul data-layout="cluster cluster--align-items:center">
   ...
 </ul>
 ```
 
 ## Customizing justify
 ```html
-<ul data-layout="cluster cluster--justify:space-between">
+<ul data-layout="cluster cluster--justify-content:space-between">
   ...
 </ul>
 ```

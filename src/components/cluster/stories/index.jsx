@@ -10,23 +10,23 @@ export default {
     notes: { readme },
   },
   argTypes: {
-    align: {
+    alignItems: {
       control: { type: 'inline-radio' },
-      description: '`--cluster--align`',
+      description: '`--align-items`',
       options: ['start', 'center', 'end'],
       table: { defaultValue: { summary: 'flex-start' } },
       type: { name: 'string', required: false },
     },
     gap: {
       control: { type: 'inline-radio' },
-      description: '`--cluster--gap`',
+      description: '`--gap`',
       options: [-2, -1, 0, 1, 2, 3, 4],
       table: { defaultValue: { summary: 'var(--s2)' } },
       type: { name: 'number', required: false },
     },
-    justify: {
+    justifyContent: {
       control: { type: 'inline-radio' },
-      description: '`--cluster--justify`',
+      description: '`--justify-content`',
       options: ['start', 'center', 'end', 'space-between'],
       table: { defaultValue: { summary: 'flex-start' } },
       type: { name: 'string', required: false },
@@ -36,9 +36,9 @@ export default {
     },
   },
   args: {
-    align: 'start',
+    alignItems: 'start',
     gap: 2,
-    justify: 'start',
+    justifyContent: 'start',
   },
 };
 
@@ -56,7 +56,7 @@ export const Default = (args) => {
 
 export const ExampleHeader = (args) => {
   return (
-    <Cluster gap={args.gap} justify="space-between" align="center">
+    <Cluster gap={args.gap} justifyContent="space-between" alignItems="center">
       <div>LOGO</div>
       <Cluster tagName="ul" gap={args.gap}>
         <li>Lorem ipsum</li>
@@ -70,6 +70,6 @@ export const ExampleHeader = (args) => {
 };
 ExampleHeader.storyName = 'Example : Header';
 ExampleHeader.argTypes = {
-  justify: { table: { disable: true } },
-  align: { table: { disable: true } },
+  justifyContent: { table: { disable: true } },
+  alignItems: { table: { disable: true } },
 };

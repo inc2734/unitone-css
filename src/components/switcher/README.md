@@ -1,8 +1,8 @@
 ```html
 <div data-layout="switcher">
-  <div data-layout="box" style="box--background-color: #decc00">Lorem ipsum</div>
-  <div data-layout="box" style="box--background-color: #bfb6a8">dolor sit</div>
-  <div data-layout="box" style="box--background-color: #edede6">amet consectetur</div>
+  <div data-layout="box" style="--background-color: #decc00">Lorem ipsum</div>
+  <div data-layout="box" style="--background-color: #bfb6a8">dolor sit</div>
+  <div data-layout="box" style="--background-color: #edede6">amet consectetur</div>
 </div>
 ```
 

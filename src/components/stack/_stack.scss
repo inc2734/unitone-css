@@ -2,8 +2,8 @@
  * @note If stack > stack, the gap of the parent stack will not be reflected correctly.
  */
 [data-layout~="stack"] {
-  --stack--gap: var(--s1);
-  --stack--max-width: min(var(--measure), 100% - var(--s1));
+  --gap: var(--s1);
+  --max-width: min(var(--measure), 100% - var(--s1));
 
   display: flex;
   flex-direction: column;
@@ -17,7 +17,7 @@
   }
 
   > * + * {
-    margin-top: var(--stack--gap);
+    margin-top: var(--gap);
   }
 
   &:only-child {
@@ -28,11 +28,11 @@
 [data-layout~="stack--center"] > * {
   margin-right: auto;
   margin-left: auto;
-  max-width: var(--stack--max-width);
+  max-width: var(--max-width);
 }
 
 @for $i from -2 through 4 {
   [data-layout~="stack--gap\:#{ $i }"] {
-    --stack--gap: var(--s#{ $i });
+    --gap: var(--s#{ $i });
   }
 }

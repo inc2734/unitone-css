@@ -3,7 +3,7 @@ import React from 'react';
 export const Frame = ({ ratio, style, ...props }) => {
   style = {
     ...style,
-    '--frame--ratio': !!ratio ? ratio : undefined,
+    '--ratio': !!ratio ? ratio : undefined,
   };
 
   return (

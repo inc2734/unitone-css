@@ -12,19 +12,19 @@ export default {
   argTypes: {
     gap: {
       control: { type: 'text' },
-      description: '`--float--gap`',
+      description: '`--gap`',
       table: { defaultValue: { summary: 'var(--s2)' } },
       type: { name: 'string', required: false },
     },
     minMeasure: {
       control: { type: 'text' },
-      description: '`--float--min-measure`',
+      description: '`--min-measure`',
       table: { defaultValue: { summary: 'calc(var(--measure) / 2)' } },
       type: { name: 'string', required: false },
     },
     minWidth: {
       control: { type: 'text' },
-      description: '`--float--min-width`',
+      description: '`--min-width`',
       table: { defaultValue: { summary: 'calc(var(--measure) / 2)' } },
       type: { name: 'string', required: false },
     },

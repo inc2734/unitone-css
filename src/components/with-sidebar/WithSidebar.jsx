@@ -10,8 +10,8 @@ export const WithSidebar = ({
 }) => {
   style = {
     ...style,
-    '--with-sidebar--sidebar-width': !!sidebarWidth ? sidebarWidth : undefined,
-    '--with-sidebar--content-min-width': !!contentMinWidth ? contentMinWidth : undefined,
+    '--sidebar-width': !!sidebarWidth ? sidebarWidth : undefined,
+    '--content-min-width': !!contentMinWidth ? contentMinWidth : undefined,
   };
 
   return (

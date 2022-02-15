@@ -1,20 +1,20 @@
 [data-layout~="box"] {
-  --box--background-color: transparent;
-  // --box--color: var(--color-text); // Comment out if you don't want it to be inherited.
-  --box--border-color: transparent;
-  --box--border-width: 0;
-  --box--border-radius: 0;
-  --box--padding: var(--s2);
+  --background-color: transparent;
+  // --color: var(--color-text); // Comment out if you don't want it to be inherited.
+  --border-color: transparent;
+  --border-width: 0;
+  --border-radius: 0;
+  --padding: var(--s2);
 
-  padding: var(--box--padding) calc(var(--box--padding) + 1rem * var(--half-leading));
-  border: var(--box--border-width) solid var(--box--border-color);
-  border-radius: var(--box--border-radius);
-  color: var(--box--color);
-  background-color: var(--box--background-color);
+  padding: var(--padding) calc(var(--padding) + 1rem * var(--half-leading));
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--border-radius);
+  color: var(--color);
+  background-color: var(--background-color);
 }
 
 @for $i from -2 through 4 {
   [data-layout~="box--padding\:#{ $i }"] {
-    --box--padding: var(--s#{ $i });
+    --padding: var(--s#{ $i });
   }
 }

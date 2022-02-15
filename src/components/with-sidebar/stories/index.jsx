@@ -12,13 +12,13 @@ export default {
   argTypes: {
     contentMinWidth: {
       control: { type: 'text' },
-      description: '`--with-sidebar--content-min-width`',
+      description: '`--content-min-width`',
       table: { defaultValue: { summary: '50%' } },
       type: { name: 'string', required: false },
     },
     gap: {
       control: { type: 'inline-radio' },
-      description: '`--with-sidebar--gap`',
+      description: '`--gap`',
       options: [-2, -1, 0, 1, 2, 3, 4],
       table: { defaultValue: { summary: 'var(--s2)' } },
       type: { name: 'number', required: false },
@@ -28,7 +28,7 @@ export default {
     },
     sidebarWidth: {
       control: { type: 'text' },
-      description: '`--with-sidebar--sidebar-width`',
+      description: '`--sidebar-width`',
       table: { defaultValue: { summary: 'initial' } },
       type: { name: 'string', required: false },
     },

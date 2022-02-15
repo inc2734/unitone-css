@@ -15,7 +15,7 @@ export default {
     },
     maxWidth: {
       control: { type: 'inline-radio' },
-      description: '`--text--max-width`',
+      description: '`--max-width`',
       table: { defaultValue: { summary: 'min(var(--measure), 100% - var(--s1))' } },
       type: { name: 'string', required: false },
     },

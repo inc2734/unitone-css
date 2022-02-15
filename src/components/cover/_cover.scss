@@ -1,12 +1,12 @@
 [data-layout~="cover"] {
-  --cover--gap: var(--s2);
-  --cover--min-height: 100vh;
+  --gap: var(--s2);
+  --min-height: 100vh;
 
   display: flex;
   flex-direction: column;
-  padding: var(--cover--gap);
-  gap: var(--cover--gap);
-  min-height: var(--cover--min-height);
+  padding: var(--gap);
+  gap: var(--gap);
+  min-height: var(--min-height);
 
   > * {
     margin-top: 0;
@@ -29,6 +29,6 @@
 
 @for $i from -2 through 4 {
   [data-layout~="cover--gap\:#{ $i }"] {
-    --cover--gap: var(--s#{ $i });
+    --gap: var(--s#{ $i });
   }
 }

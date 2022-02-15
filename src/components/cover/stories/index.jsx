@@ -14,14 +14,14 @@ export default {
   argTypes: {
     gap: {
       control: { type: 'inline-radio' },
-      description: '`--cover--gap`',
+      description: '`--gap`',
       options: [-2, -1, 0, 1, 2, 3, 4],
       table: { defaultValue: { summary: 'var(--s2)' } },
       type: { name: 'number', required: false },
     },
     minHeight: {
       control: { type: 'text' },
-      description: '`--cover--min-height`',
+      description: '`--min-height`',
       table: { defaultValue: { summary: '100vh' } },
       type: { name: 'string', required: false },
     },

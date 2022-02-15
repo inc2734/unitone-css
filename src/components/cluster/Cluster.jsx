@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Cluster = ({ align, gap, justify, tagName = 'div', style, ...props }) => {
+export const Cluster = ({ alignItems, gap, justifyContent, tagName = 'div', style, ...props }) => {
   const Tag = tagName;
 
   return (
@@ -8,8 +8,8 @@ export const Cluster = ({ align, gap, justify, tagName = 'div', style, ...props 
       data-layout={[
         'cluster',
         'undefined' !== typeof gap ? `cluster--gap:${gap}` : undefined,
-        !!justify ? `cluster--justify:${justify}` : undefined,
-        !!align ? `cluster--align:${align}` : undefined,
+        !!justifyContent ? `cluster--justify-content:${justifyContent}` : undefined,
+        !!alignItems ? `cluster--align-items:${alignItems}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

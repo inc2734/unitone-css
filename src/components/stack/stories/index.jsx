@@ -17,14 +17,14 @@ export default {
     },
     gap: {
       control: { type: 'inline-radio' },
-      description: '`--stack--gap`',
+      description: '`--gap`',
       options: [-2, -1, 0, 1, 2, 3, 4],
       table: { defaultValue: { summary: 'var(--s1)' } },
       type: { name: 'number', required: false },
     },
     maxWidth: {
       control: { type: 'text' },
-      description: '`--stack--max-width`',
+      description: '`--max-width`',
       table: { defaultValue: { summary: 'min(var(--measure), 100% - var(--s1))' } },
       type: { name: 'string', required: false },
     },

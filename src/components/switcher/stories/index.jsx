@@ -13,7 +13,7 @@ export default {
   argTypes: {
     gap: {
       control: { type: 'inline-radio' },
-      description: '`--switcher--gap`',
+      description: '`--gap`',
       options: [-2, -1, 0, 1, 2, 3, 4],
       table: { defaultValue: { summary: 'var(--s2)' } },
       type: { name: 'number', required: false },
@@ -25,7 +25,7 @@ export default {
     },
     threshold: {
       control: { type: 'text' },
-      description: '`--switcher--threshold`',
+      description: '`--threshold`',
       table: { defaultValue: { summary: 'var(--measure)' } },
       type: { name: 'string', required: false },
     },
@@ -50,7 +50,7 @@ export const GrowItemSize = (args) => {
   return (
     <Switcher {...args}>
       <Box backgroundColor="#decc00">Lorem ipsum</Box>
-      <Box backgroundColor="#bfb6a8" style={{ '--switcher__item--grow': 2 }}>
+      <Box backgroundColor="#bfb6a8" style={{ '--grow': 2 }}>
         dolor sit
       </Box>
       <Box backgroundColor="#edede6">amet consectetur</Box>

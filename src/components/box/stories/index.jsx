@@ -12,37 +12,37 @@ export default {
   argTypes: {
     backgroundColor: {
       control: { type: 'color' },
-      description: '`--box--background-color`',
+      description: '`--background-color`',
       table: { defaultValue: { summary: 'transparent' } },
       type: { name: 'string', required: false },
     },
     borderColor: {
       control: { type: 'color' },
-      description: '`--box--border-color`',
+      description: '`--border-color`',
       table: { defaultValue: { summary: 'transparent' } },
       type: { name: 'string', required: false },
     },
     borderRadius: {
       control: { type: 'text' },
-      description: '`--box--border-radius`',
+      description: '`--border-radius`',
       table: { defaultValue: { summary: '0' } },
       type: { name: 'string', required: false },
     },
     borderWidth: {
       control: { type: 'text' },
-      description: '`--box--border-width`',
+      description: '`--border-width`',
       table: { defaultValue: { summary: '0' } },
       type: { name: 'string', required: false },
     },
     color: {
       control: { type: 'color' },
-      description: '`--box--color`',
+      description: '`--color`',
       table: { defaultValue: { summary: 'initial' } },
       type: { name: 'string', required: false },
     },
     padding: {
       control: { type: 'inline-radio' },
-      description: '`--box--padding`',
+      description: '`--padding`',
       options: [-2, -1, 0, 1, 2, 3, 4],
       table: { defaultValue: { summary: 'var(--s2)' } },
       type: { name: 'number', required: false },

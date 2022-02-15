@@ -1,14 +1,14 @@
 [data-layout~="responsive-grid"] {
-  --responsive-grid--column-min-width: 250px;
-  --responsive-grid--gap: var(2);
+  --column-min-width: 250px;
+  --gap: var(2);
 
   display: grid;
-  grid-gap: var(--responsive-grid--gap);
-  grid-template-columns: repeat(auto-fit, minmax(min(var(--responsive-grid--column-min-width), 100%), 1fr));
+  grid-gap: var(--gap);
+  grid-template-columns: repeat(auto-fit, minmax(min(var(--column-min-width), 100%), 1fr));
 }
 
 @for $i from -2 through 4 {
   [data-layout~="responsive-grid--gap\:#{ $i }"] {
-    --responsive-grid--gap: var(--s#{ $i });
+    --gap: var(--s#{ $i });
   }
 }

@@ -3,7 +3,7 @@ import React from 'react';
 export const Container = ({ maxWidth, style, ...props }) => {
   style = {
     ...style,
-    '--container--max-width': !!maxWidth ? maxWidth : undefined,
+    '--max-width': !!maxWidth ? maxWidth : undefined,
   };
 
   return (

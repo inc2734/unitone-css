@@ -12,7 +12,7 @@ export default {
   argTypes: {
     ratio: {
       control: { type: 'text' },
-      description: '`--frame--ratio`',
+      description: '`--ratio`',
       table: { defaultValue: { summary: '16 / 9' } },
       type: { name: 'string', required: false },
     },

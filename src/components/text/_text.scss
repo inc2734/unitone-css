@@ -1,7 +1,7 @@
 @use '../../variables/variables' as variables;
 
 [data-layout~="text"] {
-  --text--max-width: min(var(--measure), 100% - var(--s1));
+  --max-width: min(var(--measure), 100% - var(--s1));
 
   > * {
     margin-top: 0;
@@ -10,11 +10,11 @@
   }
 
   > *:not(:first-child) {
-    margin-top: calc(1em * #{ variables.$line-height } * var(--text--margin-top, 1));
+    margin-top: calc(1em * #{ variables.$line-height } * var(--margin-top, 1));
   }
 
   > *:not(:last-child) {
-    margin-bottom: calc(1em * #{ variables.$line-height } * var(--text--margin-bottom, 1));
+    margin-bottom: calc(1em * #{ variables.$line-height } * var(--margin-bottom, 1));
   }
 
   > h1 {
@@ -22,10 +22,10 @@
   }
 
   > :is(h2, h3, h4, h5, h6) {
-    --text--margin-bottom: 0;
+    --margin-bottom: 0;
 
     & + :is(h2, h3, h4, h5, h6) {
-      --text--margin-top: .5;
+      --margin-top: .5;
     }
   }
 
@@ -45,7 +45,7 @@
     --font-size: 0;
 
     & + * {
-      --text--margin-top: .5;
+      --margin-top: .5;
     }
   }
 
@@ -53,7 +53,7 @@
     --font-size: 0;
 
     & + * {
-      --text--margin-top: .5;
+      --margin-top: .5;
     }
   }
 }
@@ -61,5 +61,5 @@
 [data-layout~="text--center"] > * {
   margin-right: auto;
   margin-left: auto;
-  max-width: var(--text--max-width);
+  max-width: var(--max-width);
 }

@@ -12,11 +12,11 @@ export const Box = ({
 }) => {
   style = {
     ...style,
-    '--box--background-color': backgroundColor,
-    '--box--border-color': borderColor,
-    '--box--border-radius': borderRadius,
-    '--box--border-width': borderWidth,
-    '--box--color': color,
+    '--background-color': backgroundColor,
+    '--border-color': borderColor,
+    '--border-radius': borderRadius,
+    '--border-width': borderWidth,
+    '--color': color,
   };
 
   return (
