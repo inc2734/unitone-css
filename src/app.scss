@@ -1,13 +1,13 @@
 @use 'foundation/foundation';
 
-@use 'layout-primitive/box/box';
-@use 'layout-primitive/cluster/cluster';
-@use 'layout-primitive/container/container';
-@use 'layout-primitive/cover/cover';
-@use 'layout-primitive/float/float';
-@use 'layout-primitive/frame/frame';
-@use 'layout-primitive/responsive-grid/responsive-grid';
-@use 'layout-primitive/stack/stack';
-@use 'layout-primitive/switcher/switcher';
-@use 'layout-primitive/text/text';
-@use 'layout-primitive/with-sidebar/with-sidebar';
+@use 'layout-primitives/box/box';
+@use 'layout-primitives/cluster/cluster';
+@use 'layout-primitives/container/container';
+@use 'layout-primitives/cover/cover';
+@use 'layout-primitives/float/float';
+@use 'layout-primitives/frame/frame';
+@use 'layout-primitives/responsive-grid/responsive-grid';
+@use 'layout-primitives/stack/stack';
+@use 'layout-primitives/switcher/switcher';
+@use 'layout-primitives/text/text';
+@use 'layout-primitives/with-sidebar/with-sidebar';
