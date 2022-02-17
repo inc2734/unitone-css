@@ -11,6 +11,16 @@ export default {
     notes: { readme },
   },
   argTypes: {
+    center: {
+      table: { disable: true },
+    },
+    gutters: {
+      control: { type: 'inline-radio' },
+      description: '`--padding`',
+      options: [0, 1, 2, 3, 4],
+      table: { defaultValue: { summary: 'var(--s1)' } },
+      type: { name: 'number', required: false },
+    },
     maxWidth: {
       control: { type: 'text' },
       description: '`--max-width`',
@@ -19,6 +29,8 @@ export default {
     },
   },
   args: {
+    center: false,
+    gutters: 1,
     maxWidth: 'min(var(--measure), 100%)',
   },
 };

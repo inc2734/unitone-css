@@ -1,0 +1,13 @@
+[data-layout~="layers"] {
+  display: grid;
+
+  & > * {
+    --align-self: stretch;
+    --justify-self: stretch;
+
+    position: relative;
+    grid-area: 1/1;
+    align-self: var(--align-self);
+    justify-self: var(--justify-self);
+  }
+}

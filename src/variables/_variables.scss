@@ -9,3 +9,5 @@ $fibonacci-sequence: 1, 2, 4, 7, 13, 24;
 
 $min-breakpoint: 22.5; // = 360px
 $max-breakpoint: 80;   // = 1280px
+
+$container-max-width: $max-breakpoint * 16px;  // = 1280px

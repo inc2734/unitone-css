@@ -1,23 +1,13 @@
-/**
- * @note If stack > stack, the gap of the parent stack will not be reflected correctly.
- */
 [data-layout~="stack"] {
   --gap: var(--s1);
-  --max-width: min(var(--measure), 100% - var(--s1));
 
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+  display: grid;
+  grid-template: max-content/1fr;
+  gap: var(--gap);
 
   > * {
     margin-top: 0;
     margin-bottom: 0;
-    max-width: 100%;
-  }
-
-  > * + * {
-    margin-top: var(--gap);
   }
 
   &:only-child {
@@ -25,10 +15,8 @@
   }
 }
 
-[data-layout~="stack--center"] > * {
-  margin-right: auto;
-  margin-left: auto;
-  max-width: var(--max-width);
+:where([data-layout~="stack"] > *) {
+  max-width: 100%;
 }
 
 @for $i from -2 through 4 {

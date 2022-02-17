@@ -15,34 +15,6 @@
   }
 }
 
-[data-layout~="cluster--align-items\:start"] {
-  --align-items: flex-start;
-}
-
-[data-layout~="cluster--align-items\:center"] {
-  --align-items: center;
-}
-
-[data-layout~="cluster--align-items\:end"] {
-  --align-items: flex-end;
-}
-
-[data-layout~="cluster--justify-content\:start"] {
-  --justify-content: flex-start;
-}
-
-[data-layout~="cluster--justify-content\:center"] {
-  --justify-content: center;
-}
-
-[data-layout~="cluster--justify-content\:end"] {
-  --justify-content: flex-end;
-}
-
-[data-layout~="cluster--justify-content\:space-between"] {
-  --justify-content: space-between;
-}
-
 @for $i from -2 through 4 {
   [data-layout~="cluster--gap\:#{ $i }"] {
     --gap: var(--s#{ $i });

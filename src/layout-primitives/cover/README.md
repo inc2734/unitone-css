@@ -34,10 +34,9 @@
 </div>
 ```
 
-## No padding
-
+## Customizing gap
 ```html
-<div data-layout="cover cover--no-padding">
+<div data-layout="cover cover--gap:1">
   ...
 </div>
 ```

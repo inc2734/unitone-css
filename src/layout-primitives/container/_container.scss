@@ -1,13 +1,19 @@
+@use '../../variables/variables' as variables;
+
 [data-layout~="container"] {
-  --max-width: min(var(--measure), 100%);
+  --gutters: var(--s1);
+  --max-width: min(100%, #{ variables.$container-max-width });
 
   box-sizing: content-box;
   margin-right: auto;
   margin-left: auto;
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  padding-right: var(--s1);
-  padding-left: var(--s1);
+  padding-right: var(--gutters);
+  padding-left: var(--gutters);
   max-width: var(--max-width);
+}
+
+@for $i from 0 through 4 {
+  [data-layout~="container--gutters\:#{ $i }"] {
+    --gutters: var(--s#{ $i });
+  }
 }

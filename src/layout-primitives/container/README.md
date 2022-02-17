@@ -19,3 +19,10 @@
   </div>
 </div>
 ```
+
+## Customizing gutters
+```html
+<div data-layout="container container--gutters:1">
+  ...
+</div>
+```
