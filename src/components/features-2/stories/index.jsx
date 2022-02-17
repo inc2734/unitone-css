@@ -11,6 +11,12 @@ export default {
       table: { defaultValue: { summary: 'transparent' } },
       type: { name: 'string', required: false },
     },
+    columnMinWidth: {
+      control: { type: 'text' },
+      description: '`--column-min-width`',
+      table: { defaultValue: { summary: '250px' } },
+      type: { name: 'string', required: false },
+    },
     color: {
       control: { type: 'color' },
       table: { defaultValue: { summary: 'initial' } },
@@ -19,12 +25,17 @@ export default {
   },
   args: {
     backgroundColor: 'transparent',
+    columnMinWidth: '250px',
     color: 'initial',
   },
 };
 
 export const Default = (props) => (
-  <Wrapper backgroundColor={props.backgroundColor} color={props.color}>
+  <Wrapper
+    backgroundColor={props.backgroundColor}
+    columnMinWidth={props.columnMinWidth}
+    color={props.color}
+  >
     <Item title="Lorem" src="https://placehold.jp/600x800.jpg">
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
     </Item>

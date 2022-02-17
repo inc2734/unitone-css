@@ -11,6 +11,12 @@ export default {
       table: { defaultValue: { summary: 'transparent' } },
       type: { name: 'string', required: false },
     },
+    columnMinWidth: {
+      control: { type: 'text' },
+      description: '`--column-min-width`',
+      table: { defaultValue: { summary: '250px' } },
+      type: { name: 'string', required: false },
+    },
     color: {
       control: { type: 'color' },
       table: { defaultValue: { summary: 'initial' } },
@@ -25,6 +31,7 @@ export default {
   },
   args: {
     backgroundColor: 'transparent',
+    columnMinWidth: '250px',
     color: 'initial',
     gap: 3,
   },
@@ -33,6 +40,7 @@ export default {
 export const Default = (props) => (
   <Wrapper
     backgroundColor={props.backgroundColor}
+    columnMinWidth={props.columnMinWidth}
     color={props.color}
     gap={props.gap}
     title="Lorem ipsum dolor sit amet"

@@ -15,7 +15,11 @@ export const Wrapper = (props) => (
             <h2 style={{ '--font-size': 2 }}>{props.title}</h2>
           </Center>
         )}
-        {!!props.children && <ResponsiveGrid gap={props.gap}>{props.children}</ResponsiveGrid>}
+        {!!props.children && (
+          <ResponsiveGrid columnMinWidth={props.columnMinWidth} gap={props.gap}>
+            {props.children}
+          </ResponsiveGrid>
+        )}
       </Stack>
     </Container>
   </Section>

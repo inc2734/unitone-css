@@ -10,7 +10,11 @@ import { Section } from '../../layout-primitives/section/Section';
 export const Wrapper = (props) => (
   <Section backgroundColor={props.backgroundColor} color={props.color}>
     <Container>
-      {!!props.children && <ResponsiveGrid gap={0}>{props.children}</ResponsiveGrid>}
+      {!!props.children && (
+        <ResponsiveGrid columnMinWidth={props.columnMinWidth} gap={props.gap}>
+          {props.children}
+        </ResponsiveGrid>
+      )}
     </Container>
   </Section>
 );
