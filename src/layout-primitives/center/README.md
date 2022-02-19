@@ -21,3 +21,10 @@
   </p>
 </div>
 ```
+
+## Centering with text
+```html
+<div data-layout="center -with-text">
+  ...
+</div>
+```

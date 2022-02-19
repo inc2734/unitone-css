@@ -9,9 +9,7 @@ export const Float = ({ minWidth, minMeasure, position, style, ...props }) => {
 
   return (
     <div
-      data-layout={['float', !!position ? `float--${position}` : undefined]
-        .filter(Boolean)
-        .join(' ')}
+      data-layout={['float', !!position ? `-${position}` : undefined].filter(Boolean).join(' ')}
       style={style}
     >
       {props.children}

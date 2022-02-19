@@ -8,7 +8,7 @@
 ## Centering children
 
 ```html
-<div data-layout="text text--center">
+<div data-layout="text -center">
   ...
 </div>
 ```

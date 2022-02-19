@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Wrapper, Item } from '../Features-1';
+import { Feature1, Feature1Item } from '../Features-1';
 
 export default {
   title: 'Components/Features-1',
-  component: Wrapper,
+  component: Feature1,
   argTypes: {
     backgroundColor: {
       control: { type: 'color' },
@@ -38,21 +38,21 @@ export default {
 };
 
 export const Default = (props) => (
-  <Wrapper
+  <Feature1
     backgroundColor={props.backgroundColor}
     columnMinWidth={props.columnMinWidth}
     color={props.color}
     gap={props.gap}
     title="Lorem ipsum dolor sit amet"
   >
-    <Item title="Lorem" src="https://placehold.jp/600x800.jpg">
+    <Feature1Item title="Lorem" src="https://placehold.jp/600x800.jpg">
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-    </Item>
-    <Item title="ipsum" src="https://placehold.jp/600x800.jpg">
+    </Feature1Item>
+    <Feature1Item title="ipsum" src="https://placehold.jp/600x800.jpg">
       <p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-    </Item>
-    <Item title="dolor" src="https://placehold.jp/600x800.jpg">
+    </Feature1Item>
+    <Feature1Item title="dolor" src="https://placehold.jp/600x800.jpg">
       <p>Ut enim ad minim veniam</p>
-    </Item>
-  </Wrapper>
+    </Feature1Item>
+  </Feature1>
 );

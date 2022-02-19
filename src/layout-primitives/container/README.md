@@ -22,7 +22,7 @@
 
 ## Customizing gutters
 ```html
-<div data-layout="container container--gutters:1">
+<div data-layout="container -gutters:1">
   ...
 </div>
 ```

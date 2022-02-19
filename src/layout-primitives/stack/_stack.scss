@@ -18,9 +18,3 @@
 :where([data-layout~="stack"] > *) {
   max-width: 100%;
 }
-
-@for $i from -2 through 4 {
-  [data-layout~="stack--gap\:#{ $i }"] {
-    --gap: var(--s#{ $i });
-  }
-}

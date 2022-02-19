@@ -6,42 +6,36 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--gap);
+}
 
-  @mixin _aside() {
-    flex-basis: var(--sidebar-width);
-    flex-grow: 1;
+@mixin _aside() {
+  flex-basis: var(--sidebar-width);
+  flex-grow: 1;
+}
+
+@mixin _main() {
+  flex-basis: 0;
+  flex-grow: 999;
+  min-width: var(--content-min-width);
+}
+
+[data-layout~="with-sidebar"][data-layout~="-right-sidebar"],
+[data-layout~="with-sidebar"]:not([data-layout~="-left-sidebar"]) {
+  > :first-child {
+    @include _main();
   }
 
-  @mixin _main() {
-    flex-basis: 0;
-    flex-grow: 999;
-    min-width: var(--content-min-width);
-  }
-
-  &:where([data-layout~="with-sidebar--sidebar\:right"]),
-  &:where(:not([data-layout~="with-sidebar--sidebar\:left"])) {
-    > :first-child {
-      @include _main();
-    }
-
-    > :last-child {
-      @include _aside();
-    }
-  }
-
-  &:where([data-layout~="with-sidebar--sidebar\:left"]) {
-    > :first-child {
-      @include _aside();
-    }
-
-    > :last-child {
-      @include _main();
-    }
+  > :last-child {
+    @include _aside();
   }
 }
 
-@for $i from -2 through 4 {
-  [data-layout~="with-sidebar--gap\:#{ $i }"] {
-    --gap: var(--s#{ $i });
+[data-layout~="with-sidebar"][data-layout~="-left-sidebar"] {
+  > :first-child {
+    @include _aside();
+  }
+
+  > :last-child {
+    @include _main();
   }
 }

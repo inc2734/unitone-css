@@ -28,15 +28,15 @@ export default {
     padding: {
       control: { type: 'inline-radio' },
       description: '`--padding`',
-      options: [1, 2, 3, 4],
-      table: { defaultValue: { summary: 'var(--s3)' } },
+      options: [1, 2, 3, 4, 5, 6, 7],
+      table: { defaultValue: { summary: 'var(--s4)' } },
       type: { name: 'number', required: false },
     },
   },
   args: {
     backgroundColor: 'transarent',
     color: 'initial',
-    padding: 3,
+    padding: 4,
   },
 };
 

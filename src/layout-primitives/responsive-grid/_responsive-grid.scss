@@ -6,9 +6,3 @@
   grid-gap: var(--gap);
   grid-template-columns: repeat(auto-fit, minmax(min(var(--column-min-width), 100%), 1fr));
 }
-
-@for $i from -2 through 4 {
-  [data-layout~="responsive-grid--gap\:#{ $i }"] {
-    --gap: var(--s#{ $i });
-  }
-}

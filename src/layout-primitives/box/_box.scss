@@ -12,9 +12,3 @@
   color: var(--color);
   background-color: var(--background-color);
 }
-
-@for $i from -2 through 4 {
-  [data-layout~="box--padding\:#{ $i }"] {
-    --padding: var(--s#{ $i });
-  }
-}

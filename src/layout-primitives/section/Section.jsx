@@ -9,10 +9,7 @@ export const Section = ({ backgroundColor, color, padding, style, ...props }) =>
 
   return (
     <div
-      data-layout={[
-        'section',
-        'undefined' !== typeof padding ? `section--padding:${padding}` : undefined,
-      ]
+      data-layout={['section', 'undefined' !== typeof padding ? `-padding:${padding}` : undefined]
         .filter(Boolean)
         .join(' ')}
       style={style}

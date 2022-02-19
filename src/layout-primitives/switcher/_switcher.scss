@@ -14,15 +14,9 @@
   }
 }
 
-@for $i from -2 through 4 {
-  [data-layout~="switcher--gap\:#{ $i }"] {
-    --gap: var(--s#{ $i });
-  }
-}
-
 @for $i from 3 through 5 {
-  [data-layout~="switcher--limit\:#{ $i }"] > :nth-last-child(n + #{ $i }),
-  [data-layout~="switcher--limit\:#{ $i }"] > :nth-last-child(n + #{ $i }) ~ * {
+  [data-layout~="switcher"][data-layout~="-limit\:#{ $i }"] > :nth-last-child(n + #{ $i }),
+  [data-layout~="switcher"][data-layout~="-limit\:#{ $i }"] > :nth-last-child(n + #{ $i }) ~ * {
     flex-basis: 100%;
   }
 }

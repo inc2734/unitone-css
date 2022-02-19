@@ -8,10 +8,7 @@ export const Container = ({ gutters, maxWidth, style, ...props }) => {
 
   return (
     <div
-      data-layout={[
-        'container',
-        'undefined' !== typeof gutters ? `container--gutters:${gutters}` : undefined,
-      ]
+      data-layout={['container', 'undefined' !== typeof gutters ? `-gutters:${gutters}` : undefined]
         .filter(Boolean)
         .join(' ')}
       style={style}

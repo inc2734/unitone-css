@@ -8,10 +8,7 @@ export const ResponsiveGrid = ({ columnMinWidth, gap, style, ...props }) => {
 
   return (
     <div
-      data-layout={[
-        'responsive-grid',
-        'undefined' !== typeof gap ? `responsive-grid--gap:${gap}` : undefined,
-      ]
+      data-layout={['responsive-grid', 'undefined' !== typeof gap ? `-gap:${gap}` : undefined]
         .filter(Boolean)
         .join(' ')}
       style={style}

@@ -18,8 +18,8 @@ export const WithSidebar = ({
     <div
       data-layout={[
         'with-sidebar',
-        'left' === sidebarPosition ? 'with-sidebar--sidebar:left' : undefined,
-        'undefined' !== typeof gap ? `with-sidebar--gap:${gap}` : undefined,
+        'left' === sidebarPosition ? '-left-sidebar' : undefined,
+        'undefined' !== typeof gap ? `-gap:${gap}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

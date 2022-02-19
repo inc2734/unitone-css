@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Wrapper, Item } from '../Features-2';
+import { Feature2, Feature2Item } from '../Features-2';
 
 export default {
   title: 'Components/Features-2',
-  component: Wrapper,
+  component: Feature2,
   argTypes: {
     backgroundColor: {
       control: { type: 'color' },
@@ -22,28 +22,36 @@ export default {
       table: { defaultValue: { summary: 'initial' } },
       type: { name: 'string', required: false },
     },
+    gap: {
+      control: { type: 'inline-radio' },
+      options: [0, 1, 2, 3, 4],
+      table: { defaultValue: { summary: 0 } },
+      type: { name: 'number', required: false },
+    },
   },
   args: {
     backgroundColor: 'transparent',
     columnMinWidth: '250px',
     color: 'initial',
+    gap: 0,
   },
 };
 
 export const Default = (props) => (
-  <Wrapper
+  <Feature2
     backgroundColor={props.backgroundColor}
     columnMinWidth={props.columnMinWidth}
     color={props.color}
+    gap={props.gap}
   >
-    <Item title="Lorem" src="https://placehold.jp/600x800.jpg">
+    <Feature2Item title="Lorem" src="https://placehold.jp/600x800.jpg">
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-    </Item>
-    <Item title="ipsum" src="https://placehold.jp/600x800.jpg">
+    </Feature2Item>
+    <Feature2Item title="ipsum" src="https://placehold.jp/600x800.jpg">
       <p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-    </Item>
-    <Item title="dolor" src="https://placehold.jp/600x800.jpg">
+    </Feature2Item>
+    <Feature2Item title="dolor" src="https://placehold.jp/600x800.jpg">
       <p>Ut enim ad minim veniam</p>
-    </Item>
-  </Wrapper>
+    </Feature2Item>
+  </Feature2>
 );

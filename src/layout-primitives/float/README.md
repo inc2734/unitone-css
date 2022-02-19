@@ -8,7 +8,7 @@
 ## Float right
 
 ```html
-<div data-layout="float float--right">
+<div data-layout="float -right">
   ...
 </div>
 ```

@@ -12,7 +12,7 @@
 ## Left sidebar
 
 ```html
-<div data-layout="with-sidebar with-sidebar--sidebar:left">
+<div data-layout="with-sidebar -left-sidebar">
   ...
 </div>
 ```

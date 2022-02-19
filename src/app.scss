@@ -14,3 +14,9 @@
 @use 'layout-primitives/switcher/switcher';
 @use 'layout-primitives/text/text';
 @use 'layout-primitives/with-sidebar/with-sidebar';
+
+@use 'helper/align-items';
+@use 'helper/gap';
+@use 'helper/gutters';
+@use 'helper/justify-content';
+@use 'helper/padding';

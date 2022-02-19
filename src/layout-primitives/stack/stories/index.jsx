@@ -12,27 +12,16 @@ export default {
     notes: { readme },
   },
   argTypes: {
-    // center: {
-    //   table: { disable: true },
-    // },
     gap: {
       control: { type: 'inline-radio' },
       description: '`--gap`',
-      options: [-2, -1, 0, 1, 2, 3, 4],
+      options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
       table: { defaultValue: { summary: 'var(--s1)' } },
       type: { name: 'number', required: false },
     },
-    // maxWidth: {
-    //   control: { type: 'text' },
-    //   description: '`--max-width`',
-    //   table: { defaultValue: { summary: 'min(var(--measure), 100% - var(--s1))' } },
-    //   type: { name: 'string', required: false },
-    // },
   },
   args: {
-    // center: false,
     gap: 1,
-    // maxWidth: 'min(var(--measure), 100% - var(--s1))',
   },
 };
 
@@ -55,26 +44,6 @@ export const Default = (args) => {
     </Stack>
   );
 };
-
-// export const Center = (args) => {
-//   return (
-//     <Stack {...args}>
-//       <p style={{ '--font-size': -2 }}>{content}</p>
-//       <p style={{ '--font-size': -1 }}>{content}</p>
-//       <p>{content}</p>
-//       <p style={{ '--font-size': 1 }}>{content}</p>
-//       <p style={{ '--font-size': 2 }}>{content}</p>
-//       <p style={{ '--font-size': 3 }}>{content}</p>
-//       <p style={{ '--font-size': 4 }}>{content}</p>
-//       <p style={{ '--font-size': 5 }}>{content}</p>
-//       <p style={{ '--font-size': 6 }}>{content}</p>
-//       <p style={{ '--font-size': 7 }}>{content}</p>
-//     </Stack>
-//   );
-// };
-// Center.args = {
-//   center: true,
-// };
 
 export const ExampleCard = (args) => {
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import readme from '../README.md';
 
-import { Cover, Center, Bottom } from '../Cover';
+import { Cover, CoverContent } from '../Cover';
 import { Box } from '../../box/Box';
 import { Stack } from '../../stack/Stack';
 
@@ -15,7 +15,7 @@ export default {
     gap: {
       control: { type: 'inline-radio' },
       description: '`--gap`',
-      options: [-2, -1, 0, 1, 2, 3, 4],
+      options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
       table: { defaultValue: { summary: 'var(--s2)' } },
       type: { name: 'number', required: false },
     },
@@ -26,7 +26,10 @@ export default {
       type: { name: 'string', required: false },
     },
     noPadding: {
-      table: { disable: true },
+      control: { type: 'inline-radio' },
+      options: [false, true],
+      table: { defaultValue: { summary: 'false' } },
+      type: { name: 'boolean', required: false },
     },
   },
   args: {
@@ -41,7 +44,7 @@ export const Default = (args) => {
     <Box backgroundColor="#000" color="#fff" padding="0">
       <Cover {...args}>
         <p>Lorem ipsum</p>
-        <Center>
+        <CoverContent>
           <Stack>
             <h1 style={{ '--font-size': 6 }}>Lorem ipsum dolor sit amet</h1>
             <p>
@@ -49,8 +52,8 @@ export const Default = (args) => {
               magna aliqua.
             </p>
           </Stack>
-        </Center>
-        <p>sed do</p>
+        </CoverContent>
+        <p>Lorem ipsum</p>
       </Cover>
     </Box>
   );
@@ -60,7 +63,7 @@ export const ExampleNoHeader = (args) => {
   return (
     <Box backgroundColor="#000" color="#fff" padding="0">
       <Cover {...args}>
-        <Center>
+        <CoverContent>
           <Stack>
             <h1 style={{ '--font-size': 6 }}>Lorem ipsum dolor sit amet</h1>
             <p>
@@ -68,7 +71,7 @@ export const ExampleNoHeader = (args) => {
               magna aliqua.
             </p>
           </Stack>
-        </Center>
+        </CoverContent>
         <p>sed do</p>
       </Cover>
     </Box>
@@ -84,7 +87,7 @@ export const ExampleNoFooter = (args) => {
     <Box backgroundColor="#000" color="#fff" padding="0">
       <Cover {...args}>
         <p>Lorem ipsum</p>
-        <Center>
+        <CoverContent>
           <Stack>
             <h1 style={{ '--font-size': 6 }}>Lorem ipsum dolor sit amet</h1>
             <p>
@@ -92,7 +95,7 @@ export const ExampleNoFooter = (args) => {
               magna aliqua.
             </p>
           </Stack>
-        </Center>
+        </CoverContent>
       </Cover>
     </Box>
   );
@@ -102,25 +105,25 @@ ExampleNoFooter.args = {
   minHeight: '80vh',
 };
 
-export const ExampleBottom = (args) => {
+export const ExampleFooter = (args) => {
   return (
     <Box backgroundColor="#000" color="#fff" padding="0">
       <Cover {...args}>
-        <p>Lorem ipsum</p>
-        <Bottom>
-          <Stack>
-            <h1 style={{ '--font-size': 6 }}>Lorem ipsum dolor sit amet</h1>
-            <p>
-              consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
-            </p>
-          </Stack>
-        </Bottom>
+        <CoverContent>
+          <p>Lorem ipsum</p>
+        </CoverContent>
+        <Stack>
+          <h1 style={{ '--font-size': 6 }}>Lorem ipsum dolor sit amet</h1>
+          <p>
+            consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+            aliqua.
+          </p>
+        </Stack>
       </Cover>
     </Box>
   );
 };
-ExampleBottom.storyName = 'Example : Bottom';
-ExampleBottom.args = {
+ExampleFooter.storyName = 'Example : Footer';
+ExampleFooter.args = {
   minHeight: '80vh',
 };

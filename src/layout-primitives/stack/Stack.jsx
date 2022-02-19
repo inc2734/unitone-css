@@ -10,8 +10,8 @@ export const Stack = ({ center, gap, maxWidth, style, ...props }) => {
     <div
       data-layout={[
         'stack',
-        'undefined' !== typeof gap ? `stack--gap:${gap}` : undefined,
-        true === center ? 'stack--center' : undefined,
+        'undefined' !== typeof gap ? `-gap:${gap}` : undefined,
+        true === center ? '-center' : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

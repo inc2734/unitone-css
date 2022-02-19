@@ -11,9 +11,3 @@
   padding-left: var(--gutters);
   max-width: var(--max-width);
 }
-
-@for $i from 0 through 4 {
-  [data-layout~="container--gutters\:#{ $i }"] {
-    --gutters: var(--s#{ $i });
-  }
-}

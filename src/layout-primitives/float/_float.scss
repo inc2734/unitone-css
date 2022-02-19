@@ -7,17 +7,17 @@
     min(var(--min-width), 100%),
     min((var(--min-width) + var(--gap) + var(--min-measure) - 100%) * 999, 100%)
   );
+}
 
-  &:where([data-layout~="float--left"]),
-  &:where(:not([data-layout~="float--right"])) {
-    float: left;
-    margin-right: var(--gap);
-    margin-bottom: var(--gap);
-  }
+[data-layout~="float"][data-layout~="-left"],
+[data-layout~="float"]:not([data-layout~="-right"]) {
+  float: left;
+  margin-right: var(--gap);
+  margin-bottom: var(--gap);
+}
 
-  &:where([data-layout~="float--right"]) {
-    float: right;
-    margin-left: var(--gap);
-    margin-bottom: var(--gap);
-  }
+[data-layout~="float"][data-layout~="-right"] {
+  float: right;
+  margin-left: var(--gap);
+  margin-bottom: var(--gap);
 }

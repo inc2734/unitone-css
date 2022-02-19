@@ -21,7 +21,7 @@ export const Box = ({
 
   return (
     <div
-      data-layout={['box', 'undefined' !== typeof padding ? `box--padding:${padding}` : undefined]
+      data-layout={['box', 'undefined' !== typeof padding ? `-padding:${padding}` : undefined]
         .filter(Boolean)
         .join(' ')}
       style={style}

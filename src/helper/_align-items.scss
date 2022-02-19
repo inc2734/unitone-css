@@ -1,0 +1,5 @@
+@each $value in (start, center, end) {
+  [data-layout~="-align-items\:#{ $value }"] {
+    --align-items: var(--s#{ $value });
+  }
+}

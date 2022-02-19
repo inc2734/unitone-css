@@ -6,3 +6,12 @@
   </div>
 </div>
 ```
+
+## Customizing position
+```html
+<div data-layout="layers">
+  <img ...>
+  <div style="--alilgn-self: end, --justify-self: center">
+    ...
+  </div>
+</div>

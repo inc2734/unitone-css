@@ -10,8 +10,8 @@ export const Cover = ({ gap, minHeight, noPadding, style, ...props }) => {
     <div
       data-layout={[
         'cover',
-        noPadding ? 'cover--no-padding' : undefined,
-        'undefined' !== typeof gap ? `cover--gap:${gap}` : undefined,
+        noPadding ? '-no-padding' : undefined,
+        'undefined' !== typeof gap ? `-gap:${gap}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}
@@ -22,14 +22,8 @@ export const Cover = ({ gap, minHeight, noPadding, style, ...props }) => {
   );
 };
 
-export const Center = ({ tagName = 'div', ...props }) => {
+export const CoverContent = ({ tagName = 'div', ...props }) => {
   const Tag = tagName;
 
-  return <Tag data-layout="cover__center">{props.children}</Tag>;
-};
-
-export const Bottom = ({ tagName = 'div', ...props }) => {
-  const Tag = tagName;
-
-  return <Tag data-layout="cover__bottom">{props.children}</Tag>;
+  return <Tag data-layout="cover__content">{props.children}</Tag>;
 };

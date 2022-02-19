@@ -1,5 +1,5 @@
 [data-layout~="center"] {
-  --max-width: min(var(--measure), 100%);
+  --max-width: 100%;
 
   display: flex;
   flex-direction: column;
@@ -7,4 +7,8 @@
   margin-right: auto;
   margin-left: auto;
   max-width: var(--max-width);
+}
+
+[data-layout~="center"][data-layout~="-with-text"] {
+  text-align: center;
 }

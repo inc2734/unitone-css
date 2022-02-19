@@ -17,21 +17,21 @@ export default {
     gutters: {
       control: { type: 'inline-radio' },
       description: '`--padding`',
-      options: [0, 1, 2, 3, 4],
+      options: [0, 1, 2, 3, 4, 5, 6, 7],
       table: { defaultValue: { summary: 'var(--s1)' } },
       type: { name: 'number', required: false },
     },
     maxWidth: {
       control: { type: 'text' },
       description: '`--max-width`',
-      table: { defaultValue: { summary: 'min(var(--measure), 100%)' } },
+      table: { defaultValue: { summary: 'min(1280px, 100%)' } },
       type: { name: 'string', required: false },
     },
   },
   args: {
     center: false,
     gutters: 1,
-    maxWidth: 'min(var(--measure), 100%)',
+    maxWidth: 'min(1280px, 100%)',
   },
 };
 

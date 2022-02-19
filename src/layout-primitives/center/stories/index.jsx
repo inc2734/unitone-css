@@ -14,12 +14,19 @@ export default {
     maxWidth: {
       control: { type: 'text' },
       description: '`--max-width`',
-      table: { defaultValue: { summary: 'min(var(--measure), 100%)' } },
+      table: { defaultValue: { summary: '100%' } },
       type: { name: 'string', required: false },
+    },
+    withText: {
+      control: { type: 'inline-radio' },
+      options: [false, true],
+      table: { defaultValue: { summary: false } },
+      type: { name: 'boolean', required: false },
     },
   },
   args: {
-    maxWidth: 'min(var(--measure), 100%)',
+    maxWidth: '100%',
+    withText: false,
   },
 };
 

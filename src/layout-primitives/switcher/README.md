@@ -8,7 +8,7 @@
 
 ## Customizing gap
 ```html
-<div data-layout="switcher switcher--gap:1">
+<div data-layout="switcher -gap:1">
   ...
 </div>
 ```
@@ -19,7 +19,7 @@ The number of pieces to switch to vertical.<br>
 Selectable values: 3 - 5.
 
 ```html
-<div data-layout="switcher switcher--limit:3">
+<div data-layout="switcher -limit:3">
   ...
 </div>
 ```

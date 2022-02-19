@@ -14,7 +14,7 @@
 
 ## Customizing padding
 ```html
-<div data-layout="section section--padding:1">
+<div data-layout="section -padding:1">
   ...
 </div>
 ```

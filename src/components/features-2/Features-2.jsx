@@ -7,7 +7,7 @@ import { Layers } from '../../layout-primitives/layers/Layers';
 import { ResponsiveGrid } from '../../layout-primitives/responsive-grid/ResponsiveGrid';
 import { Section } from '../../layout-primitives/section/Section';
 
-export const Wrapper = (props) => (
+export const Feature2 = (props) => (
   <Section backgroundColor={props.backgroundColor} color={props.color}>
     <Container>
       {!!props.children && (
@@ -19,7 +19,7 @@ export const Wrapper = (props) => (
   </Section>
 );
 
-export const Item = (props) => (
+export const Feature2Item = (props) => (
   <Layers>
     <Frame ratio="3 / 4">{!!props.src && <img src={props.src} alt="" />}</Frame>
     {!!props.children && (

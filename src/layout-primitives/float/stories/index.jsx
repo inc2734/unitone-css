@@ -29,10 +29,14 @@ export default {
       type: { name: 'string', required: false },
     },
     position: {
-      table: { disable: true },
+      control: { type: 'inline-radio' },
+      options: ['left', 'right'],
+      table: { defaultValue: { summary: 'left' } },
+      type: { name: 'string', required: false },
     },
   },
   args: {
+    gap: 'var(--s2)',
     minMeasure: 'calc(var(--measure) / 2)',
     minWidth: 'calc(var(--measure) / 2)',
     position: 'left',

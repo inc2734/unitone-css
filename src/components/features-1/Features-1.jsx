@@ -6,13 +6,13 @@ import { ResponsiveGrid } from '../../layout-primitives/responsive-grid/Responsi
 import { Section } from '../../layout-primitives/section/Section';
 import { Stack } from '../../layout-primitives/stack/Stack';
 
-export const Wrapper = (props) => (
+export const Feature1 = (props) => (
   <Section backgroundColor={props.backgroundColor} color={props.color} padding={3 > props.gap && 3}>
     <Container gutters={props.gap}>
       <Stack gap={props.gap}>
         {!!props.title && (
           <Center>
-            <h2 style={{ '--font-size': 2 }}>{props.title}</h2>
+            <h2 style={{ '--font-size': 3 }}>{props.title}</h2>
           </Center>
         )}
         {!!props.children && (
@@ -25,7 +25,7 @@ export const Wrapper = (props) => (
   </Section>
 );
 
-export const Item = (props) => (
+export const Feature1Item = (props) => (
   <Stack>
     {(!!props.src || !!props.title) && (
       <Stack gap={-1}>

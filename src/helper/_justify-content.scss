@@ -1,0 +1,5 @@
+@each $value in (start, center, end, space-between) {
+  [data-layout~="-justify-content\:#{ $value }"] {
+    --justify-content: var(--s#{ $value });
+  }
+}

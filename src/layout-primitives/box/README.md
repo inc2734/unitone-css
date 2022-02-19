@@ -6,7 +6,7 @@
 
 ## Customizing padding
 ```html
-<div data-layout="box box--padding:1">
+<div data-layout="box -padding:1">
   ...
 </div>
 ```

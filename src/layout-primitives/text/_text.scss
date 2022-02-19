@@ -61,8 +61,11 @@
   max-width: 100%;
 }
 
-[data-layout~="text--center"] > * {
+[data-layout~="text"][data-layout~="-center"] > * {
   margin-right: auto;
   margin-left: auto;
+}
+
+:where([data-layout~="text"][data-layout~="-center"] > *) {
   max-width: var(--max-width);
 }

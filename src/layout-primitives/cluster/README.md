@@ -10,21 +10,21 @@
 
 ## Customizing align
 ```html
-<ul data-layout="cluster cluster--align-items:center">
+<ul data-layout="cluster -align-items:center">
   ...
 </ul>
 ```
 
 ## Customizing justify
 ```html
-<ul data-layout="cluster cluster--justify-content:space-between">
+<ul data-layout="cluster -justify-content:space-between">
   ...
 </ul>
 ```
 
 ## Customizing gap
 ```html
-<ul data-layout="cluster cluster--gap:1">
+<ul data-layout="cluster -gap:1">
   ...
 </ul>
 ```

@@ -3,28 +3,30 @@
   --min-height: 100vh;
 
   display: flex;
-  flex-direction: column;
-  padding: var(--gap);
-  gap: var(--gap);
+  flex-flow: column;
   min-height: var(--min-height);
+  padding: var(--gap);
+  overflow: hidden;
 
   > * {
+    margin-top: var(--gap);
+    margin-bottom: var(--gap);
+  }
+
+  > :first-child:not([data-layout~="cover__content"]) {
     margin-top: 0;
+  }
+
+  > :last-child:not([data-layout~="cover__content"]) {
     margin-bottom: 0;
   }
 }
 
-[data-layout~="cover__center"] {
+[data-layout~="cover__content"] {
   margin-top: auto;
   margin-bottom: auto;
 }
 
-[data-layout~="cover__bottom"] {
-  margin-top: auto;
-}
-
-@for $i from -2 through 4 {
-  [data-layout~="cover--gap\:#{ $i }"] {
-    --gap: var(--s#{ $i });
-  }
+[data-layout~="cover"][data-layout~="-no-padding"] {
+  padding: 0;
 }

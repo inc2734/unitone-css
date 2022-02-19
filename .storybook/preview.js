@@ -1,3 +1,13 @@
+import {
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  ArgsTable,
+  Stories,
+  PRIMARY_STORY,
+} from '@storybook/addon-docs';
+
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
@@ -8,6 +18,16 @@ export const parameters = {
   },
   docs: {
     extractComponentDescription: ((_, { notes }) => notes?.readme),
+    page: () => (
+      <>
+        <Title />
+        <Subtitle />
+        <Primary />
+        <ArgsTable story={PRIMARY_STORY} />
+        <Description />
+        <Stories />
+      </>
+    ),
   },
   viewMode: 'docs',
   options: {

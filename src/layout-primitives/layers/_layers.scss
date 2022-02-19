@@ -1,7 +1,7 @@
 [data-layout~="layers"] {
   display: grid;
 
-  & > * {
+  > * {
     --align-self: stretch;
     --justify-self: stretch;
 
@@ -9,5 +9,21 @@
     grid-area: 1/1;
     align-self: var(--align-self);
     justify-self: var(--justify-self);
+  }
+
+  > img,
+  > video,
+  > picture > img,
+  > picture > video {
+    margin-top: 0;
+    margin-bottom: 0;
+    object-fit: cover;
+    object-position: 50% 50%;
+  }
+
+  > picture > img,
+  > picture > video {
+    height: 100%;
+    width: 100%;
   }
 }

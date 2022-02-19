@@ -6,7 +6,7 @@
   /**
    * Column width in typography.
    */
-  --measure: 38rem;
+  --measure: 38em;
 
   /**
    * Collors.
@@ -46,6 +46,9 @@
   --s2: calc(1rem * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 4) });
   --s3: calc(1rem * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 5) });
   --s4: calc(1rem * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 6) });
+  --s5: calc(1rem * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 7) });
+  --s6: calc(1rem * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 8) });
+  --s7: calc(1rem * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 9) });
 }
 
 *,
@@ -134,17 +137,9 @@ sub {
 }
 
 img,
-figure {
+video {
   margin-top: calc(1rem * var(--half-leading));
   margin-bottom: calc(1rem * var(--half-leading));
-}
-
-figure > img {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-img {
   height: auto;
   max-width: 100%;
 }
