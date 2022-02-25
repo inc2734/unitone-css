@@ -1,7 +1,6 @@
 [data-layout~="with-sidebar"] {
   --content-min-width: 50%;
-  --gap: var(--s2);
-  --sidebar-width: initial;
+  --gap: var(--s1);
 
   display: flex;
   flex-wrap: wrap;
@@ -19,8 +18,9 @@
   min-width: var(--content-min-width);
 }
 
-[data-layout~="with-sidebar"][data-layout~="-right-sidebar"],
-[data-layout~="with-sidebar"]:not([data-layout~="-left-sidebar"]) {
+[data-layout~="with-sidebar"]:not([data-layout~="-revert"])[data-layout~="-sidebar\:right"],
+[data-layout~="with-sidebar"]:not([data-layout~="-revert"]):not([data-layout~="-sidebar\:left"]),
+[data-layout~="with-sidebar"][data-layout~="-revert"][data-layout~="-sidebar\:left"] {
   > :first-child {
     @include _main();
   }
@@ -30,7 +30,9 @@
   }
 }
 
-[data-layout~="with-sidebar"][data-layout~="-left-sidebar"] {
+[data-layout~="with-sidebar"]:not([data-layout~="-revert"])[data-layout~="-sidebar\:left"],
+[data-layout~="with-sidebar"][data-layout~="-revert"][data-layout~="-sidebar\:right"],
+[data-layout~="with-sidebar"][data-layout~="-revert"]:not([data-layout~="-sidebar\:left"]) {
   > :first-child {
     @include _aside();
   }
@@ -38,4 +40,8 @@
   > :last-child {
     @include _main();
   }
+}
+
+[data-layout~="with-sidebar"][data-layout~="-revert"] {
+  flex-direction: row-reverse;
 }

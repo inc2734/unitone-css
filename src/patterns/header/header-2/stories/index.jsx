@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Header1 } from '../Header-1';
+import { Header2 } from '../Header2';
 
 export default {
-  title: 'Components/Header-1',
-  component: Header1,
+  title: 'Patterns/Header/Header-2',
+  component: Header2,
   argTypes: {
     backgroundColor: {
       control: { type: 'color' },
@@ -21,15 +21,25 @@ export default {
     backgroundColor: 'transparent',
     color: 'initial',
   },
+  parameters: {
+    layout: 'fullscreen',
+    viewMode: 'preview',
+  },
 };
 
 export const Default = (props) => (
-  <Header1
-    src="https://placehold.jp/1280x1024.jpg"
+  <Header2
+    src="https://placehold.jp/1280x480.jpg"
     title="Lorem ipsum dolor"
     backgroundColor={props.backgroundColor}
     color={props.color}
   >
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-  </Header1>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+      laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+      voluptate velit esse cill
+    </p>
+  </Header2>
 );

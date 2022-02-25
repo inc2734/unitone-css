@@ -10,6 +10,17 @@ export default {
   parameters: {
     notes: { readme },
   },
+  argTypes: {
+    cover: {
+      control: { type: 'inline-radio' },
+      options: [false, true],
+      table: { defaultValue: { summary: false } },
+      type: { name: 'boolean', required: false },
+    },
+  },
+  args: {
+    cover: false,
+  },
 };
 
 export const Default = (args) => {

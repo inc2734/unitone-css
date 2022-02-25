@@ -1,3 +1,5 @@
+## Usage
+
 ```html
 <div data-layout="layers">
   <img src="https://placehold.jp/400x300.jpg" alt="" />
@@ -7,7 +9,19 @@
 </div>
 ```
 
-## Customizing position
+### Covered image
+
+```html
+<div data-layout="layers -cover">
+  <img ...>
+  <div>
+    ...
+  </div>
+</div>
+```
+
+### Customizing position
+
 ```html
 <div data-layout="layers">
   <img ...>
@@ -15,3 +29,4 @@
     ...
   </div>
 </div>
+```

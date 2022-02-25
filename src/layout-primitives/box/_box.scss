@@ -4,9 +4,9 @@
   --border-color: transparent;
   --border-width: 0;
   --border-radius: 0;
-  --padding: var(--s2);
+  --padding: var(--s1);
 
-  padding: var(--padding) calc(var(--padding) + 1rem * var(--half-leading));
+  padding: var(--padding);
   border: var(--border-width) solid var(--border-color);
   border-radius: var(--border-radius);
   color: var(--color);

@@ -1,3 +1,5 @@
+## Usage
+
 ```html
 <div data-layout="responsive-grid">
   <div data-layout="stack">

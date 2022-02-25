@@ -20,10 +20,16 @@ export default {
       control: { type: 'inline-radio' },
       description: '`--gap`',
       options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
-      table: { defaultValue: { summary: 'var(--s2)' } },
+      table: { defaultValue: { summary: 'var(--s1)' } },
       type: { name: 'number', required: false },
     },
-    sidebarPosition: {
+    revert: {
+      control: { type: 'inline-radio' },
+      options: [false, true],
+      table: { defaultValue: { summary: 'false' } },
+      type: { name: 'boolean', required: false },
+    },
+    sidebar: {
       control: { type: 'inline-radio' },
       options: ['left', 'right'],
       table: { defaultValue: { summary: 'right' } },
@@ -38,8 +44,9 @@ export default {
   },
   args: {
     contentMinWidth: '50%',
-    gap: 2,
-    sidebarPosition: 'right',
+    gap: 1,
+    revert: false,
+    sidebar: 'right',
     sidebarWidth: 'initial',
   },
 };
@@ -58,6 +65,23 @@ export const Default = (args) => {
       </ul>
     </WithSidebar>
   );
+};
+
+export const Revert = (args) => {
+  return (
+    <WithSidebar {...args}>
+      <p>{content}</p>
+      <ul>
+        <li>Lorem</li>
+        <li>ipsum</li>
+        <li>dolor</li>
+      </ul>
+    </WithSidebar>
+  );
+};
+Revert.storyName = 'Example : Revert';
+Revert.args = {
+  revert: true,
 };
 
 export const Input = (args) => {
@@ -83,6 +107,6 @@ export const MediaText = (args) => {
 };
 MediaText.storyName = 'Example : Media and text';
 MediaText.args = {
-  sidebarPosition: 'left',
+  sidebar: 'left',
   sidebarWidth: '300px',
 };

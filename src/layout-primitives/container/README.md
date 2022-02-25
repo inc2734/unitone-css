@@ -1,3 +1,5 @@
+## Usage
+
 ```html
 <div data-layout="container">
   <div data-layout="text">
@@ -20,9 +22,26 @@
 </div>
 ```
 
-## Customizing gutters
+### Customizing gutters
+
 ```html
 <div data-layout="container -gutters:1">
+  ...
+</div>
+```
+
+### max-width for text
+
+```html
+<div data-layout="container -text">
+  ...
+</div>
+```
+
+### Alignment
+
+```html
+<div data-layout="container -align:start">
   ...
 </div>
 ```

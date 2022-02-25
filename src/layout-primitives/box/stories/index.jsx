@@ -44,7 +44,7 @@ export default {
       control: { type: 'inline-radio' },
       description: '`--padding`',
       options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
-      table: { defaultValue: { summary: 'var(--s2)' } },
+      table: { defaultValue: { summary: 'var(--s1)' } },
       type: { name: 'number', required: false },
     },
   },
@@ -54,7 +54,7 @@ export default {
     borderRadius: '0px',
     borderWidth: '0px',
     color: 'initial',
-    padding: 2,
+    padding: 1,
   },
 };
 

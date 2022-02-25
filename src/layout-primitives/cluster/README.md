@@ -1,3 +1,5 @@
+## Usage
+
 ```html
 <ul data-layout="cluster">
   <li>Lorem ipsum</li>
@@ -8,21 +10,24 @@
 </ul>
 ```
 
-## Customizing align
+### Customizing align
+
 ```html
 <ul data-layout="cluster -align-items:center">
   ...
 </ul>
 ```
 
-## Customizing justify
+### Customizing justify
+
 ```html
 <ul data-layout="cluster -justify-content:space-between">
   ...
 </ul>
 ```
 
-## Customizing gap
+### Customizing gap
+
 ```html
 <ul data-layout="cluster -gap:1">
   ...

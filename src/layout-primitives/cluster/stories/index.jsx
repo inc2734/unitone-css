@@ -21,7 +21,7 @@ export default {
       control: { type: 'inline-radio' },
       description: '`--gap`',
       options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
-      table: { defaultValue: { summary: 'var(--s2)' } },
+      table: { defaultValue: { summary: 'var(--s1)' } },
       type: { name: 'number', required: false },
     },
     justifyContent: {
@@ -37,7 +37,7 @@ export default {
   },
   args: {
     alignItems: 'start',
-    gap: 2,
+    gap: 1,
     justifyContent: 'start',
   },
 };

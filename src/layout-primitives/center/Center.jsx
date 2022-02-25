@@ -1,14 +1,13 @@
 import React from 'react';
 
-export const Center = ({ maxWidth, withText, style, ...props }) => {
+export const Center = ({ withText, style, ...props }) => {
   style = {
     ...style,
-    '--max-width': !!maxWidth ? maxWidth : undefined,
   };
 
   return (
     <div
-      data-layout={['center', 'undefined' !== typeof withText ? `-with-text` : undefined]
+      data-layout={['center', true === withText ? `-with-text` : undefined]
         .filter(Boolean)
         .join(' ')}
       style={style}

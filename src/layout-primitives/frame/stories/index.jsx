@@ -13,12 +13,12 @@ export default {
     ratio: {
       control: { type: 'text' },
       description: '`--ratio`',
-      table: { defaultValue: { summary: '16 / 9' } },
+      table: { defaultValue: { summary: '16/9' } },
       type: { name: 'string', required: false },
     },
   },
   args: {
-    ratio: '16 / 9',
+    ratio: '16/9',
   },
 };
 

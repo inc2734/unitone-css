@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Float = ({ minWidth, minMeasure, position, style, ...props }) => {
+export const Float = ({ gap, minWidth, minMeasure, position, style, ...props }) => {
   style = {
     ...style,
     '--min-width': !!minWidth ? minWidth : undefined,
@@ -9,7 +9,13 @@ export const Float = ({ minWidth, minMeasure, position, style, ...props }) => {
 
   return (
     <div
-      data-layout={['float', !!position ? `-${position}` : undefined].filter(Boolean).join(' ')}
+      data-layout={[
+        'float',
+        !!position ? `-${position}` : undefined,
+        'undefined' !== typeof gap ? `-gap:${gap}` : undefined,
+      ]
+        .filter(Boolean)
+        .join(' ')}
       style={style}
     >
       {props.children}

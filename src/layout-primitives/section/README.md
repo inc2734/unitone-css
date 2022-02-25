@@ -1,3 +1,5 @@
+## Usage
+
 ```html
 <div data-layout="section">
   <div data-layout="stack">
@@ -12,7 +14,8 @@
 </div>
 ```
 
-## Customizing padding
+### Customizing padding
+
 ```html
 <div data-layout="section -padding:1">
   ...

@@ -1,3 +1,5 @@
+## Usage
+
 ```html
 <div data-layout="box" style="--background-color: #000, --color: #fff, --padding: 0">
   <div data-layout="cover">
@@ -16,7 +18,8 @@
 </div>
 ```
 
-## Bottom
+### Bottom
+
 ```html
 <div data-layout="box" style="--background-color: #000, --color: #fff, --padding: 0">
   <div data-layout="cover">
@@ -34,16 +37,18 @@
 </div>
 ```
 
-## Customizing gap
+### No padding
+
 ```html
-<div data-layout="cover -gap:1">
+<div data-layout="cover -no-padding">
   ...
 </div>
 ```
 
-## No padding
+### Customizing gap
+
 ```html
-<div data-layout="cover -no-padding">
+<div data-layout="cover -gap:1">
   ...
 </div>
 ```

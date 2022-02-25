@@ -1,3 +1,5 @@
+## Usage
+
 ```html
 <div data-layout="text">
   <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h2>
@@ -22,7 +24,8 @@
 </div>
 ```
 
-## Centering with text
+### Centering with text
+
 ```html
 <div data-layout="center -with-text">
   ...

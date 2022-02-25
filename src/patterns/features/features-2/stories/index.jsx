@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Feature1, Feature1Item } from '../Features-1';
+import { Feature2 } from '../Features2';
 
 export default {
-  title: 'Components/Features-1',
-  component: Feature1,
+  title: 'Patterns/Features/Features-2',
+  component: Feature2,
   argTypes: {
     backgroundColor: {
       control: { type: 'color' },
@@ -19,40 +19,50 @@ export default {
     },
     color: {
       control: { type: 'color' },
-      table: { defaultValue: { summary: 'initial' } },
+      table: { defaultValue: { summary: '#fff' } },
       type: { name: 'string', required: false },
     },
     gap: {
       control: { type: 'inline-radio' },
-      options: [1, 2, 3, 4],
-      table: { defaultValue: { summary: 3 } },
+      options: [0, 1, 2, 3, 4],
+      table: { defaultValue: { summary: 0 } },
       type: { name: 'number', required: false },
     },
   },
   args: {
     backgroundColor: 'transparent',
     columnMinWidth: '250px',
-    color: 'initial',
-    gap: 3,
+    color: '#fff',
+    gap: 0,
+  },
+  parameters: {
+    layout: 'fullscreen',
+    viewMode: 'preview',
   },
 };
 
 export const Default = (props) => (
-  <Feature1
+  <Feature2
     backgroundColor={props.backgroundColor}
     columnMinWidth={props.columnMinWidth}
     color={props.color}
     gap={props.gap}
-    title="Lorem ipsum dolor sit amet"
-  >
-    <Feature1Item title="Lorem" src="https://placehold.jp/600x800.jpg">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-    </Feature1Item>
-    <Feature1Item title="ipsum" src="https://placehold.jp/600x800.jpg">
-      <p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-    </Feature1Item>
-    <Feature1Item title="dolor" src="https://placehold.jp/600x800.jpg">
-      <p>Ut enim ad minim veniam</p>
-    </Feature1Item>
-  </Feature1>
+    items={[
+      {
+        title: 'Lorem',
+        src: 'https://placehold.jp/600x800.jpg',
+        content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit',
+      },
+      {
+        title: 'ipsum',
+        src: 'https://placehold.jp/600x800.jpg',
+        content: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+      },
+      {
+        title: 'dolor',
+        src: 'https://placehold.jp/600x800.jpg',
+        content: 'Ut enim ad minim veniam',
+      },
+    ]}
+  />
 );

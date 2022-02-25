@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Container = ({ gutters, maxWidth, style, ...props }) => {
+export const Container = ({ align, gutters, maxWidth, text, style, ...props }) => {
   style = {
     ...style,
     '--max-width': !!maxWidth ? maxWidth : undefined,
@@ -8,7 +8,12 @@ export const Container = ({ gutters, maxWidth, style, ...props }) => {
 
   return (
     <div
-      data-layout={['container', 'undefined' !== typeof gutters ? `-gutters:${gutters}` : undefined]
+      data-layout={[
+        'container',
+        'undefined' !== typeof align ? `-align:${align}` : undefined,
+        'undefined' !== typeof gutters ? `-gutters:${gutters}` : undefined,
+        true === text ? '-text' : undefined,
+      ]
         .filter(Boolean)
         .join(' ')}
       style={style}

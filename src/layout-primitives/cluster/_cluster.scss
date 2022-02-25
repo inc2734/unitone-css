@@ -1,6 +1,6 @@
 [data-layout~="cluster"] {
   --align-items: flex-start;
-  --gap: calc(var(--s2) / 2) var(--s2);
+  --gap: calc(var(--s1) / 2) var(--s1);
   --justify-content: flex-start;
 
   display: flex;

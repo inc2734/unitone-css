@@ -1,6 +1,6 @@
 [data-layout~="responsive-grid"] {
   --column-min-width: 250px;
-  --gap: var(--s2);
+  --gap: var(--s1);
 
   display: grid;
   grid-gap: var(--gap);

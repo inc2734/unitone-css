@@ -3,7 +3,8 @@ import React from 'react';
 export const WithSidebar = ({
   gap,
   contentMinWidth,
-  sidebarPosition,
+  revert,
+  sidebar,
   sidebarWidth,
   style,
   ...props
@@ -18,8 +19,9 @@ export const WithSidebar = ({
     <div
       data-layout={[
         'with-sidebar',
-        'left' === sidebarPosition ? '-left-sidebar' : undefined,
+        true === revert ? '-revert' : undefined,
         'undefined' !== typeof gap ? `-gap:${gap}` : undefined,
+        'undefined' !== typeof sidebar ? `-sidebar:${sidebar}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

@@ -1,12 +1,9 @@
 [data-layout~="center"] {
-  --max-width: 100%;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-right: auto;
   margin-left: auto;
-  max-width: var(--max-width);
 }
 
 [data-layout~="center"][data-layout~="-with-text"] {

@@ -11,8 +11,11 @@ export default {
     notes: { readme },
   },
   argTypes: {
-    center: {
-      table: { disable: true },
+    align: {
+      control: { type: 'inline-radio' },
+      options: ['start', 'center', 'end'],
+      table: { defaultValue: { summary: '' } },
+      type: { name: 'string', required: false },
     },
     gutters: {
       control: { type: 'inline-radio' },
@@ -27,11 +30,18 @@ export default {
       table: { defaultValue: { summary: 'min(1280px, 100%)' } },
       type: { name: 'string', required: false },
     },
+    text: {
+      control: { type: 'inline-radio' },
+      options: [false, true],
+      table: { defaultValue: { summary: 'false' } },
+      type: { name: 'boolean', required: false },
+    },
   },
   args: {
-    center: false,
+    align: '',
     gutters: 1,
     maxWidth: 'min(1280px, 100%)',
+    text: false,
   },
 };
 

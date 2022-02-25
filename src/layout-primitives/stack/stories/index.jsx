@@ -86,6 +86,5 @@ ExampleCard.args = {
 };
 ExampleCard.storyName = 'Example : Card';
 ExampleCard.argTypes = {
-  maxWidth: { table: { disable: true } },
   center: { table: { disable: true } },
 };

@@ -11,3 +11,20 @@
   padding-left: var(--gutters);
   max-width: var(--max-width);
 }
+
+[data-layout~="container"][data-layout~="-text"] {
+  max-width: min(100%, var(--measure)) !important;
+}
+
+[data-layout~="container"][data-layout~="-align\:start"] {
+  margin-left: 0;
+}
+
+[data-layout~="container"][data-layout~="-align\:center"] {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+[data-layout~="container"][data-layout~="-align\:end"] {
+  margin-right: 0;
+}

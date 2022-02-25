@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Feature2, Feature2Item } from '../Features-2';
+import { Feature1 } from '../Features1';
 
 export default {
-  title: 'Components/Features-2',
-  component: Feature2,
+  title: 'Patterns/Features/Features-1',
+  component: Feature1,
   argTypes: {
     backgroundColor: {
       control: { type: 'color' },
@@ -24,8 +24,8 @@ export default {
     },
     gap: {
       control: { type: 'inline-radio' },
-      options: [0, 1, 2, 3, 4],
-      table: { defaultValue: { summary: 0 } },
+      options: [1, 2, 3, 4],
+      table: { defaultValue: { summary: 2 } },
       type: { name: 'number', required: false },
     },
   },
@@ -33,25 +33,37 @@ export default {
     backgroundColor: 'transparent',
     columnMinWidth: '250px',
     color: 'initial',
-    gap: 0,
+    gap: 2,
+  },
+  parameters: {
+    layout: 'fullscreen',
+    viewMode: 'preview',
   },
 };
 
 export const Default = (props) => (
-  <Feature2
+  <Feature1
     backgroundColor={props.backgroundColor}
     columnMinWidth={props.columnMinWidth}
     color={props.color}
     gap={props.gap}
-  >
-    <Feature2Item title="Lorem" src="https://placehold.jp/600x800.jpg">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-    </Feature2Item>
-    <Feature2Item title="ipsum" src="https://placehold.jp/600x800.jpg">
-      <p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-    </Feature2Item>
-    <Feature2Item title="dolor" src="https://placehold.jp/600x800.jpg">
-      <p>Ut enim ad minim veniam</p>
-    </Feature2Item>
-  </Feature2>
+    title="Lorem ipsum dolor sit amet"
+    items={[
+      {
+        title: 'Lorem',
+        src: 'https://placehold.jp/600x800.jpg',
+        content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit',
+      },
+      {
+        title: 'ipsum',
+        src: 'https://placehold.jp/600x800.jpg',
+        content: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+      },
+      {
+        title: 'dolor',
+        src: 'https://placehold.jp/600x800.jpg',
+        content: 'Ut enim ad minim veniam',
+      },
+    ]}
+  />
 );

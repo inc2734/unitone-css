@@ -1,11 +1,10 @@
 @use '../../variables/variables' as variables;
 
 [data-layout~="text"] {
-  --max-width: min(var(--measure), 100% - var(--s1));
+  --max-width: min(100%, var(--measure));
 
   > * {
-    margin-top: 0;
-    margin-bottom: 0;
+    margin: 0 auto;
   }
 
   > *:not(:first-child) {
@@ -58,14 +57,9 @@
 }
 
 :where([data-layout~="text"] > *) {
-  max-width: 100%;
-}
-
-[data-layout~="text"][data-layout~="-center"] > * {
-  margin-right: auto;
-  margin-left: auto;
-}
-
-:where([data-layout~="text"][data-layout~="-center"] > *) {
   max-width: var(--max-width);
+}
+
+:where([data-layout~="text"][data-layout~="-center"]) > * {
+  width: fit-content
 }
