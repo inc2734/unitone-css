@@ -36,7 +36,6 @@ export default {
   },
   parameters: {
     layout: 'fullscreen',
-    viewMode: 'preview',
   },
 };
 

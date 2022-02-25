@@ -87,7 +87,7 @@ ExampleCombobox.argTypes = {
   borderColor: { table: { disable: true } },
 };
 ExampleCombobox.args = {
-  padding: 1,
+  padding: -1,
   backgroundColor: '#000',
   borderWidth: '1px',
 };
