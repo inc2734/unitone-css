@@ -1,0 +1,13 @@
+$max-font-size-harmonic-sequence-base: 8;
+$min-font-size-harmonic-sequence-base: 9;
+
+$max-font-size: calc(#{ $max-font-size-harmonic-sequence-base } / ( #{ $max-font-size-harmonic-sequence-base } - var(--font-size)));
+$min-font-size: calc(#{ $min-font-size-harmonic-sequence-base } / (#{ $min-font-size-harmonic-sequence-base } - var(--font-size)));
+$line-height: calc(.4 + .6 / (1 + #{ $max-font-size } * #{ $max-font-size } / 3 - #{ $max-font-size } / 3) + var(--half-leading) * 2);
+
+$fibonacci-sequence: 1, 2, 3, 5, 8, 13, 21, 34, 55;
+
+$min-breakpoint: 22.5; // = 360px
+$max-breakpoint: 80;   // = 1280px
+
+$container-max-width: $max-breakpoint * 16px;  // = 1280px

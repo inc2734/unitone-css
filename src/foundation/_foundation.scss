@@ -1,84 +1,19 @@
-@use 'sass:list';
-@use "sass:math";
-@use '../variables/variables' as variables;
-
-:root {
-  /**
-   * Column width in typography.
-   */
-  --measure: 38rem;
-
-  /**
-   * Collors.
-   */
-  --color-white: #fff;
-  --color-black: #000;
-  --color-text: #111;
-
-  /**
-   * Font size level.
-   * It is not recommended to override this value with :root in order to have the size determined based on 0.
-   */
-  --font-size: 0;
-
-  /**
-   * Gutter provided above and below the text in a line.
-   */
-  --half-leading: .3;
-
-  /**
-   * Font family
-   */
-  --font-family: sans-serif;
-
-  /**
-   * Reference value of the modular scale for space.
-   */
-  --space-reference-value: #{ variables.$line-height } * .33333;
-
-  /**
-   * Modular scales for spaces.
-   */
-  --s-2: calc(1em * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 1) });
-  --s-1: calc(1em * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 2) });
-  --s0: 0;
-  --s1: calc(1em * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 3) });
-  --s2: calc(1em * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 4) });
-  --s3: calc(1em * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 5) });
-  --s4: calc(1em * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 6) });
-  --s5: calc(1em * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 7) });
-  --s6: calc(1em * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 8) });
-  --s7: calc(1em * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 9) });
-
-  /**
-   * Modular scales for spaces (% based).
-   */
-  --sp-2: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 1) });
-  --sp-1: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 2) });
-  --sp0: 0;
-  --sp1: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 3) });
-  --sp2: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 4) });
-  --sp3: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 5) });
-  --sp4: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 6) });
-  --sp5: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 7) });
-  --sp6: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 8) });
-  --sp7: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 9) });
-}
+@use '../variables/constant' as constant;
 
 *,
 *::before,
 *::after {
-  $min-font-size: #{ variables.$min-font-size };
-  $max-font-size: #{ variables.$max-font-size };
-  $max-breakpoint: #{ variables.$max-breakpoint };
-  $min-breakpoint: #{ variables.$min-breakpoint };
+  $min-font-size: #{ constant.$min-font-size };
+  $max-font-size: #{ constant.$max-font-size };
+  $max-breakpoint: #{ constant.$max-breakpoint };
+  $min-breakpoint: #{ constant.$min-breakpoint };
   $slope: calc((#{ $max-font-size } - #{ $min-font-size }) / (#{ $max-breakpoint - $min-breakpoint }) * 100);
   $intercept: calc((#{ $max-breakpoint } * #{ $min-font-size } - #{ $min-breakpoint } * #{ $max-font-size }) / (#{ $max-breakpoint - $min-breakpoint }));
   $preferred-font-size: calc(1vw * #{ $slope } + 1rem * #{ $intercept });
 
 	box-sizing: border-box;
   font-size: clamp(1rem * #{ $min-font-size }, #{ $preferred-font-size }, 1rem * #{ $max-font-size });
-  line-height: #{ variables.$line-height };
+  line-height: #{ constant.$line-height };
 }
 
 address,

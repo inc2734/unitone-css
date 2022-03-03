@@ -20,7 +20,9 @@
   "scripts": {
     "prepublish": "run-s build",
     "clean": "rimraf dist",
-    "css": "sass --no-source-map src/app.scss:dist/app.css && postcss dist/app.css -r",
+    "css:app": "sass --no-source-map src/app.scss:dist/app.css && postcss dist/app.css -r",
+    "css:storybook": "sass --no-source-map src/storybook.scss:dist/storybook.css && postcss dist/storybook.css -r",
+    "css": "run-p css:*",
     "build": "run-s clean css format",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format:js": "prettier --write './src/**/*.{js,jsx}'",

@@ -48,7 +48,7 @@ export const Default = (args) => {
 export const ExampleCard = (args) => {
   return (
     <div style={{ maxWidth: '480px' }}>
-      <Box backgroundColor={args.backgroundColor} color={args.color} padding="2" borderRadius="4px">
+      <Box backgroundColor={args.backgroundColor} color={args.color} padding="1" borderRadius="4px">
         <Stack gap={args.gap}>
           <Box padding="0">
             <Cluster>
@@ -57,7 +57,7 @@ export const ExampleCard = (args) => {
                 alt=""
                 style={{ width: '48px', height: '48px' }}
               />
-              <Stack gap="-2">
+              <Stack gap="0">
                 <div>
                   <b>Takashi Kitajima</b>
                 </div>

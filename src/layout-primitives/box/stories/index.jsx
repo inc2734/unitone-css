@@ -12,37 +12,37 @@ export default {
   argTypes: {
     backgroundColor: {
       control: { type: 'color' },
-      description: '`--background-color`',
+      description: 'Background color. Set by CSS var `--background-color`.',
       table: { defaultValue: { summary: 'transparent' } },
       type: { name: 'string', required: false },
     },
     borderColor: {
       control: { type: 'color' },
-      description: '`--border-color`',
+      description: 'Border color. Set by CSS var `--border-color`.',
       table: { defaultValue: { summary: 'transparent' } },
       type: { name: 'string', required: false },
     },
     borderRadius: {
       control: { type: 'text' },
-      description: '`--border-radius`',
+      description: 'Border radius. Set by CSS var `--border-radius`.',
       table: { defaultValue: { summary: '0' } },
       type: { name: 'string', required: false },
     },
     borderWidth: {
       control: { type: 'text' },
-      description: '`--border-width`',
+      description: 'Border width. Set by CSS var `--border-width`.',
       table: { defaultValue: { summary: '0' } },
       type: { name: 'string', required: false },
     },
     color: {
       control: { type: 'color' },
-      description: '`--color`',
+      description: 'Text color. Set by CSS var `--color`.',
       table: { defaultValue: { summary: 'initial' } },
       type: { name: 'string', required: false },
     },
     padding: {
       control: { type: 'inline-radio' },
-      description: '`--padding`',
+      description: 'Box padding. Set by CSS var `--padding` or `data-layout` attribute `-padding:x`.',
       options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
       table: { defaultValue: { summary: 'var(--s1)' } },
       type: { name: 'number', required: false },
