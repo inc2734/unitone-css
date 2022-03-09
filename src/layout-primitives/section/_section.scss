@@ -1,10 +1,6 @@
 [data-layout~="section"] {
-  --background-color: transparent;
-  // --color: var(--color-text); // Comment out if you don't want it to be inherited
   --padding: var(--s4);
 
-  background-color: var(--background-color);
-  color: var(--color);
   padding-top: var(--padding);
   padding-bottom: var(--padding);
 }

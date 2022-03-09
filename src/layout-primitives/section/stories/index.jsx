@@ -13,29 +13,15 @@ export default {
     notes: { readme },
   },
   argTypes: {
-    backgroundColor: {
-      control: { type: 'color' },
-      description: '`--background-color`',
-      table: { defaultValue: { summary: 'transparent' } },
-      type: { name: 'string', required: false },
-    },
-    color: {
-      control: { type: 'color' },
-      description: '`--color`',
-      table: { defaultValue: { summary: 'initial' } },
-      type: { name: 'string', required: false },
-    },
     padding: {
       control: { type: 'inline-radio' },
-      description: '`--padding`',
+      description: 'Top and bottom padding. Set by CSS var `--padding` or `data-layout` attribute `-padding:x`.',
       options: [1, 2, 3, 4, 5, 6, 7],
       table: { defaultValue: { summary: 'var(--s4)' } },
       type: { name: 'number', required: false },
     },
   },
   args: {
-    backgroundColor: 'transarent',
-    color: 'initial',
     padding: 4,
   },
 };
