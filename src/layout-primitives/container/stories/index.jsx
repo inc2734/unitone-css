@@ -34,7 +34,8 @@ export default {
     },
     text: {
       control: { type: 'inline-radio' },
-      description: 'Set the container max width with `var(--measure)`. If this is specified, `--max-width` is ignored.',
+      description:
+        'Set the container max width with `var(--measure)`. If this is specified, `--max-width` is ignored.',
       options: [false, true],
       table: { defaultValue: { summary: 'false' } },
       type: { name: 'boolean', required: false },

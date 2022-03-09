@@ -14,19 +14,20 @@ export default {
   argTypes: {
     gap: {
       control: { type: 'inline-radio' },
-      description: '`--gap`',
+      description: 'Gap between items. Set by CSS var `--gap` or `data-layout` attribute `-gap:x`.',
       options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
       table: { defaultValue: { summary: 'var(--s1)' } },
       type: { name: 'number', required: false },
     },
     minHeight: {
       control: { type: 'text' },
-      description: '`--min-height`',
+      description: 'The cover min height. Set by CSS var `--min-height`.',
       table: { defaultValue: { summary: '100vh' } },
       type: { name: 'string', required: false },
     },
     noPadding: {
       control: { type: 'inline-radio' },
+      description: 'Remove the cover padding.',
       options: [false, true],
       table: { defaultValue: { summary: 'false' } },
       type: { name: 'boolean', required: false },
