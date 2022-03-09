@@ -11,11 +11,15 @@ export default {
   },
   argTypes: {
     center: {
-      table: { disable: true },
+      control: { type: 'inline-radio' },
+      description: 'Centering child items. Set by `data-layout` attribute `-center`.',
+      options: [false, true],
+      table: { defaultValue: { summary: false } },
+      type: { name: 'boolean', required: false },
     },
     maxWidth: {
-      control: { type: 'inline-radio' },
-      description: '`--max-width`',
+      control: { type: 'text' },
+      description: 'Max width. Set by CSS var `--max-width`.',
       table: { defaultValue: { summary: 'min(var(--measure), 100% - var(--s1))' } },
       type: { name: 'string', required: false },
     },
@@ -105,6 +109,3 @@ export const ExampleJa = (args) => {
   );
 };
 ExampleJa.storyName = 'Example : Ja';
-ExampleJa.args = {
-  center: true,
-};
