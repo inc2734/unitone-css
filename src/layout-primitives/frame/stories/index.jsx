@@ -12,7 +12,7 @@ export default {
   argTypes: {
     ratio: {
       control: { type: 'text' },
-      description: '`--ratio`',
+      description: 'Aspect ratio. Set by CSS var `--ratio`.',
       table: { defaultValue: { summary: '16/9' } },
       type: { name: 'string', required: false },
     },

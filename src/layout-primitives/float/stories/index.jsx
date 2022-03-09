@@ -19,7 +19,8 @@ export default {
     },
     minMeasure: {
       control: { type: 'text' },
-      description: 'Min size of the item following the floating item. Set by CSS var `--min-measure`.',
+      description:
+        'Min size of the item following the floating item. Set by CSS var `--min-measure`.',
       table: { defaultValue: { summary: 'calc(var(--measure) / 2)' } },
       type: { name: 'string', required: false },
     },
@@ -31,7 +32,8 @@ export default {
     },
     position: {
       control: { type: 'inline-radio' },
-      description: 'The floating item position. Set by `data-layout` attribute `-right` or `-left`.',
+      description:
+        'The floating item position. Set by `data-layout` attribute `-right` or `-left`.',
       options: ['left', 'right'],
       table: { defaultValue: { summary: 'left' } },
       type: { name: 'string', required: false },

@@ -20,8 +20,7 @@ export default {
     },
     gutters: {
       control: { type: 'inline-radio' },
-      description:
-        'Gutters. Set by CSS var `--gutters` or `data-layout` attribute `-gutters:x`.',
+      description: 'Gutters. Set by CSS var `--gutters` or `data-layout` attribute `-gutters:x`.',
       options: [0, 1, 2, 3, 4, 5, 6, 7],
       table: { defaultValue: { summary: 'var(--s1)' } },
       type: { name: 'number', required: false },
