@@ -21,7 +21,7 @@ export default {
     },
     gap: {
       control: { type: 'inline-radio' },
-      description: 'Gap between items. Set by CSS var `--gap` or `data-layout` attribute `-gap:x`.',
+      description: 'Gap. Set by CSS var `--gap` or `data-layout` attribute `-gap:x`.',
       options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
       table: { defaultValue: { summary: 'var(--s1)' } },
       type: { name: 'number', required: false },

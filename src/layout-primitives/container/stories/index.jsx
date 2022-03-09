@@ -21,14 +21,14 @@ export default {
     gutters: {
       control: { type: 'inline-radio' },
       description:
-        'The container gutters. Set by CSS var `--gutters` or `data-layout` attribute `-gutters:x`.',
+        'Gutters. Set by CSS var `--gutters` or `data-layout` attribute `-gutters:x`.',
       options: [0, 1, 2, 3, 4, 5, 6, 7],
       table: { defaultValue: { summary: 'var(--s1)' } },
       type: { name: 'number', required: false },
     },
     maxWidth: {
       control: { type: 'text' },
-      description: 'The container max width. Set by CSS var `--max-width`.',
+      description: 'Max width. Set by CSS var `--max-width`.',
       table: { defaultValue: { summary: 'min(1280px, 100%)' } },
       type: { name: 'string', required: false },
     },

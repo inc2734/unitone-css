@@ -43,7 +43,7 @@ export default {
     padding: {
       control: { type: 'inline-radio' },
       description:
-        'Box padding. Set by CSS var `--padding` or `data-layout` attribute `-padding:x`.',
+        'Padding. Set by CSS var `--padding` or `data-layout` attribute `-padding:x`.',
       options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
       table: { defaultValue: { summary: 'var(--s1)' } },
       type: { name: 'number', required: false },
