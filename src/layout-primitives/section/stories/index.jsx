@@ -15,7 +15,8 @@ export default {
   argTypes: {
     padding: {
       control: { type: 'inline-radio' },
-      description: 'Top and bottom padding. Set by CSS var `--padding` or `data-layout` attribute `-padding:x`.',
+      description:
+        'Top and bottom padding. Set by CSS var `--padding` or `data-layout` attribute `-padding:x`.',
       options: [1, 2, 3, 4, 5, 6, 7],
       table: { defaultValue: { summary: 'var(--s4)' } },
       type: { name: 'number', required: false },
