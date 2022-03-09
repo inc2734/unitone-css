@@ -13,6 +13,8 @@ export default {
   argTypes: {
     cover: {
       control: { type: 'inline-radio' },
+      description:
+        "Background image/video is sized to maintain its aspect ratio while filling the element's entire content box. If the object's aspect ratio does not match the aspect ratio of its box, then the object will be clipped to fit.",
       options: [false, true],
       table: { defaultValue: { summary: false } },
       type: { name: 'boolean', required: false },
