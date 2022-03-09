@@ -8,24 +8,26 @@ import { ResponsiveGrid } from '../../../layout-primitives/responsive-grid/Respo
 import { Section } from '../../../layout-primitives/section/Section';
 
 export const Feature2 = ({ items = [], ...props }) => (
-  <Section backgroundColor={props.backgroundColor} color={props.color}>
-    <Container>
-      {0 < items.length && (
-        <ResponsiveGrid columnMinWidth={props.columnMinWidth} gap={props.gap}>
-          {items.map((item, index) => (
-            <Layers key={index}>
-              <Frame ratio="3/4">{!!item.src && <img src={item.src} alt="" />}</Frame>
-              {!!item.content && (
-                <div style={{ '--font-size': -1, '--align-self': 'end' }}>
-                  <Box padding={1}>
-                    <p>{item.content}</p>
-                  </Box>
-                </div>
-              )}
-            </Layers>
-          ))}
-        </ResponsiveGrid>
-      )}
-    </Container>
-  </Section>
+  <Box backgroundColor={props.backgroundColor} color={props.color}>
+    <Section>
+      <Container>
+        {0 < items.length && (
+          <ResponsiveGrid columnMinWidth={props.columnMinWidth} gap={props.gap}>
+            {items.map((item, index) => (
+              <Layers key={index}>
+                <Frame ratio="3/4">{!!item.src && <img src={item.src} alt="" />}</Frame>
+                {!!item.content && (
+                  <div style={{ '--font-size': -1, '--align-self': 'end' }}>
+                    <Box padding={1}>
+                      <p>{item.content}</p>
+                    </Box>
+                  </div>
+                )}
+              </Layers>
+            ))}
+          </ResponsiveGrid>
+        )}
+      </Container>
+    </Section>
+  </Box>
 );
