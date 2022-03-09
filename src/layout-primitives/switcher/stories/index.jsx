@@ -13,19 +13,22 @@ export default {
   argTypes: {
     gap: {
       control: { type: 'inline-radio' },
-      description: '`--gap`',
+      description: 'Gap. Set by CSS var `--gap` or `data-layout` attribute `-gap:x`.',
       options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
       table: { defaultValue: { summary: 'var(--s1)' } },
       type: { name: 'number', required: false },
     },
     limit: {
       control: { type: 'inline-radio' },
+      description:
+        'If the number of items falls below this value, it switches to one column. Set by `data-layout` attribute `-limit:x`.',
       options: [3, 4, 5],
       type: { name: 'number', required: false },
     },
     threshold: {
       control: { type: 'text' },
-      description: '`--threshold`',
+      description:
+        'If the box size is smaller than this value, it switches to one column. Set by CSS var `--threshold`.',
       table: { defaultValue: { summary: 'var(--measure)' } },
       type: { name: 'string', required: false },
     },
