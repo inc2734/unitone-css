@@ -9,6 +9,7 @@ body {
   overflow-wrap: break-word;
 }
 
+#root,
 .docs-story {
   @import 'foundation/foundation';
   @import 'layout-primitives/layout-primitives';

@@ -13,20 +13,23 @@ export default {
     alignItems: {
       control: { type: 'inline-radio' },
       description: '`--align-items`',
+      description:
+        'Alignment of the row direction. Set by CSS var `--align-items` or `data-layout` attribute `-align-items:x`.',
       options: ['start', 'center', 'end'],
       table: { defaultValue: { summary: 'flex-start' } },
       type: { name: 'string', required: false },
     },
     gap: {
       control: { type: 'inline-radio' },
-      description: '`--gap`',
+      description: 'Gap between items. Set by CSS var `--gap` or `data-layout` attribute `-gap:x`.',
       options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
       table: { defaultValue: { summary: 'var(--s1)' } },
       type: { name: 'number', required: false },
     },
     justifyContent: {
       control: { type: 'inline-radio' },
-      description: '`--justify-content`',
+      description:
+        'Alignment of the column direction. Set by CSS var `--justify-content` or `data-layout` attribute `-justify-content:x`.',
       options: ['start', 'center', 'end', 'space-between'],
       table: { defaultValue: { summary: 'flex-start' } },
       type: { name: 'string', required: false },
