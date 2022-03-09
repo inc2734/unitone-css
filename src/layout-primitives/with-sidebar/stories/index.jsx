@@ -12,32 +12,36 @@ export default {
   argTypes: {
     contentMinWidth: {
       control: { type: 'text' },
-      description: '`--content-min-width`',
+      description: 'Min width of the content. Set by CSS var `--content-min-width`.',
       table: { defaultValue: { summary: '50%' } },
       type: { name: 'string', required: false },
     },
     gap: {
       control: { type: 'inline-radio' },
-      description: '`--gap`',
+      description: 'Gap. Set by CSS var `--gap` or `data-layout` attribute `-gap:x`.',
       options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
       table: { defaultValue: { summary: 'var(--s1)' } },
       type: { name: 'number', required: false },
     },
     revert: {
       control: { type: 'inline-radio' },
+      description:
+        'The way child elements are displayed is reversed. Set by `data-layout` attribute `-revert`.',
       options: [false, true],
       table: { defaultValue: { summary: 'false' } },
       type: { name: 'boolean', required: false },
     },
     sidebar: {
       control: { type: 'inline-radio' },
+      description:
+        'Which sidebar should be treated as a sidebar, right or left? Set by `data-layout` attribute `-sidebar:x`.',
       options: ['left', 'right'],
       table: { defaultValue: { summary: 'right' } },
       type: { name: 'string', required: false },
     },
     sidebarWidth: {
       control: { type: 'text' },
-      description: '`--sidebar-width`',
+      description: 'Sidebar width. Set by CSS var `--sidebar-width`.',
       table: { defaultValue: { summary: 'initial' } },
       type: { name: 'string', required: false },
     },
