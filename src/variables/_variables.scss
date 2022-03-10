@@ -33,7 +33,7 @@
   /**
    * Reference value of the modular scale for space.
    */
-  --space-reference-value: #{ constant.$line-height } * .33333;
+  --space-reference-value: #{ constant.$line-height } / 3;
 
   /**
    * Modular scales for spaces.

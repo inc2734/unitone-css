@@ -25,12 +25,14 @@ export default {
   },
 };
 
-const content =
-  'Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill';
+const Content = (props) => {
+  const content =
+    'ja' === props.lang
+      ? 'あともゴーシュ子たり何に向いていまし。夜中は次がしばらくと落ちて狸から舞台のようで来でおかげをしからちょろちょろゴーシュを合わせていです。どうかまげて子をこどもに出でしです。それりんに狸がこってボック'
+      : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill';
 
-export const Default = (args) => {
   return (
-    <Stack {...args}>
+    <>
       <p style={{ '--font-size': -2 }}>{content}</p>
       <p style={{ '--font-size': -1 }}>{content}</p>
       <p>{content}</p>
@@ -41,9 +43,26 @@ export const Default = (args) => {
       <p style={{ '--font-size': 5 }}>{content}</p>
       <p style={{ '--font-size': 6 }}>{content}</p>
       <p style={{ '--font-size': 7 }}>{content}</p>
+    </>
+  );
+};
+
+export const Default = (args) => {
+  return (
+    <Stack {...args}>
+      <Content />
     </Stack>
   );
 };
+
+export const ExampleJa = (args) => {
+  return (
+    <Stack {...args}>
+      <Content lang="ja" />
+    </Stack>
+  );
+};
+ExampleJa.storyName = 'Example : Ja';
 
 export const ExampleCard = (args) => {
   return (

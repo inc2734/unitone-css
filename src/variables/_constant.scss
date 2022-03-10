@@ -1,9 +1,12 @@
 $max-font-size-harmonic-sequence-base: 8;
 $min-font-size-harmonic-sequence-base: 9;
 
-$max-font-size: calc(#{ $max-font-size-harmonic-sequence-base } / ( #{ $max-font-size-harmonic-sequence-base } - var(--font-size)));
+$max-font-size: calc(#{ $max-font-size-harmonic-sequence-base } / (#{ $max-font-size-harmonic-sequence-base } - var(--font-size)));
 $min-font-size: calc(#{ $min-font-size-harmonic-sequence-base } / (#{ $min-font-size-harmonic-sequence-base } - var(--font-size)));
-$line-height: calc(.3 + .7 / (1 + #{ $max-font-size } * #{ $max-font-size } / 2.5 - #{ $max-font-size } / 2.5) + var(--half-leading) * 2);
+
+// @todo Parentheses disappear at build time, so a number (.0000000001) is added that is ignored
+// I really want to do this: calc(1 + var(--half-leading) * 2 * 1 / (#{ $max-font-size }));
+$line-height: calc(1 + var(--half-leading) * 2 * 1 / (.0000000001 + #{ $max-font-size }));
 
 $fibonacci-sequence: 1, 2, 3, 5, 8, 13, 21, 34, 55;
 
