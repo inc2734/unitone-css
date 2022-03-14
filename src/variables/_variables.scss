@@ -21,9 +21,23 @@
   --font-size: 0;
 
   /**
+   * The 1rem px font size (no units).
+   */
+  --base-font-size: 16;
+
+--font-size-harmonic-sequence-base: 8;
+--min-font-size-harmonic-sequence-base: 9;
+--max-font-size-harmonic-sequence-base: var(--font-size-harmonic-sequence-base);
+
+  /**
    * Gutter provided above and below the text in a line.
    */
   --half-leading: .3;
+
+  /**
+   * The line-height slope. If smaller, the line-height is adjusted to a smaller value as the font size increases.
+   */
+  --line-height-slope: -0.004464;
 
   /**
    * Font family

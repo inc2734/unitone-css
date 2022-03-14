@@ -3,17 +3,22 @@
 *,
 *::before,
 *::after {
-  $min-font-size: #{ constant.$min-font-size };
-  $max-font-size: #{ constant.$max-font-size };
-  $max-breakpoint: #{ constant.$max-breakpoint };
-  $min-breakpoint: #{ constant.$min-breakpoint };
-  $slope: calc((#{ $max-font-size } - #{ $min-font-size }) / (#{ $max-breakpoint - $min-breakpoint }) * 100);
-  $intercept: calc((#{ $max-breakpoint } * #{ $min-font-size } - #{ $min-breakpoint } * #{ $max-font-size }) / (#{ $max-breakpoint - $min-breakpoint }));
-  $preferred-font-size: calc(1vw * #{ $slope } + 1rem * #{ $intercept });
-
 	box-sizing: border-box;
-  font-size: clamp(1rem * #{ $min-font-size }, #{ $preferred-font-size }, 1rem * #{ $max-font-size });
+  font-size: #{ constant.$font-size };
   line-height: #{ constant.$line-height };
+}
+
+html {
+  font-size: calc(var(--base-font-size) * 1px);
+}
+
+body {
+  background-color: var(--color-white);
+  color: var(--color-text);
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  // -moz-osx-font-smooting: grayscale; // White out elements will activate this.
+  overflow-wrap: break-word;
 }
 
 address,
@@ -46,15 +51,6 @@ table,
 ul {
   margin: 0;
   padding: 0;
-}
-
-body {
-  background-color: var(--color-white);
-  color: var(--color-text);
-  font-family: var(--font-family);
-  -webkit-font-smoothing: antialiased;
-  // -moz-osx-font-smooting: grayscale; // White out elements will activate this.
-  overflow-wrap: break-word;
 }
 
 li {
