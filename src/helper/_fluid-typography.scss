@@ -1,5 +1,5 @@
-@use '../variables/constant' as constant;
+@use '../variables/variables' as variables;
 
 [data-layout~="-fluid-typography"] {
-  font-size: #{ constant.$fluid-font-size };
+  font-size: #{ variables.$fluid-font-size };
 }

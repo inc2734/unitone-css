@@ -1,0 +1,79 @@
+@use 'sass:list';
+@use '../variables/variables' as variables;
+
+:root {
+  /**
+   * Column width in typography.
+   */
+  --measure: 38rem;
+
+  /**
+   * Collors.
+   */
+  --color-white: #fff;
+  --color-black: #000;
+  --color-text: #111;
+
+  /**
+   * Font size level.
+   * It is not recommended to override this value with :root in order to have the size determined based on 0.
+   */
+  --font-size: 0;
+
+  /**
+   * The 1rem px font size (no units).
+   */
+  --base-font-size: 16;
+
+--font-size-harmonic-sequence-base: 8;
+--min-font-size-harmonic-sequence-base: 9;
+--max-font-size-harmonic-sequence-base: var(--font-size-harmonic-sequence-base);
+
+  /**
+   * Gutter provided above and below the text in a line.
+   */
+  --half-leading: .3;
+
+  /**
+   * The line-height slope. If smaller, the line-height is adjusted to a smaller value as the font size increases.
+   */
+  --line-height-slope: -0.004464;
+
+  /**
+   * Font family
+   */
+  --font-family: sans-serif;
+
+  /**
+   * Reference value of the modular scale for space.
+   */
+  --space-reference-value: #{ variables.$line-height } / 3;
+
+  /**
+   * Modular scales for spaces.
+   */
+  --s-2: calc(1em * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 1) });
+  --s-1: calc(1em * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 2) });
+  --s0: 0;
+  --s1: calc(1em * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 3) });
+  --s2: calc(1em * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 4) });
+  --s3: calc(1em * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 5) });
+  --s4: calc(1em * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 6) });
+  --s5: calc(1em * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 7) });
+  --s6: calc(1em * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 8) });
+  --s7: calc(1em * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 9) });
+
+  /**
+   * Modular scales for spaces (% based).
+   */
+  --sp-2: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 1) });
+  --sp-1: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 2) });
+  --sp0: 0;
+  --sp1: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 3) });
+  --sp2: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 4) });
+  --sp3: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 5) });
+  --sp4: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 6) });
+  --sp5: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 7) });
+  --sp6: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 8) });
+  --sp7: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 9) });
+}

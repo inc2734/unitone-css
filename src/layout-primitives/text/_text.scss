@@ -1,4 +1,4 @@
-@use '../../variables/constant' as constant;
+@use '../../variables/variables' as variables;
 
 [data-layout~="text"] {
   --max-width: min(100%, var(--measure));
@@ -8,11 +8,11 @@
   }
 
   > *:not(:first-child) {
-    margin-top: calc(1em * #{ constant.$line-height } * var(--margin-top, 1));
+    margin-top: calc(1em * #{ variables.$line-height } * var(--margin-top, 1));
   }
 
   > *:not(:last-child) {
-    margin-bottom: calc(1em * #{ constant.$line-height } * var(--margin-bottom, 1));
+    margin-bottom: calc(1em * #{ variables.$line-height } * var(--margin-bottom, 1));
   }
 
   > h1 {

@@ -1,8 +1,8 @@
-@use '../../variables/constant' as constant;
+@use '../../variables/variables' as variables;
 
 [data-layout~="container"] {
   --gutters: var(--s1);
-  --max-width: min(100%, #{ constant.$container-max-width });
+  --max-width: min(100%, #{ variables.$container-max-width });
 
   box-sizing: content-box;
   margin-right: auto;

@@ -1,79 +1,23 @@
-@use 'sass:list';
-@use 'constant' as constant;
+$fibonacci-sequence: 1, 2, 3, 5, 8, 13, 21, 34, 55;
 
-:root {
-  /**
-   * Column width in typography.
-   */
-  --measure: 38rem;
+$min-breakpoint: 22.5; // = 360px
+$max-breakpoint: 80;   // = 1280px
 
-  /**
-   * Collors.
-   */
-  --color-white: #fff;
-  --color-black: #000;
-  --color-text: #111;
+$_font-size-scale: calc(var(--font-size-harmonic-sequence-base) / (var(--font-size-harmonic-sequence-base) - var(--font-size)));
+$font-size: calc($_font-size-scale * 1rem);
 
-  /**
-   * Font size level.
-   * It is not recommended to override this value with :root in order to have the size determined based on 0.
-   */
-  --font-size: 0;
+$_max-font-size: calc(var(--max-font-size-harmonic-sequence-base) / (var(--max-font-size-harmonic-sequence-base) - var(--font-size)));
+$_min-font-size: calc(var(--min-font-size-harmonic-sequence-base) / (var(--min-font-size-harmonic-sequence-base) - var(--font-size)));
+$_slope: calc((#{ $_max-font-size } - #{ $_min-font-size }) / (#{ $max-breakpoint } - #{ $min-breakpoint }) * 100);
+$_diff-breakpoints: $max-breakpoint - $min-breakpoint;
+$_intercept: calc((#{ $max-breakpoint } * #{ $_min-font-size } - #{ $min-breakpoint } * #{ $_max-font-size }) / (#{ $_diff-breakpoints }));
+$_preferred-font-size: calc(1vw * #{ $_slope } + 1rem * #{ $_intercept });
+$fluid-font-size: clamp(1rem * #{ $_min-font-size }, #{ $_preferred-font-size }, 1rem * #{ $_max-font-size });
 
-  /**
-   * The 1rem px font size (no units).
-   */
-  --base-font-size: 16;
+$line-height: clamp(
+  1.1,
+  var(--line-height-slope) * var(--base-font-size) * var(--fluid-font-size-magnification, #{ $_font-size-scale }) - var(--line-height-slope) * var(--base-font-size) + 2 * var(--half-leading) + 1,
+  2 * var(--half-leading) + 1
+);
 
---font-size-harmonic-sequence-base: 8;
---min-font-size-harmonic-sequence-base: 9;
---max-font-size-harmonic-sequence-base: var(--font-size-harmonic-sequence-base);
-
-  /**
-   * Gutter provided above and below the text in a line.
-   */
-  --half-leading: .3;
-
-  /**
-   * The line-height slope. If smaller, the line-height is adjusted to a smaller value as the font size increases.
-   */
-  --line-height-slope: -0.004464;
-
-  /**
-   * Font family
-   */
-  --font-family: sans-serif;
-
-  /**
-   * Reference value of the modular scale for space.
-   */
-  --space-reference-value: #{ constant.$line-height } / 3;
-
-  /**
-   * Modular scales for spaces.
-   */
-  --s-2: calc(1em * var(--space-reference-value) * #{ list.nth(constant.$fibonacci-sequence, 1) });
-  --s-1: calc(1em * var(--space-reference-value) * #{ list.nth(constant.$fibonacci-sequence, 2) });
-  --s0: 0;
-  --s1: calc(1em * var(--space-reference-value) * #{ list.nth(constant.$fibonacci-sequence, 3) });
-  --s2: calc(1em * var(--space-reference-value) * #{ list.nth(constant.$fibonacci-sequence, 4) });
-  --s3: calc(1em * var(--space-reference-value) * #{ list.nth(constant.$fibonacci-sequence, 5) });
-  --s4: calc(1em * var(--space-reference-value) * #{ list.nth(constant.$fibonacci-sequence, 6) });
-  --s5: calc(1em * var(--space-reference-value) * #{ list.nth(constant.$fibonacci-sequence, 7) });
-  --s6: calc(1em * var(--space-reference-value) * #{ list.nth(constant.$fibonacci-sequence, 8) });
-  --s7: calc(1em * var(--space-reference-value) * #{ list.nth(constant.$fibonacci-sequence, 9) });
-
-  /**
-   * Modular scales for spaces (% based).
-   */
-  --sp-2: calc(1% * #{ list.nth(constant.$fibonacci-sequence, 1) });
-  --sp-1: calc(1% * #{ list.nth(constant.$fibonacci-sequence, 2) });
-  --sp0: 0;
-  --sp1: calc(1% * #{ list.nth(constant.$fibonacci-sequence, 3) });
-  --sp2: calc(1% * #{ list.nth(constant.$fibonacci-sequence, 4) });
-  --sp3: calc(1% * #{ list.nth(constant.$fibonacci-sequence, 5) });
-  --sp4: calc(1% * #{ list.nth(constant.$fibonacci-sequence, 6) });
-  --sp5: calc(1% * #{ list.nth(constant.$fibonacci-sequence, 7) });
-  --sp6: calc(1% * #{ list.nth(constant.$fibonacci-sequence, 8) });
-  --sp7: calc(1% * #{ list.nth(constant.$fibonacci-sequence, 9) });
-}
+$container-max-width: $max-breakpoint * 16px;  // = 1280px

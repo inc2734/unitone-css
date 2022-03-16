@@ -1,24 +1,11 @@
-@use '../variables/constant' as constant;
+@use '../variables/variables' as variables;
 
 *,
 *::before,
 *::after {
 	box-sizing: border-box;
-  font-size: #{ constant.$font-size };
-  line-height: #{ constant.$line-height };
-}
-
-html {
-  font-size: calc(var(--base-font-size) * 1px);
-}
-
-body {
-  background-color: var(--color-white);
-  color: var(--color-text);
-  font-family: var(--font-family);
-  -webkit-font-smoothing: antialiased;
-  // -moz-osx-font-smooting: grayscale; // White out elements will activate this.
-  overflow-wrap: break-word;
+  font-size: #{ variables.$font-size };
+  line-height: #{ variables.$line-height };
 }
 
 address,
