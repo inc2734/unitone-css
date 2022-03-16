@@ -90,16 +90,17 @@ export const Default = (args) => {
   );
 };
 
-export const Center = (args) => {
+export const ExampleCenter = (args) => {
   return (
     <Text {...args}>
       <Content />
     </Text>
   );
 };
-Center.args = {
+ExampleCenter.args = {
   center: true,
 };
+ExampleCenter.storyName = 'Example : Center';
 
 export const ExampleJa = (args) => {
   return (
