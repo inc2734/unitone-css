@@ -16,7 +16,7 @@ $fluid-font-size: clamp(1rem * #{ $_min-font-size }, #{ $_preferred-font-size },
 
 $line-height: clamp(
   1.1,
-  var(--line-height-slope) * var(--base-font-size) * var(--fluid-font-size-magnification, #{ $_font-size-scale }) - var(--line-height-slope) * var(--base-font-size) + 2 * var(--half-leading) + 1,
+  var(--line-height-slope) * var(--fluid-font-size-magnification, #{ $_font-size-scale }) + 1 + var(--half-leading) * 2 + -1 * var(--line-height-slope),
   2 * var(--half-leading) + 1
 );
 
