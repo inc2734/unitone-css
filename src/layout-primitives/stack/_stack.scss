@@ -1,22 +1,28 @@
-@mixin stack() {
-  [data-layout~="stack"] {
-    --gap: var(--s1);
+@mixin abstract-stack() {
+  --gap: var(--s1);
 
-    display: grid;
-    grid-template: max-content/1fr;
-    gap: var(--gap);
+  display: grid;
+  grid-template: max-content/1fr;
+  gap: var(--gap);
 
-    > * {
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-
-    &:only-child {
-      height: 100%;
-    }
+  > * {
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
-  :where([data-layout~="stack"] > *) {
-    max-width: 100%;
+  &:only-child {
+    height: 100%;
+  }
+
+  @at-root {
+    :where(#{ & } > *) {
+      max-width: 100%;
+    }
+  }
+}
+
+@mixin stack() {
+  [data-layout~="stack"] {
+    @include abstract-stack();
   }
 }

@@ -1,17 +1,21 @@
+@mixin abstract-box() {
+  --background-color: transparent;
+  // --color: var(--color-text); // Comment out if you don't want it to be inherited.
+  --border-color: transparent;
+  --border-width: 0;
+  --border-radius: 0;
+  --padding: var(--s1);
+
+  padding: var(--padding);
+  padding: var(--padding) calc((var(--padding) + var(--half-leading) * 1em));
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--border-radius);
+  color: var(--color);
+  background-color: var(--background-color);
+}
+
 @mixin box() {
   [data-layout~="box"] {
-    --background-color: transparent;
-    // --color: var(--color-text); // Comment out if you don't want it to be inherited.
-    --border-color: transparent;
-    --border-width: 0;
-    --border-radius: 0;
-    --padding: var(--s1);
-
-    padding: var(--padding);
-    padding: var(--padding) calc((var(--padding) + var(--half-leading) * 1em));
-    border: var(--border-width) solid var(--border-color);
-    border-radius: var(--border-radius);
-    color: var(--color);
-    background-color: var(--background-color);
+    @include abstract-box();
   }
 }

@@ -1,18 +1,22 @@
+@mixin abstract-cluster() {
+  --align-items: flex-start;
+  --gap: calc(var(--s1) / 2) var(--s1);
+  --justify-content: flex-start;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  list-style: none;
+
+  > * {
+    margin: 0;
+  }
+}
+
 @mixin cluster() {
   [data-layout~="cluster"] {
-    --align-items: flex-start;
-    --gap: calc(var(--s1) / 2) var(--s1);
-    --justify-content: flex-start;
-
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--gap);
-    justify-content: var(--justify-content);
-    align-items: var(--align-items);
-    list-style: none;
-
-    > * {
-      margin: 0;
-    }
+    @include abstract-cluster();
   }
 }

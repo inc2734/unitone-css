@@ -1,8 +1,12 @@
+@mixin abstract-section() {
+  --padding: var(--s4);
+
+  padding-top: var(--padding);
+  padding-bottom: var(--padding);
+}
+
 @mixin section() {
   [data-layout~="section"] {
-    --padding: var(--s4);
-
-    padding-top: var(--padding);
-    padding-bottom: var(--padding);
+    @include abstract-section();
   }
 }

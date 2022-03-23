@@ -1,24 +1,28 @@
-@mixin switcher() {
-  [data-layout~="switcher"] {
-    --gap: var(--s1);
-    --threshold: var(--measure);
+@mixin abstract-switcher() {
+  --gap: var(--s1);
+  --threshold: var(--measure);
 
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--gap);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
 
-    > * {
-      --grow: 1;
+  > * {
+    --grow: 1;
 
-      flex-grow: var(--grow);
-      flex-basis: calc((var(--threshold) - 100%) * 999);
-    }
+    flex-grow: var(--grow);
+    flex-basis: calc((var(--threshold) - 100%) * 999);
   }
 
   @for $i from 3 through 5 {
-    [data-layout~="switcher"][data-layout~="-limit\:#{ $i }"] > :nth-last-child(n + #{ $i }),
-    [data-layout~="switcher"][data-layout~="-limit\:#{ $i }"] > :nth-last-child(n + #{ $i }) ~ * {
+    &[data-layout~="-limit\:#{ $i }"] > :nth-last-child(n + #{ $i }),
+    &[data-layout~="-limit\:#{ $i }"] > :nth-last-child(n + #{ $i }) ~ * {
       flex-basis: 100%;
     }
+  }
+}
+
+@mixin switcher() {
+  [data-layout~="switcher"] {
+    @include abstract-switcher();
   }
 }

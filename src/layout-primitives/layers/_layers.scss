@@ -1,36 +1,34 @@
-@mixin layers() {
-  [data-layout~="layers"] {
+@mixin abstract-layers() {
+  position: relative;
+  display: grid;
+
+  > * {
+    --align-self: stretch;
+    --justify-self: stretch;
+
     position: relative;
-    display: grid;
-
-    > * {
-      --align-self: stretch;
-      --justify-self: stretch;
-
-      position: relative;
-      grid-area: 1/1;
-      align-self: var(--align-self);
-      justify-self: var(--justify-self);
-    }
-
-    > img,
-    > video,
-    > picture > img,
-    > picture > video {
-      margin-top: 0;
-      margin-bottom: 0;
-      object-fit: cover;
-      object-position: 50% 50%;
-    }
-
-    > picture > img,
-    > picture > video {
-      height: 100%;
-      width: 100%;
-    }
+    grid-area: 1/1;
+    align-self: var(--align-self);
+    justify-self: var(--justify-self);
   }
 
-  [data-layout~="layers"][data-layout~="-cover"] {
+  > img,
+  > video,
+  > picture > img,
+  > picture > video {
+    margin-top: 0;
+    margin-bottom: 0;
+    object-fit: cover;
+    object-position: 50% 50%;
+  }
+
+  > picture > img,
+  > picture > video {
+    height: 100%;
+    width: 100%;
+  }
+
+  &[data-layout~="-cover"] {
     > img,
     > video,
     > picture {
@@ -42,5 +40,11 @@
       height: 100%;
       width: 100%;
     }
+  }
+}
+
+@mixin layers() {
+  [data-layout~="layers"] {
+    @include abstract-layers();
   }
 }

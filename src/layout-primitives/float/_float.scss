@@ -1,25 +1,29 @@
-@mixin float() {
-  [data-layout~="float"] {
-    --gap: var(--s1);
-    --min-measure: calc(var(--measure) / 2);
-    --min-width: calc(var(--measure) / 2);
+@mixin abstract-float() {
+  --gap: var(--s1);
+  --min-measure: calc(var(--measure) / 2);
+  --min-width: calc(var(--measure) / 2);
 
-    width: max(
-      min(var(--min-width), 100%),
-      min((var(--min-width) + var(--gap) + var(--min-measure) - 100%) * 999, 100%)
-    );
-  }
+  width: max(
+    min(var(--min-width), 100%),
+    min((var(--min-width) + var(--gap) + var(--min-measure) - 100%) * 999, 100%)
+  );
 
-  [data-layout~="float"][data-layout~="-left"],
-  [data-layout~="float"]:not([data-layout~="-right"]) {
+  &[data-layout~="-left"],
+  &:not([data-layout~="-right"]) {
     float: left;
     margin-right: var(--gap);
     margin-bottom: var(--gap);
   }
 
-  [data-layout~="float"][data-layout~="-right"] {
+  &[data-layout~="-right"] {
     float: right;
     margin-left: var(--gap);
     margin-bottom: var(--gap);
+  }
+}
+
+@mixin float() {
+  [data-layout~="float"] {
+    @include abstract-float();
   }
 }
