@@ -12,3 +12,20 @@
 @use 'switcher/switcher';
 @use 'text/text';
 @use 'with-sidebar/with-sidebar';
+
+@mixin layout-primitives() {
+  @include box.box();
+  @include center.center();
+  @include cluster.cluster();
+  @include container.container();
+  @include cover.cover();
+  @include float.float();
+  @include frame.frame();
+  @include layers.layers();
+  @include responsive-grid.responsive-grid();
+  @include section.section();
+  @include stack.stack();
+  @include switcher.switcher();
+  @include text.text();
+  @include with-sidebar.with-sidebar();
+}

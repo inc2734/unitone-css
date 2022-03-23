@@ -2,3 +2,7 @@
 @use 'foundation/foundation';
 @use 'layout-primitives/layout-primitives';
 @use 'helper/helper';
+
+@include foundation.foundation();
+@include layout-primitives.layout-primitives();
+@include helper.helper();

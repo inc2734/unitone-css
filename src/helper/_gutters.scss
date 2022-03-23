@@ -1,5 +1,7 @@
-@for $i from -2 through 7 {
-  [data-layout~="-gutters\:#{ $i }"] {
-    --gutters: var(--s#{ $i });
+@mixin gutters() {
+  @for $i from -2 through 7 {
+    [data-layout~="-gutters\:#{ $i }"] {
+      --gutters: var(--s#{ $i });
+    }
   }
 }

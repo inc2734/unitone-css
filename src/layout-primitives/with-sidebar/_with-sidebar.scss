@@ -1,12 +1,3 @@
-[data-layout~="with-sidebar"] {
-  --content-min-width: 50%;
-  --gap: var(--s1);
-
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--gap);
-}
-
 @mixin _aside() {
   flex-basis: var(--sidebar-width);
   flex-grow: 1;
@@ -18,30 +9,41 @@
   min-width: var(--content-min-width);
 }
 
-[data-layout~="with-sidebar"]:not([data-layout~="-revert"])[data-layout~="-sidebar\:right"],
-[data-layout~="with-sidebar"]:not([data-layout~="-revert"]):not([data-layout~="-sidebar\:left"]),
-[data-layout~="with-sidebar"][data-layout~="-revert"][data-layout~="-sidebar\:left"] {
-  > :first-child {
-    @include _main();
+@mixin with-sidebar() {
+  [data-layout~="with-sidebar"] {
+    --content-min-width: 50%;
+    --gap: var(--s1);
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap);
   }
 
-  > :last-child {
-    @include _aside();
-  }
-}
+  [data-layout~="with-sidebar"]:not([data-layout~="-revert"])[data-layout~="-sidebar\:right"],
+  [data-layout~="with-sidebar"]:not([data-layout~="-revert"]):not([data-layout~="-sidebar\:left"]),
+  [data-layout~="with-sidebar"][data-layout~="-revert"][data-layout~="-sidebar\:left"] {
+    > :first-child {
+      @include _main();
+    }
 
-[data-layout~="with-sidebar"]:not([data-layout~="-revert"])[data-layout~="-sidebar\:left"],
-[data-layout~="with-sidebar"][data-layout~="-revert"][data-layout~="-sidebar\:right"],
-[data-layout~="with-sidebar"][data-layout~="-revert"]:not([data-layout~="-sidebar\:left"]) {
-  > :first-child {
-    @include _aside();
+    > :last-child {
+      @include _aside();
+    }
   }
 
-  > :last-child {
-    @include _main();
-  }
-}
+  [data-layout~="with-sidebar"]:not([data-layout~="-revert"])[data-layout~="-sidebar\:left"],
+  [data-layout~="with-sidebar"][data-layout~="-revert"][data-layout~="-sidebar\:right"],
+  [data-layout~="with-sidebar"][data-layout~="-revert"]:not([data-layout~="-sidebar\:left"]) {
+    > :first-child {
+      @include _aside();
+    }
 
-[data-layout~="with-sidebar"][data-layout~="-revert"] {
-  flex-direction: row-reverse;
+    > :last-child {
+      @include _main();
+    }
+  }
+
+  [data-layout~="with-sidebar"][data-layout~="-revert"] {
+    flex-direction: row-reverse;
+  }
 }

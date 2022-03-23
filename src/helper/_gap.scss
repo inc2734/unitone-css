@@ -1,5 +1,7 @@
-@for $i from -2 through 7 {
-  [data-layout~="-gap\:#{ $i }"] {
-    --gap: var(--s#{ $i });
+@mixin gap() {
+  @for $i from -2 through 7 {
+    [data-layout~="-gap\:#{ $i }"] {
+      --gap: var(--s#{ $i });
+    }
   }
 }

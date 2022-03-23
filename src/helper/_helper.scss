@@ -4,3 +4,12 @@
 @use 'gutters';
 @use 'justify-content';
 @use 'padding';
+
+@mixin helper() {
+  @include align-items.align-items();
+  @include fluid-typography.fluid-typography();
+  @include gap.gap();
+  @include gutters.gutters();
+  @include justify-content.justify-content();
+  @include padding.padding();
+}

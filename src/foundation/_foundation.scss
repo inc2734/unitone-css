@@ -1,77 +1,79 @@
 @use '../variables/variables' as variables;
 
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
-  font-size: #{ variables.$font-size };
-  line-height: #{ variables.$line-height };
-}
-
-address,
-article,
-aside,
-blockquote,
-details,
-dialog,
-dd,
-div,
-dl,
-dt,
-fieldset,
-figcaption,
-figure,
-footer,
-form,
-h1, h2, h3, h4, h5, h6,
-header,
-hgroup,
-hr,
-li,
-main,
-nav,
-ol,
-p,
-pre,
-section,
-table,
-ul {
-  margin: 0;
-  padding: 0;
-}
-
-li {
-  margin-left: 1.5em;
-}
-
-small {
-  font-size: smaller;
-}
-
-sup {
-  font-size: smaller;
-
-  @supports (font-variant-position: super) {
-    font-variant-position: super;
-    vertical-align: baseline;
-    font-size: inherit;
+@mixin foundation() {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    font-size: #{ variables.$font-size };
+    line-height: #{ variables.$line-height };
   }
-}
 
-sub {
-  font-size: smaller;
-
-  @supports (font-variant-position: sub) {
-    font-variant-position: sub;
-    vertical-align: baseline;
-    font-size: inherit;
+  address,
+  article,
+  aside,
+  blockquote,
+  details,
+  dialog,
+  dd,
+  div,
+  dl,
+  dt,
+  fieldset,
+  figcaption,
+  figure,
+  footer,
+  form,
+  h1, h2, h3, h4, h5, h6,
+  header,
+  hgroup,
+  hr,
+  li,
+  main,
+  nav,
+  ol,
+  p,
+  pre,
+  section,
+  table,
+  ul {
+    margin: 0;
+    padding: 0;
   }
-}
 
-img,
-video {
-  margin-top: calc(1rem * var(--half-leading));
-  margin-bottom: calc(1rem * var(--half-leading));
-  height: auto;
-  max-width: 100%;
+  li {
+    margin-left: 1.5em;
+  }
+
+  small {
+    font-size: smaller;
+  }
+
+  sup {
+    font-size: smaller;
+
+    @supports (font-variant-position: super) {
+      font-variant-position: super;
+      vertical-align: baseline;
+      font-size: inherit;
+    }
+  }
+
+  sub {
+    font-size: smaller;
+
+    @supports (font-variant-position: sub) {
+      font-variant-position: sub;
+      vertical-align: baseline;
+      font-size: inherit;
+    }
+  }
+
+  img,
+  video {
+    margin-top: calc(1rem * var(--half-leading));
+    margin-bottom: calc(1rem * var(--half-leading));
+    height: auto;
+    max-width: 100%;
+  }
 }

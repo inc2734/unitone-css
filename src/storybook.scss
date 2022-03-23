@@ -1,9 +1,11 @@
 @use 'settings/settings';
+@use 'foundation/foundation';
+@use 'layout-primitives/layout-primitives';
+@use 'helper/helper';
 
 #root,
 .docs-story {
-  @import 'foundation/foundation';
-  @import 'layout-primitives/layout-primitives';
-  @import 'helper/helper';
+  @include foundation.foundation();
+  @include layout-primitives.layout-primitives();
+  @include helper.helper();
 }
-

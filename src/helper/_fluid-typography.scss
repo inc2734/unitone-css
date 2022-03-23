@@ -1,5 +1,7 @@
 @use '../variables/variables' as variables;
 
-[data-layout~="-fluid-typography"] {
-  font-size: #{ variables.$fluid-font-size };
+@mixin fluid-typography() {
+  [data-layout~="-fluid-typography"] {
+    font-size: #{ variables.$fluid-font-size };
+  }
 }

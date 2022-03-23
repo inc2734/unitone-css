@@ -1,30 +1,32 @@
 @use '../../variables/variables' as variables;
 
-[data-layout~="container"] {
-  --gutters: var(--s1);
-  --max-width: min(100%, #{ variables.$container-max-width });
+@mixin container() {
+  [data-layout~="container"] {
+    --gutters: var(--s1);
+    --max-width: min(100%, #{ variables.$container-max-width });
 
-  box-sizing: content-box;
-  margin-right: auto;
-  margin-left: auto;
-  padding-right: var(--gutters);
-  padding-left: var(--gutters);
-  max-width: var(--max-width);
-}
+    box-sizing: content-box;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: var(--gutters);
+    padding-left: var(--gutters);
+    max-width: var(--max-width);
+  }
 
-[data-layout~="container"][data-layout~="-text"] {
-  max-width: min(100%, var(--measure)) !important;
-}
+  [data-layout~="container"][data-layout~="-text"] {
+    max-width: min(100%, var(--measure)) !important;
+  }
 
-[data-layout~="container"][data-layout~="-align\:start"] {
-  margin-left: 0;
-}
+  [data-layout~="container"][data-layout~="-align\:start"] {
+    margin-left: 0;
+  }
 
-[data-layout~="container"][data-layout~="-align\:center"] {
-  margin-right: auto;
-  margin-left: auto;
-}
+  [data-layout~="container"][data-layout~="-align\:center"] {
+    margin-right: auto;
+    margin-left: auto;
+  }
 
-[data-layout~="container"][data-layout~="-align\:end"] {
-  margin-right: 0;
+  [data-layout~="container"][data-layout~="-align\:end"] {
+    margin-right: 0;
+  }
 }

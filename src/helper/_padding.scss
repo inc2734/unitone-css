@@ -1,5 +1,7 @@
-@for $i from -2 through 7 {
-  [data-layout~="-padding\:#{ $i }"] {
-    --padding: var(--s#{ $i });
+@mixin padding() {
+  @for $i from -2 through 7 {
+    [data-layout~="-padding\:#{ $i }"] {
+      --padding: var(--s#{ $i });
+    }
   }
 }

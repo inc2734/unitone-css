@@ -1,6 +1,8 @@
-[data-layout~="section"] {
-  --padding: var(--s4);
+@mixin section() {
+  [data-layout~="section"] {
+    --padding: var(--s4);
 
-  padding-top: var(--padding);
-  padding-bottom: var(--padding);
+    padding-top: var(--padding);
+    padding-bottom: var(--padding);
+  }
 }

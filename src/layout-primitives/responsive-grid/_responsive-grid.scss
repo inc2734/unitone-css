@@ -1,8 +1,10 @@
-[data-layout~="responsive-grid"] {
-  --column-min-width: 250px;
-  --gap: var(--s1);
+@mixin responsive-grid() {
+  [data-layout~="responsive-grid"] {
+    --column-min-width: 250px;
+    --gap: var(--s1);
 
-  display: grid;
-  grid-gap: var(--gap);
-  grid-template-columns: repeat(auto-fit, minmax(min(var(--column-min-width), 100%), 1fr));
+    display: grid;
+    grid-gap: var(--gap);
+    grid-template-columns: repeat(auto-fit, minmax(min(var(--column-min-width), 100%), 1fr));
+  }
 }

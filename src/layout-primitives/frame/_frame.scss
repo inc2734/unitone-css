@@ -1,30 +1,32 @@
-[data-layout~="frame"] {
-  --ratio: 16/9;
+@mixin frame() {
+  [data-layout~="frame"] {
+    --ratio: 16/9;
 
-  position: relative;
+    position: relative;
 
-  &::before {
-    content: '';
-    display: block;
-    padding: calc(100% / (var(--ratio))) 0 0;
-  }
+    &::before {
+      content: '';
+      display: block;
+      padding: calc(100% / (var(--ratio))) 0 0;
+    }
 
-  > * {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-  }
+    > * {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
 
-  > img,
-  > video {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+    > img,
+    > video {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
   }
 }
