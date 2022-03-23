@@ -5,8 +5,6 @@ export const Cluster = ({ alignItems, gap, justifyContent, tagName = 'div', styl
 
   style = {
     ...style,
-    '--align-items': alignItems,
-    '--justify-content': justifyContent,
   };
 
   return (
