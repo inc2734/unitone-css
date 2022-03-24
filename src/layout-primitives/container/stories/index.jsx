@@ -22,13 +22,13 @@ export default {
       control: { type: 'inline-radio' },
       description: 'Gutters. Set by CSS var `--gutters` or `data-layout` attribute `-gutters:x`.',
       options: [0, 1, 2, 3, 4, 5, 6, 7],
-      table: { defaultValue: { summary: 'var(--s1)' } },
+      table: { defaultValue: { summary: 'var(--sr1)' } },
       type: { name: 'number', required: false },
     },
     maxWidth: {
       control: { type: 'text' },
       description: 'Max width. Set by CSS var `--max-width`.',
-      table: { defaultValue: { summary: 'min(1280px, 100%)' } },
+      table: { defaultValue: { summary: '1280px' } },
       type: { name: 'string', required: false },
     },
     text: {
@@ -43,7 +43,7 @@ export default {
   args: {
     align: '',
     gutters: 1,
-    maxWidth: 'min(1280px, 100%)',
+    maxWidth: '1280px',
     text: false,
   },
 };

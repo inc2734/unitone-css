@@ -1,18 +1,16 @@
 @use '../../variables/variables' as variables;
 
 @mixin abstract-container() {
-  --gutters: var(--s1);
-  --max-width: min(100%, #{ variables.$container-max-width });
+  --gutters: var(--sr1);
+  --max-width: #{ variables.$container-max-width };
 
   box-sizing: content-box;
   margin-right: auto;
   margin-left: auto;
-  padding-right: var(--gutters);
-  padding-left: var(--gutters);
-  max-width: var(--max-width);
+  max-width: min(100% - var(--gutters), var(--max-width));
 
   &[data-layout~="-text"] {
-    max-width: min(100%, var(--measure)) !important;
+    max-width: min(100% - var(--gutters), var(--measure)) !important;
   }
 
   &[data-layout~="-align\:start"] {

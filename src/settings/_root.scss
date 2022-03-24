@@ -52,16 +52,44 @@
   /**
    * Modular scales for spaces.
    */
-  --s-2: calc(1em * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 1) });
-  --s-1: calc(1em * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 2) });
+  --ms-2: calc(var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 1) });
+  --ms-1: calc(var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 2) });
+  --ms0: 0;
+  --ms1: calc(var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 3) });
+  --ms2: calc(var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 4) });
+  --ms3: calc(var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 5) });
+  --ms4: calc(var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 6) });
+  --ms5: calc(var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 7) });
+  --ms6: calc(var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 8) });
+  --ms7: calc(var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 9) });
+
+  /**
+   * Modular scales for spaces (em based).
+   */
+  --s-2: calc(1em * var(--ms-2));
+  --s-1: calc(1em * var(--ms-1));
   --s0: 0;
-  --s1: calc(1em * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 3) });
-  --s2: calc(1em * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 4) });
-  --s3: calc(1em * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 5) });
-  --s4: calc(1em * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 6) });
-  --s5: calc(1em * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 7) });
-  --s6: calc(1em * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 8) });
-  --s7: calc(1em * var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 9) });
+  --s1: calc(1em * var(--ms1));
+  --s2: calc(1em * var(--ms2));
+  --s3: calc(1em * var(--ms3));
+  --s4: calc(1em * var(--ms4));
+  --s5: calc(1em * var(--ms5));
+  --s6: calc(1em * var(--ms6));
+  --s7: calc(1em * var(--ms7));
+
+  /**
+   * Modular scales for spaces (rem based).
+   */
+  --sr-2: calc(1rem * var(--ms-2));
+  --sr-1: calc(1rem * var(--ms-1));
+  --sr0: 0;
+  --sr1: calc(1rem * var(--ms1));
+  --sr2: calc(1rem * var(--ms2));
+  --sr3: calc(1rem * var(--ms3));
+  --sr4: calc(1rem * var(--ms4));
+  --sr5: calc(1rem * var(--ms5));
+  --sr6: calc(1rem * var(--ms6));
+  --sr7: calc(1rem * var(--ms7));
 
   /**
    * Modular scales for spaces (% based).
