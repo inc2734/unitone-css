@@ -21,8 +21,19 @@
     overflow: hidden;
   }
 
+  > figure > picture {
+    height: 100%;
+    width: 100%;
+  }
+
   > img,
-  > video {
+  > video,
+  > picture > img,
+  > picture > video,
+  > figure > img,
+  > figure > video,
+  > figure > picture > img,
+  > figure > picture > video {
     height: 100%;
     width: 100%;
     object-fit: cover;

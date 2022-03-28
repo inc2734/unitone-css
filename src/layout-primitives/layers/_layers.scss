@@ -15,7 +15,11 @@
   > img,
   > video,
   > picture > img,
-  > picture > video {
+  > picture > video,
+  > figure > img,
+  > figure > video,
+  > figure > picture > img,
+  > figure > picture > video {
     margin-top: 0;
     margin-bottom: 0;
     object-fit: cover;
@@ -23,7 +27,11 @@
   }
 
   > picture > img,
-  > picture > video {
+  > picture > video,
+  > figure > img,
+  > figure > video,
+  > figure > picture > img,
+  > figure > picture > video {
     height: 100%;
     width: 100%;
   }
@@ -31,7 +39,8 @@
   &[data-layout~="-cover"] {
     > img,
     > video,
-    > picture {
+    > picture,
+    > figure {
       position: absolute;
       top: 0;
       right: 0;
