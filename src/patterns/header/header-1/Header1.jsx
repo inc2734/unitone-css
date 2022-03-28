@@ -14,7 +14,7 @@ export const Header1 = (props) => (
       {!!props.src && <img src={props.src} alt="" />}
       <Cover>
         <CoverContent>
-          <Container gutters={0} text>
+          <Container gutters={0} maxWidth="var(--measure)">
             <Stack gap={2}>
               {!!props.title && (
                 <Center>

@@ -8,23 +8,6 @@
   margin-right: auto;
   margin-left: auto;
   max-width: min(100% - var(--gutters), var(--max-width));
-
-  &[data-layout~="-text"] {
-    max-width: min(100% - var(--gutters), var(--measure)) !important;
-  }
-
-  &[data-layout~="-align\:start"] {
-    margin-left: 0;
-  }
-
-  &[data-layout~="-align\:center"] {
-    margin-right: auto;
-    margin-left: auto;
-  }
-
-  &[data-layout~="-align\:end"] {
-    margin-right: 0;
-  }
 }
 
 @mixin container() {

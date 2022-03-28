@@ -19,7 +19,7 @@ export const Header5 = (props) => (
       )}
       <Cover>
         <CoverContent>
-          <Container align="start" text>
+          <Container align="start" maxWidth="var(--measure)">
             <Stack gap={2}>
               {!!props.title && (
                 <Stack style={{ '--font-size': 5 }}>

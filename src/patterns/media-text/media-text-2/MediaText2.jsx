@@ -16,7 +16,7 @@ export const MediaText2 = (props) => (
     >
       <Cover noPadding minHeight="0">
         <CoverContent>
-          <Container gutters={0} text>
+          <Container gutters={0} maxWidth="var(--measure)">
             <Stack gap={2}>
               {!!props.title && (
                 <Stack style={{ '--font-size': 4 }}>

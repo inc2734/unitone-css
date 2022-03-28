@@ -20,7 +20,7 @@ export const Header6 = (props) => (
         >
           <Cover minHeight={`calc(100vh - var(--s${props.padding}) * 2`}>
             <CoverContent>
-              <Container gutters={0} text>
+              <Container gutters={0} maxWidth="var(--measure)">
                 <Stack gap={2}>
                   {!!props.title && (
                     <Center>

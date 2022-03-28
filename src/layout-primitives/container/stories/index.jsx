@@ -31,27 +31,18 @@ export default {
       table: { defaultValue: { summary: '1280px' } },
       type: { name: 'string', required: false },
     },
-    text: {
-      control: { type: 'inline-radio' },
-      description:
-        'Set the container max width with `var(--measure)`. If this is specified, `--max-width` is ignored.',
-      options: [false, true],
-      table: { defaultValue: { summary: 'false' } },
-      type: { name: 'boolean', required: false },
-    },
   },
   args: {
     align: '',
     gutters: 1,
     maxWidth: '1280px',
-    text: false,
   },
 };
 
 export const Default = (args) => {
   return (
     <Container {...args}>
-      <Text maxWidth="100%">
+      <Text maxWidth="inherit">
         <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h2>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt

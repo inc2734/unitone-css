@@ -68,7 +68,7 @@
    */
   --em-2: calc(1em * var(--ms-2));
   --em-1: calc(1em * var(--ms-1));
-  --em0: 0;
+  --em0: 0em;
   --em1: calc(1em * var(--ms1));
   --em2: calc(1em * var(--ms2));
   --em3: calc(1em * var(--ms3));
@@ -82,7 +82,7 @@
    */
   --rem-2: calc(1rem * var(--ms-2));
   --rem-1: calc(1rem * var(--ms-1));
-  --rem0: 0;
+  --rem0: 0rem;
   --rem1: calc(1rem * var(--ms1));
   --rem2: calc(1rem * var(--ms2));
   --rem3: calc(1rem * var(--ms3));
@@ -96,7 +96,7 @@
    */
   --percentage-2: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 1) });
   --percentage-1: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 2) });
-  --percentage0: 0;
+  --percentage0: 0%;
   --percentage1: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 3) });
   --percentage2: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 4) });
   --percentage3: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 5) });

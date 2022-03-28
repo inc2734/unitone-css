@@ -13,7 +13,7 @@ export const Header4 = (props) => (
       {!!props.src && <img src={props.src} alt="" />}
       <Cover gap={2}>
         <CoverContent></CoverContent>
-        <Container align="start" gutters={0} text>
+        <Container align="start" gutters={0} maxWidth="var(--measure)">
           <Stack gap={2}>
             {!!props.title && <h2 style={{ '--font-size': 4 }}>{props.title}</h2>}
             {!!props.children && <Text>{props.children}</Text>}

@@ -12,7 +12,6 @@ export const Container = ({ align, gutters, maxWidth, text, style, ...props }) =
         'container',
         'undefined' !== typeof align ? `-align:${align}` : undefined,
         'undefined' !== typeof gutters ? `-gutters:${gutters}` : undefined,
-        true === text ? '-text' : undefined,
       ]
         .filter(Boolean)
         .join(' ')}
