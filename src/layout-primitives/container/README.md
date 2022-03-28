@@ -30,14 +30,6 @@
 </div>
 ```
 
-### max-width for text
-
-```html
-<div data-layout="container -text">
-  ...
-</div>
-```
-
 ### Alignment
 
 ```html
