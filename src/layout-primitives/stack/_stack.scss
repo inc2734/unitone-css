@@ -13,16 +13,14 @@
   &:only-child {
     height: 100%;
   }
-
-  @at-root {
-    :where(#{ & } > *) {
-      max-width: 100%;
-    }
-  }
 }
 
 @mixin stack() {
   [data-layout~="stack"] {
     @include abstract-stack();
+  }
+
+  :where([data-layout~="stack"] > *) {
+    max-width: 100%;
   }
 }

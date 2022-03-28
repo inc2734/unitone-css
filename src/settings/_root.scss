@@ -66,42 +66,56 @@
   /**
    * Modular scales for spaces (em based).
    */
-  --s-2: calc(1em * var(--ms-2));
-  --s-1: calc(1em * var(--ms-1));
-  --s0: 0;
-  --s1: calc(1em * var(--ms1));
-  --s2: calc(1em * var(--ms2));
-  --s3: calc(1em * var(--ms3));
-  --s4: calc(1em * var(--ms4));
-  --s5: calc(1em * var(--ms5));
-  --s6: calc(1em * var(--ms6));
-  --s7: calc(1em * var(--ms7));
+  --em-2: calc(1em * var(--ms-2));
+  --em-1: calc(1em * var(--ms-1));
+  --em0: 0;
+  --em1: calc(1em * var(--ms1));
+  --em2: calc(1em * var(--ms2));
+  --em3: calc(1em * var(--ms3));
+  --em4: calc(1em * var(--ms4));
+  --em5: calc(1em * var(--ms5));
+  --em6: calc(1em * var(--ms6));
+  --em7: calc(1em * var(--ms7));
 
   /**
    * Modular scales for spaces (rem based).
    */
-  --sr-2: calc(1rem * var(--ms-2));
-  --sr-1: calc(1rem * var(--ms-1));
-  --sr0: 0;
-  --sr1: calc(1rem * var(--ms1));
-  --sr2: calc(1rem * var(--ms2));
-  --sr3: calc(1rem * var(--ms3));
-  --sr4: calc(1rem * var(--ms4));
-  --sr5: calc(1rem * var(--ms5));
-  --sr6: calc(1rem * var(--ms6));
-  --sr7: calc(1rem * var(--ms7));
+  --rem-2: calc(1rem * var(--ms-2));
+  --rem-1: calc(1rem * var(--ms-1));
+  --rem0: 0;
+  --rem1: calc(1rem * var(--ms1));
+  --rem2: calc(1rem * var(--ms2));
+  --rem3: calc(1rem * var(--ms3));
+  --rem4: calc(1rem * var(--ms4));
+  --rem5: calc(1rem * var(--ms5));
+  --rem6: calc(1rem * var(--ms6));
+  --rem7: calc(1rem * var(--ms7));
 
   /**
    * Modular scales for spaces (% based).
    */
-  --sp-2: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 1) });
-  --sp-1: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 2) });
-  --sp0: 0;
-  --sp1: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 3) });
-  --sp2: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 4) });
-  --sp3: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 5) });
-  --sp4: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 6) });
-  --sp5: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 7) });
-  --sp6: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 8) });
-  --sp7: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 9) });
+  --percentage-2: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 1) });
+  --percentage-1: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 2) });
+  --percentage0: 0;
+  --percentage1: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 3) });
+  --percentage2: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 4) });
+  --percentage3: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 5) });
+  --percentage4: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 6) });
+  --percentage5: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 7) });
+  --percentage6: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 8) });
+  --percentage7: calc(1% * #{ list.nth(variables.$fibonacci-sequence, 9) });
+
+  /**
+   * Modular scales for spaces.
+   */
+  --s-2: var(--em-2);
+  --s-1: var(--em-1);
+  --s0: var(--em0);
+  --s1: var(--em1);
+  --s2: var(--em2);
+  --s3: var(--em3);
+  --s4: var(--em4);
+  --s5: var(--em5);
+  --s6: var(--em6);
+  --s7: var(--em7);
 }

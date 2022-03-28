@@ -11,7 +11,11 @@ export const Header5 = (props) => (
   <Box backgroundColor={props.backgroundColor} color={props.color} padding={0}>
     <Layers cover>
       {!!props.src && (
-        <img src={props.src} alt="" style={{ width: 'calc(100% - var(--sp5)', left: 'auto' }} />
+        <img
+          src={props.src}
+          alt=""
+          style={{ width: 'calc(100% - var(--percentage5)', left: 'auto' }}
+        />
       )}
       <Cover>
         <CoverContent>

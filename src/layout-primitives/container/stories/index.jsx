@@ -22,7 +22,7 @@ export default {
       control: { type: 'inline-radio' },
       description: 'Gutters. Set by CSS var `--gutters` or `data-layout` attribute `-gutters:x`.',
       options: [0, 1, 2, 3, 4, 5, 6, 7],
-      table: { defaultValue: { summary: 'var(--sr1)' } },
+      table: { defaultValue: { summary: 'var(--rem1)' } },
       type: { name: 'number', required: false },
     },
     maxWidth: {

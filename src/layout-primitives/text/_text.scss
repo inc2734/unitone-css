@@ -54,20 +54,18 @@
       --margin-top: .5;
     }
   }
-
-  @at-root {
-    :where(#{ & } > *) {
-      max-width: var(--max-width);
-    }
-
-    :where(#{ & }[data-layout~="-center"]) > * {
-      width: fit-content
-    }
-  }
 }
 
 @mixin text() {
   [data-layout~="text"] {
     @include abstract-text();
+  }
+
+  :where([data-layout~="text"] > *) {
+    max-width: var(--max-width);
+  }
+
+  :where([data-layout~="text"][data-layout~="-center"]) > * {
+    width: fit-content;
   }
 }
