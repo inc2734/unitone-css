@@ -8,7 +8,7 @@
 
 @mixin helper() {
   @include align-items.align-items();
-  @include align-items.align();
+  @include align.align();
   @include fluid-typography.fluid-typography();
   @include gap.gap();
   @include gutters.gutters();
