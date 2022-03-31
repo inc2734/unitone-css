@@ -1,12 +1,14 @@
-[data-layout~="-align\:start"] {
-  margin-left: 0;
-}
+@mixin align() {
+  [data-layout~="-align\:start"] {
+    margin-left: 0;
+  }
 
-[data-layout~="-align\:center"] {
-  margin-right: auto;
-  margin-left: auto;
-}
+  [data-layout~="-align\:center"] {
+    margin-right: auto;
+    margin-left: auto;
+  }
 
-[data-layout~="-align\:end"] {
-  margin-right: 0;
+  [data-layout~="-align\:end"] {
+    margin-right: 0;
+  }
 }
