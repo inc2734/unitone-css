@@ -7,7 +7,7 @@
   box-sizing: content-box;
   margin-right: auto;
   margin-left: auto;
-  max-width: min(100% - var(--gutters), var(--max-width));
+  max-width: min(100% - var(--gutters) * 2, var(--max-width));
   width: 100%;
 }
 
