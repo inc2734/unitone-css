@@ -8,6 +8,7 @@
   margin-right: auto;
   margin-left: auto;
   max-width: min(100% - var(--gutters), var(--max-width));
+  width: 100%;
 }
 
 @mixin container() {
