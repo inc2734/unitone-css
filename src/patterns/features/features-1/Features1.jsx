@@ -9,7 +9,7 @@ import { Stack } from '../../../layout-primitives/stack/Stack';
 import { Text } from '../../../layout-primitives/text/Text';
 
 export const Feature1 = ({ items = [], ...props }) => (
-  <Box backgroundColor={props.backgroundColor} color={props.color}>
+  <Box backgroundColor={props.backgroundColor} color={props.color} padding={0}>
     <Section>
       <Container>
         <Stack gap={props.gap}>

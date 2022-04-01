@@ -8,7 +8,7 @@ import { ResponsiveGrid } from '../../../layout-primitives/responsive-grid/Respo
 import { Section } from '../../../layout-primitives/section/Section';
 
 export const Feature2 = ({ items = [], ...props }) => (
-  <Box backgroundColor={props.backgroundColor} color={props.color}>
+  <Box backgroundColor={props.backgroundColor} color={props.color} padding={0}>
     <Section>
       <Container>
         {0 < items.length && (

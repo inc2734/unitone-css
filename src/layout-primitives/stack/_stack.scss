@@ -2,8 +2,8 @@
   --gap: var(--s1);
 
   display: grid;
-  grid-template: max-content/1fr;
   gap: var(--gap);
+  grid-template-columns: 100%;
 
   > * {
     margin-top: 0;
@@ -18,9 +18,5 @@
 @mixin stack() {
   [data-layout~="stack"] {
     @include abstract-stack();
-  }
-
-  :where([data-layout~="stack"] > *) {
-    max-width: 100%;
   }
 }

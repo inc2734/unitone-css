@@ -11,7 +11,7 @@ export const Header4 = (props) => (
   <Box backgroundColor={props.backgroundColor} color={props.color} padding={0}>
     <Layers cover>
       {!!props.src && <img src={props.src} alt="" />}
-      <Cover gap={2}>
+      <Cover>
         <CoverContent></CoverContent>
         <Container align="start" gutters={0} maxWidth="var(--measure)">
           <Stack gap={2}>

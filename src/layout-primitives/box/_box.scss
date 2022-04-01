@@ -6,8 +6,7 @@
   --border-radius: 0;
   --padding: var(--s1);
 
-  padding: var(--padding);
-  padding: var(--padding) calc((var(--padding) + var(--half-leading) * 1em));
+  padding: calc((var(--padding) - var(--half-leading) * 1em)) var(--padding);
   border: var(--border-width) solid var(--border-color);
   border-radius: var(--border-radius);
   color: var(--color);

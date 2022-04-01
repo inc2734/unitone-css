@@ -25,9 +25,9 @@
    */
   --base-font-size: 16;
 
---font-size-harmonic-sequence-base: 8;
---min-font-size-harmonic-sequence-base: 9;
---max-font-size-harmonic-sequence-base: var(--font-size-harmonic-sequence-base);
+  --font-size-harmonic-sequence-base: 8;
+  --min-font-size-harmonic-sequence-base: 9;
+  --max-font-size-harmonic-sequence-base: var(--font-size-harmonic-sequence-base);
 
   /**
    * Gutter provided above and below the text in a line.
@@ -37,7 +37,7 @@
   /**
    * The line-height slope. If smaller, the line-height is adjusted to a smaller value as the font size increases.
    */
-  --line-height-slope: -0.0714285714286;
+  --line-height-slope: -0.0857142857143;
 
   /**
    * Font family
