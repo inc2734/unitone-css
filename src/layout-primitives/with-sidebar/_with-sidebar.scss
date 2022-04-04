@@ -6,7 +6,7 @@
 @mixin _main() {
   flex-basis: 0;
   flex-grow: 999;
-  min-width: var(--content-min-width);
+  min-width: min(100%, var(--content-min-width));
 }
 
 @mixin abstract-with-sidebar() {
