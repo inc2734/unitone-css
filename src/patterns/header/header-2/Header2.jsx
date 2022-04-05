@@ -3,13 +3,13 @@ import React from 'react';
 import { Box } from '../../../layout-primitives/box/Box';
 import { Center } from '../../../layout-primitives/center/Center';
 import { Container } from '../../../layout-primitives/container/Container';
-import { Section } from '../../../layout-primitives/section/Section';
+import { Gutters } from '../../../layout-primitives/gutters/Gutters';
 import { Stack } from '../../../layout-primitives/stack/Stack';
 import { Text } from '../../../layout-primitives/text/Text';
 
 export const Header2 = (props) => (
   <Box backgroundColor={props.backgroundColor} color={props.color} padding={0}>
-    <Section style={{ paddingBottom: 0 }}>
+    <Gutters style={{ paddingBottom: 0 }}>
       <Stack gap={2}>
         <Container>
           <Stack gap={2}>
@@ -28,6 +28,6 @@ export const Header2 = (props) => (
           </Center>
         )}
       </Stack>
-    </Section>
+    </Gutters>
   </Box>
 );

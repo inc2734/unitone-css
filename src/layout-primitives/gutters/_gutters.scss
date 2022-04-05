@@ -1,12 +1,12 @@
-@mixin abstract-section() {
+@mixin abstract-gutters() {
   --padding: clamp(var(--s3), var(--percentage3), var(--s4));
 
   padding-top: var(--padding);
   padding-bottom: var(--padding);
 }
 
-@mixin section() {
-  [data-layout~="section"] {
-    @include abstract-section();
+@mixin gutters() {
+  [data-layout~="gutters"] {
+    @include abstract-gutters();
   }
 }

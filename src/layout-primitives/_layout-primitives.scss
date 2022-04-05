@@ -7,7 +7,7 @@
 @use 'frame/frame';
 @use 'layers/layers';
 @use 'responsive-grid/responsive-grid';
-@use 'section/section';
+@use 'gutters/gutters';
 @use 'stack/stack';
 @use 'switcher/switcher';
 @use 'text/text';
@@ -23,7 +23,7 @@
   @include frame.frame();
   @include layers.layers();
   @include responsive-grid.responsive-grid();
-  @include section.section();
+  @include gutters.gutters();
   @include stack.stack();
   @include switcher.switcher();
   @include text.text();

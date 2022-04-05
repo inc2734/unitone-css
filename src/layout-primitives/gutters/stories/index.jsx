@@ -1,14 +1,14 @@
 import React from 'react';
 import readme from '../README.md';
 
-import { Section } from '../Section';
+import { Gutters } from '../Gutters';
 import { Center } from '../../center/Center';
 import { Container } from '../../container/Container';
 import { Stack } from '../../stack/Stack';
 
 export default {
-  title: 'Layout Primitives/Section',
-  component: Section,
+  title: 'Layout Primitives/Gutters',
+  component: Gutters,
   parameters: {
     notes: { readme },
   },
@@ -29,7 +29,7 @@ export default {
 
 export const Default = (args) => {
   return (
-    <Section {...args}>
+    <Gutters {...args}>
       <Container>
         <Stack gap={2}>
           <Center>
@@ -43,6 +43,6 @@ export const Default = (args) => {
           </p>
         </Stack>
       </Container>
-    </Section>
+    </Gutters>
   );
 };

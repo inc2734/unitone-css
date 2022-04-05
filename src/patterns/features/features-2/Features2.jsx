@@ -5,11 +5,11 @@ import { Container } from '../../../layout-primitives/container/Container';
 import { Frame } from '../../../layout-primitives/frame/Frame';
 import { Layers } from '../../../layout-primitives/layers/Layers';
 import { ResponsiveGrid } from '../../../layout-primitives/responsive-grid/ResponsiveGrid';
-import { Section } from '../../../layout-primitives/section/Section';
+import { Gutters } from '../../../layout-primitives/gutters/Gutters';
 
 export const Feature2 = ({ items = [], ...props }) => (
   <Box backgroundColor={props.backgroundColor} color={props.color} padding={0}>
-    <Section>
+    <Gutters>
       <Container>
         {0 < items.length && (
           <ResponsiveGrid columnMinWidth={props.columnMinWidth} gap={props.gap}>
@@ -28,6 +28,6 @@ export const Feature2 = ({ items = [], ...props }) => (
           </ResponsiveGrid>
         )}
       </Container>
-    </Section>
+    </Gutters>
   </Box>
 );

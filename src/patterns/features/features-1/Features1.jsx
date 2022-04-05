@@ -4,13 +4,13 @@ import { Box } from '../../../layout-primitives/box/Box';
 import { Center } from '../../../layout-primitives/center/Center';
 import { Container } from '../../../layout-primitives/container/Container';
 import { ResponsiveGrid } from '../../../layout-primitives/responsive-grid/ResponsiveGrid';
-import { Section } from '../../../layout-primitives/section/Section';
+import { Gutters } from '../../../layout-primitives/gutters/Gutters';
 import { Stack } from '../../../layout-primitives/stack/Stack';
 import { Text } from '../../../layout-primitives/text/Text';
 
 export const Feature1 = ({ items = [], ...props }) => (
   <Box backgroundColor={props.backgroundColor} color={props.color} padding={0}>
-    <Section>
+    <Gutters>
       <Container>
         <Stack gap={props.gap}>
           {!!props.title && (
@@ -47,6 +47,6 @@ export const Feature1 = ({ items = [], ...props }) => (
           )}
         </Stack>
       </Container>
-    </Section>
+    </Gutters>
   </Box>
 );
