@@ -4,6 +4,7 @@
   display: grid;
   gap: var(--gap);
   grid-template-columns: 100%;
+  grid-template-rows: min-content;
 
   > * {
     margin-top: 0;
