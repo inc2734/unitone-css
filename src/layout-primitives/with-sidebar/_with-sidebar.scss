@@ -12,10 +12,12 @@
 @mixin abstract-with-sidebar() {
   --content-min-width: 50%;
   --gap: var(--s1);
+  --align-items: start;
 
   display: flex;
   flex-wrap: wrap;
   gap: var(--gap);
+  align-items: var(--align-items);
 
   &:not([data-layout~="-revert"])[data-layout~="-sidebar\:right"],
   &:not([data-layout~="-revert"]):not([data-layout~="-sidebar\:left"]),
