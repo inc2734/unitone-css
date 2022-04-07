@@ -26,14 +26,9 @@
     width: 100%;
   }
 
-  > img,
-  > video,
-  > picture > img,
-  > picture > video,
-  > figure > img,
-  > figure > video,
-  > figure > picture > img,
-  > figure > picture > video {
+  > :is(img, video),
+  > :is(picture, figure) > :is(img, video),
+  > figure > picture > :is(img, video) {
     height: 100%;
     width: 100%;
     object-fit: cover;

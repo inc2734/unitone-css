@@ -2,6 +2,7 @@
   position: relative;
   display: grid;
   grid-auto-rows: min-content;
+  overflow: hidden;
 
   > * {
     --align-self: stretch;
@@ -13,35 +14,23 @@
     justify-self: var(--justify-self);
   }
 
-  > img,
-  > video,
-  > picture > img,
-  > picture > video,
-  > figure > img,
-  > figure > video,
-  > figure > picture > img,
-  > figure > picture > video {
+  > :is(img, video),
+  > :is(picture, figure) > :is(img, video),
+  > figure > picture > :is(img, video) {
     margin-top: 0;
     margin-bottom: 0;
     object-fit: cover;
     object-position: 50% 50%;
   }
 
-  > picture > img,
-  > picture > video,
-  > figure > img,
-  > figure > video,
-  > figure > picture > img,
-  > figure > picture > video {
+  > :is(picture, figure) > :is(img, video),
+  > figure > picture > :is(img, video) {
     height: 100%;
     width: 100%;
   }
 
   &[data-layout~="-cover"] {
-    > img,
-    > video,
-    > picture,
-    > figure {
+    > :is(img, video, picture, figure) {
       position: absolute;
       top: 0;
       right: 0;
