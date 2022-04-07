@@ -1,7 +1,7 @@
 @mixin align-items() {
   @each $value in (start, center, end) {
     [data-layout~="-align-items\:#{ $value }"] {
-      --align-items: #{ $value };
+      --align-items: #{ $value } !important;
     }
   }
 }

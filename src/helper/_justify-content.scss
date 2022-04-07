@@ -1,7 +1,7 @@
 @mixin justify-content() {
   @each $value in (start, center, end, space-between) {
     [data-layout~="-justify-content\:#{ $value }"] {
-      --justify-content: #{ $value };
+      --justify-content: #{ $value } !important;
     }
   }
 }

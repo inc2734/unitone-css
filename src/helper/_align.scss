@@ -1,14 +1,14 @@
 @mixin align() {
   [data-layout~="-align\:start"] {
-    margin-left: 0;
+    margin-left: 0 !important;
   }
 
   [data-layout~="-align\:center"] {
-    margin-right: auto;
-    margin-left: auto;
+    margin-right: auto !important;
+    margin-left: auto !important;
   }
 
   [data-layout~="-align\:end"] {
-    margin-right: 0;
+    margin-right: 0 !important;
   }
 }

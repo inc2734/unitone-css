@@ -2,6 +2,6 @@
 
 @mixin fluid-typography() {
   [data-layout~="-fluid-typography"] {
-    font-size: #{ variables.$fluid-font-size };
+    font-size: #{ variables.$fluid-font-size } !important;
   }
 }
