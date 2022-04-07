@@ -1,6 +1,7 @@
 @mixin abstract-layers() {
   position: relative;
   display: grid;
+  grid-auto-rows: min-content;
 
   > * {
     --align-self: stretch;
