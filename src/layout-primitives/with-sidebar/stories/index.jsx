@@ -10,6 +10,15 @@ export default {
     notes: { readme },
   },
   argTypes: {
+    alignItems: {
+      control: { type: 'inline-radio' },
+      description: '`--align-items`',
+      description:
+        'Alignment of the row direction. Set by CSS var `--align-items` or `data-layout` attribute `-align-items:x`.',
+      options: ['start', 'center', 'end'],
+      table: { defaultValue: { summary: 'flex-start' } },
+      type: { name: 'string', required: false },
+    },
     contentMinWidth: {
       control: { type: 'text' },
       description: 'Min width of the content. Set by CSS var `--content-min-width`.',
@@ -47,6 +56,7 @@ export default {
     },
   },
   args: {
+    alignItems: 'flex-start',
     contentMinWidth: '50%',
     gap: 1,
     revert: false,

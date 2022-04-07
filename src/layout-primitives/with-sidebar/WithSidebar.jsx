@@ -6,6 +6,7 @@ export const WithSidebar = ({
   revert,
   sidebar,
   sidebarWidth,
+  alignItems,
   style,
   ...props
 }) => {
@@ -22,6 +23,7 @@ export const WithSidebar = ({
         true === revert ? '-revert' : undefined,
         'undefined' !== typeof gap ? `-gap:${gap}` : undefined,
         'undefined' !== typeof sidebar ? `-sidebar:${sidebar}` : undefined,
+        'undefined' !== typeof alignItems ? `-align-items:${alignItems}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

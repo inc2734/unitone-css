@@ -3,10 +3,6 @@ import React from 'react';
 export const Cluster = ({ alignItems, gap, justifyContent, tagName = 'div', style, ...props }) => {
   const Tag = tagName;
 
-  style = {
-    ...style,
-  };
-
   return (
     <Tag
       data-layout={[
