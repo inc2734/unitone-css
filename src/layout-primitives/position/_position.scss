@@ -1,0 +1,37 @@
+@mixin abstract-position() {
+  --position: static;
+  --top: initial;
+  --right: initial;
+  --bottom: initial;
+  --left: initial;
+  --z-index: initial;
+
+  position: var(--position);
+  top: var(--top);
+  right: var(--right);
+  bottom: var(--bottom);
+  left: var(--left);
+  z-index: var(--z-index);
+
+  &[data-layout~="-relative"] {
+    --position: relative !important;
+  }
+
+  &[data-layout~="-absolute"] {
+    --position: absolute !important;
+  }
+
+  &[data-layout~="-sticky"] {
+    --position: sticky !important;
+  }
+
+  &[data-layout~="-fixed"] {
+    --position: fixed !important;
+  }
+}
+
+@mixin position() {
+  [data-layout~="position"] {
+    @include abstract-position();
+  }
+}
