@@ -75,5 +75,13 @@
     margin-bottom: calc(1rem * var(--half-leading));
     height: auto;
     max-width: 100%;
+
+    &:where(:first-child) {
+      margin-top: 0;
+    }
+
+    &:where(:last-child) {
+      margin-bottom: 0;
+    }
   }
 }
