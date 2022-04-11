@@ -1,6 +1,7 @@
 @mixin _aside() {
   flex-basis: var(--sidebar-width);
   flex-grow: 1;
+  min-width: 1rem;
 }
 
 @mixin _main() {
