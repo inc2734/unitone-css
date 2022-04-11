@@ -1,14 +1,14 @@
 @mixin abstract-stack() {
   --gap: var(--s1);
 
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: var(--gap);
-  grid-template-columns: 100%;
-  grid-template-rows: min-content;
 
   > * {
     margin-top: 0;
     margin-bottom: 0;
+    flex: 0 0 auto;
   }
 
   &:only-child {
