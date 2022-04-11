@@ -7,6 +7,7 @@ export const Box = ({
   borderWidth,
   color,
   padding,
+  shadow,
   style,
   ...props
 }) => {
@@ -21,7 +22,11 @@ export const Box = ({
 
   return (
     <div
-      data-layout={['box', 'undefined' !== typeof padding ? `-padding:${padding}` : undefined]
+      data-layout={[
+        'box',
+        'undefined' !== typeof padding ? `-padding:${padding}` : undefined,
+        !!shadow ? '-shadow' : undefined,
+      ]
         .filter(Boolean)
         .join(' ')}
       style={style}

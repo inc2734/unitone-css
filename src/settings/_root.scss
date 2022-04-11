@@ -118,4 +118,9 @@
   --s5: var(--em5);
   --s6: var(--em6);
   --s7: var(--em7);
+
+  /**
+   * Box shadow
+   */
+  --shadow: 0 5px 20px -5px rgb(0 0 0 / 20%);
 }

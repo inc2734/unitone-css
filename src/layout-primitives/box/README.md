@@ -13,3 +13,11 @@
   ...
 </div>
 ```
+
+### With shadow
+
+```html
+<div data-layout="box -shadow">
+  ...
+</div>
+```

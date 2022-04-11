@@ -47,6 +47,13 @@ export default {
       table: { defaultValue: { summary: 'var(--s1)' } },
       type: { name: 'number', required: false },
     },
+    shadow: {
+      control: { type: 'inline-radio' },
+      description: 'With `box-shadow`.',
+      options: [false, true],
+      table: { defaultValue: { summary: false } },
+      type: { name: 'boolean', required: false },
+    },
   },
   args: {
     backgroundColor: 'transarent',
@@ -55,6 +62,7 @@ export default {
     borderWidth: '0px',
     color: 'initial',
     padding: 1,
+    shadow: false,
   },
 };
 
@@ -67,6 +75,21 @@ export const Default = (args) => {
       <p>{content}</p>
     </Box>
   );
+};
+
+export const ExampleShadow = (args) => {
+  return (
+    <Box {...args}>
+      <p>{content}</p>
+    </Box>
+  );
+};
+ExampleShadow.storyName = 'Example : Shadow';
+ExampleShadow.argTypes = {
+  shadow: { table: { disable: true } },
+};
+ExampleShadow.args = {
+  shadow: true,
 };
 
 export const ExampleCombobox = (args) => {

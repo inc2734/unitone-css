@@ -5,12 +5,18 @@
   --border-width: 0;
   --border-radius: 0;
   --padding: var(--s1);
+  --box-shadow: none;
 
   padding: calc((var(--padding) - var(--half-leading) * 1em)) var(--padding);
   border: var(--border-width) solid var(--border-color);
   border-radius: var(--border-radius);
   color: var(--color);
   background-color: var(--background-color);
+  box-shadow: var(--box-shadow);
+
+  &[data-layout~="-shadow"] {
+    --box-shadow: var(--shadow);
+  }
 }
 
 @mixin box() {
