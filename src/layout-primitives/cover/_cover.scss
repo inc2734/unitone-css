@@ -1,23 +1,18 @@
 @mixin abstract-cover() {
   --gap: var(--s1);
   --min-height: 100vh;
+  --justify-content: center;
 
   display: flex;
   flex-flow: column;
+  gap: var(--gap);
+  justify-content: var(--justify-content);
   min-height: var(--min-height);
   padding: var(--gap);
   overflow: hidden;
 
   > * {
-    margin-top: var(--gap);
-    margin-bottom: var(--gap);
-  }
-
-  > :first-child:not([data-layout~="cover__content"]) {
     margin-top: 0;
-  }
-
-  > :last-child:not([data-layout~="cover__content"]) {
     margin-bottom: 0;
   }
 

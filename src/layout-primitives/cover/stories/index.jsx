@@ -32,11 +32,20 @@ export default {
       table: { defaultValue: { summary: 'false' } },
       type: { name: 'boolean', required: false },
     },
+    justifyContent: {
+      control: { type: 'inline-radio' },
+      description:
+        'Alignment of the row direction. Set by CSS var `--justify-content` or `data-layout` attribute `-justify-content:x`.',
+      options: ['start', 'center', 'end', 'space-between'],
+      table: { defaultValue: { summary: 'flex-start' } },
+      type: { name: 'string', required: false },
+    },
   },
   args: {
     gap: 1,
     minHeight: '100vh',
     noPadding: false,
+    justifyContent: 'center',
   },
 };
 
