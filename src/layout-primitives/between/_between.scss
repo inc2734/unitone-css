@@ -1,6 +1,7 @@
 @mixin abstract-between() {
   --gap: var(--s1);
   --align-items: flex-start;
+  --content-width: fit-content;
   --content-max-width: var(--measure);
 
   display: flex;
@@ -10,7 +11,7 @@
   justify-content: space-between;
 
   > * {
-    flex-basis: fit-content;
+    flex-basis: var(--content-width);
     flex-grow: 0;
     max-width: min(100%, var(--content-max-width));
   }
