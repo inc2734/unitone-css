@@ -17,9 +17,19 @@ export default {
       table: { defaultValue: { summary: 'var(--s1)' } },
       type: { name: 'number', required: false },
     },
+    alignItems: {
+      control: { type: 'inline-radio' },
+      description: '`--align-items`',
+      description:
+        'Alignment of the row direction. Set by CSS var `--align-items` or `data-layout` attribute `-align-items:x`.',
+      options: ['start', 'center', 'end'],
+      table: { defaultValue: { summary: 'start' } },
+      type: { name: 'string', required: false },
+    },
   },
   args: {
     gap: 1,
+    alignItems: 'start',
   },
 };
 

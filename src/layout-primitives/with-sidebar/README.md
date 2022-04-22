@@ -26,3 +26,11 @@
   ...
 </div>
 ```
+
+### Customizing align
+
+```html
+<ul data-layout="with-slider -align-items:center">
+  ...
+</ul>
+```

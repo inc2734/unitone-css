@@ -37,7 +37,7 @@ export default {
       description:
         'Alignment of the row direction. Set by CSS var `--justify-content` or `data-layout` attribute `-justify-content:x`.',
       options: ['start', 'center', 'end', 'space-between'],
-      table: { defaultValue: { summary: 'flex-start' } },
+      table: { defaultValue: { summary: 'start' } },
       type: { name: 'string', required: false },
     },
   },

@@ -1,10 +1,12 @@
 @mixin abstract-between() {
   --gap: var(--s1);
+  --align-items: flex-start;
   --content-max-width: var(--measure);
 
   display: flex;
   gap: var(--gap);
   flex-wrap: wrap;
+  align-items: var(--align-items);
   justify-content: space-between;
 
   > * {

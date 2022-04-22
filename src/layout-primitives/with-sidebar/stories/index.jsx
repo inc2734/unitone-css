@@ -16,7 +16,7 @@ export default {
       description:
         'Alignment of the row direction. Set by CSS var `--align-items` or `data-layout` attribute `-align-items:x`.',
       options: ['start', 'center', 'end'],
-      table: { defaultValue: { summary: 'flex-start' } },
+      table: { defaultValue: { summary: 'start' } },
       type: { name: 'string', required: false },
     },
     contentMinWidth: {
@@ -56,7 +56,7 @@ export default {
     },
   },
   args: {
-    alignItems: 'flex-start',
+    alignItems: 'start',
     contentMinWidth: '50%',
     gap: 1,
     revert: false,

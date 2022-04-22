@@ -19,6 +19,14 @@
 </div>
 ```
 
+### Customizing align
+
+```html
+<ul data-layout="between -align-items:center">
+  ...
+</ul>
+```
+
 ### Customizing item max-width
 
 ```html
