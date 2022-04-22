@@ -1,0 +1,21 @@
+@mixin abstract-between() {
+  --gap: var(--s1);
+  --content-max-width: var(--measure);
+
+  display: flex;
+  gap: var(--gap);
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  > * {
+    flex-basis: fit-content;
+    flex-grow: 0;
+    max-width: min(100%, var(--content-max-width));
+  }
+}
+
+@mixin between() {
+  [data-layout~="between"] {
+    @include abstract-between();
+  }
+}
