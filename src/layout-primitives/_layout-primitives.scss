@@ -7,7 +7,6 @@
 @use 'float/float';
 @use 'frame/frame';
 @use 'layers/layers';
-@use 'position/position';
 @use 'responsive-grid/responsive-grid';
 @use 'gutters/gutters';
 @use 'stack/stack';
@@ -24,7 +23,6 @@
   @include float.float();
   @include frame.frame();
   @include layers.layers();
-  @include position.position();
   @include responsive-grid.responsive-grid();
   @include gutters.gutters();
   @include stack.stack();

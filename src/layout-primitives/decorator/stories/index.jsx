@@ -2,6 +2,7 @@ import React from 'react';
 import readme from '../README.md';
 
 import { Decorator } from '../Decorator';
+import { Stack } from '../../stack/Stack';
 
 export default {
   title: 'Layout Primitives/Decorator',
@@ -54,6 +55,43 @@ export default {
       table: { defaultValue: { summary: false } },
       type: { name: 'boolean', required: false },
     },
+    position: {
+      control: { type: 'inline-radio' },
+      description: 'The position value.',
+      options: ['static', 'relative', 'absolute', 'sticky', 'fixed'],
+      table: { defaultValue: { summary: 'static' } },
+      type: { name: 'string', required: false },
+    },
+    top: {
+      control: { type: 'text' },
+      description: 'Offset top.',
+      table: { defaultValue: { summary: 'initial' } },
+      type: { name: 'string', required: false },
+    },
+    right: {
+      control: { type: 'text' },
+      description: 'Offset right.',
+      table: { defaultValue: { summary: 'initial' } },
+      type: { name: 'string', required: false },
+    },
+    bottom: {
+      control: { type: 'text' },
+      description: 'Offset bottom.',
+      table: { defaultValue: { summary: 'initial' } },
+      type: { name: 'string', required: false },
+    },
+    left: {
+      control: { type: 'text' },
+      description: 'Offset left.',
+      table: { defaultValue: { summary: 'initial' } },
+      type: { name: 'string', required: false },
+    },
+    zIndex: {
+      control: { type: 'text' },
+      description: 'z-index.',
+      table: { defaultValue: { summary: 'initial' } },
+      type: { name: 'string', required: false },
+    },
   },
   args: {
     backgroundColor: 'transarent',
@@ -63,6 +101,12 @@ export default {
     color: 'initial',
     padding: 0,
     shadow: false,
+    position: 'static',
+    top: 'initial',
+    right: 'initial',
+    bottom: 'initial',
+    left: 'initial',
+    zIndex: 'initial',
   },
 };
 
@@ -118,4 +162,28 @@ ExampleCombobox.args = {
   padding: -1,
   backgroundColor: '#000',
   borderWidth: '1px',
+};
+
+export const ExamplePosition = (args) => {
+  return (
+    <Decorator position="relative">
+      <Stack>
+        <Decorator backgroundColor="#000" color="#fff" padding={1}>
+          {content}
+        </Decorator>
+        <Decorator {...args}>{content}</Decorator>
+        <Decorator backgroundColor="#000" color="#fff" padding={1}>
+          {content}
+        </Decorator>
+      </Stack>
+    </Decorator>
+  );
+};
+ExamplePosition.storyName = 'Example : Position';
+ExamplePosition.args = {
+  padding: -1,
+  borderWidth: '1px',
+  backgroundColor: 'rgba(255, 0, 0, .7)',
+  position: 'absolute',
+  top: '100px',
 };
