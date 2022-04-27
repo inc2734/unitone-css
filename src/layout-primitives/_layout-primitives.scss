@@ -1,5 +1,5 @@
 @use 'between/between';
-@use 'box/box';
+@use 'decorator/decorator';
 @use 'center/center';
 @use 'cluster/cluster';
 @use 'container/container';
@@ -16,7 +16,7 @@
 
 @mixin layout-primitives() {
   @include between.between();
-  @include box.box();
+  @include decorator.decorator();
   @include center.center();
   @include cluster.cluster();
   @include container.container();

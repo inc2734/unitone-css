@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Box } from '../../../layout-primitives/box/Box';
+import { Decorator } from '../../../layout-primitives/decorator/Decorator';
 import { Container } from '../../../layout-primitives/container/Container';
 import { Frame } from '../../../layout-primitives/frame/Frame';
 import { Layers } from '../../../layout-primitives/layers/Layers';
@@ -8,7 +8,7 @@ import { ResponsiveGrid } from '../../../layout-primitives/responsive-grid/Respo
 import { Gutters } from '../../../layout-primitives/gutters/Gutters';
 
 export const Feature2 = ({ items = [], ...props }) => (
-  <Box backgroundColor={props.backgroundColor} color={props.color} padding={0}>
+  <Decorator backgroundColor={props.backgroundColor} color={props.color}>
     <Gutters>
       <Container>
         {0 < items.length && (
@@ -18,9 +18,9 @@ export const Feature2 = ({ items = [], ...props }) => (
                 <Frame ratio="3/4">{!!item.src && <img src={item.src} alt="" />}</Frame>
                 {!!item.content && (
                   <div style={{ '--font-size': -1, '--align-self': 'end' }}>
-                    <Box padding={1}>
+                    <Decorator padding={1}>
                       <p>{item.content}</p>
-                    </Box>
+                    </Decorator>
                   </div>
                 )}
               </Layers>
@@ -29,5 +29,5 @@ export const Feature2 = ({ items = [], ...props }) => (
         )}
       </Container>
     </Gutters>
-  </Box>
+  </Decorator>
 );

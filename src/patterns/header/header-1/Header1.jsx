@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Box } from '../../../layout-primitives/box/Box';
+import { Decorator } from '../../../layout-primitives/decorator/Decorator';
 import { Center } from '../../../layout-primitives/center/Center';
 import { Container } from '../../../layout-primitives/container/Container';
 import { Cover, CoverContent } from '../../../layout-primitives/cover/Cover';
@@ -9,7 +9,7 @@ import { Stack } from '../../../layout-primitives/stack/Stack';
 import { Text } from '../../../layout-primitives/text/Text';
 
 export const Header1 = (props) => (
-  <Box backgroundColor={props.backgroundColor} color={props.color} padding={0}>
+  <Decorator backgroundColor={props.backgroundColor} color={props.color}>
     <Layers cover>
       {!!props.src && <img src={props.src} alt="" />}
       <Cover>
@@ -27,5 +27,5 @@ export const Header1 = (props) => (
         </CoverContent>
       </Cover>
     </Layers>
-  </Box>
+  </Decorator>
 );

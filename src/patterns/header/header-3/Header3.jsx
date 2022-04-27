@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Box } from '../../../layout-primitives/box/Box';
+import { Decorator } from '../../../layout-primitives/decorator/Decorator';
 import { Center } from '../../../layout-primitives/center/Center';
 import { Container } from '../../../layout-primitives/container/Container';
 import { Gutters } from '../../../layout-primitives/gutters/Gutters';
@@ -8,7 +8,7 @@ import { Stack } from '../../../layout-primitives/stack/Stack';
 import { Text } from '../../../layout-primitives/text/Text';
 
 export const Header3 = (props) => (
-  <Box backgroundColor={props.backgroundColor} color={props.color} padding={0}>
+  <Decorator backgroundColor={props.backgroundColor} color={props.color}>
     <Gutters>
       <Container>
         <Stack gap={2}>
@@ -26,5 +26,5 @@ export const Header3 = (props) => (
         </Stack>
       </Container>
     </Gutters>
-  </Box>
+  </Decorator>
 );

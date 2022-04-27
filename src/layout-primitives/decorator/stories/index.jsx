@@ -1,11 +1,11 @@
 import React from 'react';
 import readme from '../README.md';
 
-import { Box } from '../Box';
+import { Decorator } from '../Decorator';
 
 export default {
-  title: 'Layout Primitives/Box',
-  component: Box,
+  title: 'Layout Primitives/Decorator',
+  component: Decorator,
   parameters: {
     notes: { readme },
   },
@@ -44,7 +44,7 @@ export default {
       control: { type: 'inline-radio' },
       description: 'Padding. Set by CSS var `--padding` or `data-layout` attribute `-padding:x`.',
       options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
-      table: { defaultValue: { summary: 'var(--s1)' } },
+      table: { defaultValue: { summary: 'var(--s0)' } },
       type: { name: 'number', required: false },
     },
     shadow: {
@@ -61,7 +61,7 @@ export default {
     borderRadius: '0px',
     borderWidth: '0px',
     color: 'initial',
-    padding: 1,
+    padding: 0,
     shadow: false,
   },
 };
@@ -71,17 +71,17 @@ const content =
 
 export const Default = (args) => {
   return (
-    <Box {...args}>
+    <Decorator {...args}>
       <p>{content}</p>
-    </Box>
+    </Decorator>
   );
 };
 
 export const ExampleShadow = (args) => {
   return (
-    <Box {...args}>
+    <Decorator {...args}>
       <p>{content}</p>
-    </Box>
+    </Decorator>
   );
 };
 ExampleShadow.storyName = 'Example : Shadow';
@@ -89,19 +89,24 @@ ExampleShadow.argTypes = {
   shadow: { table: { disable: true } },
 };
 ExampleShadow.args = {
+  padding: 1,
   shadow: true,
 };
 
 export const ExampleCombobox = (args) => {
   return (
-    <Box padding={0} borderWidth={args.borderWidth} borderColor={args.backgroundColor}>
-      <Box padding={args.padding} backgroundColor={args.backgroundColor} color="var(--color-white)">
+    <Decorator borderWidth={args.borderWidth} borderColor={args.backgroundColor}>
+      <Decorator
+        padding={args.padding}
+        backgroundColor={args.backgroundColor}
+        color="var(--color-white)"
+      >
         Combo Box
-      </Box>
-      <Box padding={args.padding}>
+      </Decorator>
+      <Decorator padding={args.padding}>
         <p>{content}</p>
-      </Box>
-    </Box>
+      </Decorator>
+    </Decorator>
   );
 };
 ExampleCombobox.storyName = 'Example : Combobox';

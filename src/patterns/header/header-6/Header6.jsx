@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Box } from '../../../layout-primitives/box/Box';
+import { Decorator } from '../../../layout-primitives/decorator/Decorator';
 import { Center } from '../../../layout-primitives/center/Center';
 import { Container } from '../../../layout-primitives/container/Container';
 import { Cover, CoverContent } from '../../../layout-primitives/cover/Cover';
@@ -9,15 +9,10 @@ import { Stack } from '../../../layout-primitives/stack/Stack';
 import { Text } from '../../../layout-primitives/text/Text';
 
 export const Header6 = (props) => (
-  <Box backgroundColor={props.backgroundColor} color={props.color} padding={0}>
+  <Decorator backgroundColor={props.backgroundColor} color={props.color}>
     <Layers cover>
-      <Box padding={props.padding}>
-        <Box
-          backgroundColor="transparent"
-          borderColor={props.borderColor}
-          borderWidth="1px"
-          padding={0}
-        >
+      <Decorator padding={props.padding}>
+        <Decorator backgroundColor="transparent" borderColor={props.borderColor} borderWidth="1px">
           <Cover minHeight={`calc(100vh - var(--s${props.padding}) * 2`}>
             <CoverContent>
               <Container gutters={0} maxWidth="var(--measure)">
@@ -32,8 +27,8 @@ export const Header6 = (props) => (
               </Container>
             </CoverContent>
           </Cover>
-        </Box>
-      </Box>
+        </Decorator>
+      </Decorator>
     </Layers>
-  </Box>
+  </Decorator>
 );

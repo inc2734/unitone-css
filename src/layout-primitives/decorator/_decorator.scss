@@ -1,10 +1,10 @@
-@mixin abstract-box() {
+@mixin abstract-decorator() {
   --background-color: transparent;
   // --color: var(--color-text); // Comment out if you don't want it to be inherited.
   --border-color: transparent;
   --border-width: 0;
   --border-radius: 0;
-  --padding: var(--s1);
+  --padding: var(--s0);
   --box-shadow: none;
 
   padding: calc((var(--padding) - var(--half-leading) * 1em)) var(--padding);
@@ -19,8 +19,8 @@
   }
 }
 
-@mixin box() {
-  [data-layout~="box"] {
-    @include abstract-box();
+@mixin decorator() {
+  [data-layout~="decorator"] {
+    @include abstract-decorator();
   }
 }

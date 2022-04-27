@@ -2,7 +2,7 @@ import React from 'react';
 import readme from '../README.md';
 
 import { Stack } from '../Stack';
-import { Box } from '../../box/Box';
+import { Decorator } from '../../decorator/Decorator';
 import { Cluster } from '../../cluster/Cluster';
 
 export default {
@@ -67,9 +67,14 @@ ExampleJa.storyName = 'Example : Ja';
 export const ExampleCard = (args) => {
   return (
     <div style={{ maxWidth: '480px' }}>
-      <Box backgroundColor={args.backgroundColor} color={args.color} padding="1" borderRadius="4px">
+      <Decorator
+        backgroundColor={args.backgroundColor}
+        color={args.color}
+        padding="1"
+        borderRadius="4px"
+      >
         <Stack gap={args.gap}>
-          <Box padding="0">
+          <Decorator>
             <Cluster>
               <img
                 src="https://ja.gravatar.com/userimage/18715762/ad5c138cf1d8f3ce1bda5218f26b9b4e.jpeg"
@@ -83,7 +88,7 @@ export const ExampleCard = (args) => {
                 <div style={{ '--font-size': -1 }}>Takashi Kitajima</div>
               </Stack>
             </Cluster>
-          </Box>
+          </Decorator>
           <div>
             <Stack style={{ '--font-size': -1 }}>
               <p>
@@ -95,7 +100,7 @@ export const ExampleCard = (args) => {
             </Stack>
           </div>
         </Stack>
-      </Box>
+      </Decorator>
     </div>
   );
 };

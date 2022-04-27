@@ -2,7 +2,7 @@ import React from 'react';
 import readme from '../README.md';
 
 import { Cover, CoverContent } from '../Cover';
-import { Box } from '../../box/Box';
+import { Decorator } from '../../decorator/Decorator';
 import { Stack } from '../../stack/Stack';
 
 export default {
@@ -51,7 +51,7 @@ export default {
 
 export const Default = (args) => {
   return (
-    <Box backgroundColor="#000" color="#fff" padding="0">
+    <Decorator backgroundColor="#000" color="#fff">
       <Cover {...args}>
         <p>Lorem ipsum</p>
         <CoverContent>
@@ -65,13 +65,13 @@ export const Default = (args) => {
         </CoverContent>
         <p>Lorem ipsum</p>
       </Cover>
-    </Box>
+    </Decorator>
   );
 };
 
 export const ExampleNoHeader = (args) => {
   return (
-    <Box backgroundColor="#000" color="#fff" padding="0">
+    <Decorator backgroundColor="#000" color="#fff">
       <Cover {...args}>
         <CoverContent>
           <Stack>
@@ -84,7 +84,7 @@ export const ExampleNoHeader = (args) => {
         </CoverContent>
         <p>sed do</p>
       </Cover>
-    </Box>
+    </Decorator>
   );
 };
 ExampleNoHeader.storyName = 'Example : No header';
@@ -94,7 +94,7 @@ ExampleNoHeader.args = {
 
 export const ExampleNoFooter = (args) => {
   return (
-    <Box backgroundColor="#000" color="#fff" padding="0">
+    <Decorator backgroundColor="#000" color="#fff">
       <Cover {...args}>
         <p>Lorem ipsum</p>
         <CoverContent>
@@ -107,7 +107,7 @@ export const ExampleNoFooter = (args) => {
           </Stack>
         </CoverContent>
       </Cover>
-    </Box>
+    </Decorator>
   );
 };
 ExampleNoFooter.storyName = 'Example : No footer';
@@ -117,7 +117,7 @@ ExampleNoFooter.args = {
 
 export const ExampleFooter = (args) => {
   return (
-    <Box backgroundColor="#000" color="#fff" padding="0">
+    <Decorator backgroundColor="#000" color="#fff">
       <Cover {...args}>
         <CoverContent>
           <p>Lorem ipsum</p>
@@ -130,7 +130,7 @@ export const ExampleFooter = (args) => {
           </p>
         </Stack>
       </Cover>
-    </Box>
+    </Decorator>
   );
 };
 ExampleFooter.storyName = 'Example : Footer';

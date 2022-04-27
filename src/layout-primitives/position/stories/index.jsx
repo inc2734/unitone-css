@@ -2,7 +2,7 @@ import React from 'react';
 import readme from '../README.md';
 
 import { Position } from '../Position';
-import { Box } from '../../box/Box';
+import { Decorator } from '../../decorator/Decorator';
 import { Stack } from '../../stack/Stack';
 
 export default {
@@ -66,13 +66,13 @@ const content =
 export const Default = (args) => {
   return (
     <Stack>
-      <Box backgroundColor="#000" color="#fff">
+      <Decorator backgroundColor="#000" color="#fff" padding={1}>
         {content}
-      </Box>
+      </Decorator>
       <Position {...args}>{content}</Position>
-      <Box backgroundColor="#000" color="#fff">
+      <Decorator backgroundColor="#000" color="#fff" padding={1}>
         {content}
-      </Box>
+      </Decorator>
     </Stack>
   );
 };

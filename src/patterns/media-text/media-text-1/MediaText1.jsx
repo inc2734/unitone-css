@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Box } from '../../../layout-primitives/box/Box';
+import { Decorator } from '../../../layout-primitives/decorator/Decorator';
 import { Container } from '../../../layout-primitives/container/Container';
 import { Cover, CoverContent } from '../../../layout-primitives/cover/Cover';
 import { Stack } from '../../../layout-primitives/stack/Stack';
@@ -8,12 +8,13 @@ import { Text } from '../../../layout-primitives/text/Text';
 import { WithSidebar } from '../../../layout-primitives/with-sidebar/WithSidebar';
 
 export const MediaText1 = (props) => (
-  <Box color={props.color} padding={0}>
+  <Decorator color={props.color}>
     <WithSidebar
       gap={2}
       contentMinWidth="min(100%, var(--measure) / 2)"
       sidebar="left"
       sidebarWidth="50%"
+      alignItems="center"
       revert
     >
       <Cover noPadding minHeight="0">
@@ -36,5 +37,5 @@ export const MediaText1 = (props) => (
         </div>
       )}
     </WithSidebar>
-  </Box>
+  </Decorator>
 );

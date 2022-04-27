@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Box = ({
+export const Decorator = ({
   backgroundColor,
   borderColor,
   borderRadius,
@@ -23,7 +23,7 @@ export const Box = ({
   return (
     <div
       data-layout={[
-        'box',
+        'decorator',
         'undefined' !== typeof padding ? `-padding:${padding}` : undefined,
         !!shadow ? '-shadow' : undefined,
       ]
