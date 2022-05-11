@@ -14,7 +14,7 @@ export const Header5 = (props) => (
         <img
           src={props.src}
           alt=""
-          style={{ width: 'calc(100% - var(--percentage5)', left: 'auto' }}
+          style={{ width: 'calc(100% - var(--percentage3)', left: 'auto' }}
         />
       )}
       <Cover>
