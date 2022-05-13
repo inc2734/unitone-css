@@ -8,11 +8,7 @@ export const Switcher = ({ gap, limit, threshold, style, ...props }) => {
 
   return (
     <div
-      data-layout={[
-        'switcher',
-        'undefined' !== typeof gap ? `-gap:${gap}` : undefined,
-        'undefined' !== typeof limit ? `-limit:${limit}` : undefined,
-      ]
+      data-layout={['switcher', 'undefined' !== typeof gap ? `-gap:${gap}` : undefined]
         .filter(Boolean)
         .join(' ')}
       style={style}

@@ -7,17 +7,7 @@
   gap: var(--gap);
 
   > * {
-    --grow: 1;
-
-    flex-grow: var(--grow);
     flex-basis: calc((var(--threshold) - 100%) * 999);
-  }
-
-  @for $i from 3 through 5 {
-    &[data-layout~="-limit\:#{ $i }"] > :nth-last-child(n + #{ $i }),
-    &[data-layout~="-limit\:#{ $i }"] > :nth-last-child(n + #{ $i }) ~ * {
-      flex-basis: 100%;
-    }
   }
 }
 

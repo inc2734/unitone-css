@@ -18,13 +18,6 @@ export default {
       table: { defaultValue: { summary: 'var(--s1)' } },
       type: { name: 'number', required: false },
     },
-    limit: {
-      control: { type: 'inline-radio' },
-      description:
-        'If the number of items falls below this value, it switches to one column. Set by `data-layout` attribute `-limit:x`.',
-      options: [3, 4, 5],
-      type: { name: 'number', required: false },
-    },
     threshold: {
       control: { type: 'text' },
       description:
@@ -48,16 +41,3 @@ export const Default = (args) => {
     </Switcher>
   );
 };
-
-export const GrowItemSize = (args) => {
-  return (
-    <Switcher {...args}>
-      <Box backgroundColor="#decc00">Lorem ipsum</Box>
-      <Box backgroundColor="#bfb6a8" style={{ '--grow': 2 }}>
-        dolor sit
-      </Box>
-      <Box backgroundColor="#edede6">amet consectetur</Box>
-    </Switcher>
-  );
-};
-GrowItemSize.storyName = 'Example : Grow item size';
