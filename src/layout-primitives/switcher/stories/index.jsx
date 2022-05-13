@@ -2,7 +2,7 @@ import React from 'react';
 import readme from '../README.md';
 
 import { Switcher } from '../Switcher';
-import { Box } from '../../box/Box';
+import { Decorator } from '../../decorator/Decorator';
 
 export default {
   title: 'Layout Primitives/Switcher',
@@ -35,9 +35,9 @@ export default {
 export const Default = (args) => {
   return (
     <Switcher {...args}>
-      <Box backgroundColor="#decc00">Lorem ipsum</Box>
-      <Box backgroundColor="#bfb6a8">dolor sit</Box>
-      <Box backgroundColor="#edede6">amet consectetur</Box>
+      <Decorator backgroundColor="#decc00">Lorem ipsum</Decorator>
+      <Decorator backgroundColor="#bfb6a8">dolor sit</Decorator>
+      <Decorator backgroundColor="#edede6">amet consectetur</Decorator>
     </Switcher>
   );
 };
