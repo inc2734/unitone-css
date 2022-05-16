@@ -1,7 +1,7 @@
 @use '../../variables/variables' as variables;
 
 @mixin abstract-text() {
-  --max-width: min(100%, var(--measure));
+  --max-width: min(100% - var(--rem1) * 2, var(--measure));
 
   > * {
     margin: 0 auto;
