@@ -14,3 +14,11 @@
   ...
 </div>
 ```
+
+### Using negative gap
+
+```html
+<div data-layout="stack -gap:1 -negative">
+  ...
+</div>
+```

@@ -19,9 +19,17 @@ export default {
       table: { defaultValue: { summary: 'var(--s1)' } },
       type: { name: 'number', required: false },
     },
+    negative: {
+      control: { type: 'inline-radio' },
+      description: 'Using negative gap. Set by `data-layout` attribute `-negative`.',
+      options: [false, true],
+      table: { defaultValue: { summary: false } },
+      type: { name: 'boolean', required: false },
+    },
   },
   args: {
     gap: 1,
+    negative: false,
   },
 };
 
