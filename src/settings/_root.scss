@@ -47,21 +47,21 @@
   /**
    * Reference value of the modular scale for space.
    */
-  --space-reference-value: #{ variables.$line-height } / 3;
+  --_space-reference-value: #{ variables.$line-height } / 3;
 
   /**
    * Modular scales for spaces.
    */
-  --ms-2: calc(var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 1) });
-  --ms-1: calc(var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 2) });
+  --ms-2: calc(var(--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 1) });
+  --ms-1: calc(var(--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 2) });
   --ms0: 0;
-  --ms1: calc(var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 3) });
-  --ms2: calc(var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 4) });
-  --ms3: calc(var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 5) });
-  --ms4: calc(var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 6) });
-  --ms5: calc(var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 7) });
-  --ms6: calc(var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 8) });
-  --ms7: calc(var(--space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 9) });
+  --ms1: calc(var(--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 3) });
+  --ms2: calc(var(--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 4) });
+  --ms3: calc(var(--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 5) });
+  --ms4: calc(var(--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 6) });
+  --ms5: calc(var(--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 7) });
+  --ms6: calc(var(--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 8) });
+  --ms7: calc(var(--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 9) });
 
   /**
    * Modular scales for spaces (em based).
@@ -92,24 +92,6 @@
   --rem7: calc(1rem * var(--ms7));
 
   /**
-   * Modular scales for spaces (% based).
-   */
-  $_column-width: calc(100% - (12 - 1) * var(--s1));
-  --percentage0: 0%;
-  --percentage1: calc(#{ $_column-width } / 12 * 1);
-  --percentage2: calc(#{ $_column-width } / 12 * 2 + var(--s1) * 1);
-  --percentage3: calc(#{ $_column-width } / 12 * 3 + var(--s1) * 2);
-  --percentage4: calc(#{ $_column-width } / 12 * 4 + var(--s1) * 3);
-  --percentage5: calc(#{ $_column-width } / 12 * 5 + var(--s1) * 4);
-  --percentage6: calc(#{ $_column-width } / 12 * 6 + var(--s1) * 5);
-  --percentage7: calc(#{ $_column-width } / 12 * 7 + var(--s1) * 6);
-  --percentage8: calc(#{ $_column-width } / 12 * 8 + var(--s1) * 7);
-  --percentage9: calc(#{ $_column-width } / 12 * 9 + var(--s1) * 8);
-  --percentage10: calc(#{ $_column-width } / 12 * 10 + var(--s1) * 9);
-  --percentage11: calc(#{ $_column-width } / 12 * 11 + var(--s1) * 10);
-  --percentage12: calc(#{ $_column-width } / 12 * 12 + var(--s1) * 11);
-
-  /**
    * Modular scales for spaces.
    */
   --s-2: var(--em-2);
@@ -122,6 +104,32 @@
   --s5: var(--em5);
   --s6: var(--em6);
   --s7: var(--em7);
+
+  /**
+   * Max width of the container.
+   */
+  --container-max-width: #{ variables.$container-max-width };
+
+  $_grid-columns: 12;
+  --_grid-gutters: calc(#{ $_grid-columns - 1 } * var(--s1));
+
+  /**
+   * Grid sizes (% based).
+   */
+  $_percentage-grid-width: calc((100% - var(--_grid-gutters)) / #{ $_grid-columns });
+  --pg0: 0%;
+  @for $i from 1 through $_grid-columns {
+    --pg#{ $i }: calc(#{ $_percentage-grid-width } * #{ $i } + var(--s1) * #{ $i - 1 });
+  }
+
+  /**
+   * Grid sizes (container based).
+   */
+  $_container-grid-width: calc((var(--container-max-width) - var(--_grid-gutters)) / #{ $_grid-columns });
+  --cg0: 0%;
+  @for $i from 1 through $_grid-columns {
+    --cg#{ $i }: calc(#{ $_container-grid-width } * #{ $i } + var(--s1) * #{ $i - 1 });
+  }
 
   /**
    * Box shadow
