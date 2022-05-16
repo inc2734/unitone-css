@@ -1,6 +1,6 @@
 # Basis 2
 
-Basis2 is a CSS framework. This framework was inspired by EVERY LAYOUT.
+Basis2 is a CSS framework. This framework was inspired by (Every Layout)[https://every-layout.dev/].
 
 ## GitHub
 https://github.com/inc2734/basis2
