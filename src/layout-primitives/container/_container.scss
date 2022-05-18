@@ -1,8 +1,6 @@
-@use '../../variables/variables' as variables;
-
 @mixin abstract-container() {
   --gutters: var(--rem1);
-  --max-width: #{ variables.$container-max-width };
+  --max-width: var(--container-max-width);
 
   box-sizing: content-box;
   margin-right: auto;
