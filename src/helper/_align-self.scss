@@ -1,0 +1,17 @@
+$_values: (
+  auto: auto,
+  normal: normal,
+  start: start,
+  end: end,
+  center: center,
+  stretch: stretch,
+  baseline: baseline,
+);
+
+@mixin align-self() {
+  @each $key, $value in $_values {
+    [data-layout~="-align-self\:#{ $key }"] {
+      --align-self: #{ $value } !important;
+    }
+  }
+}

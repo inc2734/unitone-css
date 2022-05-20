@@ -69,19 +69,25 @@
     }
   }
 
+  picture,
+  figure {
+    width: fit-content;
+    max-width: 100%;
+  }
+
+  :where(figure, picture) {
+    img,
+    video {
+      margin-top: 0;
+      margin-bottom: 0;
+      display: table;
+      width: 100%;
+    }
+  }
+
   img,
   video {
-    margin-top: calc(1rem * var(--half-leading));
-    margin-bottom: calc(1rem * var(--half-leading));
     height: auto;
     max-width: 100%;
-
-    &:where(:first-child) {
-      margin-top: 0;
-    }
-
-    &:where(:last-child) {
-      margin-bottom: 0;
-    }
   }
 }

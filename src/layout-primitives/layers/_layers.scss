@@ -1,41 +1,42 @@
 @mixin abstract-layers() {
+  --gap: var(--s1);
+  --columns: 12;
+
   position: relative;
   display: grid;
-  grid-auto-rows: min-content;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  grid-template-rows: max-content;
+  gap: var(--gap);
   overflow: hidden;
 
   > * {
-    --align-self: stretch;
-    --justify-self: stretch;
+    --align-self: auto;
+    --justify-self: auto;
+    --grid-column: 1/-1;
+    --grid-row: 1/-1;
 
-    position: relative;
-    grid-area: 1/1;
+    grid-column: var(--grid-column);
+    grid-row: var(--grid-row);
     align-self: var(--align-self);
     justify-self: var(--justify-self);
   }
 
-  > :is(img, video),
-  > :is(picture, figure) > :is(img, video),
-  > figure > picture > :is(img, video) {
-    margin-top: 0;
-    margin-bottom: 0;
-    object-fit: cover;
-    object-position: 50% 50%;
-  }
-
-  > :is(picture, figure) > :is(img, video),
-  > figure > picture > :is(img, video) {
-    height: 100%;
-    width: 100%;
-  }
-
   &[data-layout~="-cover"] {
-    > :is(img, video, picture, figure) {
+    :where(img, video),
+    :where(picture, figure) {
       position: absolute;
       top: 0;
       right: 0;
       bottom: 0;
       left: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    :where(img, video),
+    :where(picture, figure) :where(img, video) {
+      object-fit: cover;
+      object-position: 50% 50%;
       height: 100%;
       width: 100%;
     }

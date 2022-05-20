@@ -1,17 +1,21 @@
 @use 'align-items';
+@use 'align-self';
 @use 'align';
 @use 'fluid-typography';
 @use 'gap';
 @use 'gutters';
 @use 'justify-content';
+@use 'justify-self';
 @use 'padding';
 
 @mixin helper() {
   @include align-items.align-items();
+  @include align-self.align-self();
   @include align.align();
   @include fluid-typography.fluid-typography();
   @include gap.gap();
   @include gutters.gutters();
   @include justify-content.justify-content();
+  @include justify-self.justify-self();
   @include padding.padding();
 }
