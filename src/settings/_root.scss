@@ -25,9 +25,9 @@
    */
   --base-font-size: 16;
 
-  --font-size-harmonic-sequence-base: 8;
-  --min-font-size-harmonic-sequence-base: 9;
-  --max-font-size-harmonic-sequence-base: var(--font-size-harmonic-sequence-base);
+  --harmonic-sequence-base: 8;
+  --min-harmonic-sequence-base: 9;
+  --max-harmonic-sequence-base: var(--harmonic-sequence-base);
 
   /**
    * Gutter provided above and below the text in a line.
@@ -36,8 +36,14 @@
 
   /**
    * The line-height slope. If smaller, the line-height is adjusted to a smaller value as the font size increases.
+   *
+   * A =(1, 1.6) // 1rem / 1.6
+   * B =(4, 1.1) // 4rem / 1.1
+   * y = -0.1666666666667x + 1.7666666666667 // y = line-height, x = Font size ratio
+   *
+   * @see https://www.geogebra.org/graphing?lang=ja
    */
-  --line-height-slope: -0.0857142857143;
+  --line-height-slope: -0.1666666666667;
 
   /**
    * Font family

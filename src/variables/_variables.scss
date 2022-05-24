@@ -3,20 +3,19 @@ $fibonacci-sequence: 1, 2, 3, 5, 8, 13, 21, 34, 55;
 $min-breakpoint: 22.5; // = 360px
 $max-breakpoint: 80;   // = 1280px
 
-$_font-size-scale: calc(var(--font-size-harmonic-sequence-base) / (var(--font-size-harmonic-sequence-base) - var(--font-size)));
+$_font-size-scale: calc(var(--harmonic-sequence-base) / (var(--harmonic-sequence-base) - var(--font-size)));
 $font-size: calc($_font-size-scale * 1rem);
 
-$_max-font-size: calc(var(--max-font-size-harmonic-sequence-base) / (var(--max-font-size-harmonic-sequence-base) - var(--font-size)));
-$_min-font-size: calc(var(--min-font-size-harmonic-sequence-base) / (var(--min-font-size-harmonic-sequence-base) - var(--font-size)));
-$_slope: calc((#{ $_max-font-size } - #{ $_min-font-size }) / (#{ $max-breakpoint } - #{ $min-breakpoint }) * 100);
-$_diff-breakpoints: $max-breakpoint - $min-breakpoint;
-$_intercept: calc((#{ $max-breakpoint } * #{ $_min-font-size } - #{ $min-breakpoint } * #{ $_max-font-size }) / (#{ $_diff-breakpoints }));
-$_preferred-font-size: calc(1vw * #{ $_slope } + 1rem * #{ $_intercept });
+$_max-font-size: calc(var(--max-harmonic-sequence-base) / (var(--max-harmonic-sequence-base) - var(--font-size)));
+$_min-font-size: calc(var(--min-harmonic-sequence-base) / (var(--min-harmonic-sequence-base) - var(--font-size)));
+$_slope: calc((#{ $_max-font-size } - #{ $_min-font-size }) / (#{ $max-breakpoint - $min-breakpoint }));
+$_yAxis: calc(#{-1 * $min-breakpoint } * #{ $_slope } + #{ $_min-font-size });
+$_preferred-font-size: calc((#{ $_yAxis } * 1rem) + (#{ $_slope } * 100vw));
 $fluid-font-size: clamp(1rem * #{ $_min-font-size }, #{ $_preferred-font-size }, 1rem * #{ $_max-font-size });
 
 $line-height: clamp(
   1,
-  var(--line-height-slope) * var(--fluid-font-size-magnification, #{ $_font-size-scale }) + 1 + var(--half-leading) * 2 + -1 * var(--line-height-slope),
+  var(--line-height-slope) * var(--fluid-font-size-magnification, #{ $_font-size-scale }) + 1 + 2 * var(--half-leading) + -1 * var(--line-height-slope),
   2 * var(--half-leading) + 1
 );
 
