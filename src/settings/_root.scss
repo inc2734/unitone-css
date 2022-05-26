@@ -1,4 +1,5 @@
 @use 'sass:list';
+@use 'sass:math';
 @use '../variables/variables' as variables;
 
 :root {
@@ -43,7 +44,7 @@
    *
    * @see https://www.geogebra.org/graphing?lang=ja
    */
-  --line-height-slope: -0.1666666666667;
+  --line-height-slope: -0.16666;
 
   /**
    * Font family
@@ -100,16 +101,23 @@
   /**
    * Modular scales for spaces.
    */
+  @function _generate-fluid-spacing($min, $max) {
+    $slope: calc((#{ $max } - #{ $min }) / (#{ variables.$max-breakpoint - variables.$min-breakpoint }));
+    $yAxis: calc(#{ -1 * variables.$min-breakpoint } * #{ $slope } + #{ $min });
+    $preferredValue: calc(#{ $yAxis } * 1em + #{ $slope } * 100vw);
+    @return clamp(#{ $min } * 1em, #{ $preferredValue }, #{ $max } * 1em);
+  }
+  $_quotient: math.div(variables.$min-breakpoint, variables.$max-breakpoint);
   --s-2: var(--em-2);
   --s-1: var(--em-1);
   --s0: var(--em0);
   --s1: var(--em1);
-  --s2: var(--em2);
-  --s3: var(--em3);
-  --s4: var(--em4);
-  --s5: var(--em5);
-  --s6: var(--em6);
-  --s7: var(--em7);
+  --s2: #{ _generate-fluid-spacing(calc(var(--ms1) + var(--ms2) * #{ $_quotient }), var(--ms2)) };
+  --s3: #{ _generate-fluid-spacing(calc(var(--ms1) + var(--ms3) * #{ $_quotient }), var(--ms3)) };
+  --s4: #{ _generate-fluid-spacing(calc(var(--ms1) + var(--ms4) * #{ $_quotient }), var(--ms4)) };
+  --s5: #{ _generate-fluid-spacing(calc(var(--ms1) + var(--ms5) * #{ $_quotient }), var(--ms5)) };
+  --s6: #{ _generate-fluid-spacing(calc(var(--ms1) + var(--ms6) * #{ $_quotient }), var(--ms6)) };
+  --s7: #{ _generate-fluid-spacing(calc(var(--ms1) + var(--ms7) * #{ $_quotient }), var(--ms7)) };
 
   /**
    * Max width of the container.
