@@ -6,7 +6,7 @@ const setFluidFontSizeMagnification = (target) => {
   target.style.setProperty('--fluid-font-size-magnification', fontSize / baseFontSize);
 };
 
-const resizeObserver = new ResizeObserver((entries) => {
+const fluidFontSizeResizeObserver = new ResizeObserver((entries) => {
   for (const entry of entries) {
     setFluidFontSizeMagnification(entry.target);
   }
@@ -14,6 +14,6 @@ const resizeObserver = new ResizeObserver((entries) => {
 
 const fluidFontSizeElements = document.querySelectorAll('[data-layout~="-fluid-typography"]');
 fluidFontSizeElements.forEach((target) => {
-  resizeObserver.observe(target);
+  fluidFontSizeResizeObserver.observe(target);
   setFluidFontSizeMagnification(target);
 });
