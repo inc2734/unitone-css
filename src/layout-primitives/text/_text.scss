@@ -18,10 +18,10 @@
     --font-size: 4;
   }
 
-  > :is(h2, h3, h4, h5, h6) {
+  > :where(h2, h3, h4, h5, h6) {
     --margin-bottom: 0;
 
-    & + :is(h2, h3, h4, h5, h6) {
+    & + :where(h2, h3, h4, h5, h6) {
       --margin-top: .5;
     }
   }
@@ -66,5 +66,15 @@
 
   :where([data-layout~="text"][data-layout~="-center"]) > * {
     width: fit-content;
+  }
+
+  [data-layout~="text"]:lang(ja) {
+    font-feature-settings: "palt" 0;
+    font-kerning: none;
+
+    > :where(h1, h2, h3, h4, h5) {
+      font-feature-settings: "palt" 1;
+      font-kerning: normal;
+    }
   }
 }

@@ -9,6 +9,16 @@
     line-height: #{ variables.$line-height };
   }
 
+  html {
+    line-break: normal;
+    hanging-punctuation: allow-end;
+  }
+
+  a {
+    text-underline-offset: 0.1em;
+    text-decoration-thickness: 1px;
+  }
+
   address,
   article,
   aside,
