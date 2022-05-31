@@ -20,13 +20,13 @@ export default {
     maxWidth: {
       control: { type: 'text' },
       description: 'Max width. Set by CSS var `--max-width`.',
-      table: { defaultValue: { summary: 'min(100% - var(--rem1) * 2, var(--measure))' } },
+      table: { defaultValue: { summary: 'var(--measure)' } },
       type: { name: 'string', required: false },
     },
   },
   args: {
     center: false,
-    maxWidth: 'min(100% - var(--rem1) * 2, var(--measure))',
+    maxWidth: 'var(--measure)',
   },
 };
 

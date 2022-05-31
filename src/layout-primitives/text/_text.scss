@@ -1,18 +1,17 @@
-@use '../../variables/variables' as variables;
-
 @mixin abstract-text() {
-  --max-width: min(100%, var(--measure));
+  --max-width: var(--measure);
 
   > * {
+    --gap: var(--s1);
     margin: 0 auto;
   }
 
   > *:not(:first-child) {
-    margin-top: calc(1em * #{ variables.$line-height } * var(--margin-top, 1));
+    margin-top: calc(var(--margin-top, 1) * var(--gap));
   }
 
   > *:not(:last-child) {
-    margin-bottom: calc(1em * #{ variables.$line-height } * var(--margin-bottom, 1));
+    margin-bottom: calc(var(--margin-bottom, 1) * var(--gap));
   }
 
   > h1 {
@@ -62,7 +61,7 @@
   }
 
   :where([data-layout~="text"] > *) {
-    max-width: var(--max-width);
+    max-width: min(100%, var(--max-width));
   }
 
   :where([data-layout~="text"][data-layout~="-center"]) > * {

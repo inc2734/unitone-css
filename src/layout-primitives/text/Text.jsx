@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Text = ({ center, maxWidth, style, ...props }) => {
+export const Text = ({ center, maxWidth, scale, style, ...props }) => {
   style = {
     ...style,
     '--max-width': !!maxWidth ? maxWidth : undefined,
