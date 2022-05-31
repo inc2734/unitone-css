@@ -16,9 +16,17 @@ export default {
       table: { defaultValue: { summary: '16/9' } },
       type: { name: 'string', required: false },
     },
+    switchRatio: {
+      control: { type: 'inline-radio' },
+      description: 'When the orientation switches, the `--ratio` also switches.',
+      options: [false, true],
+      table: { defaultValue: { summary: false } },
+      type: { name: 'boolean', required: false },
+    },
   },
   args: {
     ratio: '16/9',
+    switchRatio: false,
   },
 };
 
@@ -28,4 +36,15 @@ export const Default = (args) => {
       <img src="https://placehold.jp/400x300.jpg" alt="" />
     </Frame>
   );
+};
+
+export const Switch = (args) => {
+  return (
+    <Frame {...args}>
+      <img src="https://placehold.jp/400x300.jpg" alt="" />
+    </Frame>
+  );
+};
+Switch.args = {
+  switchRatio: true,
 };

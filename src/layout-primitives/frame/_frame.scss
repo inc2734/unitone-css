@@ -28,6 +28,14 @@
     width: 100%;
     object-fit: cover;
   }
+
+  @media (orientation: portrait) {
+    &[data-layout~="-switch"] {
+      &::before {
+        padding-top: calc(var(--ratio) * 100%);
+      }
+    }
+  }
 }
 
 @mixin frame() {
