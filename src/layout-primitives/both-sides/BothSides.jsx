@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Between = ({ gap, alignItems, style, ...props }) => {
+export const BothSides = ({ gap, alignItems, style, ...props }) => {
   style = {
     ...style,
   };
@@ -8,7 +8,7 @@ export const Between = ({ gap, alignItems, style, ...props }) => {
   return (
     <div
       data-layout={[
-        'between',
+        'both-sides',
         'undefined' !== typeof gap ? `-gap:${gap}` : undefined,
         'undefined' !== typeof alignItems ? `-align-items:${alignItems}` : undefined,
       ]

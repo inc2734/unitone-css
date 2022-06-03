@@ -1,4 +1,4 @@
-@mixin abstract-between() {
+@mixin abstract-both-sides() {
   --gap: var(--s1);
   --align-items: flex-start;
   --content-width: fit-content;
@@ -17,8 +17,8 @@
   }
 }
 
-@mixin between() {
-  [data-layout~="between"] {
-    @include abstract-between();
+@mixin both-sides() {
+  [data-layout~="both-sides"] {
+    @include abstract-both-sides();
   }
 }

@@ -1,11 +1,11 @@
 import React from 'react';
 import readme from '../README.md';
 
-import { Between } from '../Between';
+import { BothSides } from '../BothSides';
 
 export default {
-  title: 'Layout Primitives/Between',
-  component: Between,
+  title: 'Layout Primitives/BothSides',
+  component: BothSides,
   parameters: {
     notes: { readme },
   },
@@ -38,13 +38,13 @@ const content =
 
 export const Default = (args) => {
   return (
-    <Between {...args}>
+    <BothSides {...args}>
       <p>{content}</p>
       <ul>
         <li>Lorem</li>
         <li>ipsum</li>
         <li>dolor</li>
       </ul>
-    </Between>
+    </BothSides>
   );
 };
