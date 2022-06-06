@@ -1,12 +1,15 @@
 @use '../variables/variables' as variables;
 
 @mixin foundation() {
+  * {
+    font-size: #{ variables.$font-size };
+    line-height: #{ variables.$line-height };
+  }
+
   *,
   *::before,
   *::after {
     box-sizing: border-box;
-    font-size: #{ variables.$font-size };
-    line-height: #{ variables.$line-height };
   }
 
   html {
