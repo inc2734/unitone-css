@@ -86,11 +86,13 @@
   }
 
   :where(figure, picture) {
-    img,
-    video {
+    :where(img, video) {
       margin-top: 0;
       margin-bottom: 0;
       display: table;
+    }
+
+    :where(img:not([width]), video:not([width])) {
       width: 100%;
     }
   }
