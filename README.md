@@ -1,15 +1,15 @@
 # Basis 2
 
-Basis2 is a CSS framework. This framework was inspired by (Every Layout)[https://every-layout.dev/].
+unitone-css is a CSS framework. This framework was inspired by (Every Layout)[https://every-layout.dev/].
 
 ## GitHub
-https://github.com/inc2734/basis2
+https://github.com/inc2734/unitone-css
 
 ## NPM
-https://www.npmjs.com/package/@inc2734/basis2
+https://www.npmjs.com/package/@inc2734/unitone-css
 
 ## Storybook
-https://inc2734.github.io/basis2
+https://inc2734.github.io/unitone-css
 
 ## Browser support
 Modern browser only.
