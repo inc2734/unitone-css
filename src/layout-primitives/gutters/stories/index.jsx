@@ -16,7 +16,7 @@ export default {
     padding: {
       control: { type: 'inline-radio' },
       description:
-        'Top and bottom padding. Set by CSS var `--unitone--padding` or `data-layout` attribute `-padding:x`.',
+        'Top and bottom padding. Set by CSS var `--unitone--padding` or `data-unitone-layout` attribute `-padding:x`.',
       options: [1, 2, 3, 4, 5, 6, 7],
       table: { defaultValue: { summary: 'var(--unitone--s4)' } },
       type: { name: 'number', required: false },

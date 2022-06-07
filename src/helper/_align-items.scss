@@ -1,6 +1,6 @@
 @mixin align-items() {
   @each $key, $value in (start: flex-start, center: center, end: flex-end) {
-    [data-layout~="-align-items\:#{ $key }"] {
+    [data-unitone-layout~="-align-items\:#{ $key }"] {
       --unitone--align-items: #{ $value } !important;
     }
   }

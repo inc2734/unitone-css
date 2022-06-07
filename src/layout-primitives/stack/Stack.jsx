@@ -7,7 +7,7 @@ export const Stack = ({ center, gap, negative, style, ...props }) => {
 
   return (
     <div
-      data-layout={[
+      data-unitone-layout={[
         'stack',
         'undefined' !== typeof gap ? `-gap:${gap}` : undefined,
         true === negative ? '-negative' : undefined,

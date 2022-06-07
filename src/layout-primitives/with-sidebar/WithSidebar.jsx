@@ -18,7 +18,7 @@ export const WithSidebar = ({
 
   return (
     <div
-      data-layout={[
+      data-unitone-layout={[
         'with-sidebar',
         true === revert ? '-revert' : undefined,
         'undefined' !== typeof gap ? `-gap:${gap}` : undefined,

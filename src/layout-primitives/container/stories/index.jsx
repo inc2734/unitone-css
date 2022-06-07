@@ -13,7 +13,7 @@ export default {
   argTypes: {
     align: {
       control: { type: 'inline-radio' },
-      description: 'Alignment of the container. Set by `data-layout` attribute `-align:x`.',
+      description: 'Alignment of the container. Set by `data-unitone-layout` attribute `-align:x`.',
       options: ['start', 'center', 'end'],
       table: { defaultValue: { summary: '' } },
       type: { name: 'string', required: false },
@@ -21,7 +21,7 @@ export default {
     gutters: {
       control: { type: 'inline-radio' },
       description:
-        'Gutters. Set by CSS var `--unitone--gutters` or `data-layout` attribute `-gutters:x`.',
+        'Gutters. Set by CSS var `--unitone--gutters` or `data-unitone-layout` attribute `-gutters:x`.',
       options: [0, 1, 2, 3, 4, 5, 6, 7],
       table: { defaultValue: { summary: 'var(--unitone--rem1)' } },
       type: { name: 'number', required: false },

@@ -1,6 +1,6 @@
 @mixin gutters() {
   @for $i from -2 through 7 {
-    [data-layout~="-gutters\:#{ $i }"] {
+    [data-unitone-layout~="-gutters\:#{ $i }"] {
       --unitone--gutters: var(--unitone--rem#{ $i }) !important;
     }
   }

@@ -1,7 +1,7 @@
 ## Usage
 
 ```html
-<div data-layout="text">
+<div data-unitone-layout="text">
   <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h2>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
@@ -10,7 +10,7 @@
     reprehenderit in voluptate velit esse cill
   </p>
 
-  <div data-layout="center">
+  <div data-unitone-layout="center">
     Lorem ipsum dolor sit amet, consectetur adipisicing elit
   </div>
 
@@ -27,7 +27,7 @@
 ### Centering with text
 
 ```html
-<div data-layout="center -with-text">
+<div data-unitone-layout="center -with-text">
   ...
 </div>
 ```

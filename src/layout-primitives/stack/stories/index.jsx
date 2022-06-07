@@ -14,14 +14,15 @@ export default {
   argTypes: {
     gap: {
       control: { type: 'inline-radio' },
-      description: 'Gap. Set by CSS var `--unitone--gap` or `data-layout` attribute `-gap:x`.',
+      description:
+        'Gap. Set by CSS var `--unitone--gap` or `data-unitone-layout` attribute `-gap:x`.',
       options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
       table: { defaultValue: { summary: 'var(--unitone--s1)' } },
       type: { name: 'number', required: false },
     },
     negative: {
       control: { type: 'inline-radio' },
-      description: 'Using negative gap. Set by `data-layout` attribute `-negative`.',
+      description: 'Using negative gap. Set by `data-unitone-layout` attribute `-negative`.',
       options: [false, true],
       table: { defaultValue: { summary: false } },
       type: { name: 'boolean', required: false },

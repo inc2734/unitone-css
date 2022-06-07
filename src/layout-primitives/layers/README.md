@@ -1,9 +1,9 @@
 ## Usage
 
 ```html
-<div data-layout="layers">
+<div data-unitone-layout="layers">
   <img src="https://placehold.jp/400x300.jpg" alt="" />
-  <div data-layout="decorator" style="--unitone--align-self:end">
+  <div data-unitone-layout="decorator" style="--unitone--align-self:end">
     Lorem ipsum dolor sit amet
   </div>
 </div>
@@ -12,7 +12,7 @@
 ### Covered image
 
 ```html
-<div data-layout="layers -cover">
+<div data-unitone-layout="layers -cover">
   <img ...>
   <div>
     ...
@@ -23,7 +23,7 @@
 ### Customizing position
 
 ```html
-<div data-layout="layers">
+<div data-unitone-layout="layers">
   <img ...>
   <div style="--unitone--alilgn-self: end; --unitone--justify-self: center">
     ...

@@ -13,7 +13,7 @@
 }
 
 @mixin switcher() {
-  [data-layout~="switcher"] {
+  [data-unitone-layout~="switcher"] {
     @include abstract-switcher();
   }
 }

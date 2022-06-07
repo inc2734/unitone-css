@@ -7,7 +7,7 @@ export const Center = ({ withText, style, ...props }) => {
 
   return (
     <div
-      data-layout={['center', true === withText ? `-with-text` : undefined]
+      data-unitone-layout={['center', true === withText ? `-with-text` : undefined]
         .filter(Boolean)
         .join(' ')}
       style={style}

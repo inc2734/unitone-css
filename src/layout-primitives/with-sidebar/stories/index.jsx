@@ -14,7 +14,7 @@ export default {
       control: { type: 'inline-radio' },
       description: '`--unitone--align-items`',
       description:
-        'Alignment of the row direction. Set by CSS var `--unitone--align-items` or `data-layout` attribute `-align-items:x`.',
+        'Alignment of the row direction. Set by CSS var `--unitone--align-items` or `data-unitone-layout` attribute `-align-items:x`.',
       options: ['start', 'center', 'end'],
       table: { defaultValue: { summary: 'start' } },
       type: { name: 'string', required: false },
@@ -27,7 +27,8 @@ export default {
     },
     gap: {
       control: { type: 'inline-radio' },
-      description: 'Gap. Set by CSS var `--unitone--gap` or `data-layout` attribute `-gap:x`.',
+      description:
+        'Gap. Set by CSS var `--unitone--gap` or `data-unitone-layout` attribute `-gap:x`.',
       options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
       table: { defaultValue: { summary: 'var(--unitone--s1)' } },
       type: { name: 'number', required: false },
@@ -35,7 +36,7 @@ export default {
     revert: {
       control: { type: 'inline-radio' },
       description:
-        'The way child elements are displayed is reversed. Set by `data-layout` attribute `-revert`.',
+        'The way child elements are displayed is reversed. Set by `data-unitone-layout` attribute `-revert`.',
       options: [false, true],
       table: { defaultValue: { summary: 'false' } },
       type: { name: 'boolean', required: false },
@@ -43,7 +44,7 @@ export default {
     sidebar: {
       control: { type: 'inline-radio' },
       description:
-        'Which sidebar should be treated as a sidebar, right or left? Set by `data-layout` attribute `-sidebar:x`.',
+        'Which sidebar should be treated as a sidebar, right or left? Set by `data-unitone-layout` attribute `-sidebar:x`.',
       options: ['left', 'right'],
       table: { defaultValue: { summary: 'right' } },
       type: { name: 'string', required: false },

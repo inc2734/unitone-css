@@ -8,14 +8,14 @@
     min((var(--unitone--min-width) + var(--unitone--gap) + var(--unitone--min-measure) - 100%) * 999, 100%)
   );
 
-  &[data-layout~="-left"],
-  &:not([data-layout~="-right"]) {
+  &[data-unitone-layout~="-left"],
+  &:not([data-unitone-layout~="-right"]) {
     float: left;
     margin-right: var(--unitone--gap);
     margin-bottom: var(--unitone--gap);
   }
 
-  &[data-layout~="-right"] {
+  &[data-unitone-layout~="-right"] {
     float: right;
     margin-left: var(--unitone--gap);
     margin-bottom: var(--unitone--gap);
@@ -23,7 +23,7 @@
 }
 
 @mixin float() {
-  [data-layout~="float"] {
+  [data-unitone-layout~="float"] {
     @include abstract-float();
   }
 }

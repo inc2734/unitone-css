@@ -7,7 +7,9 @@ export const Layers = ({ cover, style, ...props }) => {
 
   return (
     <div
-      data-layout={['layers', true === cover ? `-cover` : undefined].filter(Boolean).join(' ')}
+      data-unitone-layout={['layers', true === cover ? `-cover` : undefined]
+        .filter(Boolean)
+        .join(' ')}
       style={style}
     >
       {props.children}

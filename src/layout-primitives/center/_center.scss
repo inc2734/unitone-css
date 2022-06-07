@@ -5,13 +5,13 @@
   margin-right: auto;
   margin-left: auto;
 
-  &[data-layout~="-with-text"] {
+  &[data-unitone-layout~="-with-text"] {
     text-align: center;
   }
 }
 
 @mixin center() {
-  [data-layout~="center"] {
+  [data-unitone-layout~="center"] {
     @include abstract-center();
   }
 }

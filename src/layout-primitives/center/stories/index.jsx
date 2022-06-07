@@ -13,7 +13,7 @@ export default {
   argTypes: {
     withText: {
       control: { type: 'inline-radio' },
-      description: 'Centering with text. Set by `data-layout` attribute `-with-text`.',
+      description: 'Centering with text. Set by `data-unitone-layout` attribute `-with-text`.',
       options: [false, true],
       table: { defaultValue: { summary: false } },
       type: { name: 'boolean', required: false },

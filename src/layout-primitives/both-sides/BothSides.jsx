@@ -7,7 +7,7 @@ export const BothSides = ({ gap, alignItems, style, ...props }) => {
 
   return (
     <div
-      data-layout={[
+      data-unitone-layout={[
         'both-sides',
         'undefined' !== typeof gap ? `-gap:${gap}` : undefined,
         'undefined' !== typeof alignItems ? `-align-items:${alignItems}` : undefined,

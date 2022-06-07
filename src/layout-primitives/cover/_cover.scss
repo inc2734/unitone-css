@@ -16,7 +16,7 @@
     margin-bottom: 0;
   }
 
-  &[data-layout~="-no-padding"] {
+  &[data-unitone-layout~="-no-padding"] {
     padding: 0;
   }
 }
@@ -27,11 +27,11 @@
 }
 
 @mixin cover() {
-  [data-layout~="cover"] {
+  [data-unitone-layout~="cover"] {
     @include abstract-cover();
   }
 
-  [data-layout~="cover__content"] {
+  [data-unitone-layout~="cover__content"] {
     @include abstract-cover__content();
   }
 }

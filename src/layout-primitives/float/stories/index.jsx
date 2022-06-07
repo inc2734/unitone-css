@@ -13,7 +13,7 @@ export default {
     gap: {
       control: { type: 'inline-radio' },
       description:
-        'Gap between items. Set by CSS var `--unitone--gap` or `data-layout` attribute `-gap:x`.',
+        'Gap between items. Set by CSS var `--unitone--gap` or `data-unitone-layout` attribute `-gap:x`.',
       options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
       table: { defaultValue: { summary: 'var(--unitone--s1)' } },
       type: { name: 'number', required: false },
@@ -34,7 +34,7 @@ export default {
     position: {
       control: { type: 'inline-radio' },
       description:
-        'The floating item position. Set by `data-layout` attribute `-right` or `-left`.',
+        'The floating item position. Set by `data-unitone-layout` attribute `-right` or `-left`.',
       options: ['left', 'right'],
       table: { defaultValue: { summary: 'left' } },
       type: { name: 'string', required: false },

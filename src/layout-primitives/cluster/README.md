@@ -1,7 +1,7 @@
 ## Usage
 
 ```html
-<ul data-layout="cluster">
+<ul data-unitone-layout="cluster">
   <li>Lorem ipsum</li>
   <li>dolor sit</li>
   <li>amet consectetur</li>
@@ -13,7 +13,7 @@
 ### Customizing align
 
 ```html
-<ul data-layout="cluster -align-items:center">
+<ul data-unitone-layout="cluster -align-items:center">
   ...
 </ul>
 ```
@@ -21,7 +21,7 @@
 ### Customizing justify
 
 ```html
-<ul data-layout="cluster -justify-content:space-between">
+<ul data-unitone-layout="cluster -justify-content:space-between">
   ...
 </ul>
 ```
@@ -29,7 +29,7 @@
 ### Customizing gap
 
 ```html
-<ul data-layout="cluster -gap:1">
+<ul data-unitone-layout="cluster -gap:1">
   ...
 </ul>
 ```

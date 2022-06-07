@@ -10,7 +10,7 @@ $_values: (
 
 @mixin align-self() {
   @each $key, $value in $_values {
-    [data-layout~="-align-self\:#{ $key }"] {
+    [data-unitone-layout~="-align-self\:#{ $key }"] {
       --unitone--align-self: #{ $value } !important;
     }
   }

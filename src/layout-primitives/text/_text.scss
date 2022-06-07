@@ -56,19 +56,19 @@
 }
 
 @mixin text() {
-  [data-layout~="text"] {
+  [data-unitone-layout~="text"] {
     @include abstract-text();
   }
 
-  :where([data-layout~="text"] > *) {
+  :where([data-unitone-layout~="text"] > *) {
     max-width: min(100%, var(--unitone--max-width));
   }
 
-  :where([data-layout~="text"][data-layout~="-center"]) > * {
+  :where([data-unitone-layout~="text"][data-unitone-layout~="-center"]) > * {
     width: fit-content;
   }
 
-  [data-layout~="text"]:lang(ja) {
+  [data-unitone-layout~="text"]:lang(ja) {
     font-feature-settings: "palt" 0;
     font-kerning: none;
 

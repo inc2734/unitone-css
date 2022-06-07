@@ -9,7 +9,7 @@ export const Float = ({ gap, minWidth, minMeasure, position, style, ...props }) 
 
   return (
     <div
-      data-layout={[
+      data-unitone-layout={[
         'float',
         !!position ? `-${position}` : undefined,
         'undefined' !== typeof gap ? `-gap:${gap}` : undefined,

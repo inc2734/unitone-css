@@ -18,7 +18,7 @@
 }
 
 @mixin both-sides() {
-  [data-layout~="both-sides"] {
+  [data-unitone-layout~="both-sides"] {
     @include abstract-both-sides();
   }
 }

@@ -26,29 +26,29 @@
   left: var(--unitone--left);
   z-index: var(--unitone--z-index);
 
-  &[data-layout~="-shadow"] {
+  &[data-unitone-layout~="-shadow"] {
     --unitone--box-shadow: var(--unitone--shadow);
   }
 
-  &[data-layout~="-position\:relative"] {
+  &[data-unitone-layout~="-position\:relative"] {
     --unitone--position: relative !important;
   }
 
-  &[data-layout~="-position\:absolute"] {
+  &[data-unitone-layout~="-position\:absolute"] {
     --unitone--position: absolute !important;
   }
 
-  &[data-layout~="-position\:sticky"] {
+  &[data-unitone-layout~="-position\:sticky"] {
     --unitone--position: sticky !important;
   }
 
-  &[data-layout~="-position\:fixed"] {
+  &[data-unitone-layout~="-position\:fixed"] {
     --unitone--position: fixed !important;
   }
 }
 
 @mixin decorator() {
-  [data-layout~="decorator"] {
+  [data-unitone-layout~="decorator"] {
     @include abstract-decorator();
   }
 }

@@ -12,7 +12,9 @@ const fluidFontSizeResizeObserver = new ResizeObserver((entries) => {
   }
 });
 
-const fluidFontSizeElements = document.querySelectorAll('[data-layout~="-fluid-typography"]');
+const fluidFontSizeElements = document.querySelectorAll(
+  '[data-unitone-layout~="-fluid-typography"]',
+);
 fluidFontSizeElements.forEach((target) => {
   fluidFontSizeResizeObserver.observe(target);
   setFluidFontSizeMagnification(target);

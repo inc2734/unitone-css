@@ -44,7 +44,7 @@ export default {
     padding: {
       control: { type: 'inline-radio' },
       description:
-        'Padding. Set by CSS var `--unitone--padding` or `data-layout` attribute `-padding:x`.',
+        'Padding. Set by CSS var `--unitone--padding` or `data-unitone-layout` attribute `-padding:x`.',
       options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
       table: { defaultValue: { summary: 'var(--unitone--s0)' } },
       type: { name: 'number', required: false },

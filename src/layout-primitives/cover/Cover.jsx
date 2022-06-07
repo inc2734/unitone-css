@@ -8,7 +8,7 @@ export const Cover = ({ gap, minHeight, justifyContent, noPadding, style, ...pro
 
   return (
     <div
-      data-layout={[
+      data-unitone-layout={[
         'cover',
         noPadding ? '-no-padding' : undefined,
         'undefined' !== typeof gap ? `-gap:${gap}` : undefined,
@@ -26,5 +26,5 @@ export const Cover = ({ gap, minHeight, justifyContent, noPadding, style, ...pro
 export const CoverContent = ({ tagName = 'div', ...props }) => {
   const Tag = tagName;
 
-  return <Tag data-layout="cover__content">{props.children}</Tag>;
+  return <Tag data-unitone-layout="cover__content">{props.children}</Tag>;
 };

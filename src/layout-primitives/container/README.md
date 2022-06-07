@@ -1,8 +1,8 @@
 ## Usage
 
 ```html
-<div data-layout="container">
-  <div data-layout="text" style="--unitone--max-width: 100%">
+<div data-unitone-layout="container">
+  <div data-unitone-layout="text" style="--unitone--max-width: 100%">
     <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h2>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
@@ -25,7 +25,7 @@
 ### Customizing gutters
 
 ```html
-<div data-layout="container -gutters:1">
+<div data-unitone-layout="container -gutters:1">
   ...
 </div>
 ```
@@ -33,7 +33,7 @@
 ### Alignment
 
 ```html
-<div data-layout="container -align:start">
+<div data-unitone-layout="container -align:start">
   ...
 </div>
 ```

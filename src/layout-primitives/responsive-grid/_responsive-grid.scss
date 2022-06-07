@@ -8,7 +8,7 @@
 }
 
 @mixin responsive-grid() {
-  [data-layout~="responsive-grid"] {
+  [data-unitone-layout~="responsive-grid"] {
     @include abstract-responsive-grid();
   }
 }

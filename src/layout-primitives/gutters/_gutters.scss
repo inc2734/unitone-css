@@ -6,7 +6,7 @@
 }
 
 @mixin gutters() {
-  [data-layout~="gutters"] {
+  [data-unitone-layout~="gutters"] {
     @include abstract-gutters();
   }
 }

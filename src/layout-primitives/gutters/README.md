@@ -1,8 +1,8 @@
 ## Usage
 
 ```html
-<div data-layout="section">
-  <div data-layout="stack">
+<div data-unitone-layout="section">
+  <div data-unitone-layout="stack">
     <h2>Lorem ipsum dolor sit amet</h2>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
@@ -17,7 +17,7 @@
 ### Customizing padding
 
 ```html
-<div data-layout="section -padding:1">
+<div data-unitone-layout="section -padding:1">
   ...
 </div>
 ```

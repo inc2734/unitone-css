@@ -30,7 +30,7 @@
   }
 
   @media (orientation: portrait) {
-    &[data-layout~="-switch"] {
+    &[data-unitone-layout~="-switch"] {
       &::before {
         padding-top: calc(var(--unitone--ratio) * 100%);
       }
@@ -39,7 +39,7 @@
 }
 
 @mixin frame() {
-  [data-layout~="frame"] {
+  [data-unitone-layout~="frame"] {
     @include abstract-frame();
   }
 }

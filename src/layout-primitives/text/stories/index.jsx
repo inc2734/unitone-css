@@ -12,7 +12,7 @@ export default {
   argTypes: {
     center: {
       control: { type: 'inline-radio' },
-      description: 'Centering child items. Set by `data-layout` attribute `-center`.',
+      description: 'Centering child items. Set by `data-unitone-layout` attribute `-center`.',
       options: [false, true],
       table: { defaultValue: { summary: false } },
       type: { name: 'boolean', required: false },

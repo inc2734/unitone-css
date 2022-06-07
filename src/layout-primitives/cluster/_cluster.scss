@@ -16,7 +16,7 @@
 }
 
 @mixin cluster() {
-  [data-layout~="cluster"] {
+  [data-unitone-layout~="cluster"] {
     @include abstract-cluster();
   }
 }

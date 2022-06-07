@@ -33,7 +33,7 @@ export const Decorator = ({
 
   return (
     <div
-      data-layout={[
+      data-unitone-layout={[
         'decorator',
         'undefined' !== typeof padding ? `-padding:${padding}` : undefined,
         !!shadow ? '-shadow' : undefined,

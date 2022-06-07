@@ -10,7 +10,7 @@ $_values: (
 
 @mixin justify-self() {
   @each $key, $value in $_values {
-    [data-layout~="-justify-self\:#{ $key }"] {
+    [data-unitone-layout~="-justify-self\:#{ $key }"] {
       --unitone--justify-self: #{ $value } !important;
     }
   }

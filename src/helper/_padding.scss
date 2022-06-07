@@ -1,6 +1,6 @@
 @mixin padding() {
   @for $i from -2 through 7 {
-    [data-layout~="-padding\:#{ $i }"] {
+    [data-unitone-layout~="-padding\:#{ $i }"] {
       --unitone--padding: var(--unitone--s#{ $i }) !important;
     }
   }

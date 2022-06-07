@@ -22,7 +22,7 @@
     justify-self: var(--unitone--justify-self);
   }
 
-  &[data-layout~="-cover"] {
+  &[data-unitone-layout~="-cover"] {
     > :where(img:first-child, video:first-child, picture:first-child, figure:first-child),
     > :first-child :where(picture, figure) {
       position: absolute;
@@ -45,7 +45,7 @@
 }
 
 @mixin layers() {
-  [data-layout~="layers"] {
+  [data-unitone-layout~="layers"] {
     @include abstract-layers();
   }
 }

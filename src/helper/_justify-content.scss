@@ -1,6 +1,6 @@
 @mixin justify-content() {
   @each $key, $value in (start: flex-start, center: center, end: flex-end, space-between: space-between) {
-    [data-layout~="-justify-content\:#{ $key }"] {
+    [data-unitone-layout~="-justify-content\:#{ $key }"] {
       --unitone--justify-content: #{ $value } !important;
     }
   }
