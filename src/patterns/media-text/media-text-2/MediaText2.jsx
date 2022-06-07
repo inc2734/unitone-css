@@ -10,17 +10,17 @@ export const MediaText2 = (props) => (
   <Decorator color={props.color}>
     <WithSidebar
       gap={2}
-      contentMinWidth="min(100%, var(--measure) / 2)"
+      contentMinWidth="min(100%, var(--unitone--measure) / 2)"
       sidebar="right"
       sidebarWidth="50%"
       alignItems="center"
     >
       <Cover noPadding minHeight="0">
         <CoverContent>
-          <Container gutters={0} maxWidth="var(--measure)">
+          <Container gutters={0} maxWidth="var(--unitone--measure)">
             <Stack gap={2}>
               {!!props.title && (
-                <Stack style={{ '--font-size': 4 }}>
+                <Stack style={{ '--unitone--font-size': 4 }}>
                   <h2>{props.title}</h2>
                 </Stack>
               )}

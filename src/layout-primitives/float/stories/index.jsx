@@ -12,22 +12,23 @@ export default {
   argTypes: {
     gap: {
       control: { type: 'inline-radio' },
-      description: 'Gap between items. Set by CSS var `--gap` or `data-layout` attribute `-gap:x`.',
+      description:
+        'Gap between items. Set by CSS var `--unitone--gap` or `data-layout` attribute `-gap:x`.',
       options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
-      table: { defaultValue: { summary: 'var(--s1)' } },
+      table: { defaultValue: { summary: 'var(--unitone--s1)' } },
       type: { name: 'number', required: false },
     },
     minMeasure: {
       control: { type: 'text' },
       description:
-        'Min size of the item following the floating item. Set by CSS var `--min-measure`.',
-      table: { defaultValue: { summary: 'calc(var(--measure) / 2)' } },
+        'Min size of the item following the floating item. Set by CSS var `--unitone--min-measure`.',
+      table: { defaultValue: { summary: 'calc(var(--unitone--measure) / 2)' } },
       type: { name: 'string', required: false },
     },
     minWidth: {
       control: { type: 'text' },
-      description: 'Min size of the floating item. Set by CSS var `--min-width`.',
-      table: { defaultValue: { summary: 'calc(var(--measure) / 2)' } },
+      description: 'Min size of the floating item. Set by CSS var `--unitone--min-width`.',
+      table: { defaultValue: { summary: 'calc(var(--unitone--measure) / 2)' } },
       type: { name: 'string', required: false },
     },
     position: {
@@ -41,8 +42,8 @@ export default {
   },
   args: {
     gap: 1,
-    minMeasure: 'calc(var(--measure) / 2)',
-    minWidth: 'calc(var(--measure) / 2)',
+    minMeasure: 'calc(var(--unitone--measure) / 2)',
+    minWidth: 'calc(var(--unitone--measure) / 2)',
     position: 'left',
   },
 };

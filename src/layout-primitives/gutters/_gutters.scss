@@ -1,8 +1,8 @@
 @mixin abstract-gutters() {
-  --padding: var(--s4);
+  --unitone--padding: var(--unitone--s4);
 
-  padding-top: var(--padding);
-  padding-bottom: var(--padding);
+  padding-top: var(--unitone--padding);
+  padding-bottom: var(--unitone--padding);
 }
 
 @mixin gutters() {

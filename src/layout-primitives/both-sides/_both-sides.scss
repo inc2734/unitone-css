@@ -1,19 +1,19 @@
 @mixin abstract-both-sides() {
-  --gap: var(--s1);
-  --align-items: flex-start;
-  --content-width: fit-content;
-  --content-max-width: var(--measure);
+  --unitone--gap: var(--unitone--s1);
+  --unitone--align-items: flex-start;
+  --unitone--content-width: fit-content;
+  --unitone--content-max-width: var(--unitone--measure);
 
   display: flex;
-  gap: var(--gap);
+  gap: var(--unitone--gap);
   flex-wrap: wrap;
-  align-items: var(--align-items);
+  align-items: var(--unitone--align-items);
   justify-content: space-between;
 
   > * {
-    flex-basis: var(--content-width);
+    flex-basis: var(--unitone--content-width);
     flex-grow: 0;
-    max-width: min(100%, var(--content-max-width));
+    max-width: min(100%, var(--unitone--content-max-width));
   }
 }
 

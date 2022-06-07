@@ -19,16 +19,16 @@ export const Decorator = ({
 }) => {
   style = {
     ...style,
-    '--background-color': backgroundColor,
-    '--border-color': borderColor,
-    '--border-radius': borderRadius,
-    '--border-width': borderWidth,
-    '--color': color,
-    '--top': 'undefined' !== typeof top ? top : undefined,
-    '--right': 'undefined' !== typeof right ? right : undefined,
-    '--bottom': 'undefined' !== typeof bottom ? bottom : undefined,
-    '--left': 'undefined' !== typeof left ? left : undefined,
-    '--z-index': 'undefined' !== typeof zIndex ? zIndex : undefined,
+    '--unitone--background-color': backgroundColor,
+    '--unitone--border-color': borderColor,
+    '--unitone--border-radius': borderRadius,
+    '--unitone--border-width': borderWidth,
+    '--unitone--color': color,
+    '--unitone--top': 'undefined' !== typeof top ? top : undefined,
+    '--unitone--right': 'undefined' !== typeof right ? right : undefined,
+    '--unitone--bottom': 'undefined' !== typeof bottom ? bottom : undefined,
+    '--unitone--left': 'undefined' !== typeof left ? left : undefined,
+    '--unitone--z-index': 'undefined' !== typeof zIndex ? zIndex : undefined,
   };
 
   return (

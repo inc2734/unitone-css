@@ -1,56 +1,56 @@
 @mixin abstract-text() {
-  --max-width: var(--measure);
+  --unitone--max-width: var(--unitone--measure);
 
   > * {
-    --gap: var(--s1);
+    --unitone--gap: var(--unitone--s1);
     margin: 0 auto;
   }
 
   > *:not(:first-child) {
-    margin-top: calc(var(--margin-top, 1) * var(--gap));
+    margin-top: calc(var(--unitone--margin-top, 1) * var(--unitone--gap));
   }
 
   > *:not(:last-child) {
-    margin-bottom: calc(var(--margin-bottom, 1) * var(--gap));
+    margin-bottom: calc(var(--unitone--margin-bottom, 1) * var(--unitone--gap));
   }
 
   > h1 {
-    --font-size: 4;
+    --unitone--font-size: 4;
   }
 
   > :where(h2, h3, h4, h5, h6) {
-    --margin-bottom: 0;
+    --unitone--margin-bottom: 0;
 
     & + :where(h2, h3, h4, h5, h6) {
-      --margin-top: .5;
+      --unitone--margin-top: .5;
     }
   }
 
   > h2 {
-    --font-size: 3;
+    --unitone--font-size: 3;
   }
 
   > h3 {
-    --font-size: 2;
+    --unitone--font-size: 2;
   }
 
   > h4 {
-    --font-size: 1;
+    --unitone--font-size: 1;
   }
 
   > h5 {
-    --font-size: 0;
+    --unitone--font-size: 0;
 
     & + * {
-      --margin-top: .5;
+      --unitone--margin-top: .5;
     }
   }
 
   > h6 {
-    --font-size: 0;
+    --unitone--font-size: 0;
 
     & + * {
-      --margin-top: .5;
+      --unitone--margin-top: .5;
     }
   }
 }
@@ -61,7 +61,7 @@
   }
 
   :where([data-layout~="text"] > *) {
-    max-width: min(100%, var(--max-width));
+    max-width: min(100%, var(--unitone--max-width));
   }
 
   :where([data-layout~="text"][data-layout~="-center"]) > * {

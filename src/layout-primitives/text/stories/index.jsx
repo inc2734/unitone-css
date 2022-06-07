@@ -19,14 +19,14 @@ export default {
     },
     maxWidth: {
       control: { type: 'text' },
-      description: 'Max width. Set by CSS var `--max-width`.',
-      table: { defaultValue: { summary: 'var(--measure)' } },
+      description: 'Max width. Set by CSS var `--unitone--max-width`.',
+      table: { defaultValue: { summary: 'var(--unitone--measure)' } },
       type: { name: 'string', required: false },
     },
   },
   args: {
     center: false,
-    maxWidth: 'var(--measure)',
+    maxWidth: 'var(--unitone--measure)',
   },
 };
 
@@ -45,7 +45,7 @@ const Content = (props) => {
     <>
       <h1>{headingText}</h1>
       <p>{bodyText}</p>
-      <p style={{ '--font-size': 2 }}>{bodyText}</p>
+      <p style={{ '--unitone--font-size': 2 }}>{bodyText}</p>
       <p>{bodyText}</p>
       <ul>
         <li>{bodyText}</li>
@@ -104,7 +104,7 @@ ExampleCenter.storyName = 'Example : Center';
 
 export const ExampleJa = (args) => {
   return (
-    <Text {...args} style={{ '--half-leading': 0.4 }}>
+    <Text {...args} style={{ '--unitone--half-leading': 0.4 }}>
       <Content lang="ja" />
     </Text>
   );

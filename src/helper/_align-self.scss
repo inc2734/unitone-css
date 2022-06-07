@@ -11,7 +11,7 @@ $_values: (
 @mixin align-self() {
   @each $key, $value in $_values {
     [data-layout~="-align-self\:#{ $key }"] {
-      --align-self: #{ $value } !important;
+      --unitone--align-self: #{ $value } !important;
     }
   }
 }

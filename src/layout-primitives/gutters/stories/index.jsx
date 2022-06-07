@@ -16,9 +16,9 @@ export default {
     padding: {
       control: { type: 'inline-radio' },
       description:
-        'Top and bottom padding. Set by CSS var `--padding` or `data-layout` attribute `-padding:x`.',
+        'Top and bottom padding. Set by CSS var `--unitone--padding` or `data-layout` attribute `-padding:x`.',
       options: [1, 2, 3, 4, 5, 6, 7],
-      table: { defaultValue: { summary: 'var(--s4)' } },
+      table: { defaultValue: { summary: 'var(--unitone--s4)' } },
       type: { name: 'number', required: false },
     },
   },
@@ -33,7 +33,7 @@ export const Default = (args) => {
       <Container>
         <Stack gap={2}>
           <Center>
-            <h2 style={{ '--font-size': 2 }}>Lorem ipsum dolor sit amet</h2>
+            <h2 style={{ '--unitone--font-size': 2 }}>Lorem ipsum dolor sit amet</h2>
           </Center>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor

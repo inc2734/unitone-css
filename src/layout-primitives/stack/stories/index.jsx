@@ -14,9 +14,9 @@ export default {
   argTypes: {
     gap: {
       control: { type: 'inline-radio' },
-      description: 'Gap. Set by CSS var `--gap` or `data-layout` attribute `-gap:x`.',
+      description: 'Gap. Set by CSS var `--unitone--gap` or `data-layout` attribute `-gap:x`.',
       options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
-      table: { defaultValue: { summary: 'var(--s1)' } },
+      table: { defaultValue: { summary: 'var(--unitone--s1)' } },
       type: { name: 'number', required: false },
     },
     negative: {
@@ -41,16 +41,16 @@ const Content = (props) => {
 
   return (
     <>
-      <p style={{ '--font-size': -2 }}>{content}</p>
-      <p style={{ '--font-size': -1 }}>{content}</p>
+      <p style={{ '--unitone--font-size': -2 }}>{content}</p>
+      <p style={{ '--unitone--font-size': -1 }}>{content}</p>
       <p>{content}</p>
-      <p style={{ '--font-size': 1 }}>{content}</p>
-      <p style={{ '--font-size': 2 }}>{content}</p>
-      <p style={{ '--font-size': 3 }}>{content}</p>
-      <p style={{ '--font-size': 4 }}>{content}</p>
-      <p style={{ '--font-size': 5 }}>{content}</p>
-      <p style={{ '--font-size': 6 }}>{content}</p>
-      <p style={{ '--font-size': 7 }}>{content}</p>
+      <p style={{ '--unitone--font-size': 1 }}>{content}</p>
+      <p style={{ '--unitone--font-size': 2 }}>{content}</p>
+      <p style={{ '--unitone--font-size': 3 }}>{content}</p>
+      <p style={{ '--unitone--font-size': 4 }}>{content}</p>
+      <p style={{ '--unitone--font-size': 5 }}>{content}</p>
+      <p style={{ '--unitone--font-size': 6 }}>{content}</p>
+      <p style={{ '--unitone--font-size': 7 }}>{content}</p>
     </>
   );
 };
@@ -93,12 +93,12 @@ export const ExampleCard = (args) => {
                 <div>
                   <b>Takashi Kitajima</b>
                 </div>
-                <div style={{ '--font-size': -1 }}>Takashi Kitajima</div>
+                <div style={{ '--unitone--font-size': -1 }}>Takashi Kitajima</div>
               </Stack>
             </Cluster>
           </Decorator>
           <div>
-            <Stack style={{ '--font-size': -1 }}>
+            <Stack style={{ '--unitone--font-size': -1 }}>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud

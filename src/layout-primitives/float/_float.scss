@@ -1,24 +1,24 @@
 @mixin abstract-float() {
-  --gap: var(--s1);
-  --min-measure: calc(var(--measure) / 2);
-  --min-width: calc(var(--measure) / 2);
+  --unitone--gap: var(--unitone--s1);
+  --unitone--min-measure: calc(var(--unitone--measure) / 2);
+  --unitone--min-width: calc(var(--unitone--measure) / 2);
 
   width: max(
-    min(var(--min-width), 100%),
-    min((var(--min-width) + var(--gap) + var(--min-measure) - 100%) * 999, 100%)
+    min(var(--unitone--min-width), 100%),
+    min((var(--unitone--min-width) + var(--unitone--gap) + var(--unitone--min-measure) - 100%) * 999, 100%)
   );
 
   &[data-layout~="-left"],
   &:not([data-layout~="-right"]) {
     float: left;
-    margin-right: var(--gap);
-    margin-bottom: var(--gap);
+    margin-right: var(--unitone--gap);
+    margin-bottom: var(--unitone--gap);
   }
 
   &[data-layout~="-right"] {
     float: right;
-    margin-left: var(--gap);
-    margin-bottom: var(--gap);
+    margin-left: var(--unitone--gap);
+    margin-bottom: var(--unitone--gap);
   }
 }
 

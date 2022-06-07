@@ -13,15 +13,15 @@ export default {
   argTypes: {
     columnMinWidth: {
       control: { type: 'text' },
-      description: 'Min width of each columns. Set by CSS var `--column-min-width`.',
+      description: 'Min width of each columns. Set by CSS var `--unitone--column-min-width`.',
       table: { defaultValue: { summary: '250px' } },
       type: { name: 'string', required: false },
     },
     gap: {
       control: { type: 'inline-radio' },
-      description: 'Gap. Set by CSS var `--gap`.',
+      description: 'Gap. Set by CSS var `--unitone--gap`.',
       options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
-      table: { defaultValue: { summary: 'var(--s1)' } },
+      table: { defaultValue: { summary: 'var(--unitone--s1)' } },
       type: { name: 'number', required: false },
     },
   },

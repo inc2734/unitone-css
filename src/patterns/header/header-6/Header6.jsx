@@ -13,13 +13,13 @@ export const Header6 = (props) => (
     <Layers cover>
       <Decorator padding={props.padding}>
         <Decorator backgroundColor="transparent" borderColor={props.borderColor} borderWidth="1px">
-          <Cover minHeight={`calc(100vh - var(--s${props.padding}) * 2`}>
+          <Cover minHeight={`calc(100vh - var(--unitone--s${props.padding}) * 2`}>
             <CoverContent>
-              <Container gutters={0} maxWidth="var(--measure)">
+              <Container gutters={0} maxWidth="var(--unitone--measure)">
                 <Stack gap={2}>
                   {!!props.title && (
                     <Center>
-                      <h2 style={{ '--font-size': 5 }}>{props.title}</h2>
+                      <h2 style={{ '--unitone--font-size': 5 }}>{props.title}</h2>
                     </Center>
                   )}
                   {!!props.children && <Text center>{props.children}</Text>}

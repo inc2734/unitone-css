@@ -24,7 +24,7 @@ export default {
     padding: {
       control: { type: 'inline-radio' },
       options: [-2, -1, 1, 2, 3],
-      table: { defaultValue: { summary: 'var(--s1)' } },
+      table: { defaultValue: { summary: 'var(--unitone--s1)' } },
       type: { name: 'number', required: false },
     },
   },

@@ -6,10 +6,10 @@ import { Meta } from '@storybook/addon-docs';
 
 ## Font size
 
-You can scale the font size with the CSS custom property `--font-size`. The minimum value is `1` and the maximum value is `7`. If you scale the font size with this CSS custom property, the `line-height` will be automatically set to an appropriate value.
+You can scale the font size with the CSS custom property `--unitone--font-size`. The minimum value is `1` and the maximum value is `7`. If you scale the font size with this CSS custom property, the `line-height` will be automatically set to an appropriate value.
 
 ```html
-<p style="--font-size: 2">
+<p style="--unitone--font-size: 2">
   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
   labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
   nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
@@ -22,7 +22,7 @@ You can scale the font size with the CSS custom property `--font-size`. The mini
 The half leading can be set. The default value is `0.3`.
 
 ```html
-<p style="--half-leading: .4">
+<p style="--unitone--half-leading: .4">
   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
   labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
   nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
@@ -35,7 +35,7 @@ The half leading can be set. The default value is `0.3`.
 You can using fluid typography. The font-size and the line-height change fluidly according to screen size.
 
 ```html
-<p style="--font-size: 7" data-layout="-fluid-typography">
+<p style="--unitone--font-size: 7" data-layout="-fluid-typography">
   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
   labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
   nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
@@ -45,10 +45,10 @@ You can using fluid typography. The font-size and the line-height change fluidly
 
 ## Margin / Padding
 
-You can set the properly scaled margin and padding by using CSS custom properties. The minimum value is `--s-2` and the maximum value is `--s4`. `--s1` is the base value (`1rem`) and `--s0` is `0`.
+You can set the properly scaled margin and padding by using CSS custom properties. The minimum value is `--unitone--s-2` and the maximum value is `--unitone--s4`. `--unitone--s1` is the base value (`1rem`) and `--unitone--s0` is `0`.
 
 ```html
-<div style="margin: var(--s2); padding: var(--s1)">
+<div style="margin: var(--unitone--s2); padding: var(--unitone--s1)">
   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
   labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
   nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit

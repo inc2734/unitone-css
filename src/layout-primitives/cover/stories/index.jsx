@@ -14,14 +14,14 @@ export default {
   argTypes: {
     gap: {
       control: { type: 'inline-radio' },
-      description: 'Gap. Set by CSS var `--gap` or `data-layout` attribute `-gap:x`.',
+      description: 'Gap. Set by CSS var `--unitone--gap` or `data-layout` attribute `-gap:x`.',
       options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
-      table: { defaultValue: { summary: 'var(--s1)' } },
+      table: { defaultValue: { summary: 'var(--unitone--s1)' } },
       type: { name: 'number', required: false },
     },
     minHeight: {
       control: { type: 'text' },
-      description: 'Min height. Set by CSS var `--min-height`.',
+      description: 'Min height. Set by CSS var `--unitone--min-height`.',
       table: { defaultValue: { summary: '100vh' } },
       type: { name: 'string', required: false },
     },
@@ -35,7 +35,7 @@ export default {
     justifyContent: {
       control: { type: 'inline-radio' },
       description:
-        'Alignment of the row direction. Set by CSS var `--justify-content` or `data-layout` attribute `-justify-content:x`.',
+        'Alignment of the row direction. Set by CSS var `--unitone--justify-content` or `data-layout` attribute `-justify-content:x`.',
       options: ['start', 'center', 'end', 'space-between'],
       table: { defaultValue: { summary: 'start' } },
       type: { name: 'string', required: false },
@@ -56,7 +56,7 @@ export const Default = (args) => {
         <p>Lorem ipsum</p>
         <CoverContent>
           <Stack>
-            <h1 style={{ '--font-size': 6 }}>Lorem ipsum dolor sit amet</h1>
+            <h1 style={{ '--unitone--font-size': 6 }}>Lorem ipsum dolor sit amet</h1>
             <p>
               consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
               magna aliqua.
@@ -75,7 +75,7 @@ export const ExampleNoHeader = (args) => {
       <Cover {...args}>
         <CoverContent>
           <Stack>
-            <h1 style={{ '--font-size': 6 }}>Lorem ipsum dolor sit amet</h1>
+            <h1 style={{ '--unitone--font-size': 6 }}>Lorem ipsum dolor sit amet</h1>
             <p>
               consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
               magna aliqua.
@@ -99,7 +99,7 @@ export const ExampleNoFooter = (args) => {
         <p>Lorem ipsum</p>
         <CoverContent>
           <Stack>
-            <h1 style={{ '--font-size': 6 }}>Lorem ipsum dolor sit amet</h1>
+            <h1 style={{ '--unitone--font-size': 6 }}>Lorem ipsum dolor sit amet</h1>
             <p>
               consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
               magna aliqua.
@@ -123,7 +123,7 @@ export const ExampleFooter = (args) => {
           <p>Lorem ipsum</p>
         </CoverContent>
         <Stack>
-          <h1 style={{ '--font-size': 6 }}>Lorem ipsum dolor sit amet</h1>
+          <h1 style={{ '--unitone--font-size': 6 }}>Lorem ipsum dolor sit amet</h1>
           <p>
             consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
             aliqua.

@@ -6,34 +6,34 @@
   /**
    * Column width in typography.
    */
-  --measure: 38rem;
+  --unitone--measure: 38rem;
 
   /**
    * Collors.
    */
-  --color-white: #fff;
-  --color-black: #000;
-  --color-text: #222;
+  --unitone--color-white: #fff;
+  --unitone--color-black: #000;
+  --unitone--color-text: #222;
 
   /**
    * Font size level.
    * It is not recommended to override this value with :root in order to have the size determined based on 0.
    */
-  --font-size: 0;
+  --unitone--font-size: 0;
 
   /**
    * The 1rem px font size (no units).
    */
-  --base-font-size: 16;
+  --unitone--base-font-size: 16;
 
-  --harmonic-sequence-base: 8;
-  --min-harmonic-sequence-base: 9;
-  --max-harmonic-sequence-base: var(--harmonic-sequence-base);
+  --unitone--harmonic-sequence-base: 8;
+  --unitone--min-harmonic-sequence-base: 9;
+  --unitone--max-harmonic-sequence-base: var(--unitone--harmonic-sequence-base);
 
   /**
    * Gutter provided above and below the text in a line.
    */
-  --half-leading: .3;
+  --unitone--half-leading: .3;
 
   /**
    * The line-height slope. If smaller, the line-height is adjusted to a smaller value as the font size increases.
@@ -44,59 +44,59 @@
    *
    * @see https://www.geogebra.org/graphing?lang=ja
    */
-  --line-height-slope: -0.16666;
+  --unitone--line-height-slope: -0.16666;
 
   /**
    * Font family
    */
-  --font-family: sans-serif;
+  --unitone--font-family: sans-serif;
 
   /**
    * Reference value of the modular scale for space.
    */
-  --_space-reference-value: #{ variables.$line-height } / 3;
+  --unitone--_space-reference-value: #{ variables.$line-height } / 3;
 
   /**
    * Modular scales for spaces.
    */
-  --ms-2: calc(var(--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 1) });
-  --ms-1: calc(var(--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 2) });
-  --ms0: 0;
-  --ms1: calc(var(--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 3) });
-  --ms2: calc(var(--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 4) });
-  --ms3: calc(var(--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 5) });
-  --ms4: calc(var(--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 6) });
-  --ms5: calc(var(--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 7) });
-  --ms6: calc(var(--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 8) });
-  --ms7: calc(var(--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 9) });
+  --unitone--ms-2: calc(var(--unitone--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 1) });
+  --unitone--ms-1: calc(var(--unitone--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 2) });
+  --unitone--ms0: 0;
+  --unitone--ms1: calc(var(--unitone--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 3) });
+  --unitone--ms2: calc(var(--unitone--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 4) });
+  --unitone--ms3: calc(var(--unitone--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 5) });
+  --unitone--ms4: calc(var(--unitone--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 6) });
+  --unitone--ms5: calc(var(--unitone--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 7) });
+  --unitone--ms6: calc(var(--unitone--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 8) });
+  --unitone--ms7: calc(var(--unitone--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 9) });
 
   /**
    * Modular scales for spaces (em based).
    */
-  --em-2: calc(1em * var(--ms-2));
-  --em-1: calc(1em * var(--ms-1));
-  --em0: 0em;
-  --em1: calc(1em * var(--ms1));
-  --em2: calc(1em * var(--ms2));
-  --em3: calc(1em * var(--ms3));
-  --em4: calc(1em * var(--ms4));
-  --em5: calc(1em * var(--ms5));
-  --em6: calc(1em * var(--ms6));
-  --em7: calc(1em * var(--ms7));
+  --unitone--em-2: calc(1em * var(--unitone--ms-2));
+  --unitone--em-1: calc(1em * var(--unitone--ms-1));
+  --unitone--em0: 0em;
+  --unitone--em1: calc(1em * var(--unitone--ms1));
+  --unitone--em2: calc(1em * var(--unitone--ms2));
+  --unitone--em3: calc(1em * var(--unitone--ms3));
+  --unitone--em4: calc(1em * var(--unitone--ms4));
+  --unitone--em5: calc(1em * var(--unitone--ms5));
+  --unitone--em6: calc(1em * var(--unitone--ms6));
+  --unitone--em7: calc(1em * var(--unitone--ms7));
 
   /**
    * Modular scales for spaces (rem based).
    */
-  --rem-2: calc(1rem * var(--ms-2));
-  --rem-1: calc(1rem * var(--ms-1));
-  --rem0: 0rem;
-  --rem1: calc(1rem * var(--ms1));
-  --rem2: calc(1rem * var(--ms2));
-  --rem3: calc(1rem * var(--ms3));
-  --rem4: calc(1rem * var(--ms4));
-  --rem5: calc(1rem * var(--ms5));
-  --rem6: calc(1rem * var(--ms6));
-  --rem7: calc(1rem * var(--ms7));
+  --unitone--rem-2: calc(1rem * var(--unitone--ms-2));
+  --unitone--rem-1: calc(1rem * var(--unitone--ms-1));
+  --unitone--rem0: 0rem;
+  --unitone--rem1: calc(1rem * var(--unitone--ms1));
+  --unitone--rem2: calc(1rem * var(--unitone--ms2));
+  --unitone--rem3: calc(1rem * var(--unitone--ms3));
+  --unitone--rem4: calc(1rem * var(--unitone--ms4));
+  --unitone--rem5: calc(1rem * var(--unitone--ms5));
+  --unitone--rem6: calc(1rem * var(--unitone--ms6));
+  --unitone--rem7: calc(1rem * var(--unitone--ms7));
 
   /**
    * Modular scales for spaces.
@@ -108,45 +108,45 @@
     @return clamp(#{ $min } * 1em, #{ $preferredValue }, #{ $max } * 1em);
   }
   $_quotient: math.div(variables.$min-breakpoint, variables.$max-breakpoint);
-  --s-2: var(--em-2);
-  --s-1: var(--em-1);
-  --s0: var(--em0);
-  --s1: var(--em1);
-  --s2: #{ _generate-fluid-spacing(calc(var(--ms1) + var(--ms2) * #{ $_quotient }), var(--ms2)) };
-  --s3: #{ _generate-fluid-spacing(calc(var(--ms1) + var(--ms3) * #{ $_quotient }), var(--ms3)) };
-  --s4: #{ _generate-fluid-spacing(calc(var(--ms1) + var(--ms4) * #{ $_quotient }), var(--ms4)) };
-  --s5: #{ _generate-fluid-spacing(calc(var(--ms1) + var(--ms5) * #{ $_quotient }), var(--ms5)) };
-  --s6: #{ _generate-fluid-spacing(calc(var(--ms1) + var(--ms6) * #{ $_quotient }), var(--ms6)) };
-  --s7: #{ _generate-fluid-spacing(calc(var(--ms1) + var(--ms7) * #{ $_quotient }), var(--ms7)) };
+  --unitone--s-2: var(--unitone--em-2);
+  --unitone--s-1: var(--unitone--em-1);
+  --unitone--s0: var(--unitone--em0);
+  --unitone--s1: var(--unitone--em1);
+  --unitone--s2: #{ _generate-fluid-spacing(calc(var(--unitone--ms1) + var(--unitone--ms2) * #{ $_quotient }), var(--unitone--ms2)) };
+  --unitone--s3: #{ _generate-fluid-spacing(calc(var(--unitone--ms1) + var(--unitone--ms3) * #{ $_quotient }), var(--unitone--ms3)) };
+  --unitone--s4: #{ _generate-fluid-spacing(calc(var(--unitone--ms1) + var(--unitone--ms4) * #{ $_quotient }), var(--unitone--ms4)) };
+  --unitone--s5: #{ _generate-fluid-spacing(calc(var(--unitone--ms1) + var(--unitone--ms5) * #{ $_quotient }), var(--unitone--ms5)) };
+  --unitone--s6: #{ _generate-fluid-spacing(calc(var(--unitone--ms1) + var(--unitone--ms6) * #{ $_quotient }), var(--unitone--ms6)) };
+  --unitone--s7: #{ _generate-fluid-spacing(calc(var(--unitone--ms1) + var(--unitone--ms7) * #{ $_quotient }), var(--unitone--ms7)) };
 
   /**
    * Max width of the container.
    */
-  --container-max-width: #{ variables.$container-max-width };
+  --unitone--container-max-width: #{ variables.$container-max-width };
 
   $_grid-columns: 12;
-  --_grid-gutters: calc(#{ $_grid-columns - 1 } * var(--s1));
+  --unitone--_grid-gutters: calc(#{ $_grid-columns - 1 } * var(--unitone--s1));
 
   /**
    * Grid sizes (% based).
    */
-  $_percentage-grid-width: calc((100% - var(--_grid-gutters)) / #{ $_grid-columns });
-  --pg0: 0%;
+  $_percentage-grid-width: calc((100% - var(--unitone--_grid-gutters)) / #{ $_grid-columns });
+  --unitone--pg0: 0%;
   @for $i from 1 through $_grid-columns {
-    --pg#{ $i }: calc(#{ $_percentage-grid-width } * #{ $i } + var(--s1) * #{ $i - 1 });
+    --unitone--pg#{ $i }: calc(#{ $_percentage-grid-width } * #{ $i } + var(--unitone--s1) * #{ $i - 1 });
   }
 
   /**
    * Grid sizes (container based).
    */
-  $_container-grid-width: calc((var(--container-max-width) - var(--_grid-gutters)) / #{ $_grid-columns });
-  --cg0: 0%;
+  $_container-grid-width: calc((var(--unitone--container-max-width) - var(--unitone--_grid-gutters)) / #{ $_grid-columns });
+  --unitone--cg0: 0%;
   @for $i from 1 through $_grid-columns {
-    --cg#{ $i }: calc(#{ $_container-grid-width } * #{ $i } + var(--s1) * #{ $i - 1 });
+    --unitone--cg#{ $i }: calc(#{ $_container-grid-width } * #{ $i } + var(--unitone--s1) * #{ $i - 1 });
   }
 
   /**
    * Box shadow
    */
-  --shadow: 0 5px 20px -5px rgb(0 0 0 / 20%);
+  --unitone--shadow: 0 5px 20px -5px rgb(0 0 0 / 20%);
 }

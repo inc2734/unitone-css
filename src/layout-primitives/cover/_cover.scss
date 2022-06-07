@@ -1,14 +1,14 @@
 @mixin abstract-cover() {
-  --gap: var(--s1);
-  --min-height: 100vh;
-  --justify-content: center;
+  --unitone--gap: var(--unitone--s1);
+  --unitone--min-height: 100vh;
+  --unitone--justify-content: center;
 
   display: flex;
   flex-flow: column;
-  gap: var(--gap);
-  justify-content: var(--justify-content);
-  min-height: var(--min-height);
-  padding: var(--gap);
+  gap: var(--unitone--gap);
+  justify-content: var(--unitone--justify-content);
+  min-height: var(--unitone--min-height);
+  padding: var(--unitone--gap);
   overflow: hidden;
 
   > * {

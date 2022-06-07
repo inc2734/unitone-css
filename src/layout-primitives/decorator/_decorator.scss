@@ -1,49 +1,49 @@
 @mixin abstract-decorator() {
-  --background-color: transparent;
-  // --color: var(--color-text); // Comment out if you don't want it to be inherited.
-  --border-color: transparent;
-  --border-width: 0;
-  --border-radius: 0;
-  --padding: var(--s0);
-  --box-shadow: none;
-  --position: static;
-  --top: initial;
-  --right: initial;
-  --bottom: initial;
-  --left: initial;
-  --z-index: initial;
+  --unitone--background-color: transparent;
+  // --unitone--color: var(--unitone--color-text); // Comment out if you don't want it to be inherited.
+  --unitone--border-color: transparent;
+  --unitone--border-width: 0;
+  --unitone--border-radius: 0;
+  --unitone--padding: var(--unitone--s0);
+  --unitone--box-shadow: none;
+  --unitone--position: static;
+  --unitone--top: initial;
+  --unitone--right: initial;
+  --unitone--bottom: initial;
+  --unitone--left: initial;
+  --unitone--z-index: initial;
 
-  padding: calc((var(--padding) - var(--half-leading) * 1em)) var(--padding);
-  border: var(--border-width) solid var(--border-color);
-  border-radius: var(--border-radius);
-  color: var(--color);
-  background-color: var(--background-color);
-  box-shadow: var(--box-shadow);
-  position: var(--position);
-  top: var(--top);
-  right: var(--right);
-  bottom: var(--bottom);
-  left: var(--left);
-  z-index: var(--z-index);
+  padding: calc((var(--unitone--padding) - var(--unitone--half-leading) * 1em)) var(--unitone--padding);
+  border: var(--unitone--border-width) solid var(--unitone--border-color);
+  border-radius: var(--unitone--border-radius);
+  color: var(--unitone--color);
+  background-color: var(--unitone--background-color);
+  box-shadow: var(--unitone--box-shadow);
+  position: var(--unitone--position);
+  top: var(--unitone--top);
+  right: var(--unitone--right);
+  bottom: var(--unitone--bottom);
+  left: var(--unitone--left);
+  z-index: var(--unitone--z-index);
 
   &[data-layout~="-shadow"] {
-    --box-shadow: var(--shadow);
+    --unitone--box-shadow: var(--unitone--shadow);
   }
 
   &[data-layout~="-position\:relative"] {
-    --position: relative !important;
+    --unitone--position: relative !important;
   }
 
   &[data-layout~="-position\:absolute"] {
-    --position: absolute !important;
+    --unitone--position: absolute !important;
   }
 
   &[data-layout~="-position\:sticky"] {
-    --position: sticky !important;
+    --unitone--position: sticky !important;
   }
 
   &[data-layout~="-position\:fixed"] {
-    --position: fixed !important;
+    --unitone--position: fixed !important;
   }
 }
 

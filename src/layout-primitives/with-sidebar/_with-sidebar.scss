@@ -1,5 +1,5 @@
 @mixin _aside() {
-  flex-basis: var(--sidebar-width);
+  flex-basis: var(--unitone--sidebar-width);
   flex-grow: 1;
   min-width: 1rem;
 }
@@ -7,20 +7,20 @@
 @mixin _main() {
   flex-basis: 0;
   flex-grow: 999;
-  min-width: min(100%, var(--content-min-width));
-  max-width: min(100%, var(--content-max-width));
+  min-width: min(100%, var(--unitone--content-min-width));
+  max-width: min(100%, var(--unitone--content-max-width));
 }
 
 @mixin abstract-with-sidebar() {
-  --content-min-width: 50%;
-  --content-max-width: 100%;
-  --gap: var(--s1);
-  --align-items: flex-start;
+  --unitone--content-min-width: 50%;
+  --unitone--content-max-width: 100%;
+  --unitone--gap: var(--unitone--s1);
+  --unitone--align-items: flex-start;
 
   display: flex;
   flex-wrap: wrap;
-  gap: var(--gap);
-  align-items: var(--align-items);
+  gap: var(--unitone--gap);
+  align-items: var(--unitone--align-items);
 
   &:not([data-layout~="-revert"])[data-layout~="-sidebar\:right"],
   &:not([data-layout~="-revert"]):not([data-layout~="-sidebar\:left"]),

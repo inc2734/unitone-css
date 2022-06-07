@@ -20,14 +20,15 @@ export default {
     },
     gutters: {
       control: { type: 'inline-radio' },
-      description: 'Gutters. Set by CSS var `--gutters` or `data-layout` attribute `-gutters:x`.',
+      description:
+        'Gutters. Set by CSS var `--unitone--gutters` or `data-layout` attribute `-gutters:x`.',
       options: [0, 1, 2, 3, 4, 5, 6, 7],
-      table: { defaultValue: { summary: 'var(--rem1)' } },
+      table: { defaultValue: { summary: 'var(--unitone--rem1)' } },
       type: { name: 'number', required: false },
     },
     maxWidth: {
       control: { type: 'text' },
-      description: 'Max width. Set by CSS var `--max-width`.',
+      description: 'Max width. Set by CSS var `--unitone--max-width`.',
       table: { defaultValue: { summary: '1280px' } },
       type: { name: 'string', required: false },
     },

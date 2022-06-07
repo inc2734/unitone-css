@@ -3,7 +3,7 @@
 ```html
 <div data-layout="layers">
   <img src="https://placehold.jp/400x300.jpg" alt="" />
-  <div data-layout="decorator" style="--align-self:end">
+  <div data-layout="decorator" style="--unitone--align-self:end">
     Lorem ipsum dolor sit amet
   </div>
 </div>
@@ -25,7 +25,7 @@
 ```html
 <div data-layout="layers">
   <img ...>
-  <div style="--alilgn-self: end, --justify-self: center">
+  <div style="--unitone--alilgn-self: end; --unitone--justify-self: center">
     ...
   </div>
 </div>

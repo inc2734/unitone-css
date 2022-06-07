@@ -12,13 +12,13 @@ export default {
   argTypes: {
     ratio: {
       control: { type: 'text' },
-      description: 'Aspect ratio. Set by CSS var `--ratio`.',
+      description: 'Aspect ratio. Set by CSS var `--unitone--ratio`.',
       table: { defaultValue: { summary: '16/9' } },
       type: { name: 'string', required: false },
     },
     switchRatio: {
       control: { type: 'inline-radio' },
-      description: 'When the orientation switches, the `--ratio` also switches.',
+      description: 'When the orientation switches, the `--unitone--ratio` also switches.',
       options: [false, true],
       table: { defaultValue: { summary: false } },
       type: { name: 'boolean', required: false },

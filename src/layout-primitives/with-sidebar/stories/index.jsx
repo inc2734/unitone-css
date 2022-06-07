@@ -12,24 +12,24 @@ export default {
   argTypes: {
     alignItems: {
       control: { type: 'inline-radio' },
-      description: '`--align-items`',
+      description: '`--unitone--align-items`',
       description:
-        'Alignment of the row direction. Set by CSS var `--align-items` or `data-layout` attribute `-align-items:x`.',
+        'Alignment of the row direction. Set by CSS var `--unitone--align-items` or `data-layout` attribute `-align-items:x`.',
       options: ['start', 'center', 'end'],
       table: { defaultValue: { summary: 'start' } },
       type: { name: 'string', required: false },
     },
     contentMinWidth: {
       control: { type: 'text' },
-      description: 'Min width of the content. Set by CSS var `--content-min-width`.',
+      description: 'Min width of the content. Set by CSS var `--unitone--content-min-width`.',
       table: { defaultValue: { summary: '50%' } },
       type: { name: 'string', required: false },
     },
     gap: {
       control: { type: 'inline-radio' },
-      description: 'Gap. Set by CSS var `--gap` or `data-layout` attribute `-gap:x`.',
+      description: 'Gap. Set by CSS var `--unitone--gap` or `data-layout` attribute `-gap:x`.',
       options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
-      table: { defaultValue: { summary: 'var(--s1)' } },
+      table: { defaultValue: { summary: 'var(--unitone--s1)' } },
       type: { name: 'number', required: false },
     },
     revert: {
@@ -50,7 +50,7 @@ export default {
     },
     sidebarWidth: {
       control: { type: 'text' },
-      description: 'Sidebar width. Set by CSS var `--sidebar-width`.',
+      description: 'Sidebar width. Set by CSS var `--unitone--sidebar-width`.',
       table: { defaultValue: { summary: 'initial' } },
       type: { name: 'string', required: false },
     },

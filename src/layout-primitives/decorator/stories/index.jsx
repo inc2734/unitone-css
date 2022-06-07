@@ -13,39 +13,40 @@ export default {
   argTypes: {
     backgroundColor: {
       control: { type: 'color' },
-      description: 'Background color. Set by CSS var `--background-color`.',
+      description: 'Background color. Set by CSS var `--unitone--background-color`.',
       table: { defaultValue: { summary: 'transparent' } },
       type: { name: 'string', required: false },
     },
     borderColor: {
       control: { type: 'color' },
-      description: 'Border color. Set by CSS var `--border-color`.',
+      description: 'Border color. Set by CSS var `--unitone--border-color`.',
       table: { defaultValue: { summary: 'transparent' } },
       type: { name: 'string', required: false },
     },
     borderRadius: {
       control: { type: 'text' },
-      description: 'Border radius. Set by CSS var `--border-radius`.',
+      description: 'Border radius. Set by CSS var `--unitone--border-radius`.',
       table: { defaultValue: { summary: '0' } },
       type: { name: 'string', required: false },
     },
     borderWidth: {
       control: { type: 'text' },
-      description: 'Border width. Set by CSS var `--border-width`.',
+      description: 'Border width. Set by CSS var `--unitone--border-width`.',
       table: { defaultValue: { summary: '0' } },
       type: { name: 'string', required: false },
     },
     color: {
       control: { type: 'color' },
-      description: 'Text color. Set by CSS var `--color`.',
+      description: 'Text color. Set by CSS var `--unitone--color`.',
       table: { defaultValue: { summary: 'initial' } },
       type: { name: 'string', required: false },
     },
     padding: {
       control: { type: 'inline-radio' },
-      description: 'Padding. Set by CSS var `--padding` or `data-layout` attribute `-padding:x`.',
+      description:
+        'Padding. Set by CSS var `--unitone--padding` or `data-layout` attribute `-padding:x`.',
       options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
-      table: { defaultValue: { summary: 'var(--s0)' } },
+      table: { defaultValue: { summary: 'var(--unitone--s0)' } },
       type: { name: 'number', required: false },
     },
     shadow: {
@@ -143,7 +144,7 @@ export const ExampleCombobox = (args) => {
       <Decorator
         padding={args.padding}
         backgroundColor={args.backgroundColor}
-        color="var(--color-white)"
+        color="var(--unitone--color-white)"
       >
         Combo Box
       </Decorator>

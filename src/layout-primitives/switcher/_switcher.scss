@@ -1,14 +1,14 @@
 @mixin abstract-switcher() {
-  --gap: var(--s1);
-  --threshold: var(--measure);
+  --unitone--gap: var(--unitone--s1);
+  --unitone--threshold: var(--unitone--measure);
 
   display: flex;
   flex-wrap: wrap;
-  gap: var(--gap);
+  gap: var(--unitone--gap);
 
   > * {
     flex-grow: 1;
-    flex-basis: calc((var(--threshold) - 100%) * 999);
+    flex-basis: calc((var(--unitone--threshold) - 100%) * 999);
   }
 }
 

@@ -1,7 +1,7 @@
 @mixin gap() {
   @for $i from -2 through 7 {
     [data-layout~="-gap\:#{ $i }"] {
-      --gap: var(--s#{ $i }) !important;
+      --unitone--gap: var(--unitone--s#{ $i }) !important;
     }
   }
 }

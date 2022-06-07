@@ -1,7 +1,7 @@
 body {
-  background-color: var(--color-white);
-  color: var(--color-text);
-  font-family: var(--font-family);
+  background-color: var(--unitone--color-white);
+  color: var(--unitone--color-text);
+  font-family: var(--unitone--font-family);
   -webkit-font-smoothing: antialiased;
   // -moz-osx-font-smooting: grayscale; // White out elements will activate this.
   overflow-wrap: break-word;

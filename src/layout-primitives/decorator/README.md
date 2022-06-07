@@ -35,7 +35,7 @@ After the `position`, specify the position with `-position:{position}`.
 ### Customizing offset
 
 ```html
-<div data-layout="decorator -position:relative" style="--top: 1px; --right: 1px; --bottom: 1px; --left: 1px">
+<div data-layout="decorator -position:relative" style="--unitone--top: 1px; --unitone--right: 1px; --unitone--bottom: 1px; --unitone--left: 1px">
   ...
 </div>
 ```
@@ -43,7 +43,7 @@ After the `position`, specify the position with `-position:{position}`.
 ### Customizing z-index
 
 ```html
-<div data-layout="decorator -position:relative" style="--z-index: 1">
+<div data-layout="decorator -position:relative" style="--unitone--z-index: 1">
   ...
 </div>
 ```

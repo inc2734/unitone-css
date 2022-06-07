@@ -1,14 +1,14 @@
 @mixin abstract-container() {
-  --gutters: var(--rem1);
-  --max-width: var(--container-max-width);
+  --unitone--gutters: var(--unitone--rem1);
+  --unitone--max-width: var(--unitone--container-max-width);
 
   box-sizing: content-box;
   margin-right: auto;
   margin-left: auto;
-  padding-right: var(--gutters);
-  padding-left: var(--gutters);
+  padding-right: var(--unitone--gutters);
+  padding-left: var(--unitone--gutters);
   max-width: 100%;
-  width: min(100% - var(--gutters) * 2, var(--max-width));
+  width: min(100% - var(--unitone--gutters) * 2, var(--unitone--max-width));
 }
 
 @mixin container() {

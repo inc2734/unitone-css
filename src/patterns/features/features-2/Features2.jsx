@@ -17,7 +17,7 @@ export const Feature2 = ({ items = [], ...props }) => (
               <Layers key={index}>
                 <Frame ratio="3/4">{!!item.src && <img src={item.src} alt="" />}</Frame>
                 {!!item.content && (
-                  <div style={{ '--font-size': -1, '--align-self': 'end' }}>
+                  <div style={{ '--unitone--font-size': -1, '--unitone--align-self': 'end' }}>
                     <Decorator padding={1}>
                       <p>{item.content}</p>
                     </Decorator>

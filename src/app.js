@@ -3,7 +3,7 @@ const setFluidFontSizeMagnification = (target) => {
     window.getComputedStyle(document.documentElement).getPropertyValue('font-size'),
   );
   const fontSize = parseFloat(window.getComputedStyle(target).getPropertyValue('font-size'));
-  target.style.setProperty('--fluid-font-size-magnification', fontSize / baseFontSize);
+  target.style.setProperty('--unitone--fluid-font-size-magnification', fontSize / baseFontSize);
 };
 
 const fluidFontSizeResizeObserver = new ResizeObserver((entries) => {

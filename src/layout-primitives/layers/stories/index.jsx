@@ -29,7 +29,7 @@ export const Default = (args) => {
   return (
     <Layers {...args}>
       <img src="https://placehold.jp/600x400.jpg" alt="" />
-      <Decorator style={{ '--align-self': 'end' }} padding={1}>
+      <Decorator style={{ '--unitone--align-self': 'end' }} padding={1}>
         Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
         eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
         nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
@@ -55,7 +55,7 @@ export const ExamplePicture = (args) => {
       <picture>
         <img src="https://placehold.jp/600x400.jpg" alt="" />
       </picture>
-      <Decorator style={{ '--align-self': 'end' }} padding={1}>
+      <Decorator style={{ '--unitone--align-self': 'end' }} padding={1}>
         Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
         eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
         nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
@@ -82,7 +82,7 @@ export const ExampleFigure = (args) => {
       <figure>
         <img src="https://placehold.jp/600x400.jpg" alt="" />
       </figure>
-      <Decorator style={{ '--align-self': 'end' }} padding={1}>
+      <Decorator style={{ '--unitone--align-self': 'end' }} padding={1}>
         Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
         eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
         nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
@@ -111,7 +111,7 @@ export const ExampleFigurePicture = (args) => {
           <img src="https://placehold.jp/600x400.jpg" alt="" />
         </picture>
       </figure>
-      <Decorator style={{ '--align-self': 'end' }} padding={1}>
+      <Decorator style={{ '--unitone--align-self': 'end' }} padding={1}>
         Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
         eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
         nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute

@@ -14,11 +14,11 @@ export const Header1 = (props) => (
       {!!props.src && <img src={props.src} alt="" />}
       <Cover>
         <CoverContent>
-          <Container gutters={0} maxWidth="var(--measure)">
+          <Container gutters={0} maxWidth="var(--unitone--measure)">
             <Stack gap={2}>
               {!!props.title && (
                 <Center>
-                  <h2 style={{ '--font-size': 5 }}>{props.title}</h2>
+                  <h2 style={{ '--unitone--font-size': 5 }}>{props.title}</h2>
                 </Center>
               )}
               {!!props.children && <Text center>{props.children}</Text>}

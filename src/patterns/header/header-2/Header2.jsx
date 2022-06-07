@@ -15,7 +15,7 @@ export const Header2 = (props) => (
           <Stack gap={2}>
             {!!props.title && (
               <Center>
-                <h2 style={{ '--font-size': 5 }}>{props.title}</h2>
+                <h2 style={{ '--unitone--font-size': 5 }}>{props.title}</h2>
               </Center>
             )}
             {!!props.children && <Text center>{props.children}</Text>}

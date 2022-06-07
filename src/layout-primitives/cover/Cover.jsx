@@ -3,7 +3,7 @@ import React from 'react';
 export const Cover = ({ gap, minHeight, justifyContent, noPadding, style, ...props }) => {
   style = {
     ...style,
-    '--min-height': !!minHeight ? minHeight : undefined,
+    '--unitone--min-height': !!minHeight ? minHeight : undefined,
   };
 
   return (

@@ -13,7 +13,7 @@ export default {
     },
     columnMinWidth: {
       control: { type: 'text' },
-      description: '`--column-min-width`',
+      description: '`--unitone--column-min-width`',
       table: { defaultValue: { summary: '250px' } },
       type: { name: 'string', required: false },
     },

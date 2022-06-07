@@ -12,9 +12,9 @@ export const Header3 = (props) => (
     <Gutters>
       <Container>
         <Stack gap={2}>
-          <Container align="start" gutters={0} maxWidth="var(--measure)">
+          <Container align="start" gutters={0} maxWidth="var(--unitone--measure)">
             <Stack gap={2}>
-              {!!props.title && <h2 style={{ '--font-size': 3 }}>{props.title}</h2>}
+              {!!props.title && <h2 style={{ '--unitone--font-size': 3 }}>{props.title}</h2>}
               {!!props.children && <Text>{props.children}</Text>}
             </Stack>
           </Container>

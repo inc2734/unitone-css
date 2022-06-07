@@ -2,7 +2,7 @@
 
 ```html
 <div data-layout="container">
-  <div data-layout="text" style="--max-width: 100%">
+  <div data-layout="text" style="--unitone--max-width: 100%">
     <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h2>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt

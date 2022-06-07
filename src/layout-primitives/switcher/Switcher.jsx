@@ -3,7 +3,7 @@ import React from 'react';
 export const Switcher = ({ gap, limit, threshold, style, ...props }) => {
   style = {
     ...style,
-    '--threshold': !!threshold ? threshold : undefined,
+    '--unitone--threshold': !!threshold ? threshold : undefined,
   };
 
   return (
