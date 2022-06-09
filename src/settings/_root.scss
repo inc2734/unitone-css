@@ -125,24 +125,24 @@
   --unitone--container-max-width: #{ variables.$container-max-width };
 
   $_grid-columns: 12;
-  --unitone--_grid-gutters: calc(#{ $_grid-columns - 1 } * var(--unitone--s1));
+  // --unitone--_grid-gutters: calc(#{ $_grid-columns - 1 } * var(--unitone--s1));
+  --unitone--grid-columns: #{ $_grid-columns };
+  --unitone--grid-gap: var(--unitone--s1);
 
   /**
    * Grid sizes (% based).
    */
-  $_percentage-grid-width: calc((100% - var(--unitone--_grid-gutters)) / #{ $_grid-columns });
   --unitone--pg0: 0%;
   @for $i from 1 through $_grid-columns {
-    --unitone--pg#{ $i }: calc(#{ $_percentage-grid-width } * #{ $i } + var(--unitone--s1) * #{ $i - 1 });
+    --unitone--pg#{ $i }: calc((100% - var(--unitone--grid-gap) * (var(--unitone--grid-columns) - 1)) / var(--unitone--grid-columns) * #{ $i } + var(--unitone--grid-gap) * #{ $i - 1 });
   }
 
   /**
    * Grid sizes (container based).
    */
-  $_container-grid-width: calc((var(--unitone--container-max-width) - var(--unitone--_grid-gutters)) / #{ $_grid-columns });
   --unitone--cg0: 0%;
   @for $i from 1 through $_grid-columns {
-    --unitone--cg#{ $i }: calc(#{ $_container-grid-width } * #{ $i } + var(--unitone--s1) * #{ $i - 1 });
+    --unitone--cg#{ $i }: calc((var(--unitone--container-max-width) - var(--unitone--grid-gap) * (var(--unitone--grid-columns) - 1)) / var(--unitone--grid-columns) * #{ $i } + var(--unitone--grid-gap) * #{ $i - 1 });
   }
 
   /**
