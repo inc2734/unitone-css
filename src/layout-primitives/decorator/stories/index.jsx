@@ -38,7 +38,7 @@ export default {
     color: {
       control: { type: 'color' },
       description: 'Text color. Set by CSS var `--unitone--color`.',
-      table: { defaultValue: { summary: 'initial' } },
+      table: { defaultValue: { summary: 'inherit' } },
       type: { name: 'string', required: false },
     },
     padding: {
