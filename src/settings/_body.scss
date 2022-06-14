@@ -1,7 +1,10 @@
-body {
+:where(body) {
   background-color: var(--unitone--color-white);
   color: var(--unitone--color-text);
   font-family: var(--unitone--font-family);
+}
+
+body {
   -webkit-font-smoothing: antialiased;
   // -moz-osx-font-smooting: grayscale; // White out elements will activate this.
   overflow-wrap: break-word;
