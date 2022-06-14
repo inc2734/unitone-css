@@ -1,6 +1,6 @@
 @mixin abstract-decorator() {
   --unitone--background-color: transparent;
-  // --unitone--color: var(--unitone--color-text); // Comment out if you don't want it to be inherited.
+  --unitone--color: inherit;
   --unitone--border-color: transparent;
   --unitone--border-width: 0;
   --unitone--border-radius: 0;
@@ -27,7 +27,7 @@
   z-index: var(--unitone--z-index);
 
   &[data-unitone-layout~="-shadow"] {
-    --unitone--box-shadow: var(--unitone--shadow);
+    --unitone--box-shadow: var(--unitone--global--box-shadow);
   }
 
   &[data-unitone-layout~="-position\:relative"] {
