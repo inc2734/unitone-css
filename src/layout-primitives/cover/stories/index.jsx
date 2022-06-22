@@ -33,20 +33,11 @@ export default {
       table: { defaultValue: { summary: 'false' } },
       type: { name: 'boolean', required: false },
     },
-    justifyContent: {
-      control: { type: 'inline-radio' },
-      description:
-        'Alignment of the row direction. Set by CSS var `--unitone--justify-content` or `data-unitone-layout` attribute `-justify-content:x`.',
-      options: ['start', 'center', 'end', 'space-between'],
-      table: { defaultValue: { summary: 'start' } },
-      type: { name: 'string', required: false },
-    },
   },
   args: {
     gap: 1,
     minHeight: '100vh',
     noPadding: false,
-    justifyContent: 'center',
   },
 };
 
@@ -70,35 +61,11 @@ export const Default = (args) => {
   );
 };
 
-export const ExampleNoHeader = (args) => {
+export const ExampleHeader = (args) => {
   return (
     <Decorator backgroundColor="#000" color="#fff">
       <Cover {...args}>
-        <CoverContent>
-          <Stack>
-            <h1 style={{ '--unitone--font-size': 6 }}>Lorem ipsum dolor sit amet</h1>
-            <p>
-              consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
-            </p>
-          </Stack>
-        </CoverContent>
-        <p>sed do</p>
-      </Cover>
-    </Decorator>
-  );
-};
-ExampleNoHeader.storyName = 'Example : No header';
-ExampleNoHeader.args = {
-  minHeight: '80vh',
-};
-
-export const ExampleNoFooter = (args) => {
-  return (
-    <Decorator backgroundColor="#000" color="#fff">
-      <Cover {...args}>
-        <p>Lorem ipsum</p>
-        <CoverContent>
+        <CoverContent position="top">
           <Stack>
             <h1 style={{ '--unitone--font-size': 6 }}>Lorem ipsum dolor sit amet</h1>
             <p>
@@ -111,8 +78,8 @@ export const ExampleNoFooter = (args) => {
     </Decorator>
   );
 };
-ExampleNoFooter.storyName = 'Example : No footer';
-ExampleNoFooter.args = {
+ExampleHeader.storyName = 'Example : Header';
+ExampleHeader.args = {
   minHeight: '80vh',
 };
 
@@ -120,21 +87,92 @@ export const ExampleFooter = (args) => {
   return (
     <Decorator backgroundColor="#000" color="#fff">
       <Cover {...args}>
-        <CoverContent>
-          <p>Lorem ipsum</p>
+        <CoverContent position="bottom">
+          <Stack>
+            <h1 style={{ '--unitone--font-size': 6 }}>Lorem ipsum dolor sit amet</h1>
+            <p>
+              consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+              magna aliqua.
+            </p>
+          </Stack>
         </CoverContent>
-        <Stack>
-          <h1 style={{ '--unitone--font-size': 6 }}>Lorem ipsum dolor sit amet</h1>
-          <p>
-            consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-            aliqua.
-          </p>
-        </Stack>
       </Cover>
     </Decorator>
   );
 };
 ExampleFooter.storyName = 'Example : Footer';
 ExampleFooter.args = {
+  minHeight: '80vh',
+};
+
+export const ExampleHeaderFooter = (args) => {
+  return (
+    <Decorator backgroundColor="#000" color="#fff">
+      <Cover {...args}>
+        <CoverContent position="top">
+          <p>Lorem ipsum</p>
+        </CoverContent>
+
+        <CoverContent position="bottom">
+          <p>Lorem ipsum</p>
+        </CoverContent>
+      </Cover>
+    </Decorator>
+  );
+};
+ExampleHeaderFooter.storyName = 'Example : Header Footer';
+ExampleHeaderFooter.args = {
+  minHeight: '80vh',
+};
+
+export const ExampleHeaderCenter = (args) => {
+  return (
+    <Decorator backgroundColor="#000" color="#fff">
+      <Cover {...args}>
+        <CoverContent position="top">
+          <p>Lorem ipsum</p>
+        </CoverContent>
+
+        <CoverContent position="center">
+          <Stack>
+            <h1 style={{ '--unitone--font-size': 6 }}>Lorem ipsum dolor sit amet</h1>
+            <p>
+              consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+              magna aliqua.
+            </p>
+          </Stack>
+        </CoverContent>
+      </Cover>
+    </Decorator>
+  );
+};
+ExampleHeaderCenter.storyName = 'Example : Header Center';
+ExampleHeaderCenter.args = {
+  minHeight: '80vh',
+};
+
+export const ExampleCenterFooter = (args) => {
+  return (
+    <Decorator backgroundColor="#000" color="#fff">
+      <Cover {...args}>
+        <CoverContent position="center">
+          <Stack>
+            <h1 style={{ '--unitone--font-size': 6 }}>Lorem ipsum dolor sit amet</h1>
+            <p>
+              consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+              magna aliqua.
+            </p>
+          </Stack>
+        </CoverContent>
+
+        <CoverContent position="bottom">
+          <p>Lorem ipsum</p>
+        </CoverContent>
+      </Cover>
+    </Decorator>
+  );
+};
+ExampleCenterFooter.storyName = 'Example : Center Footer';
+ExampleCenterFooter.args = {
   minHeight: '80vh',
 };

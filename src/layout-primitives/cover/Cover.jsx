@@ -23,8 +23,19 @@ export const Cover = ({ gap, minHeight, justifyContent, noPadding, style, ...pro
   );
 };
 
-export const CoverContent = ({ tagName = 'div', ...props }) => {
+export const CoverContent = ({ position, tagName = 'div', ...props }) => {
   const Tag = tagName;
 
-  return <Tag data-unitone-layout="cover__content">{props.children}</Tag>;
+  return (
+    <Tag
+      data-unitone-layout={[
+        'cover__content',
+        'undefined' !== typeof position ? `-valign:${position}` : undefined,
+      ]
+        .filter(Boolean)
+        .join(' ')}
+    >
+      {props.children}
+    </Tag>
+  );
 };

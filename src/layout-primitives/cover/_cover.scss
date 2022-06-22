@@ -6,7 +6,6 @@
   display: flex;
   flex-flow: column;
   gap: var(--unitone--gap);
-  justify-content: var(--unitone--justify-content);
   min-height: var(--unitone--min-height);
   padding: var(--unitone--gap);
   overflow: hidden;
@@ -33,5 +32,28 @@
 
   [data-unitone-layout~="cover__content"] {
     @include abstract-cover__content();
+
+    &[data-unitone-layout~="-valign:top"] {
+      margin-top: 0;
+      margin-bottom: auto;
+    }
+
+    &[data-unitone-layout~="-valign:center"] {
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+
+    &[data-unitone-layout~="-valign:bottom"] {
+      margin-top: auto;
+      margin-bottom: 0;
+    }
+
+    &[data-unitone-layout~="-valign:top"] + [data-unitone-layout~="cover__content"][data-unitone-layout~="-valign:center"] {
+      margin-top: 0;
+    }
+
+    &[data-unitone-layout~="-valign:center"] + [data-unitone-layout~="cover__content"][data-unitone-layout~="-valign:bottom"] {
+      margin-top: 0;
+    }
   }
 }
