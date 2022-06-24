@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Text = ({ center, maxWidth, scale, style, ...props }) => {
+export const Text = ({ center, column, gap, maxWidth, scale, style, ...props }) => {
   style = {
     ...style,
     '--unitone--max-width': !!maxWidth ? maxWidth : undefined,
@@ -8,7 +8,12 @@ export const Text = ({ center, maxWidth, scale, style, ...props }) => {
 
   return (
     <div
-      data-unitone-layout={['text', true === center ? '-center' : undefined]
+      data-unitone-layout={[
+        'text',
+        true === center ? '-center' : undefined,
+        true === column ? '-column' : undefined,
+        'undefined' !== typeof gap ? `-gap:${gap}` : undefined,
+      ]
         .filter(Boolean)
         .join(' ')}
       style={style}

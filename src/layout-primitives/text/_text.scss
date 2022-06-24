@@ -1,8 +1,9 @@
 @mixin abstract-text() {
+  --unitone--gap: var(--unitone--s1);
+  --unitone--column-gap: var( --unitone--gap);
   --unitone--max-width: var(--unitone--measure);
 
   > * {
-    --unitone--gap: var(--unitone--s1);
     margin: 0 auto;
   }
 
@@ -53,6 +54,11 @@
       --unitone--margin-top: .5;
     }
   }
+
+  &[data-unitone-layout~="-column"] {
+    column-width: var(--unitone--max-width);
+    gap: var(--unitone--column-gap);
+  }
 }
 
 @mixin text() {
@@ -66,6 +72,10 @@
 
   :where([data-unitone-layout~="text"][data-unitone-layout~="-center"]) > * {
     width: fit-content;
+  }
+
+  :where([data-unitone-layout~="text"][data-unitone-layout~="-column"]) > * {
+    max-width: initial;
   }
 
   [data-unitone-layout~="text"]:lang(ja) {

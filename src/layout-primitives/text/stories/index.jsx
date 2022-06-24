@@ -17,6 +17,21 @@ export default {
       table: { defaultValue: { summary: false } },
       type: { name: 'boolean', required: false },
     },
+    column: {
+      control: { type: 'inline-radio' },
+      description: 'Centering child items. Set by `data-unitone-layout` attribute `-center`.',
+      options: [false, true],
+      table: { defaultValue: { summary: false } },
+      type: { name: 'boolean', required: false },
+    },
+    gap: {
+      control: { type: 'inline-radio' },
+      description:
+        'Gap. Set by CSS var `--unitone--gap` or `data-unitone-layout` attribute `-gap:x`.',
+      options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
+      table: { defaultValue: { summary: 'var(--unitone--s1)' } },
+      type: { name: 'number', required: false },
+    },
     maxWidth: {
       control: { type: 'text' },
       description: 'Max width. Set by CSS var `--unitone--max-width`.',
@@ -26,6 +41,8 @@ export default {
   },
   args: {
     center: false,
+    column: false,
+    gap: 1,
     maxWidth: 'var(--unitone--measure)',
   },
 };
