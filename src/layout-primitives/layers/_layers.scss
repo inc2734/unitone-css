@@ -1,12 +1,21 @@
 @mixin abstract-layers() {
   --unitone--gap: var(--unitone--s1);
-  --unitone--columns: 12;
+  --unitone--columns: 16;
+  --unitone--rows: 9;
+  --unitone--min-height: 0;
+
+
+  @media (orientation: portrait) {
+    --unitone--columns: 9;
+    --unitone--rows: 16;
+  }
 
   position: relative;
   display: grid;
   grid-template-columns: repeat(var(--unitone--columns), 1fr);
-  grid-template-rows: max-content;
+  grid-template-rows: repeat(var(--unitone--rows), 1fr);
   gap: var(--unitone--gap);
+  min-height: var(--unitone--min-height);
   overflow: hidden;
 
   > * {
