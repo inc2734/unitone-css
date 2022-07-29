@@ -39,20 +39,12 @@ export default {
       table: { defaultValue: { summary: 'false' } },
       type: { name: 'boolean', required: false },
     },
-    shifted: {
-      control: { type: 'inline-radio' },
-      description: 'Shift the reel.',
-      options: [false, true],
-      table: { defaultValue: { summary: 'false' } },
-      type: { name: 'boolean', required: false },
-    },
   },
   args: {
     gap: 'var(--unitone--s1)',
     height: 'auto',
     itemWidth: 'calc(var(--unitone--measure) / 2)',
     noBar: false,
-    shifted: false,
   },
 };
 

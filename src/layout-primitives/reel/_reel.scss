@@ -45,15 +45,6 @@
       display: none;
     }
   }
-
-  &[data-unitone-layout~="-shifted"] {
-    margin-right: calc(50% - 50vw);
-
-    &::after {
-      content: '';
-      flex: 0 0 0%;
-    }
-  }
 }
 
 @mixin reel() {

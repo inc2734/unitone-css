@@ -37,14 +37,6 @@
 </div>
 ```
 
-### Shifted
-
-```html
-<div data-unitone-layout="reel -shifted">
-  ...
-</div>
-```
-
 ### Customizing gap
 
 ```html

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Reel = ({ gap, height, itemWidth, noBar, shifted, style, ...props }) => {
+export const Reel = ({ gap, height, itemWidth, noBar, style, ...props }) => {
   style = {
     ...style,
     '--unitone--height': !!height ? height : undefined,
@@ -13,7 +13,6 @@ export const Reel = ({ gap, height, itemWidth, noBar, shifted, style, ...props }
         'reel',
         !!gap ? `-gap:${gap}` : undefined,
         true === noBar ? `-no-bar` : undefined,
-        true === shifted ? `-shifted` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}
