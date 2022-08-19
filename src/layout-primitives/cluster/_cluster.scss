@@ -1,11 +1,11 @@
 @mixin abstract-cluster() {
   --unitone--align-items: flex-start;
-  --unitone--gap: calc(var(--unitone--s1) / 2) var(--unitone--s1);
+  --unitone--gap: var(--unitone--s1);
   --unitone--justify-content: flex-start;
 
   display: flex;
   flex-wrap: wrap;
-  gap: var(--unitone--gap);
+  gap: calc(var(--unitone--gap) / 2) var(--unitone--gap);
   justify-content: var(--unitone--justify-content);
   align-items: var(--unitone--align-items);
   list-style: none;
