@@ -1,5 +1,6 @@
 @mixin abstract-cluster() {
   --unitone--align-items: flex-start;
+  --unitone--divider-color: var(--unitone--color--light-gray);
   --unitone--gap: var(--unitone--s1);
   --unitone--justify-content: flex-start;
 
@@ -12,6 +13,42 @@
 
   > * {
     margin: 0;
+  }
+
+  &[data-unitone-layout~="-divider\:stripe"] {
+    column-gap: 0;
+
+    > * {
+      margin-right: -1px;
+      border-right: 1px solid var(--unitone--divider-color);
+      border-left: 1px solid var(--unitone--divider-color);
+      padding-right: var(--unitone--gap);
+      padding-left: var(--unitone--gap);
+    }
+  }
+
+  &[data-unitone-layout~="-divider\:slash"] {
+    --unitone--divider-color: var(--unitone--color--gray);
+
+    gap: calc(var(--unitone--gap) / 2) calc(var(--unitone--gap) * 2);
+
+    > * + *::before {
+      content: '/';
+      position: relative;
+      right: var(--unitone--gap);
+      color: var(--unitone--divider-color);
+    }
+  }
+
+  &[data-unitone-layout~="-divider\:bordered"] {
+    gap: 0;
+
+    > * {
+      margin-top: -1px;
+      margin-right: -1px;
+      border: 1px solid var(--unitone--divider-color);
+      padding: calc(var(--unitone--gap) / 2) var(--unitone--gap);
+    }
   }
 }
 

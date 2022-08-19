@@ -33,3 +33,18 @@
   ...
 </ul>
 ```
+
+### Using divider
+
+stripe / slash / bordered
+
+```html
+<div data-unitone-layout="cluster -divider:stripe">
+  <div>
+    ...
+  </div>
+  <div>
+    ...
+  </div>
+</div>
+```

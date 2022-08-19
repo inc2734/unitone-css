@@ -35,6 +35,13 @@ export default {
       table: { defaultValue: { summary: 'start' } },
       type: { name: 'string', required: false },
     },
+    divider: {
+      control: { type: 'inline-radio' },
+      description: 'Divider. Set by `data-unitone-layout` attribute `-divider:x`.',
+      options: [undefined, 'stripe', 'slash', 'bordered'],
+      table: { defaultValue: { summary: false } },
+      type: { name: 'boolean', required: false },
+    },
     tagName: {
       table: { disable: true },
     },
@@ -43,6 +50,7 @@ export default {
     alignItems: 'start',
     gap: 1,
     justifyContent: 'start',
+    divider: undefined,
   },
 };
 
@@ -77,3 +85,51 @@ ExampleHeader.argTypes = {
   justifyContent: { table: { disable: true } },
   alignItems: { table: { disable: true } },
 };
+
+export const ExampleStripe = (args) => {
+  return (
+    <Cluster {...args}>
+      <div>Lorem ipsum</div>
+      <div>dolor sit</div>
+      <div>amet consectetur</div>
+      <div>adipisicing elit</div>
+      <div>sed do</div>
+    </Cluster>
+  );
+};
+ExampleStripe.args = {
+  divider: 'stripe',
+};
+ExampleStripe.storyName = 'Example : Stripe';
+
+export const ExampleSlash = (args) => {
+  return (
+    <Cluster {...args}>
+      <div>Lorem ipsum</div>
+      <div>dolor sit</div>
+      <div>amet consectetur</div>
+      <div>adipisicing elit</div>
+      <div>sed do</div>
+    </Cluster>
+  );
+};
+ExampleSlash.args = {
+  divider: 'slash',
+};
+ExampleSlash.storyName = 'Example : Slash';
+
+export const ExampleBordered = (args) => {
+  return (
+    <Cluster {...args}>
+      <div>Lorem ipsum</div>
+      <div>dolor sit</div>
+      <div>amet consectetur</div>
+      <div>adipisicing elit</div>
+      <div>sed do</div>
+    </Cluster>
+  );
+};
+ExampleBordered.args = {
+  divider: 'bordered',
+};
+ExampleBordered.storyName = 'Example : Bordered';

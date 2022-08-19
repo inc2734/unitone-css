@@ -27,18 +27,28 @@ export default {
       table: { defaultValue: { summary: false } },
       type: { name: 'boolean', required: false },
     },
+    divider: {
+      control: { type: 'inline-radio' },
+      description: 'Divider. Set by `data-unitone-layout` attribute `-divider:x`.',
+      options: [undefined, 'stripe', 'underline', 'bordered'],
+      table: { defaultValue: { summary: false } },
+      type: { name: 'boolean', required: false },
+    },
   },
   args: {
     gap: 1,
     negative: false,
+    divider: undefined,
   },
 };
 
+const contentEn =
+  'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill';
+const contentJa =
+  'あともゴーシュ子たり何に向いていまし。夜中は次がしばらくと落ちて狸から舞台のようで来でおかげをしからちょろちょろゴーシュを合わせていです。どうかまげて子をこどもに出でしです。それりんに狸がこってボック';
+
 const Content = (props) => {
-  const content =
-    'ja' === props.lang
-      ? 'あともゴーシュ子たり何に向いていまし。夜中は次がしばらくと落ちて狸から舞台のようで来でおかげをしからちょろちょろゴーシュを合わせていです。どうかまげて子をこどもに出でしです。それりんに狸がこってボック'
-      : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill';
+  const content = 'ja' === props.lang ? contentJa : contentEn;
 
   return (
     <>
@@ -121,3 +131,63 @@ ExampleCard.storyName = 'Example : Card';
 ExampleCard.argTypes = {
   center: { table: { disable: true } },
 };
+
+export const ExampleStripe = (args) => {
+  return (
+    <Stack {...args}>
+      <div>
+        <p>{contentEn}</p>
+      </div>
+      <div>
+        <p>{contentEn}</p>
+      </div>
+      <div>
+        <p>{contentEn}</p>
+      </div>
+    </Stack>
+  );
+};
+ExampleStripe.args = {
+  divider: 'stripe',
+};
+ExampleStripe.storyName = 'Example : Stripe';
+
+export const ExampleUnderline = (args) => {
+  return (
+    <Stack {...args}>
+      <div>
+        <p>{contentEn}</p>
+      </div>
+      <div>
+        <p>{contentEn}</p>
+      </div>
+      <div>
+        <p>{contentEn}</p>
+      </div>
+    </Stack>
+  );
+};
+ExampleUnderline.args = {
+  divider: 'underline',
+};
+ExampleUnderline.storyName = 'Example : Underline';
+
+export const ExampleBordered = (args) => {
+  return (
+    <Stack {...args}>
+      <div>
+        <p>{contentEn}</p>
+      </div>
+      <div>
+        <p>{contentEn}</p>
+      </div>
+      <div>
+        <p>{contentEn}</p>
+      </div>
+    </Stack>
+  );
+};
+ExampleBordered.args = {
+  divider: 'bordered',
+};
+ExampleBordered.storyName = 'Example : Bordered';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Stack = ({ center, gap, negative, style, ...props }) => {
+export const Stack = ({ center, divider, gap, negative, style, ...props }) => {
   style = {
     ...style,
   };
@@ -9,6 +9,7 @@ export const Stack = ({ center, gap, negative, style, ...props }) => {
     <div
       data-unitone-layout={[
         'stack',
+        !!divider ? `-divider:${divider}` : undefined,
         'undefined' !== typeof gap ? `-gap:${gap}` : undefined,
         true === negative ? '-negative' : undefined,
       ]

@@ -144,7 +144,7 @@ export const ExampleCombobox = (args) => {
       <Decorator
         padding={args.padding}
         backgroundColor={args.backgroundColor}
-        color="var(--unitone--color-white)"
+        color="var(--unitone--color--white)"
       >
         Combo Box
       </Decorator>

@@ -22,3 +22,18 @@
   ...
 </div>
 ```
+
+### Using divider
+
+stripe / underline / bordered
+
+```html
+<div data-unitone-layout="stack -divider:stripe">
+  <div>
+    ...
+  </div>
+  <div>
+    ...
+  </div>
+</div>
+```
