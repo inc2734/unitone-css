@@ -32,6 +32,16 @@
 
     gap: calc(var(--unitone--gap) / 2) calc(var(--unitone--gap) * 2);
 
+    > * {
+      display: flex;
+      padding-right: var(--unitone--gap);
+      padding-left: var(--unitone--gap);
+    }
+
+    > :first-child {
+      padding-left: 0;
+    }
+
     > * + *::before {
       content: '/';
       position: relative;
