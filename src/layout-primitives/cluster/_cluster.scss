@@ -30,7 +30,7 @@
   &[data-unitone-layout~="-divider\:slash"] {
     --unitone--divider-color: var(--unitone--color--gray);
 
-    gap: calc(var(--unitone--gap) / 2) calc(var(--unitone--gap) * 2);
+    gap: calc(var(--unitone--gap) / 2) 0;
 
     > * {
       display: flex;
