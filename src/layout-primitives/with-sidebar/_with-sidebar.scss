@@ -12,6 +12,7 @@
 }
 
 @mixin abstract-with-sidebar() {
+  --unitone--sidebar-width: auto;
   --unitone--content-min-width: 50%;
   --unitone--content-max-width: 100%;
   --unitone--gap: var(--unitone--s1);
