@@ -1,4 +1,6 @@
 @mixin abstract-stack() {
+  --unitone--divider-width: 1px;
+  --unitone--divider-style: solid;
   --unitone--divider-color: var(--unitone--color--light-gray);
   --unitone--gap: var(--unitone--s1);
 
@@ -20,14 +22,14 @@
     gap: 0;
 
     > * {
-      border-top: 1px solid var(--unitone--divider-color);
-      border-bottom: 1px solid var(--unitone--divider-color);
+      border-top: var(--unitone--divider-width) var(--unitone--divider-style) var(--unitone--divider-color);
+      border-bottom: var(--unitone--divider-width) var(--unitone--divider-style) var(--unitone--divider-color);
       padding-top: var(--unitone--gap);
       padding-bottom: var(--unitone--gap);
     }
 
     > * + * {
-      margin-top: -1px;
+      margin-top: calc(-1 * var(--unitone--divider-width));
     }
   }
 
@@ -35,7 +37,7 @@
     gap: 0;
 
     > * {
-      border-bottom: 1px solid var(--unitone--divider-color);
+      border-bottom: var(--unitone--divider-width) var(--unitone--divider-style) var(--unitone--divider-color);
       padding-top: var(--unitone--gap);
       padding-bottom: var(--unitone--gap);
     }
@@ -49,12 +51,12 @@
     gap: 0;
 
     > * {
-      border: 1px solid var(--unitone--divider-color);
+      border: var(--unitone--divider-width) var(--unitone--divider-style) var(--unitone--divider-color);
       padding: var(--unitone--gap);
     }
 
     > * + * {
-      margin-top: -1px;
+      margin-top: calc(-1 * var(--unitone--divider-width));
     }
   }
 
