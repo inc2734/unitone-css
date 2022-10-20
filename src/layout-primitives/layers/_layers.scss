@@ -1,20 +1,24 @@
 @mixin abstract-layers() {
   --unitone--gap: var(--unitone--s1);
-  --unitone--columns: 16;
-  --unitone--rows: 9;
+  --unitone--base-columns: 16;
+  --unitone--base-rows: 9;
+
+  --unitone--columns: var(--unitone--base-columns);
+  --unitone--rows: var(--unitone--base-rows);
+  --unitone--layers-gap: min(100% / var(--unitone--columns), var(--unitone--gap));
   --unitone--min-height: 0;
 
-
   @media (orientation: portrait) {
-    --unitone--columns: 9;
-    --unitone--rows: 16;
+    --unitone--columns: var(--unitone--base-rows);
+    --unitone--rows: var(--unitone--base-columns);
+    --unitone--layers-gap: min(100% / var(--unitone--rows), var(--unitone--gap));
   }
 
   position: relative;
   display: grid;
   grid-template-columns: repeat(var(--unitone--columns), 1fr);
   grid-template-rows: repeat(var(--unitone--rows), 1fr);
-  gap: var(--unitone--gap);
+  gap: var(--unitone--layers-gap);
   min-height: var(--unitone--min-height);
   overflow: hidden;
 
