@@ -27,6 +27,10 @@
       padding-right: var(--unitone--gap);
       padding-left: var(--unitone--gap);
     }
+
+    > :not(:first-child) {
+      border-left-color: transparent;
+    }
   }
 
   &[data-unitone-layout~="-divider\:slash"] {
@@ -55,11 +59,13 @@
 
   &[data-unitone-layout~="-divider\:bordered"] {
     gap: 0;
+    border-left: var(--unitone--divider-width) var(--unitone--divider-style) var(--unitone--divider-color);
 
     > * {
       margin-top: calc(-1 * var(--unitone--divider-width));
       margin-right: calc(-1 * var(--unitone--divider-width));
       border: var(--unitone--divider-width) var(--unitone--divider-style) var(--unitone--divider-color);
+      border-left-color: transparent;
       padding: calc(var(--unitone--gap) / 2) var(--unitone--gap);
     }
   }
