@@ -2,7 +2,7 @@
   --unitone--align-items: strech;
   --unitone--divider-width: 1px;
   --unitone--divider-style: solid;
-  --unitone--divider-color: var(--unitone--color--light-gray);
+  --unitone--divider-color: var(--unitone--color--gray);
   --unitone--gap: var(--unitone--s1);
   --unitone--justify-content: flex-start;
 
@@ -34,8 +34,6 @@
   }
 
   &[data-unitone-layout~="-divider\:slash"] {
-    --unitone--divider-color: var(--unitone--color--gray);
-
     gap: calc(var(--unitone--gap) / 2) 0;
 
     > * {

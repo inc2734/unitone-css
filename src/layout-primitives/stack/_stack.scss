@@ -1,7 +1,7 @@
 @mixin abstract-stack() {
   --unitone--divider-width: 1px;
   --unitone--divider-style: solid;
-  --unitone--divider-color: var(--unitone--color--light-gray);
+  --unitone--divider-color: var(--unitone--color--gray);
   --unitone--gap: var(--unitone--s1);
 
   display: flex;
