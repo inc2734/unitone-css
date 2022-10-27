@@ -1,16 +1,31 @@
 @mixin abstract-frame() {
   --unitone--ratio: 16/9;
 
+  position: relative;
+
+  &:empty {
+    &::before {
+      content: '';
+      display: block;
+      padding: calc(100% / (var(--unitone--ratio))) 0 0;
+    }
+  }
+
   img,
   video {
     width: 100%;
     object-fit: cover;
     aspect-ratio: var(--unitone--ratio);
-    vertical-align: top;
   }
 
   @media (orientation: portrait) {
     &[data-unitone-layout~="-switch"] {
+      &:empty {
+        &::before {
+          padding-top: calc(var(--unitone--ratio) * 100%);
+        }
+      }
+
       img,
       video {
         aspect-ratio: calc(1 / (var(--unitone--ratio)));
