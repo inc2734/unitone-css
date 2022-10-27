@@ -1,10 +1,11 @@
 @mixin abstract-responsive-grid() {
+  --unitone--auto-repeat: auto-fill;
   --unitone--column-min-width: 250px;
   --unitone--gap: var(--unitone--s1);
 
   display: grid;
   grid-gap: var(--unitone--gap);
-  grid-template-columns: repeat(auto-fit, minmax(min(var(--unitone--column-min-width), 100%), 1fr));
+  grid-template-columns: repeat(var(--unitone--auto-repeat), minmax(min(var(--unitone--column-min-width), 100%), 1fr));
 }
 
 @mixin responsive-grid() {
