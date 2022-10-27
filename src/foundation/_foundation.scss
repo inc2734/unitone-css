@@ -22,38 +22,40 @@
     text-decoration-thickness: 1px;
   }
 
-  address,
-  article,
-  aside,
-  blockquote,
-  details,
-  dialog,
-  dd,
-  dl,
-  dt,
-  fieldset,
-  figcaption,
-  figure,
-  footer,
-  form,
-  h1, h2, h3, h4, h5, h6,
-  header,
-  hgroup,
-  hr,
-  li,
-  main,
-  nav,
-  ol,
-  p,
-  pre,
-  section,
-  table,
-  ul {
+  :where(
+    address,
+    article,
+    aside,
+    blockquote,
+    details,
+    dialog,
+    dd,
+    dl,
+    dt,
+    fieldset,
+    figcaption,
+    figure,
+    footer,
+    form,
+    h1, h2, h3, h4, h5, h6,
+    header,
+    hgroup,
+    hr,
+    li,
+    main,
+    nav,
+    ol,
+    p,
+    pre,
+    section,
+    table,
+    ul
+  ) {
     margin: 0;
     padding: 0;
   }
 
-  li {
+  :where(li) {
     margin-left: 1.5em;
   }
 
@@ -103,5 +105,13 @@
   video {
     height: auto;
     max-width: 100%;
+  }
+
+  figcaption {
+    --unitone--font-size: -2;
+
+    margin: var(--unitone--s-2) 0 0;
+    caption-side: bottom;
+    text-align: left;
   }
 }
