@@ -9,3 +9,27 @@
   ...
 </div>
 ```
+
+### Customizing gap
+
+```html
+<div data-unitone-layout="responsive-grid -gap:1">
+  ...
+</div>
+```
+
+### Customizing auto-repeat
+
+```html
+<div data-unitone-layout="responsive-grid -auto-repeat:auto-fit">
+  ...
+</div>
+```
+
+### Customizing column min width.
+
+```html
+<div data-unitone-layout="responsive-grid" style="--unitone--column-min-width: 250px">
+  ...
+</div>
+```

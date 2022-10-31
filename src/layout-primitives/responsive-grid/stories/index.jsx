@@ -24,10 +24,18 @@ export default {
       table: { defaultValue: { summary: 'var(--unitone--s1)' } },
       type: { name: 'number', required: false },
     },
+    autoRepeat: {
+      control: { type: 'inline-radio' },
+      description: 'The auto-repeat. Set by CSS var `--unitone--auto-repeat`.',
+      options: ['auto-fill', 'auto-fit'],
+      table: { defaultValue: { summary: 'auto-fill' } },
+      type: { name: 'string', required: false },
+    },
   },
   args: {
     columnMinWidth: '250px',
     gap: 1,
+    autoRepeat: 'auto-fill',
   },
 };
 

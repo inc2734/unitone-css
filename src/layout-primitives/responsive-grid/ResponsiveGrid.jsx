@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const ResponsiveGrid = ({ columnMinWidth, gap, style, ...props }) => {
+export const ResponsiveGrid = ({ columnMinWidth, gap, autoRepeat, style, ...props }) => {
   style = {
     ...style,
     '--unitone--column-min-width': !!columnMinWidth ? columnMinWidth : undefined,
@@ -11,6 +11,7 @@ export const ResponsiveGrid = ({ columnMinWidth, gap, style, ...props }) => {
       data-unitone-layout={[
         'responsive-grid',
         'undefined' !== typeof gap ? `-gap:${gap}` : undefined,
+        'undefined' !== typeof autoRepeat ? `-auto-repeat:${autoRepeat}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

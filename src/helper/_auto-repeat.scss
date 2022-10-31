@@ -1,0 +1,9 @@
+@mixin auto-repeat() {
+  [data-unitone-layout~="-auto-repeat\:auto-fill"] {
+    --unitone--auto-repeat: auto-fill !important;
+  }
+
+  [data-unitone-layout~="-auto-repeat\:auto-fit"] {
+    --unitone--auto-repeat: auto-fit !important;
+  }
+}
