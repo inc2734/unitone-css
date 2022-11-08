@@ -1,0 +1,17 @@
+@mixin position() {
+  [data-unitone-layout~="-position\:relative"] {
+    --unitone--position: relative !important;
+  }
+
+  [data-unitone-layout~="-position\:absolute"] {
+    --unitone--position: absolute !important;
+  }
+
+  [data-unitone-layout~="-position\:sticky"] {
+    --unitone--position: sticky !important;
+  }
+
+  [data-unitone-layout~="-position\:fixed"] {
+    --unitone--position: fixed !important;
+  }
+}

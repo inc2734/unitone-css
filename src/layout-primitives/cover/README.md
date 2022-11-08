@@ -52,3 +52,18 @@
   ...
 </div>
 ```
+
+### Customizing position
+
+After the `position`, specify the position with `-position:{position}`.
+
+```html
+<div data-unitone-layout="cover">
+  <div data-unitone-layout="cover__content -position:sticky">
+    ...
+  </div>
+  <div data-unitone-layout="cover__content">
+    ...
+  </div>
+</div>
+```

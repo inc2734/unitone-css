@@ -8,6 +8,7 @@
 @use 'justify-content';
 @use 'justify-self';
 @use 'padding';
+@use 'position';
 
 @mixin helper() {
   @include align-items.align-items();
@@ -20,4 +21,5 @@
   @include justify-content.justify-content();
   @include justify-self.justify-self();
   @include padding.padding();
+  @include position.position();
 }

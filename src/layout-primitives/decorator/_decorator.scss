@@ -29,22 +29,6 @@
   &[data-unitone-layout~="-shadow"] {
     --unitone--box-shadow: var(--unitone--global--box-shadow);
   }
-
-  &[data-unitone-layout~="-position\:relative"] {
-    --unitone--position: relative !important;
-  }
-
-  &[data-unitone-layout~="-position\:absolute"] {
-    --unitone--position: absolute !important;
-  }
-
-  &[data-unitone-layout~="-position\:sticky"] {
-    --unitone--position: sticky !important;
-  }
-
-  &[data-unitone-layout~="-position\:fixed"] {
-    --unitone--position: fixed !important;
-  }
 }
 
 @mixin decorator() {
