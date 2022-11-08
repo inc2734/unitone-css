@@ -1,0 +1,13 @@
+@mixin overflow() {
+  [data-unitone-layout~="-overflow\:visible"] {
+    --unitone--overflow: visible !important;
+  }
+
+  [data-unitone-layout~="-overflow\:hidden"] {
+    --unitone--overflow: hidden !important;
+  }
+
+  [data-unitone-layout~="-overflow\:scroll"] {
+    --unitone--overflow: scroll !important;
+  }
+}

@@ -93,6 +93,13 @@ export default {
       table: { defaultValue: { summary: 'initial' } },
       type: { name: 'string', required: false },
     },
+    overflow: {
+      control: { type: 'inline-radio' },
+      description: 'The overflow value.',
+      options: ['visible', 'hidden', 'scroll'],
+      table: { defaultValue: { summary: 'visible' } },
+      type: { name: 'string', required: false },
+    },
   },
   args: {
     backgroundColor: 'transarent',
@@ -108,6 +115,7 @@ export default {
     bottom: 'initial',
     left: 'initial',
     zIndex: 'initial',
+    overflow: 'visible',
   },
 };
 

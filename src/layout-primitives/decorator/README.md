@@ -47,3 +47,11 @@ After the `position`, specify the position with `-position:{position}`.
   ...
 </div>
 ```
+
+### Customizing overflow
+
+```html
+<div data-unitone-layout="decorator -overflow:hidden">
+  ...
+</div>
+```

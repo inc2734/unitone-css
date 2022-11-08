@@ -12,6 +12,7 @@
   --unitone--bottom: initial;
   --unitone--left: initial;
   --unitone--z-index: initial;
+  --unitone--overflow: visible;
 
   padding: calc((var(--unitone--padding) - var(--unitone--half-leading) * 1em)) var(--unitone--padding);
   border: var(--unitone--border-width) solid var(--unitone--border-color);
@@ -25,6 +26,7 @@
   bottom: var(--unitone--bottom);
   left: var(--unitone--left);
   z-index: var(--unitone--z-index);
+  overflow: var(--unitone--overflow);
 
   &[data-unitone-layout~="-shadow"] {
     --unitone--box-shadow: var(--unitone--global--box-shadow);

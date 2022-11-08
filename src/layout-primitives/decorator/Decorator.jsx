@@ -14,6 +14,7 @@ export const Decorator = ({
   bottom,
   left,
   zIndex,
+  overflow,
   style,
   ...props
 }) => {
@@ -38,6 +39,7 @@ export const Decorator = ({
         'undefined' !== typeof padding ? `-padding:${padding}` : undefined,
         !!shadow ? '-shadow' : undefined,
         !!position ? `-position:${position}` : undefined,
+        !!overflow ? `-overflow:${overflow}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}
