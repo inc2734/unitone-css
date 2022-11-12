@@ -31,7 +31,7 @@ export const Default = (args) => {
   return (
     <Gutters {...args}>
       <Container>
-        <Stack gap={2}>
+        <Stack gap={3}>
           <Center>
             <h2 style={{ '--unitone--font-size': 2 }}>Lorem ipsum dolor sit amet</h2>
           </Center>

@@ -15,7 +15,7 @@ export default {
       description:
         'Gap. Set by CSS var `--unitone--gap` or `data-unitone-layout` attribute `-gap:x`.',
       options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
-      table: { defaultValue: { summary: 'var(--unitone--s1)' } },
+      table: { defaultValue: { summary: 'var(--unitone--global--gap)' } },
       type: { name: 'number', required: false },
     },
     alignItems: {
@@ -23,13 +23,13 @@ export default {
       description: '`--unitone--align-items`',
       description:
         'Alignment of the row direction. Set by CSS var `--unitone--align-items` or `data-unitone-layout` attribute `-align-items:x`.',
-      options: ['start', 'center', 'end'],
+      options: ['Default', 'start', 'center', 'end'],
       table: { defaultValue: { summary: 'start' } },
       type: { name: 'string', required: false },
     },
   },
   args: {
-    gap: 1,
+    gap: 2,
     alignItems: 'start',
   },
 };

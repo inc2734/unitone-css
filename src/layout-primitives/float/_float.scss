@@ -1,5 +1,5 @@
 @mixin abstract-float() {
-  --unitone--gap: var(--unitone--s1);
+  --unitone--gap: var(--unitone--global--gap);
   --unitone--min-measure: calc(var(--unitone--measure) / 2);
   --unitone--min-width: calc(var(--unitone--measure) / 2);
 

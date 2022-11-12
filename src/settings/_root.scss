@@ -6,7 +6,7 @@
   /**
    * Column width in typography.
    */
-  --unitone--measure: 38rem;
+  --unitone--measure: 42rem;
 
   /**
    * Collors.
@@ -54,6 +54,27 @@
    * Font family
    */
   --unitone--font-family: sans-serif;
+
+  /**
+   * Box shadow
+   */
+  --unitone--global--box-shadow: 0 5px 20px -5px rgb(0 0 0 / 20%);
+
+  /**
+   * Border radius
+   */
+  --unitone--global--border-radius: 4px;
+
+  /**
+   * Default gap
+   */
+  --unitone--global--gap: var(--unitone--s2);
+  --unitone--global--text-gap: var(--unitone--s1);
+
+  /**
+   * Default gutters
+   */
+  --unitone--global--gutters: clamp(var(--unitone--rem1), 4vw, var(--unitone--rem2));
 
   /**
    * Reference value of the modular scale for space.
@@ -129,9 +150,8 @@
   --unitone--container-max-width: #{ variables.$container-max-width };
 
   $_grid-columns: 12;
-  // --unitone--_grid-gutters: calc(#{ $_grid-columns - 1 } * var(--unitone--s1));
   --unitone--grid-columns: #{ $_grid-columns };
-  --unitone--grid-gap: var(--unitone--s1);
+  --unitone--grid-gap: var(--unitone--global--gap);
 
   /**
    * Grid sizes (% based).
@@ -148,14 +168,4 @@
   @for $i from 1 through $_grid-columns {
     --unitone--cg#{ $i }: calc((var(--unitone--container-max-width) - var(--unitone--grid-gap) * (var(--unitone--grid-columns) - 1)) / var(--unitone--grid-columns) * #{ $i } + var(--unitone--grid-gap) * #{ $i - 1 });
   }
-
-  /**
-   * Box shadow
-   */
-  --unitone--global--box-shadow: 0 5px 20px -5px rgb(0 0 0 / 20%);
-
-  /**
-   * Border radius
-   */
-  --unitone--global--border-radius: 4px;
 }

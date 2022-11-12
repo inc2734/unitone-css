@@ -22,8 +22,8 @@ export default {
       control: { type: 'inline-radio' },
       description:
         'Gutters. Set by CSS var `--unitone--gutters` or `data-unitone-layout` attribute `-gutters:x`.',
-      options: [0, 1, 2, 3, 4, 5, 6, 7],
-      table: { defaultValue: { summary: 'var(--unitone--rem1)' } },
+      options: [undefined, 0, 1, 2, 3, 4, 5, 6, 7],
+      table: { defaultValue: { summary: 'var(--unitone--global--gutters)' } },
       type: { name: 'number', required: false },
     },
     maxWidth: {
@@ -34,8 +34,8 @@ export default {
     },
   },
   args: {
-    align: '',
-    gutters: 1,
+    align: undefined,
+    gutters: undefined,
     maxWidth: '1280px',
   },
 };

@@ -21,7 +21,7 @@ export default {
       control: { type: 'inline-radio' },
       description: 'Gap. Set by CSS var `--unitone--gap`.',
       options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
-      table: { defaultValue: { summary: 'var(--unitone--s1)' } },
+      table: { defaultValue: { summary: 'var(--unitone--global--gap)' } },
       type: { name: 'number', required: false },
     },
     autoRepeat: {
@@ -34,7 +34,7 @@ export default {
   },
   args: {
     columnMinWidth: '250px',
-    gap: 1,
+    gap: 2,
     autoRepeat: 'auto-fill',
   },
 };

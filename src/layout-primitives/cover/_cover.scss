@@ -1,5 +1,5 @@
 @mixin abstract-cover() {
-  --unitone--gap: var(--unitone--s1);
+  --unitone--gap: var(--unitone--global--gap);
   --unitone--min-height: 100vh;
   --unitone--justify-content: center;
 

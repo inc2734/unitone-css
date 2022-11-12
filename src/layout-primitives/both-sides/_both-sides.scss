@@ -1,5 +1,5 @@
 @mixin abstract-both-sides() {
-  --unitone--gap: var(--unitone--s1);
+  --unitone--gap: var(--unitone--global--gap);
   --unitone--align-items: flex-start;
   --unitone--content-width: fit-content;
   --unitone--content-max-width: var(--unitone--measure);

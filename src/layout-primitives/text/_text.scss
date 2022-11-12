@@ -1,5 +1,5 @@
 @mixin abstract-text() {
-  --unitone--gap: var(--unitone--s1);
+  --unitone--gap: var(--unitone--global--text-gap);
   --unitone--column-gap: var( --unitone--gap);
   --unitone--max-width: var(--unitone--measure);
 
@@ -20,10 +20,10 @@
   }
 
   > :where(h2, h3, h4, h5, h6) {
-    --unitone--margin-bottom: 0;
+    --unitone--margin-top: 2;
 
     & + :where(h2, h3, h4, h5, h6) {
-      --unitone--margin-top: .5;
+      --unitone--margin-top: 0;
     }
   }
 

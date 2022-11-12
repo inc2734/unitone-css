@@ -30,7 +30,7 @@ export default {
       description:
         'Gap. Set by CSS var `--unitone--gap` or `data-unitone-layout` attribute `-gap:x`.',
       options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
-      table: { defaultValue: { summary: 'var(--unitone--s1)' } },
+      table: { defaultValue: { summary: 'var(--unitone--global--gap)' } },
       type: { name: 'number', required: false },
     },
     revert: {
@@ -59,7 +59,7 @@ export default {
   args: {
     alignItems: 'start',
     contentMinWidth: '50%',
-    gap: 1,
+    gap: 2,
     revert: false,
     sidebar: 'right',
     sidebarWidth: 'initial',
@@ -109,7 +109,7 @@ export const Input = (args) => {
 };
 Input.storyName = 'Example : Input';
 Input.args = {
-  gap: 1,
+  gap: -2,
 };
 
 export const MediaText = (args) => {

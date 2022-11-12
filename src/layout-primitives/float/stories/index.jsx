@@ -15,7 +15,7 @@ export default {
       description:
         'Gap between items. Set by CSS var `--unitone--gap` or `data-unitone-layout` attribute `-gap:x`.',
       options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
-      table: { defaultValue: { summary: 'var(--unitone--s1)' } },
+      table: { defaultValue: { summary: 'var(--unitone--global--gap)' } },
       type: { name: 'number', required: false },
     },
     minMeasure: {
@@ -41,7 +41,7 @@ export default {
     },
   },
   args: {
-    gap: 1,
+    gap: 2,
     minMeasure: 'calc(var(--unitone--measure) / 2)',
     minWidth: 'calc(var(--unitone--measure) / 2)',
     position: 'left',

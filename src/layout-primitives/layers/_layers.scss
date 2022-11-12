@@ -1,5 +1,5 @@
 @mixin abstract-layers() {
-  --unitone--gap: var(--unitone--s1);
+  --unitone--gap: var(--unitone--global--gap);
   --unitone--base-columns: 16;
   --unitone--base-rows: 9;
 
