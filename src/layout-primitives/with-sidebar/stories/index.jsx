@@ -15,8 +15,8 @@ export default {
       description: '`--unitone--align-items`',
       description:
         'Alignment of the row direction. Set by CSS var `--unitone--align-items` or `data-unitone-layout` attribute `-align-items:x`.',
-      options: ['start', 'center', 'end'],
-      table: { defaultValue: { summary: 'start' } },
+      options: [undefined, 'start', 'center', 'end'],
+      table: { defaultValue: { summary: undefined } },
       type: { name: 'string', required: false },
     },
     contentMinWidth: {
@@ -57,7 +57,7 @@ export default {
     },
   },
   args: {
-    alignItems: 'start',
+    alignItems: undefined,
     contentMinWidth: '50%',
     gap: 2,
     revert: false,
