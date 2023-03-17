@@ -51,11 +51,6 @@
   --unitone--line-height-slope: -0.16666;
 
   /**
-   * If you want to use fluid typography, Using `font-size: var(--unitone--fluid-font-size)`.
-   */
-  --unitone--fluid-font-size: #{ variables.$fluid-font-size };
-
-  /**
    * Font family
    */
   --unitone--font-family: sans-serif;
