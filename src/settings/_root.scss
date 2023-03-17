@@ -155,7 +155,9 @@
   --unitone--container-max-width: #{ variables.$container-max-width };
 
   $_grid-columns: 12;
+  $_grid-rows: 7;
   --unitone--grid-columns: #{ $_grid-columns };
+  --unitone--grid-rows: #{ $_grid-rows };
   --unitone--grid-gap: var(--unitone--global--gap);
 
   /**
