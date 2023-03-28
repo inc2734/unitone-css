@@ -11,7 +11,7 @@ export const Center = ({ intrinsic, withText, maxWidth, style, ...props }) => {
       data-unitone-layout={[
         'center',
         true === intrinsic ? `-intrinsic` : undefined,
-        true === withText ? `-with-text` : undefined
+        true === withText ? `-with-text` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}
