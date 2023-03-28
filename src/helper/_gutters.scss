@@ -4,4 +4,8 @@
       --unitone--gutters: var(--unitone--rem#{ $i }) !important;
     }
   }
+
+  [data-unitone-layout~="-gutters\:root"] {
+    --unitone--gutters: var(--unitone--global--gutters);
+  }
 }

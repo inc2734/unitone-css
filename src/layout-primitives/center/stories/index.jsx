@@ -29,7 +29,7 @@ export default {
       control: { type: 'inline-radio' },
       description:
         'Gutters. Set by CSS var `--unitone--gutters` or `data-unitone-layout` attribute `-gutters:x`.',
-      options: [undefined, 0, 1, 2, 3, 4, 5, 6, 7],
+      options: [undefined, 0, 1, 2, 3, 4, 5, 6, 7, 'root'],
       table: { defaultValue: { summary: 'var(--unitone--global--gutters)' } },
       type: { name: 'number', required: false },
     },
