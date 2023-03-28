@@ -12,14 +12,6 @@
   > * {
     margin-top: 0;
     margin-bottom: 0;
-    flex: 0 0 auto;
-  }
-
-  @at-root {
-    :where(& > *) {
-      margin-right: 0;
-      margin-left: 0;
-    }
   }
 
   &:only-child {

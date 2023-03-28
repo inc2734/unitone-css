@@ -1,6 +1,6 @@
 @mixin abstract-center() {
   --unitone--gutters: 0px;
-  --unitone--max-width: var(--unitone--container-max-width);
+  --unitone--max-width: var(--unitone--measure);
 
   box-sizing: content-box;
   margin-right: auto;
