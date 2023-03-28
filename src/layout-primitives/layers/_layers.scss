@@ -21,12 +21,14 @@
     --unitone--justify-self: auto;
     --unitone--grid-column: 1/-1;
     --unitone--grid-row: 1/-1;
+    --unitone--max-width: none;
 
     position: relative;
     grid-column: var(--unitone--grid-column);
     grid-row: var(--unitone--grid-row);
     align-self: var(--unitone--align-self);
     justify-self: var(--unitone--justify-self);
+    max-width: var(--unitone--max-width);
   }
 
   // @消したい

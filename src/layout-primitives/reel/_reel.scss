@@ -3,7 +3,7 @@
   --unitone--height: auto;
   --unitone--item-width: calc(var(--unitone--measure) / 2);
   --unitone--scrollbar-thumb-color: #ddd;
-  --unitone--scrollbar-track-color: var(--unitone--color--white);
+  --unitone--scrollbar-track-color: transparent;
 
   display: flex;
   gap: var(--unitone--gap);

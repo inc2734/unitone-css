@@ -1,4 +1,8 @@
 @mixin position() {
+  [data-unitone-layout~="-position\:static"] {
+    --unitone--position: static !important;
+  }
+
   [data-unitone-layout~="-position\:relative"] {
     --unitone--position: relative !important;
   }

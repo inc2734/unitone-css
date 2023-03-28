@@ -1,5 +1,5 @@
 @mixin abstract-responsive-grid() {
-  --unitone--auto-repeat: auto-fill;
+  --unitone--auto-repeat: auto-fit;
   --unitone--column-min-width: 250px;
   --unitone--gap: var(--unitone--global--gap);
 
