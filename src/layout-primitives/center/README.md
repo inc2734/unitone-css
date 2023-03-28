@@ -24,10 +24,26 @@
 </div>
 ```
 
+### Intrinsic centering
+
+```html
+<div data-unitone-layout="center -intrinsic">
+  ...
+</div>
+```
+
 ### Centering with text
 
 ```html
 <div data-unitone-layout="center -with-text">
+  ...
+</div>
+```
+
+### Customizing gutters
+
+```html
+<div data-unitone-layout="center -gutters:1">
   ...
 </div>
 ```

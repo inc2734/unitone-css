@@ -1,9 +1,19 @@
 @mixin abstract-center() {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  --unitone--gutters: 0px;
+  --unitone--max-width: var(--unitone--container-max-width);
+
+  box-sizing: content-box;
   margin-right: auto;
   margin-left: auto;
+  max-width: var(--unitone--max-width);
+  padding-right: var(--unitone--gutters);
+  padding-left: var(--unitone--gutters);
+
+  &[data-unitone-layout~="-intrinsic"] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
   &[data-unitone-layout~="-with-text"] {
     text-align: center;

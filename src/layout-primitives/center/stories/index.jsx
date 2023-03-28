@@ -11,6 +11,13 @@ export default {
     notes: { readme },
   },
   argTypes: {
+    intrinsic: {
+      control: { type: 'inline-radio' },
+      description: 'Intrinsic centering. Set by `data-unitone-layout` attribute `-intrinsic`.',
+      options: [false, true],
+      table: { defaultValue: { summary: false } },
+      type: { name: 'boolean', required: false },
+    },
     withText: {
       control: { type: 'inline-radio' },
       description: 'Centering with text. Set by `data-unitone-layout` attribute `-with-text`.',
@@ -18,9 +25,26 @@ export default {
       table: { defaultValue: { summary: false } },
       type: { name: 'boolean', required: false },
     },
+    gutters: {
+      control: { type: 'inline-radio' },
+      description:
+        'Gutters. Set by CSS var `--unitone--gutters` or `data-unitone-layout` attribute `-gutters:x`.',
+      options: [undefined, 0, 1, 2, 3, 4, 5, 6, 7],
+      table: { defaultValue: { summary: 'var(--unitone--global--gutters)' } },
+      type: { name: 'number', required: false },
+    },
+    maxWidth: {
+      control: { type: 'text' },
+      description: 'Max width. Set by CSS var `--unitone--max-width`.',
+      table: { defaultValue: { summary: '1280px' } },
+      type: { name: 'string', required: false },
+    },
   },
   args: {
+    intrinsic: false,
     withText: false,
+    gutters: undefined,
+    maxWidth: undefined,
   },
 };
 
