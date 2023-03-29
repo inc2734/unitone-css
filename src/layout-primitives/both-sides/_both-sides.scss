@@ -2,7 +2,7 @@
   --unitone--gap: var(--unitone--global--gap);
   --unitone--align-items: flex-start;
   --unitone--content-width: fit-content;
-  --unitone--content-max-width: var(--unitone--measure);
+  --unitone--content-max-width: 100%;
 
   display: flex;
   gap: var(--unitone--gap);
@@ -11,9 +11,12 @@
   justify-content: space-between;
 
   > * {
-    flex-basis: var(--unitone--content-width);
+    --unitone--max-width: var(--unitone--content-max-width);
+    --unitone--flex-basis: var(--unitone--content-width);
+
+    flex-basis: var(--unitone--flex-basis);
     flex-grow: 0;
-    max-width: min(100%, var(--unitone--content-max-width));
+    max-width: min(100%, var(--unitone--max-width));
   }
 }
 
