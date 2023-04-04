@@ -14,4 +14,12 @@ $_values: (
       --unitone--align-self: #{ $value } !important;
     }
   }
+
+  [data-unitone-layout~="-align-self\:start"] {
+    margin-top: 0;
+  }
+
+  [data-unitone-layout~="-align-self\:end"] {
+    margin-bottom: 0;
+  }
 }

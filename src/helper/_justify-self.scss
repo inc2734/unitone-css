@@ -14,4 +14,12 @@ $_values: (
       --unitone--justify-self: #{ $value } !important;
     }
   }
+
+  [data-unitone-layout~="-justify-self\:start"] {
+    margin-left: 0;
+  }
+
+  [data-unitone-layout~="-justify-self\:end"] {
+    margin-right: 0;
+  }
 }
