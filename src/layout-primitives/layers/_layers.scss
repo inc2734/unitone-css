@@ -5,8 +5,10 @@
   --unitone--min-height: 0;
 
   @media (orientation: portrait) {
-    --unitone--columns: var(--unitone--grid-rows);
-    --unitone--rows: var(--unitone--grid-columns);
+    &[data-unitone-layout~="-portrait"] {
+      --unitone--columns: var(--unitone--grid-rows);
+      --unitone--rows: var(--unitone--grid-columns);
+    }
   }
 
   position: relative;

@@ -19,9 +19,17 @@ export default {
       table: { defaultValue: { summary: false } },
       type: { name: 'boolean', required: false },
     },
+    portrait: {
+      control: { type: 'inline-radio' },
+      description: 'In portrait mode, swaps the height and width of the grid.',
+      options: [false, true],
+      table: { defaultValue: { summary: false } },
+      type: { name: 'boolean', required: false },
+    },
   },
   args: {
     cover: false,
+    portrait: true,
   },
 };
 
