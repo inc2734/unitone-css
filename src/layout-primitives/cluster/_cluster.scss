@@ -15,6 +15,7 @@
 
   > * {
     margin: 0;
+    min-width: 0;
   }
 
   &[data-unitone-layout~="-divider\:stripe"] {
@@ -40,6 +41,10 @@
       display: flex;
       padding-right: var(--unitone--gap);
       padding-left: var(--unitone--gap);
+
+      > * {
+        min-width: 0;
+      }
     }
 
     > :first-child {

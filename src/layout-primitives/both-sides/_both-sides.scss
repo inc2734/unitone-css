@@ -17,6 +17,7 @@
     flex-basis: var(--unitone--flex-basis);
     flex-grow: 0;
     max-width: min(100%, var(--unitone--max-width));
+    min-width: 0;
   }
 }
 

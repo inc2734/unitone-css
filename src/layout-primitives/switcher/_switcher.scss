@@ -9,6 +9,7 @@
   > * {
     flex-grow: 1;
     flex-basis: calc((var(--unitone--threshold) - 100%) * 999);
+    min-width: 0;
   }
 }
 
