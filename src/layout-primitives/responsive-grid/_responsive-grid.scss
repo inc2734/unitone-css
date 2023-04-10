@@ -9,6 +9,12 @@
   display: grid;
   grid-gap: var(--unitone--gap);
   grid-template-columns: repeat(var(--unitone--auto-repeat), minmax(min(var(--unitone--column-min-width), 100%), 1fr));
+  list-style: none;
+
+  > * {
+    margin: 0;
+    min-width: 0;
+  }
 
   &[data-unitone-layout~="-divider\:stripe"] {
     row-gap: 0;
