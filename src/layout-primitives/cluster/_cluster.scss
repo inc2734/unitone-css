@@ -10,7 +10,7 @@
   flex-wrap: wrap;
   gap: calc(var(--unitone--gap) / 2) var(--unitone--gap);
   justify-content: var(--unitone--justify-content);
-  align-items: var(--unitone--align-items); // @todo divider があるときはこれだと線がきれいに揃わないので、子要素を alignment する必要がある
+  align-items: var(--unitone--align-items);
   list-style: none;
 
   > * {
@@ -20,9 +20,13 @@
 
   &[data-unitone-layout~="-divider\:stripe"] {
     column-gap: 0;
+    align-items: stretch;
 
     > * {
       position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: var(--unitone--align-items);
       padding-right: var(--unitone--gap);
       padding-left: var(--unitone--gap);
 
@@ -43,26 +47,33 @@
   }
 
   &[data-unitone-layout~="-divider\:slash"] {
-    gap: calc(var(--unitone--gap) / 2) 0;
+    column-gap: 0;
+    align-items: stretch;
 
     > * {
+      position: relative;
       display: flex;
-      padding-right: var(--unitone--gap);
-      padding-left: var(--unitone--gap);
+      flex-direction: column;
+      justify-content: var(--unitone--align-items);
+      margin-right: var(--unitone--gap);
+      margin-left: var(--unitone--gap);
 
       > * {
         min-width: 0;
       }
     }
 
-    > :first-child {
-      padding-left: 0;
+    > [data-unitone-layout~="bol"] {
+      margin-left: 0;
     }
 
     > * + *::before {
       content: '';
-      position: relative;
-      right: var(--unitone--gap);
+      position: absolute;
+      top: 0;
+      right: auto;
+      bottom: 0;
+      left: calc(var(--unitone--gap) * -1);
       border-left: var(--unitone--divider-width) var(--unitone--divider-style) var(--unitone--divider-color);
       transform: rotate(22.5deg) scale(.8);
     }
@@ -70,9 +81,13 @@
 
   &[data-unitone-layout~="-divider\:bordered"] {
     gap: 0;
+    align-items: stretch;
 
     > * {
       position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: var(--unitone--align-items);
       padding: calc(var(--unitone--gap) / 2) var(--unitone--gap);
 
       &::before {
