@@ -22,15 +22,23 @@
     gap: 0;
 
     > * {
-      border-top: var(--unitone--divider-width) var(--unitone--divider-style) var(--unitone--divider-color);
-      border-bottom: var(--unitone--divider-width) var(--unitone--divider-style) var(--unitone--divider-color);
+      position: relative;
       padding-top: var(--unitone--gap);
       padding-bottom: var(--unitone--gap);
+
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        user-select: none;
+        border-bottom: var(--unitone--divider-width) var(--unitone--divider-style) var(--unitone--divider-color);
+      }
     }
 
-    > * + * {
-      margin-top: calc(-1 * var(--unitone--divider-width));
-      border-top-color: transparent;
+    > :first-child {
+      &::before {
+        border-top: var(--unitone--divider-width) var(--unitone--divider-style) var(--unitone--divider-color);
+      }
     }
   }
 
@@ -38,9 +46,16 @@
     gap: 0;
 
     > * {
-      border-bottom: var(--unitone--divider-width) var(--unitone--divider-style) var(--unitone--divider-color);
       padding-top: var(--unitone--gap);
       padding-bottom: var(--unitone--gap);
+
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        user-select: none;
+        border-bottom: var(--unitone--divider-width) var(--unitone--divider-style) var(--unitone--divider-color);
+      }
     }
 
     > :first-child {
@@ -52,13 +67,23 @@
     gap: 0;
 
     > * {
-      border: var(--unitone--divider-width) var(--unitone--divider-style) var(--unitone--divider-color);
       padding: var(--unitone--gap);
+
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        user-select: none;
+        border-width: 0 var(--unitone--divider-width) var(--unitone--divider-width) var(--unitone--divider-width);
+        border-style: var(--unitone--divider-style);
+        border-color: var(--unitone--divider-color);
+      }
     }
 
-    > * + * {
-      margin-top: calc(-1 * var(--unitone--divider-width));
-      border-top-color: transparent;
+    > :first-child {
+      &::before {
+        border-top-width: var(--unitone--divider-width);
+      }
     }
   }
 

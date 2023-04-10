@@ -10,7 +10,7 @@
   flex-wrap: wrap;
   gap: calc(var(--unitone--gap) / 2) var(--unitone--gap);
   justify-content: var(--unitone--justify-content);
-  align-items: var(--unitone--align-items);
+  align-items: var(--unitone--align-items); // @todo divider があるときはこれだと線がきれいに揃わないので、子要素を alignment する必要がある
   list-style: none;
 
   > * {
@@ -22,15 +22,23 @@
     column-gap: 0;
 
     > * {
-      margin-right: calc(-1 * var(--unitone--divider-width));
-      border-right: var(--unitone--divider-width) var(--unitone--divider-style) var(--unitone--divider-color);
-      border-left: var(--unitone--divider-width) var(--unitone--divider-style) var(--unitone--divider-color);
+      position: relative;
       padding-right: var(--unitone--gap);
       padding-left: var(--unitone--gap);
+
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        user-select: none;
+        border-right: var(--unitone--divider-width) var(--unitone--divider-style) var(--unitone--divider-color);
+      }
     }
 
-    > :not(:first-child) {
-      border-left-color: transparent;
+    > [data-unitone-layout~="-bol"] {
+      &::before {
+        border-left: var(--unitone--divider-width) var(--unitone--divider-style) var(--unitone--divider-color);
+      }
     }
   }
 
@@ -62,14 +70,32 @@
 
   &[data-unitone-layout~="-divider\:bordered"] {
     gap: 0;
-    border-left: var(--unitone--divider-width) var(--unitone--divider-style) var(--unitone--divider-color);
 
     > * {
-      margin-top: calc(-1 * var(--unitone--divider-width));
-      margin-right: calc(-1 * var(--unitone--divider-width));
-      border: var(--unitone--divider-width) var(--unitone--divider-style) var(--unitone--divider-color);
-      border-left-color: transparent;
+      position: relative;
       padding: calc(var(--unitone--gap) / 2) var(--unitone--gap);
+
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        user-select: none;
+        border-width: 0 var(--unitone--divider-width) var(--unitone--divider-width) 0;
+        border-style: var(--unitone--divider-style);
+        border-color: var(--unitone--divider-color);
+      }
+    }
+
+    > [data-unitone-layout~="-bol"] {
+      &::before {
+        border-left-width: var(--unitone--divider-width);
+      }
+    }
+
+    > :not([data-unitone-layout~="-linewrap"]) {
+      &::before {
+        border-top-width: var(--unitone--divider-width);
+      }
     }
   }
 }
