@@ -100,4 +100,8 @@
   [data-unitone-layout~="stack"] {
     @include abstract-stack();
   }
+
+  :where([data-unitone-layout~="stack"] > li) {
+    margin-left: 0;
+  }
 }
