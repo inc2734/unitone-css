@@ -1,14 +1,17 @@
 @mixin align() {
-  [data-unitone-layout~="-align\:start"] {
+  [data-unitone-layout~="-align\:start"],
+  [data-unitone-layout~="-align\:start"][data-unitone-layout~="text"] > * {
     margin-left: 0 !important;
   }
 
-  [data-unitone-layout~="-align\:center"] {
+  [data-unitone-layout~="-align\:center"],
+  [data-unitone-layout~="-align\:center"][data-unitone-layout~="text"] > * {
     margin-right: auto !important;
     margin-left: auto !important;
   }
 
-  [data-unitone-layout~="-align\:end"] {
+  [data-unitone-layout~="-align\:end"],
+  [data-unitone-layout~="-align\:end"][data-unitone-layout~="text"] > * {
     margin-right: 0 !important;
   }
 }

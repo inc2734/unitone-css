@@ -1,6 +1,6 @@
 @mixin abstract-text() {
   --unitone--gap: var(--unitone--global--text-gap);
-  --unitone--column-gap: var( --unitone--gap);
+  --unitone--column-gap: var(--unitone--gap);
   --unitone--max-width: var(--unitone--measure);
 
   > * {
