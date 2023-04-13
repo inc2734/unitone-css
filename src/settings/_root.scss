@@ -74,7 +74,7 @@
   /**
    * Default gutters
    */
-  --unitone--global--gutters: clamp(var(--unitone--rem1), 4vw, var(--unitone--rem2));
+  --unitone--global--gutters: min(6vw, var(--unitone--rem2));
 
   /**
    * Reference value of the modular scale for space.
@@ -143,6 +143,23 @@
   --unitone--s5: #{ _generate-fluid-spacing(calc(var(--unitone--ms1) + var(--unitone--ms5) * #{ $_quotient }), var(--unitone--ms5)) };
   --unitone--s6: #{ _generate-fluid-spacing(calc(var(--unitone--ms1) + var(--unitone--ms6) * #{ $_quotient }), var(--unitone--ms6)) };
   --unitone--s7: #{ _generate-fluid-spacing(calc(var(--unitone--ms1) + var(--unitone--ms7) * #{ $_quotient }), var(--unitone--ms7)) };
+
+  /**
+   * Modular scales for padding.
+   *
+   * Left and right padding on mobile devices has a significant impact on readability.
+   * For this reason, we prepare special scales.
+   */
+  --unitone--p-2: var(--unitone--em-2);
+  --unitone--p-1: var(--unitone--em-1);
+  --unitone--p0: var(--unitone--em0);
+  --unitone--p1: var(--unitone--em1);
+  --unitone--p2: #{ _generate-fluid-spacing(calc(var(--unitone--ms1) + var(--unitone--ms2) * #{ $_quotient } * .2), var(--unitone--ms2)) };
+  --unitone--p3: #{ _generate-fluid-spacing(calc(var(--unitone--ms1) + var(--unitone--ms3) * #{ $_quotient } * .2), var(--unitone--ms3)) };
+  --unitone--p4: #{ _generate-fluid-spacing(calc(var(--unitone--ms1) + var(--unitone--ms4) * #{ $_quotient } * .2), var(--unitone--ms4)) };
+  --unitone--p5: #{ _generate-fluid-spacing(calc(var(--unitone--ms1) + var(--unitone--ms5) * #{ $_quotient } * .2), var(--unitone--ms5)) };
+  --unitone--p6: #{ _generate-fluid-spacing(calc(var(--unitone--ms1) + var(--unitone--ms6) * #{ $_quotient } * .2), var(--unitone--ms6)) };
+  --unitone--p7: #{ _generate-fluid-spacing(calc(var(--unitone--ms1) + var(--unitone--ms7) * #{ $_quotient } * .2), var(--unitone--ms7)) };
 
   /**
    * Max width of the container.

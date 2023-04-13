@@ -46,7 +46,7 @@ export default {
       description:
         'Padding. Set by CSS var `--unitone--padding` or `data-unitone-layout` attribute `-padding:x`.',
       options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
-      table: { defaultValue: { summary: 'var(--unitone--s0)' } },
+      table: { defaultValue: { summary: '0px' } },
       type: { name: 'number', required: false },
     },
     shadow: {

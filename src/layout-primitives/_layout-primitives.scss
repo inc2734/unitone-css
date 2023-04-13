@@ -2,7 +2,6 @@
 @use 'decorator/decorator';
 @use 'center/center';
 @use 'cluster/cluster';
-@use 'container/container';
 @use 'cover/cover';
 @use 'float/float';
 @use 'frame/frame';
@@ -15,12 +14,13 @@
 @use 'text/text';
 @use 'with-sidebar/with-sidebar';
 
+@use 'container/container';
+
 @mixin layout-primitives() {
   @include both-sides.both-sides();
   @include decorator.decorator();
   @include center.center();
   @include cluster.cluster();
-  @include container.container();
   @include cover.cover();
   @include float.float();
   @include frame.frame();
@@ -32,4 +32,6 @@
   @include switcher.switcher();
   @include text.text();
   @include with-sidebar.with-sidebar();
+
+  @include container.container();
 }
