@@ -1,7 +1,12 @@
 @mixin abstract-text() {
   --unitone--gap: var(--unitone--global--text-gap);
+  --unitone--gutters: 0px;
   --unitone--column-gap: var(--unitone--gap);
   --unitone--max-width: var(--unitone--measure);
+
+  box-sizing: content-box;
+  padding-right: var(--unitone--gutters);
+  padding-left: var(--unitone--gutters);
 
   > * {
     margin: 0 auto;
