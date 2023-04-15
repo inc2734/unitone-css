@@ -3,7 +3,7 @@ import readme from '../README.md';
 
 import { BothSides } from '../BothSides';
 
-export default {
+const meta = {
   title: 'Layout Primitives/BothSides',
   component: BothSides,
   parameters: {
@@ -33,6 +33,7 @@ export default {
     alignItems: 'start',
   },
 };
+export default meta;
 
 const content =
   'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';

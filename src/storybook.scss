@@ -3,9 +3,9 @@
 @use 'layout-primitives/layout-primitives';
 @use 'helper/helper';
 
-#root,
-.docs-story {
+// #root,
+// .docs-story {
   @include foundation.foundation();
   @include layout-primitives.layout-primitives();
   @include helper.helper();
-}
+// }
