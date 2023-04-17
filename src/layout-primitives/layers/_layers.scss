@@ -18,21 +18,23 @@
   gap: var(--unitone--gap);
   min-height: var(--unitone--min-height);
 
-  > * {
-    --unitone--align-self: auto;
-    --unitone--justify-self: auto;
-    --unitone--grid-column: 1/-1;
-    --unitone--grid-row: 1/-1;
-    --unitone--max-width: none;
-    --unitone--min-height: auto;
+  @at-root {
+    :where(#{ & }) > * {
+      --unitone--align-self: auto;
+      --unitone--justify-self: auto;
+      --unitone--grid-column: 1/-1;
+      --unitone--grid-row: 1/-1;
+      --unitone--max-width: none;
+      --unitone--min-height: auto;
 
-    position: relative;
-    grid-column: var(--unitone--grid-column);
-    grid-row: var(--unitone--grid-row);
-    align-self: var(--unitone--align-self);
-    justify-self: var(--unitone--justify-self);
-    max-width: var(--unitone--max-width);
-    min-height: var(--unitone--min-height);
+      position: relative;
+      grid-column: var(--unitone--grid-column);
+      grid-row: var(--unitone--grid-row);
+      align-self: var(--unitone--align-self);
+      justify-self: var(--unitone--justify-self);
+      max-width: var(--unitone--max-width);
+      min-height: var(--unitone--min-height);
+    }
   }
 
   // @消したい

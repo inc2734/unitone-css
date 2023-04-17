@@ -99,9 +99,17 @@
 @mixin stack() {
   [data-unitone-layout~="stack"] {
     @include abstract-stack();
-  }
 
-  :where([data-unitone-layout~="stack"] > li) {
-    margin-left: 0;
+    :where([data-unitone-layout~="stack"] > li) {
+      margin-left: 0;
+    }
+
+    // @todo
+    // Specify a component whose width is specified by max-width of the child element, not by itself.
+    > [data-unitone-layout~="text"] {
+      margin-right: 0;
+      margin-left: 0;
+      max-width: none;
+    }
   }
 }
