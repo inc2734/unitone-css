@@ -5,7 +5,7 @@
   --unitone--justify-content: center;
 
   display: flex;
-  flex-flow: column;
+  flex-direction: column;
   gap: var(--unitone--gap);
   min-height: var(--unitone--min-height);
   padding: var(--unitone--padding);
