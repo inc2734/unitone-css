@@ -11,7 +11,6 @@
     }
   }
 
-  position: relative;
   display: grid;
   grid-template-columns: repeat(var(--unitone--columns), 1fr);
   grid-template-rows: repeat(var(--unitone--rows), 1fr);
@@ -27,7 +26,6 @@
       --unitone--max-width: none;
       --unitone--min-height: auto;
 
-      position: relative;
       grid-column: var(--unitone--grid-column);
       grid-row: var(--unitone--grid-row);
       align-self: var(--unitone--align-self);
@@ -37,20 +35,7 @@
     }
   }
 
-  // @消したい
-  // unitone theme では image block と video block に cover ブロックスタイルをもたせる
   &[data-unitone-layout~="-cover"] {
-    > :where(img:first-child, video:first-child, picture:first-child, figure:first-child),
-    > :first-child :where(picture, figure) {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-    }
-
     > :where(img:first-child, video:first-child),
     > :first-child :where(img, video) {
       object-fit: cover;
