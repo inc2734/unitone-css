@@ -36,6 +36,20 @@
   }
 
   &[data-unitone-layout~="-cover"] {
+    > :where(img:first-child, video:first-child, picture:first-child, figure:first-child),
+    > :first-child :where(picture, figure) {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  &[data-unitone-layout~="-cover"],
+  &[data-unitone-layout~="-fill"] {
     > :where(img:first-child, video:first-child),
     > :first-child :where(img, video) {
       object-fit: cover;

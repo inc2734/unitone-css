@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Layers = ({ cover, portrait, style, ...props }) => {
+export const Layers = ({ cover, fill, portrait, style, ...props }) => {
   style = {
     ...style,
   };
@@ -10,6 +10,7 @@ export const Layers = ({ cover, portrait, style, ...props }) => {
       data-unitone-layout={[
         'layers',
         true === cover ? `-cover` : undefined,
+        true === fill ? `-fill` : undefined,
         true === portrait ? `-portrait` : undefined,
       ]
         .filter(Boolean)

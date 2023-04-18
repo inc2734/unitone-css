@@ -11,8 +11,23 @@
 
 ### Covered image
 
+Background image/video is sized to maintain its aspect ratio while filling the element's entire content box. If the object's aspect ratio does not match the aspect ratio of its box, then the object will be clipped to fit.
+
 ```html
 <div data-unitone-layout="layers -cover">
+  <img ...>
+  <div>
+    ...
+  </div>
+</div>
+```
+
+### Filled image
+
+The background image/video is enlarged according to the amount of content.
+
+```html
+<div data-unitone-layout="layers -fill">
   <img ...>
   <div>
     ...

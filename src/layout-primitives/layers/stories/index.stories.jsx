@@ -19,6 +19,14 @@ export default {
       table: { defaultValue: { summary: false } },
       type: { name: 'boolean', required: false },
     },
+    fill: {
+      control: { type: 'inline-radio' },
+      description:
+        "The background image/video is enlarged according to the amount of content.",
+      options: [false, true],
+      table: { defaultValue: { summary: false } },
+      type: { name: 'boolean', required: false },
+    },
     portrait: {
       control: { type: 'inline-radio' },
       description: 'In portrait mode, swaps the height and width of the grid.',
@@ -29,6 +37,7 @@ export default {
   },
   args: {
     cover: false,
+    fill: false,
     portrait: true,
   },
 };
