@@ -83,13 +83,10 @@
     }
   }
 
-  picture,
-  figure {
+  :where(figure, picture) {
     width: fit-content;
     max-width: 100%;
-  }
 
-  :where(figure, picture) {
     :where(img, video) {
       margin-top: 0;
       margin-bottom: 0;

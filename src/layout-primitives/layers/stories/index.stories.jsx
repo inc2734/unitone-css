@@ -21,8 +21,7 @@ export default {
     },
     fill: {
       control: { type: 'inline-radio' },
-      description:
-        "The background image/video is enlarged according to the amount of content.",
+      description: 'The background image/video is enlarged according to the amount of content.',
       options: [false, true],
       table: { defaultValue: { summary: false } },
       type: { name: 'boolean', required: false },
