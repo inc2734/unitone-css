@@ -12,11 +12,13 @@ const fluidFontSizeResizeObserver = new ResizeObserver((entries) => {
   }
 });
 
-const fluidFontSizeElements = document.querySelectorAll(
-  '[data-unitone-layout~="-fluid-typography"]',
-);
-fluidFontSizeElements.forEach((target) => {
-  fluidFontSizeResizeObserver.observe(target);
+document.addEventListener('DOMContentLoaded', () => {
+  const fluidFontSizeElements = document.querySelectorAll(
+    '[data-unitone-layout~="-fluid-typography"]',
+  );
+  fluidFontSizeElements.forEach((target) => {
+    fluidFontSizeResizeObserver.observe(target);
+  });
 });
 
 const setDividerLinewrap = (target) => {
@@ -58,9 +60,11 @@ export const dividersResizeObserver = new ResizeObserver((entries) => {
   }
 });
 
-const dividers = document.querySelectorAll('[data-unitone-layout*="-divider:"]');
-dividers.forEach((target) => {
-  dividersResizeObserver.observe(target);
+document.addEventListener('DOMContentLoaded', () => {
+  const dividers = document.querySelectorAll('[data-unitone-layout*="-divider:"]');
+  dividers.forEach((target) => {
+    dividersResizeObserver.observe(target);
+  });
 });
 
 const setHeightForVertical = (target) => {
