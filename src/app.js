@@ -62,3 +62,31 @@ const dividers = document.querySelectorAll('[data-unitone-layout*="-divider:"]')
 dividers.forEach((target) => {
   dividersResizeObserver.observe(target);
 });
+
+const setHeightForVertical = (target) => {
+  console.log(target);
+  const parent = target.parentNode;
+  parent.style.height = '';
+
+  const targetRect = target.getBoundingClientRect();
+
+  const childrenEnds = [];
+  [].slice.call(target.children).forEach((child) => {
+    const childRect = child.getBoundingClientRect();
+    childrenEnds.push(childRect.top + childRect.height);
+  });
+
+  const end = Math.max(...childrenEnds);
+  parent.style.height = `${end - targetRect.top}px`;
+};
+
+export const verticalsResizeObserver = new ResizeObserver((entries) => {
+  for (const entry of entries) {
+    setHeightForVertical(entry.target);
+  }
+});
+
+const verticals = document.querySelectorAll('[data-unitone-layout~="vertical-writing"]');
+verticals.forEach((target) => {
+  verticalsResizeObserver.observe(target);
+});

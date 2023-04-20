@@ -1,0 +1,13 @@
+@mixin text-orientation() {
+  [data-unitone-layout~="-text-orientation\:mixed"] {
+    --unitone--text-orientation: mixed !important;
+  }
+
+  [data-unitone-layout~="-text-orientation\:upright"] {
+    --unitone--text-orientation: upright !important;
+  }
+
+  [data-unitone-layout~="-text-orientation\:sideways"] {
+    --unitone--text-orientation: sideways !important;
+  }
+}
