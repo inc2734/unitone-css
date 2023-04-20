@@ -1,0 +1,26 @@
+$_values: (
+  normal: normal,
+  multiply: multiply,
+  screen: screen,
+  overlay: overlay,
+  darken: darken,
+  lighten: lighten,
+  color-dodge: color-dodge,
+  color-burn: color-burn,
+  hard-light: hard-light,
+  soft-light: soft-light,
+  difference: difference,
+  exclusion: exclusion,
+  hue: hue,
+  saturation: saturation,
+  color: color,
+  luminosity: luminosity,
+);
+
+@mixin mix-blend-mode() {
+  @each $key, $value in $_values {
+    [data-unitone-layout~="-mix-blend-mode\:#{ $key }"] {
+      --unitone--mix-blend-mode: #{ $value } !important;
+    }
+  }
+}

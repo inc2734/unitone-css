@@ -7,6 +7,7 @@
 @use 'gutters';
 @use 'justify-content';
 @use 'justify-self';
+@use 'mix-blend-mode';
 @use 'overflow';
 @use 'padding';
 @use 'position';
@@ -22,6 +23,7 @@
   @include gutters.gutters();
   @include justify-content.justify-content();
   @include justify-self.justify-self();
+  @include mix-blend-mode.mix-blend-mode();
   @include overflow.overflow();
   @include padding.padding();
   @include position.position();
