@@ -12,6 +12,7 @@
 
   > * {
     max-height: var(--unitone--max-height);
+    height: var(--unitone--max-height); // For Safari
   }
 
   > *:not(:first-child) {

@@ -64,20 +64,36 @@ dividers.forEach((target) => {
 });
 
 const setHeightForVertical = (target) => {
-  console.log(target);
   const parent = target.parentNode;
   parent.style.height = '';
+  target.style.columnCount = '';
 
   const targetRect = target.getBoundingClientRect();
+  const lastChild = [].slice.call(target.children)?.[target.children.length - 1];
+  const childrenMinX = lastChild.getBoundingClientRect().left;
 
-  const childrenEnds = [];
+  const preRowCount = Math.ceil(
+    (childrenMinX * -1 + targetRect.left + targetRect.width) / targetRect.width,
+  );
+  const preHeight = `calc(${preRowCount} * ${getComputedStyle(target).getPropertyValue(
+    '--unitone--max-height',
+  )} + ${preRowCount - 1} * ${getComputedStyle(target).getPropertyValue(
+    '--unitone--column-gap',
+  )} )`;
+
+  parent.style.height = preHeight;
+  if (targetRect.left > childrenMinX) {
+    target.style.columnCount = 2;
+  }
+
+  const childrenY = [];
   [].slice.call(target.children).forEach((child) => {
     const childRect = child.getBoundingClientRect();
-    childrenEnds.push(childRect.top + childRect.height);
+    childrenY.push(childRect.top + childRect.height);
   });
+  const childrenMaxY = Math.max(...childrenY);
 
-  const end = Math.max(...childrenEnds);
-  parent.style.height = `${end - targetRect.top}px`;
+  parent.style.height = `${childrenMaxY - targetRect.top}px`;
 };
 
 export const verticalsResizeObserver = new ResizeObserver((entries) => {
@@ -86,7 +102,9 @@ export const verticalsResizeObserver = new ResizeObserver((entries) => {
   }
 });
 
-const verticals = document.querySelectorAll('[data-unitone-layout~="vertical-writing"]');
-verticals.forEach((target) => {
-  verticalsResizeObserver.observe(target);
+document.addEventListener('DOMContentLoaded', () => {
+  const verticals = document.querySelectorAll('[data-unitone-layout~="vertical-writing"]');
+  verticals.forEach((target) => {
+    verticalsResizeObserver.observe(target);
+  });
 });
