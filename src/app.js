@@ -73,9 +73,22 @@ const setHeightForVertical = (target) => {
   target.style.columnCount = '';
 
   const targetRect = target.getBoundingClientRect();
-  const lastChild = [].slice.call(target.children)?.[target.children.length - 1];
-  const childrenMinX = lastChild.getBoundingClientRect().left;
 
+  let lastChild;
+  [].slice
+    .call(target.children)
+    .reverse()
+    .some((child) => {
+      if (!['absolute', 'fixed'].includes(getComputedStyle(child).position)) {
+        lastChild = child;
+        return true;
+      }
+    });
+
+  if (!lastChild) {
+    return;
+  }
+  const childrenMinX = lastChild.getBoundingClientRect().left;
   const preRowCount = Math.ceil(
     (childrenMinX * -1 + targetRect.left + targetRect.width) / targetRect.width,
   );
@@ -97,7 +110,8 @@ const setHeightForVertical = (target) => {
   });
   const childrenMaxY = Math.max(...childrenY);
 
-  parent.style.height = `${childrenMaxY - targetRect.top}px`;
+  const height = childrenMaxY - targetRect.top;
+  parent.style.height = !!height ? `${height}px` : '';
 };
 
 export const verticalsResizeObserver = new ResizeObserver((entries) => {

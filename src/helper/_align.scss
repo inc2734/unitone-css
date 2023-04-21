@@ -1,14 +1,24 @@
 @mixin align() {
-  [data-unitone-layout~="-align\:start"] > :not(:root) {
+  [data-unitone-layout~="-align\:start"]:not(:root):not(:root) {
+    margin-right: auto !important;
     margin-left: 0 !important;
   }
 
-  [data-unitone-layout~="-align\:center"] > :not(:root) {
+  [data-unitone-layout~="-align\:center"]:not(:root):not(:root) {
     margin-right: auto !important;
     margin-left: auto !important;
   }
 
-  [data-unitone-layout~="-align\:end"] > :not(:root) {
+  [data-unitone-layout~="-align\:end"]:not(:root):not(:root) {
     margin-right: 0 !important;
+    margin-left: auto !important;
+  }
+
+  [data-unitone-layout~="text"] {
+    &[data-unitone-layout~="-align\:start"],
+    &[data-unitone-layout~="-align\:center"],
+    &[data-unitone-layout~="-align\:end"] {
+      max-width: var(--unitone--max-width);
+    }
   }
 }

@@ -4,11 +4,13 @@
   --unitone--max-height: var(--unitone--vertical-writing--max-height, calc(9 * var(--unitone--measure) / 16));
   --unitone--text-orientation: mixed;
 
+  margin-right: auto;
+  margin-left: auto;
   writing-mode: vertical-rl;
-  width: 100%;
-  text-orientation: var(--unitone--text-orientation);
   column-count: 1;
   column-gap: var(--unitone--global--gap);
+  width: 100%;
+  text-orientation: var(--unitone--text-orientation);
 
   > * {
     max-height: var(--unitone--max-height);
