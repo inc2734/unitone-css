@@ -65,6 +65,7 @@
   &[data-unitone-layout~="-column"] {
     column-width: var(--unitone--max-width);
     gap: var(--unitone--column-gap);
+    max-width: none;
   }
 }
 
