@@ -86,26 +86,41 @@ const setColumnCountForVertical = (target) => {
     return;
   }
 
-  const setColumnCount = (columnCount) => {
-    target.style.columnCount = columnCount;
-    const targetY = target.getBoundingClientRect().top + target.getBoundingClientRect().height;
-    const lastChildY =
-      lastChild.getBoundingClientRect().top + lastChild.getBoundingClientRect().height;
+  // For Safari
+  const targetX = target.getBoundingClientRect().left;
+  const lastChildX = lastChild.getBoundingClientRect().left;
+  if (targetX > lastChildX) {
+    target.style.columnCount = 2;
+  }
 
-    const targetX = target.getBoundingClientRect().left;
-    const lastChildX = lastChild.getBoundingClientRect().left;
-
-    if (targetY < lastChildY || targetX > lastChildX) {
-      setColumnCount(columnCount + 1);
-    }
-  };
-  setColumnCount(1);
+  const targetY = target.getBoundingClientRect().top + target.getBoundingClientRect().height;
+  const lastChildY =
+    lastChild.getBoundingClientRect().top + lastChild.getBoundingClientRect().height;
+  if (targetY < lastChildY) {
+    target.parentNode.style.height = `${Math.ceil(
+      lastChildY - target.getBoundingClientRect().top,
+    )}px`;
+  }
 };
 
 export const verticalsResizeObserve = (target) => {
   let prevWidth = 0;
 
-  const observer = new ResizeObserver((entries) => {
+  const mutationObserver = new MutationObserver((entries) => {
+    for (const entry of entries) {
+      console.log(entry);
+      setColumnCountForVertical(entry.target);
+    }
+  });
+
+  mutationObserver.observe(target, {
+    // attributes: true,
+    characterData: true,
+    childList: true,
+    subtree: true,
+  });
+
+  const resizeObserver = new ResizeObserver((entries) => {
     for (const entry of entries) {
       const width = entry.borderBoxSize?.[0].blockSize;
       if (width !== prevWidth) {
@@ -115,8 +130,7 @@ export const verticalsResizeObserve = (target) => {
     }
   });
 
-  observer.unobserve(target);
-  observer.observe(target);
+  resizeObserver.observe(target);
 };
 
 document.addEventListener('DOMContentLoaded', () => {
