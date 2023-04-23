@@ -67,12 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-const setHeightForVertical = (target) => {
+const setColumnCountForVertical = (target) => {
   const parent = target.parentNode;
-  parent.style.height = '';
   target.style.columnCount = '';
-
-  const targetRect = target.getBoundingClientRect();
 
   let lastChild;
   [].slice
@@ -88,46 +85,43 @@ const setHeightForVertical = (target) => {
   if (!lastChild) {
     return;
   }
-  const childrenMinX = lastChild.getBoundingClientRect().left;
-  const preRowCount = Math.ceil(
-    (childrenMinX * -1 + targetRect.left + targetRect.width) / targetRect.width,
-  );
-  const preHeight = `calc(${preRowCount} * ${getComputedStyle(target).getPropertyValue(
-    '--unitone--max-height',
-  )} + ${preRowCount - 1} * ${getComputedStyle(target).getPropertyValue(
-    '--unitone--column-gap',
-  )} )`;
 
-  parent.style.height = preHeight;
-  if (targetRect.left > childrenMinX) {
-    target.style.columnCount = 2;
-  }
+  const setColumnCount = (columnCount) => {
+    target.style.columnCount = columnCount;
+    const targetY = target.getBoundingClientRect().top + target.getBoundingClientRect().height;
+    const lastChildY =
+      lastChild.getBoundingClientRect().top + lastChild.getBoundingClientRect().height;
 
-  const childrenY = [];
-  [].slice.call(target.children).forEach((child) => {
-    const childRect = child.getBoundingClientRect();
-    childrenY.push(childRect.top + childRect.height);
-  });
-  const childrenMaxY = Math.max(...childrenY);
+    const targetX = target.getBoundingClientRect().left;
+    const lastChildX = lastChild.getBoundingClientRect().left;
 
-  if (1 < preRowCount) {
-    const height = Math.ceil(childrenMaxY - targetRect.top);
-    parent.style.height = !!height ? `${height}px` : '';
-  } else {
-    parent.style.height = '';
-    target.style.columnCount = '';
-  }
+    if (targetY < lastChildY || targetX > lastChildX) {
+      setColumnCount(columnCount + 1);
+    }
+  };
+  setColumnCount(1);
 };
 
-export const verticalsResizeObserver = new ResizeObserver((entries) => {
-  for (const entry of entries) {
-    setHeightForVertical(entry.target);
-  }
-});
+export const verticalsResizeObserve = (target) => {
+  let prevWidth = 0;
+
+  const observer = new ResizeObserver((entries) => {
+    for (const entry of entries) {
+      const width = entry.borderBoxSize?.[0].blockSize;
+      if (width !== prevWidth) {
+        prevWidth = width;
+        setColumnCountForVertical(entry.target);
+      }
+    }
+  });
+
+  observer.unobserve(target);
+  observer.observe(target);
+};
 
 document.addEventListener('DOMContentLoaded', () => {
   const verticals = document.querySelectorAll('[data-unitone-layout~="vertical-writing"]');
   verticals.forEach((target) => {
-    verticalsResizeObserver.observe(target);
+    verticalsResizeObserve(target);
   });
 });
