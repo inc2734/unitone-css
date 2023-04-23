@@ -69,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const setColumnCountForVertical = (target) => {
   const parent = target.parentNode;
+  target.parentNode.style.height = '';
   target.style.columnCount = '';
 
   let lastChild;
@@ -108,7 +109,6 @@ export const verticalsResizeObserve = (target) => {
 
   const mutationObserver = new MutationObserver((entries) => {
     for (const entry of entries) {
-      console.log(entry);
       setColumnCountForVertical(entry.target);
     }
   });
