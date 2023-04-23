@@ -110,12 +110,12 @@ const setHeightForVertical = (target) => {
   });
   const childrenMaxY = Math.max(...childrenY);
 
-  target.style.columnCount = '';
   if (1 < preRowCount) {
     const height = Math.ceil(childrenMaxY - targetRect.top);
     parent.style.height = !!height ? `${height}px` : '';
   } else {
     parent.style.height = '';
+    target.style.columnCount = '';
   }
 };
 
