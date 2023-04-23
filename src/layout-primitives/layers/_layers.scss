@@ -4,6 +4,11 @@
   --unitone--gap: min(3.33333%, var(--unitone--grid-gap));
   --unitone--min-height: 0;
 
+  // @todo Firefox corrupts layout if % is used for gap
+  @-moz-document url-prefix() {
+    --unitone--gap: min(3.33333vw, var(--unitone--grid-gap));
+  }
+
   @media (orientation: portrait) {
     &[data-unitone-layout~="-portrait"] {
       --unitone--columns: var(--unitone--grid-rows);
@@ -22,17 +27,23 @@
     --unitone--justify-self: auto;
     --unitone--grid-column: 1/-1;
     --unitone--grid-row: 1/-1;
-    --unitone--max-width: none;
-    --unitone--min-height: auto;
     --unitone--mix-blend-mode: normal;
 
     grid-column: var(--unitone--grid-column);
     grid-row: var(--unitone--grid-row);
     align-self: var(--unitone--align-self);
     justify-self: var(--unitone--justify-self);
-    max-width: var(--unitone--max-width);
-    min-height: var(--unitone--min-height);
     mix-blend-mode: var(--unitone--mix-blend-mode);
+  }
+
+  @at-root {
+    :where(#{ & } > *) {
+      --unitone--max-width: none;
+      --unitone--min-height: auto;
+
+      max-width: var(--unitone--max-width);
+      min-height: var(--unitone--min-height);
+    }
   }
 
   &[data-unitone-layout~="-cover"] {
