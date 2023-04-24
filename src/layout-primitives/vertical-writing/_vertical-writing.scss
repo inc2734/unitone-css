@@ -13,6 +13,7 @@
   > * {
     max-height: var(--unitone--max-height);
     height: var(--unitone--max-height); // For Safari
+    box-sizing: content-box;
   }
 
   > *:not(:first-child) {
