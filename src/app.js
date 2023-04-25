@@ -69,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const setColumnCountForVertical = (target) => {
   target.parentNode.style.height = '';
+  target.parentNode.style.width = '';
   target.style.columnCount = '';
 
   let lastChild;
@@ -86,10 +87,22 @@ const setColumnCountForVertical = (target) => {
     return;
   }
 
+  // For Firefox
+  if (target.getBoundingClientRect().left > lastChild.getBoundingClientRect().left) {
+    target.style.columnCount = 'auto';
+    target.parentNode.style.width = `${Math.ceil(
+      target.getBoundingClientRect().width +
+        target.getBoundingClientRect().left -
+        lastChild.getBoundingClientRect().left,
+    )}px`;
+
+    if (target.getBoundingClientRect().width >= target.parentNode.getBoundingClientRect().width) {
+      target.style.columnCount = '';
+    }
+  }
+
   // For Safari
-  const targetX = target.getBoundingClientRect().left;
-  const lastChildX = lastChild.getBoundingClientRect().left;
-  if (targetX > lastChildX) {
+  if (target.getBoundingClientRect().left > lastChild.getBoundingClientRect().left) {
     target.style.columnCount = 2;
   }
 
@@ -119,12 +132,14 @@ export const verticalsResizeObserve = (target) => {
     subtree: true,
   });
 
-  const resizeObserver = new ResizeObserver((entries) => {
+  const resizeObserver = new ResizeObserver((entries, observer) => {
     for (const entry of entries) {
       const width = entry.borderBoxSize?.[0].blockSize;
       if (width !== prevWidth) {
         prevWidth = width;
+        observer.unobserve(entry.target);
         setColumnCountForVertical(entry.target);
+        observer.observe(entry.target);
       }
     }
   });
