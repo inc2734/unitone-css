@@ -11,9 +11,22 @@
   text-orientation: var(--unitone--text-orientation);
 
   > * {
-    max-height: var(--unitone--max-height);
-    height: var(--unitone--max-height); // For Safari
+    max-inline-size: var(--unitone--max-height);
+    inline-size: var(--unitone--max-height); // For Safari
     box-sizing: content-box;
+  }
+
+  @media (orientation: portrait) {
+    &[data-unitone-layout~="-switch"] {
+      column-count: auto;
+      width: auto;
+      writing-mode: horizontal-tb;
+
+      > * {
+        box-sizing: border-box;
+        inline-size: auto;
+      }
+    }
   }
 
   > *:not(:first-child) {

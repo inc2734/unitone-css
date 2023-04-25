@@ -32,11 +32,19 @@ export default {
       table: { defaultValue: { summary: '' } },
       type: { name: 'string', required: false },
     },
+    switchWritingMode: {
+      control: { type: 'inline-radio' },
+      description: 'When the orientation switches, the `writing-mode` also switches.',
+      options: [false, true],
+      table: { defaultValue: { summary: false } },
+      type: { name: 'boolean', required: false },
+    },
   },
   args: {
     gap: 1,
     maxHeight: 'calc(9 * var(--unitone--measure) / 16)',
     textOrientation: 'mixed',
+    switchWritingMode: false,
   },
 };
 

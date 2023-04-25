@@ -1,6 +1,13 @@
 import React from 'react';
 
-export const VerticalWriting = ({ textOrientation, gap, maxHeight, style, ...props }) => {
+export const VerticalWriting = ({
+  textOrientation,
+  gap,
+  maxHeight,
+  switchWritingMode,
+  style,
+  ...props
+}) => {
   style = {
     ...style,
     '--unitone--max-height': !!maxHeight ? maxHeight : undefined,
@@ -13,6 +20,7 @@ export const VerticalWriting = ({ textOrientation, gap, maxHeight, style, ...pro
           'vertical-writing',
           'undefined' !== typeof textOrientation ? `-gap:${textOrientation}` : undefined,
           'undefined' !== typeof gap ? `-gap:${gap}` : undefined,
+          true === switchWritingMode ? `-switch` : undefined,
         ]
           .filter(Boolean)
           .join(' ')}

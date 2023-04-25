@@ -28,3 +28,13 @@
   </div>
 </div>
 ```
+
+### Switch writing mode when portrait
+
+```html
+<div>
+  <div data-unitone-layout="vertical-writing -switch">
+    ...
+  </div>
+</div>
+```
