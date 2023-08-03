@@ -7,6 +7,14 @@
 </div>
 ```
 
+### Automatically apply appropriate gap
+
+```html
+<div data-unitone-layout="text -gap">
+  ...
+</div>
+```
+
 ### Centering children
 
 ```html

@@ -9,28 +9,8 @@
   padding-left: var(--unitone--gutters);
   max-width: none;
 
-  > * {
-    margin: 0 auto;
-  }
-
-  > *:not(:first-child) {
-    margin-top: calc(var(--unitone--margin-top, 1) * var(--unitone--gap));
-  }
-
-  > *:not(:last-child) {
-    margin-bottom: calc(var(--unitone--margin-bottom, 1) * var(--unitone--gap));
-  }
-
   > h1 {
     --unitone--font-size: 4;
-  }
-
-  > :where(h2, h3, h4, h5, h6) {
-    --unitone--margin-top: 2;
-
-    & + :where(h2, h3, h4, h5, h6) {
-      --unitone--margin-top: 0;
-    }
   }
 
   > h2 {
@@ -47,18 +27,10 @@
 
   > h5 {
     --unitone--font-size: 0;
-
-    & + * {
-      --unitone--margin-top: .5;
-    }
   }
 
   > h6 {
     --unitone--font-size: 0;
-
-    & + * {
-      --unitone--margin-top: .5;
-    }
   }
 
   &[data-unitone-layout~="-column"] {
@@ -73,8 +45,35 @@
     @include abstract-text();
   }
 
-  :where([data-unitone-layout~="text"] > *) {
-    max-width: min(100%, var(--unitone--max-width));
+  :where([data-unitone-layout~="text"][data-unitone-layout~="-gap"]) {
+    > * {
+      margin: 0 auto;
+      max-width: min(100%, var(--unitone--max-width));
+    }
+
+    > *:not(:first-child) {
+      margin-top: calc(var(--unitone--margin-top, 1) * var(--unitone--gap));
+    }
+
+    > *:not(:last-child) {
+      margin-bottom: calc(var(--unitone--margin-bottom, 1) * var(--unitone--gap));
+    }
+
+    > :where(h2, h3, h4, h5, h6) {
+      --unitone--margin-top: 2;
+
+      & + :where(h2, h3, h4, h5, h6) {
+        --unitone--margin-top: 0;
+      }
+    }
+
+    > h5 + * {
+      --unitone--margin-top: .5;
+    }
+
+    > h6 + * {
+      --unitone--margin-top: .5;
+    }
   }
 
   :where([data-unitone-layout~="text"][data-unitone-layout~="-center"]) > * {

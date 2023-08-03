@@ -17,23 +17,21 @@
 
 @use 'container/container';
 
-@mixin layout-primitives() {
-  @include both-sides.both-sides();
-  @include decorator.decorator();
-  @include center.center();
-  @include cluster.cluster();
-  @include cover.cover();
-  @include float.float();
-  @include frame.frame();
-  @include layers.layers();
-  @include reel.reel();
-  @include responsive-grid.responsive-grid();
-  @include gutters.gutters();
-  @include stack.stack();
-  @include switcher.switcher();
-  @include text.text();
-  @include vertical-writing.vertical-writing();
-  @include with-sidebar.with-sidebar();
+@include both-sides.both-sides();
+@include decorator.decorator();
+@include center.center();
+@include cluster.cluster();
+@include cover.cover();
+@include float.float();
+@include frame.frame();
+@include layers.layers();
+@include reel.reel();
+@include responsive-grid.responsive-grid();
+@include gutters.gutters();
+@include stack.stack();
+@include switcher.switcher();
+@include text.text();
+@include vertical-writing.vertical-writing();
+@include with-sidebar.with-sidebar();
 
-  @include container.container();
-}
+@include container.container();

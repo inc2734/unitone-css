@@ -24,6 +24,14 @@ export default {
       table: { defaultValue: { summary: false } },
       type: { name: 'boolean', required: false },
     },
+    applyGap: {
+      control: { type: 'inline-radio' },
+      description:
+        'Automatically apply appropriate gap. Set by `data-unitone-layout` attribute `-gap`.',
+      options: [false, true],
+      table: { defaultValue: { summary: false } },
+      type: { name: 'boolean', required: false },
+    },
     gap: {
       control: { type: 'inline-radio' },
       description:
@@ -42,6 +50,7 @@ export default {
   args: {
     center: false,
     column: false,
+    applyGap: false,
     gap: 1,
     maxWidth: 'var(--unitone--measure)',
   },

@@ -1,11 +1,10 @@
+@use "sass:meta";
 @use 'settings/settings';
-@use 'foundation/foundation';
-@use 'layout-primitives/layout-primitives';
 @use 'helper/helper';
 
 // #root,
 // .docs-story {
-  @include foundation.foundation();
-  @include layout-primitives.layout-primitives();
-  @include helper.helper();
+  @include meta.load-css("foundation/foundation");
+  @include meta.load-css("layout-primitives/layout-primitives");
+  @include meta.load-css("helper/helper");
 // }

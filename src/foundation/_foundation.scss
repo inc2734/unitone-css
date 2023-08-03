@@ -1,114 +1,112 @@
 @use '../variables/variables' as variables;
 
-@mixin foundation() {
-  * {
-    font-size: #{ variables.$font-size };
-    line-height: #{ variables.$line-height };
+* {
+  font-size: #{ variables.$font-size };
+  line-height: #{ variables.$line-height };
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  line-break: normal;
+  hanging-punctuation: allow-end;
+}
+
+a {
+  text-underline-offset: 0.1em;
+  text-decoration-thickness: 1px;
+}
+
+:where(
+  address,
+  article,
+  aside,
+  blockquote,
+  details,
+  dialog,
+  dd,
+  dl,
+  dt,
+  fieldset,
+  figcaption,
+  figure,
+  footer,
+  form,
+  h1, h2, h3, h4, h5, h6,
+  header,
+  hgroup,
+  hr,
+  li,
+  main,
+  nav,
+  ol,
+  p,
+  pre,
+  section,
+  table,
+  ul
+) {
+  margin: 0;
+  padding: 0;
+}
+
+:where(li) {
+  margin-inline-start: 1.5em;
+}
+
+small {
+  font-size: smaller;
+}
+
+sup {
+  font-size: smaller;
+
+  @supports (font-variant-position: super) {
+    font-variant-position: super;
+    vertical-align: baseline;
+    font-size: inherit;
+  }
+}
+
+sub {
+  font-size: smaller;
+
+  @supports (font-variant-position: sub) {
+    font-variant-position: sub;
+    vertical-align: baseline;
+    font-size: inherit;
+  }
+}
+
+:where(figure, picture) {
+  width: fit-content;
+  max-width: 100%;
+
+  :where(img, video) {
+    margin-top: 0;
+    margin-bottom: 0;
+    display: table;
   }
 
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
+  :where(img:not([width]), video:not([width])) {
+    width: 100%;
   }
+}
 
-  html {
-    line-break: normal;
-    hanging-punctuation: allow-end;
-  }
+img,
+video {
+  height: auto;
+  max-width: 100%;
+}
 
-  a {
-    text-underline-offset: 0.1em;
-    text-decoration-thickness: 1px;
-  }
+figcaption {
+  --unitone--font-size: -2;
 
-  :where(
-    address,
-    article,
-    aside,
-    blockquote,
-    details,
-    dialog,
-    dd,
-    dl,
-    dt,
-    fieldset,
-    figcaption,
-    figure,
-    footer,
-    form,
-    h1, h2, h3, h4, h5, h6,
-    header,
-    hgroup,
-    hr,
-    li,
-    main,
-    nav,
-    ol,
-    p,
-    pre,
-    section,
-    table,
-    ul
-  ) {
-    margin: 0;
-    padding: 0;
-  }
-
-  :where(li) {
-    margin-inline-start: 1.5em;
-  }
-
-  small {
-    font-size: smaller;
-  }
-
-  sup {
-    font-size: smaller;
-
-    @supports (font-variant-position: super) {
-      font-variant-position: super;
-      vertical-align: baseline;
-      font-size: inherit;
-    }
-  }
-
-  sub {
-    font-size: smaller;
-
-    @supports (font-variant-position: sub) {
-      font-variant-position: sub;
-      vertical-align: baseline;
-      font-size: inherit;
-    }
-  }
-
-  :where(figure, picture) {
-    width: fit-content;
-    max-width: 100%;
-
-    :where(img, video) {
-      margin-top: 0;
-      margin-bottom: 0;
-      display: table;
-    }
-
-    :where(img:not([width]), video:not([width])) {
-      width: 100%;
-    }
-  }
-
-  img,
-  video {
-    height: auto;
-    max-width: 100%;
-  }
-
-  figcaption {
-    --unitone--font-size: -2;
-
-    margin: var(--unitone--s-2) 0 0;
-    caption-side: bottom;
-    text-align: left;
-  }
+  margin: var(--unitone--s-2) 0 0;
+  caption-side: bottom;
+  text-align: left;
 }

@@ -13,19 +13,17 @@
 @use 'position';
 @use 'text-orientation';
 
-@mixin helper() {
-  @include align-items.align-items();
-  @include align-self.align-self();
-  @include align.align();
-  @include auto-repeat.auto-repeat();
-  @include fluid-typography.fluid-typography();
-  @include gap.gap();
-  @include gutters.gutters();
-  @include justify-content.justify-content();
-  @include justify-self.justify-self();
-  @include mix-blend-mode.mix-blend-mode();
-  @include overflow.overflow();
-  @include padding.padding();
-  @include position.position();
-  @include text-orientation.text-orientation();
-}
+@include align-items.align-items();
+@include align-self.align-self();
+@include align.align();
+@include auto-repeat.auto-repeat();
+@include fluid-typography.fluid-typography();
+@include gap.gap();
+@include gutters.gutters();
+@include justify-content.justify-content();
+@include justify-self.justify-self();
+@include mix-blend-mode.mix-blend-mode();
+@include overflow.overflow();
+@include padding.padding();
+@include position.position();
+@include text-orientation.text-orientation();
