@@ -18,8 +18,12 @@
 
   img,
   video {
-    height: 100%;
-    width: 100%;
+    height: 100% !important;
+    width: 100% !important;
+    max-height: 100% !important;
+    max-width: 100% !important;
+    min-height: 0 !important;
+    min-width: 0 !important;
     object-fit: cover;
     aspect-ratio: var(--unitone--ratio);
     vertical-align: top;
