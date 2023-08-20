@@ -1,6 +1,6 @@
 @mixin abstract-both-sides() {
   --unitone--gap: var(--unitone--global--gap);
-  --unitone--align-items: flex-start;
+  --unitone--align-items: start;
   --unitone--content-width: fit-content;
   --unitone--content-max-width: 100%;
 
