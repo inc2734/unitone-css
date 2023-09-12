@@ -26,6 +26,13 @@ export default {
       table: { defaultValue: { summary: false } },
       type: { name: 'boolean', required: false },
     },
+    blur: {
+      control: { type: 'inline-radio' },
+      description: 'Blur the background image/video.',
+      options: [false, true],
+      table: { defaultValue: { summary: false } },
+      type: { name: 'boolean', required: false },
+    },
     portrait: {
       control: { type: 'inline-radio' },
       description: 'In portrait mode, swaps the height and width of the grid.',
@@ -37,6 +44,7 @@ export default {
   args: {
     cover: false,
     fill: false,
+    blur: false,
     portrait: true,
   },
 };
@@ -45,7 +53,7 @@ export const Default = (args) => {
   return (
     <Layers {...args}>
       <img src="https://placehold.jp/600x400.jpg" alt="" />
-      <Decorator style={{ '--unitone--align-self': 'end' }} padding={1}>
+      <Decorator style={{ '--unitone--align-self': 'end' }} padding={1} position="relative">
         Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
         eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
         nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
@@ -71,7 +79,7 @@ export const ExamplePicture = (args) => {
       <picture>
         <img src="https://placehold.jp/600x400.jpg" alt="" />
       </picture>
-      <Decorator style={{ '--unitone--align-self': 'end' }} padding={1}>
+      <Decorator style={{ '--unitone--align-self': 'end' }} padding={1} position="relative">
         Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
         eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
         nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
@@ -98,7 +106,7 @@ export const ExampleFigure = (args) => {
       <figure>
         <img src="https://placehold.jp/600x400.jpg" alt="" />
       </figure>
-      <Decorator style={{ '--unitone--align-self': 'end' }} padding={1}>
+      <Decorator style={{ '--unitone--align-self': 'end' }} padding={1} position="relative">
         Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
         eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
         nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
@@ -127,7 +135,7 @@ export const ExampleFigurePicture = (args) => {
           <img src="https://placehold.jp/600x400.jpg" alt="" />
         </picture>
       </figure>
-      <Decorator style={{ '--unitone--align-self': 'end' }} padding={1}>
+      <Decorator style={{ '--unitone--align-self': 'end' }} padding={1} position="relative">
         Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
         eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
         nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute

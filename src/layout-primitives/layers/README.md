@@ -35,6 +35,19 @@ The background image/video is enlarged according to the amount of content.
 </div>
 ```
 
+### Blur image
+
+Blur the background image/video.
+
+```html
+<div data-unitone-layout="layers -blur">
+  <img ...>
+  <div>
+    ...
+  </div>
+</div>
+```
+
 ### Portrait grid
 
 ```html

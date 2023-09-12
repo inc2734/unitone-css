@@ -3,6 +3,7 @@
   --unitone--rows: var(--unitone--grid-rows);
   --unitone--gap: min(3.33333%, var(--unitone--grid-gap));
   --unitone--min-height: 0;
+  --unitone--blur: 75px;
 
   // @todo Firefox corrupts layout if % is used for gap
   @-moz-document url-prefix() {
@@ -41,6 +42,7 @@
       --unitone--max-width: none;
       --unitone--min-height: auto;
 
+      position: relative;
       max-width: var(--unitone--max-width);
       min-height: var(--unitone--min-height);
     }
@@ -67,6 +69,16 @@
       object-position: 50% 50%;
       height: 100%;
       width: 100%;
+    }
+  }
+
+  &[data-unitone-layout~="-blur"] {
+    overflow: hidden;
+
+    > :where(img:first-child, video:first-child),
+    > :first-child :where(img, video) {
+      filter: blur(var(--unitone--blur));
+      transform: scale(1.5);
     }
   }
 }

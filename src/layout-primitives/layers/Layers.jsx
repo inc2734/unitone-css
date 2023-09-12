@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Layers = ({ cover, fill, portrait, style, ...props }) => {
+export const Layers = ({ cover, fill, blur, portrait, style, ...props }) => {
   style = {
     ...style,
   };
@@ -11,6 +11,7 @@ export const Layers = ({ cover, fill, portrait, style, ...props }) => {
         'layers',
         true === cover ? `-cover` : undefined,
         true === fill ? `-fill` : undefined,
+        true === blur ? `-blur` : undefined,
         true === portrait ? `-portrait` : undefined,
       ]
         .filter(Boolean)
