@@ -25,7 +25,7 @@
     min-height: 0 !important;
     min-width: 0 !important;
     object-fit: cover;
-    aspect-ratio: var(--unitone--ratio);
+    aspect-ratio: var(--unitone--ratio) !important;
     vertical-align: top;
   }
 
@@ -39,7 +39,7 @@
 
       img,
       video {
-        aspect-ratio: calc(1 / (var(--unitone--ratio)));
+        aspect-ratio: calc(1 / (var(--unitone--ratio))) !important;
       }
     }
   }
