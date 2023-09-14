@@ -63,6 +63,13 @@
 
   &[data-unitone-layout~="-cover"],
   &[data-unitone-layout~="-fill"] {
+    > * {
+      grid-column: 1/-1;
+      grid-row: 1/-1;
+      align-self: auto;
+      justify-self: auto;
+    }
+
     > :where(img:first-child, video:first-child),
     > :first-child :where(img, video) {
       object-fit: cover;
@@ -75,10 +82,17 @@
   &[data-unitone-layout~="-blur"] {
     overflow: hidden;
 
+    &[data-unitone-layout~="-cover"],
+    &[data-unitone-layout~="-fill"] {
+      > :where(img:first-child, video:first-child),
+      > :first-child :where(img, video) {
+        transform: scale(1.5);
+      }
+    }
+
     > :where(img:first-child, video:first-child),
     > :first-child :where(img, video) {
       filter: blur(var(--unitone--blur));
-      transform: scale(1.5);
     }
   }
 }
