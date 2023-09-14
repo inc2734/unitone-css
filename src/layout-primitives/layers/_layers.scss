@@ -63,9 +63,7 @@
 
   &[data-unitone-layout~="-cover"],
   &[data-unitone-layout~="-fill"] {
-    > * {
-      grid-column: 1/-1;
-      grid-row: 1/-1;
+    > :first-child {
       align-self: auto;
       justify-self: auto;
     }
