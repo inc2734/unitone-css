@@ -12,6 +12,7 @@
 @use 'padding';
 @use 'position';
 @use 'text-orientation';
+@use 'typography';
 
 @include align-items.align-items();
 @include align-self.align-self();
@@ -27,3 +28,4 @@
 @include padding.padding();
 @include position.position();
 @include text-orientation.text-orientation();
+@include typography.typography();

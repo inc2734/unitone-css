@@ -3,8 +3,11 @@ $fibonacci-sequence: 1, 2, 3, 5, 8, 13, 21, 34, 55;
 $min-breakpoint: 22.5; // = 360px
 $max-breakpoint: 80;   // = 1280px
 
+$root-font-size: calc(var(--unitone--base-font-size) * 1px);
+
 $_font-size-scale: calc(var(--unitone--harmonic-sequence-base) / (var(--unitone--harmonic-sequence-base) - var(--unitone--font-size)));
 $font-size: calc($_font-size-scale * 1rem);
+$font-size-em: calc($_font-size-scale * 1em);
 
 $_max-font-size: calc(var(--unitone--max-harmonic-sequence-base) / (var(--unitone--max-harmonic-sequence-base) - var(--unitone--font-size)));
 $_min-font-size: calc(var(--unitone--min-harmonic-sequence-base) / (var(--unitone--min-harmonic-sequence-base) - var(--unitone--font-size)));

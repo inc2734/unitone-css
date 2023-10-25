@@ -1,0 +1,18 @@
+@use '../variables/variables' as variables;
+
+@mixin typography() {
+  [data-unitone-layout~="-root\:typography"] {
+    font-size: #{ variables.$root-font-size } !important;
+  }
+
+  [data-unitone-layout~="-typography"],
+  [data-unitone-layout~="-typography\:rem"] {
+    font-size: #{ variables.$font-size } !important;
+    line-height: #{ variables.$line-height } !important;
+  }
+
+  [data-unitone-layout~="-typography\:em"] {
+    font-size: #{ variables.$font-size-em } !important;
+    line-height: #{ variables.$line-height } !important;
+  }
+}
