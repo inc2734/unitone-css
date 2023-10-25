@@ -43,12 +43,12 @@
    * The line-height slope. If smaller, the line-height is adjusted to a smaller value as the font size increases.
    *
    * A =(1, 1.6) // 1rem / 1.6
-   * B =(4, 1.1) // 4rem / 1.1
-   * y = -0.1666666666667x + 1.7666666666667 // y = line-height, x = Font size ratio
+   * B =(8, 1.1) // 4rem / 1.1
+   * y = -0.0714285714286x + 1.6714285714286 // y = line-height, x = Font size ratio
    *
    * @see https://www.geogebra.org/graphing?lang=ja
    */
-  --unitone--line-height-slope: -0.16666;
+  --unitone--line-height-slope: -0.07143;
 
   /**
    * Font family
