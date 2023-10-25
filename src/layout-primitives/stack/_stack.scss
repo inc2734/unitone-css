@@ -1,7 +1,4 @@
 @mixin abstract-stack() {
-  --unitone--divider-width: 1px;
-  --unitone--divider-style: solid;
-  --unitone--divider-color: var(--unitone--color--gray);
   --unitone--gap: var(--unitone--global--text-gap);
 
   display: flex;
@@ -16,6 +13,16 @@
 
   &:only-child {
     height: 100%;
+  }
+
+  &[data-unitone-layout*="-divider\:"] {
+    --unitone--divider-width: 1px;
+    --unitone--divider-style: solid;
+    --unitone--divider-color: var(--unitone--color--gray);
+  }
+
+  :where(#{&}[data-unitone-layout*="-divider\:"] > * > *) {
+    position: relative;
   }
 
   &[data-unitone-layout~="-divider\:stripe"] {

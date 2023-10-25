@@ -1,9 +1,6 @@
 @mixin abstract-responsive-grid() {
   --unitone--auto-repeat: auto-fit;
   --unitone--column-min-width: 250px;
-  --unitone--divider-width: 1px;
-  --unitone--divider-style: solid;
-  --unitone--divider-color: var(--unitone--color--gray);
   --unitone--gap: var(--unitone--global--gap);
 
   display: grid;
@@ -14,6 +11,16 @@
   > * {
     margin: 0;
     min-width: 0;
+  }
+
+  &[data-unitone-layout*="-divider\:"] {
+    --unitone--divider-width: 1px;
+    --unitone--divider-style: solid;
+    --unitone--divider-color: var(--unitone--color--gray);
+  }
+
+  :where(#{&}[data-unitone-layout*="-divider\:"] > * > *) {
+    position: relative;
   }
 
   &[data-unitone-layout~="-divider\:stripe"] {
