@@ -2,13 +2,12 @@
   --unitone--ratio: 16/9;
 
   position: relative;
+  aspect-ratio: var(--unitone--ratio) !important;
+  overflow: hidden;
 
-  &:empty {
-    &::before {
-      content: '';
-      display: block;
-      padding: calc(100% / (var(--unitone--ratio))) 0 0;
-    }
+  > * {
+    height: 100%;
+    width: 100%;
   }
 
   figure,
@@ -25,22 +24,12 @@
     min-height: 0 !important;
     min-width: 0 !important;
     object-fit: cover;
-    aspect-ratio: var(--unitone--ratio) !important;
     vertical-align: top;
   }
 
   @media (orientation: portrait) {
     &[data-unitone-layout~="-switch"] {
-      &:empty {
-        &::before {
-          padding-top: calc(var(--unitone--ratio) * 100%);
-        }
-      }
-
-      img,
-      video {
-        aspect-ratio: calc(1 / (var(--unitone--ratio))) !important;
-      }
+      aspect-ratio: calc(1 / (var(--unitone--ratio))) !important;
     }
   }
 }
