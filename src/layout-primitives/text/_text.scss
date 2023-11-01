@@ -38,6 +38,47 @@
     gap: var(--unitone--column-gap);
     max-width: none;
   }
+
+  &:lang(ja) {
+    font-feature-settings: "palt" 0;
+    font-kerning: none;
+
+    > :where(h1, h2, h3, h4, h5) {
+      font-feature-settings: "palt" 1;
+      font-kerning: normal;
+    }
+  }
+}
+
+@mixin abstract-text--gap() {
+  > * {
+    margin: 0 auto;
+    max-width: min(100%, var(--unitone--max-width));
+  }
+
+  > *:not(:first-child) {
+    margin-top: calc(var(--unitone--margin-top, 1) * var(--unitone--gap));
+  }
+
+  > *:not(:last-child) {
+    margin-bottom: calc(var(--unitone--margin-bottom, 1) * var(--unitone--gap));
+  }
+
+  > :where(h2, h3, h4, h5, h6) {
+    --unitone--margin-top: 2;
+
+    & + :where(h2, h3, h4, h5, h6) {
+      --unitone--margin-top: 1;
+    }
+  }
+
+  > h5 + * {
+    --unitone--margin-top: .5;
+  }
+
+  > h6 + * {
+    --unitone--margin-top: .5;
+  }
 }
 
 @mixin text() {
@@ -46,34 +87,7 @@
   }
 
   :where([data-unitone-layout~="text"][data-unitone-layout~="-gap"]) {
-    > * {
-      margin: 0 auto;
-      max-width: min(100%, var(--unitone--max-width));
-    }
-
-    > *:not(:first-child) {
-      margin-top: calc(var(--unitone--margin-top, 1) * var(--unitone--gap));
-    }
-
-    > *:not(:last-child) {
-      margin-bottom: calc(var(--unitone--margin-bottom, 1) * var(--unitone--gap));
-    }
-
-    > :where(h2, h3, h4, h5, h6) {
-      --unitone--margin-top: 2;
-
-      & + :where(h2, h3, h4, h5, h6) {
-        --unitone--margin-top: 1;
-      }
-    }
-
-    > h5 + * {
-      --unitone--margin-top: .5;
-    }
-
-    > h6 + * {
-      --unitone--margin-top: .5;
-    }
+    @include abstract-text--gap();
   }
 
   :where([data-unitone-layout~="text"][data-unitone-layout~="-center"]) > * {
@@ -82,15 +96,5 @@
 
   :where([data-unitone-layout~="text"][data-unitone-layout~="-column"]) > * {
     max-width: initial;
-  }
-
-  [data-unitone-layout~="text"]:lang(ja) {
-    font-feature-settings: "palt" 0;
-    font-kerning: none;
-
-    > :where(h1, h2, h3, h4, h5) {
-      font-feature-settings: "palt" 1;
-      font-kerning: normal;
-    }
   }
 }
