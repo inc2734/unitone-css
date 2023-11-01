@@ -6,7 +6,7 @@ const setFluidFontSizeMagnification = (target) => {
   target.style.setProperty('--unitone--fluid-font-size-magnification', fontSize / baseFontSize);
 };
 
-const fluidFontSizeResizeObserver = new ResizeObserver((entries) => {
+export const fluidFontSizeResizeObserver = new ResizeObserver((entries) => {
   for (const entry of entries) {
     setFluidFontSizeMagnification(entry.target);
   }
