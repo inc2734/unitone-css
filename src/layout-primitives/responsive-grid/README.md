@@ -29,7 +29,7 @@
 ### Customizing column min width.
 
 ```html
-<div data-unitone-layout="responsive-grid" style="--unitone--column-min-width: 250px">
+<div data-unitone-layout="responsive-grid" style="--unitone--column-min-width: 240px">
   ...
 </div>
 ```

@@ -14,7 +14,7 @@ export default {
     columnMinWidth: {
       control: { type: 'text' },
       description: 'Min width of each columns. Set by CSS var `--unitone--column-min-width`.',
-      table: { defaultValue: { summary: '250px' } },
+      table: { defaultValue: { summary: '240px' } },
       type: { name: 'string', required: false },
     },
     gap: {
@@ -33,7 +33,7 @@ export default {
     },
   },
   args: {
-    columnMinWidth: '250px',
+    columnMinWidth: '240px',
     gap: 2,
     autoRepeat: 'auto-fill',
   },

@@ -14,7 +14,7 @@ export default {
     columnMinWidth: {
       control: { type: 'text' },
       description: '`--unitone--column-min-width`',
-      table: { defaultValue: { summary: '250px' } },
+      table: { defaultValue: { summary: '240px' } },
       type: { name: 'string', required: false },
     },
     color: {
@@ -31,7 +31,7 @@ export default {
   },
   args: {
     backgroundColor: 'transparent',
-    columnMinWidth: '250px',
+    columnMinWidth: '240px',
     color: 'initial',
     gap: 2,
   },
