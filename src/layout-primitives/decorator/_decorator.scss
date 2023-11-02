@@ -20,7 +20,7 @@
   color: var(--unitone--color);
   background-color: var(--unitone--background-color);
   box-shadow: var(--unitone--box-shadow);
-  position: var(--unitone--position);
+  position: var(--unitone--position) !important;
   top: var(--unitone--top);
   right: var(--unitone--right);
   bottom: var(--unitone--bottom);
