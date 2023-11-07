@@ -1,0 +1,198 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="4: Global CSS variables" />
+
+# Global CSS variables
+
+## Typography
+
+### --unitone--measure
+
+Length of one line of text.
+
+### --unitone--font-size
+
+Font size level. Font sizes are available in variations based on harmonic sequences. Can be set from `-2` to `7`. Default is `0`.
+
+### --unitone--half-leading
+
+The size of the margins added above and below the text.
+
+The size of one line (`line-height`) is calculated by the following formula.
+
+```css
+1 * var(--unitone--half-leading) * 2
+```
+
+### --unitone--line-height-slope
+
+In general, the larger the font size, the narrower the line spacing between lines, making text easier to read. For this reason, `line-height` is often specified together with `font-size`, for example, `line-height: 1.1` for `font-size: 4rem`.
+
+That's a lot of work. Therefore, we created a mechanism to automatically optimize the line spacing according to the font size at all times.
+
+For example, suppose you want to use the following as a standard for `line-height`.
+
+```
+A = (1, 1.6) // When font-size: 1rem, line-height: 1.6
+B = (4, 1.1) // When font-size: 4rem, line-height: 1.1
+```
+
+Then, the following formula is formed.
+
+```
+y = -0.1666666666667x + 1.7666666666667 // y = line-height, x = Font size ratio
+```
+
+This `-0.16666666666666666667` becomes `--unitone--line-height-slope`. This line-height-slope can be customized by overriding `--unitone--line-height-slope`.
+
+### --unitone--font-family
+
+Basic `font-family`.
+
+## Margin / Gap / Padding
+
+Space sizes are available in variations based on the Fibonacci sequence.
+
+### Standard (Mainly for `margin` / `gap`)
+
+Can be set from `-2` to `7`.
+
+For levels `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens.
+
+| CSS variables | Specific value |
+| ---- | ---- |
+| `--unitone--s-2` | The default is about `0.53em`. |
+| `--unitone--s-1` | The default is about `1.07em`. |
+| `--unitone--s0` | `0em` |
+| `--unitone--s1` | The default is `1.8em`. |
+| `--unitone--s2` | Default is `3em` to about `2.65em`. |
+| `--unitone--s3` | Default is `4.8em` to about `3.18em`. |
+| `--unitone--s4` | Default is `7.8em` to about `4.06em`. |
+| `--unitone--s5` | Default is `12.6em` to about `5.46em`. |
+| `--unitone--s6` | Default is `20.4em` to about `7.75em`. |
+| `--unitone--s7` | Default is `33em` to about `11.44em`. |
+
+### For padding
+
+Can be set from `-2` to `7`.
+
+For levels `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens (`--unitone--s{level}` will also be adjusted, but with a larger reduction).
+
+| CSS variables | Specific value |
+| ---- | ---- |
+| `--unitone--p-2` | The default is about `0.53em`. |
+| `--unitone--p-1` | The default is about `1.07em`. |
+| `--unitone--p0` | `0em` |
+| `--unitone--p1` | The default is `1.8em`. |
+| `--unitone--p2` | Default is `3em` to about `1.99em`. |
+| `--unitone--p3` | Default is `4.8em` to about `2.11em`. |
+| `--unitone--p4` | Default is `7.8em` to about `2.33em`. |
+| `--unitone--p5` | Default is `12.6em` to about `2.67em`. |
+| `--unitone--p6` | Default is `20.4em` to about `3.23em`. |
+| `--unitone--p7` | Default is `33em` to about `4.13em`. |
+
+### em base
+
+Can be set from `-2` to `7`.
+
+| CSS variables | Specific value |
+| ---- | ---- |
+| `--unitone--em-2` | The default is about `0.53em`. |
+| `--unitone--em-1` | The default is about `1.07em`. |
+| `--unitone--em0` | `0em` |
+| `--unitone--em1` | The default is `1.8em`. |
+| `--unitone--em2` | Default is `3em``. |
+| `--unitone--em3` | Default is `4.8em`. |
+| `--unitone--em4` | Default is `7.8em`. |
+| `--unitone--em5` | Default is `12.6em`. |
+| `--unitone--em6` | Default is `20.4em`. |
+| `--unitone--em7` | Default is `33em`. |
+
+### rem base
+
+Can be set from `-2` to `7`.
+
+| CSS variables | Specific value |
+| ---- | ---- |
+| `--unitone--rem-2` | The default is about `0.53rem`. |
+| `--unitone--rem-1` | The default is about `1.07rem`. |
+| `--unitone--rem0` | `0rem` |
+| `--unitone--rem1` | The default is `1.8rem`. |
+| `--unitone--rem2` | Default is `3em``. |
+| `--unitone--rem3` | Default is `4.8rem`. |
+| `--unitone--rem4` | Default is `7.8rem`. |
+| `--unitone--rem5` | Default is `12.6rem`. |
+| `--unitone--rem6` | Default is `20.4rem`. |
+| `--unitone--rem7` | Default is `33rem`. |
+
+### Grid (%) base
+
+Size (`100%`) of the parent element divided and multiplied by an arbitrary number of grids.
+
+The number of divisions is defined by `var(--unitone--grid-columns)`, and the margins between each grid are defined by var`(--unitone--grid-gap)`.
+
+| CSS variables | Specific value |
+| ---- | ---- |
+| `--unitone--pg0` | 0% |
+| `--unitone--pg1` | `((100% - {grid-gap} * ({grid-columns} - 1)) / {grid-columns})` |
+| `--unitone--pg2` | `((100% - {grid-gap} * ({grid-columns} - 1)) / {grid-columns}) * 2 + {grid-gap}` |
+| `--unitone--pg3` | `((100% - {grid-gap} * ({grid-columns} - 1)) / {grid-columns}) * 3 + {grid-gap} * 2` |
+| `--unitone--pg4` | `((100% - {grid-gap} * ({grid-columns} - 1)) / {grid-columns}) * 4 + {grid-gap} * 3` |
+| `--unitone--pg5` | `((100% - {grid-gap} * ({grid-columns} - 1)) / {grid-columns}) * 5 + {grid-gap} * 4` |
+| `--unitone--pg6` | `((100% - {grid-gap} * ({grid-columns} - 1)) / {grid-columns}) * 6 + {grid-gap} * 5` |
+| `--unitone--pg7` | `((100% - {grid-gap} * ({grid-columns} - 1)) / {grid-columns}) * 7 + {grid-gap} * 6` |
+| `--unitone--pg8` | `((100% - {grid-gap} * ({grid-columns} - 1)) / {grid-columns}) * 8 + {grid-gap} * 7` |
+| `--unitone--pg9` | `((100% - {grid-gap} * ({grid-columns} - 1)) / {grid-columns}) * 9 + {grid-gap} * 8` |
+| `--unitone--pg10` | `((100% - {grid-gap} * ({grid-columns} - 1)) / {grid-columns}) * 10 + {grid-gap} * 9` |
+| `--unitone--pg11` | `((100% - {grid-gap} * ({grid-columns} - 1)) / {grid-columns}) * 11 + {grid-gap} * 10` |
+| `--unitone--pg12` | `((100% - {grid-gap} * ({grid-columns} - 1)) / {grid-columns}) * 12 + {grid-gap} * 11` |
+
+### Grid (Container size) base
+
+Size (`var(--unitone--container-max-width)`) of the parent element divided and multiplied by an arbitrary number of grids.
+
+The number of divisions is defined by `var(--unitone--grid-columns)`, and the margins between each grid are defined by var`(--unitone--grid-gap)`.
+
+| CSS variables | Specific value |
+| ---- | ---- |
+| `--unitone--cg0` | 0% |
+| `--unitone--cg1` | `(({container-max-width} - {grid-gap} * ({grid-columns} - 1)) / {grid-columns})` |
+| `--unitone--cg2` | `(({container-max-width} - {grid-gap} * ({grid-columns} - 1)) / {grid-columns}) * 2 + {grid-gap}` |
+| `--unitone--cg3` | `(({container-max-width} - {grid-gap} * ({grid-columns} - 1)) / {grid-columns}) * 3 + {grid-gap} * 2` |
+| `--unitone--cg4` | `(({container-max-width} - {grid-gap} * ({grid-columns} - 1)) / {grid-columns}) * 4 + {grid-gap} * 3` |
+| `--unitone--cg5` | `(({container-max-width} - {grid-gap} * ({grid-columns} - 1)) / {grid-columns}) * 5 + {grid-gap} * 4` |
+| `--unitone--cg6` | `(({container-max-width} - {grid-gap} * ({grid-columns} - 1)) / {grid-columns}) * 6 + {grid-gap} * 5` |
+| `--unitone--cg7` | `(({container-max-width} - {grid-gap} * ({grid-columns} - 1)) / {grid-columns}) * 7 + {grid-gap} * 6` |
+| `--unitone--cg8` | `(({container-max-width} - {grid-gap} * ({grid-columns} - 1)) / {grid-columns}) * 8 + {grid-gap} * 7` |
+| `--unitone--cg9` | `(({container-max-width} - {grid-gap} * ({grid-columns} - 1)) / {grid-columns}) * 9 + {grid-gap} * 8` |
+| `--unitone--cg10` | `(({container-max-width} - {grid-gap} * ({grid-columns} - 1)) / {grid-columns}) * 10 + {grid-gap} * 9` |
+| `--unitone--cg11` | `(({container-max-width} - {grid-gap} * ({grid-columns} - 1)) / {grid-columns}) * 11 + {grid-gap} * 10` |
+| `--unitone--cg12` | `(({container-max-width} - {grid-gap} * ({grid-columns} - 1)) / {grid-columns}) * 12 + {grid-gap} * 11` |
+
+## Global gap
+
+### --unitone--global--gap
+
+It is mainly specified for block gaps where the blocks are aligned left to right or on a grid.
+
+### --unitone--global--text-gap
+
+It is mainly used for gaps between blocks of text that are aligned vertically or horizontally.
+
+## Global gutters
+
+### --unitone--global--gutters
+
+It is specified in the left and right margins of the container.
+
+## Container size
+
+### --unitone--container-max-width
+
+Container width.
+
+## Global shadow
+
+### --unitone--global--box-shadow
+
+Basic `box-shadow`.

@@ -166,25 +166,25 @@
    */
   --unitone--container-max-width: #{ variables.$container-max-width };
 
-  $_grid-columns: 12;
-  $_grid-rows: 7;
-  --unitone--grid-columns: #{ $_grid-columns };
-  --unitone--grid-rows: #{ $_grid-rows };
+  --unitone--grid-columns: #{ variables.$grid-columns };
+  --unitone--grid-rows: #{ variables.$grid-rows };
   --unitone--grid-gap: var(--unitone--global--gap);
 
   /**
    * Grid sizes (% based).
    */
+  --unitone--_pg-base: calc((100% - var(--unitone--grid-gap) * (var(--unitone--grid-columns) - 1)) / var(--unitone--grid-columns));
   --unitone--pg0: 0%;
-  @for $i from 1 through $_grid-columns {
-    --unitone--pg#{ $i }: calc((100% - var(--unitone--grid-gap) * (var(--unitone--grid-columns) - 1)) / var(--unitone--grid-columns) * #{ $i } + var(--unitone--grid-gap) * #{ $i - 1 });
+  @for $i from 1 through variables.$grid-columns {
+    --unitone--pg#{ $i }: calc(var(--unitone--_pg-base) * #{ $i } + var(--unitone--grid-gap) * #{ $i - 1 });
   }
 
   /**
    * Grid sizes (container based).
    */
+  --unitone--_cg-base: calc((var(--unitone--container-max-width) - var(--unitone--grid-gap) * (var(--unitone--grid-columns) - 1)) / var(--unitone--grid-columns));
   --unitone--cg0: 0%;
-  @for $i from 1 through $_grid-columns {
-    --unitone--cg#{ $i }: calc((var(--unitone--container-max-width) - var(--unitone--grid-gap) * (var(--unitone--grid-columns) - 1)) / var(--unitone--grid-columns) * #{ $i } + var(--unitone--grid-gap) * #{ $i - 1 });
+  @for $i from 1 through variables.$grid-columns {
+    --unitone--cg#{ $i }: calc(var(--unitone--_cg-base) * #{ $i } + var(--unitone--grid-gap) * #{ $i - 1 });
   }
 }

@@ -23,3 +23,5 @@ $line-height: clamp(
 );
 
 $container-max-width: $max-breakpoint * 16px;  // = 1280px
+$grid-columns: 12;
+$grid-rows: 7;
