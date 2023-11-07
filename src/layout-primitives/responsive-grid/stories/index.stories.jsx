@@ -1,8 +1,8 @@
 import React from 'react';
 import readme from '../README.md';
 
-import { ResponsiveGrid } from '../ResponsiveGrid';
-import { Stack } from '../../stack/Stack';
+import { ResponsiveGrid } from '../';
+import { Stack } from '../../stack';
 
 export default {
   title: 'Layout Primitives/ResponsiveGrid',
@@ -31,11 +31,19 @@ export default {
       table: { defaultValue: { summary: 'auto-fill' } },
       type: { name: 'string', required: false },
     },
+    divider: {
+      control: { type: 'inline-radio' },
+      description: 'Divider. Set by `data-unitone-layout` attribute `-divider:x`.',
+      options: [undefined, 'stripe', 'underline', 'bordered'],
+      table: { defaultValue: { summary: false } },
+      type: { name: 'boolean', required: false },
+    },
   },
   args: {
     columnMinWidth: '240px',
     gap: 2,
     autoRepeat: 'auto-fill',
+    divider: undefined,
   },
 };
 
@@ -44,30 +52,183 @@ const content = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
 export const Default = (args) => {
   return (
     <ResponsiveGrid {...args}>
-      <Stack gap={-2}>
-        <img src="https://placehold.jp/400x300.jpg" alt="" />
-        <p>{content}</p>
-      </Stack>
-      <Stack gap={-2}>
-        <img src="https://placehold.jp/400x300.jpg" alt="" />
-        <p>{content}</p>
-      </Stack>
-      <Stack gap={-2}>
-        <img src="https://placehold.jp/400x300.jpg" alt="" />
-        <p>{content}</p>
-      </Stack>
-      <Stack gap={-2}>
-        <img src="https://placehold.jp/400x300.jpg" alt="" />
-        <p>{content}</p>
-      </Stack>
-      <Stack gap={-2}>
-        <img src="https://placehold.jp/400x300.jpg" alt="" />
-        <p>{content}</p>
-      </Stack>
-      <Stack gap={-2}>
-        <img src="https://placehold.jp/400x300.jpg" alt="" />
-        <p>{content}</p>
-      </Stack>
+      <div>
+        <Stack gap={-2}>
+          <img src="https://placehold.jp/400x300.jpg" alt="" />
+          <p>{content}</p>
+        </Stack>
+      </div>
+      <div>
+        <Stack gap={-2}>
+          <img src="https://placehold.jp/400x300.jpg" alt="" />
+          <p>{content}</p>
+        </Stack>
+      </div>
+      <div>
+        <Stack gap={-2}>
+          <img src="https://placehold.jp/400x300.jpg" alt="" />
+          <p>{content}</p>
+        </Stack>
+      </div>
+      <div>
+        <Stack gap={-2}>
+          <img src="https://placehold.jp/400x300.jpg" alt="" />
+          <p>{content}</p>
+        </Stack>
+      </div>
+      <div>
+        <Stack gap={-2}>
+          <img src="https://placehold.jp/400x300.jpg" alt="" />
+          <p>{content}</p>
+        </Stack>
+      </div>
+      <div>
+        <Stack gap={-2}>
+          <img src="https://placehold.jp/400x300.jpg" alt="" />
+          <p>{content}</p>
+        </Stack>
+      </div>
     </ResponsiveGrid>
   );
 };
+
+export const ExampleStripe = (args) => {
+  return (
+    <ResponsiveGrid {...args}>
+      <div>
+        <Stack gap={-2}>
+          <img src="https://placehold.jp/400x300.jpg" alt="" />
+          <p>{content}</p>
+        </Stack>
+      </div>
+      <div>
+        <Stack gap={-2}>
+          <img src="https://placehold.jp/400x300.jpg" alt="" />
+          <p>{content}</p>
+        </Stack>
+      </div>
+      <div>
+        <Stack gap={-2}>
+          <img src="https://placehold.jp/400x300.jpg" alt="" />
+          <p>{content}</p>
+        </Stack>
+      </div>
+      <div>
+        <Stack gap={-2}>
+          <img src="https://placehold.jp/400x300.jpg" alt="" />
+          <p>{content}</p>
+        </Stack>
+      </div>
+      <div>
+        <Stack gap={-2}>
+          <img src="https://placehold.jp/400x300.jpg" alt="" />
+          <p>{content}</p>
+        </Stack>
+      </div>
+      <div>
+        <Stack gap={-2}>
+          <img src="https://placehold.jp/400x300.jpg" alt="" />
+          <p>{content}</p>
+        </Stack>
+      </div>
+    </ResponsiveGrid>
+  );
+};
+ExampleStripe.args = {
+  divider: 'stripe',
+};
+ExampleStripe.storyName = 'Example : Stripe';
+
+export const ExampleUnderline = (args) => {
+  return (
+    <ResponsiveGrid {...args}>
+      <div>
+        <Stack gap={-2}>
+          <img src="https://placehold.jp/400x300.jpg" alt="" />
+          <p>{content}</p>
+        </Stack>
+      </div>
+      <div>
+        <Stack gap={-2}>
+          <img src="https://placehold.jp/400x300.jpg" alt="" />
+          <p>{content}</p>
+        </Stack>
+      </div>
+      <div>
+        <Stack gap={-2}>
+          <img src="https://placehold.jp/400x300.jpg" alt="" />
+          <p>{content}</p>
+        </Stack>
+      </div>
+      <div>
+        <Stack gap={-2}>
+          <img src="https://placehold.jp/400x300.jpg" alt="" />
+          <p>{content}</p>
+        </Stack>
+      </div>
+      <div>
+        <Stack gap={-2}>
+          <img src="https://placehold.jp/400x300.jpg" alt="" />
+          <p>{content}</p>
+        </Stack>
+      </div>
+      <div>
+        <Stack gap={-2}>
+          <img src="https://placehold.jp/400x300.jpg" alt="" />
+          <p>{content}</p>
+        </Stack>
+      </div>
+    </ResponsiveGrid>
+  );
+};
+ExampleUnderline.args = {
+  divider: 'underline',
+};
+ExampleUnderline.storyName = 'Example : Underline';
+
+export const ExampleBordered = (args) => {
+  return (
+    <ResponsiveGrid {...args}>
+      <div>
+        <Stack gap={-2}>
+          <img src="https://placehold.jp/400x300.jpg" alt="" />
+          <p>{content}</p>
+        </Stack>
+      </div>
+      <div>
+        <Stack gap={-2}>
+          <img src="https://placehold.jp/400x300.jpg" alt="" />
+          <p>{content}</p>
+        </Stack>
+      </div>
+      <div>
+        <Stack gap={-2}>
+          <img src="https://placehold.jp/400x300.jpg" alt="" />
+          <p>{content}</p>
+        </Stack>
+      </div>
+      <div>
+        <Stack gap={-2}>
+          <img src="https://placehold.jp/400x300.jpg" alt="" />
+          <p>{content}</p>
+        </Stack>
+      </div>
+      <div>
+        <Stack gap={-2}>
+          <img src="https://placehold.jp/400x300.jpg" alt="" />
+          <p>{content}</p>
+        </Stack>
+      </div>
+      <div>
+        <Stack gap={-2}>
+          <img src="https://placehold.jp/400x300.jpg" alt="" />
+          <p>{content}</p>
+        </Stack>
+      </div>
+    </ResponsiveGrid>
+  );
+};
+ExampleBordered.args = {
+  divider: 'bordered',
+};
+ExampleBordered.storyName = 'Example : Bordered';

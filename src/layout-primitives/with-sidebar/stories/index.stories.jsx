@@ -1,7 +1,7 @@
 import React from 'react';
 import readme from '../README.md';
 
-import { WithSidebar } from '../WithSidebar';
+import { WithSidebar } from '../';
 
 export default {
   title: 'Layout Primitives/WithSidebar',
@@ -66,13 +66,10 @@ export default {
   },
 };
 
-const content =
-  'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill';
-
 export const Default = (args) => {
   return (
     <WithSidebar {...args}>
-      <p>{content}</p>
+      <p>Lorem ipsum dolor sit amet</p>
       <ul>
         <li>Lorem</li>
         <li>ipsum</li>
@@ -85,7 +82,7 @@ export const Default = (args) => {
 export const Revert = (args) => {
   return (
     <WithSidebar {...args}>
-      <p>{content}</p>
+      <p>Lorem ipsum dolor sit amet</p>
       <ul>
         <li>Lorem</li>
         <li>ipsum</li>
@@ -116,7 +113,7 @@ export const MediaText = (args) => {
   return (
     <WithSidebar {...args}>
       <img src="https://placehold.jp/400x300.jpg" alt="" />
-      <p>{content}</p>
+      <p>Lorem ipsum dolor sit amet</p>
     </WithSidebar>
   );
 };

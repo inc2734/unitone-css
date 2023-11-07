@@ -1,7 +1,7 @@
 import React from 'react';
 import readme from '../README.md';
 
-import { Cluster } from '../Cluster';
+import { Cluster } from '../';
 
 export default {
   title: 'Layout Primitives/Cluster',

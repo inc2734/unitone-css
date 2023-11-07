@@ -1,2 +1,35 @@
+<script>
+
+  // On page change, fire DOMContentLoaded event
+  function pageChange() {
+
+    // Dispatch DOMContentLoaded event
+    window.document.dispatchEvent(new Event('DOMContentLoaded', {
+      bubbles: true,
+      cancelable: true
+    }));
+  }
+
+  function watchForChanges() {
+    const mutationObserver = function(mutationsList) {
+      for (let i = 0, len = mutationsList.length; i < len; i++) {
+        if (mutationsList[i].type == 'childList') {
+          pageChange();
+          break;
+        }
+      }
+    };
+
+    const observer = new MutationObserver(mutationObserver);
+    const config = { childList: true, subtree: true };
+    observer.observe(document.getElementById('storybook-root'), config);
+
+    // Remove event listener, otherwise we will re-run this function when we fire our manual event
+    document.removeEventListener('DOMContentLoaded', watchForChanges);
+  }
+
+  // Initially create mutation observer
+  document.addEventListener('DOMContentLoaded', watchForChanges);
+</script>
 <link rel="stylesheet" href="./storybook.css">
 <script defer src="./app.js"></script>

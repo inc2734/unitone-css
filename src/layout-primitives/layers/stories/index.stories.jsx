@@ -1,8 +1,8 @@
 import React from 'react';
 import readme from '../README.md';
 
-import { Layers } from '../Layers';
-import { Decorator } from '../../decorator/Decorator';
+import { Layers } from '../';
+import { Decorator } from '../../decorator';
 
 export default {
   title: 'Layout Primitives/Layers',
@@ -40,12 +40,42 @@ export default {
       table: { defaultValue: { summary: false } },
       type: { name: 'boolean', required: false },
     },
+    gap: {
+      control: { type: 'inline-radio' },
+      description:
+        'Gap. Set by CSS var `--unitone--gap` or `data-unitone-layout` attribute `-gap:x`.',
+      options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
+      table: { defaultValue: { summary: 'min(3.33333%,var(--unitone--grid-gap))' } },
+      type: { name: 'number', required: false },
+    },
+    minHeight: {
+      control: { type: 'text' },
+      description: 'Min height. Set by CSS var `--unitone--min-height`.',
+      table: { defaultValue: { summary: '0' } },
+      type: { name: 'string', required: false },
+    },
+    columns: {
+      control: { type: 'text' },
+      description: 'Number of columns. Set by CSS var `--unitone--columns`.',
+      table: { defaultValue: { summary: 'var(--unitone--grid-columns)' } },
+      type: { name: 'number', required: false },
+    },
+    rows: {
+      control: { type: 'text' },
+      description: 'Number of rows. Set by CSS var `--unitone--columns`.',
+      table: { defaultValue: { summary: 'var(--unitone--grid-rows)' } },
+      type: { name: 'number', required: false },
+    },
   },
   args: {
     cover: false,
     fill: false,
     blur: false,
     portrait: true,
+    gap: 'min(3.33333%,var(--unitone--grid-gap))',
+    minHeight: '0',
+    columns: 'var(--unitone--grid-columns)',
+    rows: 'var(--unitone--grid-rows)',
   },
 };
 

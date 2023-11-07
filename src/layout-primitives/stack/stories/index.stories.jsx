@@ -1,9 +1,9 @@
 import React from 'react';
 import readme from '../README.md';
 
-import { Stack } from '../Stack';
-import { Decorator } from '../../decorator/Decorator';
-import { Cluster } from '../../cluster/Cluster';
+import { Stack } from '../';
+import { Decorator } from '../../decorator';
+import { Cluster } from '../../cluster';
 
 export default {
   title: 'Layout Primitives/Stack',

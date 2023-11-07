@@ -1,7 +1,7 @@
 import React from 'react';
 import readme from '../README.md';
 
-import { Frame } from '../Frame';
+import { Frame } from '../';
 
 export default {
   title: 'Layout Primitives/Frame',

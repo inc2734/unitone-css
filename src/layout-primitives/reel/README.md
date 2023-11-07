@@ -1,35 +1,38 @@
+# Reel
+
+Displays child elements in a simple horizontal scroll.
+
 ## Usage
+
+### HTML
 
 ```html
 <div data-unitone-layout="reel">
-  <div data-unitone-layout="decorator -padding:1" style="--unitone--background-color: #eee">
-    <div data-unitone-layout="stack">
-      <img src="https://placehold.jp/400x300.jpg" alt="" />
-      <p>Lorem ipsum dolor sit amet</p>
-    </div>
-  </div>
-  <div data-unitone-layout="decorator -padding:1" style="--unitone--background-color: #eee">
-    <div data-unitone-layout="stack">
-      <img src="https://placehold.jp/400x300.jpg" alt="" />
-      <p>consectetur adipisicing elit</p>
-    </div>
-  </div>
-  <div data-unitone-layout="decorator -padding:1" style="--unitone--background-color: #eee">
-    <div data-unitone-layout="stack">
-      <img src="https://placehold.jp/400x300.jpg" alt="" />
-      <p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-    </div>
-  </div>
-  <div data-unitone-layout="decorator -padding:1" style="--unitone--background-color: #eee">
-    <div data-unitone-layout="stack">
-      <img src="https://placehold.jp/400x300.jpg" alt="" />
-      <p>Ut enim ad minim veniam</p>
-    </div>
-  </div>
+  <img src="https://placehold.jp/400x300.jpg" alt="" />
+  <img src="https://placehold.jp/400x300.jpg" alt="" />
+  <img src="https://placehold.jp/400x300.jpg" alt="" />
 </div>
 ```
 
-### No scrollbar
+### JSX
+
+```jsx
+import { Reel } from '@inc2734/unitone-css';
+
+<Reel>
+  <img src="https://placehold.jp/400x300.jpg" alt="" />
+  <img src="https://placehold.jp/400x300.jpg" alt="" />
+  <img src="https://placehold.jp/400x300.jpg" alt="" />
+</Reel>
+```
+
+## Props
+
+### No bar
+
+Hide bar.
+
+#### HTML
 
 ```html
 <div data-unitone-layout="reel -no-bar">
@@ -37,7 +40,21 @@
 </div>
 ```
 
-### Customizing gap
+#### JSX
+
+```jsx
+import { Reel } from '@inc2734/unitone-css';
+
+<Reel noBar>
+  ...
+</Reel>
+```
+
+### Gap
+
+Gap.
+
+#### HTML
 
 ```html
 <div data-unitone-layout="reel -gap:1">
@@ -45,7 +62,21 @@
 </div>
 ```
 
-### Customizing height
+#### JSX
+
+```jsx
+import { Reel } from '@inc2734/unitone-css';
+
+<Reel gap={1}>
+  ...
+</Reel>
+```
+
+### Height
+
+Height.
+
+#### HTML
 
 ```html
 <div data-unitone-layout="reel" style="--unitone--height: 250px">
@@ -53,10 +84,32 @@
 </div>
 ```
 
-### Customizing each items width
+#### JSX
+
+```jsx
+import { Reel } from '@inc2734/unitone-css';
+
+<Reel height="250px">
+  ...
+</Reel>
+```
+
+### Items width
+
+#### HTML
 
 ```html
 <div data-unitone-layout="reel" style="--unitone--item-width: 250px">
   ...
 </div>
+```
+
+#### JSX
+
+```jsx
+import { Reel } from '@inc2734/unitone-css';
+
+<Reel itemWidth="250px">
+  ...
+</Reel>
 ```

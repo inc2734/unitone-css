@@ -1,8 +1,14 @@
+# Both Sides
+
+Child elements are aligned at both ends. If the width of a child element becomes too large to maintain justification, it will be placed in a single column.
+
 ## Usage
+
+### HTML
 
 ```html
 <div data-unitone-layout="both-sides">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+  <p>Lorem ipsum dolor sit amet</p>
   <ul>
     <li>Lorem</li>
     <li>ipsum</li>
@@ -11,7 +17,28 @@
 </div>
 ```
 
-### Customizing gap
+### JSX
+
+```jsx
+import { BothSides } from '@inc2734/unitone-css';
+
+<BothSides>
+  <p>Lorem ipsum dolor sit amet</p>
+  <ul>
+    <li>Lorem</li>
+    <li>ipsum</li>
+    <li>dolor</li>
+  </ul>
+</BothSides>
+```
+
+## Props
+
+### Gap
+
+Gap.
+
+#### HTML
 
 ```html
 <div data-unitone-layout="both-sides -gap:1">
@@ -19,7 +46,21 @@
 </div>
 ```
 
-### Customizing align
+#### JSX
+
+```jsx
+import { BothSides } from '@inc2734/unitone-css';
+
+<BothSides gap={1}>
+  ...
+</BothSides>
+```
+
+### Align items
+
+Alignment of the row direction.
+
+#### HTML
 
 ```html
 <ul data-unitone-layout="both-sides -align-items:center">
@@ -27,11 +68,25 @@
 </ul>
 ```
 
-### Customizing item max-width
+#### JSX
+
+```jsx
+import { BothSides } from '@inc2734/unitone-css';
+
+<BothSides alignItems="center">
+  ...
+</BothSides>
+```
+
+### Items max width
+
+Set max-width of the item.
+
+#### HTML
 
 ```html
 <div data-unitone-layout="both-sides">
-  <p style="--unitone--content-max-width: 400px">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+  <p style="--unitone--content-max-width: 400px">Lorem ipsum dolor sit amet</p>
   <ul>
     <li>Lorem</li>
     <li>ipsum</li>
@@ -40,15 +95,49 @@
 </div>
 ```
 
-### Customizing item width
+#### JSX
+
+```jsx
+import { BothSides } from '@inc2734/unitone-css';
+
+<BothSides>
+  <p style={{ '--unitone--content-max-width': '400px' }}>Lorem ipsum dolor sit amet</p>
+  <ul>
+    <li>Lorem</li>
+    <li>ipsum</li>
+    <li>dolor</li>
+  </ul>
+</BothSides>
+```
+
+### Items width
+
+Set width of the item.
+
+### HTML
 
 ```html
 <div data-unitone-layout="both-sides">
-  <p style="--unitone--content-width: 400px">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+  <p style="--unitone--content-width: 400px">Lorem ipsum dolor sit amet</p>
   <ul>
     <li>Lorem</li>
     <li>ipsum</li>
     <li>dolor</li>
   </ul>
 </div>
+```
+
+#### JSX
+
+```jsx
+import { BothSides } from '@inc2734/unitone-css';
+
+<BothSides>
+  <p style={{ '--unitone--content-width': '400px' }}>Lorem ipsum dolor sit amet</p>
+  <ul>
+    <li>Lorem</li>
+    <li>ipsum</li>
+    <li>dolor</li>
+  </ul>
+</BothSides>
 ```

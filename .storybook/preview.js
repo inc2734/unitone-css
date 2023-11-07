@@ -18,14 +18,18 @@ const preview = {
       },
     },
     docs: {
-      extractComponentDescription: ((_, { notes }) => notes?.readme),
+      extractComponentDescription: ((_, props) => {
+        const {parameters} = props;
+        const {notes} = parameters;
+        return notes?.readme;
+      }),
       page: () => (
         <>
-          <Title />
-          <Subtitle />
+          <Description />
+
+          <h2>Preview</h2>
           <Primary />
           <ArgsTable story={PRIMARY_STORY} />
-          <Description />
           <Stories />
         </>
       ),

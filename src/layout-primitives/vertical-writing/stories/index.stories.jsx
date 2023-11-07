@@ -1,7 +1,7 @@
 import React from 'react';
 import readme from '../README.md';
 
-import { VerticalWriting } from '../VerticalWriting';
+import { VerticalWriting } from '../';
 
 export default {
   title: 'Layout Primitives/VerticalWriting',
@@ -20,7 +20,7 @@ export default {
     },
     maxHeight: {
       control: { type: 'text' },
-      description: 'Max height of each columns. Set by CSS var `--unitone--max-height`.',
+      description: 'Max height of each rows. Set by CSS var `--unitone--max-height`.',
       table: { defaultValue: { summary: 'calc(9 * var(--unitone--measure) / 16)' } },
       type: { name: 'string', required: false },
     },

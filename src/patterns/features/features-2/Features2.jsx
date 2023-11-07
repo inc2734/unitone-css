@@ -1,11 +1,6 @@
 import React from 'react';
 
-import { Decorator } from '../../../layout-primitives/decorator/Decorator';
-import { Container } from '../../../layout-primitives/container/Container';
-import { Frame } from '../../../layout-primitives/frame/Frame';
-import { Layers } from '../../../layout-primitives/layers/Layers';
-import { ResponsiveGrid } from '../../../layout-primitives/responsive-grid/ResponsiveGrid';
-import { Gutters } from '../../../layout-primitives/gutters/Gutters';
+import { Decorator, Container, Frame, Layers, ResponsiveGrid, Gutters } from '@inc2734/unitone-css';
 
 export const Feature2 = ({ items = [], ...props }) => (
   <Decorator backgroundColor={props.backgroundColor} color={props.color}>

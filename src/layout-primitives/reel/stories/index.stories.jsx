@@ -1,9 +1,9 @@
 import React from 'react';
 import readme from '../README.md';
 
-import { Reel } from '../Reel';
-import { Decorator } from '../../decorator/Decorator';
-import { Stack } from '../../stack/Stack';
+import { Reel } from '../';
+import { Decorator } from '../../decorator';
+import { Stack } from '../../stack';
 
 export default {
   title: 'Layout Primitives/Reel',

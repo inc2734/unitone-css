@@ -1,7 +1,7 @@
 import React from 'react';
 import readme from '../README.md';
 
-import { Float } from '../Float';
+import { Float } from '../';
 
 export default {
   title: 'Layout Primitives/Float',
@@ -21,13 +21,13 @@ export default {
     minMeasure: {
       control: { type: 'text' },
       description:
-        'Min size of the item following the floating item. Set by CSS var `--unitone--min-measure`.',
+        'Min width of the item following the floating item. Set by CSS var `--unitone--min-measure`.',
       table: { defaultValue: { summary: 'calc(var(--unitone--measure) / 2)' } },
       type: { name: 'string', required: false },
     },
     minWidth: {
       control: { type: 'text' },
-      description: 'Min size of the floating item. Set by CSS var `--unitone--min-width`.',
+      description: 'Min width of the floating item. Set by CSS var `--unitone--min-width`.',
       table: { defaultValue: { summary: 'calc(var(--unitone--measure) / 2)' } },
       type: { name: 'string', required: false },
     },

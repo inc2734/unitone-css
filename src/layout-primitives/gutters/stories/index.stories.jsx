@@ -1,10 +1,10 @@
 import React from 'react';
 import readme from '../README.md';
 
-import { Gutters } from '../Gutters';
-import { Center } from '../../center/Center';
-import { Container } from '../../container/Container';
-import { Stack } from '../../stack/Stack';
+import { Gutters } from '../';
+import { Center } from '../../center';
+import { Container } from '../../container';
+import { Stack } from '../../stack';
 
 export default {
   title: 'Layout Primitives/Gutters',

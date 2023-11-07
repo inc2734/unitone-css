@@ -1,8 +1,8 @@
 import React from 'react';
 import readme from '../README.md';
 
-import { Center } from '../Center';
-import { Stack } from '../../stack/Stack';
+import { Center } from '../';
+import { Stack } from '../../stack';
 
 export default {
   title: 'Layout Primitives/Center',

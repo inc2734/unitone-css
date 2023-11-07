@@ -1,8 +1,8 @@
 import React from 'react';
 import readme from '../README.md';
 
-import { Decorator } from '../Decorator';
-import { Stack } from '../../stack/Stack';
+import { Decorator } from '../';
+import { Stack } from '../../stack';
 
 export default {
   title: 'Layout Primitives/Decorator',

@@ -1,8 +1,8 @@
 import React from 'react';
 import readme from '../README.md';
 
-import { Switcher } from '../Switcher';
-import { Decorator } from '../../decorator/Decorator';
+import { Switcher } from '../';
+import { Decorator } from '../../decorator';
 
 export default {
   title: 'Layout Primitives/Switcher',

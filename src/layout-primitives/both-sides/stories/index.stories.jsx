@@ -1,7 +1,7 @@
 import React from 'react';
 import readme from '../README.md';
 
-import { BothSides } from '../BothSides';
+import { BothSides } from '../';
 
 const meta = {
   title: 'Layout Primitives/BothSides',
@@ -35,13 +35,10 @@ const meta = {
 };
 export default meta;
 
-const content =
-  'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
-
 export const Default = (args) => {
   return (
     <BothSides {...args}>
-      <p>{content}</p>
+      <p>Lorem ipsum dolor sit amet</p>
       <ul>
         <li>Lorem</li>
         <li>ipsum</li>

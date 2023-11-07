@@ -1,8 +1,8 @@
 import React from 'react';
 import readme from '../README.md';
 
-import { Container } from '../Container';
-import { Text } from '../../text/Text';
+import { Container } from '../';
+import { Text } from '../../text';
 
 export default {
   title: 'Layout Primitives/Container',

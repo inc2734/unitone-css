@@ -1,11 +1,6 @@
 import React from 'react';
 
-import { Decorator } from '../../../layout-primitives/decorator/Decorator';
-import { Center } from '../../../layout-primitives/center/Center';
-import { Container } from '../../../layout-primitives/container/Container';
-import { Gutters } from '../../../layout-primitives/gutters/Gutters';
-import { Stack } from '../../../layout-primitives/stack/Stack';
-import { Text } from '../../../layout-primitives/text/Text';
+import { Decorator, Center, Container, Gutters, Stack, Text } from '@inc2734/unitone-css';
 
 export const Header2 = (props) => (
   <Decorator backgroundColor={props.backgroundColor} color={props.color}>

@@ -1,11 +1,14 @@
 import React from 'react';
 
-import { Decorator } from '../../../layout-primitives/decorator/Decorator';
-import { Container } from '../../../layout-primitives/container/Container';
-import { Cover, CoverContent } from '../../../layout-primitives/cover/Cover';
-import { Stack } from '../../../layout-primitives/stack/Stack';
-import { Text } from '../../../layout-primitives/text/Text';
-import { WithSidebar } from '../../../layout-primitives/with-sidebar/WithSidebar';
+import {
+  Decorator,
+  Container,
+  Cover,
+  CoverContent,
+  Stack,
+  Text,
+  WithSidebar,
+} from '@inc2734/unitone-css';
 
 export const MediaText1 = (props) => (
   <Decorator color={props.color}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import readme from '../README.md';
 
-import { Text } from '../Text';
+import { Text } from '../';
 
 export default {
   title: 'Layout Primitives/Text',
@@ -12,14 +12,15 @@ export default {
   argTypes: {
     center: {
       control: { type: 'inline-radio' },
-      description: 'Centering child items. Set by `data-unitone-layout` attribute `-center`.',
+      description: 'Centering child elements. Set by `data-unitone-layout` attribute `-center`.',
       options: [false, true],
       table: { defaultValue: { summary: false } },
       type: { name: 'boolean', required: false },
     },
     column: {
       control: { type: 'inline-radio' },
-      description: 'Centering child items. Set by `data-unitone-layout` attribute `-center`.',
+      description:
+        'Correctly columnarize the child elements. Set by `data-unitone-layout` attribute `-column`.',
       options: [false, true],
       table: { defaultValue: { summary: false } },
       type: { name: 'boolean', required: false },
@@ -40,6 +41,14 @@ export default {
       table: { defaultValue: { summary: 'var(--unitone--global--text-gap)' } },
       type: { name: 'number', required: false },
     },
+    gutters: {
+      control: { type: 'inline-radio' },
+      description:
+        'Gutters. Set by CSS var `--unitone--gutters` or `data-unitone-layout` attribute `-gutters:x`.',
+      options: [undefined, 0, 1, 2, 3, 4, 5, 6, 7, 'root'],
+      table: { defaultValue: { summary: '0' } },
+      type: { name: 'number', required: false },
+    },
     maxWidth: {
       control: { type: 'text' },
       description: 'Max width. Set by CSS var `--unitone--max-width`.',
@@ -52,6 +61,7 @@ export default {
     column: false,
     applyGap: false,
     gap: 1,
+    gutters: 0,
     maxWidth: 'var(--unitone--measure)',
   },
 };

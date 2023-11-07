@@ -1,9 +1,9 @@
 import React from 'react';
 import readme from '../README.md';
 
-import { Cover, CoverContent } from '../Cover';
-import { Decorator } from '../../decorator/Decorator';
-import { Stack } from '../../stack/Stack';
+import { Cover, CoverContent } from '../';
+import { Decorator } from '../../decorator';
+import { Stack } from '../../stack';
 
 export default {
   title: 'Layout Primitives/Cover',
@@ -20,24 +20,25 @@ export default {
       table: { defaultValue: { summary: 'var(--unitone--global--gap)' } },
       type: { name: 'number', required: false },
     },
+    padding: {
+      control: { type: 'inline-radio' },
+      description:
+        'Padding. Set by CSS var `--unitone--padding` or `data-unitone-layout` attribute `-padding:x`.',
+      options: [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
+      table: { defaultValue: { summary: '0var(--unitone--global--gap)' } },
+      type: { name: 'number', required: false },
+    },
     minHeight: {
       control: { type: 'text' },
       description: 'Min height. Set by CSS var `--unitone--min-height`.',
       table: { defaultValue: { summary: '100vh' } },
       type: { name: 'string', required: false },
     },
-    noPadding: {
-      control: { type: 'inline-radio' },
-      description: 'Remove padding.',
-      options: [false, true],
-      table: { defaultValue: { summary: 'false' } },
-      type: { name: 'boolean', required: false },
-    },
   },
   args: {
     gap: 2,
+    padding: 2,
     minHeight: '100vh',
-    noPadding: false,
   },
 };
 
@@ -65,7 +66,7 @@ export const ExampleHeader = (args) => {
   return (
     <Decorator backgroundColor="#000" color="#fff">
       <Cover {...args}>
-        <CoverContent position="top">
+        <CoverContent valign="top">
           <Stack>
             <h1 style={{ '--unitone--font-size': 6 }}>Lorem ipsum dolor sit amet</h1>
             <p>
@@ -87,7 +88,7 @@ export const ExampleFooter = (args) => {
   return (
     <Decorator backgroundColor="#000" color="#fff">
       <Cover {...args}>
-        <CoverContent position="bottom">
+        <CoverContent valign="bottom">
           <Stack>
             <h1 style={{ '--unitone--font-size': 6 }}>Lorem ipsum dolor sit amet</h1>
             <p>
@@ -109,11 +110,11 @@ export const ExampleHeaderFooter = (args) => {
   return (
     <Decorator backgroundColor="#000" color="#fff">
       <Cover {...args}>
-        <CoverContent position="top">
+        <CoverContent valign="top">
           <p>Lorem ipsum</p>
         </CoverContent>
 
-        <CoverContent position="bottom">
+        <CoverContent valign="bottom">
           <p>Lorem ipsum</p>
         </CoverContent>
       </Cover>
@@ -129,11 +130,11 @@ export const ExampleHeaderCenter = (args) => {
   return (
     <Decorator backgroundColor="#000" color="#fff">
       <Cover {...args}>
-        <CoverContent position="top">
+        <CoverContent valign="top">
           <p>Lorem ipsum</p>
         </CoverContent>
 
-        <CoverContent position="center">
+        <CoverContent valign="center">
           <Stack>
             <h1 style={{ '--unitone--font-size': 6 }}>Lorem ipsum dolor sit amet</h1>
             <p>
@@ -155,7 +156,7 @@ export const ExampleCenterFooter = (args) => {
   return (
     <Decorator backgroundColor="#000" color="#fff">
       <Cover {...args}>
-        <CoverContent position="center">
+        <CoverContent valign="center">
           <Stack>
             <h1 style={{ '--unitone--font-size': 6 }}>Lorem ipsum dolor sit amet</h1>
             <p>
@@ -165,7 +166,7 @@ export const ExampleCenterFooter = (args) => {
           </Stack>
         </CoverContent>
 
-        <CoverContent position="bottom">
+        <CoverContent valign="bottom">
           <p>Lorem ipsum</p>
         </CoverContent>
       </Cover>

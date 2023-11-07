@@ -1,8 +1,23 @@
 import React from 'react';
 
-export const Layers = ({ cover, fill, blur, portrait, style, ...props }) => {
+export const Layers = ({
+  cover,
+  fill,
+  blur,
+  portrait,
+  gap,
+  minHeight,
+  columns,
+  rows,
+  style,
+  ...props
+}) => {
   style = {
     ...style,
+    '--unitone--gap': 'undefined' !== typeof gap ? gap : undefined,
+    '--unitone--min-height': 'undefined' !== typeof minHeight ? minHeight : undefined,
+    '--unitone--columns': 'undefined' !== typeof columns ? columns : undefined,
+    '--unitone--rows': 'undefined' !== typeof rows ? rows : undefined,
   };
 
   return (
