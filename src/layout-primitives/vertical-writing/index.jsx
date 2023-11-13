@@ -25,6 +25,7 @@ export const VerticalWriting = ({
           .filter(Boolean)
           .join(' ')}
         style={style}
+        {...props}
       >
         {props.children}
       </div>

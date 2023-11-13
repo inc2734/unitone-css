@@ -18,6 +18,7 @@ export const Text = ({ center, column, applyGap, gap, maxWidth, scale, style, ..
         .filter(Boolean)
         .join(' ')}
       style={style}
+      {...props}
     >
       {props.children}
     </div>

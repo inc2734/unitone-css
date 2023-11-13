@@ -28,6 +28,7 @@ export const WithSidebar = ({
         .filter(Boolean)
         .join(' ')}
       style={style}
+      {...props}
     >
       {props.children}
     </div>

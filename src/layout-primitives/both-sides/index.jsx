@@ -15,6 +15,7 @@ export const BothSides = ({ gap, alignItems, style, ...props }) => {
         .filter(Boolean)
         .join(' ')}
       style={style}
+      {...props}
     >
       {props.children}
     </div>

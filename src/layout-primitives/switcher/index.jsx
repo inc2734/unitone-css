@@ -12,6 +12,7 @@ export const Switcher = ({ gap, limit, threshold, style, ...props }) => {
         .filter(Boolean)
         .join(' ')}
       style={style}
+      {...props}
     >
       {props.children}
     </div>

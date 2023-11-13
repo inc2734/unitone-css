@@ -17,6 +17,7 @@ export const ResponsiveGrid = ({ columnMinWidth, gap, autoRepeat, divider, style
         .filter(Boolean)
         .join(' ')}
       style={style}
+      {...props}
     >
       {props.children}
     </div>

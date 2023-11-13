@@ -17,6 +17,7 @@ export const Float = ({ gap, minWidth, minMeasure, position, style, ...props }) 
         .filter(Boolean)
         .join(' ')}
       style={style}
+      {...props}
     >
       {props.children}
     </div>

@@ -56,6 +56,7 @@ export const CoverContent = ({
         .filter(Boolean)
         .join(' ')}
       style={style}
+      {...props}
     >
       {props.children}
     </Tag>

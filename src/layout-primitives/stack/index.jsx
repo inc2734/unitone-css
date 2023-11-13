@@ -16,6 +16,7 @@ export const Stack = ({ center, divider, gap, negative, style, ...props }) => {
         .filter(Boolean)
         .join(' ')}
       style={style}
+      {...props}
     >
       {props.children}
     </div>

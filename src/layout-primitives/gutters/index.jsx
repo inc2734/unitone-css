@@ -10,6 +10,7 @@ export const Gutters = ({ padding, style, ...props }) => {
         .filter(Boolean)
         .join(' ')}
       style={style}
+      {...props}
     >
       {props.children}
     </div>

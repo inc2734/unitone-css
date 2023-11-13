@@ -44,6 +44,7 @@ export const Decorator = ({
         .filter(Boolean)
         .join(' ')}
       style={style}
+      {...props}
     >
       {props.children}
     </div>

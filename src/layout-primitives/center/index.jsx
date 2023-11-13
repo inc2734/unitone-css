@@ -17,6 +17,7 @@ export const Center = ({ intrinsic, withText, gutters, maxWidth, style, ...props
         .filter(Boolean)
         .join(' ')}
       style={style}
+      {...props}
     >
       {props.children}
     </div>

@@ -17,6 +17,7 @@ export const Reel = ({ gap, height, itemWidth, noBar, style, ...props }) => {
         .filter(Boolean)
         .join(' ')}
       style={style}
+      {...props}
     >
       {props.children}
     </div>

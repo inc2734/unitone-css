@@ -23,6 +23,7 @@ export const Cluster = ({
         .filter(Boolean)
         .join(' ')}
       style={style}
+      {...props}
     >
       {props.children}
     </Tag>

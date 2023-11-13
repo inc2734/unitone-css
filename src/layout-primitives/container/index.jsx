@@ -16,6 +16,7 @@ export const Container = ({ align, gutters, maxWidth, text, style, ...props }) =
         .filter(Boolean)
         .join(' ')}
       style={style}
+      {...props}
     >
       {props.children}
     </div>

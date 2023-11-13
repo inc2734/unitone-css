@@ -12,6 +12,7 @@ export const Frame = ({ ratio, switchRatio, style, ...props }) => {
         .filter(Boolean)
         .join(' ')}
       style={style}
+      {...props}
     >
       {props.children}
     </div>
