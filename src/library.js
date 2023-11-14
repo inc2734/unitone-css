@@ -105,7 +105,7 @@ export const verticalsResizeObserve = (target) => {
 
   const mutationObserver = new MutationObserver((entries) => {
     for (const entry of entries) {
-      setColumnCountForVertical(target);
+      setColumnCountForVertical(entry.target);
     }
   });
 
@@ -128,5 +128,6 @@ export const verticalsResizeObserve = (target) => {
     }
   });
 
+  resizeObserver.unobserve(target);
   resizeObserver.observe(target);
 };
