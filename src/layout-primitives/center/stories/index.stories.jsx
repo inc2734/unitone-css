@@ -11,13 +11,13 @@ export default {
     notes: { readme },
   },
   argTypes: {
-    intrinsic: {
-      control: { type: 'inline-radio' },
-      description: 'Intrinsic centering. Set by `data-unitone-layout` attribute `-intrinsic`.',
-      options: [false, true],
-      table: { defaultValue: { summary: false } },
-      type: { name: 'boolean', required: false },
-    },
+    // intrinsic: {
+    //   control: { type: 'inline-radio' },
+    //   description: 'Intrinsic centering. Set by `data-unitone-layout` attribute `-intrinsic`.',
+    //   options: [false, true],
+    //   table: { defaultValue: { summary: false } },
+    //   type: { name: 'boolean', required: false },
+    // },
     withText: {
       control: { type: 'inline-radio' },
       description: 'Centering with text. Set by `data-unitone-layout` attribute `-with-text`.',
@@ -41,7 +41,7 @@ export default {
     },
   },
   args: {
-    intrinsic: false,
+    // intrinsic: false,
     withText: false,
     gutters: undefined,
     maxWidth: undefined,

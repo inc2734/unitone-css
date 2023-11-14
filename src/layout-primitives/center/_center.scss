@@ -8,12 +8,7 @@
   max-width: var(--unitone--max-width);
   padding-right: var(--unitone--gutters);
   padding-left: var(--unitone--gutters);
-
-  &[data-unitone-layout~="-intrinsic"] {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  width: fit-content;
 
   &[data-unitone-layout~="-with-text"] {
     text-align: center;

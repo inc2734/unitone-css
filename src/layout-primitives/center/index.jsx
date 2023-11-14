@@ -10,7 +10,7 @@ export const Center = ({ intrinsic, withText, gutters, maxWidth, style, ...props
     <div
       data-unitone-layout={[
         'center',
-        true === intrinsic ? `-intrinsic` : undefined,
+        // true === intrinsic ? `-intrinsic` : undefined,
         true === withText ? `-with-text` : undefined,
         'undefined' !== typeof gutters ? `-gutters:${gutters}` : undefined,
       ]

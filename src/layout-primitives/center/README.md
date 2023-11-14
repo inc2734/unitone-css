@@ -24,24 +24,12 @@ import { Center } from '@inc2734/unitone-css';
 
 ## Props
 
-### Intrinsic centering
-
-Child elements are also centered.
-
-#### HTML
-
-```html
-<div data-unitone-layout="center -intrinsic">
-  ...
-</div>
-```
-
 #### JSX
 
 ```jsx
 import { Center } from '@inc2734/unitone-css';
 
-<Center intrinsic>
+<Center>
   Lorem ipsum dolor sit amet, consectetur adipisicing elit
 </Center>
 ```
