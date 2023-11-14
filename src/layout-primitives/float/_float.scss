@@ -1,7 +1,7 @@
 @mixin abstract-float() {
   --unitone--gap: var(--unitone--global--gap);
   --unitone--min-measure: calc(var(--unitone--measure) / 2);
-  --unitone--min-width: calc(var(--unitone--measure) / 2);
+  --unitone--min-width: 33.33333%;
 
   width: max(
     min(var(--unitone--min-width), 100%),

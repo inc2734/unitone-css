@@ -28,7 +28,7 @@ import { Float } from '@inc2734/unitone-css';
 
 Change floating position.
 
-left / right
+`right` / `left`
 
 #### HTML
 
