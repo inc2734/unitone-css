@@ -1,5 +1,7 @@
 # Frame
 
+Fits the image into a certain angle of view.
+
 ## Usage
 
 ### HTML
@@ -29,7 +31,7 @@ Aspect ratio.
 #### HTML
 
 ```html
-<div data-unitone-layout="frame" style="--unitone--aspect-ratio: 16/9">
+<div data-unitone-layout="frame" style="--unitone--ratio: 16/9">
   <img src="https://placehold.jp/400x300.jpg" alt="" />
 </div>
 ```
@@ -39,7 +41,7 @@ Aspect ratio.
 ```jsx
 import { Frame } from '@inc2734/unitone-css';
 
-<Frame aspectRatio="16/9">
+<Frame ratio="16/9">
   <img src="https://placehold.jp/400x300.jpg" alt="" />
 </Frame>
 ```
@@ -61,7 +63,7 @@ Switch aspect ratio when portrait.
 ```jsx
 import { Frame } from '@inc2734/unitone-css';
 
-<Frame switch>
+<Frame switchRatio>
   <img src="https://placehold.jp/400x300.jpg" alt="" />
 </Frame>
 ```
