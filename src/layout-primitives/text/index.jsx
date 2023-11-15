@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Text = ({ center, column, applyGap, gap, maxWidth, scale, style, ...props }) => {
+export const Text = ({ center, column, applyGap, gap, gutters, maxWidth, style, ...props }) => {
   style = {
     ...style,
     '--unitone--max-width': !!maxWidth ? maxWidth : undefined,
@@ -14,6 +14,7 @@ export const Text = ({ center, column, applyGap, gap, maxWidth, scale, style, ..
         true === column ? '-column' : undefined,
         true === applyGap ? '-gap' : undefined,
         'undefined' !== typeof gap ? `-gap:${gap}` : undefined,
+        'undefined' !== typeof gutters ? `-gutters:${gutters}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}
