@@ -26,7 +26,7 @@ export default {
       table: { defaultValue: { summary: false } },
       type: { name: 'boolean', required: false },
     },
-    blur: {
+    applyBlur: {
       control: { type: 'inline-radio' },
       description: 'Blur the background image/video.',
       options: [false, true],
@@ -70,7 +70,7 @@ export default {
   args: {
     cover: false,
     fill: false,
-    blur: false,
+    applyBlur: false,
     portrait: true,
     gap: 'min(3.33333%,var(--unitone--grid-gap))',
     minHeight: '0',
@@ -82,7 +82,7 @@ export default {
 export const Default = (args) => {
   return (
     <Layers {...args}>
-      <img src="https://placehold.jp/600x400.jpg" alt="" />
+      <img src="https://placehold.jp/400x300.jpg" alt="" />
       <Decorator style={{ '--unitone--align-self': 'end' }} padding={1} position="relative">
         Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
         eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
@@ -107,7 +107,7 @@ export const ExamplePicture = (args) => {
   return (
     <Layers {...args}>
       <picture>
-        <img src="https://placehold.jp/600x400.jpg" alt="" />
+        <img src="https://placehold.jp/400x300.jpg" alt="" />
       </picture>
       <Decorator style={{ '--unitone--align-self': 'end' }} padding={1} position="relative">
         Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
@@ -134,7 +134,7 @@ export const ExampleFigure = (args) => {
   return (
     <Layers {...args}>
       <figure>
-        <img src="https://placehold.jp/600x400.jpg" alt="" />
+        <img src="https://placehold.jp/400x300.jpg" alt="" />
       </figure>
       <Decorator style={{ '--unitone--align-self': 'end' }} padding={1} position="relative">
         Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
@@ -162,7 +162,7 @@ export const ExampleFigurePicture = (args) => {
     <Layers {...args}>
       <figure>
         <picture>
-          <img src="https://placehold.jp/600x400.jpg" alt="" />
+          <img src="https://placehold.jp/400x300.jpg" alt="" />
         </picture>
       </figure>
       <Decorator style={{ '--unitone--align-self': 'end' }} padding={1} position="relative">

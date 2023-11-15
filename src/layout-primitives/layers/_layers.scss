@@ -1,14 +1,9 @@
 @mixin abstract-layers() {
   --unitone--columns: var(--unitone--grid-columns);
   --unitone--rows: var(--unitone--grid-rows);
-  --unitone--gap: min(3.33333%, var(--unitone--grid-gap));
+  --unitone--gap: var(--unitone--grid-gap);
   --unitone--min-height: 0;
   --unitone--blur: 75px;
-
-  // @todo Firefox corrupts layout if % is used for gap
-  @-moz-document url-prefix() {
-    --unitone--gap: min(3.33333vw, var(--unitone--grid-gap));
-  }
 
   @media (orientation: portrait) {
     &[data-unitone-layout~="-portrait"] {
@@ -20,8 +15,13 @@
   display: grid;
   grid-template-columns: repeat(var(--unitone--columns), 1fr);
   grid-template-rows: repeat(var(--unitone--rows), 1fr);
-  gap: var(--unitone--gap);
+  gap: min(3.33333%, var(--unitone--gap));
   min-height: var(--unitone--min-height);
+
+  // @todo Firefox corrupts layout if % is used for gap
+  @-moz-document url-prefix() {
+    gap: min(3.33333vw, var(--unitone--gap));
+  }
 
   > * {
     --unitone--align-self: auto;
@@ -42,13 +42,15 @@
       --unitone--max-width: none;
       --unitone--min-height: auto;
 
-      position: relative;
+      // position: relative;
       max-width: var(--unitone--max-width);
       min-height: var(--unitone--min-height);
     }
   }
 
   &[data-unitone-layout~="-cover"] {
+    position: relative;
+
     > :where(img:first-child, video:first-child, picture:first-child, figure:first-child),
     > :first-child :where(picture, figure) {
       position: absolute;
@@ -58,6 +60,17 @@
       left: 0;
       height: 100%;
       width: 100%;
+    }
+
+    @at-root {
+      :where(#{ & } > *) {
+        position: relative;
+      }
+
+      // @todo Since decorator's position is !important, it must be overridden by CSS variables.
+      :where(#{ & } > [data-unitone-layout~="decorator"]) {
+        --unitone--position: relative;
+      }
     }
   }
 
