@@ -89,7 +89,7 @@ Min width of each columns.
 ```jsx
 import { ResponsiveGrid } from '@inc2734/unitone-css';
 
-<ResponsiveGrid minWidth="240px">
+<ResponsiveGrid columnMinWidth="240px">
   ...
 </ResponsiveGrid>
 ```
