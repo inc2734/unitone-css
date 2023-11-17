@@ -28,10 +28,8 @@ export function PreviewConainer(props) {
 export function Image(props) {
   const { publicRuntimeConfig } = getConfig();
   const basePath = (publicRuntimeConfig && publicRuntimeConfig.basePath) || '';
-  console.log(getConfig());
-  console.log(publicRuntimeConfig);
 
-  return <NextImage src={`${basePath}${props.src}`} {...props} />;
+  return <NextImage {...props} src={`${basePath}${props.src}`} />;
 }
 
 export function Badge(props) {
