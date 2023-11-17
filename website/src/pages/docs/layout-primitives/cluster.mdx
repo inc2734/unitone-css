@@ -1,0 +1,217 @@
+import { Cluster } from '@inc2734/unitone-css';
+import { Tabs } from 'nextra/components';
+import { PreviewConainer, Badge } from '../../../components';
+
+# Cluster
+
+Arranges child elements horizontally.
+
+## Usage
+
+<PreviewConainer>
+	<Cluster>
+		<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>Lorem ipsum</div>
+		<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>dolor sit</div>
+		<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>amet consectetur</div>
+		<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>adipisicing elit</div>
+		<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>sed do</div>
+	</Cluster>
+</PreviewConainer>
+
+<Tabs items={['HTML', 'JSX']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="cluster">
+			<div>Lorem ipsum</div>
+			<div>dolor sit</div>
+			<div>amet consectetur</div>
+			<div>adipisicing elit</div>
+			<div>sed do</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Cluster } from '@inc2734/unitone-css';
+
+		<Cluster>
+			<div>Lorem ipsum</div>
+			<div>dolor sit</div>
+			<div>amet consectetur</div>
+			<div>adipisicing elit</div>
+			<div>sed do</div>
+		</Cluster>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Props
+
+### <Badge>HTML</Badge> -align-items:\{value\} / <Badge>JSX</Badge> alignItems=\{value\}
+
+Alignment of the row direction.
+
+`start` / `center` / `end` / `stretch` / `space-between`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="cluster -align-items:center">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Cluster } from '@inc2734/unitone-css';
+
+		<Cluster alignItems="center">
+			...
+		</Cluster>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Cluster alignItems="center">
+				<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>Lorem ipsum</div>
+				<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>dolor sit<br />amet consectetur</div>
+				<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>adipisicing elit</div>
+				<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>sed do</div>
+			</Cluster>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -gap:\{variation\} / <Badge>JSX</Badge> gap=\{variation\}
+
+Gap.
+
+Can be set from `-2` to `7`. For variations `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="cluster -gap:-2">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Cluster } from '@inc2734/unitone-css';
+
+		<Cluster gap={-2}>
+			...
+		</Cluster>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Cluster gap={-2}>
+				<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>Lorem ipsum</div>
+				<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>dolor sit</div>
+				<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>amet consectetur</div>
+				<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>adipisicing elit</div>
+				<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>sed do</div>
+			</Cluster>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -divider:\{variation\} / <Badge>JSX</Badge> divider=\{variation\}
+
+#### stripe
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="cluster -divider:stripe">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Cluster } from '@inc2734/unitone-css';
+
+		<Cluster divider="stripe">
+			...
+		</Cluster>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Cluster divider="stripe">
+				<div>Lorem ipsum</div>
+				<div>dolor sit</div>
+				<div>amet consectetur</div>
+				<div>adipisicing elit</div>
+				<div>sed do</div>
+			</Cluster>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+#### slash
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="cluster -divider:slash">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Cluster } from '@inc2734/unitone-css';
+
+		<Cluster divider="slash">
+			...
+		</Cluster>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Cluster divider="slash">
+				<div>Lorem ipsum</div>
+				<div>dolor sit</div>
+				<div>amet consectetur</div>
+				<div>adipisicing elit</div>
+				<div>sed do</div>
+			</Cluster>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+#### bordered
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="cluster -divider:bordered">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Cluster } from '@inc2734/unitone-css';
+
+		<Cluster divider="bordered">
+			...
+		</Cluster>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Cluster divider="bordered">
+				<div>Lorem ipsum</div>
+				<div>dolor sit</div>
+				<div>amet consectetur</div>
+				<div>adipisicing elit</div>
+				<div>sed do</div>
+			</Cluster>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>

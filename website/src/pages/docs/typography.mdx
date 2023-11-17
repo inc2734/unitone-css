@@ -1,0 +1,51 @@
+import { Stack, WithSidebar } from '@inc2734/unitone-css';
+import { PreviewConainer } from '../../components';
+
+# Typography
+
+## Font size
+
+You can scale the font size with the CSS custom property `--unitone--font-size`. Variations on font size are available based on the harmonic sequence. The minimum value is `-2` and the maximum value is `7`.
+
+If you scale the font size with this CSS custom property, the `line-height` will be automatically set to an appropriate value (By default, it scales from `1.1` to `1.6`(= `1 + var(--unitone--half-leading) * 2`), depending on font size.).
+
+```html
+<p style="--unitone--font-size: 2">
+  ...
+</p>
+```
+
+<PreviewConainer>
+	<Stack>
+		<p data-unitone-layout="-typography" style={{ '--unitone--font-size': -2 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p data-unitone-layout="-typography" style={{ '--unitone--font-size': -1 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p data-unitone-layout="-typography" style={{ '--unitone--font-size': 0 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p data-unitone-layout="-typography" style={{ '--unitone--font-size': 1 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p data-unitone-layout="-typography" style={{ '--unitone--font-size': 2 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p data-unitone-layout="-typography" style={{ '--unitone--font-size': 3 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p data-unitone-layout="-typography" style={{ '--unitone--font-size': 4 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p data-unitone-layout="-typography" style={{ '--unitone--font-size': 5 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p data-unitone-layout="-typography" style={{ '--unitone--font-size': 6 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p data-unitone-layout="-typography" style={{ '--unitone--font-size': 7 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+	</Stack>
+</PreviewConainer>
+
+## Line height
+
+The half leading can be set. The default value is `0.3`.
+
+```html
+<p style="--unitone--half-leading: 0.3">
+  ...
+</p>
+```
+
+## Fluid typography
+
+The default font size for unitone CSS is fluid typography, but by adding `data-unitone-layout="-fluid-typography"`, the `line-height` can also be scaled to an optimal value as the font size is scaled The `line-height` can also be adjusted to the optimum value as the font size expands and contracts.
+
+```html
+<p style="--unitone--font-size: 7" data-unitone-layout="-fluid-typography">
+  ...
+</p>
+```

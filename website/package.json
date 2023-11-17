@@ -1,0 +1,30 @@
+{
+  "version": "0.48.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inc2734/unitone-css.git"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/inc2734/unitone-css",
+  "scripts": {
+    "dev": "npm run packages && open http://localhost:3000 && next",
+    "build": "npm run packages && npm run format && next build",
+    "format:js": "prettier './src/**/*.{js,jsx}' './*.config.{js,jsx}' --write",
+    "format": "run-p format:*",
+    "packages:unitone-css": "cpy \"../dist/**\" \"public/packages/@inc2734/unitone-css/dist\"",
+    "packages": "rimraf public/packages && run-p packages:*"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.23.3",
+    "@babel/preset-react": "^7.23.3",
+    "@inc2734/unitone-css": "../",
+    "babel-loader": "^9.1.3",
+    "next": "^14.0.2",
+    "nextra": "^2.13.2",
+    "nextra-theme-docs": "^2.13.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+		"cpy-cli": "^5.0.0",
+    "prettier": "^3.1.0"
+  }
+}

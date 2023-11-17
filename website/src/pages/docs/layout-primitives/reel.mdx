@@ -1,0 +1,172 @@
+import { Reel } from '@inc2734/unitone-css';
+import { Tabs } from 'nextra/components';
+import { PreviewConainer, Badge } from '../../../components';
+
+# Reel
+
+Displays child elements in a simple horizontal scroll.
+
+## Usage
+
+<PreviewConainer>
+	<Reel>
+		<img src="https://placehold.jp/400x300.jpg" alt="" />
+		<img src="https://placehold.jp/400x300.jpg" alt="" />
+		<img src="https://placehold.jp/400x300.jpg" alt="" />
+	</Reel>
+</PreviewConainer>
+
+<Tabs items={['HTML', 'JSX']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="reel">
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Reel } from '@inc2734/unitone-css';
+
+		<Reel>
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+		</Reel>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Props
+
+### <Badge>HTML</Badge> -no-bar / <Badge>JSX</Badge> noBar
+
+Hide bar.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="reel -no-bar">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Reel } from '@inc2734/unitone-css';
+
+		<Reel noBar>
+			...
+		</Reel>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Reel noBar>
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+			</Reel>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -gap:\{variation\} / <Badge>JSX</Badge> gap=\{variation\}
+
+Gap.
+
+Can be set from `-2` to `7`. For variations `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="reel -gap:-2">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Reel } from '@inc2734/unitone-css';
+
+		<Reel gap={-2}>
+			...
+		</Reel>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Reel gap={-2}>
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+			</Reel>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> --unitone--height / <Badge>JSX</Badge> height=\{value\}
+
+Height.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="reel" style="--unitone--height: 250px">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Reel } from '@inc2734/unitone-css';
+
+		<Reel height="250px">
+			...
+		</Reel>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Reel height="250px">
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+			</Reel>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> --unitone--item-width / <Badge>JSX</Badge> itemWidth=\{value\}
+
+`width` of the items.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="reel" style="--unitone--item-width: 250px">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Reel } from '@inc2734/unitone-css';
+
+		<Reel itemWidth="250px">
+			...
+		</Reel>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Reel itemWidth="250px">
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+			</Reel>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>

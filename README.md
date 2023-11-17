@@ -8,7 +8,7 @@ https://github.com/inc2734/unitone-css
 ## NPM
 https://www.npmjs.com/package/@inc2734/unitone-css
 
-## Storybook
+## Official website
 https://inc2734.github.io/unitone-css
 
 ## Browser support

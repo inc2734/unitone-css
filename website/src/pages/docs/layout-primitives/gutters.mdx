@@ -1,0 +1,64 @@
+import { Gutters } from '@inc2734/unitone-css';
+import { Tabs } from 'nextra/components';
+import { PreviewConainer, Badge } from '../../../components';
+
+# Gutters
+
+Separate content with top and bottom padding.
+
+# Usage
+
+<PreviewConainer>
+	<Gutters style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</Gutters>
+</PreviewConainer>
+
+<Tabs items={['HTML', 'JSX']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="gutters">
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Gutters } from '@inc2734/unitone-css';
+
+		<Gutters>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+		</Gutters>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Props
+
+### <Badge>HTML</Badge> -padding:\{variation\} / <Badge>JSX</Badge> padding=\{variation\}
+
+Top and bottom padding.
+
+Can be set from `-2` to `7`. For variations `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="gutters -padding:-2">
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Gutters } from '@inc2734/unitone-css';
+
+		<Gutters padding={-2}>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+		</Gutters>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Gutters padding={-2} style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</Gutters>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>

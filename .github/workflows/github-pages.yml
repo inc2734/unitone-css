@@ -1,6 +1,8 @@
 name: GitHub Pages
 
 on:
+  branches:
+    - 'main'
   push:
     tags:
       - '[0-9]+.[0-9]+.[0-9]*'
@@ -35,11 +37,11 @@ jobs:
         run: npm ci
 
       - name: run public
-        run: npm run public
+        run: npm run build -w website
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: ./public
+          publish_dir: ./website/out

@@ -1,0 +1,256 @@
+import { ResponsiveGrid } from '@inc2734/unitone-css';
+import { Tabs } from 'nextra/components';
+import { PreviewConainer, Badge } from '../../../components';
+
+# ResponsiveGrid
+
+Generates a simple grid.
+
+## Usage
+
+<PreviewConainer>
+	<ResponsiveGrid>
+		<img src="https://placehold.jp/400x300.jpg" alt="" />
+		<img src="https://placehold.jp/400x300.jpg" alt="" />
+		<img src="https://placehold.jp/400x300.jpg" alt="" />
+	</ResponsiveGrid>
+</PreviewConainer>
+
+<Tabs items={['HTML', 'JSX']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="responsive-grid">
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { ResponsiveGrid } from '@inc2734/unitone-css';
+
+		<ResponsiveGrid>
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+		</ResponsiveGrid>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Props
+
+### <Badge>HTML</Badge> -gap:\{variation\} / <Badge>JSX</Badge> gap=\{variation\}
+
+Gap.
+
+Can be set from `-2` to `7`. For variations `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="responsive-grid -gap:-2">
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { ResponsiveGrid } from '@inc2734/unitone-css';
+
+		<ResponsiveGrid gap={-2}>
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+		</ResponsiveGrid>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<ResponsiveGrid gap={-2}>
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+			</ResponsiveGrid>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -auto-repeat:\{value\} / <Badge>JSX</Badge> autoRepeat=\{value\}
+
+`auto-fill` / `auto-fit`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="responsive-grid -auto-repeat:auto-fill">
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { ResponsiveGrid } from '@inc2734/unitone-css';
+
+		<ResponsiveGrid autoRepeat="auto-fill">
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+		</ResponsiveGrid>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<ResponsiveGrid autoRepeat="auto-fill">
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+			</ResponsiveGrid>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> --unitone--column-min-width / <Badge>JSX</Badge> columnMinWidth=\{value\}
+
+`min-width` of each columns.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="responsive-grid" style="--unitone--column-min-width: 100px">
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { ResponsiveGrid } from '@inc2734/unitone-css';
+
+		<ResponsiveGrid columnMinWidth="100px">
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+		</ResponsiveGrid>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<ResponsiveGrid columnMinWidth="100px">
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+			</ResponsiveGrid>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -divider:\{variation\} / <Badge>JSX</Badge> divider=\{variation\}
+
+#### stripe
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="responsive-grid -divider:stripe">
+			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { ResponsiveGrid } from '@inc2734/unitone-css';
+
+		<ResponsiveGrid divider="stripe">
+			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+		</ResponsiveGrid>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<ResponsiveGrid divider="stripe">
+				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			</ResponsiveGrid>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+#### underline
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="responsive-grid -divider:underline">
+			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { ResponsiveGrid } from '@inc2734/unitone-css';
+
+		<ResponsiveGrid divider="underline">
+			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+		</ResponsiveGrid>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<ResponsiveGrid divider="underline">
+				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			</ResponsiveGrid>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+#### bordered
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="responsive-grid -divider:bordered">
+			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { ResponsiveGrid } from '@inc2734/unitone-css';
+
+		<ResponsiveGrid divider="bordered">
+			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+		</ResponsiveGrid>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<ResponsiveGrid divider="bordered">
+				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			</ResponsiveGrid>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>

@@ -1,0 +1,130 @@
+import { Center, Stack } from '@inc2734/unitone-css';
+import { Tabs } from 'nextra/components';
+import { PreviewConainer, Badge } from '../../../components';
+
+# Center
+
+Center the box. Settings also allow for centering of child elements and centering of text.
+
+## Usage
+
+<PreviewConainer>
+	<Stack>
+		<Center style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit</Center>
+		<Center style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</Center>
+	</Stack>
+</PreviewConainer>
+
+<Tabs items={['HTML', 'JSX']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="center">Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
+		<div data-unitone-layout="center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Center } from '@inc2734/unitone-css';
+
+		<Center>Lorem ipsum dolor sit amet, consectetur adipisicing elit</Center>
+		<Center>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</Center>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Props
+
+### <Badge>HTML</Badge> -with-text / <Badge>JSX</Badge> withText
+
+Text is also centered.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="center -with-text">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Center } from '@inc2734/unitone-css';
+
+		<Center withText>
+			...
+		</Center>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Stack>
+				<Center withText style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit</Center>
+				<Center withText style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</Center>
+			</Stack>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -gutters:\{variation\} / <Badge>JSX</Badge> gutters=\{variation\}
+
+Gutters.
+
+Can be set from `-2` to `7`. For variations `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="center -gutters:1">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Center } from '@inc2734/unitone-css';
+
+		<Center gutters={1}>
+			...
+		</Center>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Stack>
+				<Center gutters={1} style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit</Center>
+				<Center gutters={1} style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</Center>
+			</Stack>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> --unitone--max-width / <Badge>JSX</Badge> maxWidth=\{value\}
+
+Max width.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="center" style="--unitone--max-width: 400px">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Center } from '@inc2734/unitone-css';
+
+		<Center maxWidth="400px">
+			...
+		</Center>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Stack>
+				<Center maxWidth="400px" style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit</Center>
+				<Center maxWidth="400px" style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</Center>
+			</Stack>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>

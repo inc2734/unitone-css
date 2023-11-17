@@ -1,0 +1,70 @@
+import { Tabs } from 'nextra/components';
+
+# Installation
+
+## Install
+
+To install unitone CSS in your project, execute the following command in a terminal.
+
+```sh
+$ npm install --save-dev @inc2734/unitone-css
+```
+
+## Import CSS
+
+To import CSS for unitone CSS, `@use` in your main SCSS file. In the case of HTML, you can also use `<link />` to load CSS.
+
+<Tabs items={['SCSS', 'HTML']}>
+	<Tabs.Tab>
+		```scss
+		@use 'PATH/TO/node_modules/@inc2734/unitone-css/src/app';
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```html
+		<link rel="stylesheet" href="/node_modules/@inc2734/unitone-css/dist/app.css" />
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Import JavaScript
+
+To import JavaScript for unitone CSS, `@import` in your main JavaScript file. In the case of HTML, you can also use `<script />` to load JavaScript.
+
+<Tabs items={['JavaScript', 'HTML']}>
+	<Tabs.Tab>
+		```js
+		import '@inc2734/unitone-css/app';
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```html
+		<script src="/node_modules/@inc2734/unitone-css/dist/app.js"></script>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Using Layout Primitives
+
+The unitone CSS layout primitives can be used with the following code.
+
+For the detailed description of each layout primitives, see the [Layout Primitives](docs/layout-primitives/) page.
+
+<Tabs items={['HTML', 'JSX']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="decorator -padding:1">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Decorator } from '@inc2734/unitone-css';
+
+		<Decorator padding={1}>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+		</Decorator>
+		```
+	</Tabs.Tab>
+</Tabs>

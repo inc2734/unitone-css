@@ -18,7 +18,9 @@ export const VerticalWriting = ({
       <div
         data-unitone-layout={[
           'vertical-writing',
-          'undefined' !== typeof textOrientation ? `-text-orientation:${textOrientation}` : undefined,
+          'undefined' !== typeof textOrientation
+            ? `-text-orientation:${textOrientation}`
+            : undefined,
           'undefined' !== typeof gap ? `-gap:${gap}` : undefined,
           true === switchWritingMode ? `-switch` : undefined,
         ]

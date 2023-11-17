@@ -1,0 +1,96 @@
+import { Frame } from '@inc2734/unitone-css';
+import { Tabs } from 'nextra/components';
+import { PreviewConainer, Badge } from '../../../components';
+
+# Frame
+
+Fits the image into a certain angle of view.
+
+## Usage
+
+<PreviewConainer>
+	<Frame>
+		<img src="https://placehold.jp/1000x1000.jpg" alt="" />
+	</Frame>
+</PreviewConainer>
+
+<Tabs items={['HTML', 'JSX']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="frame">
+			<img src="https://placehold.jp/1000x1000.jpg" alt="" style="width: 100%" />
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Frame } from '@inc2734/unitone-css';
+
+		<Frame>
+			<img src="https://placehold.jp/1000x1000.jpg" alt="" />
+		</Frame>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Props
+
+### <Badge>HTML</Badge> --unitone--ratio / <Badge>JSX</Badge> ratio=\{value\}
+
+Aspect ratio.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="frame" style="--unitone--ratio: 4/3">
+			<img src="https://placehold.jp/1000x1000.jpg" alt="" style="width: 100%" />
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Frame } from '@inc2734/unitone-css';
+
+		<Frame ratio="4/3">
+			<img src="https://placehold.jp/1000x1000.jpg" alt="" />
+		</Frame>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Frame ratio="4/3">
+				<img src="https://placehold.jp/1000x1000.jpg" alt="" />
+			</Frame>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -switch / <Badge>JSX</Badge> switchRatio
+
+Switch aspect ratio when portrait.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="frame -switch">
+			<img src="https://placehold.jp/1000x1000.jpg" alt="" style="width: 100%" />
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Frame } from '@inc2734/unitone-css';
+
+		<Frame switchRatio>
+			<img src="https://placehold.jp/1000x1000.jpg" alt="" />
+		</Frame>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Frame switchRatio>
+				<img src="https://placehold.jp/1000x1000.jpg" alt="" />
+			</Frame>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>

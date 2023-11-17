@@ -1,0 +1,267 @@
+import { WithSidebar } from '@inc2734/unitone-css';
+import { Tabs } from 'nextra/components';
+import { PreviewConainer } from '../../../components';
+
+# Vertical Writing
+
+Assemble the component with sidebars. If the configured width can no longer be maintained, a single column display will be used.
+
+## Usage
+
+<PreviewConainer>
+	<WithSidebar>
+		<p style={{ outline: '1px dotted #6366f1', padding: '1em' }}>Lorem ipsum dolor sit amet</p>
+		<ul style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+			<li>Lorem</li>
+			<li>ipsum</li>
+			<li>dolor</li>
+		</ul>
+	</WithSidebar>
+</PreviewConainer>
+
+<Tabs items={['HTML', 'JSX']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="with-sidebar">
+			<p>Lorem ipsum dolor sit amet</p>
+			<ul>
+				<li>Lorem</li>
+				<li>ipsum</li>
+				<li>dolor</li>
+			</ul>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { WithSidebar } from '@inc2734/unitone-css';
+
+		<WithSidebar>
+			<p>Lorem ipsum dolor sit amet</p>
+			<ul>
+				<li>Lorem</li>
+				<li>ipsum</li>
+				<li>dolor</li>
+			</ul>
+		</WithSidebar>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Props
+
+### Sidebar
+
+Sets sidebar position. Default is `right`.
+
+`left` / `right`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="with-sidebar -sidebar:left">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { WithSidebar } from '@inc2734/unitone-css';
+
+		<WithSidebar sidebar="left">
+			...
+		</WithSidebar>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<WithSidebar sidebar="left">
+				<p style={{ outline: '1px dotted #6366f1', padding: '1em' }}>Lorem ipsum dolor sit amet</p>
+				<ul style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+					<li>Lorem</li>
+					<li>ipsum</li>
+					<li>dolor</li>
+				</ul>
+			</WithSidebar>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### Revert
+
+The way child elements are displayed is reversed.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="with-sidebar -revert">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { WithSidebar } from '@inc2734/unitone-css';
+
+		<WithSidebar revert>
+			...
+		</WithSidebar>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<WithSidebar revert>
+				<p style={{ outline: '1px dotted #6366f1', padding: '1em' }}>Lorem ipsum dolor sit amet</p>
+				<ul style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+					<li>Lorem</li>
+					<li>ipsum</li>
+					<li>dolor</li>
+				</ul>
+			</WithSidebar>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### Content min width
+
+Minimum width of the main column. If this width cannot be maintained, it will be reduced to one column.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="with-sidebar" style="--unitone--content-min-width: 500px">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { WithSidebar } from '@inc2734/unitone-css';
+
+		<WithSidebar contentMinWidth="500px">
+			...
+		</WithSidebar>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<WithSidebar contentMinWidth="500px">
+				<p style={{ outline: '1px dotted #6366f1', padding: '1em' }}>Lorem ipsum dolor sit amet</p>
+				<ul style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+					<li>Lorem</li>
+					<li>ipsum</li>
+					<li>dolor</li>
+				</ul>
+			</WithSidebar>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### Sidebar width
+
+Sidebar width.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="with-sidebar" style="--unitone--sidebar-width: 200px">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { WithSidebar } from '@inc2734/unitone-css';
+
+		<WithSidebar sidebarWidth="200px">
+			...
+		</WithSidebar>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<WithSidebar sidebarWidth="200px">
+				<p style={{ outline: '1px dotted #6366f1', padding: '1em' }}>Lorem ipsum dolor sit amet</p>
+				<ul style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+					<li>Lorem</li>
+					<li>ipsum</li>
+					<li>dolor</li>
+				</ul>
+			</WithSidebar>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -gap:\{variation\} / <Badge>JSX</Badge> gap=\{variation\}
+
+Gap.
+
+Can be set from `-2` to `7`. For variations `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="with-sidebar -gap:-2">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { WithSidebar } from '@inc2734/unitone-css';
+
+		<WithSidebar gap={-2}>
+			...
+		</WithSidebar>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<WithSidebar gap={-2}>
+				<p style={{ outline: '1px dotted #6366f1', padding: '1em' }}>Lorem ipsum dolor sit amet</p>
+				<ul style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+					<li>Lorem</li>
+					<li>ipsum</li>
+					<li>dolor</li>
+				</ul>
+			</WithSidebar>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -align-items:\{value\} / <Badge>JSX</Badge> alignItems=\{value\}
+
+Alignment of the row direction.
+
+`start` / `center` / `end` / `stretch` / `space-between`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="with-sidebar -align-items:center">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { WithSidebar } from '@inc2734/unitone-css';
+
+		<WithSidebar alignItems="center">
+			...
+		</WithSidebar>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<WithSidebar alignItems="center">
+				<p style={{ outline: '1px dotted #6366f1', padding: '1em' }}>Lorem ipsum dolor sit amet</p>
+				<ul style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+					<li>Lorem</li>
+					<li>ipsum</li>
+					<li>dolor</li>
+				</ul>
+			</WithSidebar>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>

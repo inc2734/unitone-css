@@ -1,0 +1,413 @@
+import { Layers } from '@inc2734/unitone-css';
+import { Tabs } from 'nextra/components';
+import { PreviewConainer, Badge } from '../../../components';
+
+# Layers
+
+Elements on top of each other. Layers have a `12 x 7` (`7 x 12` in portrait mode) grid, along which child layers can be shifted.
+
+## Usage
+
+<PreviewConainer>
+	<Layers>
+		<img src="https://placehold.jp/400x300.jpg" alt="" />
+
+		<div data-unitone-layout="-align-self:end">
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+		</div>
+	</Layers>
+</PreviewConainer>
+
+<Tabs items={['HTML', 'JSX']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="layers">
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+
+			<div data-unitone-layout="-align-self:end">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Layers } from '@inc2734/unitone-css';
+
+		<Layers>
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+
+			<div data-unitone-layout="-align-self:end">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+			</div>
+		</Layers>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Props
+
+### <Badge>HTML</Badge> -gap:\{variation\} / <Badge>JSX</Badge> gap=\{variation\}
+
+Gap.
+
+Can be set from `-2` to `7`. For variations `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="layers -gap:-2">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Layers } from '@inc2734/unitone-css';
+
+		<Layers gap={-2}>
+			...
+		</Layers>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Layers gap={-2}>
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+
+				<div data-unitone-layout="-align-self:end">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+				</div>
+			</Layers>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> --unitone--min-height / <Badge>JSX</Badge> minHeigth=\{value\}
+
+Min height.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="layers" style="--unitone--min-height: 360px">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Layers } from '@inc2734/unitone-css';
+
+		<Layers minHeight="360px">
+			...
+		</Layers>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Layers minHeight="360px">
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+
+				<div data-unitone-layout="-align-self:end">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+				</div>
+			</Layers>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -cover / <Badge>JSX</Badge> cover
+
+Background image/video is sized to maintain its aspect ratio while filling the element's entire content box. If the object's aspect ratio does not match the aspect ratio of its box, then the object will be clipped to fit.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="layers -cover">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Layers } from '@inc2734/unitone-css';
+
+		<Layers cover>
+			...
+		</Layers>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Layers cover>
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+
+				<div data-unitone-layout="-align-self:end">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+				</div>
+			</Layers>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -fill / <Badge>JSX</Badge> fill
+
+The background image/video is enlarged according to the amount of content.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="layers -fill">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Layers } from '@inc2734/unitone-css';
+
+		<Layers fill>
+			...
+		</Layers>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Layers fill>
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+
+				<div data-unitone-layout="-align-self:end">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+				</div>
+			</Layers>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -blur / <Badge>JSX</Badge> applyBlur
+
+Blur the background image/video.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="layers -blur">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Layers } from '@inc2734/unitone-css';
+
+		<Layers applyBlur>
+			...
+		</Layers>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Layers applyBlur>
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+
+				<div data-unitone-layout="-align-self:end">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+				</div>
+			</Layers>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -portrait / <Badge>JSX</Badge> portrait
+
+In portrait mode, swaps the height and width of the grid.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="layers -portrait">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Layers } from '@inc2734/unitone-css';
+
+		<Layers portrait>
+			...
+		</Layers>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Layers portrait>
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+
+				<div data-unitone-layout="-align-self:end">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+				</div>
+			</Layers>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### -mix-blend-mode:\{value\}
+
+You can specify how the elements should look when stacked.
+
+`normal` / `multiply` / `screen` / `overlay` / `darken` / `lighten` / `color-dodge` / `color-burn` / `hard-light` / `soft-light` / `difference` / `exclusion` / `hue` / `saturation` / `color` / `luminosity`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="layers -portrait">
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+
+			<div data-unitone-layout="-mix-blend-mode:overlay">
+				...
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Layers } from '@inc2734/unitone-css';
+
+		<Layers portrait>
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+
+			<div data-unitone-layout="-mix-blend-mode:overlay">
+				...
+			</div>
+		</Layers>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Layers>
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+
+				<div data-unitone-layout="-mix-blend-mode:overlay -align-self:end">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+				</div>
+			</Layers>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### Grid item position
+
+You can set the position of child elements with the associated properties of the CSS grid.
+
+- `align-self`: `data-unitone-layout="-align-self:end"`
+- `justify-self`: `data-unitone-layout="-justify-self:end"`
+- `grid-column`: `--unitone--grid-column: 1/-1`
+- `grid-row`: `--unitone--grid-row: 1/-1`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="layers -portrait">
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+
+			<div data-unitone-layout="-align-self:center -justify-self:center" style={{ '--unitone--grid-column': '2/-2' }}>
+				...
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Layers } from '@inc2734/unitone-css';
+
+		<Layers portrait>
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+
+			<div data-unitone-layout="-align-self:center -justify-self:center" style={{ '--unitone--grid-column': '2/-2' }}>
+				...
+			</div>
+		</Layers>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Layers>
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+
+				<div data-unitone-layout="-align-self:center -justify-self:center" style={{ '--unitone--grid-column': '2/-2' }}>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+				</div>
+			</Layers>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> --unitone--columns / <Badge>JSX</Badge> columns=\{value\}
+
+Number of grid columns.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="layers" style="--unitone--columns: 20">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Layers } from '@inc2734/unitone-css';
+
+		<Layers columns="20">
+			...
+		</Layers>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Layers columns="20">
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+
+				<div data-unitone-layout="-align-self:end">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+				</div>
+			</Layers>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> --unitone--rows / <Badge>JSX</Badge> rows=\{value\}
+
+Number of grid rows.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="layers" style="--unitone--rows: 20">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Layers } from '@inc2734/unitone-css';
+
+		<Layers rows="20">
+			...
+		</Layers>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Layers rows="20">
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+
+				<div data-unitone-layout="-align-self:end">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+				</div>
+			</Layers>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>

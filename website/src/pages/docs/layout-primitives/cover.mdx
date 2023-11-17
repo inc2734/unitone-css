@@ -1,0 +1,227 @@
+import { Cover, CoverContent } from '@inc2734/unitone-css';
+import { Tabs } from 'nextra/components';
+import { PreviewConainer, Badge } from '../../../components';
+
+# Cover
+
+This component is designed to cover a large area of the screen.
+
+## Usage
+
+<PreviewConainer>
+	<Cover style={{ outline: '1px dotted #6366f1' }}>
+		<CoverContent valign="top" style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum</CoverContent>
+		<CoverContent valign="center" style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</CoverContent>
+		<CoverContent valign="bottom" style={{ outline: '1px dotted #6366f1' }}>sed do</CoverContent>
+	</Cover>
+</PreviewConainer>
+
+<Tabs items={['HTML', 'JSX']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="cover">
+			<div data-unitone-layout="cover__content -valign:top">orem ipsum</div>
+			<div data-unitone-layout="cover__content -valign:center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</div>
+			<div data-unitone-layout="cover__content -valign:top">sed do</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Cover, CoverContent } from '@inc2734/unitone-css';
+
+		<Cover>
+			<CoverContent valign="top">Lorem ipsum</CoverContent>
+			<CoverContent valign="center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</CoverContent>
+			<CoverContent valign="bottom">sed do</CoverContent>
+		</Cover>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Props
+
+### <Badge>HTML</Badge> -gap:\{variation\} / <Badge>JSX</Badge> gap=\{variation\}
+
+Gap.
+
+Can be set from `-2` to `7`. For variations `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens.
+
+This is also reflected in the padding, so if only the padding is unnecessary, specify `0` for the padding.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="cover -gap:-2">
+			<div data-unitone-layout="cover__content -valign:top">orem ipsum</div>
+			<div data-unitone-layout="cover__content -valign:center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</div>
+			<div data-unitone-layout="cover__content -valign:top">sed do</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Cover, CoverContent } from '@inc2734/unitone-css';
+
+		<Cover gap={-2}>
+			<CoverContent valign="top">Lorem ipsum</CoverContent>
+			<CoverContent valign="center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</CoverContent>
+			<CoverContent valign="bottom">sed do</CoverContent>
+		</Cover>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Cover gap={-2} style={{ outline: '1px dotted #6366f1' }}>
+				<CoverContent valign="top" style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum</CoverContent>
+				<CoverContent valign="center" style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</CoverContent>
+				<CoverContent valign="bottom" style={{ outline: '1px dotted #6366f1' }}>sed do</CoverContent>
+			</Cover>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -padding:\{variation\} / <Badge>JSX</Badge> padding=\{variation\}
+
+Padding.
+
+Can be set from `-2` to `7`. For variations `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="cover -padding:-2">
+			<div data-unitone-layout="cover__content -valign:top">orem ipsum</div>
+			<div data-unitone-layout="cover__content -valign:center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</div>
+			<div data-unitone-layout="cover__content -valign:top">sed do</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Cover, CoverContent } from '@inc2734/unitone-css';
+
+		<Cover padding={-2}>
+			<CoverContent valign="top">Lorem ipsum</CoverContent>
+			<CoverContent valign="center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</CoverContent>
+			<CoverContent valign="bottom">sed do</CoverContent>
+		</Cover>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Cover padding={-2} style={{ outline: '1px dotted #6366f1' }}>
+				<CoverContent valign="top" style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum</CoverContent>
+				<CoverContent valign="center" style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</CoverContent>
+				<CoverContent valign="bottom" style={{ outline: '1px dotted #6366f1' }}>sed do</CoverContent>
+			</Cover>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> --unitone--min-height / <Badge>JSX</Badge> minHeigth=\{value\}
+
+Min height.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="cover" style="--unitone--min-height: 400px">
+			<div data-unitone-layout="cover__content -valign:top">orem ipsum</div>
+			<div data-unitone-layout="cover__content -valign:center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</div>
+			<div data-unitone-layout="cover__content -valign:top">sed do</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Cover, CoverContent } from '@inc2734/unitone-css';
+
+		<Cover minHeight="400px">
+			<CoverContent valign="top">Lorem ipsum</CoverContent>
+			<CoverContent valign="center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</CoverContent>
+			<CoverContent valign="bottom">sed do</CoverContent>
+		</Cover>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Cover minHeight="400px" style={{ outline: '1px dotted #6366f1' }}>
+				<CoverContent valign="top" style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum</CoverContent>
+				<CoverContent valign="center" style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</CoverContent>
+				<CoverContent valign="bottom" style={{ outline: '1px dotted #6366f1' }}>sed do</CoverContent>
+			</Cover>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### -valign:\{value\}
+
+You can specify the vertical alignment of a child element.
+
+`top` / `center` / `bottom`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="cover" style="--unitone--mine-height: 400px">
+			<div data-unitone-layout="cover__content -valign:top">orem ipsum</div>
+			<div data-unitone-layout="cover__content -valign:top">sed do</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Cover, CoverContent } from '@inc2734/unitone-css';
+
+		<Cover minHeight="400px">
+			<CoverContent valign="top">Lorem ipsum</CoverContent>
+			<CoverContent valign="bottom">sed do</CoverContent>
+		</Cover>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Cover minHeight="400px" style={{ outline: '1px dotted #6366f1' }}>
+				<CoverContent valign="top" style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum</CoverContent>
+				<CoverContent valign="bottom" style={{ outline: '1px dotted #6366f1' }}>sed do</CoverContent>
+			</Cover>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### -position:\{value\}
+
+You can specify the position of a child element.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="cover" style="--unitone--mine-height: 400px">
+			<div data-unitone-layout="cover__content -position:absolute" style="--unitone--top: 0; --unitone--right: 0; --unitone--left: 0; --uitone--z-index: 1">orem ipsum</div>
+			<div data-unitone-layout="cover__content -valign:center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</div>
+			<div data-unitone-layout="cover__content -valign:top">sed do</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Cover, CoverContent } from '@inc2734/unitone-css';
+
+		<Cover minHeight="400px">
+			<CoverContent position="absolute" top="0" right="0" left="0" zIndex="1">Lorem ipsum</CoverContent>
+			<CoverContent valign="center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</CoverContent>
+			<CoverContent valign="bottom">sed do</CoverContent>
+		</Cover>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Cover minHeight="400px" style={{ outline: '1px dotted #6366f1' }}>
+				<CoverContent position="absolute" top="0" right="0" left="0" zIndex="1" style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum</CoverContent>
+				<CoverContent valign="center" style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</CoverContent>
+				<CoverContent valign="bottom" style={{ outline: '1px dotted #6366f1' }}>sed do</CoverContent>
+			</Cover>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>

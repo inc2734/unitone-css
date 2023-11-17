@@ -1,0 +1,200 @@
+import { Stack } from '@inc2734/unitone-css';
+import { Tabs } from 'nextra/components';
+import { PreviewConainer, Badge } from '../../../components';
+
+# Stack
+
+Arranges child elements vertically at regular intervals.
+
+## Usage
+
+<PreviewConainer>
+	<Stack>
+		<p style={{ outline: '1px dotted #6366f1', padding: '1em' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p style={{ outline: '1px dotted #6366f1', padding: '1em' }}>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+		<p style={{ outline: '1px dotted #6366f1', padding: '1em' }}>Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+	</Stack>
+</PreviewConainer>
+
+<Tabs items={['HTML', 'JSX']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="stack">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+			<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Stack } from '@inc2734/unitone-css';
+
+		<Stack>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+			<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+		</Stack>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Props
+
+### <Badge>HTML</Badge> -gap:\{variation\} / <Badge>JSX</Badge> gap=\{variation\}
+
+Gap.
+
+Can be set from `-2` to `7`. For variations `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="stack -gap:-2">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Stack } from '@inc2734/unitone-css';
+
+		<Stack gap={-2}>
+			...
+		</Stack>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Stack gap={-2}>
+				<p style={{ outline: '1px dotted #6366f1', padding: '1em' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				<p style={{ outline: '1px dotted #6366f1', padding: '1em' }}>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+				<p style={{ outline: '1px dotted #6366f1', padding: '1em' }}>Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+			</Stack>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -negative / <Badge>JSX</Badge> negative
+
+Add netative value gap.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="stack -gap:1 -negative">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Stack } from '@inc2734/unitone-css';
+
+		<Stack gap={1} negative>
+			...
+		</Stack>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Stack gap={1} negative>
+				<p style={{ outline: '1px dotted #6366f1', padding: '1em' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				<p style={{ outline: '1px dotted #6366f1', padding: '1em' }}>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+				<p style={{ outline: '1px dotted #6366f1', padding: '1em' }}>Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+			</Stack>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -divider:\{variation\} / <Badge>JSX</Badge> divider=\{variation\}
+
+#### stripe
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="stack -divider:stripe">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Stack } from '@inc2734/unitone-css';
+
+		<Stack divider="stripe">
+			...
+		</Stack>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Stack divider="stripe">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+				<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+			</Stack>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+#### underline
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="stack -divider:underline">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Stack } from '@inc2734/unitone-css';
+
+		<Stack divider="underline">
+			...
+		</Stack>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Stack divider="underline">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+				<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+			</Stack>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+#### bordered
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="stack -divider:bordered">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Stack } from '@inc2734/unitone-css';
+
+		<Stack divider="bordered">
+			...
+		</Stack>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Stack divider="bordered">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+				<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+			</Stack>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>

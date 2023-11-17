@@ -1,0 +1,18 @@
+import Script from 'next/script';
+import getConfig from "next/config";
+
+import './style.scss';
+
+import '../../../src/settings/_settings.scss';
+import '../../../src/layout-primitives/_layout-primitives.scss';
+import '../../../src/helper/_helper.scss';
+
+export default function MyApp({ Component, pageProps }) {
+  const { publicRuntimeConfig } = getConfig();
+  const basePath = (publicRuntimeConfig && publicRuntimeConfig.basePath) || "";
+
+  return <>
+    <Script strategy="beforeInteractive" src={`${basePath}/packages/@inc2734/unitone-css/dist/app.js`} />
+    <Component {...pageProps} />
+  </>
+}

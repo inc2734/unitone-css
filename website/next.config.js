@@ -1,0 +1,14 @@
+const withNextra = require('nextra')({
+  theme: 'nextra-theme-docs',
+  themeConfig: './theme.config.jsx',
+});
+
+module.exports = withNextra({
+  output: 'export',
+  images: {
+    unoptimized: true,
+  },
+  // assetPrefix:  process.env.GITHUB_ACTIONS && '/unitone-css',
+  basePath: process.env.GITHUB_ACTIONS && '/unitone-css',
+  trailingSlash: true,
+});

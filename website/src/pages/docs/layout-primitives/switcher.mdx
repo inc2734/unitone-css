@@ -1,0 +1,108 @@
+import { Switcher, Decorator } from '@inc2734/unitone-css';
+import { Tabs } from 'nextra/components';
+import { PreviewConainer, Badge } from '../../../components';
+
+# Switcher
+
+The direction of content flow switches depending on the content. If the width of the switcher block is smaller than the "threshold", it becomes one column.
+
+## Usage
+
+<PreviewConainer>
+	<Switcher>
+		<Decorator backgroundColor="#3730a3" color="#fff" padding={1}>Lorem ipsum</Decorator>
+		<Decorator backgroundColor="#5b21b6" color="#fff" padding={1}>dolor sit</Decorator>
+		<Decorator backgroundColor="#6b21a8" color="#fff" padding={1}>amet consectetur</Decorator>
+	</Switcher>
+</PreviewConainer>
+
+<Tabs items={['HTML', 'JSX']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="switcher">
+			<div data-unitone-layout="decorator -padding:1" style="--unitone--background-color: #3730a3; --unitone--color: #fff">Lorem ipsum</div>
+			<div data-unitone-layout="decorator -padding:1" style="--unitone--background-color: #5b21b6; --unitone--color: #fff">dolor sit</div>
+			<div data-unitone-layout="decorator -padding:1" style="--unitone--background-color: #6b21a8; --unitone--color: #fff">amet consectetur</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Switcher, Decorator } from '@inc2734/unitone-css';
+
+		<Switcher>
+			<Decorator backgroundColor="#3730a3" color="#fff" padding={1}>Lorem ipsum</Decorator>
+			<Decorator backgroundColor="#5b21b6" color="#fff" padding={1}>dolor sit</Decorator>
+			<Decorator backgroundColor="#6b21a8" color="#fff" padding={1}>amet consectetur</Decorator>
+		</Switcher>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Props
+
+### <Badge>HTML</Badge> -gap:\{variation\} / <Badge>JSX</Badge> gap=\{variation\}
+
+Gap.
+
+Can be set from `-2` to `7`. For variations `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="switcher -gap:-2">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Switcher } from '@inc2734/unitone-css';
+
+		<Switcher gap={-2}>
+			...
+		</Switcher>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Switcher gap={-2}>
+				<Decorator backgroundColor="#3730a3" color="#fff" padding={1}>Lorem ipsum</Decorator>
+				<Decorator backgroundColor="#5b21b6" color="#fff" padding={1}>dolor sit</Decorator>
+				<Decorator backgroundColor="#6b21a8" color="#fff" padding={1}>amet consectetur</Decorator>
+			</Switcher>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> --unitone--threshold / <Badge>JSX</Badge> threshold=\{value\}
+
+If the box size is smaller than this value, it switches to one column.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="switcher" style="--unitone--threshold: 500px">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Switcher } from '@inc2734/unitone-css';
+
+		<Switcher thureshold="500px">
+			...
+		</Switcher>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Switcher thureshold="500px">
+				<Decorator backgroundColor="#3730a3" color="#fff" padding={1}>Lorem ipsum</Decorator>
+				<Decorator backgroundColor="#5b21b6" color="#fff" padding={1}>dolor sit</Decorator>
+				<Decorator backgroundColor="#6b21a8" color="#fff" padding={1}>amet consectetur</Decorator>
+			</Switcher>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>

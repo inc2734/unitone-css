@@ -1,0 +1,215 @@
+import { BothSides } from '@inc2734/unitone-css';
+import { Tabs } from 'nextra/components';
+import { PreviewConainer, Badge } from '../../../components';
+
+# Both Sides
+
+Child elements are aligned at both ends. If the width of a child element becomes too large to maintain justification, it will be placed in a single column.
+
+## Usage
+
+<PreviewConainer>
+	<BothSides>
+		<p style={{ outline: '1px dotted #6366f1', padding: '1em' }}>Lorem ipsum dolor sit amet</p>
+		<ul style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+			<li>Lorem</li>
+			<li>ipsum</li>
+			<li>dolor</li>
+		</ul>
+	</BothSides>
+</PreviewConainer>
+
+<Tabs items={['HTML', 'JSX']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="both-sides">
+			<p>Lorem ipsum dolor sit amet</p>
+			<ul>
+				<li>Lorem</li>
+				<li>ipsum</li>
+				<li>dolor</li>
+			</ul>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { BothSides } from '@inc2734/unitone-css';
+
+		<BothSides>
+			<p>Lorem ipsum dolor sit amet</p>
+			<ul>
+				<li>Lorem</li>
+				<li>ipsum</li>
+				<li>dolor</li>
+			</ul>
+		</BothSides>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Props
+
+### <Badge>HTML</Badge> -gap:\{variation\} / <Badge>JSX</Badge> gap=\{variation\}
+
+Gap.
+
+Can be set from `-2` to `7`. For variations `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="both-sides -gap:-2">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { BothSides } from '@inc2734/unitone-css';
+
+		<BothSides gap={-2}>
+			...
+		</BothSides>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<BothSides gap={-2}>
+				<p style={{ outline: '1px dotted #6366f1', padding: '1em' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				<ul style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+					<li>Lorem</li>
+					<li>ipsum</li>
+					<li>dolor</li>
+				</ul>
+			</BothSides>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -align-items:\{value\} / <Badge>JSX</Badge> alignItems=\{value\}
+
+Alignment of the row direction.
+
+`start` / `center` / `end` / `stretch` / `space-between`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="both-sides -align-items:center">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { BothSides } from '@inc2734/unitone-css';
+
+		<BothSides alignItems="center">
+			...
+		</BothSides>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<BothSides alignItems="center">
+				<p style={{ outline: '1px dotted #6366f1', padding: '1em' }}>Lorem ipsum dolor sit amet</p>
+				<ul style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+					<li>Lorem</li>
+					<li>ipsum</li>
+					<li>dolor</li>
+				</ul>
+			</BothSides>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### --unitone--content-max-width
+
+`max-width` of the item.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="both-sides">
+			<p style="--unitone--content-max-width: 400px">Lorem ipsum dolor sit amet</p>
+			<ul>
+				<li>Lorem</li>
+				<li>ipsum</li>
+				<li>dolor</li>
+			</ul>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { BothSides } from '@inc2734/unitone-css';
+
+		<BothSides>
+			<p style={{ '--unitone--content-max-width': '400px' }}>Lorem ipsum dolor sit amet</p>
+			<ul>
+				<li>Lorem</li>
+				<li>ipsum</li>
+				<li>dolor</li>
+			</ul>
+		</BothSides>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<BothSides>
+				<p style={{ '--unitone--content-max-width': '400px', outline: '1px dotted #6366f1', padding: '1em' }}>Lorem ipsum dolor sit amet</p>
+				<ul style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+					<li>Lorem</li>
+					<li>ipsum</li>
+					<li>dolor</li>
+				</ul>
+			</BothSides>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### --unitone--content-width
+
+`width` of the item.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="both-sides">
+			<p style="--unitone--content-width: 400px">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			<ul>
+				<li>Lorem</li>
+				<li>ipsum</li>
+				<li>dolor</li>
+			</ul>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { BothSides } from '@inc2734/unitone-css';
+
+		<BothSides>
+			<p style={{ '--unitone--content-width': '400px' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			<ul>
+				<li>Lorem</li>
+				<li>ipsum</li>
+				<li>dolor</li>
+			</ul>
+		</BothSides>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<BothSides>
+				<p style={{ '--unitone--content-width': '400px', outline: '1px dotted #6366f1', padding: '1em' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				<ul style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+					<li>Lorem</li>
+					<li>ipsum</li>
+					<li>dolor</li>
+				</ul>
+			</BothSides>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>

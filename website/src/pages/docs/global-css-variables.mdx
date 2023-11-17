@@ -1,0 +1,341 @@
+import { Stack, WithSidebar } from '@inc2734/unitone-css';
+import { PreviewConainer, Image } from '../../components';
+
+# Global CSS Variables
+
+## Typography
+
+### --unitone--measure
+
+Length of one line of text.
+
+### --unitone--half-leading
+
+The size of the margins added above and below the text. The size of one line (`line-height`) is calculated by the following formula.
+
+```
+1 * var(--unitone--half-leading) * 2
+```
+
+### --unitone--line-height-slope
+
+In general, the larger the font size, the narrower the line spacing between lines, making text easier to read. For this reason, `line-height` is often specified together with font-size, for example, `line-height: 1.1` for `font-size: 4rem`.
+
+That's a lot of work. Therefore, we created a mechanism to automatically optimize the line spacing according to the font size at all times.
+
+For example, suppose you want to use the following as a standard for `line-height`.
+
+```
+A = (1, 1.6) // When font-size: 1rem, line-height: 1.6
+B = (4, 1.1) // When font-size: 4rem, line-height: 1.1
+```
+
+Then, the following formula is formed.
+
+```
+y = -0.1666666666667x + 1.7666666666667 // y = line-height, x = Font size ratio
+```
+
+<Image src="/line-height-slope.png" alt="Graph of line-height of unitone CSS" width={986} height={423} />
+
+### --unitone--base-font-size
+
+Base font size. Specified numerically.
+
+### --unitone--font-family
+
+Base `font-family`.
+
+## Margin / Gap / Padding
+
+Space sizes are available in variations based on the Fibonacci sequence. Can be set from `-2` to `7`.
+
+### --unitone--s\{variation\}
+
+Standard. Mainly for `margin` / `gap`.
+
+Changes in conjunction with `--unitone--half-leading` and `--unitone--base-font-size`.
+
+For variations `2` and above, clamp is used to adjust the margins so that they do not become too large on small screens.
+
+| CSS variables | Specific value |
+| ---- | ---- |
+| `--unitone--s-2` | The default is about `0.53em`. |
+| `--unitone--s-1` | The default is about `1.07em`. |
+| `--unitone--s0` | `0em` |
+| `--unitone--s1` | The default is `1.6em`. |
+| `--unitone--s2` | The Default is about `2.67em` to about `2.37em`. |
+| `--unitone--s3` | The Default is about `4.27em` to about `2.9em`. |
+| `--unitone--s4` | The Default is about `6.93em` to about `3.79em`. |
+| `--unitone--s5` | The Default is about `11.2em` to about `5.21em`. |
+| `--unitone--s6` | The Default is about `18.13em` to about `7.51em`. |
+| `--unitone--s7` | The Default is about `29.33em` to about `11.23em`. |
+
+<PreviewConainer>
+	<Stack gap={-1}>
+		<WithSidebar sidebar="left" sidebarWidth="10rem" gap={-1}>
+			<div>`--unitone--s-2`</div>
+			<div>
+				<div style={{ width: 'var(--unitone--s-2)', backgroundColor: "#008AE6", height: "1.5rem" }} />
+			</div>
+		</WithSidebar>
+		<WithSidebar sidebar="left" sidebarWidth="10rem" gap={-1}>
+			<div>`--unitone--s-1`</div>
+			<div>
+				<div style={{ width: 'var(--unitone--s-1)', backgroundColor: "#008AE6", height: "1.5rem" }} />
+			</div>
+		</WithSidebar>
+		<WithSidebar sidebar="left" sidebarWidth="10rem" gap={-1}>
+			<div>`--unitone--s0`</div>
+			<div>
+				<div style={{ width: 'var(--unitone--s0)', backgroundColor: "#008AE6", height: "1.5rem" }} />
+			</div>
+		</WithSidebar>
+		<WithSidebar sidebar="left" sidebarWidth="10rem" gap={-1}>
+			<div>`--unitone--s1`</div>
+			<div>
+				<div style={{ width: 'var(--unitone--s1)', backgroundColor: "#008AE6", height: "1.5rem" }} />
+			</div>
+		</WithSidebar>
+		<WithSidebar sidebar="left" sidebarWidth="10rem" gap={-1}>
+			<div>`--unitone--s2`</div>
+			<div>
+				<div style={{ width: 'var(--unitone--s2)', backgroundColor: "#008AE6", height: "1.5rem" }} />
+			</div>
+		</WithSidebar>
+		<WithSidebar sidebar="left" sidebarWidth="10rem" gap={-1}>
+			<div>`--unitone--s3`</div>
+			<div>
+				<div style={{ width: 'var(--unitone--s3)', backgroundColor: "#008AE6", height: "1.5rem" }} />
+			</div>
+		</WithSidebar>
+		<WithSidebar sidebar="left" sidebarWidth="10rem" gap={-1}>
+			<div>`--unitone--s4`</div>
+			<div>
+				<div style={{ width: 'var(--unitone--s4)', backgroundColor: "#008AE6", height: "1.5rem" }} />
+			</div>
+		</WithSidebar>
+		<WithSidebar sidebar="left" sidebarWidth="10rem" gap={-1}>
+			<div>`--unitone--s5`</div>
+			<div>
+				<div style={{ width: 'var(--unitone--s5)', backgroundColor: "#008AE6", height: "1.5rem" }} />
+			</div>
+		</WithSidebar>
+		<WithSidebar sidebar="left" sidebarWidth="10rem" gap={-1}>
+			<div>`--unitone--s6`</div>
+			<div>
+				<div style={{ width: 'var(--unitone--s6)', backgroundColor: "#008AE6", height: "1.5rem" }} />
+			</div>
+		</WithSidebar>
+		<WithSidebar sidebar="left" sidebarWidth="10rem" gap={-1}>
+			<div>`--unitone--s7`</div>
+			<div>
+				<div style={{ width: 'var(--unitone--s7)', backgroundColor: "#008AE6", height: "1.5rem" }} />
+			</div>
+		</WithSidebar>
+  </Stack>
+</PreviewConainer>
+
+### --unitone--p\{variation\}
+
+For padding.
+
+Changes in conjunction with `--unitone--half-leading` and `--unitone--base-font-size`.
+
+For variations `2` and above, clamp is used to adjust the margins so that they do not become too large on small screens (`--unitone--s{variation}` will also be adjusted, but with a larger reduction).
+
+| CSS variables | Specific value |
+| ---- | ---- |
+| `--unitone--p-2` | The default is about `0.53em`. |
+| `--unitone--p-1` | The default is about `1.07em`. |
+| `--unitone--p0` | `0em` |
+| `--unitone--p1` | The default is `1.6em`. |
+| `--unitone--p2` | The Default is about `2.67em` to about `1.81em`. |
+| `--unitone--p3` | The Default is about `4.27em` to about `2.01em`. |
+| `--unitone--p4` | The Default is about `6.93em` to about `2.34em`. |
+| `--unitone--p5` | The Default is about `11.2em` to about `2.86em`. |
+| `--unitone--p6` | The Default is about `18.13em` to about `3.72em`. |
+| `--unitone--p7` | The Default is about `29.33em` to about `5.09em`. |
+
+<PreviewConainer>
+	<Stack gap={-1}>
+		<WithSidebar sidebar="left" sidebarWidth="10rem" gap={-1}>
+			<div>`--unitone--p-2`</div>
+			<div>
+				<div style={{ width: 'var(--unitone--p-2)', backgroundColor: "#008AE6", height: "1.5rem" }} />
+			</div>
+		</WithSidebar>
+		<WithSidebar sidebar="left" sidebarWidth="10rem" gap={-1}>
+			<div>`--unitone--p-1`</div>
+			<div>
+				<div style={{ width: 'var(--unitone--p-1)', backgroundColor: "#008AE6", height: "1.5rem" }} />
+			</div>
+		</WithSidebar>
+		<WithSidebar sidebar="left" sidebarWidth="10rem" gap={-1}>
+			<div>`--unitone--p0`</div>
+			<div>
+				<div style={{ width: 'var(--unitone--p0)', backgroundColor: "#008AE6", height: "1.5rem" }} />
+			</div>
+		</WithSidebar>
+		<WithSidebar sidebar="left" sidebarWidth="10rem" gap={-1}>
+			<div>`--unitone--p1`</div>
+			<div>
+				<div style={{ width: 'var(--unitone--p1)', backgroundColor: "#008AE6", height: "1.5rem" }} />
+			</div>
+		</WithSidebar>
+		<WithSidebar sidebar="left" sidebarWidth="10rem" gap={-1}>
+			<div>`--unitone--p2`</div>
+			<div>
+				<div style={{ width: 'var(--unitone--p2)', backgroundColor: "#008AE6", height: "1.5rem" }} />
+			</div>
+		</WithSidebar>
+		<WithSidebar sidebar="left" sidebarWidth="10rem" gap={-1}>
+			<div>`--unitone--p3`</div>
+			<div>
+				<div style={{ width: 'var(--unitone--p3)', backgroundColor: "#008AE6", height: "1.5rem" }} />
+			</div>
+		</WithSidebar>
+		<WithSidebar sidebar="left" sidebarWidth="10rem" gap={-1}>
+			<div>`--unitone--p4`</div>
+			<div>
+				<div style={{ width: 'var(--unitone--p4)', backgroundColor: "#008AE6", height: "1.5rem" }} />
+			</div>
+		</WithSidebar>
+		<WithSidebar sidebar="left" sidebarWidth="10rem" gap={-1}>
+			<div>`--unitone--p5`</div>
+			<div>
+				<div style={{ width: 'var(--unitone--p5)', backgroundColor: "#008AE6", height: "1.5rem" }} />
+			</div>
+		</WithSidebar>
+		<WithSidebar sidebar="left" sidebarWidth="10rem" gap={-1}>
+			<div>`--unitone--p6`</div>
+			<div>
+				<div style={{ width: 'var(--unitone--p6)', backgroundColor: "#008AE6", height: "1.5rem" }} />
+			</div>
+		</WithSidebar>
+		<WithSidebar sidebar="left" sidebarWidth="10rem" gap={-1}>
+			<div>`--unitone--p7`</div>
+			<div>
+				<div style={{ width: 'var(--unitone--p7)', backgroundColor: "#008AE6", height: "1.5rem" }} />
+			</div>
+		</WithSidebar>
+  </Stack>
+</PreviewConainer>
+
+### --unitone--em\{variation\}
+
+`em` base.
+
+Changes in conjunction with `--unitone--half-leading` and `--unitone--base-font-size`.
+
+| CSS variables | Specific value |
+| ---- | ---- |
+| `--unitone--em-2` | The default is about `0.53em`. |
+| `--unitone--em-1` | The default is about `1.07em`. |
+| `--unitone--em0` | `0em` |
+| `--unitone--em1` | The default is `1.6em`. |
+| `--unitone--em2` | The Default is about `2.67em`. |
+| `--unitone--em3` | The Default is about `4.27em`. |
+| `--unitone--em4` | The Default is about `6.93em`. |
+| `--unitone--em5` | The Default is about `11.2em`. |
+| `--unitone--em6` | The Default is about `18.13em`. |
+| `--unitone--em7` | The Default is about `29.33em`. |
+
+### --unitone--rem\{variation\}
+
+`rem` base.
+
+Changes in conjunction with `--unitone--half-leading` and `--unitone--base-font-size`.
+
+| CSS variables | Specific value |
+| ---- | ---- |
+| `--unitone--rem-2` | The default is about `0.53rem`. |
+| `--unitone--rem-1` | The default is about `1.07rem`. |
+| `--unitone--rem0` | `0rem` |
+| `--unitone--rem1` | The default is `1.6rem`. |
+| `--unitone--rem2` | The Default is about `2.67rem`. |
+| `--unitone--rem3` | The Default is about `4.27rem`. |
+| `--unitone--rem4` | The Default is about `6.93rem`. |
+| `--unitone--rem5` | The Default is about `11.2rem`. |
+| `--unitone--rem6` | The Default is about `18.13rem`. |
+| `--unitone--rem7` | The Default is about `29.33rem`. |
+
+## Grid
+
+### --unitone--grid-gap
+
+Gap of the grid.
+
+### --unitone--pg\{ number of columns \}
+
+CSS variables that indicates how many columns the parent would occupy if it were divided into `12` columns.
+
+| CSS variables | Specific value |
+| ---- | ---- |
+| `--unitone--pg0` | 0. |
+| `--unitone--pg1` | For 1 column. |
+| `--unitone--pg2` | For 2 column. |
+| `--unitone--pg3` | For 3 column. |
+| `--unitone--pg4` | For 4 column. |
+| `--unitone--pg5` | For 5 column. |
+| `--unitone--pg6` | For 6 column. |
+| `--unitone--pg7` | For 7 column. |
+| `--unitone--pg8` | For 8 column. |
+| `--unitone--pg9` | For 9 column. |
+| `--unitone--pg10` | For 10 column. |
+| `--unitone--pg11` | For 11 column. |
+| `--unitone--pg12` | For 12 column. |
+
+### --unitone--cg\{ number of columns \}
+
+CSS variables that indicates how many columns the container width would occupy if it were divided into `12` columns.
+
+| CSS variables | Specific value |
+| ---- | ---- |
+| `--unitone--cg0` | 0. |
+| `--unitone--cg1` | For 1 column. |
+| `--unitone--cg2` | For 2 column. |
+| `--unitone--cg3` | For 3 column. |
+| `--unitone--cg4` | For 4 column. |
+| `--unitone--cg5` | For 5 column. |
+| `--unitone--cg6` | For 6 column. |
+| `--unitone--cg7` | For 7 column. |
+| `--unitone--cg8` | For 8 column. |
+| `--unitone--cg9` | For 9 column. |
+| `--unitone--cg10` | For 10 column. |
+| `--unitone--cg11` | For 11 column. |
+| `--unitone--cg12` | For 12 column. |
+
+## Gap
+
+### --unitone--global--gap
+
+It is mainly specified for block gaps where the blocks are aligned left to right or on a grid.
+
+### --unitone--global--text-gap
+
+It is mainly used for gaps between blocks of text that are aligned vertically or horizontally.
+
+## Gutters
+
+### --unitone--global--gutters
+
+It is specified in the left and right margins of the container.
+
+## Container size
+
+### --unitone--container-max-width
+
+Container width.
+
+## Border
+
+### --unitone--global--border-radius
+
+Base `border-radius`.
+
+## Shadow
+
+### --unitone--global--box-shadow
+
+Base `box-shadow`.
