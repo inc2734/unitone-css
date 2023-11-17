@@ -1,22 +1,26 @@
 {
-	"index": {
-		"title": "Home",
-		"display": "hidden"
-	},
-	"docs": {
-		"type": "page",
-		"title": "Documentation"
-	},
-	"npm": {
-		"title": "npm",
-		"type": "page",
-		"href": "https://www.npmjs.com/package/@inc2734/unitone-css",
-		"newWindow": true
-	},
-	"WordPress": {
-		"title": "WordPress",
-		"type": "page",
-		"href": "https://unitone.2inc.org",
-		"newWindow": true
-	}
+  "index": {
+    "title": "Home",
+    "display": "hidden",
+    "theme": {
+      "layout": "raw",
+      "footer": false
+    }
+  },
+  "docs": {
+    "type": "page",
+    "title": "Documentation"
+  },
+  "npm": {
+    "title": "npm",
+    "type": "page",
+    "href": "https://www.npmjs.com/package/@inc2734/unitone-css",
+    "newWindow": true
+  },
+  "WordPress": {
+    "title": "WordPress",
+    "type": "page",
+    "href": "https://unitone.2inc.org",
+    "newWindow": true
+  }
 }

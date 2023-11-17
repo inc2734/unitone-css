@@ -3,12 +3,16 @@ const withNextra = require('nextra')({
   themeConfig: './theme.config.jsx',
 });
 
+const basePath = process.env.GITHUB_ACTIONS && '/unitone-css';
+
 module.exports = withNextra({
   output: 'export',
   images: {
     unoptimized: true,
   },
-  // assetPrefix:  process.env.GITHUB_ACTIONS && '/unitone-css',
-  basePath: process.env.GITHUB_ACTIONS && '/unitone-css',
+  basePath,
   trailingSlash: true,
+  publicRuntimeConfig: {
+    basePath,
+  }
 });

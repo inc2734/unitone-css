@@ -1,4 +1,8 @@
+import getConfig from 'next/config';
 import { useRouter } from 'next/router';
+
+const { publicRuntimeConfig } = getConfig();
+const basePath = (publicRuntimeConfig && publicRuntimeConfig.basePath) || '';
 
 export default {
   logo: (
@@ -44,7 +48,7 @@ export default {
   },
   head: (
     <>
-      <link rel="icon" href="/icon.png" sizes="32x32" />
+      <link rel="icon" href={`${basePath}/icon.png`} sizes="32x32" />
       <link rel="apple-touch-icon" href="/icon.png" />
     </>
   ),
