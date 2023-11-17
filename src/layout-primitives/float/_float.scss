@@ -8,14 +8,14 @@
     min((var(--unitone--min-width) + var(--unitone--gap) + var(--unitone--min-measure) - 100%) * 999, 100%)
   );
 
-  &[data-unitone-layout~="-left"],
-  &:not([data-unitone-layout~="-right"]) {
+  &[data-unitone-layout~="-position\:left"],
+  &:not([data-unitone-layout~="-position\:right"]) {
     float: left;
     margin-right: var(--unitone--gap);
     margin-bottom: var(--unitone--gap);
   }
 
-  &[data-unitone-layout~="-right"] {
+  &[data-unitone-layout~="-position\:right"] {
     float: right;
     margin-left: var(--unitone--gap);
     margin-bottom: var(--unitone--gap);

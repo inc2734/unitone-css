@@ -11,7 +11,7 @@ export const Float = ({ gap, minWidth, minMeasure, position, style, ...props }) 
     <div
       data-unitone-layout={[
         'float',
-        !!position ? `-${position}` : undefined,
+        !!position ? `-position:${position}` : undefined,
         'undefined' !== typeof gap ? `-gap:${gap}` : undefined,
       ]
         .filter(Boolean)

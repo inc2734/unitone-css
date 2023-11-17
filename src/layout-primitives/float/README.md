@@ -33,7 +33,7 @@ Change floating position.
 #### HTML
 
 ```html
-<div data-unitone-layout="float -right">
+<div data-unitone-layout="float -position:right">
   ...
 </div>
 ```
