@@ -14,5 +14,5 @@ module.exports = withNextra({
   trailingSlash: true,
   publicRuntimeConfig: {
     basePath,
-  }
+  },
 });

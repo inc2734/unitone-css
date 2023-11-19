@@ -10,14 +10,106 @@
 
   /**
    * Colors.
+   *
+   * This color palette is based on Tailwind.
+   * @see https://tailwindcss.com/docs/customizing-colors
    */
-  --unitone--color--white: #fff;
-  --unitone--color--black: #000;
+  --unitone--color--background: #fff;
+  --unitone--color--background-alt: #222; // Inversion color
   --unitone--color--text: #222;
-  --unitone--color--gray: #ced4da;
-  --unitone--color--light-gray: #e9ecef;
-  --unitone--color--bright-gray: #f8f9fa;
-  --unitone--color--dark-gray: #868e96;
+  --unitone--color--text-alt: #fff; // Inversion color
+  --unitone--color--text-immutable: #222; // Colors not inverted in dark mode
+
+  --unitone--color--pale-gray: #f9fafb;
+  --unitone--color--bright-gray: #f3f4f6;
+  --unitone--color--light-gray: #e5e7eb;
+  --unitone--color--gray: #9ca3af;
+  --unitone--color--dark-gray: #374151;
+  --unitone--color--heavy-gray: #030712;
+
+  --unitone--color--pale-red: #fef2f2;
+  --unitone--color--bright-red: #fee2e2;
+  --unitone--color--light-red: #fecaca;
+  --unitone--color--red: #f87171;
+  --unitone--color--dark-red: #b91c1c;
+  --unitone--color--heavy-red: #450a0a;
+
+  --unitone--color--pale-orange: #fff7ed;
+  --unitone--color--bright-orange: #ffedd5;
+  --unitone--color--light-orange: #fed7aa;
+  --unitone--color--orange: #fb923c;
+  --unitone--color--dark-orange: #c2410c;
+  --unitone--color--heavy-orange: #431407;
+
+  --unitone--color--pale-yellow: #fefce8;
+  --unitone--color--bright-yellow: #fef9c3;
+  --unitone--color--light-yellow: #fef08a;
+  --unitone--color--yellow: #facc15;
+  --unitone--color--dark-yellow: #a16207;
+  --unitone--color--heavy-yellow: #422006;
+
+  --unitone--color--pale-lime: #f7fee7;
+  --unitone--color--bright-lime: #ecfccb;
+  --unitone--color--light-lime: #d9f99d;
+  --unitone--color--lime: #a3e635;
+  --unitone--color--dark-lime: #4d7c0f;
+  --unitone--color--heavy-lime: #1a2e05;
+
+  --unitone--color--pale-green: #f0fdf4;
+  --unitone--color--bright-green: #dcfce7;
+  --unitone--color--light-green: #bbf7d0;
+  --unitone--color--green: #4ade80;
+  --unitone--color--dark-green: #15803d;
+  --unitone--color--heavy-green: #052e16;
+
+  --unitone--color--pale-teal: #f0fdfa;
+  --unitone--color--bright-teal: #ccfbf1;
+  --unitone--color--light-teal: #99f6e4;
+  --unitone--color--teal: #2dd4bf;
+  --unitone--color--dark-teal: #0f766e;
+  --unitone--color--heavy-teal: #042f2e;
+
+  --unitone--color--pale-cyan: #ecfeff;
+  --unitone--color--bright-cyan: #cffafe;
+  --unitone--color--light-cyan: #a5f3fc;
+  --unitone--color--cyan: #22d3ee;
+  --unitone--color--dark-cyan: #0e7490;
+  --unitone--color--heavy-cyan: #083344;
+
+  --unitone--color--pale-blue: #eff6ff;
+  --unitone--color--bright-blue: #dbeafe;
+  --unitone--color--light-blue: #bfdbfe;
+  --unitone--color--blue: #60a5fa;
+  --unitone--color--dark-blue: #1d4ed8;
+  --unitone--color--heavy-blue: #172554;
+
+  --unitone--color--pale-indigo: #eef2ff;
+  --unitone--color--bright-indigo: #e0e7ff;
+  --unitone--color--light-indigo: #c7d2fe;
+  --unitone--color--indigo: #818cf8;
+  --unitone--color--dark-indigo: #4338ca;
+  --unitone--color--heavy-indigo: #1e1b4b;
+
+  --unitone--color--pale-violet: #f5f3ff;
+  --unitone--color--bright-violet: #ede9fe;
+  --unitone--color--light-violet: #ddd6fe;
+  --unitone--color--violet: #a78bfa;
+  --unitone--color--dark-violet: #6d28d9;
+  --unitone--color--heavy-violet: #2e1065;
+
+  --unitone--color--pale-purple: #faf5ff;
+  --unitone--color--bright-purple: #f3e8ff;
+  --unitone--color--light-purple: #e9d5ff;
+  --unitone--color--purple: #c084fc;
+  --unitone--color--dark-purple: #7e22ce;
+  --unitone--color--heavy-purple: #3b0764;
+
+  --unitone--color--pale-pink: #fdf2f8;
+  --unitone--color--bright-pink: #fce7f3;
+  --unitone--color--light-pink: #fbcfe8;
+  --unitone--color--pink: #f472b6;
+  --unitone--color--dark-pink: #be185d;
+  --unitone--color--heavy-pink: #500724;
 
   /**
    * Font size level.

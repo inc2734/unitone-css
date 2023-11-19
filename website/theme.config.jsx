@@ -61,7 +61,7 @@ export default {
         </a>
         .
       </span>
-    )
+    ),
   },
   project: {
     link: 'https://github.com/inc2734/unitone-css',
