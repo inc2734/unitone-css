@@ -120,6 +120,12 @@
       }
     }
   }
+
+  &[data-unitone-layout*="-stairs\:"] {
+    > * {
+      margin-top: calc(var(--unitone--stairs-margin) * var(--unitone--stairs-step));
+    }
+  }
 }
 
 @mixin responsive-grid() {

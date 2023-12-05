@@ -1,6 +1,7 @@
 import {
   fluidFontSizeResizeObserver,
   dividersResizeObserver,
+  stairsResizeObserver,
   verticalsResizeObserver,
 } from '@inc2734/unitone-css/library';
 
@@ -12,8 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
           '[data-unitone-layout~="-fluid-typography"]',
         );
         targets?.forEach((target) => {
-          fluidFontSizeResizeObserver.unobserve(target);
-          fluidFontSizeResizeObserver.observe(target);
+          fluidFontSizeResizeObserver(target);
         });
       });
     });
@@ -33,8 +33,25 @@ document.addEventListener('DOMContentLoaded', () => {
           '[data-unitone-layout*="-divider:"]',
         );
         targets?.forEach((target) => {
-          dividersResizeObserver.unobserve(target);
-          dividersResizeObserver.observe(target);
+          dividersResizeObserver(target);
+        });
+      });
+    });
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const observer = new MutationObserver((entries) => {
+    entries.forEach((entry) => {
+      entry.addedNodes.forEach((addedNode) => {
+        const targets = addedNode.parentNode?.querySelectorAll('[data-unitone-layout*="-stairs:"]');
+        targets?.forEach((target) => {
+          stairsResizeObserver(target);
         });
       });
     });
@@ -54,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
           '[data-unitone-layout~="vertical-writing"]',
         );
         targets?.forEach((target) => {
-          verticalsResizeObserver.observe(target);
+          verticalsResizeObserver(target);
         });
       });
     });

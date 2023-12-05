@@ -1,0 +1,7 @@
+@mixin stairs() {
+  @for $i from -2 through 7 {
+    [data-unitone-layout~="-stairs\:#{ $i }"] {
+      --unitone--stairs-margin: var(--unitone--s#{ $i }) !important;
+    }
+  }
+}

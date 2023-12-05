@@ -11,6 +11,7 @@
 @use 'overflow';
 @use 'padding';
 @use 'position';
+@use 'stairs';
 @use 'text-orientation';
 @use 'typography';
 
@@ -26,6 +27,7 @@
 @include mix-blend-mode.mix-blend-mode();
 @include overflow.overflow();
 @include padding.padding();
+@include stairs.stairs();
 @include position.position();
 @include text-orientation.text-orientation();
 @include typography.typography();

@@ -6,11 +6,21 @@ const setFluidFontSizeMagnification = (target) => {
   target.style.setProperty('--unitone--fluid-font-size-magnification', fontSize / baseFontSize);
 };
 
-export const fluidFontSizeResizeObserver = new ResizeObserver((entries) => {
-  for (const entry of entries) {
-    setFluidFontSizeMagnification(entry.target);
-  }
-});
+export const fluidFontSizeResizeObserver = (target) => {
+  let prevWidth = 0;
+
+  const observer = new ResizeObserver((entries) => {
+    for (const entry of entries) {
+      const width = entry.borderBoxSize?.[0].inlineSize;
+      if (width !== prevWidth) {
+        setFluidFontSizeMagnification(entry.target);
+        prevWidth = width;
+      }
+    }
+  });
+
+  observer.observe(target);
+};
 
 const setDividerLinewrap = (target) => {
   const firstChild = [].slice.call(target.children)?.[0];
@@ -45,11 +55,61 @@ const setDividerLinewrap = (target) => {
   }
 };
 
-export const dividersResizeObserver = new ResizeObserver((entries) => {
-  for (const entry of entries) {
-    setDividerLinewrap(entry.target);
+export const dividersResizeObserver = (target) => {
+  let prevWidth = 0;
+
+  const observer = new ResizeObserver((entries) => {
+    for (const entry of entries) {
+      const width = entry.borderBoxSize?.[0].inlineSize;
+      if (width !== prevWidth) {
+        setDividerLinewrap(entry.target);
+        prevWidth = width;
+      }
+    }
+  });
+
+  observer.observe(target);
+};
+
+const setStairsStep = (target) => {
+  const firstChild = [].slice.call(target.children)?.[0];
+  if (!!firstChild) {
+    let prevChild;
+    let stairsLevel = 0;
+
+    [].slice.call(target.children).forEach((child) => {
+      child.style.setProperty('--unitone--stairs-step', '');
+      const prevRect = prevChild?.getBoundingClientRect();
+      const targetRect = child.getBoundingClientRect();
+
+      if (firstChild === child || (!!prevRect?.top && prevRect.top < targetRect.top)) {
+        stairsLevel = 0;
+        child.style.setProperty('--unitone--stairs-step', stairsLevel);
+      } else {
+        stairsLevel++;
+        child.style.setProperty('--unitone--stairs-step', stairsLevel);
+      }
+
+      prevChild = child;
+    });
   }
-});
+};
+
+export const stairsResizeObserver = (target) => {
+  let prevWidth = 0;
+
+  const observer = new ResizeObserver((entries) => {
+    for (const entry of entries) {
+      const width = entry.borderBoxSize?.[0].inlineSize;
+      if (width !== prevWidth) {
+        setStairsStep(entry.target);
+        prevWidth = width;
+      }
+    }
+  });
+
+  observer.observe(target);
+};
 
 const setColumnCountForVertical = (target) => {
   target.parentNode.style.height = '';
@@ -93,8 +153,18 @@ const setColumnCountForVertical = (target) => {
   );
 };
 
-export const verticalsResizeObserver = new ResizeObserver((entries) => {
-  for (const entry of entries) {
-    setColumnCountForVertical(entry.target);
-  }
-});
+export const verticalsResizeObserver = (target) => {
+  let prevWidth = 0;
+
+  const observer = new ResizeObserver((entries) => {
+    for (const entry of entries) {
+      const width = entry.borderBoxSize?.[0].inlineSize;
+      if (width !== prevWidth) {
+        setColumnCountForVertical(entry.target);
+        prevWidth = width;
+      }
+    }
+  });
+
+  observer.observe(target);
+};
