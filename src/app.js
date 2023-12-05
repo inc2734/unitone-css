@@ -1,7 +1,7 @@
 import {
   fluidFontSizeResizeObserver,
   dividersResizeObserver,
-  verticalsResizeObserve,
+  verticalsResizeObserver,
 } from '@inc2734/unitone-css/library';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
           '[data-unitone-layout~="vertical-writing"]',
         );
         targets?.forEach((target) => {
-          verticalsResizeObserve(target);
+          verticalsResizeObserver.observe(target);
         });
       });
     });

@@ -71,63 +71,30 @@ const setColumnCountForVertical = (target) => {
     return;
   }
 
-  // For Firefox
-  if (target.getBoundingClientRect().left > lastChild.getBoundingClientRect().left) {
-    target.style.columnCount = 'auto';
-    target.parentNode.style.width = `${Math.ceil(
-      target.getBoundingClientRect().width +
-        target.getBoundingClientRect().left -
-        lastChild.getBoundingClientRect().left,
-    )}px`;
-
-    if (target.getBoundingClientRect().width >= target.parentNode.getBoundingClientRect().width) {
-      target.style.columnCount = '';
-    }
-  }
-
   // For Safari
+  let maybeSafari = false;
   if (target.getBoundingClientRect().left > lastChild.getBoundingClientRect().left) {
     target.style.columnCount = 2;
+    maybeSafari = true;
   }
 
-  const targetY = target.getBoundingClientRect().top + target.getBoundingClientRect().height;
-  const lastChildY =
-    lastChild.getBoundingClientRect().top + lastChild.getBoundingClientRect().height;
-  if (targetY < lastChildY) {
-    target.parentNode.style.height = `${Math.ceil(
-      lastChildY - target.getBoundingClientRect().top,
-    )}px`;
-  }
-};
-
-export const verticalsResizeObserve = (target) => {
-  let prevWidth = 0;
-
-  const mutationObserver = new MutationObserver((entries) => {
-    for (const entry of entries) {
-      setColumnCountForVertical(entry.target);
-    }
-  });
-
-  mutationObserver.observe(target, {
-    // attributes: true,
-    characterData: true,
-    childList: true,
-    subtree: true,
-  });
-
-  const resizeObserver = new ResizeObserver((entries, observer) => {
-    for (const entry of entries) {
-      const width = entry.borderBoxSize?.[0].blockSize;
-      if (width !== prevWidth) {
-        prevWidth = width;
-        observer.unobserve(entry.target);
-        setColumnCountForVertical(entry.target);
-        observer.observe(entry.target);
+  setTimeout(
+    () => {
+      const targetY = target.getBoundingClientRect().top + target.getBoundingClientRect().height;
+      const lastChildY =
+        lastChild.getBoundingClientRect().top + lastChild.getBoundingClientRect().height;
+      if (targetY < lastChildY) {
+        target.parentNode.style.height = `${Math.ceil(
+          lastChildY - target.getBoundingClientRect().top,
+        )}px`;
       }
-    }
-  });
-
-  resizeObserver.unobserve(target);
-  resizeObserver.observe(target);
+    },
+    maybeSafari ? 250 : 0,
+  );
 };
+
+export const verticalsResizeObserver = new ResizeObserver((entries) => {
+  for (const entry of entries) {
+    setColumnCountForVertical(entry.target);
+  }
+});
