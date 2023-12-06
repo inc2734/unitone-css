@@ -75,7 +75,7 @@ const setStairsStep = (target) => {
   const firstChild = [].slice.call(target.children)?.[0];
   if (!!firstChild) {
     let prevChild;
-    let stairsLevel = 0;
+    let stairsStep = 0;
 
     [].slice.call(target.children).forEach((child) => {
       child.style.setProperty('--unitone--stairs-step', '');
@@ -83,14 +83,15 @@ const setStairsStep = (target) => {
       const targetRect = child.getBoundingClientRect();
 
       if (firstChild === child || (!!prevRect?.top && prevRect.top < targetRect.top)) {
-        stairsLevel = 0;
-        child.style.setProperty('--unitone--stairs-step', stairsLevel);
+        stairsStep = 0;
+        child.style.setProperty('--unitone--stairs-step', stairsStep);
       } else {
-        stairsLevel++;
-        child.style.setProperty('--unitone--stairs-step', stairsLevel);
+        stairsStep++;
+        child.style.setProperty('--unitone--stairs-step', stairsStep);
       }
 
       prevChild = child;
+      target.style.setProperty('--unitone--stairs-step', stairsStep);
     });
   }
 };

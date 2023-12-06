@@ -122,8 +122,11 @@
   }
 
   &[data-unitone-layout*="-stairs\:"] {
+    padding-bottom: calc(var(--unitone--stairs-margin) * var(--unitone--stairs-step));
+
     > * {
-      margin-top: calc(var(--unitone--stairs-margin) * var(--unitone--stairs-step));
+      position: relative;
+      top: calc(var(--unitone--stairs-margin) * var(--unitone--stairs-step));
     }
   }
 }
