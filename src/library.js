@@ -194,4 +194,19 @@ export const verticalsResizeObserver = (target) => {
   });
 
   observer.observe(target);
+
+  const mObserver = new MutationObserver((entries) => {
+    entries.forEach((entry) => {
+      observer.unobserve(entry.target);
+      setColumnCountForVertical(entry.target);
+      setTimeout(() => {
+        observer.observe(entry.target);
+      }, 500);
+    });
+  });
+
+  mObserver.observe(target, {
+    attributes: true,
+    attributeFilter: ['style'],
+  });
 };
