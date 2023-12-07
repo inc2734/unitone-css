@@ -159,7 +159,7 @@ export const verticalsResizeObserver = (target) => {
 
   const observer = new ResizeObserver((entries) => {
     for (const entry of entries) {
-      const width = entry.borderBoxSize?.[0].inlineSize;
+      const width = entry.contentRect?.width;
       if (width !== prevWidth) {
         setColumnCountForVertical(entry.target);
         prevWidth = width;
