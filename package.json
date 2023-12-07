@@ -62,5 +62,8 @@
   },
   "workspaces": [
     "website"
-  ]
+  ],
+  "volta": {
+    "node": "18.19.0"
+  }
 }

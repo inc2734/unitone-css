@@ -117,6 +117,28 @@ const setColumnCountForVertical = (target) => {
   target.parentNode.style.width = '';
   target.style.columnCount = '';
 
+  // Process of the threshold
+  target.setAttribute(
+    'data-unitone-layout',
+    target.getAttribute('data-unitone-layout').replace(' -force-switch', ''),
+  );
+  const computedStyle = getComputedStyle(target);
+  const threshold = String(computedStyle.getPropertyValue('--unitone--threshold')).trim();
+  if (!!threshold) {
+    const thresholder = document.createElement('div');
+    thresholder.setAttribute('data-unitone-layout', 'vertical-writing__thresholder');
+    target.appendChild(thresholder);
+    const forceSwitch = thresholder.offsetWidth >= target.offsetWidth;
+    target.removeChild(thresholder);
+    if (forceSwitch) {
+      target.setAttribute(
+        'data-unitone-layout',
+        `${target.getAttribute('data-unitone-layout')} -force-switch`,
+      );
+      return;
+    }
+  }
+
   let lastChild;
   [].slice
     .call(target.children)
@@ -157,12 +179,16 @@ const setColumnCountForVertical = (target) => {
 export const verticalsResizeObserver = (target) => {
   let prevWidth = 0;
 
-  const observer = new ResizeObserver((entries) => {
+  const observer = new ResizeObserver((entries, observer) => {
     for (const entry of entries) {
       const width = entry.contentRect?.width;
-      if (width !== prevWidth) {
-        setColumnCountForVertical(entry.target);
+      if (parseInt(width) !== parseInt(prevWidth)) {
         prevWidth = width;
+        observer.unobserve(entry.target);
+        setColumnCountForVertical(entry.target);
+        setTimeout(() => {
+          observer.observe(entry.target);
+        }, 500);
       }
     }
   });

@@ -5,12 +5,14 @@ export const VerticalWriting = ({
   gap,
   maxHeight,
   switchWritingMode,
+  threshold,
   style,
   ...props
 }) => {
   style = {
     ...style,
     '--unitone--max-height': !!maxHeight ? maxHeight : undefined,
+    '--unitone--threshold': !!threshold ? threshold : undefined,
   };
 
   return (
