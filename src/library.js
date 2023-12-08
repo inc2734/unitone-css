@@ -113,8 +113,6 @@ export const stairsResizeObserver = (target) => {
 };
 
 const setColumnCountForVertical = (target) => {
-  target.parentNode.style.height = '';
-  target.parentNode.style.width = '';
   target.style.columnCount = '';
 
   // Process of the threshold
@@ -166,7 +164,7 @@ const setColumnCountForVertical = (target) => {
       const targetY = target.getBoundingClientRect().top + target.getBoundingClientRect().height;
       const lastChildY =
         lastChild.getBoundingClientRect().top + lastChild.getBoundingClientRect().height;
-      if (targetY < lastChildY) {
+      if (targetY !== lastChildY) {
         target.parentNode.style.height = `${Math.ceil(
           lastChildY - target.getBoundingClientRect().top,
         )}px`;
@@ -179,15 +177,22 @@ const setColumnCountForVertical = (target) => {
 export const verticalsResizeObserver = (target) => {
   let prevWidth = 0;
 
-  const observer = new ResizeObserver((entries, observer) => {
+  target.setAttribute(
+    'data-unitone-layout',
+    `${target.getAttribute('data-unitone-layout')} -initialized`,
+  );
+
+  const observer = new ResizeObserver((entries, thisObserver) => {
     for (const entry of entries) {
       const width = entry.contentRect?.width;
       if (parseInt(width) !== parseInt(prevWidth)) {
         prevWidth = width;
-        observer.unobserve(entry.target);
+        observer.unobserve(target);
+        thisObserver.unobserve(entry.target);
+        entry.target.parentNode.style.height = '';
         setColumnCountForVertical(entry.target);
         setTimeout(() => {
-          observer.observe(entry.target);
+          thisObserver.observe(entry.target);
         }, 500);
       }
     }
@@ -195,18 +200,41 @@ export const verticalsResizeObserver = (target) => {
 
   observer.observe(target);
 
-  const mObserver = new MutationObserver((entries) => {
-    entries.forEach((entry) => {
-      observer.unobserve(entry.target);
-      setColumnCountForVertical(entry.target);
-      setTimeout(() => {
-        observer.observe(entry.target);
-      }, 500);
-    });
-  });
-
-  mObserver.observe(target, {
+  const mObserverArgs = {
     attributes: true,
     attributeFilter: ['style'],
+    childList: true,
+    subtree: true,
+  };
+
+  let timer;
+  const mObserver = new MutationObserver((entries, thisObserver) => {
+    clearTimeout(timer);
+
+    if (0 < entries.length) {
+      const entry = entries[0];
+      const addedNode = entry.addedNodes?.[0];
+      const removedNode = entry.removedNodes?.[0];
+      if (
+        (addedNode?.nodeType === Node.ELEMENT_NODE &&
+          'vertical-writing__thresholder' === addedNode.getAttribute('data-unitone-layout')) ||
+        (removedNode?.nodeType === Node.ELEMENT_NODE &&
+          'vertical-writing__thresholder' === removedNode.getAttribute('data-unitone-layout'))
+      ) {
+        return;
+      }
+
+      thisObserver.disconnect();
+      observer.unobserve(target);
+      timer = setTimeout(() => {
+        setColumnCountForVertical(target);
+        setTimeout(() => {
+          thisObserver.observe(target, mObserverArgs);
+          observer.observe(target);
+        }, 500);
+      }, 500);
+    }
   });
+
+  mObserver.observe(target, mObserverArgs);
 };

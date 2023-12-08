@@ -12,6 +12,11 @@
   max-width: 100%;
   width: 100%;
   text-orientation: var(--unitone--text-orientation);
+  visibility: hidden;
+
+  &[data-unitone-layout~="-initialized"] {
+    visibility: visible;
+  }
 
   > * {
     max-inline-size: var(--unitone--max-height);
