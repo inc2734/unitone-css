@@ -147,7 +147,8 @@
    *
    * @see https://www.geogebra.org/graphing?lang=ja
    */
-  --unitone--line-height-slope: -0.07143;
+  --unitone--line-height-slope: calc((#{ variables.$min-line-height } - (#{ variables.$max-line-height })) / (var(--unitone--harmonic-sequence-base) - 1));
+  --unitone--line-height-intercept: calc(#{ variables.$max-line-height } + -1 * var(--unitone--line-height-slope));
 
   /**
    * Font family

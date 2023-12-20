@@ -16,10 +16,13 @@ $_yAxis: calc(#{-1 * $min-breakpoint } * #{ $_slope } + #{ $_min-font-size });
 $_preferred-font-size: calc((#{ $_yAxis } * 1rem) + (#{ $_slope } * 100vw));
 $fluid-font-size: clamp(1rem * #{ $_min-font-size }, #{ $_preferred-font-size }, 1rem * #{ $_max-font-size });
 
+$min-line-height: 1.1;
+$max-line-height: calc(1 + 2 * var(--unitone--half-leading));
+
 $line-height: clamp(
-  1,
-  var(--unitone--line-height-slope) * var(--unitone--fluid-font-size-magnification, #{ $_font-size-scale }) + 1 + 2 * var(--unitone--half-leading) + -1 * var(--unitone--line-height-slope),
-  2 * var(--unitone--half-leading) + 1
+  #{ $min-line-height },
+  var(--unitone--line-height-slope) * var(--unitone--fluid-font-size-magnification, #{ $_font-size-scale }) + var(--unitone--line-height-intercept),
+  #{ $max-line-height }
 );
 
 $container-max-width: $max-breakpoint * 16px;  // = 1280px

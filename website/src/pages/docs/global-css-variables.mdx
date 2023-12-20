@@ -1,5 +1,5 @@
 import { Stack, WithSidebar } from '@inc2734/unitone-css';
-import { PreviewConainer, Image, ColorTile } from '../../components';
+import { PreviewConainer, ColorTile } from '../../components';
 
 # Global CSS Variables
 
@@ -17,9 +17,9 @@ The size of the margins added above and below the text. The size of one line (`l
 1 * var(--unitone--half-leading) * 2
 ```
 
-### --unitone--line-height-slope
+### --unitone--line-height-slope, --unitone--line-height-intercept
 
-In general, the larger the font size, the narrower the line spacing between lines, making text easier to read. For this reason, `line-height` is often specified together with font-size, for example, `line-height: 1.1` for `font-size: 4rem`.
+In general, the larger the font size, the narrower the line spacing between lines, making text easier to read. For this reason, `line-height` is often specified together with font-size, for example, `line-height: 1.1` for `font-size: 8rem`.
 
 That's a lot of work. Therefore, we created a mechanism to automatically optimize the line spacing according to the font size at all times.
 
@@ -27,16 +27,22 @@ For example, suppose you want to use the following as a standard for `line-heigh
 
 ```
 A = (1, 1.6) // When font-size: 1rem, line-height: 1.6
-B = (4, 1.1) // When font-size: 4rem, line-height: 1.1
+B = (8, 1.1) // When font-size: 8rem, line-height: 1.1
 ```
 
 Then, the following formula is formed.
 
 ```
-y = -0.1666666666667x + 1.7666666666667 // y = line-height, x = Font size ratio
+y = -0.0714285714286x + 1.6714285714286 // y = line-height, x = Font size ratio
 ```
 
-<Image src="/line-height-slope.png" alt="Graph of line-height of unitone CSS" width={986} height={423} />
+And the respective values are as follows.
+These values are automatically calculated in conjunction with other CSS variables and do not need to be changed unless there is a special reason.
+
+```
+--unitone--line-height-slope: -0.0714285714286;
+--unitone--line-height-intercept: 1.6714285714286;
+```
 
 ### --unitone--base-font-size
 
