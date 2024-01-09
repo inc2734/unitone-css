@@ -28,7 +28,7 @@
   z-index: var(--unitone--z-index);
   overflow: var(--unitone--overflow);
 
-  &[data-unitone-layout~="-shadow"] {
+  &:where([data-unitone-layout~="-shadow"]) {
     --unitone--box-shadow: var(--unitone--global--box-shadow);
   }
 }

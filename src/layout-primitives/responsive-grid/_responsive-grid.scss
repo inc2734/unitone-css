@@ -13,7 +13,7 @@
     min-width: 0;
   }
 
-  &[data-unitone-layout*="-divider\:"] {
+  &:where([data-unitone-layout*="-divider\:"]) {
     --unitone--divider-width: 1px;
     --unitone--divider-style: solid;
     --unitone--divider-color: var(--unitone--color--gray);
