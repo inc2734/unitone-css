@@ -229,20 +229,25 @@
   @function _generate-fluid-spacing($min, $max) {
     $slope: calc((#{ $max } - #{ $min }) / (#{ variables.$max-breakpoint - variables.$min-breakpoint }));
     $yAxis: calc(#{ -1 * variables.$min-breakpoint } * #{ $slope } + #{ $min });
-    $preferredValue: calc(#{ $yAxis } * 1em + #{ $slope } * 100vw);
-    @return clamp(#{ $min } * 1em, #{ $preferredValue }, #{ $max } * 1em);
+    $preferred-spacing: calc(#{ $yAxis } * 1em + #{ $slope } * 100vw);
+    @return clamp(#{ $min } * 1em, #{ $preferred-spacing }, #{ $max } * 1em);
+  }
+  @function _generate-spacing($spacing) {
+    $quotient: math.div(variables.$min-breakpoint, variables.$max-breakpoint);
+    $min: calc(var(--unitone--ms1) + #{ $spacing } * #{ $quotient });
+    @return _generate-fluid-spacing(#{ $min }, #{ $spacing });
   }
   $_quotient: math.div(variables.$min-breakpoint, variables.$max-breakpoint);
   --unitone--s-2: var(--unitone--em-2);
   --unitone--s-1: var(--unitone--em-1);
   --unitone--s0: var(--unitone--em0);
   --unitone--s1: var(--unitone--em1);
-  --unitone--s2: #{ _generate-fluid-spacing(calc(var(--unitone--ms1) + var(--unitone--ms2) * #{ $_quotient }), var(--unitone--ms2)) };
-  --unitone--s3: #{ _generate-fluid-spacing(calc(var(--unitone--ms1) + var(--unitone--ms3) * #{ $_quotient }), var(--unitone--ms3)) };
-  --unitone--s4: #{ _generate-fluid-spacing(calc(var(--unitone--ms1) + var(--unitone--ms4) * #{ $_quotient }), var(--unitone--ms4)) };
-  --unitone--s5: #{ _generate-fluid-spacing(calc(var(--unitone--ms1) + var(--unitone--ms5) * #{ $_quotient }), var(--unitone--ms5)) };
-  --unitone--s6: #{ _generate-fluid-spacing(calc(var(--unitone--ms1) + var(--unitone--ms6) * #{ $_quotient }), var(--unitone--ms6)) };
-  --unitone--s7: #{ _generate-fluid-spacing(calc(var(--unitone--ms1) + var(--unitone--ms7) * #{ $_quotient }), var(--unitone--ms7)) };
+  --unitone--s2: #{ _generate-spacing(var(--unitone--ms2)) };
+  --unitone--s3: #{ _generate-spacing(var(--unitone--ms3)) };
+  --unitone--s4: #{ _generate-spacing(var(--unitone--ms4)) };
+  --unitone--s5: #{ _generate-spacing(var(--unitone--ms5)) };
+  --unitone--s6: #{ _generate-spacing(var(--unitone--ms6)) };
+  --unitone--s7: #{ _generate-spacing(var(--unitone--ms7)) };
 
   /**
    * Modular scales for padding.
@@ -250,16 +255,21 @@
    * Left and right padding on mobile devices has a significant impact on readability.
    * For this reason, we prepare special scales.
    */
+  @function _generate-padding($spacing) {
+    $quotient: math.div(variables.$min-breakpoint, variables.$max-breakpoint);
+    $min: calc(var(--unitone--ms1) + #{ $spacing } * #{ $quotient } * .2);
+    @return _generate-fluid-spacing(#{ $min }, #{ $spacing });
+  }
   --unitone--p-2: var(--unitone--em-2);
   --unitone--p-1: var(--unitone--em-1);
   --unitone--p0: var(--unitone--em0);
   --unitone--p1: var(--unitone--em1);
-  --unitone--p2: #{ _generate-fluid-spacing(calc(var(--unitone--ms1) + var(--unitone--ms2) * #{ $_quotient } * .2), var(--unitone--ms2)) };
-  --unitone--p3: #{ _generate-fluid-spacing(calc(var(--unitone--ms1) + var(--unitone--ms3) * #{ $_quotient } * .2), var(--unitone--ms3)) };
-  --unitone--p4: #{ _generate-fluid-spacing(calc(var(--unitone--ms1) + var(--unitone--ms4) * #{ $_quotient } * .2), var(--unitone--ms4)) };
-  --unitone--p5: #{ _generate-fluid-spacing(calc(var(--unitone--ms1) + var(--unitone--ms5) * #{ $_quotient } * .2), var(--unitone--ms5)) };
-  --unitone--p6: #{ _generate-fluid-spacing(calc(var(--unitone--ms1) + var(--unitone--ms6) * #{ $_quotient } * .2), var(--unitone--ms6)) };
-  --unitone--p7: #{ _generate-fluid-spacing(calc(var(--unitone--ms1) + var(--unitone--ms7) * #{ $_quotient } * .2), var(--unitone--ms7)) };
+  --unitone--p2: #{ _generate-padding(var(--unitone--ms2)) };
+  --unitone--p3: #{ _generate-padding(var(--unitone--ms3)) };
+  --unitone--p4: #{ _generate-padding(var(--unitone--ms4)) };
+  --unitone--p5: #{ _generate-padding(var(--unitone--ms5)) };
+  --unitone--p6: #{ _generate-padding(var(--unitone--ms6)) };
+  --unitone--p7: #{ _generate-padding(var(--unitone--ms7)) };
 
   /**
    * Max width of the container.
