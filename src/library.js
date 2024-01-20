@@ -78,6 +78,11 @@ const setStairsStep = (target) => {
     let stairsStep = 0;
 
     [].slice.call(target.children).forEach((child) => {
+      const position = window.getComputedStyle(child).getPropertyValue('position');
+      if ( 'absolute' === position || 'fixed' === position ) {
+        return;
+      }
+
       child.style.setProperty('--unitone--stairs-step', '');
       const prevRect = prevChild?.getBoundingClientRect();
       const targetRect = child.getBoundingClientRect();
