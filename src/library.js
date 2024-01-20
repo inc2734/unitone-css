@@ -88,7 +88,7 @@ const setStairsStep = (target) => {
       const prevRect = prevChild?.getBoundingClientRect();
       const targetRect = child.getBoundingClientRect();
 
-      if (firstChild === child || (!!prevRect?.left && prevRect.left > targetRect.left)) {
+      if (firstChild === child || (!!prevRect?.left && prevRect.left >= targetRect.left)) {
         stairsStep = 0;
         child.style.setProperty('--unitone--stairs-step', stairsStep);
       } else {
