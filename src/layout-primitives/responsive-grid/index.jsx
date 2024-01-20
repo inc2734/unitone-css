@@ -6,6 +6,7 @@ export const ResponsiveGrid = ({
   autoRepeat,
   divider,
   stairs,
+  stairsUp,
   style,
   ...props
 }) => {
@@ -22,6 +23,7 @@ export const ResponsiveGrid = ({
         'undefined' !== typeof autoRepeat ? `-auto-repeat:${autoRepeat}` : undefined,
         !!divider ? `-divider:${divider}` : undefined,
         'undefined' !== typeof stairs ? `-stairs:${stairs}` : undefined,
+        !!stairsUp ? `-stairs-up:${stairsUp}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

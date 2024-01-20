@@ -76,10 +76,11 @@ const setStairsStep = (target) => {
   if (!!firstChild) {
     let prevChild;
     let stairsStep = 0;
+    let maxStairsStep = stairsStep;
 
     [].slice.call(target.children).forEach((child) => {
       const position = window.getComputedStyle(child).getPropertyValue('position');
-      if ( 'absolute' === position || 'fixed' === position ) {
+      if ('absolute' === position || 'fixed' === position) {
         return;
       }
 
@@ -87,7 +88,7 @@ const setStairsStep = (target) => {
       const prevRect = prevChild?.getBoundingClientRect();
       const targetRect = child.getBoundingClientRect();
 
-      if (firstChild === child || (!!prevRect?.top && prevRect.top < targetRect.top)) {
+      if (firstChild === child || (!!prevRect?.left && prevRect.left > targetRect.left)) {
         stairsStep = 0;
         child.style.setProperty('--unitone--stairs-step', stairsStep);
       } else {
@@ -96,8 +97,17 @@ const setStairsStep = (target) => {
       }
 
       prevChild = child;
-      target.style.setProperty('--unitone--stairs-step', stairsStep);
+
+      if (stairsStep > maxStairsStep) {
+        maxStairsStep = stairsStep;
+      }
     });
+
+    if (target.getAttribute('data-unitone-layout').match(/-stairs-up:right/)) {
+      target.style.setProperty('--unitone--stairs-step', maxStairsStep);
+    } else {
+      target.style.setProperty('--unitone--stairs-step', stairsStep);
+    }
   }
 };
 

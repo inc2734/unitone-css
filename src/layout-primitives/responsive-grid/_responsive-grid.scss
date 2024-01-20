@@ -122,11 +122,24 @@
   }
 
   &[data-unitone-layout*="-stairs\:"] {
-    padding-bottom: calc(var(--unitone--stairs-margin) * var(--unitone--stairs-step));
-
     > * {
       position: relative;
-      top: calc(var(--unitone--stairs-margin) * var(--unitone--stairs-step));
+    }
+
+    &:where(:not([data-unitone-layout*="-stairs-up\:right"])) {
+      padding-bottom: calc(var(--unitone--stairs-margin) * var(--unitone--stairs-step));
+
+      > * {
+        top: calc(var(--unitone--stairs-margin) * var(--unitone--stairs-step));
+      }
+    }
+
+    &[data-unitone-layout*="-stairs-up\:right"] {
+      padding-top: calc(var(--unitone--stairs-margin) * var(--unitone--stairs-step));
+
+      > * {
+        bottom: calc(var(--unitone--stairs-margin) * var(--unitone--stairs-step));
+      }
     }
   }
 }
