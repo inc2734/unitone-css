@@ -174,7 +174,7 @@
   /**
    * Default gutters
    */
-  --unitone--global--gutters: min(6vw, var(--unitone--rem2));
+  --unitone--global--gutters: max(min(6vw, var(--unitone--rem2)), env(safe-area-inset-right), env(safe-area-inset-left));
 
   /**
    * Reference value of the modular scale for space.
