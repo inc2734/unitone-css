@@ -10,4 +10,12 @@
   [data-unitone-layout~="-overflow\:scroll"] {
     --unitone--overflow: scroll !important;
   }
+
+  [data-unitone-layout~="-overflow\:auto"] {
+    --unitone--overflow: auto !important;
+  }
+
+  [data-unitone-layout~="-overflow\:clip"] {
+    --unitone--overflow: clip !important;
+  }
 }
