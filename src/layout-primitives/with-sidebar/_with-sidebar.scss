@@ -30,7 +30,7 @@
       @include _main();
     }
 
-    > :last-child {
+    > :nth-child(2) {
       @include _aside();
     }
   }
@@ -42,7 +42,7 @@
       @include _aside();
     }
 
-    > :last-child {
+    > :nth-child(2) {
       @include _main();
     }
   }
