@@ -1,0 +1,6 @@
+@mixin auto-phrase() {
+  [data-unitone-layout~="-auto-phrase"] {
+    overflow-wrap: anywhere !important;
+    word-break: keep-all !important;
+  }
+}

@@ -2,6 +2,7 @@
 @use 'align-self';
 @use 'align';
 @use 'auto-repeat';
+@use 'auto-phrase';
 @use 'fluid-typography';
 @use 'gap';
 @use 'gutters';
@@ -19,6 +20,7 @@
 @include align-self.align-self();
 @include align.align();
 @include auto-repeat.auto-repeat();
+@include auto-phrase.auto-phrase();
 @include fluid-typography.fluid-typography();
 @include gap.gap();
 @include gutters.gutters();
