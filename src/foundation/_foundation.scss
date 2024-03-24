@@ -89,31 +89,23 @@ sub {
   }
 }
 
-:where(figure, picture) {
-  width: fit-content;
-  max-width: 100%;
-
-  :where(img, video) {
-    margin-top: 0;
-    margin-bottom: 0;
-    display: table;
-  }
-
-  :where(img:not([width]), video:not([width])) {
-    width: 100%;
-  }
-}
-
 img,
 video {
   height: auto;
   max-width: 100%;
 }
 
+figure {
+  display: table;
+  width: fit-content;
+  max-width: 100%;
+}
+
 figcaption {
   --unitone--font-size: -2;
 
-  margin: var(--unitone--s-2) 0 0;
+  margin: var(--unitone--s-1) 0 0;
+  display: table-caption;
   caption-side: bottom;
   text-align: left;
 }
