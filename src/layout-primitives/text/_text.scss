@@ -1,7 +1,6 @@
 @mixin abstract-text() {
-  --unitone--gap: var(--unitone--global--text-gap);
   --unitone--gutters: 0px;
-  --unitone--column-gap: var(--unitone--gap);
+  --unitone--column-gap: var(--unitone--gap, var(--unitone--global--text-gap));
   --unitone--max-width: var(--unitone--measure);
 
   box-sizing: content-box;
@@ -52,32 +51,34 @@
 
 @mixin abstract-text--gap() {
   > * {
-    margin: 0 auto;
+    --unitone--text-gap-scale: 1;
+    --unitone--text-gap: var(--unitone--global--text-gap);
+    --unitone--text-gap-increment: 0px;
+    --unitone--margin-block: calc(var(--unitone--text-gap-scale) * var(--unitone--text-gap) + var(--unitone--text-gap-increment));
+
+    margin-right: auto;
+    margin-left: auto;
     max-width: min(100%, var(--unitone--max-width));
   }
 
-  > *:not(:first-child) {
-    margin-top: calc(var(--unitone--margin-top, 1) * var(--unitone--gap));
-  }
-
-  > *:not(:last-child) {
-    margin-bottom: calc(var(--unitone--margin-bottom, 1) * var(--unitone--gap));
+  > * + * {
+    margin-block-start: var(--unitone--margin-block);
   }
 
   > :where(h2, h3, h4, h5, h6) {
-    --unitone--margin-top: 2;
+    --unitone--text-gap-scale: 2;
 
     & + :where(h2, h3, h4, h5, h6) {
-      --unitone--margin-top: 1;
+      --unitone--text-gap-scale: 1;
     }
   }
 
   > h5 + * {
-    --unitone--margin-top: .5;
+    --unitone--text-gap-scale: .5;
   }
 
   > h6 + * {
-    --unitone--margin-top: .5;
+    --unitone--text-gap-scale: .5;
   }
 }
 

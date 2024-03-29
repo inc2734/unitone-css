@@ -3,5 +3,13 @@
     [data-unitone-layout~="-gap\:#{ $i }"] {
       --unitone--gap: var(--unitone--s#{ $i }) !important;
     }
+
+    [data-unitone-layout~="text"][data-unitone-layout~="-gap"][data-unitone-layout~="-gap\:#{ $i }"] > * {
+      --unitone--text-gap: var(--unitone--s#{ $i }) !important;
+    }
+  }
+
+  [data-unitone-layout~="text"][data-unitone-layout~="-gap"][data-unitone-layout*="-gap\:"] > * {
+    --unitone--gap: inherit !important;
   }
 }
