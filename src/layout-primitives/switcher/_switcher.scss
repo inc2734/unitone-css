@@ -1,10 +1,13 @@
 @mixin abstract-switcher() {
   --unitone--gap: var(--unitone--global--gap);
+  --unitone--column-gap: var(--unitone--gap);
+  --unitone--row-gap: var(--unitone--gap);
   --unitone--threshold: var(--unitone--measure);
 
   display: flex;
   flex-wrap: wrap;
-  gap: var(--unitone--gap);
+  column-gap: var(--unitone--column-gap);
+  row-gap: var(--unitone--row-gap);
 
   > * {
     flex-grow: 1;

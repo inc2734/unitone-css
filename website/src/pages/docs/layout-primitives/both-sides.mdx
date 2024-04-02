@@ -87,6 +87,80 @@ Can be set from `-2` to `7`. For variations `2` and above, `clamp` is used to ad
 	</Tabs.Tab>
 </Tabs>
 
+### <Badge>HTML</Badge> -column-gap:\{variation\} / <Badge>JSX</Badge> columnGap=\{variation\}
+
+Column gap.
+
+Can be set from `-2` to `7`. For variations `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="both-sides -column-gap:-2">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { BothSides } from '@inc2734/unitone-css';
+
+		<BothSides columnGap={-2}>
+			...
+		</BothSides>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<BothSides columnGap={-2}>
+				<p style={{ outline: '1px dotted #6366f1', padding: '1em' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				<ul style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+					<li>Lorem</li>
+					<li>ipsum</li>
+					<li>dolor</li>
+				</ul>
+			</BothSides>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -row-gap:\{variation\} / <Badge>JSX</Badge> rowGap=\{variation\}
+
+Row gap.
+
+Can be set from `-2` to `7`. For variations `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="both-sides -row-gap:-2">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { BothSides } from '@inc2734/unitone-css';
+
+		<BothSides rowGap={-2}>
+			...
+		</BothSides>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<BothSides rowGap={-2}>
+				<p style={{ outline: '1px dotted #6366f1', padding: '1em' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				<ul style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+					<li>Lorem</li>
+					<li>ipsum</li>
+					<li>dolor</li>
+				</ul>
+			</BothSides>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
 ### <Badge>HTML</Badge> -align-items:\{value\} / <Badge>JSX</Badge> alignItems=\{value\}
 
 Alignment of the row direction.

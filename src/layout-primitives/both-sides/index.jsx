@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const BothSides = ({ gap, alignItems, style, ...props }) => {
+export const BothSides = ({ gap, columnGap, rowGap, alignItems, style, ...props }) => {
   style = {
     ...style,
   };
@@ -10,6 +10,8 @@ export const BothSides = ({ gap, alignItems, style, ...props }) => {
       data-unitone-layout={[
         'both-sides',
         'undefined' !== typeof gap ? `-gap:${gap}` : undefined,
+        'undefined' !== typeof columnGap ? `-column-gap:${columnGap}` : undefined,
+        'undefined' !== typeof rowGap ? `-row-gap:${rowGap}` : undefined,
         'undefined' !== typeof alignItems ? `-align-items:${alignItems}` : undefined,
       ]
         .filter(Boolean)

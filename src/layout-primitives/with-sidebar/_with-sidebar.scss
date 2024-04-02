@@ -16,11 +16,14 @@
   --unitone--content-min-width: 50%;
   --unitone--content-max-width: 100%;
   --unitone--gap: var(--unitone--global--gap);
+  --unitone--column-gap: var(--unitone--gap);
+  --unitone--row-gap: var(--unitone--gap);
   --unitone--align-items: stretch;
 
   display: flex;
   flex-wrap: wrap;
-  gap: var(--unitone--gap);
+  column-gap: var(--unitone--column-gap);
+  row-gap: var(--unitone--row-gap);
   align-items: var(--unitone--align-items);
 
   &:not([data-unitone-layout~="-revert"])[data-unitone-layout~="-sidebar\:right"],

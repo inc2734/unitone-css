@@ -2,6 +2,8 @@ import React from 'react';
 
 export const WithSidebar = ({
   gap,
+  columnGap,
+  rowGap,
   contentMinWidth,
   revert,
   sidebar,
@@ -22,6 +24,8 @@ export const WithSidebar = ({
         'with-sidebar',
         true === revert ? '-revert' : undefined,
         'undefined' !== typeof gap ? `-gap:${gap}` : undefined,
+        'undefined' !== typeof columnGap ? `-column-gap:${columnGap}` : undefined,
+        'undefined' !== typeof rowGap ? `-row-gap:${rowGap}` : undefined,
         'undefined' !== typeof sidebar ? `-sidebar:${sidebar}` : undefined,
         'undefined' !== typeof alignItems ? `-align-items:${alignItems}` : undefined,
       ]
