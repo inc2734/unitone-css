@@ -4,6 +4,7 @@
   --unitone--border-color: transparent;
   --unitone--border-width: 0;
   --unitone--border-radius: 0;
+	--unitone--max-height: none;
   --unitone--padding: 0px;
   --unitone--box-shadow: none;
   --unitone--position: static;
@@ -20,6 +21,7 @@
   color: var(--unitone--color);
   background-color: var(--unitone--background-color);
   box-shadow: var(--unitone--box-shadow);
+	max-height: var(--unitone--max-height);
   position: var(--unitone--position) !important;
   top: var(--unitone--top);
   right: var(--unitone--right);
