@@ -19,11 +19,11 @@ export const ResponsiveGrid = ({
     <div
       data-unitone-layout={[
         'responsive-grid',
-        'undefined' !== typeof gap ? `-gap:${gap}` : undefined,
-        'undefined' !== typeof autoRepeat ? `-auto-repeat:${autoRepeat}` : undefined,
-        !!divider ? `-divider:${divider}` : undefined,
-        'undefined' !== typeof stairs ? `-stairs:${stairs}` : undefined,
-        !!stairsUp ? `-stairs-up:${stairsUp}` : undefined,
+        '' !== (gap ?? '') ? `-gap:${gap}` : undefined,
+        '' !== (autoRepeat ?? '') ? `-auto-repeat:${autoRepeat}` : undefined,
+        '' !== (divider ?? '') ? `-divider:${divider}` : undefined,
+        '' !== (stairs ?? '') ? `-stairs:${stairs}` : undefined,
+        '' !== (stairsUp ?? '') ? `-stairs-up:${stairsUp}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

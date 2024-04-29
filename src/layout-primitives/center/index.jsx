@@ -3,7 +3,7 @@ import React from 'react';
 export const Center = ({ intrinsic, withText, gutters, maxWidth, style, ...props }) => {
   style = {
     ...style,
-    '--unitone--max-width': !!maxWidth ? maxWidth : undefined,
+    '--unitone--max-width': '' !== (maxWidth ?? '') ? maxWidth : undefined,
   };
 
   return (
@@ -11,7 +11,7 @@ export const Center = ({ intrinsic, withText, gutters, maxWidth, style, ...props
       data-unitone-layout={[
         'center',
         true === withText ? `-with-text` : undefined,
-        'undefined' !== typeof gutters ? `-gutters:${gutters}` : undefined,
+        '' !== (gutters ?? '') ? `-gutters:${gutters}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

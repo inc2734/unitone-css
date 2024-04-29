@@ -17,12 +17,12 @@ export const Cluster = ({
     <Tag
       data-unitone-layout={[
         'cluster',
-        !!divider ? `-divider:${divider}` : undefined,
-        'undefined' !== typeof gap ? `-gap:${gap}` : undefined,
-        'undefined' !== typeof columnGap ? `-column-gap:${columnGap}` : undefined,
-        'undefined' !== typeof rowGap ? `-row-gap:${rowGap}` : undefined,
-        'undefined' !== typeof alignItems ? `-align-items:${alignItems}` : undefined,
-        'undefined' !== typeof justifyContent ? `-justify-content:${justifyContent}` : undefined,
+        '' !== (divider ?? '') ? `-divider:${divider}` : undefined,
+        '' !== (gap ?? '') ? `-gap:${gap}` : undefined,
+        '' !== (columnGap ?? '') ? `-column-gap:${columnGap}` : undefined,
+        '' !== (rowGap ?? '') ? `-row-gap:${rowGap}` : undefined,
+        '' !== (alignItems ?? '') ? `-align-items:${alignItems}` : undefined,
+        '' !== (justifyContent ?? '') ? `-justify-content:${justifyContent}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

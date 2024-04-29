@@ -8,9 +8,7 @@ export const Frame = ({ ratio, switchRatio, style, ...props }) => {
 
   return (
     <div
-      data-unitone-layout={['frame', true === switchRatio ? `-switch` : undefined]
-        .filter(Boolean)
-        .join(' ')}
+      data-unitone-layout={['frame', switchRatio ? `-switch` : undefined].filter(Boolean).join(' ')}
       style={style}
       {...props}
     >

@@ -10,9 +10,9 @@ export const Switcher = ({ gap, columnGap, rowGap, limit, threshold, style, ...p
     <div
       data-unitone-layout={[
         'switcher',
-        'undefined' !== typeof gap ? `-gap:${gap}` : undefined,
-        'undefined' !== typeof columnGap ? `-column-gap:${columnGap}` : undefined,
-        'undefined' !== typeof rowGap ? `-row-gap:${rowGap}` : undefined,
+        '' !== (gap ?? '') ? `-gap:${gap}` : undefined,
+        '' !== (columnGap ?? '') ? `-column-gap:${columnGap}` : undefined,
+        '' !== (rowGap ?? '') ? `-row-gap:${rowGap}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

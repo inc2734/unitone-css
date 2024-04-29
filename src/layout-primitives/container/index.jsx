@@ -10,8 +10,8 @@ export const Container = ({ align, gutters, maxWidth, text, style, ...props }) =
     <div
       data-unitone-layout={[
         'container',
-        'undefined' !== typeof align ? `-align:${align}` : undefined,
-        'undefined' !== typeof gutters ? `-gutters:${gutters}` : undefined,
+        '' !== (align ?? '') ? `-align:${align}` : undefined,
+        '' !== (alguttersign ?? '') ? `-gutters:${gutters}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

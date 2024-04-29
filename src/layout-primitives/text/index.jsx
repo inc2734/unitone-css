@@ -10,11 +10,11 @@ export const Text = ({ center, column, applyGap, gap, gutters, maxWidth, style, 
     <div
       data-unitone-layout={[
         'text',
-        true === center ? '-center' : undefined,
-        true === column ? '-column' : undefined,
-        true === applyGap ? '-gap' : undefined,
-        'undefined' !== typeof gap ? `-gap:${gap}` : undefined,
-        'undefined' !== typeof gutters ? `-gutters:${gutters}` : undefined,
+        center ? '-center' : undefined,
+        column ? '-column' : undefined,
+        applyGap ? '-gap' : undefined,
+        '' !== (gap ?? '') ? `-gap:${gap}` : undefined,
+        '' !== (gutters ?? '') ? `-gutters:${gutters}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

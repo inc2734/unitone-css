@@ -11,8 +11,8 @@ export const VerticalWriting = ({
 }) => {
   style = {
     ...style,
-    '--unitone--max-height': !!maxHeight ? maxHeight : undefined,
-    '--unitone--threshold': !!threshold ? threshold : undefined,
+    '--unitone--max-height': '' !== (maxHeight ?? '') ? maxHeight : undefined,
+    '--unitone--threshold': '' !== (threshold ?? '') ? threshold : undefined,
   };
 
   return (
@@ -20,11 +20,9 @@ export const VerticalWriting = ({
       <div
         data-unitone-layout={[
           'vertical-writing',
-          'undefined' !== typeof textOrientation
-            ? `-text-orientation:${textOrientation}`
-            : undefined,
-          'undefined' !== typeof gap ? `-gap:${gap}` : undefined,
-          true === switchWritingMode ? `-switch` : undefined,
+          '' !== (textOrientation ?? '') ? `-text-orientation:${textOrientation}` : undefined,
+          '' !== (gap ?? '') ? `-gap:${gap}` : undefined,
+          switchWritingMode ? '-switch' : undefined,
         ]
           .filter(Boolean)
           .join(' ')}

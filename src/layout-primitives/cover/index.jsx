@@ -11,8 +11,8 @@ export const Cover = ({ gap, minHeight, justifyContent, padding, noPadding, styl
       data-unitone-layout={[
         'cover',
         noPadding ? '-no-padding' : undefined,
-        'undefined' !== typeof gap ? `-gap:${gap}` : undefined,
-        'undefined' !== typeof padding ? `-padding:${padding}` : undefined,
+        '' !== (gap ?? '') ? `-gap:${gap}` : undefined,
+        '' !== (padding ?? '') ? `-padding:${padding}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

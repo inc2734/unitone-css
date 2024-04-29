@@ -9,9 +9,9 @@ export const Stack = ({ center, divider, gap, negative, style, ...props }) => {
     <div
       data-unitone-layout={[
         'stack',
-        !!divider ? `-divider:${divider}` : undefined,
-        'undefined' !== typeof gap ? `-gap:${gap}` : undefined,
-        true === negative ? '-negative' : undefined,
+        '' !== (divider ?? '') ? `-divider:${divider}` : undefined,
+        '' !== (gap ?? '') ? `-gap:${gap}` : undefined,
+        negative ? '-negative' : undefined,
       ]
         .filter(Boolean)
         .join(' ')}
