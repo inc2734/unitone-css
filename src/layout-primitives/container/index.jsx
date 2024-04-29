@@ -11,7 +11,7 @@ export const Container = ({ align, gutters, maxWidth, text, style, ...props }) =
       data-unitone-layout={[
         'container',
         '' !== (align ?? '') ? `-align:${align}` : undefined,
-        '' !== (alguttersign ?? '') ? `-gutters:${gutters}` : undefined,
+        '' !== (gutters ?? '') ? `-gutters:${gutters}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}
