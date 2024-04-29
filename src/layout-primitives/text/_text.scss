@@ -1,6 +1,5 @@
 @mixin abstract-text() {
   --unitone--gutters: 0px;
-  --unitone--column-gap: var(--unitone--gap, var(--unitone--global--text-gap));
   --unitone--max-width: var(--unitone--measure);
 
   box-sizing: content-box;
@@ -45,8 +44,9 @@
 
 @mixin abstract-text--gap() {
   > * {
+    --unitone--gap: var(--unitone--global--text-gap);
     --unitone--text-gap-scale: 1;
-    --unitone--text-gap: var(--unitone--global--text-gap);
+    --unitone--text-gap: var(--unitone--gap);
     --unitone--text-gap-increment: 0px;
     --unitone--margin-block: calc(var(--unitone--text-gap-scale) * var(--unitone--text-gap) + var(--unitone--text-gap-increment));
 
@@ -89,6 +89,9 @@
   }
 
   [data-unitone-layout~="text"][data-unitone-layout~="-column"] {
+    --unitone--gap: var(--unitone--global--text-gap);
+    --unitone--column-gap: var(--unitone--gap);
+
     column-width: var(--unitone--max-width);
     gap: var(--unitone--column-gap);
 
