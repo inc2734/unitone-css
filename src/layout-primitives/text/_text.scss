@@ -7,6 +7,16 @@
   padding-left: var(--unitone--gutters);
   max-width: none;
 
+	&[data-unitone-layout*="-gap\:"] {
+		--unitone--gap: inherit !important;
+	}
+
+	@for $i from -2 through 7 {
+		&[data-unitone-layout~="-gap\:#{ $i }"] > * {
+			--unitone--text-gap: var(--unitone--s#{ $i }) !important;
+		}
+	}
+
   > h1 {
     --unitone--font-size: 4;
   }
@@ -44,9 +54,8 @@
 
 @mixin abstract-text--gap() {
   > * {
-    --unitone--gap: var(--unitone--global--text-gap);
     --unitone--text-gap-scale: 1;
-    --unitone--text-gap: var(--unitone--gap);
+    --unitone--text-gap: var(--unitone--global--text-gap);
     --unitone--text-gap-increment: 0px;
     --unitone--margin-block: calc(var(--unitone--text-gap-scale) * var(--unitone--text-gap) + var(--unitone--text-gap-increment));
 
@@ -89,8 +98,8 @@
   }
 
   [data-unitone-layout~="text"][data-unitone-layout~="-column"] {
-    --unitone--gap: var(--unitone--global--text-gap);
-    --unitone--column-gap: var(--unitone--gap);
+    --unitone--text-gap: var(--unitone--global--text-gap);
+    --unitone--column-gap: var(--unitone--text-gap);
 
     column-width: var(--unitone--max-width);
     gap: var(--unitone--column-gap);
