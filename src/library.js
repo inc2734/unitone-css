@@ -57,13 +57,16 @@ const setDividerLinewrap = (target) => {
 
 export const dividersResizeObserver = (target) => {
   let prevWidth = 0;
+  let prevHeight = 0;
 
   const observer = new ResizeObserver((entries) => {
     for (const entry of entries) {
       const width = entry.borderBoxSize?.[0].inlineSize;
-      if (width !== prevWidth) {
+      const height = entry.borderBoxSize?.[0].blockSize;
+      if (width !== prevWidth || height !== prevHeight) {
         setDividerLinewrap(entry.target);
         prevWidth = width;
+        prevHeight = height;
       }
     }
   });

@@ -25,10 +25,6 @@
     --unitone--divider-color: var(--unitone--color--gray);
   }
 
-  :where(#{&}[data-unitone-layout*="-divider\:"] > * > *) {
-    position: relative;
-  }
-
   &[data-unitone-layout~="-divider\:stripe"] {
     gap: 0;
 

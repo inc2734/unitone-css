@@ -19,10 +19,6 @@
     --unitone--divider-color: var(--unitone--color--gray);
   }
 
-  :where(#{&}[data-unitone-layout*="-divider\:"] > * > *) {
-    position: relative;
-  }
-
   &[data-unitone-layout~="-divider\:stripe"] {
     row-gap: 0;
 
@@ -91,7 +87,6 @@
 
   &[data-unitone-layout~="-divider\:bordered"] {
     gap: 0;
-    grid-template-columns: repeat(var(--unitone--auto-repeat), minmax(min(var(--unitone--column-min-width) + var(--unitone--gap), 100%), 1fr));
 
     > * {
       position: relative;
