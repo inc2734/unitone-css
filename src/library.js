@@ -22,7 +22,7 @@ export const fluidFontSizeResizeObserver = (target) => {
   observer.observe(target);
 };
 
-const setDividerLinewrap = (target) => {
+export const setDividerLinewrap = (target) => {
   const firstChild = [].slice.call(target.children)?.[0];
   if (!!firstChild) {
     let prevChild;
