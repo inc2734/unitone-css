@@ -139,18 +139,6 @@
   --unitone--half-leading: .3;
 
   /**
-   * The line-height slope. If smaller, the line-height is adjusted to a smaller value as the font size increases.
-   *
-   * A =(1, 1.6) // 1rem / 1.6
-   * B =(8, 1.1) // 4rem / 1.1
-   * y = -0.0714285714286x + 1.6714285714286 // y = line-height, x = Font size ratio
-   *
-   * @see https://www.geogebra.org/graphing?lang=ja
-   */
-  --unitone--line-height-slope: calc((#{ variables.$min-line-height } - (#{ variables.$max-line-height })) / (var(--unitone--harmonic-sequence-base) - 1));
-  --unitone--line-height-intercept: calc(#{ variables.$max-line-height } + -1 * var(--unitone--line-height-slope));
-
-  /**
    * Font family
    */
   --unitone--font-family: sans-serif;
@@ -179,21 +167,21 @@
   /**
    * Reference value of the modular scale for space.
    */
-  --unitone--_space-reference-value: #{ variables.$line-height } / 3;
+  $_space-reference-value: calc((#{ variables.$line-height }) / 3);
 
   /**
    * Modular scales for spaces.
    */
-  --unitone--ms-2: calc(var(--unitone--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 1) });
-  --unitone--ms-1: calc(var(--unitone--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 2) });
+  --unitone--ms-2: calc(#{ $_space-reference-value } * #{ list.nth(variables.$fibonacci-sequence, 1) });
+  --unitone--ms-1: calc(#{ $_space-reference-value } * #{ list.nth(variables.$fibonacci-sequence, 2) });
   --unitone--ms0: 0;
-  --unitone--ms1: calc(var(--unitone--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 3) });
-  --unitone--ms2: calc(var(--unitone--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 4) });
-  --unitone--ms3: calc(var(--unitone--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 5) });
-  --unitone--ms4: calc(var(--unitone--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 6) });
-  --unitone--ms5: calc(var(--unitone--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 7) });
-  --unitone--ms6: calc(var(--unitone--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 8) });
-  --unitone--ms7: calc(var(--unitone--_space-reference-value) * #{ list.nth(variables.$fibonacci-sequence, 9) });
+  --unitone--ms1: calc(#{ $_space-reference-value } * #{ list.nth(variables.$fibonacci-sequence, 3) });
+  --unitone--ms2: calc(#{ $_space-reference-value } * #{ list.nth(variables.$fibonacci-sequence, 4) });
+  --unitone--ms3: calc(#{ $_space-reference-value } * #{ list.nth(variables.$fibonacci-sequence, 5) });
+  --unitone--ms4: calc(#{ $_space-reference-value } * #{ list.nth(variables.$fibonacci-sequence, 6) });
+  --unitone--ms5: calc(#{ $_space-reference-value } * #{ list.nth(variables.$fibonacci-sequence, 7) });
+  --unitone--ms6: calc(#{ $_space-reference-value } * #{ list.nth(variables.$fibonacci-sequence, 8) });
+  --unitone--ms7: calc(#{ $_space-reference-value } * #{ list.nth(variables.$fibonacci-sequence, 9) });
 
   /**
    * Modular scales for spaces (em based).
@@ -228,8 +216,8 @@
    */
   @function _generate-fluid-spacing($min, $max) {
     $slope: calc((#{ $max } - #{ $min }) / (#{ variables.$max-breakpoint - variables.$min-breakpoint }));
-    $yAxis: calc(#{ -1 * variables.$min-breakpoint } * #{ $slope } + #{ $min });
-    $preferred-spacing: calc(#{ $yAxis } * 1em + #{ $slope } * 100vw);
+    $intercept: calc(#{ -1 * variables.$min-breakpoint } * #{ $slope } + #{ $min });
+    $preferred-spacing: calc(#{ $intercept } * 1em + #{ $slope } * 100vw);
     @return clamp(#{ $min } * 1em, #{ $preferred-spacing }, #{ $max } * 1em);
   }
   @function _generate-spacing($spacing) {

@@ -7,12 +7,10 @@
 
   [data-unitone-layout~="-typography"],
   [data-unitone-layout~="-typography\:rem"] {
-    font-size: #{ variables.$font-size } !important;
-    line-height: #{ variables.$line-height } !important;
+    @include variables.typography();
   }
 
   [data-unitone-layout~="-typography\:em"] {
-    font-size: #{ variables.$font-size-em } !important;
-    line-height: #{ variables.$line-height } !important;
+    @include variables.typography-em();
   }
 }
