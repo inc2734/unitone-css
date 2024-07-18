@@ -15,9 +15,9 @@
   }
 
   [data-unitone-layout~="text"] {
-    &[data-unitone-layout~="-align\:start"],
-    &[data-unitone-layout~="-align\:center"],
-    &[data-unitone-layout~="-align\:end"] {
+    &:where([data-unitone-layout~="-align\:start"]),
+    &:where([data-unitone-layout~="-align\:center"]),
+    &:where([data-unitone-layout~="-align\:end"]) {
       max-width: var(--unitone--max-width);
     }
   }
