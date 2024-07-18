@@ -5,18 +5,18 @@
   --unitone--min-height: 0;
   --unitone--blur: 75px;
 
+  display: grid;
+  grid-template-columns: repeat(var(--unitone--columns), 1fr);
+  grid-template-rows: repeat(var(--unitone--rows), 1fr);
+  gap: min(3.33333%, var(--unitone--gap));
+  min-height: var(--unitone--min-height);
+
   @media (orientation: portrait) {
     &[data-unitone-layout~="-portrait"] {
       --unitone--columns: var(--unitone--grid-rows);
       --unitone--rows: var(--unitone--grid-columns);
     }
   }
-
-  display: grid;
-  grid-template-columns: repeat(var(--unitone--columns), 1fr);
-  grid-template-rows: repeat(var(--unitone--rows), 1fr);
-  gap: min(3.33333%, var(--unitone--gap));
-  min-height: var(--unitone--min-height);
 
   // @todo Firefox corrupts layout if % is used for gap
   @-moz-document url-prefix() {

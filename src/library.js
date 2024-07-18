@@ -28,25 +28,44 @@ export const setDividerLinewrap = (target) => {
     let prevChild;
 
     [].slice.call(target.children).forEach((child) => {
-      const baseRect = firstChild.getBoundingClientRect();
-      const prevRect = prevChild?.getBoundingClientRect();
-      const targetRect = child.getBoundingClientRect();
-
-      let layout = (child.getAttribute('data-unitone-layout') || '').split(' ');
-      if (baseRect.top < targetRect.top) {
-        if (!layout.includes('-linewrap')) {
-          layout.push('-linewrap');
-        }
-      } else {
-        layout = layout.filter((value) => value !== '-linewrap');
+      const layout = (child.getAttribute('data-unitone-layout') || '').split(' ');
+      if (child.classList.contains('unitone-empty')) {
+        child.remove();
+        return;
       }
 
-      if (firstChild === child || (!!prevRect?.top && prevRect.top < targetRect.top)) {
+      child.setAttribute(
+        'data-unitone-layout',
+        [...layout.filter((value) => !['-bol', '-linewrap'].includes(value))].join(' '),
+      );
+    });
+
+    [].slice.call(target.children).forEach((child) => {
+      const baseRect = firstChild.getBoundingClientRect();
+      const prevRect = prevChild?.getBoundingClientRect();
+
+      let layout = (child.getAttribute('data-unitone-layout') || '').split(' ');
+
+      if (firstChild === child || prevRect?.top < child.getBoundingClientRect().top) {
         if (!layout.includes('-bol')) {
-          layout.push('-bol');
+          layout = [...layout, '-bol'];
         }
-      } else {
-        layout = layout.filter((value) => value !== '-bol');
+      }
+
+      if (prevRect?.top < child.getBoundingClientRect().top) {
+        const hardWrap = document.createElement('div');
+        hardWrap.classList.add('unitone-empty');
+        child.before(hardWrap);
+
+        if (prevRect?.top < hardWrap.getBoundingClientRect().top) {
+          hardWrap.remove();
+        }
+      }
+
+      if (baseRect.top < child.getBoundingClientRect().top) {
+        if (!layout.includes('-linewrap')) {
+          layout = [...layout, '-linewrap'];
+        }
       }
 
       child.setAttribute('data-unitone-layout', layout.join(' '));
@@ -57,16 +76,17 @@ export const setDividerLinewrap = (target) => {
 
 export const dividersResizeObserver = (target) => {
   let prevWidth = 0;
-  let prevHeight = 0;
+  // let prevHeight = 0;
 
   const observer = new ResizeObserver((entries) => {
     for (const entry of entries) {
       const width = entry.borderBoxSize?.[0].inlineSize;
       const height = entry.borderBoxSize?.[0].blockSize;
-      if (width !== prevWidth || height !== prevHeight) {
+      // if (width !== prevWidth || height !== prevHeight) {
+      if (width !== prevWidth) {
         setDividerLinewrap(entry.target);
         prevWidth = width;
-        prevHeight = height;
+        // prevHeight = height;
       }
     }
   });
