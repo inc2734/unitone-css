@@ -82,11 +82,10 @@ export const dividersResizeObserver = (target) => {
     for (const entry of entries) {
       const width = entry.borderBoxSize?.[0].inlineSize;
       const height = entry.borderBoxSize?.[0].blockSize;
-      // if (width !== prevWidth || height !== prevHeight) {
-      if (width !== prevWidth) {
+      if (width !== prevWidth || height !== prevHeight) {
         setDividerLinewrap(entry.target);
         prevWidth = width;
-        // prevHeight = height;
+        prevHeight = height;
       }
     }
   });

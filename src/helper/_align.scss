@@ -13,12 +13,4 @@
     margin-right: 0 !important;
     margin-left: auto !important;
   }
-
-  [data-unitone-layout~="text"] {
-    &:where([data-unitone-layout~="-align\:start"]),
-    &:where([data-unitone-layout~="-align\:center"]),
-    &:where([data-unitone-layout~="-align\:end"]) {
-      max-width: var(--unitone--max-width);
-    }
-  }
 }

@@ -114,7 +114,7 @@
 
     // @todo
     // Specify a component whose width is specified by max-width of the child element, not by itself.
-    > [data-unitone-layout~="text"] {
+    > [data-unitone-layout~="text"]:where(:not([data-unitone-layout*="align\:"])) {
       margin-right: 0;
       margin-left: 0;
       max-width: none;
