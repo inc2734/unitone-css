@@ -2,6 +2,8 @@
   --unitone--auto-repeat: auto-fit;
   --unitone--column-min-width: 240px;
   --unitone--gap: var(--unitone--global--gap);
+  --unitone--column-gap: var(--unitone--gap);
+  --unitone--row-gap: var(--unitone--gap);
 
   display: grid;
   grid-gap: var(--unitone--gap);
