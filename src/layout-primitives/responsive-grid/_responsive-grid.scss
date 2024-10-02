@@ -6,7 +6,8 @@
   --unitone--row-gap: var(--unitone--gap);
 
   display: grid;
-  grid-gap: var(--unitone--gap);
+  column-gap: var(--unitone--column-gap);
+  row-gap: var(--unitone--row-gap);
   grid-template-columns: repeat(var(--unitone--auto-repeat), minmax(min(var(--unitone--column-min-width), 100%), 1fr));
   list-style: none;
 
