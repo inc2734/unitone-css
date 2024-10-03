@@ -1,6 +1,8 @@
 @mixin abstract-vertical-writing() {
   --unitone--gap: var(--unitone--global--text-gap);
   --unitone--column-gap: var(--unitone--global--gap);
+  --unitone--row-gap: var(--unitone--gap);
+
   --unitone--max-height: var(--unitone--vertical-writing--max-height, calc(9 * var(--unitone--measure) / 16));
   --unitone--text-orientation: mixed;
   --unitone--threshold: 0px;
@@ -8,7 +10,7 @@
   position: relative;
   writing-mode: vertical-rl;
   column-count: 1;
-  column-gap: var(--unitone--global--gap);
+  column-gap: var(--unitone--column-gap);
   max-width: 100%;
   width: 100%;
   text-orientation: var(--unitone--text-orientation);
@@ -59,11 +61,11 @@
   }
 
   > *:not(:first-child) {
-    margin-block-start: calc(var(--unitone--margin-block-start, 1) * var(--unitone--gap));
+    margin-block-start: calc(var(--unitone--margin-block-start, 1) * var(--unitone--row-gap));
   }
 
   > *:not(:last-child) {
-    margin-block-end: calc(var(--unitone--margin-block-end, 1) * var(--unitone--gap));
+    margin-block-end: calc(var(--unitone--margin-block-end, 1) * var(--unitone--row-gap));
   }
 
   > h1 {
