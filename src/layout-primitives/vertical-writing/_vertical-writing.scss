@@ -3,7 +3,7 @@
   --unitone--column-gap: var(--unitone--global--gap);
   --unitone--row-gap: var(--unitone--gap);
 
-  --unitone--max-height: var(--unitone--vertical-writing--max-height, calc(9 * var(--unitone--measure) / 16));
+  --unitone--max-height: var(--unitone--vertical-writing--max-height, 25rem);
   --unitone--text-orientation: mixed;
   --unitone--threshold: 0px;
 
