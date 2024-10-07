@@ -3,11 +3,17 @@
   --unitone--column-gap: var(--unitone--gap);
   --unitone--row-gap: var(--unitone--gap);
   --unitone--threshold: var(--unitone--measure);
+  --unitone--align-items: stretch;
 
   display: flex;
   flex-wrap: wrap;
   column-gap: var(--unitone--column-gap);
   row-gap: var(--unitone--row-gap);
+  align-items: var(--unitone--align-items);
+
+  &[data-unitone-layout~="-revert"] {
+    flex-direction: row-reverse;
+  }
 
   > * {
     flex-grow: 1;

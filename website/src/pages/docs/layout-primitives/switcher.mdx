@@ -143,6 +143,38 @@ Can be set from `-2` to `7`. For variations `2` and above, `clamp` is used to ad
 	</Tabs.Tab>
 </Tabs>
 
+### Revert
+
+The way child elements are displayed is reversed.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="switcher -revert">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Switcher } from '@inc2734/unitone-css';
+
+		<Switcher revert>
+			...
+		</Switcher>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Switcher revert>
+				<Decorator backgroundColor="#3730a3" color="#fff" padding={1}>Lorem ipsum</Decorator>
+				<Decorator backgroundColor="#5b21b6" color="#fff" padding={1}>dolor sit</Decorator>
+				<Decorator backgroundColor="#6b21a8" color="#fff" padding={1}>amet consectetur</Decorator>
+			</Switcher>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
 ### <Badge>HTML</Badge> --unitone--threshold / <Badge>JSX</Badge> threshold=\{value\}
 
 If the box size is smaller than this value, it switches to one column.
@@ -169,6 +201,40 @@ If the box size is smaller than this value, it switches to one column.
 			<Switcher thureshold="500px">
 				<Decorator backgroundColor="#3730a3" color="#fff" padding={1}>Lorem ipsum</Decorator>
 				<Decorator backgroundColor="#5b21b6" color="#fff" padding={1}>dolor sit</Decorator>
+				<Decorator backgroundColor="#6b21a8" color="#fff" padding={1}>amet consectetur</Decorator>
+			</Switcher>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -align-items:\{value\} / <Badge>JSX</Badge> alignItems=\{value\}
+
+Alignment of the row direction.
+
+`start` / `center` / `end` / `stretch` / `space-between`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="switcher -align-items:center">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Switcher } from '@inc2734/unitone-css';
+
+		<Switcher alignItems="center">
+			...
+		</Switcher>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Switcher alignItems="center">
+				<Decorator backgroundColor="#3730a3" color="#fff" padding={1}>Lorem ipsum</Decorator>
+				<Decorator backgroundColor="#5b21b6" color="#fff" padding={1}>Lorem ipsum<br />dolor sit</Decorator>
 				<Decorator backgroundColor="#6b21a8" color="#fff" padding={1}>amet consectetur</Decorator>
 			</Switcher>
 		</PreviewConainer>
