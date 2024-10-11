@@ -1,6 +1,6 @@
 @use '../variables/variables' as variables;
 
-:where(:not(a):not(b):not(bdi):not(bdo):not(cite):not(data):not(del):not(dfn):not(em):not(i):not(ins):not(mark):not(q):not(ruby):not(s):not(samp):not(small):not(span):not(strong):not(sub):not(sup):not(time):not(u)) {
+:where(:not(a):not(b):not(bdi):not(bdo):not(cite):not(data):not(del):not(dfn):not(em):not(i):not(ins):not(mark):not(q):not(ruby):not(s):not(samp):not(small):not(span):not(strong):not(sub):not(sup):not(time):not(u):not(svg)) {
   @include variables.typography();
 }
 
