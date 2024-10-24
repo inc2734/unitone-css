@@ -23,32 +23,37 @@ export const fluidFontSizeResizeObserver = (target) => {
 };
 
 export const setDividerLinewrap = (target) => {
-  const firstChild = [].slice.call(target.children)?.[0];
+  const firstChild = [].slice.call(target?.children ?? [])?.[0];
   if (!!firstChild) {
     let prevChild;
 
     [].slice.call(target.children).forEach((child) => {
-      const layout = (child.getAttribute('data-unitone-layout') || '').split(' ');
+      const currentLayout = child.getAttribute('data-unitone-layout') || '';
+      let newLayout = currentLayout.split(' ');
       if (child.classList.contains('unitone-empty')) {
         child.remove();
         return;
       }
 
-      child.setAttribute(
-        'data-unitone-layout',
-        [...layout.filter((value) => !['-bol', '-linewrap'].includes(value))].join(' '),
-      );
+      newLayout =
+        [...newLayout.filter((value) => !['-bol', '-linewrap', ' '].includes(value))].join(' ') ||
+        '';
+
+      if (newLayout !== currentLayout) {
+        child.setAttribute('data-unitone-layout', newLayout);
+      }
     });
 
     [].slice.call(target.children).forEach((child) => {
       const baseRect = firstChild.getBoundingClientRect();
       const prevRect = prevChild?.getBoundingClientRect();
 
-      let layout = (child.getAttribute('data-unitone-layout') || '').split(' ');
+      const currentLayout = child.getAttribute('data-unitone-layout') || '';
+      let newLayout = currentLayout.split(' ');
 
       if (firstChild === child || prevRect?.top < child.getBoundingClientRect().top) {
-        if (!layout.includes('-bol')) {
-          layout = [...layout, '-bol'];
+        if (!newLayout.includes('-bol')) {
+          newLayout = [...newLayout, '-bol'];
         }
       }
 
@@ -63,12 +68,17 @@ export const setDividerLinewrap = (target) => {
       }
 
       if (baseRect.top < child.getBoundingClientRect().top) {
-        if (!layout.includes('-linewrap')) {
-          layout = [...layout, '-linewrap'];
+        if (!newLayout.includes('-linewrap')) {
+          newLayout = [...newLayout, '-linewrap'];
         }
       }
 
-      child.setAttribute('data-unitone-layout', layout.join(' '));
+      newLayout = newLayout.filter(Boolean).join(' ') || '';
+
+      if (newLayout !== currentLayout) {
+        child.setAttribute('data-unitone-layout', newLayout);
+      }
+
       prevChild = child;
     });
   }
@@ -88,10 +98,36 @@ export const dividersResizeObserver = (target) => {
   });
 
   observer.observe(target);
+
+  const mObserverArgs = {
+    attributes: true,
+    attributeFilter: ['style', 'data-unitone-layout', 'class'],
+    attributeOldValue: true,
+    subtree: true,
+    characterData: true,
+  };
+
+  const mObserver = new MutationObserver((entries) => {
+    for (const entry of entries) {
+      if ('attributes' === entry.type && 'data-unitone-layout' === entry.attributeName) {
+        const current = entry.target.getAttribute(entry.attributeName) ?? '';
+        const old = entry.oldValue ?? '';
+
+        if (current !== old) {
+          setDividerLinewrap(entry.target);
+          continue;
+        }
+      }
+
+      setDividerLinewrap(entry.target);
+    }
+  });
+
+  mObserver.observe(target, mObserverArgs);
 };
 
 const setStairsStep = (target) => {
-  const firstChild = [].slice.call(target.children)?.[0];
+  const firstChild = [].slice.call(target?.children ?? [])?.[0];
   if (!!firstChild) {
     let prevChild;
     let stairsStep = 0;
