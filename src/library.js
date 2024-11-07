@@ -110,16 +110,20 @@ export const dividersResizeObserver = (target) => {
   const mObserver = new MutationObserver((entries) => {
     for (const entry of entries) {
       if ('attributes' === entry.type && 'data-unitone-layout' === entry.attributeName) {
-        const current = entry.target.getAttribute(entry.attributeName) ?? '';
-        const old = entry.oldValue ?? '';
+        let current = entry.target.getAttribute(entry.attributeName) ?? '';
+        let old = entry.oldValue ?? '';
+
+        const excludeValues = ['-bol', '-linewrap'];
+        excludeValues.forEach( ( excludeValue ) => {
+          current = current.replace( excludeValue, '' ).trim();
+          old = old.replace( excludeValue, '' ).trim();
+        } );
 
         if (current !== old) {
           setDividerLinewrap(entry.target);
           continue;
         }
       }
-
-      setDividerLinewrap(entry.target);
     }
   });
 
