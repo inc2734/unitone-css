@@ -84,7 +84,7 @@ export const setDividerLinewrap = (target) => {
   }
 };
 
-export const dividersResizeObserver = (target) => {
+export const dividersResizeObserver = (target, args = {}) => {
   let prevWidth = 0;
 
   const observer = new ResizeObserver((entries) => {
@@ -97,8 +97,6 @@ export const dividersResizeObserver = (target) => {
     }
   });
 
-  observer.observe(target);
-
   const mObserverArgs = {
     attributes: true,
     attributeFilter: ['style', 'data-unitone-layout', 'class'],
@@ -110,24 +108,61 @@ export const dividersResizeObserver = (target) => {
   const mObserver = new MutationObserver((entries) => {
     for (const entry of entries) {
       if ('attributes' === entry.type && 'data-unitone-layout' === entry.attributeName) {
-        let current = entry.target.getAttribute(entry.attributeName) ?? '';
-        let old = entry.oldValue ?? '';
+        const ignoreUnitoneLayouts = [...(args?.ignore?.layout ?? []), ...['-bol', '-linewrap']];
 
-        const excludeValues = ['-bol', '-linewrap'];
-        excludeValues.forEach( ( excludeValue ) => {
-          current = current.replace( excludeValue, '' ).trim();
-          old = old.replace( excludeValue, '' ).trim();
-        } );
+        const current = (entry.target.getAttribute(entry.attributeName) ?? '')
+          .split(' ')
+          .filter((v) => !ignoreUnitoneLayouts.includes(v))
+          .join(' ');
+
+        const old = (entry.oldValue ?? '')
+          .split(' ')
+          .filter((v) => !ignoreUnitoneLayouts.includes(v))
+          .join(' ');
 
         if (current !== old) {
           setDividerLinewrap(entry.target);
-          continue;
         }
+      } else if ('attributes' === entry.type && 'class' === entry.attributeName) {
+        const ignoreClassNames = [...(args?.ignore?.className ?? [])];
+
+        const current = (entry.target.getAttribute(entry.attributeName) ?? '')
+          .split(' ')
+          .filter((v) => !ignoreClassNames.includes(v))
+          .join(' ');
+
+        const old = (entry.oldValue ?? '')
+          .split(' ')
+          .filter((v) => !ignoreClassNames.includes(v))
+          .join(' ');
+
+        if (current !== old) {
+          setDividerLinewrap(entry.target);
+        }
+      } else if ('attributes' === entry.type && 'style' === entry.attributeName) {
+        setDividerLinewrap(entry.target);
       }
     }
   });
 
-  mObserver.observe(target, mObserverArgs);
+  const iObserver = new IntersectionObserver(
+    (entries, _observer) => {
+      entries.forEach((entry) => {
+        const target = entry.target;
+
+        if (entry.isIntersecting) {
+          _observer.unobserve(target);
+          observer.observe(target);
+          mObserver.observe(target, mObserverArgs);
+        }
+      });
+    },
+    {
+      rootMargin: '100px 0px',
+    },
+  );
+
+  iObserver.observe(target);
 };
 
 const setStairsStep = (target) => {
