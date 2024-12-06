@@ -17,7 +17,7 @@ The size of the margins added above and below the text. The size of one line (`l
 1 * var(--unitone--half-leading) * 2
 ```
 
-In general, the larger the font size, the narrower the line spacing between lines, making text easier to read. For this reason, `line-height` is often specified together with font-size, for example, `line-height: 1.1` for `font-size: 8rem`.
+In general, the larger the font size, the narrower the line spacing between lines, making text easier to read. For this reason, `line-height` is often specified together with font-size, for example, `line-height: 1.1` for `font-size: 5rem`.
 
 That's a lot of work. Therefore, we created a mechanism to automatically optimize the line spacing according to the font size at all times.
 
@@ -25,14 +25,24 @@ For example, suppose you want to use the following as a standard for `line-heigh
 
 ```
 A = (1, 1.6) // When font-size: 1rem, line-height: 1.6
-B = (8, 1.1) // When font-size: 8rem, line-height: 1.1
+B = (5, 1.1) // When font-size: 5rem, line-height: 1.1
 ```
 
 Then, the following formula is formed.
 
 ```
-y = -0.0714285714286x + 1.6714285714286 // y = line-height, x = Font size ratio
+y = -0.1125x + 1.7125 | y = line-height, x = Font size ratio
 ```
+
+### --unitone--min-half-leading
+
+As explained above, the minimum `line-height` is `1.1`. The minimum value is determined by the following formula.
+
+```
+line-height: calc(1 + 2 * var(--unitone--min-half-leading));
+```
+
+This value can be customized.
 
 ### --unitone--base-font-size
 

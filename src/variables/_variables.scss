@@ -16,20 +16,21 @@ $_intercept: calc(#{-1 * $min-breakpoint } * #{ $_slope } + #{ $_min-font-size }
 $_preferred-font-size: calc((#{ $_intercept } * 1rem) + (#{ $_slope } * 100vw));
 $fluid-font-size: clamp(1rem * #{ $_min-font-size }, #{ $_preferred-font-size }, 1rem * #{ $_max-font-size });
 
-$min-line-height: 1.1;
+$min-line-height: calc(1 + 2 * var(--unitone--min-half-leading));
 $max-line-height: calc(1 + 2 * var(--unitone--half-leading));
+$max-line-height-target-font-size-ratio: 5;
 
 /**
  * The line-height slope. If smaller, the line-height is adjusted to a smaller value as the font size increases.
  *
- * A =(1, 1.6) // 1rem / 1.6
- * B =(8, 1.1) // 4rem / 1.1
- * y = -0.0714285714286x + 1.6714285714286 // y = line-height, x = Font size ratio
+ * A =(1, 1.6)  | 1rem, 1.6
+ * B =(5, 1.15) | 5rem, 1.15
+ * Line(A, B)   | y = -0.1125x + 1.7125 | y = line-height, x = Font size ratio
  *
  * @see https://www.geogebra.org/graphing?lang=ja
  */
-$line-height-slope: calc((#{ $min-line-height } - (#{ $max-line-height })) / (var(--unitone--harmonic-sequence-base) - 1));
-$line-height-intercept: calc(#{ $max-line-height } + -1 * #{ $line-height-slope });
+$line-height-slope: calc((#{ $min-line-height } - (#{ $max-line-height })) / (#{ $max-line-height-target-font-size-ratio } - 1));
+$line-height-intercept: calc(#{ $max-line-height } - #{ $line-height-slope });
 $line-height: clamp(
   #{ $min-line-height },
   #{ $line-height-slope } * var(--unitone--fluid-font-size-magnification, #{ $_font-size-scale }) + #{ $line-height-intercept },
@@ -46,6 +47,6 @@ $line-height: clamp(
   line-height: #{ $line-height };
 }
 
-$container-max-width: $max-breakpoint * 16px;  // = 1280px
+$container-max-width: $max-breakpoint * 16px; // = 1280px
 $grid-columns: 12;
 $grid-rows: 7;

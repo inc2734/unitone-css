@@ -7,7 +7,7 @@ import { PreviewConainer } from '../../components';
 
 You can scale the font size with the CSS custom property `--unitone--font-size`. Variations on font size are available based on the harmonic sequence. The minimum value is `-2` and the maximum value is `7`.
 
-If you scale the font size with this CSS custom property, the `line-height` will be automatically set to an appropriate value (By default, it scales from `1.1` to `1.6`(= `1 + var(--unitone--half-leading) * 2`), depending on font size.).
+If you scale the font size with this CSS custom property, the `line-height` will be automatically set to an appropriate value (By default, it scales from `1.1`(= `1 + var(--unitone--min-half-leading) * 2`) to `1.6`(= `1 + var(--unitone--half-leading) * 2`), depending on font size.).
 
 ```html
 <p style="--unitone--font-size: 2">
