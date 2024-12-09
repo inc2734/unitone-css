@@ -2,6 +2,6 @@
 
 @mixin fluid-typography() {
   [data-unitone-layout~="-fluid-typography"] {
-    font-size: #{ variables.$fluid-font-size } !important;
+    font-size: #{ variables.$fluid-font-size };
   }
 }

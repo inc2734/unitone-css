@@ -2,7 +2,7 @@
 
 @mixin typography() {
   [data-unitone-layout~="-root\:typography"] {
-    font-size: #{ variables.$root-font-size } !important;
+    font-size: #{ variables.$root-font-size };
   }
 
   [data-unitone-layout~="-typography"],

@@ -16,7 +16,7 @@ $_intercept: calc(#{-1 * $min-breakpoint } * #{ $_slope } + #{ $_min-font-size }
 $_preferred-font-size: calc((#{ $_intercept } * 1rem) + (#{ $_slope } * 100vw));
 $fluid-font-size: clamp(1rem * #{ $_min-font-size }, #{ $_preferred-font-size }, 1rem * #{ $_max-font-size });
 
-$min-line-height: calc(1 + 2 * var(--unitone--min-half-leading));
+$min-line-height: calc(1 + 2 * min(var(--unitone--min-half-leading), var(--unitone--half-leading)));
 $max-line-height: calc(1 + 2 * var(--unitone--half-leading));
 $max-line-height-target-font-size-ratio: 5;
 
@@ -29,7 +29,7 @@ $max-line-height-target-font-size-ratio: 5;
  *
  * @see https://www.geogebra.org/graphing?lang=ja
  */
-$line-height-slope: calc((#{ $min-line-height } - (#{ $max-line-height })) / (#{ $max-line-height-target-font-size-ratio } - 1));
+$line-height-slope: calc((#{ $min-line-height } - (#{ $max-line-height })) / (#{ $max-line-height-target-font-size-ratio - 1 }));
 $line-height-intercept: calc(#{ $max-line-height } - #{ $line-height-slope });
 $line-height: clamp(
   #{ $min-line-height },
