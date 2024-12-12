@@ -178,6 +178,11 @@ const setStairsStep = (target) => {
         return;
       }
 
+      const display = window.getComputedStyle(child).getPropertyValue('display');
+      if ('none' === display) {
+        return;
+      }
+
       child.style.setProperty('--unitone--stairs-step', '');
       const prevRect = prevChild?.getBoundingClientRect();
       const targetRect = child.getBoundingClientRect();
