@@ -4,4 +4,12 @@
   [data-unitone-layout~="-fluid-typography"] {
     font-size: #{ variables.$fluid-font-size };
   }
+
+  :where([data-unitone-layout~="-fluid-typography"]) {
+    visibility: hidden;
+  }
+
+  :where([data-unitone-layout~="-fluid-typography"][style*="--unitone--fluid-font-size-magnification:"]) {
+    visibility: visible;
+  }
 }
