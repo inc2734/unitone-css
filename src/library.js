@@ -166,48 +166,78 @@ export const dividersResizeObserver = (target, args = {}) => {
 };
 
 const setStairsStep = (target) => {
-  const firstChild = [].slice.call(target?.children ?? [])?.[0];
-  if (!!firstChild) {
-    let prevChild;
-    let stairsStep = 0;
-    let maxStairsStep = stairsStep;
-
-    [].slice.call(target.children).forEach((child) => {
-      const position = window.getComputedStyle(child).getPropertyValue('position');
-      if ('absolute' === position || 'fixed' === position) {
-        return;
-      }
-
-      const display = window.getComputedStyle(child).getPropertyValue('display');
-      if ('none' === display) {
-        return;
-      }
-
-      child.style.setProperty('--unitone--stairs-step', '');
-      const prevRect = prevChild?.getBoundingClientRect();
-      const targetRect = child.getBoundingClientRect();
-
-      if (firstChild === child || (!!prevRect?.left && prevRect.left >= targetRect.left)) {
-        stairsStep = 0;
-        child.style.setProperty('--unitone--stairs-step', stairsStep);
-      } else {
-        stairsStep++;
-        child.style.setProperty('--unitone--stairs-step', stairsStep);
-      }
-
-      prevChild = child;
-
-      if (stairsStep > maxStairsStep) {
-        maxStairsStep = stairsStep;
-      }
-    });
-
-    if (target.getAttribute('data-unitone-layout').match(/-stairs-up:right/)) {
-      target.style.setProperty('--unitone--stairs-step', maxStairsStep);
-    } else {
-      target.style.setProperty('--unitone--stairs-step', stairsStep);
-    }
+  const children = [].slice.call(target.children);
+  const firstChild = children?.[0];
+  if (!firstChild) {
+    return;
   }
+
+  // Reset
+  target.style.removeProperty('--unitone--stairs-step-overflow-volume');
+  target.style.removeProperty('--unitone--max-stairs-step');
+  [].slice.call(target?.children ?? []).forEach((child) => {
+    child.style.removeProperty('--unitone--stairs-step');
+  });
+
+  const targetRect = target.getBoundingClientRect();
+  const filteredChildren = [];
+
+  let prevChild;
+  let stairsStep = 0;
+  let maxStairsStep = stairsStep;
+
+  children.forEach((child) => {
+    const position = window.getComputedStyle(child).getPropertyValue('position');
+    const display = window.getComputedStyle(child).getPropertyValue('display');
+    if ('absolute' === position || 'fixed' === position || 'none' === display) {
+      return;
+    }
+
+    filteredChildren.push(child);
+
+    if (
+      firstChild === child ||
+      prevChild?.getBoundingClientRect()?.left >= child.getBoundingClientRect().left
+    ) {
+      stairsStep = 0;
+      child.style.setProperty('--unitone--stairs-step', stairsStep);
+    } else {
+      stairsStep++;
+      child.style.setProperty('--unitone--stairs-step', stairsStep);
+    }
+
+    prevChild = child;
+
+    if (stairsStep > maxStairsStep) {
+      maxStairsStep = stairsStep;
+    }
+  });
+
+  target.style.setProperty('--unitone--max-stairs-step', maxStairsStep);
+
+  const { childrenHeight } = filteredChildren.reduce(
+    (accumulator, current) => {
+      const _childrenTop = !accumulator?.childrenTop
+        ? current.getBoundingClientRect().top
+        : Math.min(accumulator?.childrenTop, current.getBoundingClientRect().top);
+
+      const _childrenHeight = current.getBoundingClientRect().bottom - _childrenTop;
+
+      return {
+        childrenTop: _childrenTop,
+        childrenHeight: Math.max(accumulator?.childrenHeight, _childrenHeight),
+      };
+    },
+    {
+      childrenTop: filteredChildren?.[0]?.getBoundingClientRect()?.top,
+      childrenHeight: filteredChildren?.[0]?.getBoundingClientRect()?.height,
+    },
+  );
+
+  target.style.setProperty(
+    '--unitone--stairs-step-overflow-volume',
+    childrenHeight - targetRect.height,
+  );
 };
 
 export const stairsResizeObserver = (target) => {
