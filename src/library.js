@@ -286,7 +286,7 @@ const setColumnCountForVertical = (target) => {
     .call(target.children)
     .reverse()
     .some((child) => {
-      if (!['absolute', 'fixed'].includes(getComputedStyle(child).position)) {
+      if (!['absolute', 'fixed'].includes(getComputedStyle(child).position) && 'none' !== getComputedStyle(child).display) {
         lastChild = child;
         return true;
       }
