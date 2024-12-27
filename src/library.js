@@ -37,7 +37,10 @@ export const setDividerLinewrap = (target) => {
     }
 
     const currentLayout = child.getAttribute('data-unitone-layout') || '';
-    const newLayout = currentLayout.split(' ').filter((value) => !['-bol', '-linewrap', ' '].includes(value)).join(' ');
+    const newLayout = currentLayout
+      .split(' ')
+      .filter((value) => !['-bol', '-linewrap', ' '].includes(value))
+      .join(' ');
 
     if (newLayout !== currentLayout) {
       child.setAttribute('data-unitone-layout', newLayout);
@@ -54,7 +57,7 @@ export const setDividerLinewrap = (target) => {
 
     if (
       firstChild === child ||
-      prevRect?.top < childRect.top && prevRect?.left >= childRect.left
+      (prevRect?.top < childRect.top && prevRect?.left >= childRect.left)
     ) {
       if (!newLayout.includes('-bol')) {
         newLayout.push('-bol');
@@ -287,7 +290,10 @@ const setColumnCountForVertical = (target) => {
     .call(target.children)
     .reverse()
     .some((child) => {
-      if (!['absolute', 'fixed'].includes(getComputedStyle(child).position) && 'none' !== getComputedStyle(child).display) {
+      if (
+        !['absolute', 'fixed'].includes(getComputedStyle(child).position) &&
+        'none' !== getComputedStyle(child).display
+      ) {
         lastChild = child;
         return true;
       }
