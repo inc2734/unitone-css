@@ -24,64 +24,65 @@ export const fluidFontSizeResizeObserver = (target) => {
 
 export const setDividerLinewrap = (target) => {
   const firstChild = [].slice.call(target?.children ?? [])?.[0];
-  if (!!firstChild) {
-    let prevChild;
-
-    [].slice.call(target.children).forEach((child) => {
-      const currentLayout = child.getAttribute('data-unitone-layout') || '';
-      let newLayout = currentLayout.split(' ');
-      if (child.classList.contains('unitone-empty')) {
-        child.remove();
-        return;
-      }
-
-      newLayout =
-        [...newLayout.filter((value) => !['-bol', '-linewrap', ' '].includes(value))].join(' ') ||
-        '';
-
-      if (newLayout !== currentLayout) {
-        child.setAttribute('data-unitone-layout', newLayout);
-      }
-    });
-
-    [].slice.call(target.children).forEach((child) => {
-      const baseRect = firstChild.getBoundingClientRect();
-      const prevRect = prevChild?.getBoundingClientRect();
-
-      const currentLayout = child.getAttribute('data-unitone-layout') || '';
-      let newLayout = currentLayout.split(' ');
-
-      if (firstChild === child || prevRect?.top < child.getBoundingClientRect().top) {
-        if (!newLayout.includes('-bol')) {
-          newLayout = [...newLayout, '-bol'];
-        }
-      }
-
-      if (prevRect?.top < child.getBoundingClientRect().top) {
-        const hardWrap = document.createElement('div');
-        hardWrap.classList.add('unitone-empty');
-        child.before(hardWrap);
-
-        if (prevRect?.top < hardWrap.getBoundingClientRect().top) {
-          hardWrap.remove();
-        }
-      }
-
-      if (baseRect.top < child.getBoundingClientRect().top) {
-        if (!newLayout.includes('-linewrap')) {
-          newLayout = [...newLayout, '-linewrap'];
-        }
-      }
-
-      newLayout = newLayout.filter(Boolean).join(' ') || '';
-
-      if (newLayout !== currentLayout) {
-        child.setAttribute('data-unitone-layout', newLayout);
-      }
-
-      prevChild = child;
-    });
+  if (!firstChild) {
+    return;
   }
+
+  let prevChild;
+
+  [].slice.call(target.children).forEach((child) => {
+    if (child.classList.contains('unitone-empty')) {
+      child.remove();
+      return;
+    }
+
+    const currentLayout = child.getAttribute('data-unitone-layout') || '';
+    const newLayout = currentLayout.split(' ').filter((value) => !['-bol', '-linewrap', ' '].includes(value)).join(' ');
+
+    if (newLayout !== currentLayout) {
+      child.setAttribute('data-unitone-layout', newLayout);
+    }
+  });
+
+  [].slice.call(target.children).forEach((child) => {
+    const baseRect = firstChild.getBoundingClientRect();
+    const prevRect = prevChild?.getBoundingClientRect();
+    const childRect = child.getBoundingClientRect();
+
+    const currentLayout = child.getAttribute('data-unitone-layout') || '';
+    const newLayout = currentLayout.split(' ');
+
+    if (
+      firstChild === child ||
+      prevRect?.top < childRect.top && prevRect?.left >= childRect.left
+    ) {
+      if (!newLayout.includes('-bol')) {
+        newLayout.push('-bol');
+      }
+    }
+
+    if (prevRect?.top < childRect.top) {
+      const hardWrap = document.createElement('div');
+      hardWrap.classList.add('unitone-empty');
+      child.before(hardWrap);
+
+      if (prevRect?.top < hardWrap.getBoundingClientRect().top) {
+        hardWrap.remove();
+      }
+    }
+
+    if (baseRect.top < childRect.top) {
+      if (!newLayout.includes('-linewrap')) {
+        newLayout.push('-linewrap');
+      }
+    }
+
+    if (newLayout !== currentLayout) {
+      child.setAttribute('data-unitone-layout', newLayout.filter(Boolean).join(' ') || '');
+    }
+
+    prevChild = child;
+  });
 };
 
 export const dividersResizeObserver = (target, args = {}) => {
@@ -165,7 +166,7 @@ export const dividersResizeObserver = (target, args = {}) => {
   iObserver.observe(target);
 };
 
-const setStairsStep = (target) => {
+export const setStairsStep = (target) => {
   const children = [].slice.call(target.children);
   const firstChild = children?.[0];
   if (!firstChild) {
