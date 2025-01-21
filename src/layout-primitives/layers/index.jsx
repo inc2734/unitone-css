@@ -15,10 +15,10 @@ export const Layers = ({
 }) => {
   style = {
     ...style,
-    '--unitone--min-height': '' !== (minHeight ?? '') ? minHeight : undefined,
-    '--unitone--columns': '' !== (columns ?? '') ? columns : undefined,
-    '--unitone--rows': '' !== (rows ?? '') ? rows : undefined,
-    '--unitone--blur': '' !== (blur ?? '') ? blur : undefined,
+    '--unitone--min-height': '' !== minHeight ? minHeight : undefined,
+    '--unitone--columns': '' !== columns ? columns : undefined,
+    '--unitone--rows': '' !== rows ? rows : undefined,
+    '--unitone--blur': '' !== blur ? blur : undefined,
   };
 
   return (

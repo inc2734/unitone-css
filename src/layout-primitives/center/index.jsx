@@ -3,7 +3,7 @@ import React from 'react';
 export const Center = ({ intrinsic, withText, gutters, maxWidth, style, ...props }) => {
   style = {
     ...style,
-    '--unitone--max-width': '' !== (maxWidth ?? '') ? maxWidth : undefined,
+    '--unitone--max-width': '' !== maxWidth ? maxWidth : undefined,
   };
 
   return (

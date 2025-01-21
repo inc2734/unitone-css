@@ -3,7 +3,7 @@ import React from 'react';
 export const Frame = ({ ratio, switchRatio, style, ...props }) => {
   style = {
     ...style,
-    '--unitone--ratio': !!ratio ? ratio : undefined,
+    '--unitone--ratio': '' !== ratio ? ratio : undefined,
   };
 
   return (

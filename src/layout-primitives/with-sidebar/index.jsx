@@ -14,8 +14,8 @@ export const WithSidebar = ({
 }) => {
   style = {
     ...style,
-    '--unitone--sidebar-width': '' !== (sidebarWidth ?? '') ? sidebarWidth : undefined,
-    '--unitone--content-min-width': '' !== (contentMinWidth ?? '') ? contentMinWidth : undefined,
+    '--unitone--sidebar-width': '' !== sidebarWidth ? sidebarWidth : undefined,
+    '--unitone--content-min-width': '' !== contentMinWidth ? contentMinWidth : undefined,
   };
 
   return (

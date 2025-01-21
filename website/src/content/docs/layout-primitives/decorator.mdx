@@ -1,4 +1,4 @@
-import { Decorator } from '@inc2734/unitone-css';
+import { Decorator, Layers } from '@inc2734/unitone-css';
 import { Tabs } from 'nextra/components';
 import { PreviewConainer, Badge } from '../../../components';
 
@@ -283,6 +283,57 @@ Add the box shadow.
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
 				</Decorator>
 			</Decorator>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### Backdrop filter
+
+Backdrop filter.
+
+- <Badge>HTML</Badge> `--unitone--backdrop-filter-blur` / <Badge>JSX</Badge> `backdropFilterBlur=\{value\}`
+- <Badge>HTML</Badge> `--unitone--backdrop-filter-brightness` / <Badge>JSX</Badge> `backdropFilterBrightness=\{value\}`
+- <Badge>HTML</Badge> `--unitone--backdrop-filter-contrast` / <Badge>JSX</Badge> `backdropFilterContrast=\{value\}`
+- <Badge>HTML</Badge> `--unitone--backdrop-filter-grayscale` / <Badge>JSX</Badge> `backdropFilterGrayscale=\{value\}`
+- <Badge>HTML</Badge> `--unitone--backdrop-filter-hue-rotate` / <Badge>JSX</Badge> `backdropFilterHueRotate=\{value\}`
+- <Badge>HTML</Badge> `--unitone--backdrop-filter-invert` / <Badge>JSX</Badge> `backdropFilterInvert=\{value\}`
+- <Badge>HTML</Badge> `--unitone--backdrop-filter-sepia` / <Badge>JSX</Badge> `backdropFilterSepia=\{value\}`
+- <Badge>HTML</Badge> `--unitone--backdrop-filter-saturate` / <Badge>JSX</Badge> `backdropFilterSatuation=\{value\}`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="layers" -cover>
+			<img src="https://placehold.jp/1024x768.jpg" alt="" />
+
+			<div data-unitone-layout="decorator" style="--unitone--backdrop-filter-blur: 6px">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Decorator, Layers } from '@inc2734/unitone-css';
+
+		<Layers cover>
+			<img src="https://placehold.jp/1024x768.jpg" alt="" />
+
+			<Decorator backdropFilterBlur="6px">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+			</Decorator>
+		</Layers>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Layers cover>
+				<img src="https://placehold.jp/1024x768.jpg" alt="" />
+
+				<Decorator backdropFilterBlur="6px">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+				</Decorator>
+			</Layers>
 		</PreviewConainer>
 	</Tabs.Tab>
 </Tabs>

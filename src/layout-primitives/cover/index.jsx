@@ -3,7 +3,7 @@ import React from 'react';
 export const Cover = ({ gap, minHeight, justifyContent, padding, noPadding, style, ...props }) => {
   style = {
     ...style,
-    '--unitone--min-height': !!minHeight ? minHeight : undefined,
+    '--unitone--min-height': '' !== minHeight ? minHeight : undefined,
   };
 
   return (
@@ -39,19 +39,19 @@ export const CoverContent = ({
 
   style = {
     ...style,
-    '--unitone--top': 'undefined' !== typeof top ? top : undefined,
-    '--unitone--right': 'undefined' !== typeof right ? right : undefined,
-    '--unitone--bottom': 'undefined' !== typeof bottom ? bottom : undefined,
-    '--unitone--left': 'undefined' !== typeof left ? left : undefined,
-    '--unitone--z-index': 'undefined' !== typeof zIndex ? zIndex : undefined,
+    '--unitone--top': '' !== top ? top : undefined,
+    '--unitone--right': '' !== right ? right : undefined,
+    '--unitone--bottom': '' !== bottom ? bottom : undefined,
+    '--unitone--left': '' !== left ? left : undefined,
+    '--unitone--z-index': '' !== zIndex ? zIndex : undefined,
   };
 
   return (
     <Tag
       data-unitone-layout={[
         'cover__content',
-        'undefined' !== typeof valign ? `-valign:${valign}` : undefined,
-        'undefined' !== typeof position ? `-position:${position}` : undefined,
+        '' !== (valign ?? '') ? `-valign:${valign}` : undefined,
+        '' !== (position ?? '') ? `-position:${position}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

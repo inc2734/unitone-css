@@ -12,7 +12,7 @@ export const ResponsiveGrid = ({
 }) => {
   style = {
     ...style,
-    '--unitone--column-min-width': !!columnMinWidth ? columnMinWidth : undefined,
+    '--unitone--column-min-width': '' !== columnMinWidth ? columnMinWidth : undefined,
   };
 
   return (

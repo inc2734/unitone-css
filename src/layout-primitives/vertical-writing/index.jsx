@@ -11,8 +11,8 @@ export const VerticalWriting = ({
 }) => {
   style = {
     ...style,
-    '--unitone--max-height': '' !== (maxHeight ?? '') ? maxHeight : undefined,
-    '--unitone--threshold': '' !== (threshold ?? '') ? threshold : undefined,
+    '--unitone--max-height': '' !== maxHeight ? maxHeight : undefined,
+    '--unitone--threshold': '' !== threshold ? threshold : undefined,
   };
 
   return (

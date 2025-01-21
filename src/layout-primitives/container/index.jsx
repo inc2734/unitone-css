@@ -3,7 +3,7 @@ import React from 'react';
 export const Container = ({ align, gutters, maxWidth, text, style, ...props }) => {
   style = {
     ...style,
-    '--unitone--max-width': !!maxWidth ? maxWidth : undefined,
+    '--unitone--max-width': '' !== maxWidth ? maxWidth : undefined,
   };
 
   return (

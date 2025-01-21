@@ -3,7 +3,7 @@ import React from 'react';
 export const Text = ({ center, column, applyGap, gap, gutters, maxWidth, style, ...props }) => {
   style = {
     ...style,
-    '--unitone--max-width': !!maxWidth ? maxWidth : undefined,
+    '--unitone--max-width': '' !== maxWidth ? maxWidth : undefined,
   };
 
   return (

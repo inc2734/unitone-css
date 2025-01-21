@@ -3,8 +3,8 @@ import React from 'react';
 export const Float = ({ gap, minWidth, minMeasure, position, style, ...props }) => {
   style = {
     ...style,
-    '--unitone--min-width': !!minWidth ? minWidth : undefined,
-    '--unitone--min-measure': !!minMeasure ? minMeasure : undefined,
+    '--unitone--min-width': '' !== minWidth ? minWidth : undefined,
+    '--unitone--min-measure': '' !== minMeasure ? minMeasure : undefined,
   };
 
   return (

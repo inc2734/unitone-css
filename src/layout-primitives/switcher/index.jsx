@@ -13,7 +13,7 @@ export const Switcher = ({
 }) => {
   style = {
     ...style,
-    '--unitone--threshold': !!threshold ? threshold : undefined,
+    '--unitone--threshold': '' !== threshold ? threshold : undefined,
   };
 
   return (
