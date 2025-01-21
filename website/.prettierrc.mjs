@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   bracketSameLine: false,
   bracketSpacing: true,
   printWidth: 100,

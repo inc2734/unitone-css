@@ -27,14 +27,21 @@ export function PreviewConainer({ backgroundColor, color, ...props }) {
 
 export function Image(props) {
   const { publicRuntimeConfig } = getConfig();
-  const basePath = (publicRuntimeConfig && publicRuntimeConfig.basePath) || '';
+  const basePath = publicRuntimeConfig?.basePath ?? '';
 
   return <NextImage {...props} src={`${basePath}${props.src}`} />;
 }
 
 export function Badge(props) {
   return (
-    <span style={{ background: '#3730a3', padding: '.5em', fontSize: '14px', borderRadius: '4px' }}>
+    <span
+      style={{
+        background: '#3730a3',
+        padding: '.5em',
+        fontSize: '14px',
+        borderRadius: '4px',
+      }}
+    >
       {props.children}
     </span>
   );
@@ -43,7 +50,12 @@ export function Badge(props) {
 export function ColorTile({ color }) {
   return (
     <div
-      style={{ background: color, height: '2rem', width: '2rem', border: '1px solid #ffffff11' }}
+      style={{
+        background: color,
+        height: '2rem',
+        width: '2rem',
+        border: '1px solid #ffffff11',
+      }}
     />
   );
 }

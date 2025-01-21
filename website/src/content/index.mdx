@@ -1,0 +1,9 @@
+import { redirect } from 'next/navigation';
+
+export const metadata = {
+  display: 'hidden',
+}
+
+export default function Index() {
+  redirect('/docs/overview');
+}

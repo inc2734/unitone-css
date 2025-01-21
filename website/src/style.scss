@@ -1,0 +1,6 @@
+:is(html[class~=dark] body) {
+	--tw-bg-opacity: 1;
+	background-color: rgba(17, 17, 17, var(--tw-bg-opacity));
+	--tw-text-opacity: 1;
+	color: rgba(243, 244, 246, var(--tw-text-opacity));
+}
