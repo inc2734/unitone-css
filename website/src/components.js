@@ -7,7 +7,7 @@ export function PreviewConainer({ backgroundColor, color, ...props }) {
     <div style={{ marginBlock: '1rem' }}>
       <div data-unitone-layout="-root:typography">
         <Decorator
-          backgroundColor={backgroundColor || 'var(--unitone--color--light-gray)'}
+          backgroundColor={backgroundColor || '#fff'}
           color={color || 'var(--unitone--color--text)'}
         >
           <Decorator

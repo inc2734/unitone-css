@@ -12,6 +12,7 @@
 @use 'stack/stack';
 @use 'switcher/switcher';
 @use 'text/text';
+@use 'texture/texture';
 @use 'vertical-writing/vertical-writing';
 @use 'with-sidebar/with-sidebar';
 
@@ -31,6 +32,7 @@
 @include stack.stack();
 @include switcher.switcher();
 @include text.text();
+@include texture.texture();
 @include vertical-writing.vertical-writing();
 @include with-sidebar.with-sidebar();
 

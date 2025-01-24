@@ -13,5 +13,6 @@ export { ResponsiveGrid } from './responsive-grid';
 export { Stack } from './stack';
 export { Switcher } from './switcher';
 export { Text } from './text';
+export { Texture } from './texture';
 export { VerticalWriting } from './vertical-writing';
 export { WithSidebar } from './with-sidebar';

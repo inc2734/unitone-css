@@ -297,53 +297,6 @@ You can specify how the elements should look when stacked.
 	</Tabs.Tab>
 </Tabs>
 
-### Grid item position
-
-You can set the position of child elements with the associated properties of the CSS grid.
-
-- `align-self`: `data-unitone-layout="-align-self:end"`
-- `justify-self`: `data-unitone-layout="-justify-self:end"`
-- `grid-column`: `--unitone--grid-column: 1/-1`
-- `grid-row`: `--unitone--grid-row: 1/-1`
-
-<Tabs items={['HTML', 'JSX', 'Preview']}>
-	<Tabs.Tab>
-		```html
-		<div data-unitone-layout="layers -portrait">
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
-
-			<div data-unitone-layout="-align-self:center -justify-self:center" style={{ '--unitone--grid-column': '2/-2' }}>
-				...
-			</div>
-		</div>
-		```
-	</Tabs.Tab>
-	<Tabs.Tab>
-		```jsx
-		import { Layers } from '@inc2734/unitone-css';
-
-		<Layers portrait>
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
-
-			<div data-unitone-layout="-align-self:center -justify-self:center" style={{ '--unitone--grid-column': '2/-2' }}>
-				...
-			</div>
-		</Layers>
-		```
-	</Tabs.Tab>
-	<Tabs.Tab>
-		<PreviewConainer>
-			<Layers>
-				<img src="https://placehold.jp/400x300.jpg" alt="" />
-
-				<div data-unitone-layout="-align-self:center -justify-self:center" style={{ '--unitone--grid-column': '2/-2' }}>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
-				</div>
-			</Layers>
-		</PreviewConainer>
-	</Tabs.Tab>
-</Tabs>
-
 ### <Badge>HTML</Badge> --unitone--columns / <Badge>JSX</Badge> columns=\{value\}
 
 Number of grid columns.
@@ -405,6 +358,53 @@ Number of grid rows.
 				<img src="https://placehold.jp/400x300.jpg" alt="" />
 
 				<div data-unitone-layout="-align-self:end">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+				</div>
+			</Layers>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### Grid item position
+
+You can set the position of child elements with the associated properties of the CSS grid.
+
+- `align-self`: `data-unitone-layout="-align-self:end"`
+- `justify-self`: `data-unitone-layout="-justify-self:end"`
+- `grid-column`: `--unitone--grid-column: 1/-1`
+- `grid-row`: `--unitone--grid-row: 1/-1`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="layers -portrait">
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+
+			<div data-unitone-layout="-align-self:center -justify-self:center" style="--unitone--grid-column: 2/-2">
+				...
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Layers } from '@inc2734/unitone-css';
+
+		<Layers portrait>
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+
+			<div data-unitone-layout="-align-self:center -justify-self:center" style={{ '--unitone--grid-column': '2/-2' }}>
+				...
+			</div>
+		</Layers>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Layers>
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+
+				<div data-unitone-layout="-align-self:center -justify-self:center" style={{ '--unitone--grid-column': '2/-2' }}>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
 				</div>
 			</Layers>

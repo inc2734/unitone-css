@@ -1,0 +1,140 @@
+import { Texture, Decorator } from '@inc2734/unitone-css';
+import { Tabs } from 'nextra/components';
+import { PreviewConainer, Badge } from '../../../components';
+
+# Texture
+
+Display Texture.
+
+## Usage
+
+<PreviewConainer>
+	<Texture texture="dots">
+		<Decorator padding={1}>
+			<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+		</Decorator>
+	</Texture>
+</PreviewConainer>
+
+<Tabs items={['HTML', 'JSX']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="texture -texture:dots">
+			<div data-unitone-layout="decorator -padding:1">
+				<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Texture, Decorator } from '@inc2734/unitone-css';
+
+		<Texture>
+			<Decorator padding={1}>
+				<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+			</Decorator>
+		</Text>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Props
+
+### <Badge>HTML</Badge> -texture:\{variation\} / <Badge>JSX</Badge> texture=\{variation\}
+
+Set any texture.
+
+`Dots` / `offset-dots` / `grid` / `horizontal-stripe` / `vertical-stripe` / `checker-pattern`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="texture -texture:offset-dots">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Texture } from '@inc2734/unitone-css';
+
+		<Texture texture="offset-dots">
+			...
+		</Texture>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Texture texture="offset-dots">
+				<Decorator padding={1}>
+					<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+				</Decorator>
+			</Texture>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> --unitone--texture-color / <Badge>JSX</Badge> textureColor=\{value\}
+
+Set texture color.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="texture -texture:dots" style="--unitone--texture-color: #2e1065">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Texture } from '@inc2734/unitone-css';
+
+		<Texture texture="dots" textureColor="#2e1065">
+			...
+		</Texture>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Texture texture="dots" textureColor="#2e1065">
+				<Decorator padding={1}>
+					<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+				</Decorator>
+			</Texture>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> --unitone--texture-size / <Badge>JSX</Badge> textureSize=\{value\}
+
+Set texture size.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="texture -texture:dots" style="--unitone--texture-size: 25">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Texture } from '@inc2734/unitone-css';
+
+		<Texture texture="dots" textureSize="25">
+			...
+		</Texture>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Texture texture="dots" textureSize="25">
+				<Decorator padding={1}>
+					<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+				</Decorator>
+			</Texture>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>

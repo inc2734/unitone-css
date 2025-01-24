@@ -7,15 +7,15 @@
   padding-left: var(--unitone--gutters);
   max-width: none;
 
-	&[data-unitone-layout*="-gap\:"] {
-		--unitone--gap: inherit !important;
-	}
+  &[data-unitone-layout*="-gap\:"] {
+    --unitone--gap: inherit !important;
+  }
 
-	@for $i from -2 through 7 {
-		&[data-unitone-layout~="-gap\:#{ $i }"] > * {
-			--unitone--text-gap: var(--unitone--s#{ $i }) !important;
-		}
-	}
+  @for $i from -2 through 7 {
+    &[data-unitone-layout~="-gap\:#{ $i }"] > * {
+      --unitone--text-gap: var(--unitone--s#{ $i }) !important;
+    }
+  }
 
   @at-root {
     :where(& > *) {
