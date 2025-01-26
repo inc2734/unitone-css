@@ -76,14 +76,18 @@
   &[data-unitone-layout~="-texture\:checker-pattern"] {
     background-image:
       repeating-linear-gradient(
-        45deg, var(--unitone--texture-color) 25%,
-        transparent 25%, transparent 75%,
+        45deg,
+        var(--unitone--texture-color) 25%,
+        transparent 25%,
+        transparent 75%,
         var(--unitone--texture-color) 75%,
         var(--unitone--texture-color)
       ),
       repeating-linear-gradient(
-        45deg, var(--unitone--texture-color) 25%,
-        transparent 25%, transparent 75%,
+        45deg,
+        var(--unitone--texture-color) 25%,
+        transparent 25%,
+        transparent 75%,
         var(--unitone--texture-color) 75%,
         var(--unitone--texture-color)
       );
@@ -95,6 +99,70 @@
     background-size:
       calc(var(--unitone--texture-gap) * 2)
       calc(var(--unitone--texture-gap) * 2);
+  }
+
+  &[data-unitone-layout~="-texture\:graph-paper"] {
+    background-image:
+      linear-gradient(
+        var(--unitone--texture-color) calc(var(--unitone--texture-size) * .8),
+        transparent calc(var(--unitone--texture-size) * .8)
+      ),
+      linear-gradient(
+        90deg,
+        var(--unitone--texture-color) calc(var(--unitone--texture-size) * .8),
+        transparent calc(var(--unitone--texture-size) * .8)
+      ),
+      linear-gradient(
+        var(--unitone--texture-color) calc(var(--unitone--texture-size) * .5),
+        transparent calc(var(--unitone--texture-size) * .5)
+      ),
+      linear-gradient(
+        90deg,
+        var(--unitone--texture-color) calc(var(--unitone--texture-size) * .5),
+        transparent calc(var(--unitone--texture-size) * .5)
+      );
+    background-position:
+      calc(var(--unitone--texture-size) * -.8) calc(var(--unitone--texture-size) * -.8),
+      calc(var(--unitone--texture-size) * -.8) calc(var(--unitone--texture-size) * -.8),
+      calc(var(--unitone--texture-size) * -.5) calc(var(--unitone--texture-size) * -.5),
+      calc(var(--unitone--texture-size) * -.5) calc(var(--unitone--texture-size) * -.5);
+    background-size:
+      max(var(--unitone--texture-gap) * 3, var(--unitone--texture-size) * 30)
+      calc(max(var(--unitone--texture-gap) * 3, var(--unitone--texture-size) * 30) * 2),
+      calc(max(var(--unitone--texture-gap) * 3, var(--unitone--texture-size) * 30) * 2)
+      max(var(--unitone--texture-gap) * 3, var(--unitone--texture-size) * 30),
+      calc(max(var(--unitone--texture-gap) * 3, var(--unitone--texture-size) * 30) / 5)
+      calc(max(var(--unitone--texture-gap) * 3, var(--unitone--texture-size) * 30) / 5),
+      calc(max(var(--unitone--texture-gap) * 3, var(--unitone--texture-size) * 30) / 5)
+      calc(max(var(--unitone--texture-gap) * 3, var(--unitone--texture-size) * 30) / 5);
+  }
+
+  &[data-unitone-layout~="-texture\:slash"] {
+    background-image:
+      repeating-linear-gradient(
+        135deg,
+        var(--unitone--texture-color) 0,
+        var(--unitone--texture-color) var(--unitone--texture-size),
+        transparent 0,
+        transparent 50%
+      );
+    background-size:
+      max(var(--unitone--texture-gap), var(--unitone--texture-size) * 1.5 + 2px)
+      max(var(--unitone--texture-gap), var(--unitone--texture-size) * 1.5 + 2px);
+  }
+
+  &[data-unitone-layout~="-texture\:backslash"] {
+    background-image:
+      repeating-linear-gradient(
+        45deg,
+        var(--unitone--texture-color) 0,
+        var(--unitone--texture-color) var(--unitone--texture-size),
+        transparent 0,
+        transparent 50%
+      );
+    background-size:
+      max(var(--unitone--texture-gap), var(--unitone--texture-size) * 1.5 + 2px)
+      max(var(--unitone--texture-gap), var(--unitone--texture-size) * 1.5 + 2px);
   }
 }
 
