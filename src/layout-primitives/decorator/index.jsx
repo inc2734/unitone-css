@@ -16,14 +16,7 @@ export const Decorator = ({
   left,
   zIndex,
   overflow,
-  backdropFilterBlur,
-  backdropFilterBrightness,
-  backdropFilterContrast,
-  backdropFilterGrayscale,
-  backdropFilterHueRotate,
-  backdropFilterInvert,
-  backdropFilterSepia,
-  backdropFilterSatuation,
+  backdropFilter,
   style,
   ...props
 }) => {
@@ -40,21 +33,7 @@ export const Decorator = ({
     '--unitone--bottom': '' !== bottom ? bottom : undefined,
     '--unitone--left': '' !== left ? left : undefined,
     '--unitone--z-index': '' !== zIndex ? zIndex : undefined,
-    '--unitone--backdrop-filter-blur': '' !== backdropFilterBlur ? backdropFilterBlur : undefined,
-    '--unitone--backdrop-filter-brightness':
-      '' !== backdropFilterBrightness ? backdropFilterBrightness : undefined,
-    '--unitone--backdrop-filter-contrast':
-      '' !== backdropFilterContrast ? backdropFilterContrast : undefined,
-    '--unitone--backdrop-filter-grayscale':
-      '' !== backdropFilterGrayscale ? backdropFilterGrayscale : undefined,
-    '--unitone--backdrop-filter-hue-rotate':
-      '' !== backdropFilterHueRotate ? backdropFilterHueRotate : undefined,
-    '--unitone--backdrop-filter-invert':
-      '' !== backdropFilterInvert ? backdropFilterInvert : undefined,
-    '--unitone--backdrop-filter-sepia':
-      '' !== backdropFilterSepia ? backdropFilterSepia : undefined,
-    '--unitone--backdrop-filter-saturate':
-      '' !== backdropFilterSatuation ? backdropFilterSatuation : undefined,
+    '--unitone--backdrop-filter': '' !== backdropFilter ? backdropFilter : undefined,
   };
 
   return (
