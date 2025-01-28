@@ -1,0 +1,8 @@
+@mixin background-clip() {
+  [data-unitone-layout~="-background-clip"] {
+    @supports (background-clip: text) {
+      background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+    }
+  }
+}
