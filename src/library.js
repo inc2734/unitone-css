@@ -10,13 +10,15 @@ export const fluidFontSizeResizeObserver = (target) => {
   let prevWidth = 0;
 
   const observer = new ResizeObserver((entries) => {
-    for (const entry of entries) {
-      const width = entry.borderBoxSize?.[0].inlineSize;
-      if (width !== prevWidth) {
-        setFluidFontSizeMagnification(entry.target);
-        prevWidth = width;
+    requestAnimationFrame(() => {
+      for (const entry of entries) {
+        const width = entry.borderBoxSize?.[0].inlineSize;
+        if (width !== prevWidth) {
+          setFluidFontSizeMagnification(entry.target);
+          prevWidth = width;
+        }
       }
-    }
+    });
   });
 
   observer.observe(target);
