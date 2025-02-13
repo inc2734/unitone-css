@@ -1,5 +1,6 @@
 @mixin background-clip() {
-  [data-unitone-layout~="-background-clip"] {
+  // When using with WordPress, the detail of the gradation will be lost, so make it stronger.
+  [data-unitone-layout~="-background-clip"]:not(:root) {
     @supports (background-clip: text) {
       background-clip: text !important;
       -webkit-text-fill-color: transparent !important;
