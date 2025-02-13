@@ -94,13 +94,15 @@ export const dividersResizeObserver = (target, args = {}) => {
   let prevWidth = 0;
 
   const observer = new ResizeObserver((entries) => {
-    for (const entry of entries) {
-      const width = entry.borderBoxSize?.[0].inlineSize;
-      if (width !== prevWidth) {
-        setDividerLinewrap(entry.target);
-        prevWidth = width;
+    requestAnimationFrame(() => {
+      for (const entry of entries) {
+        const width = entry.borderBoxSize?.[0].inlineSize;
+        if (width !== prevWidth) {
+          setDividerLinewrap(entry.target);
+          prevWidth = width;
+        }
       }
-    }
+    });
   });
 
   const mObserverArgs = {
@@ -130,7 +132,7 @@ export const dividersResizeObserver = (target, args = {}) => {
           setDividerLinewrap(entry.target);
         }
       } else if ('attributes' === entry.type && 'class' === entry.attributeName) {
-        const ignoreClassNames = [...(args?.ignore?.className ?? [])];
+        const ignoreClassNames = [...(args?.ignore?.className ?? ['unitone-empty'])];
 
         const current = (entry.target.getAttribute(entry.attributeName) ?? '')
           .split(' ')
@@ -151,24 +153,13 @@ export const dividersResizeObserver = (target, args = {}) => {
     }
   });
 
-  const iObserver = new IntersectionObserver(
-    (entries, _observer) => {
-      entries.forEach((entry) => {
-        const target = entry.target;
+  observer.observe(target);
+  mObserver.observe(target, mObserverArgs);
 
-        if (entry.isIntersecting) {
-          _observer.unobserve(target);
-          observer.observe(target);
-          mObserver.observe(target, mObserverArgs);
-        }
-      });
-    },
-    {
-      rootMargin: '100px 0px',
-    },
-  );
-
-  iObserver.observe(target);
+  return {
+    resizeObserver: observer,
+    mutationObserver: mObserver,
+  };
 };
 
 export const setStairsStep = (target) => {
@@ -250,16 +241,20 @@ export const stairsResizeObserver = (target) => {
   let prevWidth = 0;
 
   const observer = new ResizeObserver((entries) => {
-    for (const entry of entries) {
-      const width = entry.borderBoxSize?.[0].inlineSize;
-      if (width !== prevWidth) {
-        setStairsStep(entry.target);
-        prevWidth = width;
+    requestAnimationFrame(() => {
+      for (const entry of entries) {
+        const width = entry.borderBoxSize?.[0].inlineSize;
+        if (width !== prevWidth) {
+          setStairsStep(entry.target);
+          prevWidth = width;
+        }
       }
-    }
+    });
   });
 
   observer.observe(target);
+
+  return observer;
 };
 
 const setColumnCountForVertical = (target) => {
@@ -335,20 +330,17 @@ export const verticalsResizeObserver = (target) => {
     `${target.getAttribute('data-unitone-layout')} -initialized`,
   );
 
-  const observer = new ResizeObserver((entries, thisObserver) => {
-    for (const entry of entries) {
-      const width = entry.contentRect?.width;
-      if (parseInt(width) !== parseInt(prevWidth)) {
-        prevWidth = width;
-        observer.unobserve(target);
-        thisObserver.unobserve(entry.target);
-        entry.target.parentNode.style.height = '';
-        setColumnCountForVertical(entry.target);
-        setTimeout(() => {
-          thisObserver.observe(entry.target);
-        }, 500);
+  const observer = new ResizeObserver((entries) => {
+    requestAnimationFrame(() => {
+      for (const entry of entries) {
+        const width = entry.contentRect?.width;
+        if (parseInt(width) !== parseInt(prevWidth)) {
+          prevWidth = width;
+          entry.target.parentNode.style.height = '';
+          setColumnCountForVertical(entry.target);
+        }
       }
-    }
+    });
   });
 
   observer.observe(target);
@@ -360,34 +352,30 @@ export const verticalsResizeObserver = (target) => {
     subtree: true,
   };
 
-  let timer;
-  const mObserver = new MutationObserver((entries, thisObserver) => {
-    clearTimeout(timer);
+  const mObserver = new MutationObserver((entries) => {
+    requestAnimationFrame(() => {
+      if (0 < entries.length) {
+        const entry = entries[0];
+        const addedNode = entry.addedNodes?.[0];
+        const removedNode = entry.removedNodes?.[0];
+        if (
+          (addedNode?.nodeType === Node.ELEMENT_NODE &&
+            'vertical-writing__thresholder' === addedNode.getAttribute('data-unitone-layout')) ||
+          (removedNode?.nodeType === Node.ELEMENT_NODE &&
+            'vertical-writing__thresholder' === removedNode.getAttribute('data-unitone-layout'))
+        ) {
+          return;
+        }
 
-    if (0 < entries.length) {
-      const entry = entries[0];
-      const addedNode = entry.addedNodes?.[0];
-      const removedNode = entry.removedNodes?.[0];
-      if (
-        (addedNode?.nodeType === Node.ELEMENT_NODE &&
-          'vertical-writing__thresholder' === addedNode.getAttribute('data-unitone-layout')) ||
-        (removedNode?.nodeType === Node.ELEMENT_NODE &&
-          'vertical-writing__thresholder' === removedNode.getAttribute('data-unitone-layout'))
-      ) {
-        return;
-      }
-
-      thisObserver.disconnect();
-      observer.unobserve(target);
-      timer = setTimeout(() => {
         setColumnCountForVertical(target);
-        setTimeout(() => {
-          thisObserver.observe(target, mObserverArgs);
-          observer.observe(target);
-        }, 500);
-      }, 500);
-    }
+      }
+    });
   });
 
   mObserver.observe(target, mObserverArgs);
+
+  return {
+    resizeObserver: observer,
+    mutationObserver: mObserver,
+  };
 };
