@@ -11,7 +11,7 @@
   gap: min(3.33333%, var(--unitone--gap));
   min-height: var(--unitone--min-height);
 
-  @media (orientation: portrait) {
+  @media (orientation: portrait) and (max-width: 599px) {
     &[data-unitone-layout~="-portrait"] {
       --unitone--columns: var(--unitone--grid-rows);
       --unitone--rows: var(--unitone--grid-columns);

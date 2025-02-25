@@ -47,7 +47,7 @@
     }
   }
 
-  @media (orientation: portrait) {
+  @media (orientation: portrait) and (max-width: 599px) {
     &[data-unitone-layout~="-switch"] {
       column-count: auto;
       width: auto;

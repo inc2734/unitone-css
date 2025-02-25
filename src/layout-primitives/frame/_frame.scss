@@ -27,7 +27,7 @@
     vertical-align: top;
   }
 
-  @media (orientation: portrait) {
+  @media (orientation: portrait) and (max-width: 599px) {
     &[data-unitone-layout~="-switch"] {
       aspect-ratio: calc(1 / (var(--unitone--ratio))) !important;
     }
