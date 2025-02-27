@@ -29,7 +29,6 @@ export const setDividerLinewrap = (target) => {
   if (!firstChild) {
     return;
   }
-
   let prevChild;
 
   [].slice.call(target.children).forEach((child) => {
@@ -129,7 +128,7 @@ export const dividersResizeObserver = (target, args = {}) => {
           .join(' ');
 
         if (current !== old) {
-          setDividerLinewrap(entry.target);
+          setDividerLinewrap(target);
         }
       } else if ('attributes' === entry.type && 'class' === entry.attributeName) {
         const ignoreClassNames = [...(args?.ignore?.className ?? ['unitone-empty'])];
@@ -145,10 +144,10 @@ export const dividersResizeObserver = (target, args = {}) => {
           .join(' ');
 
         if (current !== old) {
-          setDividerLinewrap(entry.target);
+          setDividerLinewrap(target);
         }
       } else if ('attributes' === entry.type && 'style' === entry.attributeName) {
-        setDividerLinewrap(entry.target);
+        setDividerLinewrap(target);
       }
     }
   });
