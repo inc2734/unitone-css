@@ -7,15 +7,17 @@ import {
 
 document.addEventListener('DOMContentLoaded', () => {
   const observer = new MutationObserver((entries) => {
-    entries.forEach((entry) => {
-      entry.addedNodes.forEach((addedNode) => {
-        const targets = addedNode.parentNode?.querySelectorAll(
-          '[data-unitone-layout~="-fluid-typography"]',
-        );
-        targets?.forEach((target) => {
-          fluidFontSizeResizeObserver(target);
+    requestAnimationFrame(() => {
+      for (const entry of entries) {
+        entry.addedNodes.forEach((addedNode) => {
+          const targets = addedNode.parentNode?.querySelectorAll(
+            '[data-unitone-layout~="-fluid-typography"]',
+          );
+          targets?.forEach((target) => {
+            fluidFontSizeResizeObserver(target);
+          });
         });
-      });
+      }
     });
   });
 
@@ -27,15 +29,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   const observer = new MutationObserver((entries) => {
-    entries.forEach((entry) => {
-      entry.addedNodes.forEach((addedNode) => {
-        const targets = addedNode.parentNode?.querySelectorAll(
-          '[data-unitone-layout*="-divider:"]',
-        );
-        targets?.forEach((target) => {
-          dividersResizeObserver(target);
+    requestAnimationFrame(() => {
+      for (const entry of entries) {
+        entry.addedNodes.forEach((addedNode) => {
+          const targets = addedNode.parentNode?.querySelectorAll(
+            '[data-unitone-layout*="-divider:"]',
+          );
+          targets?.forEach((target) => {
+            dividersResizeObserver(target);
+          });
         });
-      });
+      }
     });
   });
 
@@ -47,13 +51,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   const observer = new MutationObserver((entries) => {
-    entries.forEach((entry) => {
-      entry.addedNodes.forEach((addedNode) => {
-        const targets = addedNode.parentNode?.querySelectorAll('[data-unitone-layout*="-stairs:"]');
-        targets?.forEach((target) => {
-          stairsResizeObserver(target);
+    requestAnimationFrame(() => {
+      for (const entry of entries) {
+        entry.addedNodes.forEach((addedNode) => {
+          const targets = addedNode.parentNode?.querySelectorAll(
+            '[data-unitone-layout*="-stairs:"]',
+          );
+          targets?.forEach((target) => {
+            stairsResizeObserver(target);
+          });
         });
-      });
+      }
     });
   });
 
@@ -65,15 +73,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   const observer = new MutationObserver((entries) => {
-    entries.forEach((entry) => {
-      entry.addedNodes.forEach((addedNode) => {
-        const targets = addedNode.parentNode?.querySelectorAll(
-          '[data-unitone-layout~="vertical-writing"]',
-        );
-        targets?.forEach((target) => {
-          verticalsResizeObserver(target);
+    requestAnimationFrame(() => {
+      for (const entry of entries) {
+        entry.addedNodes.forEach((addedNode) => {
+          const targets = addedNode.parentNode?.querySelectorAll(
+            '[data-unitone-layout~="vertical-writing"]',
+          );
+          targets?.forEach((target) => {
+            verticalsResizeObserver(target);
+          });
         });
-      });
+      }
     });
   });
 

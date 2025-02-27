@@ -1,3 +1,14 @@
+export function debounce(fn, delay) {
+  let timer;
+
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      fn.apply(this, args);
+    }, delay);
+  };
+}
+
 const setFluidFontSizeMagnification = (target) => {
   const baseFontSize = parseFloat(
     window.getComputedStyle(document.documentElement).getPropertyValue('font-size'),
@@ -9,8 +20,8 @@ const setFluidFontSizeMagnification = (target) => {
 export const fluidFontSizeResizeObserver = (target) => {
   let prevWidth = 0;
 
-  const observer = new ResizeObserver((entries) => {
-    requestAnimationFrame(() => {
+  const observer = new ResizeObserver(
+    debounce((entries) => {
       for (const entry of entries) {
         const width = entry.borderBoxSize?.[0].inlineSize;
         if (width !== prevWidth) {
@@ -18,8 +29,8 @@ export const fluidFontSizeResizeObserver = (target) => {
           prevWidth = width;
         }
       }
-    });
-  });
+    }, 250),
+  );
 
   observer.observe(target);
 };
@@ -92,8 +103,8 @@ export const setDividerLinewrap = (target) => {
 export const dividersResizeObserver = (target, args = {}) => {
   let prevWidth = 0;
 
-  const observer = new ResizeObserver((entries) => {
-    requestAnimationFrame(() => {
+  const observer = new ResizeObserver(
+    debounce((entries) => {
       for (const entry of entries) {
         const width = entry.borderBoxSize?.[0].inlineSize;
         if (width !== prevWidth) {
@@ -101,8 +112,8 @@ export const dividersResizeObserver = (target, args = {}) => {
           prevWidth = width;
         }
       }
-    });
-  });
+    }, 250),
+  );
 
   const mObserverArgs = {
     attributes: true,
@@ -113,43 +124,45 @@ export const dividersResizeObserver = (target, args = {}) => {
   };
 
   const mObserver = new MutationObserver((entries) => {
-    for (const entry of entries) {
-      if ('attributes' === entry.type && 'data-unitone-layout' === entry.attributeName) {
-        const ignoreUnitoneLayouts = [...(args?.ignore?.layout ?? []), ...['-bol', '-linewrap']];
+    requestAnimationFrame(() => {
+      for (const entry of entries) {
+        if ('attributes' === entry.type && 'data-unitone-layout' === entry.attributeName) {
+          const ignoreUnitoneLayouts = [...(args?.ignore?.layout ?? []), ...['-bol', '-linewrap']];
 
-        const current = (entry.target.getAttribute(entry.attributeName) ?? '')
-          .split(' ')
-          .filter((v) => !ignoreUnitoneLayouts.includes(v))
-          .join(' ');
+          const current = (entry.target.getAttribute(entry.attributeName) ?? '')
+            .split(' ')
+            .filter((v) => !ignoreUnitoneLayouts.includes(v))
+            .join(' ');
 
-        const old = (entry.oldValue ?? '')
-          .split(' ')
-          .filter((v) => !ignoreUnitoneLayouts.includes(v))
-          .join(' ');
+          const old = (entry.oldValue ?? '')
+            .split(' ')
+            .filter((v) => !ignoreUnitoneLayouts.includes(v))
+            .join(' ');
 
-        if (current !== old) {
+          if (current !== old) {
+            setDividerLinewrap(target);
+          }
+        } else if ('attributes' === entry.type && 'class' === entry.attributeName) {
+          const ignoreClassNames = [...(args?.ignore?.className ?? ['unitone-empty'])];
+
+          const current = (entry.target.getAttribute(entry.attributeName) ?? '')
+            .split(' ')
+            .filter((v) => !ignoreClassNames.includes(v))
+            .join(' ');
+
+          const old = (entry.oldValue ?? '')
+            .split(' ')
+            .filter((v) => !ignoreClassNames.includes(v))
+            .join(' ');
+
+          if (current !== old) {
+            setDividerLinewrap(target);
+          }
+        } else if ('attributes' === entry.type && 'style' === entry.attributeName) {
           setDividerLinewrap(target);
         }
-      } else if ('attributes' === entry.type && 'class' === entry.attributeName) {
-        const ignoreClassNames = [...(args?.ignore?.className ?? ['unitone-empty'])];
-
-        const current = (entry.target.getAttribute(entry.attributeName) ?? '')
-          .split(' ')
-          .filter((v) => !ignoreClassNames.includes(v))
-          .join(' ');
-
-        const old = (entry.oldValue ?? '')
-          .split(' ')
-          .filter((v) => !ignoreClassNames.includes(v))
-          .join(' ');
-
-        if (current !== old) {
-          setDividerLinewrap(target);
-        }
-      } else if ('attributes' === entry.type && 'style' === entry.attributeName) {
-        setDividerLinewrap(target);
       }
-    }
+    });
   });
 
   observer.observe(target);
@@ -239,8 +252,8 @@ export const setStairsStep = (target) => {
 export const stairsResizeObserver = (target) => {
   let prevWidth = 0;
 
-  const observer = new ResizeObserver((entries) => {
-    requestAnimationFrame(() => {
+  const observer = new ResizeObserver(
+    debounce((entries) => {
       for (const entry of entries) {
         const width = entry.borderBoxSize?.[0].inlineSize;
         if (width !== prevWidth) {
@@ -248,8 +261,8 @@ export const stairsResizeObserver = (target) => {
           prevWidth = width;
         }
       }
-    });
-  });
+    }, 250),
+  );
 
   observer.observe(target);
 
@@ -329,8 +342,8 @@ export const verticalsResizeObserver = (target) => {
     `${target.getAttribute('data-unitone-layout')} -initialized`,
   );
 
-  const observer = new ResizeObserver((entries) => {
-    requestAnimationFrame(() => {
+  const observer = new ResizeObserver(
+    debounce((entries) => {
       for (const entry of entries) {
         const width = entry.contentRect?.width;
         if (parseInt(width) !== parseInt(prevWidth)) {
@@ -339,8 +352,8 @@ export const verticalsResizeObserver = (target) => {
           setColumnCountForVertical(entry.target);
         }
       }
-    });
-  });
+    }, 250),
+  );
 
   observer.observe(target);
 
