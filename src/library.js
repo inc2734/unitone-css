@@ -188,7 +188,6 @@ export const setStairsStep = (target) => {
     child.style.removeProperty('--unitone--stairs-step');
   });
 
-  const targetRect = target.getBoundingClientRect();
   const filteredChildren = [];
 
   let prevChild;
@@ -224,29 +223,13 @@ export const setStairsStep = (target) => {
 
   target.style.setProperty('--unitone--max-stairs-step', maxStairsStep);
 
-  const { childrenHeight } = filteredChildren.reduce(
-    (accumulator, current) => {
-      const _childrenTop = !accumulator?.childrenTop
-        ? current.getBoundingClientRect().top
-        : Math.min(accumulator?.childrenTop, current.getBoundingClientRect().top);
+  const maxChildrenTop = filteredChildren.reduce((accumulator, current) => {
+    const computedStyle = current.ownerDocument.defaultView.getComputedStyle(current);
+    const top = parseFloat(computedStyle.getPropertyValue('top') ?? 0);
+    return isNaN(top) ? accumulator : accumulator > top ? accumulator : top;
+  }, 0);
 
-      const _childrenHeight = current.getBoundingClientRect().bottom - _childrenTop;
-
-      return {
-        childrenTop: _childrenTop,
-        childrenHeight: Math.max(accumulator?.childrenHeight, _childrenHeight),
-      };
-    },
-    {
-      childrenTop: filteredChildren?.[0]?.getBoundingClientRect()?.top,
-      childrenHeight: filteredChildren?.[0]?.getBoundingClientRect()?.height,
-    },
-  );
-
-  target.style.setProperty(
-    '--unitone--stairs-step-overflow-volume',
-    childrenHeight - targetRect.height,
-  );
+  target.style.setProperty('--unitone--stairs-step-overflow-volume', maxChildrenTop);
 };
 
 export const stairsResizeObserver = (target) => {
