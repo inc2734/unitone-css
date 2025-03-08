@@ -11,6 +11,30 @@
   max-width: min(100%, var(--unitone--content-max-width));
 }
 
+@mixin _aside--stripe--vertical() {
+  padding:
+    calc(var(--unitone--row-gap) / 2 + var(--unitone--divider-width))
+    0
+    calc(var(--unitone--row-gap) / 2);
+}
+
+@mixin _main--stripe--vertical() {
+  padding:
+    calc(var(--unitone--row-gap) + var(--unitone--divider-width))
+    0
+    var(--unitone--row-gap);
+}
+
+@mixin _main--bordered--vertical() {
+  padding: calc(var(--unitone--row-gap) + var(--unitone--divider-width));
+}
+
+@mixin _aside--bordered--vertical() {
+  padding:
+    calc(var(--unitone--row-gap) / 2 + var(--unitone--divider-width))
+    calc(var(--unitone--row-gap) + var(--unitone--divider-width));
+}
+
 @mixin abstract-with-sidebar() {
   --unitone--sidebar-width: auto;
   --unitone--content-min-width: 50%;
@@ -52,6 +76,212 @@
 
   &[data-unitone-layout~="-revert"] {
     flex-direction: row-reverse;
+  }
+
+  &:where([data-unitone-layout*="-divider\:"]) {
+    --unitone--divider-width: 1px;
+    --unitone--divider-style: solid;
+    --unitone--divider-color: var(--unitone--color--gray);
+
+    visibility: hidden;
+
+    &[data-unitone-layout~="divider:initialized"] {
+      visibility: visible;
+    }
+
+    > * {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: var(--unitone--align-items);
+    }
+
+    > ::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      user-select: none;
+      pointer-events: none;
+      border-width: 0;
+      border-style: var(--unitone--divider-style);
+      border-color: var(--unitone--divider-color);
+    }
+  }
+
+  &[data-unitone-layout~="-divider\:stripe"] {
+    align-items: stretch;
+
+    // For vertical layout.
+    &[data-unitone-layout~="-stack"] {
+      // When -bol / -linewrap is added, the vertical/horizontal layout may switch.
+      // This will break the design.
+      // This is necessary to prevent this.
+      --unitone--content-min-width: 100% !important;
+
+      row-gap: 0;
+
+      &:where(
+        :not([data-unitone-layout~="-revert"])[data-unitone-layout~="-sidebar\:right"],
+        :not([data-unitone-layout~="-revert"]):not([data-unitone-layout~="-sidebar\:left"]),
+        [data-unitone-layout~="-revert"][data-unitone-layout~="-sidebar\:left"]
+      ) {
+        > :first-child {
+          @include _main--stripe--vertical();
+        }
+
+        > :nth-child(2) {
+          @include _aside--stripe--vertical();
+        }
+      }
+
+      &:where(
+        :not([data-unitone-layout~="-revert"])[data-unitone-layout~="-sidebar\:left"],
+        [data-unitone-layout~="-revert"][data-unitone-layout~="-sidebar\:right"],
+        [data-unitone-layout~="-revert"]:not([data-unitone-layout~="-sidebar\:left"])
+      ) {
+        > :first-child {
+          @include _aside--stripe--vertical();
+        }
+
+        > :nth-child(2) {
+          @include _main--stripe--vertical();
+        }
+      }
+
+      > :first-child::before {
+        border-width: var(--unitone--divider-width) 0;
+      }
+
+      > :nth-child(2)::before {
+        border-width: 0 0 var(--unitone--divider-width);
+      }
+    }
+
+    // For horizontal layout.
+    &:not([data-unitone-layout~="-stack"]) {
+      column-gap: 0;
+
+      > * {
+        padding: 0 calc(var(--unitone--column-gap) + var(--unitone--divider-width));
+      }
+
+      > :first-child::before {
+        border-width: 0 var(--unitone--divider-width);
+      }
+
+      > :nth-child(2)::before {
+        border-width: 0 var(--unitone--divider-width) 0 0;
+      }
+    }
+  }
+
+  &[data-unitone-layout~="-divider\:slash"] {
+    --unitone--divider-height: 2rem;
+
+    gap: 0;
+    align-items: stretch;
+
+    > :first-child::before {
+      height: var(--unitone--divider-height);
+      border-left-width: var(--unitone--divider-width);
+      border-color: color-mix(in oklab, var(--unitone--divider-color) 97%, #000);
+      transform: rotate(22.5deg);
+    }
+
+    // For vertical layout.
+    &[data-unitone-layout~="-stack"] {
+      > :first-child {
+        padding-bottom: var(--unitone--row-gap);
+
+        &::before {
+          inset:
+            100%
+            auto
+            auto
+            calc(50% - var(--unitone--divider-width) / 2);
+        }
+      }
+
+      > :nth-child(2) {
+        padding-top: calc(var(--unitone--row-gap) + var(--unitone--divider-height));
+      }
+    }
+
+    // For horizontal layout.
+    &:not([data-unitone-layout~="-stack"]) {
+      > :first-child {
+        padding-right: var(--unitone--column-gap);
+
+        &::before {
+          right: auto;
+          bottom: auto;
+          left: 100%;
+        }
+      }
+
+      > :nth-child(2) {
+        padding-left: calc(var(--unitone--column-gap) + var(--unitone--divider-width));
+      }
+    }
+  }
+
+  &[data-unitone-layout~="-divider\:bordered"] {
+    gap: 0;
+    align-items: stretch;
+
+    > ::before {
+      border-width: var(--unitone--divider-width);
+    }
+
+    // For vertical layout.
+    &[data-unitone-layout~="-stack"] {
+      &:where(
+        :not([data-unitone-layout~="-revert"])[data-unitone-layout~="-sidebar\:right"],
+        :not([data-unitone-layout~="-revert"]):not([data-unitone-layout~="-sidebar\:left"]),
+        [data-unitone-layout~="-revert"][data-unitone-layout~="-sidebar\:left"]
+      ) {
+        > :first-child {
+          @include _main--bordered--vertical();
+        }
+
+        > :nth-child(2) {
+          @include _aside--bordered--vertical();
+        }
+      }
+
+      &:where(
+        :not([data-unitone-layout~="-revert"])[data-unitone-layout~="-sidebar\:left"],
+        [data-unitone-layout~="-revert"][data-unitone-layout~="-sidebar\:right"],
+        [data-unitone-layout~="-revert"]:not([data-unitone-layout~="-sidebar\:left"])
+      ) {
+        > :first-child {
+          @include _aside--bordered--vertical();
+        }
+
+        > :nth-child(2) {
+          @include _main--bordered--vertical();
+        }
+      }
+
+      > :not(:first-child)::before {
+        border-top: 0;
+      }
+    }
+
+    // For horizontal layout.
+    &:not([data-unitone-layout~="-stack"]) {
+      > * {
+        padding: calc(var(--unitone--column-gap) + var(--unitone--divider-width));
+      }
+
+      > :not(:first-child) {
+        padding-left: var(--unitone--column-gap);
+
+        &::before {
+          border-left: 0;
+        }
+      }
+    }
   }
 }
 

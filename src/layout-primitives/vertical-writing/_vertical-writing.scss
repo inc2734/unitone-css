@@ -16,7 +16,7 @@
   text-orientation: var(--unitone--text-orientation);
   visibility: hidden;
 
-  &[data-unitone-layout~="-initialized"] {
+  &[data-unitone-layout~="vertical-writing\:initialized"] {
     visibility: visible;
   }
 

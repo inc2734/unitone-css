@@ -41,17 +41,22 @@ export const setDividerLinewrap = (target) => {
     return;
   }
   let prevChild;
+  const baseRect = firstChild.getBoundingClientRect();
+
+  target.setAttribute(
+    'data-unitone-layout',
+    target
+      .getAttribute('data-unitone-layout')
+      .split(' ')
+      .filter((value) => !['divider:initialized', '-stack'].includes(value))
+      .join(' '),
+  );
 
   [].slice.call(target.children).forEach((child) => {
-    if (child.classList.contains('unitone-empty')) {
-      child.remove();
-      return;
-    }
-
     const currentLayout = child.getAttribute('data-unitone-layout') || '';
     const newLayout = currentLayout
       .split(' ')
-      .filter((value) => !['-bol', '-linewrap', ' '].includes(value))
+      .filter((value) => !['-bol', '-linewrap'].includes(value))
       .join(' ');
 
     if (newLayout !== currentLayout) {
@@ -59,34 +64,20 @@ export const setDividerLinewrap = (target) => {
     }
   });
 
-  [].slice.call(target.children).forEach((child) => {
-    const baseRect = firstChild.getBoundingClientRect();
+  [].slice.call(target.children).forEach((child, index) => {
     const prevRect = prevChild?.getBoundingClientRect();
     const childRect = child.getBoundingClientRect();
 
     const currentLayout = child.getAttribute('data-unitone-layout') || '';
     const newLayout = currentLayout.split(' ');
 
-    if (
-      firstChild === child ||
-      (prevRect?.top < childRect.top && prevRect?.left >= childRect.left)
-    ) {
+    if (0 === index || (prevRect?.top < childRect.top && prevRect?.left >= childRect.left)) {
       if (!newLayout.includes('-bol')) {
         newLayout.push('-bol');
       }
     }
 
-    if (prevRect?.top < childRect.top) {
-      const hardWrap = document.createElement('div');
-      hardWrap.classList.add('unitone-empty');
-      child.before(hardWrap);
-
-      if (prevRect?.top < hardWrap.getBoundingClientRect().top) {
-        hardWrap.remove();
-      }
-    }
-
-    if (baseRect.top < childRect.top) {
+    if (0 < index && baseRect.top < childRect.top) {
       if (!newLayout.includes('-linewrap')) {
         newLayout.push('-linewrap');
       }
@@ -98,6 +89,21 @@ export const setDividerLinewrap = (target) => {
 
     prevChild = child;
   });
+
+  const isStack = [].slice
+    .call(target.children)
+    .every((child) => child.getBoundingClientRect().left === baseRect.left);
+  if (isStack) {
+    target.setAttribute(
+      'data-unitone-layout',
+      `${target.getAttribute('data-unitone-layout')} -stack`,
+    );
+  }
+
+  target.setAttribute(
+    'data-unitone-layout',
+    `${target.getAttribute('data-unitone-layout')} divider:initialized`,
+  );
 };
 
 export const dividersResizeObserver = (target, args = {}) => {
@@ -127,7 +133,10 @@ export const dividersResizeObserver = (target, args = {}) => {
     requestAnimationFrame(() => {
       for (const entry of entries) {
         if ('attributes' === entry.type && 'data-unitone-layout' === entry.attributeName) {
-          const ignoreUnitoneLayouts = [...(args?.ignore?.layout ?? []), ...['-bol', '-linewrap']];
+          const ignoreUnitoneLayouts = [
+            ...(args?.ignore?.layout ?? []),
+            ...['divider:initialized', '-bol', '-linewrap', '-stack'],
+          ];
 
           const current = (entry.target.getAttribute(entry.attributeName) ?? '')
             .split(' ')
@@ -143,7 +152,7 @@ export const dividersResizeObserver = (target, args = {}) => {
             setDividerLinewrap(target);
           }
         } else if ('attributes' === entry.type && 'class' === entry.attributeName) {
-          const ignoreClassNames = [...(args?.ignore?.className ?? ['unitone-empty'])];
+          const ignoreClassNames = [...(args?.ignore?.className ?? [])];
 
           const current = (entry.target.getAttribute(entry.attributeName) ?? '')
             .split(' ')
@@ -322,7 +331,7 @@ export const verticalsResizeObserver = (target) => {
 
   target.setAttribute(
     'data-unitone-layout',
-    `${target.getAttribute('data-unitone-layout')} -initialized`,
+    `${target.getAttribute('data-unitone-layout')} vertical-writing:initialized`,
   );
 
   const observer = new ResizeObserver(
