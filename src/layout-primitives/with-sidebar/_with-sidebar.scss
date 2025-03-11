@@ -25,6 +25,18 @@
     var(--unitone--row-gap);
 }
 
+@mixin _aside--divide--vertical() {
+  padding:
+    calc(var(--unitone--row-gap) / 2)
+    0;
+}
+
+@mixin _main--divide--vertical() {
+  padding:
+    calc(var(--unitone--row-gap) / 2)
+    0;
+}
+
 @mixin _main--bordered--vertical() {
   padding: calc(var(--unitone--row-gap) + var(--unitone--divider-width));
 }
@@ -171,6 +183,69 @@
 
       > :nth-child(2)::before {
         border-width: 0 var(--unitone--divider-width) 0 0;
+      }
+    }
+  }
+
+  &[data-unitone-layout~="-divider\:divide"] {
+    align-items: stretch;
+
+    // For vertical layout.
+    &[data-unitone-layout~="-stack"] {
+      // When -bol / -linewrap is added, the vertical/horizontal layout may switch.
+      // This will break the design.
+      // This is necessary to prevent this.
+      --unitone--content-min-width: 100% !important;
+
+      row-gap: 0;
+
+      &:where(
+        :not([data-unitone-layout~="-revert"])[data-unitone-layout~="-sidebar\:right"],
+        :not([data-unitone-layout~="-revert"]):not([data-unitone-layout~="-sidebar\:left"]),
+        [data-unitone-layout~="-revert"][data-unitone-layout~="-sidebar\:left"]
+      ) {
+        > :first-child {
+          @include _main--divide--vertical();
+        }
+
+        > :nth-child(2) {
+          @include _aside--divide--vertical();
+        }
+      }
+
+      &:where(
+        :not([data-unitone-layout~="-revert"])[data-unitone-layout~="-sidebar\:left"],
+        [data-unitone-layout~="-revert"][data-unitone-layout~="-sidebar\:right"],
+        [data-unitone-layout~="-revert"]:not([data-unitone-layout~="-sidebar\:left"])
+      ) {
+        > :first-child {
+          @include _aside--divide--vertical();
+        }
+
+        > :nth-child(2) {
+          @include _main--divide--vertical();
+        }
+      }
+
+      > :first-child::before {
+        border-width: 0 0 var(--unitone--divider-width);
+      }
+    }
+
+    // For horizontal layout.
+    &:not([data-unitone-layout~="-stack"]) {
+      column-gap: 0;
+
+      > :first-child {
+        padding-right: calc(var(--unitone--column-gap) + var(--unitone--divider-width));
+
+        &::before {
+          border-width: 0 var(--unitone--divider-width) 0 0;
+        }
+      }
+
+      > :nth-child(2) {
+         padding-left: var(--unitone--column-gap);
       }
     }
   }
