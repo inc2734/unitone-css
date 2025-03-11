@@ -104,4 +104,6 @@ figcaption {
 
   margin: var(--unitone--s-2) 0 0;
   text-align: start;
+  width: 0;
+  min-width: fit-content;
 }
