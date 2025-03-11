@@ -22,6 +22,7 @@ const head = (
   <>
     <link rel="icon" href={`${basePath}/icon.png`} sizes="32x32" />
     <link rel="apple-touch-icon" href="/icon.png" />
+    <script src={`${basePath}/packages/@inc2734/unitone-css/dist/app.js`} defer />
   </>
 );
 
