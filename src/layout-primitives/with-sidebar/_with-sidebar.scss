@@ -1,3 +1,7 @@
+@use 'sass:list';
+@use 'sass:selector';
+@use 'sass:string';
+
 @mixin _aside() {
   flex-basis: var(--unitone--sidebar-width);
   flex-grow: 1;
@@ -11,41 +15,26 @@
   max-width: min(100%, var(--unitone--content-max-width));
 }
 
-@mixin _aside--stripe--vertical() {
-  padding:
-    calc(var(--unitone--row-gap) / 2 + var(--unitone--divider-width))
-    0
-    calc(var(--unitone--row-gap) / 2);
-}
+$selector-main-aside: (
+  ':not([data-unitone-layout~="-revert"])[data-unitone-layout~="-sidebar:right"]',
+  ':not([data-unitone-layout~="-revert"]):not([data-unitone-layout~="-sidebar:left"])',
+  '[data-unitone-layout~="-revert"][data-unitone-layout~="-sidebar:left"]'
+);
 
-@mixin _main--stripe--vertical() {
-  padding:
-    calc(var(--unitone--row-gap) + var(--unitone--divider-width))
-    0
-    var(--unitone--row-gap);
-}
+$selector-aside-main: (
+  ':not([data-unitone-layout~="-revert"])[data-unitone-layout~="-sidebar:left"]',
+  '[data-unitone-layout~="-revert"][data-unitone-layout~="-sidebar:right"]',
+  '[data-unitone-layout~="-revert"]:not([data-unitone-layout~="-sidebar:left"])'
+);
 
-@mixin _aside--divide--vertical() {
-  padding:
-    calc(var(--unitone--row-gap) / 2)
-    0;
-}
+$selector-right-sidebar: (
+  '[data-unitone-layout~="-sidebar:right"]',
+  ':not([data-unitone-layout~="-sidebar:left"])'
+);
 
-@mixin _main--divide--vertical() {
-  padding:
-    calc(var(--unitone--row-gap) / 2)
-    0;
-}
-
-@mixin _main--bordered--vertical() {
-  padding: calc(var(--unitone--row-gap) + var(--unitone--divider-width));
-}
-
-@mixin _aside--bordered--vertical() {
-  padding:
-    calc(var(--unitone--row-gap) / 2 + var(--unitone--divider-width))
-    calc(var(--unitone--row-gap) + var(--unitone--divider-width));
-}
+$selector-left-sidebar: (
+  '[data-unitone-layout~="-sidebar:left"]',
+);
 
 @mixin abstract-with-sidebar() {
   --unitone--sidebar-width: auto;
@@ -62,28 +51,14 @@
   row-gap: var(--unitone--row-gap);
   align-items: var(--unitone--align-items);
 
-  &:not([data-unitone-layout~="-revert"])[data-unitone-layout~="-sidebar\:right"],
-  &:not([data-unitone-layout~="-revert"]):not([data-unitone-layout~="-sidebar\:left"]),
-  &[data-unitone-layout~="-revert"][data-unitone-layout~="-sidebar\:left"] {
-    > :first-child {
-      @include _main();
-    }
-
-    > :nth-child(2) {
-      @include _aside();
-    }
+  &:where(#{ $selector-main-aside }) > :first-child,
+  &:where(#{ $selector-aside-main }) > :nth-child(2) {
+    @include _main();
   }
 
-  &:not([data-unitone-layout~="-revert"])[data-unitone-layout~="-sidebar\:left"],
-  &[data-unitone-layout~="-revert"][data-unitone-layout~="-sidebar\:right"],
-  &[data-unitone-layout~="-revert"]:not([data-unitone-layout~="-sidebar\:left"]) {
-    > :first-child {
-      @include _aside();
-    }
-
-    > :nth-child(2) {
-      @include _main();
-    }
+  &:where(#{ $selector-main-aside }) > :nth-child(2),
+  &:where(#{ $selector-aside-main }) > :first-child {
+    @include _aside();
   }
 
   &[data-unitone-layout~="-revert"] {
@@ -118,10 +93,6 @@
       border-style: var(--unitone--divider-style);
       border-color: var(--unitone--divider-color);
     }
-  }
-
-  &[data-unitone-layout~="-divider\:stripe"] {
-    align-items: stretch;
 
     // For vertical layout.
     &[data-unitone-layout~="-stack"] {
@@ -129,43 +100,43 @@
       // This will break the design.
       // This is necessary to prevent this.
       --unitone--content-min-width: 100% !important;
+    }
+  }
 
+  &[data-unitone-layout~="-divider\:stripe"] {
+    align-items: stretch;
+
+    // For vertical layout.
+    &[data-unitone-layout~="-stack"] {
       row-gap: 0;
 
-      &:where(
-        :not([data-unitone-layout~="-revert"])[data-unitone-layout~="-sidebar\:right"],
-        :not([data-unitone-layout~="-revert"]):not([data-unitone-layout~="-sidebar\:left"]),
-        [data-unitone-layout~="-revert"][data-unitone-layout~="-sidebar\:left"]
-      ) {
-        > :first-child {
-          @include _main--stripe--vertical();
-        }
+      &:where(#{ $selector-main-aside }) > :first-child,
+      &:where(#{ $selector-aside-main }) > :nth-child(2) {
+        padding-top: calc(var(--unitone--row-gap) + var(--unitone--divider-width));
+        padding-bottom: calc(var(--unitone--row-gap) + var(--unitone--divider-width));
 
-        > :nth-child(2) {
-          @include _aside--stripe--vertical();
+        &::before {
+          border-top-width: var(--unitone--divider-width);
+          border-bottom-width: var(--unitone--divider-width);
         }
       }
 
-      &:where(
-        :not([data-unitone-layout~="-revert"])[data-unitone-layout~="-sidebar\:left"],
-        [data-unitone-layout~="-revert"][data-unitone-layout~="-sidebar\:right"],
-        [data-unitone-layout~="-revert"]:not([data-unitone-layout~="-sidebar\:left"])
-      ) {
-        > :first-child {
-          @include _aside--stripe--vertical();
-        }
+      &:where(#{ $selector-aside-main }) > :first-child {
+        padding-top: calc(var(--unitone--row-gap) / 2 + var(--unitone--divider-width));
+        padding-bottom: calc(var(--unitone--row-gap) / 2);
 
-        > :nth-child(2) {
-          @include _main--stripe--vertical();
+        &::before {
+          border-top-width: var(--unitone--divider-width);
         }
       }
 
-      > :first-child::before {
-        border-width: var(--unitone--divider-width) 0;
-      }
+       &:where(#{ $selector-main-aside }) > :nth-child(2) {
+        padding-top: calc(var(--unitone--row-gap) / 2);
+        padding-bottom: calc(var(--unitone--row-gap) / 2 + var(--unitone--divider-width));
 
-      > :nth-child(2)::before {
-        border-width: 0 0 var(--unitone--divider-width);
+        &::before {
+          border-bottom-width: var(--unitone--divider-width);
+        }
       }
     }
 
@@ -174,15 +145,23 @@
       column-gap: 0;
 
       > * {
-        padding: 0 calc(var(--unitone--column-gap) + var(--unitone--divider-width));
+        padding-right: calc(var(--unitone--column-gap) + var(--unitone--divider-width));
+        padding-left: calc(var(--unitone--column-gap) + var(--unitone--divider-width));
       }
 
-      > :first-child::before {
-        border-width: 0 var(--unitone--divider-width);
+      &:where(:not([data-unitone-layout~="-revert"])) > :first-child,
+      &:where([data-unitone-layout~="-revert"]) > :nth-child(2) {
+        &::before {
+          border-right-width: var(--unitone--divider-width);
+          border-left-width: var(--unitone--divider-width);
+        }
       }
 
-      > :nth-child(2)::before {
-        border-width: 0 var(--unitone--divider-width) 0 0;
+      &:where(:not([data-unitone-layout~="-revert"])) > :nth-child(2),
+      &:where([data-unitone-layout~="-revert"]) > :first-child {
+        &::before {
+          border-right-width: var(--unitone--divider-width);
+        }
       }
     }
   }
@@ -192,43 +171,28 @@
 
     // For vertical layout.
     &[data-unitone-layout~="-stack"] {
-      // When -bol / -linewrap is added, the vertical/horizontal layout may switch.
-      // This will break the design.
-      // This is necessary to prevent this.
-      --unitone--content-min-width: 100% !important;
-
       row-gap: 0;
 
-      &:where(
-        :not([data-unitone-layout~="-revert"])[data-unitone-layout~="-sidebar\:right"],
-        :not([data-unitone-layout~="-revert"]):not([data-unitone-layout~="-sidebar\:left"]),
-        [data-unitone-layout~="-revert"][data-unitone-layout~="-sidebar\:left"]
-      ) {
-        > :first-child {
-          @include _main--divide--vertical();
-        }
-
-        > :nth-child(2) {
-          @include _aside--divide--vertical();
+      > :first-child {
+        &::before {
+          border-width: 0 0 var(--unitone--divider-width);
         }
       }
 
-      &:where(
-        :not([data-unitone-layout~="-revert"])[data-unitone-layout~="-sidebar\:left"],
-        [data-unitone-layout~="-revert"][data-unitone-layout~="-sidebar\:right"],
-        [data-unitone-layout~="-revert"]:not([data-unitone-layout~="-sidebar\:left"])
-      ) {
-        > :first-child {
-          @include _aside--divide--vertical();
-        }
-
-        > :nth-child(2) {
-          @include _main--divide--vertical();
-        }
+      &:where(#{ $selector-main-aside }) > :first-child {
+        padding-bottom: calc(var(--unitone--row-gap) + var(--unitone--divider-width));
       }
 
-      > :first-child::before {
-        border-width: 0 0 var(--unitone--divider-width);
+      &:where(#{ $selector-main-aside }) > :nth-child(2) {
+        padding-top: calc(var(--unitone--row-gap) / 2);
+      }
+
+      &:where(#{ $selector-aside-main }) > :first-child {
+        padding-bottom: calc(var(--unitone--row-gap) / 2 + var(--unitone--divider-width));
+      }
+
+      &:where(#{ $selector-aside-main }) > :nth-child(2) {
+        padding-top: var(--unitone--row-gap);
       }
     }
 
@@ -236,16 +200,18 @@
     &:not([data-unitone-layout~="-stack"]) {
       column-gap: 0;
 
-      > :first-child {
+      &:where(:not([data-unitone-layout~="-revert"])) > :first-child,
+      &:where([data-unitone-layout~="-revert"]) > :nth-child(2) {
         padding-right: calc(var(--unitone--column-gap) + var(--unitone--divider-width));
 
         &::before {
-          border-width: 0 var(--unitone--divider-width) 0 0;
+          border-right-width: var(--unitone--divider-width);
         }
       }
 
-      > :nth-child(2) {
-         padding-left: var(--unitone--column-gap);
+      &:where(:not([data-unitone-layout~="-revert"])) > :nth-child(2),
+      &:where([data-unitone-layout~="-revert"]) > :first-child {
+        padding-left: var(--unitone--column-gap);
       }
     }
   }
@@ -257,6 +223,7 @@
     align-items: stretch;
 
     > :first-child::before {
+      right: auto;
       height: var(--unitone--divider-height);
       border-left-width: var(--unitone--divider-width);
       border-color: color-mix(in oklab, var(--unitone--divider-color) 97%, #000);
@@ -284,7 +251,8 @@
 
     // For horizontal layout.
     &:not([data-unitone-layout~="-stack"]) {
-      > :first-child {
+      &:where(:not([data-unitone-layout~="-revert"])) > :first-child,
+      &:where([data-unitone-layout~="-revert"]) > :nth-child(2) {
         padding-right: var(--unitone--column-gap);
 
         &::before {
@@ -294,7 +262,8 @@
         }
       }
 
-      > :nth-child(2) {
+      &:where(:not([data-unitone-layout~="-revert"])) > :nth-child(2),
+      &:where([data-unitone-layout~="-revert"]) > :first-child {
         padding-left: calc(var(--unitone--column-gap) + var(--unitone--divider-width));
       }
     }
@@ -304,42 +273,38 @@
     gap: 0;
     align-items: stretch;
 
-    > ::before {
-      border-width: var(--unitone--divider-width);
-    }
-
     // For vertical layout.
     &[data-unitone-layout~="-stack"] {
-      &:where(
-        :not([data-unitone-layout~="-revert"])[data-unitone-layout~="-sidebar\:right"],
-        :not([data-unitone-layout~="-revert"]):not([data-unitone-layout~="-sidebar\:left"]),
-        [data-unitone-layout~="-revert"][data-unitone-layout~="-sidebar\:left"]
-      ) {
-        > :first-child {
-          @include _main--bordered--vertical();
-        }
-
-        > :nth-child(2) {
-          @include _aside--bordered--vertical();
-        }
+      > ::before {
+        border-width: var(--unitone--divider-width);
       }
 
-      &:where(
-        :not([data-unitone-layout~="-revert"])[data-unitone-layout~="-sidebar\:left"],
-        [data-unitone-layout~="-revert"][data-unitone-layout~="-sidebar\:right"],
-        [data-unitone-layout~="-revert"]:not([data-unitone-layout~="-sidebar\:left"])
-      ) {
-        > :first-child {
-          @include _aside--bordered--vertical();
-        }
-
-        > :nth-child(2) {
-          @include _main--bordered--vertical();
-        }
+      > :nth-child(2)::before {
+        border-top-width: 0;
       }
 
-      > :not(:first-child)::before {
-        border-top: 0;
+      &:where(#{ $selector-main-aside }) > :first-child {
+        padding: calc(var(--unitone--row-gap) + var(--unitone--divider-width));
+      }
+
+      &:where(#{ $selector-main-aside }) > :nth-child(2) {
+        padding:
+          calc(var(--unitone--row-gap) / 2)
+          calc(var(--unitone--row-gap) + var(--unitone--divider-width))
+          calc(var(--unitone--row-gap) / 2 + var(--unitone--divider-width));
+      }
+
+      &:where(#{ $selector-aside-main }) > :first-child {
+        padding:
+          calc(var(--unitone--row-gap) / 2 + var(--unitone--divider-width))
+          calc(var(--unitone--row-gap) + var(--unitone--divider-width));
+      }
+
+      &:where(#{ $selector-aside-main }) > :nth-child(2) {
+        padding:
+          var(--unitone--row-gap)
+          calc(var(--unitone--row-gap) + var(--unitone--divider-width))
+          calc(var(--unitone--row-gap) + var(--unitone--divider-width));
       }
     }
 
@@ -347,9 +312,14 @@
     &:not([data-unitone-layout~="-stack"]) {
       > * {
         padding: calc(var(--unitone--column-gap) + var(--unitone--divider-width));
+
+        &::before {
+          border-width: var(--unitone--divider-width);
+        }
       }
 
-      > :not(:first-child) {
+      &:where(:not([data-unitone-layout~="-revert"])) > :nth-child(2),
+      &:where([data-unitone-layout~="-revert"]) > :first-child {
         padding-left: var(--unitone--column-gap);
 
         &::before {
