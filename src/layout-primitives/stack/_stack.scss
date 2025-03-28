@@ -130,6 +130,8 @@
   }
 
   &[data-unitone-layout~="-negative"] {
+    gap: 0;
+
     &:where(:not([data-unitone-layout~="-revert"])) {
       > :not(:first-child) {
         margin-top: calc(-1 * var(--unitone--gap));
