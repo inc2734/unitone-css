@@ -2,7 +2,7 @@
 
 @mixin fluid-typography() {
   [data-unitone-layout~="-fluid-typography"] {
-    font-size: #{ variables.$fluid-font-size };
+    font-size: #{ variables.$fluid-font-size } !important;
   }
 
   :where([data-unitone-layout~="-fluid-typography"]) {

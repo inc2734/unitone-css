@@ -10,7 +10,7 @@ $font-size: calc($_font-size-scale * 1rem);
 $font-size-em: calc($_font-size-scale * 1em);
 
 $_max-font-size: calc(var(--unitone--harmonic-sequence-base) / (var(--unitone--max-harmonic-sequence-base) - var(--unitone--font-size)));
-$_min-font-size: calc(var(--unitone--harmonic-sequence-base) / (var(--unitone--min-harmonic-sequence-base) - var(--unitone--font-size)));
+$_min-font-size: calc(var(--unitone--harmonic-sequence-base) / (var(--unitone--min-harmonic-sequence-base) - var(--unitone--font-size)) + 1 - (var(--unitone--harmonic-sequence-base) / var(--unitone--min-harmonic-sequence-base)));
 $_slope: calc((#{ $_max-font-size } - #{ $_min-font-size }) / (#{ $max-breakpoint - $min-breakpoint }));
 $_intercept: calc(#{-1 * $min-breakpoint } * #{ $_slope } + #{ $_min-font-size });
 $_preferred-font-size: calc((#{ $_intercept } * 1rem) + (#{ $_slope } * 100vw));
