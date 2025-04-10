@@ -4,4 +4,10 @@
       --unitone--stairs-margin: var(--unitone--s#{ $i }) !important;
     }
   }
+
+  @for $i from 2 through 7 {
+    [data-unitone-layout~="-stairs\:#{ $i }m"] {
+      --unitone--stairs-margin: var(--unitone--s#{ $i }m) !important;
+    }
+  }
 }

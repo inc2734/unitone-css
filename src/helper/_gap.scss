@@ -12,4 +12,18 @@
       --unitone--row-gap: var(--unitone--s#{ $i }) !important;
     }
   }
+
+  @for $i from 2 through 7 {
+    [data-unitone-layout~="-gap\:#{ $i }m"] {
+      --unitone--gap: var(--unitone--s#{ $i }m) !important;
+    }
+
+    [data-unitone-layout~="-column-gap\:#{ $i }m"] {
+      --unitone--column-gap: var(--unitone--s#{ $i }m) !important;
+    }
+
+    [data-unitone-layout~="-row-gap\:#{ $i }m"] {
+      --unitone--row-gap: var(--unitone--s#{ $i }m) !important;
+    }
+  }
 }

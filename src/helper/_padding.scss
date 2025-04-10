@@ -8,4 +8,14 @@
       --unitone--padding: var(--unitone--s#{ $i }) !important;
     }
   }
+
+  @for $i from 2 through 7 {
+    [data-unitone-layout~="-padding\:#{ $i }m"] {
+      --unitone--padding: var(--unitone--p#{ $i }m) !important;
+    }
+
+    [data-unitone-layout~="-padding\:#{ $i }m"][data-unitone-layout~="gutters"] {
+      --unitone--padding: var(--unitone--s#{ $i }m) !important;
+    }
+  }
 }

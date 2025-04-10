@@ -17,6 +17,12 @@
     }
   }
 
+  @for $i from 2 through 7 {
+    &[data-unitone-layout~="-gap\:#{ $i }m"] > * {
+      --unitone--text-gap: var(--unitone--s#{ $i }m) !important;
+    }
+  }
+
   @at-root {
     :where(& > *) {
       margin-right: auto;
