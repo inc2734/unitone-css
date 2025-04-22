@@ -12,12 +12,18 @@
   }
 
   @for $i from -2 through 7 {
+    &[data-unitone-layout~="-gap\:#{ $i }"] {
+      --unitone--column-gap: var(--unitone--s#{ $i }) !important;
+    }
+
+    &[data-unitone-layout~="-gap\:#{ $i }m"] {
+      --unitone--column-gap: var(--unitone--s#{ $i }m) !important;
+    }
+
     &[data-unitone-layout~="-gap\:#{ $i }"] > * {
       --unitone--text-gap: var(--unitone--s#{ $i }) !important;
     }
-  }
 
-  @for $i from 2 through 7 {
     &[data-unitone-layout~="-gap\:#{ $i }m"] > * {
       --unitone--text-gap: var(--unitone--s#{ $i }m) !important;
     }
@@ -29,6 +35,12 @@
       margin-left: auto;
       max-width: min(100%, var(--unitone--max-width));
     }
+  }
+
+  > * {
+    --unitone--text-gap-scale: 1;
+    --unitone--text-gap: var(--unitone--global--text-gap);
+    --unitone--text-gap-increment: 0px;
   }
 
   > h1 {
@@ -74,9 +86,6 @@
 
 @mixin abstract-text--gap() {
   > * {
-    --unitone--text-gap-scale: 1;
-    --unitone--text-gap: var(--unitone--global--text-gap);
-    --unitone--text-gap-increment: 0px;
     --unitone--margin-block: calc(var(--unitone--text-gap-scale) * var(--unitone--text-gap) + var(--unitone--text-gap-increment));
 
     margin-right: auto;
@@ -105,12 +114,11 @@
 }
 
 @mixin abstract-text--column() {
-  --unitone--text-gap: var(--unitone--global--text-gap);
-  --unitone--column-gap: var(--unitone--text-gap);
+  --unitone--column-gap: 0px;
   --unitone--column-width: var(--unitone--max-width);
 
   column-width: var(--unitone--column-width);
-  gap: var(--unitone--column-gap);
+  column-gap: calc(var(--unitone--column-gap) + (1em * var(--unitone--half-leading)));
   max-width: var(--unitone--max-width);
 
   > * {
@@ -123,11 +131,11 @@
     @include abstract-text();
   }
 
-  [data-unitone-layout~="text"][data-unitone-layout~="-gap"] {
+  [data-unitone-layout~="text"]:where([data-unitone-layout~="-gap"]) {
     @include abstract-text--gap();
   }
 
-  [data-unitone-layout~="text"][data-unitone-layout~="-column"] {
+  [data-unitone-layout~="text"]:where([data-unitone-layout~="-column"]) {
     @include abstract-text--column();
   }
 
