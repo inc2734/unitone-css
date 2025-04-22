@@ -6,6 +6,7 @@
 @use 'float/float';
 @use 'frame/frame';
 @use 'layers/layers';
+@use 'masonry/masonry';
 @use 'reel/reel';
 @use 'responsive-grid/responsive-grid';
 @use 'gutters/gutters';
@@ -26,6 +27,7 @@
 @include float.float();
 @include frame.frame();
 @include layers.layers();
+@include masonry.masonry();
 @include reel.reel();
 @include responsive-grid.responsive-grid();
 @include gutters.gutters();

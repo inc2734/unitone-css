@@ -1,0 +1,145 @@
+import { Masonry } from '@inc2734/unitone-css';
+import { Tabs } from 'nextra/components';
+import { PreviewConainer, Badge } from '../../../components';
+
+# Masonry
+
+Elements of different sizes are laid out without gaps.
+
+## Usage
+
+<PreviewConainer>
+	<Masonry>
+		<img src="https://placehold.jp/400x300.jpg" alt="" />
+		<img src="https://placehold.jp/300x400.jpg" alt="" />
+		<img src="https://placehold.jp/400x600.jpg" alt="" />
+		<img src="https://placehold.jp/600x800.jpg" alt="" />
+		<img src="https://placehold.jp/1024x640.jpg" alt="" />
+		<img src="https://placehold.jp/300x400.jpg" alt="" />
+		<img src="https://placehold.jp/1024x768.jpg" alt="" />
+		<img src="https://placehold.jp/1024x768.jpg" alt="" />
+		<img src="https://placehold.jp/400x300.jpg" alt="" />
+		<img src="https://placehold.jp/800x800.jpg" alt="" />
+	</Masonry>
+</PreviewConainer>
+
+<Tabs items={['HTML', 'JSX']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="masonry">
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="https://placehold.jp/300x400.jpg" alt="" />
+			<img src="https://placehold.jp/400x600.jpg" alt="" />
+			<img src="https://placehold.jp/600x800.jpg" alt="" />
+			<img src="https://placehold.jp/1024x640.jpg" alt="" />
+			<img src="https://placehold.jp/300x400.jpg" alt="" />
+			<img src="https://placehold.jp/1024x768.jpg" alt="" />
+			<img src="https://placehold.jp/1024x768.jpg" alt="" />
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="https://placehold.jp/800x800.jpg" alt="" />
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Masonry } from '@inc2734/unitone-css';
+
+		<Masonry>
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="https://placehold.jp/300x400.jpg" alt="" />
+			<img src="https://placehold.jp/400x600.jpg" alt="" />
+			<img src="https://placehold.jp/600x800.jpg" alt="" />
+			<img src="https://placehold.jp/1024x640.jpg" alt="" />
+			<img src="https://placehold.jp/300x400.jpg" alt="" />
+			<img src="https://placehold.jp/1024x768.jpg" alt="" />
+			<img src="https://placehold.jp/1024x768.jpg" alt="" />
+			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="https://placehold.jp/800x800.jpg" alt="" />
+		</Masonry>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Props
+
+### <Badge>HTML</Badge> -gap:\{variation\} / <Badge>JSX</Badge> gap=\{variation\}
+
+Gap.
+
+Can be set from `-2` to `7`. For variations `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens. If it is `2` or more, adding `m` will shrink it to size 1 on mobile. (e.g. `2m`)
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="masonry -gap:-2">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Masonry } from '@inc2734/unitone-css';
+
+		<Masonry gap={1}>
+			...
+		</Masonry>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Masonry gap={1}>
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+				<img src="https://placehold.jp/300x400.jpg" alt="" />
+				<img src="https://placehold.jp/400x600.jpg" alt="" />
+				<img src="https://placehold.jp/600x800.jpg" alt="" />
+				<img src="https://placehold.jp/1024x640.jpg" alt="" />
+				<img src="https://placehold.jp/300x400.jpg" alt="" />
+				<img src="https://placehold.jp/1024x768.jpg" alt="" />
+				<img src="https://placehold.jp/1024x768.jpg" alt="" />
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+				<img src="https://placehold.jp/800x800.jpg" alt="" />
+			</Masonry>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> --unitone--column-width / <Badge>JSX</Badge> columnWidth=\{value\}
+
+Column width.
+
+`--unitone--column-width` specifies the ideal width of the column.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="masonry" style="--unitone--column-width: 250px">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Masonry } from '@inc2734/unitone-css';
+
+		<Masonry columnWidth="250px">
+			...
+		</Masonry>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Masonry columnWidth="250px">
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+				<img src="https://placehold.jp/300x400.jpg" alt="" />
+				<img src="https://placehold.jp/400x600.jpg" alt="" />
+				<img src="https://placehold.jp/600x800.jpg" alt="" />
+				<img src="https://placehold.jp/1024x640.jpg" alt="" />
+				<img src="https://placehold.jp/300x400.jpg" alt="" />
+				<img src="https://placehold.jp/1024x768.jpg" alt="" />
+				<img src="https://placehold.jp/1024x768.jpg" alt="" />
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+				<img src="https://placehold.jp/800x800.jpg" alt="" />
+			</Masonry>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
