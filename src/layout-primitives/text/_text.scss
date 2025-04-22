@@ -114,9 +114,12 @@
 }
 
 @mixin abstract-text--column() {
-  --unitone--column-gap: 0px;
-  --unitone--column-width: var(--unitone--max-width);
+  --unitone--column-gap: var(--unitone--text-gap);
+  --unitone--column-width: calc(var(--unitone--measure) / 2);
+  --unitone--max-width: 100%;
 
+  margin-right: auto;
+  margin-left: auto;
   column-width: var(--unitone--column-width);
   column-gap: calc(var(--unitone--column-gap) + (1em * var(--unitone--half-leading)));
   max-width: var(--unitone--max-width);

@@ -1,9 +1,20 @@
 import React from 'react';
 
-export const Text = ({ center, column, applyGap, gap, gutters, maxWidth, style, ...props }) => {
+export const Text = ({
+  center,
+  column,
+  applyGap,
+  gap,
+  gutters,
+  maxWidth,
+  columnWidth,
+  style,
+  ...props
+}) => {
   style = {
     ...style,
     '--unitone--max-width': '' !== maxWidth ? maxWidth : undefined,
+    '--unitone--column-width': '' !== columnWidth ? columnWidth : undefined,
   };
 
   return (
