@@ -11,9 +11,7 @@
     [data-unitone-layout~="-row-gap\:#{ $i }"] {
       --unitone--row-gap: var(--unitone--s#{ $i }) !important;
     }
-  }
 
-  @for $i from 2 through 7 {
     [data-unitone-layout~="-gap\:#{ $i }m"] {
       --unitone--gap: var(--unitone--s#{ $i }m) !important;
     }

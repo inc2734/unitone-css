@@ -119,6 +119,158 @@ Can be set from `-2` to `7`. For variations `2` and above, `clamp` is used to ad
 	</Tabs.Tab>
 </Tabs>
 
+### <Badge>HTML</Badge> -padding-top:\{variation\} / <Badge>JSX</Badge> paddingTop=\{variation\}
+
+Padding top.
+
+Can be set from `-2` to `7`. For variations `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens. If it is `2` or more, adding `m` will shrink it to size 1 on mobile. (e.g. `2m`)
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="cover -padding-top:-2">
+			<div data-unitone-layout="cover__content -valign:top">orem ipsum</div>
+			<div data-unitone-layout="cover__content -valign:center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</div>
+			<div data-unitone-layout="cover__content -valign:top">sed do</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Cover, CoverContent } from '@inc2734/unitone-css';
+
+		<Cover paddingTop={-2}>
+			<CoverContent valign="top">Lorem ipsum</CoverContent>
+			<CoverContent valign="center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</CoverContent>
+			<CoverContent valign="bottom">sed do</CoverContent>
+		</Cover>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Cover paddingTop={-2} style={{ outline: '1px dotted #6366f1' }}>
+				<CoverContent valign="top" style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum</CoverContent>
+				<CoverContent valign="center" style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</CoverContent>
+				<CoverContent valign="bottom" style={{ outline: '1px dotted #6366f1' }}>sed do</CoverContent>
+			</Cover>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -padding-right:\{variation\} / <Badge>JSX</Badge> paddingRight=\{variation\}
+
+Padding right.
+
+Can be set from `-2` to `7`. For variations `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens. If it is `2` or more, adding `m` will shrink it to size 1 on mobile. (e.g. `2m`)
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="cover -padding-right:-2">
+			<div data-unitone-layout="cover__content -valign:top">orem ipsum</div>
+			<div data-unitone-layout="cover__content -valign:center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</div>
+			<div data-unitone-layout="cover__content -valign:top">sed do</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Cover, CoverContent } from '@inc2734/unitone-css';
+
+		<Cover paddingRight={-2}>
+			<CoverContent valign="top">Lorem ipsum</CoverContent>
+			<CoverContent valign="center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</CoverContent>
+			<CoverContent valign="bottom">sed do</CoverContent>
+		</Cover>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Cover paddingRight={-2} style={{ outline: '1px dotted #6366f1' }}>
+				<CoverContent valign="top" style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum</CoverContent>
+				<CoverContent valign="center" style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</CoverContent>
+				<CoverContent valign="bottom" style={{ outline: '1px dotted #6366f1' }}>sed do</CoverContent>
+			</Cover>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -padding-bottom:\{variation\} / <Badge>JSX</Badge> paddingBottom=\{variation\}
+
+Padding bottom.
+
+Can be set from `-2` to `7`. For variations `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens. If it is `2` or more, adding `m` will shrink it to size 1 on mobile. (e.g. `2m`)
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="cover -padding-bottom:-2">
+			<div data-unitone-layout="cover__content -valign:top">orem ipsum</div>
+			<div data-unitone-layout="cover__content -valign:center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</div>
+			<div data-unitone-layout="cover__content -valign:top">sed do</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Cover, CoverContent } from '@inc2734/unitone-css';
+
+		<Cover paddingBottom={-2}>
+			<CoverContent valign="top">Lorem ipsum</CoverContent>
+			<CoverContent valign="center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</CoverContent>
+			<CoverContent valign="bottom">sed do</CoverContent>
+		</Cover>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Cover paddingBottom={-2} style={{ outline: '1px dotted #6366f1' }}>
+				<CoverContent valign="top" style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum</CoverContent>
+				<CoverContent valign="center" style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</CoverContent>
+				<CoverContent valign="bottom" style={{ outline: '1px dotted #6366f1' }}>sed do</CoverContent>
+			</Cover>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -padding-left:\{variation\} / <Badge>JSX</Badge> paddingLeft=\{variation\}
+
+Padding left.
+
+Can be set from `-2` to `7`. For variations `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens. If it is `2` or more, adding `m` will shrink it to size 1 on mobile. (e.g. `2m`)
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="cover -padding-left:-2">
+			<div data-unitone-layout="cover__content -valign:top">orem ipsum</div>
+			<div data-unitone-layout="cover__content -valign:center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</div>
+			<div data-unitone-layout="cover__content -valign:top">sed do</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Cover, CoverContent } from '@inc2734/unitone-css';
+
+		<Cover paddingLeft={-2}>
+			<CoverContent valign="top">Lorem ipsum</CoverContent>
+			<CoverContent valign="center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</CoverContent>
+			<CoverContent valign="bottom">sed do</CoverContent>
+		</Cover>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Cover paddingLeft={-2} style={{ outline: '1px dotted #6366f1' }}>
+				<CoverContent valign="top" style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum</CoverContent>
+				<CoverContent valign="center" style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</CoverContent>
+				<CoverContent valign="bottom" style={{ outline: '1px dotted #6366f1' }}>sed do</CoverContent>
+			</Cover>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
 ### <Badge>HTML</Badge> --unitone--min-height / <Badge>JSX</Badge> minHeigth=\{value\}
 
 Min height.

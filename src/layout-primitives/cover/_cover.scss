@@ -1,14 +1,21 @@
 @mixin abstract-cover() {
   --unitone--gap: var(--unitone--global--gap);
   --unitone--padding: var(--unitone--gap);
-  --unitone--min-height: 100vh;
+  --unitone--padding-top: var(--unitone--padding);
+  --unitone--padding-right: var(--unitone--padding);
+  --unitone--padding-bottom: var(--unitone--padding);
+  --unitone--padding-left: var(--unitone--padding);
+  --unitone--min-height: 100svh;
 
   position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--unitone--gap);
   min-height: var(--unitone--min-height);
-  padding: var(--unitone--padding);
+  padding-top: var(--unitone--padding-top);
+  padding-right: var(--unitone--padding-right);
+  padding-bottom: var(--unitone--padding-bottom);
+  padding-left: var(--unitone--padding-left);
 
   > * {
     margin-top: 0;

@@ -1,6 +1,18 @@
 import React from 'react';
 
-export const Cover = ({ gap, minHeight, justifyContent, padding, noPadding, style, ...props }) => {
+export const Cover = ({
+  gap,
+  minHeight,
+  justifyContent,
+  padding,
+  paddingTop,
+  paddingRight,
+  paddingBottom,
+  paddingLeft,
+  noPadding,
+  style,
+  ...props
+}) => {
   style = {
     ...style,
     '--unitone--min-height': '' !== minHeight ? minHeight : undefined,
@@ -13,6 +25,10 @@ export const Cover = ({ gap, minHeight, justifyContent, padding, noPadding, styl
         noPadding ? '-no-padding' : undefined,
         '' !== (gap ?? '') ? `-gap:${gap}` : undefined,
         '' !== (padding ?? '') ? `-padding:${padding}` : undefined,
+        '' !== (paddingTop ?? '') ? `-padding-top:${paddingTop}` : undefined,
+        '' !== (paddingRight ?? '') ? `-padding-right:${paddingRight}` : undefined,
+        '' !== (paddingBottom ?? '') ? `-padding-bottom:${paddingBottom}` : undefined,
+        '' !== (paddingLeft ?? '') ? `-padding-left:${paddingLeft}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

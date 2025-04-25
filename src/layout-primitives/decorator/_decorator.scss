@@ -6,6 +6,10 @@
   --unitone--border-radius: 0;
   --unitone--max-height: none;
   --unitone--padding: 0px;
+  --unitone--padding-top: var(--unitone--padding);
+  --unitone--padding-right: var(--unitone--padding);
+  --unitone--padding-bottom: var(--unitone--padding);
+  --unitone--padding-left: var(--unitone--padding);
   --unitone--box-shadow: none;
   --unitone--overflow: visible;
   --unitone--backdrop-filter: none;
@@ -17,13 +21,16 @@
   --unitone--left: initial;
   --unitone--z-index: initial;
 
-  padding: var(--unitone--padding);
   border: var(--unitone--border-width) solid var(--unitone--border-color);
   border-radius: var(--unitone--border-radius);
   color: var(--unitone--color);
   background-color: var(--unitone--background-color);
   box-shadow: var(--unitone--box-shadow);
   max-height: var(--unitone--max-height);
+  padding-top: var(--unitone--padding-top);
+  padding-right: var(--unitone--padding-right);
+  padding-bottom: var(--unitone--padding-bottom);
+  padding-left: var(--unitone--padding-left);
   overflow: var(--unitone--overflow);
   backdrop-filter: var(--unitone--backdrop-filter);
   position: var(--unitone--position) !important;
