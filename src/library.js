@@ -52,7 +52,13 @@ export const setDividerLinewrap = (target) => {
       .join(' '),
   );
 
-  [].slice.call(target.children).forEach((child) => {
+  const targetChildren = [].slice.call(target.children).filter((child) => {
+    const position = window.getComputedStyle(child).getPropertyValue('position');
+    const display = window.getComputedStyle(child).getPropertyValue('display');
+    return 'absolute' !== position && 'fixed' !== position && 'none' !== display;
+  });
+
+  targetChildren.forEach((child) => {
     const currentLayout = child.getAttribute('data-unitone-layout') || '';
     const newLayout = currentLayout
       .split(' ')
@@ -64,7 +70,7 @@ export const setDividerLinewrap = (target) => {
     }
   });
 
-  [].slice.call(target.children).forEach((child, index) => {
+  targetChildren.forEach((child, index) => {
     const prevRect = prevChild?.getBoundingClientRect();
     const childRect = child.getBoundingClientRect();
 
@@ -91,7 +97,7 @@ export const setDividerLinewrap = (target) => {
   });
 
   const isStack = [].slice
-    .call(target.children)
+    .call(targetChildren)
     .every((child) => child.getBoundingClientRect().left === baseRect.left);
   if (isStack) {
     target.setAttribute(
