@@ -122,8 +122,8 @@ $selector-left-sidebar: (
       }
 
       &:where(#{ $selector-aside-main }) > :first-child {
-        padding-top: calc(var(--unitone--row-gap) / 2 + var(--unitone--divider-width));
-        padding-bottom: calc(var(--unitone--row-gap) / 2);
+        padding-top: calc(var(--unitone--row-gap) + var(--unitone--divider-width));
+        padding-bottom: calc(var(--unitone--row-gap));
 
         &::before {
           border-top-width: var(--unitone--divider-width);
@@ -131,8 +131,8 @@ $selector-left-sidebar: (
       }
 
        &:where(#{ $selector-main-aside }) > :nth-child(2) {
-        padding-top: calc(var(--unitone--row-gap) / 2);
-        padding-bottom: calc(var(--unitone--row-gap) / 2 + var(--unitone--divider-width));
+        padding-top: var(--unitone--row-gap);
+        padding-bottom: calc(var(--unitone--row-gap) + var(--unitone--divider-width));
 
         &::before {
           border-bottom-width: var(--unitone--divider-width);
@@ -184,11 +184,11 @@ $selector-left-sidebar: (
       }
 
       &:where(#{ $selector-main-aside }) > :nth-child(2) {
-        padding-top: calc(var(--unitone--row-gap) / 2);
+        padding-top: var(--unitone--row-gap);
       }
 
       &:where(#{ $selector-aside-main }) > :first-child {
-        padding-bottom: calc(var(--unitone--row-gap) / 2 + var(--unitone--divider-width));
+        padding-bottom: calc(var(--unitone--row-gap) + var(--unitone--divider-width));
       }
 
       &:where(#{ $selector-aside-main }) > :nth-child(2) {
@@ -289,15 +289,13 @@ $selector-left-sidebar: (
 
       &:where(#{ $selector-main-aside }) > :nth-child(2) {
         padding:
-          calc(var(--unitone--row-gap) / 2)
+          var(--unitone--row-gap)
           calc(var(--unitone--row-gap) + var(--unitone--divider-width))
-          calc(var(--unitone--row-gap) / 2 + var(--unitone--divider-width));
+          calc(var(--unitone--row-gap) + var(--unitone--divider-width));
       }
 
       &:where(#{ $selector-aside-main }) > :first-child {
-        padding:
-          calc(var(--unitone--row-gap) / 2 + var(--unitone--divider-width))
-          calc(var(--unitone--row-gap) + var(--unitone--divider-width));
+        padding: calc(var(--unitone--row-gap) + var(--unitone--divider-width));
       }
 
       &:where(#{ $selector-aside-main }) > :nth-child(2) {
