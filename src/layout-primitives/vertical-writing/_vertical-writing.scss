@@ -11,8 +11,6 @@
   writing-mode: vertical-rl;
   column-count: 1;
   column-gap: var(--unitone--column-gap);
-  max-width: 100%;
-  width: 100%;
   text-orientation: var(--unitone--text-orientation);
   visibility: hidden;
 
@@ -20,9 +18,12 @@
     visibility: visible;
   }
 
+  &[data-unitone-layout~="vertical-writing\:safari"] {
+    column-count: 2
+  }
+
   > * {
     max-inline-size: var(--unitone--max-height);
-    inline-size: var(--unitone--max-height); // For Safari
     box-sizing: content-box;
   }
 
@@ -37,12 +38,10 @@
 
   &[data-unitone-layout~="-force-switch"] {
     column-count: auto;
-    width: auto;
     writing-mode: horizontal-tb;
 
     > * {
       box-sizing: border-box;
-      inline-size: auto;
       max-inline-size: none;
     }
   }
@@ -50,12 +49,10 @@
   @media (orientation: portrait) and (max-width: 599px) {
     &[data-unitone-layout~="-switch"] {
       column-count: auto;
-      width: auto;
       writing-mode: horizontal-tb;
 
       > * {
         box-sizing: border-box;
-        inline-size: auto;
       }
     }
   }

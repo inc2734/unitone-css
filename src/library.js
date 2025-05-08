@@ -268,7 +268,15 @@ export const stairsResizeObserver = (target) => {
 };
 
 const setColumnCountForVertical = (target) => {
-  target.style.columnCount = '';
+  target.setAttribute(
+    'data-unitone-layout',
+    `${target.getAttribute('data-unitone-layout').replaceAll('vertical-writing:initialized', '').trim()}`,
+  );
+
+  target.setAttribute(
+    'data-unitone-layout',
+    `${target.getAttribute('data-unitone-layout').replaceAll('vertical-writing:safari', '').trim()}`,
+  );
 
   // Process of the threshold
   target.setAttribute(
@@ -310,35 +318,34 @@ const setColumnCountForVertical = (target) => {
     return;
   }
 
-  // For Safari
-  let maybeSafari = false;
-  if (target.getBoundingClientRect().left > lastChild.getBoundingClientRect().left) {
-    target.style.columnCount = 2;
-    maybeSafari = true;
-  }
-
-  setTimeout(
-    () => {
-      const targetY = target.getBoundingClientRect().top + target.getBoundingClientRect().height;
-      const lastChildY =
-        lastChild.getBoundingClientRect().top + lastChild.getBoundingClientRect().height;
-      if (targetY !== lastChildY) {
-        target.parentNode.style.height = `${Math.ceil(
-          lastChildY - target.getBoundingClientRect().top,
-        )}px`;
-      }
-    },
-    maybeSafari ? 250 : 0,
-  );
-};
-
-export const verticalsResizeObserver = (target) => {
-  let prevWidth = 0;
-
   target.setAttribute(
     'data-unitone-layout',
     `${target.getAttribute('data-unitone-layout')} vertical-writing:initialized`,
   );
+
+  // For Safari
+  const maybeSafari = target.getBoundingClientRect().left > lastChild.getBoundingClientRect().left;
+  if (maybeSafari) {
+    target.setAttribute(
+      'data-unitone-layout',
+      `${target.getAttribute('data-unitone-layout')} vertical-writing:safari`,
+    );
+  }
+
+  requestAnimationFrame(() => {
+    const targetY = target.getBoundingClientRect().top + target.getBoundingClientRect().height;
+    const lastChildY =
+      lastChild.getBoundingClientRect().top + lastChild.getBoundingClientRect().height;
+    if (targetY !== lastChildY) {
+      target.parentNode.style.height = `${Math.ceil(
+        lastChildY - target.getBoundingClientRect().top,
+      )}px`;
+    }
+  });
+};
+
+export const verticalsResizeObserver = (target) => {
+  let prevWidth = 0;
 
   const observer = new ResizeObserver(
     debounce((entries) => {
@@ -372,7 +379,15 @@ export const verticalsResizeObserver = (target) => {
           (addedNode?.nodeType === Node.ELEMENT_NODE &&
             'vertical-writing__thresholder' === addedNode.getAttribute('data-unitone-layout')) ||
           (removedNode?.nodeType === Node.ELEMENT_NODE &&
-            'vertical-writing__thresholder' === removedNode.getAttribute('data-unitone-layout'))
+            'vertical-writing__thresholder' === removedNode.getAttribute('data-unitone-layout')) ||
+          (addedNode?.nodeType === Node.ELEMENT_NODE &&
+            'vertical-writing:initialized' === addedNode.getAttribute('data-unitone-layout')) ||
+          (removedNode?.nodeType === Node.ELEMENT_NODE &&
+            'vertical-writing:initialized' === removedNode.getAttribute('data-unitone-layout')) ||
+          (addedNode?.nodeType === Node.ELEMENT_NODE &&
+            'vertical-writing:safari' === addedNode.getAttribute('data-unitone-layout')) ||
+          (removedNode?.nodeType === Node.ELEMENT_NODE &&
+            'vertical-writing:safari' === removedNode.getAttribute('data-unitone-layout'))
         ) {
           return;
         }
