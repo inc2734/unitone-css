@@ -209,6 +209,8 @@ export const setStairsStep = (target) => {
   let stairsStep = 0;
   let maxStairsStep = stairsStep;
 
+  const direction = window.getComputedStyle(target).getPropertyValue('flex-direction');
+
   children.forEach((child) => {
     const position = window.getComputedStyle(child).getPropertyValue('position');
     const display = window.getComputedStyle(child).getPropertyValue('display');
@@ -218,10 +220,12 @@ export const setStairsStep = (target) => {
 
     filteredChildren.push(child);
 
-    if (
-      firstChild === child ||
-      prevChild?.getBoundingClientRect()?.left >= child.getBoundingClientRect().left
-    ) {
+    const isBol =
+      'row-reverse' === direction
+        ? prevChild?.getBoundingClientRect()?.left <= child.getBoundingClientRect().left
+        : prevChild?.getBoundingClientRect()?.left >= child.getBoundingClientRect().left;
+
+    if (firstChild === child || isBol) {
       stairsStep = 0;
       child.style.setProperty('--unitone--stairs-step', stairsStep);
     } else {
@@ -238,13 +242,14 @@ export const setStairsStep = (target) => {
 
   target.style.setProperty('--unitone--max-stairs-step', maxStairsStep);
 
-  const maxChildrenTop = filteredChildren.reduce((accumulator, current) => {
-    const computedStyle = current.ownerDocument.defaultView.getComputedStyle(current);
-    const top = parseFloat(computedStyle.getPropertyValue('top') ?? 0);
-    return isNaN(top) ? accumulator : accumulator > top ? accumulator : top;
+  const targetBottom = target.getBoundingClientRect().bottom;
+  const overflowVolume = filteredChildren.reduce((accumulator, current) => {
+    const childBottom = current.getBoundingClientRect().bottom;
+    const overflow = childBottom - targetBottom;
+    return accumulator > overflow ? accumulator : overflow;
   }, 0);
 
-  target.style.setProperty('--unitone--stairs-step-overflow-volume', maxChildrenTop);
+  target.style.setProperty('--unitone--stairs-step-overflow-volume', overflowVolume);
 };
 
 export const stairsResizeObserver = (target) => {

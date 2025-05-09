@@ -240,3 +240,37 @@ Alignment of the row direction.
 		</PreviewConainer>
 	</Tabs.Tab>
 </Tabs>
+
+#### <Badge>HTML</Badge> -stairs-up:\{value\} / <Badge>JSX</Badge> stairsUp=\{value\}
+
+The direction of stairs. Default is `left`.
+
+`left` / `right`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="switcher -stairs:1 -stairs-up:right">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Switcher } from '@inc2734/unitone-css';
+
+		<Switcher stairs={1} stairsUp="right">
+			...
+		</Switcher>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Switcher stairs={1} stairsUp="right" revert>
+				<Decorator backgroundColor="#3730a3" color="#fff" padding={1}>Lorem ipsum</Decorator>
+				<Decorator backgroundColor="#5b21b6" color="#fff" padding={1}>Lorem ipsum<br />dolor sit</Decorator>
+				<Decorator backgroundColor="#6b21a8" color="#fff" padding={1}>amet consectetur</Decorator>
+			</Switcher>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>

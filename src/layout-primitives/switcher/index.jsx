@@ -8,6 +8,8 @@ export const Switcher = ({
   revert,
   threshold,
   alignItems,
+  stairs,
+  stairsUp,
   style,
   ...props
 }) => {
@@ -25,6 +27,8 @@ export const Switcher = ({
         '' !== (columnGap ?? '') ? `-column-gap:${columnGap}` : undefined,
         '' !== (rowGap ?? '') ? `-row-gap:${rowGap}` : undefined,
         '' !== (alignItems ?? '') ? `-align-items:${alignItems}` : undefined,
+        '' !== (stairs ?? '') ? `-stairs:${stairs}` : undefined,
+        '' !== (stairsUp ?? '') ? `-stairs-up:${stairsUp}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

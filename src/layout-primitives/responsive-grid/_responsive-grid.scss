@@ -205,7 +205,7 @@
 
   &[data-unitone-layout*="-stairs\:"] {
     align-items: start;
-    padding-bottom: calc(var(--unitone--stairs-step-overflow-volume, 0)* 1px);
+    padding-bottom: calc(var(--unitone--stairs-step-overflow-volume, 0) * 1px);
     visibility: hidden;
 
     &[style*="--unitone--stairs-step-overflow-volume:"] {
@@ -216,13 +216,13 @@
       position: relative;
     }
 
-    &:where(:not([data-unitone-layout*="-stairs-up\:right"])) {
+    &:where(:not([data-unitone-layout~="-stairs-up\:right"])) {
       > * {
         top: calc(var(--unitone--stairs-margin) * var(--unitone--stairs-step));
       }
     }
 
-    &:where([data-unitone-layout*="-stairs-up\:right"]) {
+    &:where([data-unitone-layout~="-stairs-up\:right"]) {
       > * {
         top: calc(var(--unitone--stairs-margin) * (var(--unitone--max-stairs-step) - var(--unitone--stairs-step)));
       }
