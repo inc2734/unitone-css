@@ -253,16 +253,10 @@ export const setStairsStep = (target) => {
 };
 
 export const stairsResizeObserver = (target) => {
-  let prevWidth = 0;
-
   const observer = new ResizeObserver(
     debounce((entries) => {
       for (const entry of entries) {
-        const width = entry.borderBoxSize?.[0].inlineSize;
-        if (width !== prevWidth) {
-          setStairsStep(entry.target);
-          prevWidth = width;
-        }
+        setStairsStep(entry.target);
       }
     }, 250),
   );
