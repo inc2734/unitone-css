@@ -82,6 +82,41 @@ Alignment of the row direction.
 	</Tabs.Tab>
 </Tabs>
 
+### <Badge>HTML</Badge> -justify-content:\{value\} / <Badge>JSX</Badge> justifyContent=\{value\}
+
+Justification of the horizontal direction.
+
+`start` / `center` / `end` / `space-between` / `space-around` / `space-evenly`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="cluster -justify-content:center">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Cluster } from '@inc2734/unitone-css';
+
+		<Cluster justifyContent="center">
+			...
+		</Cluster>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Cluster justifyContent="center">
+				<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>Lorem ipsum</div>
+				<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>dolor sit<br />amet consectetur</div>
+				<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>adipisicing elit</div>
+				<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>sed do</div>
+			</Cluster>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
 ### <Badge>HTML</Badge> -gap:\{variation\} / <Badge>JSX</Badge> gap=\{variation\}
 
 Gap.

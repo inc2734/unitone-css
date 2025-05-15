@@ -1,3 +1,4 @@
+@use 'align-content';
 @use 'align-items';
 @use 'align-self';
 @use 'align';
@@ -8,6 +9,7 @@
 @use 'gap';
 @use 'gutters';
 @use 'justify-content';
+@use 'justify-items';
 @use 'justify-self';
 @use 'mix-blend-mode';
 @use 'overflow';
@@ -17,6 +19,7 @@
 @use 'text-orientation';
 @use 'typography';
 
+@include align-content.align-content();
 @include align-items.align-items();
 @include align-self.align-self();
 @include align.align();
@@ -27,6 +30,7 @@
 @include gap.gap();
 @include gutters.gutters();
 @include justify-content.justify-content();
+@include justify-items.justify-items();
 @include justify-self.justify-self();
 @include mix-blend-mode.mix-blend-mode();
 @include overflow.overflow();
