@@ -582,3 +582,49 @@ Backdrop filter.
 		</PreviewConainer>
 	</Tabs.Tab>
 </Tabs>
+
+### Progressive backdrop filter
+
+Progressive backdrop filter.
+
+- <Badge>HTML</Badge> `-progressive-backdrop-filter` / <Badge>JSX</Badge> `progressiveBackdropFilter`
+- <Badge>HTML</Badge> `--unitone--progressive-backdrop-filter-angle` / <Badge>JSX</Badge> `progressiveBackdropFilterAngle=\{value\}`
+- <Badge>HTML</Badge> `--unitone--progressive-backdrop-filter-start` / <Badge>JSX</Badge> `progressiveBackdropFilterStart=\{value\}`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="layers" -cover>
+			<img src="https://placehold.jp/1024x768.jpg" alt="" />
+
+			<div data-unitone-layout="decorator -progressiveBackdropFilter" style="--unitone--backdrop-filter: blur(6px); --unitone--progressive-backdrop-filter-angle: 180deg; --unitone--progressive-backdrop-filter-start: 50%">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Decorator, Layers } from '@inc2734/unitone-css';
+
+		<Layers cover>
+			<img src="https://placehold.jp/1024x768.jpg" alt="" />
+
+			<Decorator backdropFilter="blur(6px)" progressiveBackdropFilter progressiveBackdropFilterAngle="180deg" progressiveBackdropFilterStart="50%">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+			</Decorator>
+		</Layers>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Layers cover>
+				<img src="https://placehold.jp/1024x768.jpg" alt="" />
+
+				<Decorator backdropFilter="blur(6px)" progressiveBackdropFilter progressiveBackdropFilterAngle="180deg" progressiveBackdropFilterStart="50%">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+				</Decorator>
+			</Layers>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>

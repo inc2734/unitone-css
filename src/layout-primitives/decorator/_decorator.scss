@@ -15,6 +15,9 @@
   --unitone--overflow: visible;
   --unitone--backdrop-filter: none;
 
+	--unitone--progressive-backdrop-filter-angle: 180deg;
+  --unitone--progressive-backdrop-filter-start: 0%;
+
   --unitone--position: static;
   --unitone--top: initial;
   --unitone--right: initial;
@@ -44,6 +47,14 @@
 
   &:where([data-unitone-layout~="-shadow"]) {
     --unitone--box-shadow: var(--unitone--global--box-shadow);
+  }
+
+  &:where([data-unitone-layout~="-progressive-backdrop-filter"]) {
+    mask-image: linear-gradient(
+      var(--unitone--progressive-backdrop-filter-angle),
+      rgba(0 0 0 / 0%) calc(var(--unitone--progressive-backdrop-filter-start) - 20%),
+      rgba(0 0 0 / 100%) var(--unitone--progressive-backdrop-filter-start)
+    );
   }
 
   &[data-unitone-layout*="-align-content\:"],

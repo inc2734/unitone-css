@@ -24,6 +24,9 @@ export const Decorator = ({
   zIndex,
   overflow,
   backdropFilter,
+  progressiveBackdropFilter,
+  progressiveBackdropFilterAngle,
+  progressiveBackdropFilterStart,
   style,
   ...props
 }) => {
@@ -42,6 +45,14 @@ export const Decorator = ({
     '--unitone--left': '' !== left ? left : undefined,
     '--unitone--z-index': '' !== zIndex ? zIndex : undefined,
     '--unitone--backdrop-filter': '' !== backdropFilter ? backdropFilter : undefined,
+    '--unitone--progressive-backdrop-filter-angle':
+      progressiveBackdropFilter && '' !== progressiveBackdropFilterAngle
+        ? progressiveBackdropFilterAngle
+        : undefined,
+    '--unitone--progressive-backdrop-filter-start':
+      progressiveBackdropFilterStart && '' !== progressiveBackdropFilterStart
+        ? progressiveBackdropFilterStart
+        : undefined,
   };
 
   return (
@@ -58,6 +69,7 @@ export const Decorator = ({
         shadow ? '-shadow' : undefined,
         '' !== (position ?? '') ? `-position:${position}` : undefined,
         '' !== (overflow ?? '') ? `-overflow:${overflow}` : undefined,
+        progressiveBackdropFilter ? '-progressive-backdrop-filter' : undefined,
       ]
         .filter(Boolean)
         .join(' ')}
