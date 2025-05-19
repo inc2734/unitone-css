@@ -3,7 +3,15 @@
     [data-unitone-layout~="-gutters\:#{ $i }"] {
       --unitone--gutters: var(--unitone--s#{ $i }) !important;
     }
+  }
 
+  @for $i from 1 through 7 {
+    [data-unitone-layout~="-gutters\:#{ $i }s"] {
+      --unitone--gutters: var(--unitone--s#{ $i }s) !important;
+    }
+  }
+
+  @for $i from 2 through 7 {
     [data-unitone-layout~="-gutters\:#{ $i }m"] {
       --unitone--gutters: var(--unitone--s#{ $i }m) !important;
     }

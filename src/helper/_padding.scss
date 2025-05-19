@@ -20,6 +20,38 @@
       --unitone--padding-left: var(--unitone--p#{ $i }) !important;
     }
 
+    [data-unitone-layout~="-padding\:#{ $i }"][data-unitone-layout~="gutters"] {
+      --unitone--padding: var(--unitone--s#{ $i }) !important;
+    }
+  }
+
+  @for $i from 1 through 7 {
+    [data-unitone-layout~="-padding\:#{ $i }s"] {
+      --unitone--padding: var(--unitone--p#{ $i }s) !important;
+    }
+
+    [data-unitone-layout~="-padding-top\:#{ $i }s"] {
+      --unitone--padding-top: var(--unitone--p#{ $i }s) !important;
+    }
+
+    [data-unitone-layout~="-padding-right\:#{ $i }s"] {
+      --unitone--padding-right: var(--unitone--p#{ $i }s) !important;
+    }
+
+    [data-unitone-layout~="-padding-bottom\:#{ $i }s"] {
+      --unitone--padding-bottom: var(--unitone--p#{ $i }s) !important;
+    }
+
+    [data-unitone-layout~="-padding-left\:#{ $i }s"] {
+      --unitone--padding-left: var(--unitone--p#{ $i }s) !important;
+    }
+
+    [data-unitone-layout~="-padding\:#{ $i }s"][data-unitone-layout~="gutters"] {
+      --unitone--padding: var(--unitone--s#{ $i }s) !important;
+    }
+  }
+
+  @for $i from 2 through 7 {
     [data-unitone-layout~="-padding\:#{ $i }m"] {
       --unitone--padding: var(--unitone--p#{ $i }m) !important;
     }
@@ -38,10 +70,6 @@
 
     [data-unitone-layout~="-padding-left\:#{ $i }m"] {
       --unitone--padding-left: var(--unitone--p#{ $i }m) !important;
-    }
-
-    [data-unitone-layout~="-padding\:#{ $i }"][data-unitone-layout~="gutters"] {
-      --unitone--padding: var(--unitone--s#{ $i }) !important;
     }
 
     [data-unitone-layout~="-padding\:#{ $i }m"][data-unitone-layout~="gutters"] {

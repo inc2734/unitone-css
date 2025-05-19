@@ -11,7 +11,23 @@
     [data-unitone-layout~="-row-gap\:#{ $i }"] {
       --unitone--row-gap: var(--unitone--s#{ $i }) !important;
     }
+  }
 
+  @for $i from 1 through 7 {
+    [data-unitone-layout~="-gap\:#{ $i }s"] {
+      --unitone--gap: var(--unitone--s#{ $i }s) !important;
+    }
+
+    [data-unitone-layout~="-column-gap\:#{ $i }s"] {
+      --unitone--column-gap: var(--unitone--s#{ $i }s) !important;
+    }
+
+    [data-unitone-layout~="-row-gap\:#{ $i }s"] {
+      --unitone--row-gap: var(--unitone--s#{ $i }s) !important;
+    }
+  }
+
+  @for $i from 2 through 7 {
     [data-unitone-layout~="-gap\:#{ $i }m"] {
       --unitone--gap: var(--unitone--s#{ $i }m) !important;
     }

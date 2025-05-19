@@ -237,6 +237,15 @@
   --unitone--s5: #{ _generate-spacing(var(--unitone--ms5)) };
   --unitone--s6: #{ _generate-spacing(var(--unitone--ms6)) };
   --unitone--s7: #{ _generate-spacing(var(--unitone--ms7)) };
+
+  --unitone--s1s: #{ _generate-fluid-spacing(var(--unitone--ms-1), var(--unitone--ms1)) };
+  --unitone--s2s: #{ _generate-fluid-spacing(var(--unitone--ms-1), var(--unitone--ms2)) };
+  --unitone--s3s: #{ _generate-fluid-spacing(var(--unitone--ms-1), var(--unitone--ms3)) };
+  --unitone--s4s: #{ _generate-fluid-spacing(var(--unitone--ms-1), var(--unitone--ms4)) };
+  --unitone--s5s: #{ _generate-fluid-spacing(var(--unitone--ms-1), var(--unitone--ms5)) };
+  --unitone--s6s: #{ _generate-fluid-spacing(var(--unitone--ms-1), var(--unitone--ms6)) };
+  --unitone--s7s: #{ _generate-fluid-spacing(var(--unitone--ms-1), var(--unitone--ms7)) };
+
   --unitone--s2m: #{ _generate-fluid-spacing(var(--unitone--ms1), var(--unitone--ms2)) };
   --unitone--s3m: #{ _generate-fluid-spacing(var(--unitone--ms1), var(--unitone--ms3)) };
   --unitone--s4m: #{ _generate-fluid-spacing(var(--unitone--ms1), var(--unitone--ms4)) };
@@ -265,6 +274,15 @@
   --unitone--p5: #{ _generate-padding(var(--unitone--ms5)) };
   --unitone--p6: #{ _generate-padding(var(--unitone--ms6)) };
   --unitone--p7: #{ _generate-padding(var(--unitone--ms7)) };
+
+  --unitone--p1s: var(--unitone--s1s);
+  --unitone--p2s: var(--unitone--s2s);
+  --unitone--p3s: var(--unitone--s3s);
+  --unitone--p4s: var(--unitone--s4s);
+  --unitone--p5s: var(--unitone--s5s);
+  --unitone--p6s: var(--unitone--s6s);
+  --unitone--p7s: var(--unitone--s7s);
+
   --unitone--p2m: var(--unitone--s2m);
   --unitone--p3m: var(--unitone--s3m);
   --unitone--p4m: var(--unitone--s4m);

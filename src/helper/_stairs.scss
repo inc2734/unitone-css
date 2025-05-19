@@ -3,7 +3,15 @@
     [data-unitone-layout~="-stairs\:#{ $i }"] {
       --unitone--stairs-margin: var(--unitone--s#{ $i }) !important;
     }
+  }
 
+  @for $i from 1 through 7 {
+    [data-unitone-layout~="-stairs\:#{ $i }s"] {
+      --unitone--stairs-margin: var(--unitone--s#{ $i }s) !important;
+    }
+  }
+
+  @for $i from 2 through 7 {
     [data-unitone-layout~="-stairs\:#{ $i }m"] {
       --unitone--stairs-margin: var(--unitone--s#{ $i }m) !important;
     }
