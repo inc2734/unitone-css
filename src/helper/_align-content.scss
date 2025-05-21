@@ -1,5 +1,5 @@
 @mixin align-content() {
-  @each $value in (start, center, end, space-between, space-around, space-evenly) {
+  @each $value in (start, center, end, space-between, space-around, space-evenly, stretch) {
     [data-unitone-layout~="-align-content\:#{ $value }"] {
       --unitone--align-content: #{ $value } !important;
     }
