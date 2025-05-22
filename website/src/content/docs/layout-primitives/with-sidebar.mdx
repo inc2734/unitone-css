@@ -346,6 +346,43 @@ Alignment of the row direction.
 	</Tabs.Tab>
 </Tabs>
 
+### <Badge>HTML</Badge> -overflow:\{value\} / <Badge>JSX</Badge> overflow=\{value\}
+
+Overflow.
+
+`visible` / `hidden` / `scroll` / `auto` / `clip`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="with-sidebar -overflow:hidden">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { WithSidebar } from '@inc2734/unitone-css';
+
+		<WithSidebar overflow="hidden">
+			...
+		</WithSidebar>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<WithSidebar overflow="hidden">
+				<p style={{ outline: '1px dotted #6366f1', padding: '1em' }}>Lorem ipsum dolor sit amet</p>
+				<ul style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+					<li>Lorem</li>
+					<li>ipsum</li>
+					<li>dolor</li>
+				</ul>
+			</WithSidebar>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
 ### <Badge>HTML</Badge> -divider:\{variation\} / <Badge>JSX</Badge> divider=\{variation\}
 
 #### stripe

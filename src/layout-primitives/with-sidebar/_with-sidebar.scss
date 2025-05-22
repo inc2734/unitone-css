@@ -44,12 +44,14 @@ $selector-left-sidebar: (
   --unitone--column-gap: var(--unitone--gap);
   --unitone--row-gap: var(--unitone--gap);
   --unitone--align-items: stretch;
+  --unitone--overflow: visible;
 
   display: flex;
   flex-wrap: wrap;
   column-gap: var(--unitone--column-gap);
   row-gap: var(--unitone--row-gap);
   align-items: var(--unitone--align-items);
+  overflow: var(--unitone--overflow);
 
   &:where(#{ $selector-main-aside }) > :first-child,
   &:where(#{ $selector-aside-main }) > :nth-child(2) {

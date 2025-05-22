@@ -9,6 +9,7 @@ export const WithSidebar = ({
   sidebar,
   sidebarWidth,
   alignItems,
+  overflow,
   divider,
   style,
   ...props
@@ -29,6 +30,7 @@ export const WithSidebar = ({
         '' !== (rowGap ?? '') ? `-row-gap:${rowGap}` : undefined,
         '' !== (sidebar ?? '') ? `-sidebar:${sidebar}` : undefined,
         '' !== (alignItems ?? '') ? `-align-items:${alignItems}` : undefined,
+        '' !== (overflow ?? '') ? `-overflow:${overflow}` : undefined,
         '' !== (divider ?? '') ? `-divider:${divider}` : undefined,
       ]
         .filter(Boolean)
