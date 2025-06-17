@@ -13,6 +13,7 @@ export const Decorator = ({
   paddingRight,
   paddingBottom,
   paddingLeft,
+  gap,
   alignContent,
   justifyItems,
   shadow,
@@ -59,6 +60,7 @@ export const Decorator = ({
     <div
       data-unitone-layout={[
         'decorator',
+        '' !== (gap ?? '') ? `-gap:${gap}` : undefined,
         '' !== (alignContent ?? '') ? `-align-content:${alignContent}` : undefined,
         '' !== (justifyItems ?? '') ? `-justify-items:${justifyItems}` : undefined,
         '' !== (padding ?? '') ? `-padding:${padding}` : undefined,

@@ -189,6 +189,55 @@ Min height.
 	</Tabs.Tab>
 </Tabs>
 
+### <Badge>HTML</Badge> -gap:\{variation\} / <Badge>JSX</Badge> gap=\{variation\}
+
+Gap.
+
+Can be set from `-2` to `7`. For variations `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens.
+If it is `1` or more, adding `s` will shrink it to size `-1` on mobile. (e.g. `1s`)
+If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m`)
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="decorator -gap:1">
+			<div style="outline: 1px dotted #6366f1, padding: 1em">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+			</div>
+			<div style="outline: 1px dotted #6366f1, padding: 1em">
+				sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Decorator } from '@inc2734/unitone-css';
+
+		<Decorator gap="1">
+			<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit
+			</div>
+			<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+				sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+			</div>
+		</Decorator>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Decorator gap="1">
+				<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit
+				</div>
+				<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+					sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+				</div>
+			</Decorator>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
 ### <Badge>HTML</Badge> -align-content:\{value\} / <Badge>JSX</Badge> alignContent=\{value\}
 
 Align content.

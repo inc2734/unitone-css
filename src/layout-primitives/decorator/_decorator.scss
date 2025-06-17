@@ -15,6 +15,10 @@
   --unitone--overflow: visible;
   --unitone--backdrop-filter: none;
 
+  --unitone--align-content: normal;
+  --unitone--justify-items: legacy;
+  --unitone--gap: 0px;
+
 	--unitone--progressive-backdrop-filter-angle: 180deg;
   --unitone--progressive-backdrop-filter-start: 0%;
 
@@ -57,9 +61,14 @@
     );
   }
 
+  &[data-unitone-layout*="-gap\:"],
   &[data-unitone-layout*="-align-content\:"],
   &[data-unitone-layout*="-justify-items\:"] {
     display: grid;
+  }
+
+  &[data-unitone-layout*="-gap\:"] {
+    gap: var(--unitone--gap);
   }
 
   &[data-unitone-layout*="-align-content\:"] {
