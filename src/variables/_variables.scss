@@ -27,20 +27,27 @@ $_max-line-height-target-font-size-ratio: 5;
 $_font-size-scale: calc(var(--unitone--harmonic-sequence-base) / (var(--unitone--harmonic-sequence-base) - var(--unitone--font-size)));
 $_line-height-slope: calc((#{ $_min-line-height } - (#{ $_max-line-height })) / #{ $_max-line-height-target-font-size-ratio - 1 });
 $_line-height-intercept: calc(#{ $_max-line-height } - #{ $_line-height-slope });
-$_line-height: clamp(
+$line-height: clamp(
   #{ $_min-line-height },
   #{ $_line-height-slope } * (var(--unitone--result--em-px) / var(--unitone--base-font-size)) + #{ $_line-height-intercept },
   #{ $_max-line-height }
 );
 
+$font-size: calc($_font-size-scale * 1rem);
+$font-size-em: calc($_font-size-scale * 1em);
+
 @mixin typography {
-  font-size: calc($_font-size-scale * 1rem);
-  line-height: #{ $_line-height };
+  --unitone--line-height: #{ $line-height };
+
+  font-size: #{ $font-size };
+  line-height: var(--unitone--line-height);
 }
 
 @mixin typography-em {
-  font-size: calc($_font-size-scale * 1em);
-  line-height: #{ $_line-height };
+  --unitone--line-height: #{ $line-height };
+
+  font-size: #{ $font-size-em };
+  line-height: var(--unitone--line-height);
 }
 
 $container-max-width: $max-breakpoint * 16px; // = 1280px
