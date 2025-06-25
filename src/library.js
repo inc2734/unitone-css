@@ -9,32 +9,6 @@ export function debounce(fn, delay) {
   };
 }
 
-const setFluidFontSizeMagnification = (target) => {
-  const baseFontSize = parseFloat(
-    window.getComputedStyle(document.documentElement).getPropertyValue('font-size'),
-  );
-  const fontSize = parseFloat(window.getComputedStyle(target).getPropertyValue('font-size'));
-  target.style.setProperty('--unitone--fluid-font-size-magnification', fontSize / baseFontSize);
-};
-
-export const fluidFontSizeResizeObserver = (target) => {
-  let prevWidth = 0;
-
-  const observer = new ResizeObserver(
-    debounce((entries) => {
-      for (const entry of entries) {
-        const width = entry.borderBoxSize?.[0].inlineSize;
-        if (width !== prevWidth) {
-          setFluidFontSizeMagnification(entry.target);
-          prevWidth = width;
-        }
-      }
-    }, 250),
-  );
-
-  observer.observe(target);
-};
-
 export const setDividerLinewrap = (target) => {
   const firstChild = [].slice.call(target?.children ?? [])?.[0];
   if (!firstChild) {

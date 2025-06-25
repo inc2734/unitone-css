@@ -5,7 +5,6 @@
 @use 'auto-repeat';
 @use 'auto-phrase';
 @use 'background-clip';
-@use 'fluid-typography';
 @use 'gap';
 @use 'gutters';
 @use 'justify-content';
@@ -26,7 +25,6 @@
 @include auto-repeat.auto-repeat();
 @include auto-phrase.auto-phrase();
 @include background-clip.background-clip();
-@include fluid-typography.fluid-typography();
 @include gap.gap();
 @include gutters.gutters();
 @include justify-content.justify-content();

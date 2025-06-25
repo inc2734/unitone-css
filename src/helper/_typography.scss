@@ -13,4 +13,8 @@
   [data-unitone-layout~="-typography\:em"] {
     @include variables.typography-em();
   }
+
+  [data-unitone-layout~="-fluid-typography"] {
+    font-size: #{ variables.$fluid-font-size };
+  }
 }

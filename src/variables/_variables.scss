@@ -5,20 +5,12 @@ $max-breakpoint: 80; // = 1280px
 
 $root-font-size: calc(var(--unitone--base-font-size) * 1px);
 
-$_font-size-scale: calc(var(--unitone--harmonic-sequence-base) / (var(--unitone--harmonic-sequence-base) - var(--unitone--font-size)));
-$font-size: calc($_font-size-scale * 1rem);
-$font-size-em: calc($_font-size-scale * 1em);
-
 $_max-font-size: calc(var(--unitone--harmonic-sequence-base) / (var(--unitone--max-harmonic-sequence-base) - var(--unitone--font-size)));
 $_min-font-size: calc(var(--unitone--harmonic-sequence-base) / (var(--unitone--min-harmonic-sequence-base) - var(--unitone--font-size)) + 1 - (var(--unitone--harmonic-sequence-base) / var(--unitone--min-harmonic-sequence-base)));
 $_slope: calc((#{ $_max-font-size } - #{ $_min-font-size }) / (#{ $max-breakpoint - $min-breakpoint }));
 $_intercept: calc(#{-1 * $min-breakpoint } * #{ $_slope } + #{ $_min-font-size });
 $_preferred-font-size: calc((#{ $_intercept } * 1rem) + (#{ $_slope } * 100vw));
 $fluid-font-size: clamp(1rem * #{ $_min-font-size }, #{ $_preferred-font-size }, 1rem * #{ $_max-font-size });
-
-$min-line-height: calc(1 + 2 * min(var(--unitone--min-half-leading), var(--unitone--half-leading)));
-$max-line-height: calc(1 + 2 * var(--unitone--half-leading));
-$max-line-height-target-font-size-ratio: 5;
 
 /**
  * The line-height slope. If smaller, the line-height is adjusted to a smaller value as the font size increases.
@@ -29,22 +21,26 @@ $max-line-height-target-font-size-ratio: 5;
  *
  * @see https://www.geogebra.org/graphing?lang=ja
  */
-$line-height-slope: calc((#{ $min-line-height } - (#{ $max-line-height })) / (#{ $max-line-height-target-font-size-ratio - 1 }));
-$line-height-intercept: calc(#{ $max-line-height } - #{ $line-height-slope });
-$line-height: clamp(
-  #{ $min-line-height },
-  #{ $line-height-slope } * var(--unitone--fluid-font-size-magnification, #{ $_font-size-scale }) + #{ $line-height-intercept },
-  #{ $max-line-height }
+$_min-line-height: calc(1 + 2 * min(var(--unitone--min-half-leading), var(--unitone--half-leading)));
+$_max-line-height: calc(1 + 2 * var(--unitone--half-leading));
+$_max-line-height-target-font-size-ratio: 5;
+$_font-size-scale: calc(var(--unitone--harmonic-sequence-base) / (var(--unitone--harmonic-sequence-base) - var(--unitone--font-size)));
+$_line-height-slope: calc((#{ $_min-line-height } - (#{ $_max-line-height })) / #{ $_max-line-height-target-font-size-ratio - 1 });
+$_line-height-intercept: calc(#{ $_max-line-height } - #{ $_line-height-slope });
+$_line-height: clamp(
+  #{ $_min-line-height },
+  #{ $_line-height-slope } * (var(--unitone--result--em-px) / var(--unitone--base-font-size)) + #{ $_line-height-intercept },
+  #{ $_max-line-height }
 );
 
 @mixin typography {
-  font-size: #{ $font-size };
-  line-height: #{ $line-height };
+  font-size: calc($_font-size-scale * 1rem);
+  line-height: #{ $_line-height };
 }
 
 @mixin typography-em {
-  font-size: #{ $font-size-em };
-  line-height: #{ $line-height };
+  font-size: calc($_font-size-scale * 1em);
+  line-height: #{ $_line-height };
 }
 
 $container-max-width: $max-breakpoint * 16px; // = 1280px
