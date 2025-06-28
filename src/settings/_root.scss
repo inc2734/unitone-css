@@ -5,31 +5,37 @@
 @property --unitone--property--em {
   syntax: "<length>";
   inherits: false;
-  initial-value: var(--, 0em);
+  initial-value: 0;
 }
 
 @property --unitone--property--100vw {
   syntax: "<length>";
   inherits: false;
-  initial-value: var(--, 0vw);
+  initial-value: 0;
+}
+
+* {
+  /**
+   * A value to get the unitless px value in trigonometric functions.
+   */
+  --unitone--property--em: 1em;
+
+  /**
+   * em unitless px real value
+   */
+  --unitone--result--em-px: calc(tan(atan2(var(--unitone--property--em), 1px)));
 }
 
 :root {
   /**
    * A value to get the unitless px value in trigonometric functions.
    */
-  --unitone--property--em: 1em;
   --unitone--property--100vw: 100vw;
-
-  /**
-   * em unitless px real value
-   */
-  --unitone--result--em-px: tan(atan2(var(--unitone--property--em), 1px));
 
   /**
    * 100vw unitless px real value.
    */
-  --unitone--result--100vw-px: tan(atan2(var(--unitone--property--100vw), 1px));
+  --unitone--result--100vw-px: calc(tan(atan2(var(--unitone--property--100vw), 1px)));
 
   /**
    * Column width in typography.
@@ -166,6 +172,8 @@
    */
   --unitone--half-leading: .3;
   --unitone--min-half-leading: .05;
+  --unitone--min-line-height: calc(1 + 2 * min(var(--unitone--min-half-leading), var(--unitone--half-leading))); // Fallback.
+  --unitone--max-line-height: calc(1 + 2 * var(--unitone--half-leading)); // Fallback.
 
   /**
    * Font family
@@ -195,17 +203,19 @@
 
   /**
    * Modular scales for spaces (em based).
+   *
+   * @todo `line-height: 0` が指定されていると、余白も0になってしまう
    */
-  --unitone--em-2: calc(var(--unitone--line-height) * 1em / 3 * #{ list.nth(variables.$fibonacci-sequence, 1) });
-  --unitone--em-1: calc(var(--unitone--line-height) * 1em / 3 * #{ list.nth(variables.$fibonacci-sequence, 2) });
+  --unitone--em-2: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 1) });
+  --unitone--em-1: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 2) });
   --unitone--em0: 0em;
-  --unitone--em1: calc(var(--unitone--line-height) * 1em / 3 * #{ list.nth(variables.$fibonacci-sequence, 3) });
-  --unitone--em2: calc(var(--unitone--line-height) * 1em / 3 * #{ list.nth(variables.$fibonacci-sequence, 4) });
-  --unitone--em3: calc(var(--unitone--line-height) * 1em / 3 * #{ list.nth(variables.$fibonacci-sequence, 5) });
-  --unitone--em4: calc(var(--unitone--line-height) * 1em / 3 * #{ list.nth(variables.$fibonacci-sequence, 6) });
-  --unitone--em5: calc(var(--unitone--line-height) * 1em / 3 * #{ list.nth(variables.$fibonacci-sequence, 7) });
-  --unitone--em6: calc(var(--unitone--line-height) * 1em / 3 * #{ list.nth(variables.$fibonacci-sequence, 8) });
-  --unitone--em7: calc(var(--unitone--line-height) * 1em / 3 * #{ list.nth(variables.$fibonacci-sequence, 9) });
+  --unitone--em1: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 3) });
+  --unitone--em2: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 4) });
+  --unitone--em3: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 5) });
+  --unitone--em4: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 6) });
+  --unitone--em5: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 7) });
+  --unitone--em6: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 8) });
+  --unitone--em7: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 9) });
 
   /**
    * Modular scales for spaces (rem based).

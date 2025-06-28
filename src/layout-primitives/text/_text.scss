@@ -104,7 +104,12 @@
     margin-left: auto;
   }
 
-  > * + * {
+  // We want to put a larger space than usual before and after paragraphs with large font sizes.
+  > * + *:where(:not(:last-child)) {
+    margin-block: var(--unitone--margin-block);
+  }
+
+  > * + *:where(:last-child) {
     margin-block-start: var(--unitone--margin-block);
   }
 

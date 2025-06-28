@@ -21,22 +21,22 @@ $fluid-font-size: clamp(1rem * #{ $_min-font-size }, #{ $_preferred-font-size },
  *
  * @see https://www.geogebra.org/graphing?lang=ja
  */
-$_min-line-height: calc(1 + 2 * min(var(--unitone--min-half-leading), var(--unitone--half-leading)));
-$_max-line-height: calc(1 + 2 * var(--unitone--half-leading));
 $_max-line-height-target-font-size-ratio: 5;
 $_font-size-scale: calc(var(--unitone--harmonic-sequence-base) / (var(--unitone--harmonic-sequence-base) - var(--unitone--font-size)));
-$_line-height-slope: calc((#{ $_min-line-height } - (#{ $_max-line-height })) / #{ $_max-line-height-target-font-size-ratio - 1 });
-$_line-height-intercept: calc(#{ $_max-line-height } - #{ $_line-height-slope });
+$_line-height-slope: calc((var(--unitone--min-line-height) - var(--unitone--max-line-height)) / #{ $_max-line-height-target-font-size-ratio - 1 });
+$_line-height-intercept: calc(var(--unitone--max-line-height) - #{ $_line-height-slope });
 $line-height: clamp(
-  #{ $_min-line-height },
-  #{ $_line-height-slope } * (var(--unitone--result--em-px) / var(--unitone--base-font-size)) + #{ $_line-height-intercept },
-  #{ $_max-line-height }
+  var(--unitone--min-line-height),
+  #{ $_line-height-slope } * (tan(atan2(var(--unitone--property--em), 1px)) / var(--unitone--base-font-size)) + #{ $_line-height-intercept },
+  var(--unitone--max-line-height)
 );
 
 $font-size: calc($_font-size-scale * 1rem);
 $font-size-em: calc($_font-size-scale * 1em);
 
 @mixin typography {
+  --unitone--min-line-height: calc(1 + 2 * min(var(--unitone--min-half-leading), var(--unitone--half-leading)));
+  --unitone--max-line-height: calc(1 + 2 * var(--unitone--half-leading));
   --unitone--line-height: #{ $line-height };
 
   font-size: #{ $font-size };
