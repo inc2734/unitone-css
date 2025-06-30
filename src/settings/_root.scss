@@ -130,7 +130,6 @@
   --unitone--em6: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 8) });
   --unitone--em7: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 9) });
 
-  // @todo Safari 16.4 未満の対応
   @supports not (top: 1lh) {
     --unitone--em-2: calc(var(--unitone--line-height) * 1em / 3 * #{ list.nth(variables.$fibonacci-sequence, 1) });
     --unitone--em-1: calc(var(--unitone--line-height) * 1em / 3 * #{ list.nth(variables.$fibonacci-sequence, 2) });
@@ -159,7 +158,6 @@
   --unitone--rem6: calc(1rlh / 3 * #{ list.nth(variables.$fibonacci-sequence, 8) });
   --unitone--rem7: calc(1rlh / 3 * #{ list.nth(variables.$fibonacci-sequence, 9) });
 
-  // @todo Safari 16.4 未満の対応
   @supports not (top: 1rlh) {
     --unitone--rem-2: calc(var(--unitone--line-height) * 1rem / 3 * #{ list.nth(variables.$fibonacci-sequence, 1) });
     --unitone--rem-1: calc(var(--unitone--line-height) * 1rem / 3 * #{ list.nth(variables.$fibonacci-sequence, 2) });
