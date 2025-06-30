@@ -2,10 +2,22 @@
 @use 'sass:math';
 @use '../variables/variables' as variables;
 
+@property --unitone--property--1em {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --unitone--property--100vw {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @function _generate-fluid-spacing($min, $max) {
   @return clamp(
     #{ $min },
-    #{ $min } + (#{ $max } - #{ $min }) * ((var(--unitone--result--100vw-px) - (#{ variables.$min-breakpoint }) * var(--unitone--base-font-size)) / #{ variables.$max-breakpoint - variables.$min-breakpoint }),
+    #{ $min } + ((#{ $max } - #{ $min }) / (#{ variables.$max-breakpoint - variables.$min-breakpoint } * var(--unitone--base-font-size)) * (var(--unitone--result--100vw-px) - (#{ variables.$min-breakpoint } * var(--unitone--base-font-size)))),
     #{ $max }
   );
 }
