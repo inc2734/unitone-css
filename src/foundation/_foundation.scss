@@ -10,12 +10,6 @@
   box-sizing: border-box;
 }
 
-html {
-  -webkit-text-size-adjust: 100%;
-  line-break: normal;
-  hanging-punctuation: allow-end;
-}
-
 a {
   text-underline-offset: 0.1em;
   text-decoration-thickness: 1px;
@@ -108,4 +102,8 @@ figcaption {
   width: 0;
   min-width: fit-content !important;
   text-align: start;
+}
+
+pre {
+  text-spacing-trim: space-all;
 }

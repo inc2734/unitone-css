@@ -2,10 +2,13 @@
   background-color: var(--unitone--color--background);
   color: var(--unitone--color--text);
   font-family: var(--unitone--font-family);
-}
 
-body {
   -webkit-font-smoothing: antialiased;
   // -moz-osx-font-smooting: grayscale; // White out elements will activate this.
-  overflow-wrap: break-word;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  hanging-punctuation: allow-end;
+  line-break: strict;
+  overflow-wrap: anywhere;
+  text-spacing-trim: trim-start;
 }
