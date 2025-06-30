@@ -27,7 +27,7 @@ $_line-height-slope: calc((var(--unitone--min-line-height) - var(--unitone--max-
 $_line-height-intercept: calc(var(--unitone--max-line-height) - #{ $_line-height-slope });
 $line-height: clamp(
   var(--unitone--min-line-height),
-  #{ $_line-height-slope } * (tan(atan2(var(--unitone--property--em), 1px)) / var(--unitone--base-font-size)) + #{ $_line-height-intercept },
+  #{ $_line-height-slope } * (var(--unitone--result--1em-px) / var(--unitone--base-font-size)) + #{ $_line-height-intercept },
   var(--unitone--max-line-height)
 );
 

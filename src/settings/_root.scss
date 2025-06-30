@@ -2,33 +2,65 @@
 @use 'sass:math';
 @use '../variables/variables' as variables;
 
-@property --unitone--property--em {
-  syntax: "<length>";
-  inherits: false;
-  initial-value: 0;
+@function _generate-fluid-spacing($min, $max) {
+  @return clamp(
+    #{ $min },
+    #{ $min } + (#{ $max } - #{ $min }) * ((var(--unitone--result--100vw-px) - (#{ variables.$min-breakpoint }) * var(--unitone--base-font-size)) / #{ variables.$max-breakpoint - variables.$min-breakpoint }),
+    #{ $max }
+  );
 }
 
-@property --unitone--property--100vw {
-  syntax: "<length>";
-  inherits: false;
-  initial-value: 0;
+@function _generate-spacing($max) {
+  $quotient: math.div(variables.$min-breakpoint, variables.$max-breakpoint);
+  $min: calc(var(--unitone--em1) + #{ $max } * #{ $quotient });
+  @return _generate-fluid-spacing(#{ $min }, #{ $max });
+}
+
+@function _generate-padding($max) {
+  $quotient: math.div(variables.$min-breakpoint, variables.$max-breakpoint);
+  $min: calc(var(--unitone--em1) + #{ $max } * #{ $quotient } * .2);
+  @return _generate-fluid-spacing(#{ $min }, #{ $max });
 }
 
 * {
   /**
-   * A value to get the unitless px value in trigonometric functions.
+   * A value to get the unitless px value in trigonometric functions. (For Safari)
    */
-  --unitone--property--em: 1em;
+  --unitone--property--1em: 1em;
 
   /**
    * em unitless px real value
    */
-  --unitone--result--em-px: calc(tan(atan2(var(--unitone--property--em), 1px)));
+  --unitone--result--1em-px: calc(tan(atan2(var(--unitone--property--1em), 1px)));
 }
 
+/**
+ * Global.
+ */
 :root {
   /**
-   * A value to get the unitless px value in trigonometric functions.
+   * Box shadow
+   */
+  --unitone--global--box-shadow: 0 5px 20px -5px rgb(0 0 0 / 20%);
+
+  /**
+   * Border radius
+   */
+  --unitone--global--border-radius: 4px;
+
+  /**
+   * Default gap
+   */
+  --unitone--global--gap: var(--unitone--s2);
+  --unitone--global--text-gap: var(--unitone--s1);
+}
+
+/**
+ * Typography.
+ */
+:root {
+  /**
+   * A value to get the unitless px value in trigonometric functions. (For Safari)
    */
   --unitone--property--100vw: 100vw;
 
@@ -43,11 +75,201 @@
   --unitone--measure: 42rem;
 
   /**
-   * Colors.
-   *
-   * This color palette is based on Tailwind.
-   * @see https://tailwindcss.com/docs/customizing-colors
+   * Font size level.
+   * It is not recommended to override this value with :root in order to have the size determined based on 0.
    */
+  --unitone--font-size: 0;
+
+  /**
+   * The 1rem px font size (no units).
+   */
+  --unitone--base-font-size: 16;
+
+  --unitone--harmonic-sequence-base: 8;
+  --unitone--min-harmonic-sequence-base: 10;
+  --unitone--max-harmonic-sequence-base: var(--unitone--harmonic-sequence-base);
+
+  /**
+   * Gutter provided above and below the text in a line.
+   */
+  --unitone--half-leading: .3;
+  --unitone--min-half-leading: .05;
+  --unitone--min-line-height: calc(1 + 2 * min(var(--unitone--min-half-leading), var(--unitone--half-leading))); // Fallback.
+  --unitone--max-line-height: calc(1 + 2 * var(--unitone--half-leading)); // Fallback.
+
+  /**
+   * Font family
+   */
+  --unitone--font-family: sans-serif;
+}
+
+/**
+ * Modular scales for spaces (em based).
+ */
+:root {
+  --unitone--em-2: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 1) });
+  --unitone--em-1: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 2) });
+  --unitone--em0: 0em;
+  --unitone--em1: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 3) });
+  --unitone--em2: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 4) });
+  --unitone--em3: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 5) });
+  --unitone--em4: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 6) });
+  --unitone--em5: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 7) });
+  --unitone--em6: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 8) });
+  --unitone--em7: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 9) });
+
+  // @todo Safari 16.4 未満の対応
+  @supports not (top: 1lh) {
+    --unitone--em-2: calc(var(--unitone--line-height) * 1em / 3 * #{ list.nth(variables.$fibonacci-sequence, 1) });
+    --unitone--em-1: calc(var(--unitone--line-height) * 1em / 3 * #{ list.nth(variables.$fibonacci-sequence, 2) });
+    --unitone--em1: calc(var(--unitone--line-height) * 1em / 3 * #{ list.nth(variables.$fibonacci-sequence, 3) });
+    --unitone--em2: calc(var(--unitone--line-height) * 1em / 3 * #{ list.nth(variables.$fibonacci-sequence, 4) });
+    --unitone--em3: calc(var(--unitone--line-height) * 1em / 3 * #{ list.nth(variables.$fibonacci-sequence, 5) });
+    --unitone--em4: calc(var(--unitone--line-height) * 1em / 3 * #{ list.nth(variables.$fibonacci-sequence, 6) });
+    --unitone--em5: calc(var(--unitone--line-height) * 1em / 3 * #{ list.nth(variables.$fibonacci-sequence, 7) });
+    --unitone--em6: calc(var(--unitone--line-height) * 1em / 3 * #{ list.nth(variables.$fibonacci-sequence, 8) });
+    --unitone--em7: calc(var(--unitone--line-height) * 1em / 3 * #{ list.nth(variables.$fibonacci-sequence, 9) });
+  }
+}
+
+/**
+ * Modular scales for spaces (rem based).
+ */
+:root {
+  --unitone--rem-2: calc(1rlh / 3 * #{ list.nth(variables.$fibonacci-sequence, 1) });
+  --unitone--rem-1: calc(1rlh / 3 * #{ list.nth(variables.$fibonacci-sequence, 2) });
+  --unitone--rem0: 0em;
+  --unitone--rem1: calc(1rlh / 3 * #{ list.nth(variables.$fibonacci-sequence, 3) });
+  --unitone--rem2: calc(1rlh / 3 * #{ list.nth(variables.$fibonacci-sequence, 4) });
+  --unitone--rem3: calc(1rlh / 3 * #{ list.nth(variables.$fibonacci-sequence, 5) });
+  --unitone--rem4: calc(1rlh / 3 * #{ list.nth(variables.$fibonacci-sequence, 6) });
+  --unitone--rem5: calc(1rlh / 3 * #{ list.nth(variables.$fibonacci-sequence, 7) });
+  --unitone--rem6: calc(1rlh / 3 * #{ list.nth(variables.$fibonacci-sequence, 8) });
+  --unitone--rem7: calc(1rlh / 3 * #{ list.nth(variables.$fibonacci-sequence, 9) });
+
+  // @todo Safari 16.4 未満の対応
+  @supports not (top: 1rlh) {
+    --unitone--rem-2: calc(var(--unitone--line-height) * 1rem / 3 * #{ list.nth(variables.$fibonacci-sequence, 1) });
+    --unitone--rem-1: calc(var(--unitone--line-height) * 1rem / 3 * #{ list.nth(variables.$fibonacci-sequence, 2) });
+    --unitone--rem1: calc(var(--unitone--line-height) * 1rem / 3 * #{ list.nth(variables.$fibonacci-sequence, 3) });
+    --unitone--rem2: calc(var(--unitone--line-height) * 1rem / 3 * #{ list.nth(variables.$fibonacci-sequence, 4) });
+    --unitone--rem3: calc(var(--unitone--line-height) * 1rem / 3 * #{ list.nth(variables.$fibonacci-sequence, 5) });
+    --unitone--rem4: calc(var(--unitone--line-height) * 1rem / 3 * #{ list.nth(variables.$fibonacci-sequence, 6) });
+    --unitone--rem5: calc(var(--unitone--line-height) * 1rem / 3 * #{ list.nth(variables.$fibonacci-sequence, 7) });
+    --unitone--rem6: calc(var(--unitone--line-height) * 1rem / 3 * #{ list.nth(variables.$fibonacci-sequence, 8) });
+    --unitone--rem7: calc(var(--unitone--line-height) * 1rem / 3 * #{ list.nth(variables.$fibonacci-sequence, 9) });
+  }
+}
+
+/**
+ * Modular scales for spaces.
+ */
+:root {
+  --unitone--s-2: var(--unitone--em-2);
+  --unitone--s-1: var(--unitone--em-1);
+  --unitone--s0: var(--unitone--em0);
+  --unitone--s1: var(--unitone--em1);
+  --unitone--s2: #{ _generate-spacing(var(--unitone--em2)) };
+  --unitone--s3: #{ _generate-spacing(var(--unitone--em3)) };
+  --unitone--s4: #{ _generate-spacing(var(--unitone--em4)) };
+  --unitone--s5: #{ _generate-spacing(var(--unitone--em5)) };
+  --unitone--s6: #{ _generate-spacing(var(--unitone--em6)) };
+  --unitone--s7: #{ _generate-spacing(var(--unitone--em7)) };
+
+  --unitone--s1s: #{ _generate-fluid-spacing(var(--unitone--em-1), var(--unitone--em1)) };
+  --unitone--s2s: #{ _generate-fluid-spacing(var(--unitone--em-1), var(--unitone--em2)) };
+  --unitone--s3s: #{ _generate-fluid-spacing(var(--unitone--em-1), var(--unitone--em3)) };
+  --unitone--s4s: #{ _generate-fluid-spacing(var(--unitone--em-1), var(--unitone--em4)) };
+  --unitone--s5s: #{ _generate-fluid-spacing(var(--unitone--em-1), var(--unitone--em5)) };
+  --unitone--s6s: #{ _generate-fluid-spacing(var(--unitone--em-1), var(--unitone--em6)) };
+  --unitone--s7s: #{ _generate-fluid-spacing(var(--unitone--em-1), var(--unitone--em7)) };
+
+  --unitone--s2m: #{ _generate-fluid-spacing(var(--unitone--em1), var(--unitone--em2)) };
+  --unitone--s3m: #{ _generate-fluid-spacing(var(--unitone--em1), var(--unitone--em3)) };
+  --unitone--s4m: #{ _generate-fluid-spacing(var(--unitone--em1), var(--unitone--em4)) };
+  --unitone--s5m: #{ _generate-fluid-spacing(var(--unitone--em1), var(--unitone--em5)) };
+  --unitone--s6m: #{ _generate-fluid-spacing(var(--unitone--em1), var(--unitone--em6)) };
+  --unitone--s7m: #{ _generate-fluid-spacing(var(--unitone--em1), var(--unitone--em7)) };
+}
+
+/**
+ * Modular scales for padding.
+ *
+ * Left and right padding on mobile devices has a significant impact on readability.
+ * For this reason, we prepare special scales.
+ */
+:root {
+  --unitone--p-2: var(--unitone--em-2);
+  --unitone--p-1: var(--unitone--em-1);
+  --unitone--p0: var(--unitone--em0);
+  --unitone--p1: var(--unitone--em1);
+  --unitone--p2: #{ _generate-padding(var(--unitone--em2)) };
+  --unitone--p3: #{ _generate-padding(var(--unitone--em3)) };
+  --unitone--p4: #{ _generate-padding(var(--unitone--em4)) };
+  --unitone--p5: #{ _generate-padding(var(--unitone--em5)) };
+  --unitone--p6: #{ _generate-padding(var(--unitone--em6)) };
+  --unitone--p7: #{ _generate-padding(var(--unitone--em7)) };
+
+  --unitone--p1s: var(--unitone--s1s);
+  --unitone--p2s: var(--unitone--s2s);
+  --unitone--p3s: var(--unitone--s3s);
+  --unitone--p4s: var(--unitone--s4s);
+  --unitone--p5s: var(--unitone--s5s);
+  --unitone--p6s: var(--unitone--s6s);
+  --unitone--p7s: var(--unitone--s7s);
+
+  --unitone--p2m: var(--unitone--s2m);
+  --unitone--p3m: var(--unitone--s3m);
+  --unitone--p4m: var(--unitone--s4m);
+  --unitone--p5m: var(--unitone--s5m);
+  --unitone--p6m: var(--unitone--s6m);
+  --unitone--p7m: var(--unitone--s7m);
+}
+
+/**
+ * Grids.
+ */
+:root {
+  /**
+   * Default gutters
+   */
+  --unitone--global--gutters: max(min(6vw, var(--unitone--rem2)), env(safe-area-inset-right), env(safe-area-inset-left));
+
+  /**
+   * Max width of the container.
+   */
+  --unitone--container-max-width: #{ variables.$container-max-width };
+
+  --unitone--grid-columns: #{ variables.$grid-columns };
+  --unitone--grid-rows: #{ variables.$grid-rows };
+  --unitone--grid-gap: var(--unitone--global--gap);
+
+  /**
+   * Grid sizes (% based).
+   */
+  --unitone--_pg-base: calc((100% - var(--unitone--grid-gap) * (var(--unitone--grid-columns) - 1)) / var(--unitone--grid-columns));
+  --unitone--pg0: 0%;
+  @for $i from 1 through variables.$grid-columns {
+    --unitone--pg#{ $i }: calc(var(--unitone--_pg-base) * #{ $i } + var(--unitone--grid-gap) * #{ $i - 1 });
+  }
+
+  /**
+   * Grid sizes (container based).
+   */
+  --unitone--_cg-base: calc((var(--unitone--container-max-width) - var(--unitone--grid-gap) * (var(--unitone--grid-columns) - 1)) / var(--unitone--grid-columns));
+  --unitone--cg0: 0%;
+  @for $i from 1 through variables.$grid-columns {
+    --unitone--cg#{ $i }: calc(var(--unitone--_cg-base) * #{ $i } + var(--unitone--grid-gap) * #{ $i - 1 });
+  }
+}
+
+/**
+ * Colors.
+ *
+ * This color palette is based on Tailwind.
+ * @see https://tailwindcss.com/docs/customizing-colors
+ */
+:root {
   --unitone--color--background: #fff;
   --unitone--color--background-alt: #222; // Inversion color
   --unitone--color--text: #222;
@@ -151,189 +373,4 @@
   --unitone--color--pink: #f472b6;
   --unitone--color--dark-pink: #be185d;
   --unitone--color--heavy-pink: #500724;
-
-  /**
-   * Font size level.
-   * It is not recommended to override this value with :root in order to have the size determined based on 0.
-   */
-  --unitone--font-size: 0;
-
-  /**
-   * The 1rem px font size (no units).
-   */
-  --unitone--base-font-size: 16;
-
-  --unitone--harmonic-sequence-base: 8;
-  --unitone--min-harmonic-sequence-base: 10;
-  --unitone--max-harmonic-sequence-base: var(--unitone--harmonic-sequence-base);
-
-  /**
-   * Gutter provided above and below the text in a line.
-   */
-  --unitone--half-leading: .3;
-  --unitone--min-half-leading: .05;
-  --unitone--min-line-height: calc(1 + 2 * min(var(--unitone--min-half-leading), var(--unitone--half-leading))); // Fallback.
-  --unitone--max-line-height: calc(1 + 2 * var(--unitone--half-leading)); // Fallback.
-
-  /**
-   * Font family
-   */
-  --unitone--font-family: sans-serif;
-
-  /**
-   * Box shadow
-   */
-  --unitone--global--box-shadow: 0 5px 20px -5px rgb(0 0 0 / 20%);
-
-  /**
-   * Border radius
-   */
-  --unitone--global--border-radius: 4px;
-
-  /**
-   * Default gap
-   */
-  --unitone--global--gap: var(--unitone--s2);
-  --unitone--global--text-gap: var(--unitone--s1);
-
-  /**
-   * Default gutters
-   */
-  --unitone--global--gutters: max(min(6vw, var(--unitone--rem2)), env(safe-area-inset-right), env(safe-area-inset-left));
-
-  /**
-   * Modular scales for spaces (em based).
-   *
-   * @todo `line-height: 0` が指定されていると、余白も0になってしまう
-   */
-  --unitone--em-2: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 1) });
-  --unitone--em-1: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 2) });
-  --unitone--em0: 0em;
-  --unitone--em1: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 3) });
-  --unitone--em2: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 4) });
-  --unitone--em3: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 5) });
-  --unitone--em4: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 6) });
-  --unitone--em5: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 7) });
-  --unitone--em6: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 8) });
-  --unitone--em7: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 9) });
-
-  /**
-   * Modular scales for spaces (rem based).
-   */
-  --unitone--rem-2: calc(1rlh / 3 * #{ list.nth(variables.$fibonacci-sequence, 1) });
-  --unitone--rem-1: calc(1rlh / 3 * #{ list.nth(variables.$fibonacci-sequence, 2) });
-  --unitone--rem0: 0em;
-  --unitone--rem1: calc(1rlh / 3 * #{ list.nth(variables.$fibonacci-sequence, 3) });
-  --unitone--rem2: calc(1rlh / 3 * #{ list.nth(variables.$fibonacci-sequence, 4) });
-  --unitone--rem3: calc(1rlh / 3 * #{ list.nth(variables.$fibonacci-sequence, 5) });
-  --unitone--rem4: calc(1rlh / 3 * #{ list.nth(variables.$fibonacci-sequence, 6) });
-  --unitone--rem5: calc(1rlh / 3 * #{ list.nth(variables.$fibonacci-sequence, 7) });
-  --unitone--rem6: calc(1rlh / 3 * #{ list.nth(variables.$fibonacci-sequence, 8) });
-  --unitone--rem7: calc(1rlh / 3 * #{ list.nth(variables.$fibonacci-sequence, 9) });
-
-  /**
-   * Modular scales for spaces.
-   */
-  @function _generate-fluid-spacing($min, $max) {
-    @return clamp(
-      #{ $min },
-      #{ $min } + (#{ $max } - #{ $min }) * ((var(--unitone--result--100vw-px) - (#{ variables.$min-breakpoint }) * var(--unitone--base-font-size)) / #{ variables.$max-breakpoint - variables.$min-breakpoint }),
-      #{ $max }
-    );
-  }
-  @function _generate-spacing($max) {
-    $quotient: math.div(variables.$min-breakpoint, variables.$max-breakpoint);
-    $min: calc(var(--unitone--em1) + #{ $max } * #{ $quotient });
-    @return _generate-fluid-spacing(#{ $min }, #{ $max });
-  }
-  $_quotient: math.div(variables.$min-breakpoint, variables.$max-breakpoint);
-  --unitone--s-2: var(--unitone--em-2);
-  --unitone--s-1: var(--unitone--em-1);
-  --unitone--s0: var(--unitone--em0);
-  --unitone--s1: var(--unitone--em1);
-  --unitone--s2: #{ _generate-spacing(var(--unitone--em2)) };
-  --unitone--s3: #{ _generate-spacing(var(--unitone--em3)) };
-  --unitone--s4: #{ _generate-spacing(var(--unitone--em4)) };
-  --unitone--s5: #{ _generate-spacing(var(--unitone--em5)) };
-  --unitone--s6: #{ _generate-spacing(var(--unitone--em6)) };
-  --unitone--s7: #{ _generate-spacing(var(--unitone--em7)) };
-
-  --unitone--s1s: #{ _generate-fluid-spacing(var(--unitone--em-1), var(--unitone--em1)) };
-  --unitone--s2s: #{ _generate-fluid-spacing(var(--unitone--em-1), var(--unitone--em2)) };
-  --unitone--s3s: #{ _generate-fluid-spacing(var(--unitone--em-1), var(--unitone--em3)) };
-  --unitone--s4s: #{ _generate-fluid-spacing(var(--unitone--em-1), var(--unitone--em4)) };
-  --unitone--s5s: #{ _generate-fluid-spacing(var(--unitone--em-1), var(--unitone--em5)) };
-  --unitone--s6s: #{ _generate-fluid-spacing(var(--unitone--em-1), var(--unitone--em6)) };
-  --unitone--s7s: #{ _generate-fluid-spacing(var(--unitone--em-1), var(--unitone--em7)) };
-
-  --unitone--s2m: #{ _generate-fluid-spacing(var(--unitone--em1), var(--unitone--em2)) };
-  --unitone--s3m: #{ _generate-fluid-spacing(var(--unitone--em1), var(--unitone--em3)) };
-  --unitone--s4m: #{ _generate-fluid-spacing(var(--unitone--em1), var(--unitone--em4)) };
-  --unitone--s5m: #{ _generate-fluid-spacing(var(--unitone--em1), var(--unitone--em5)) };
-  --unitone--s6m: #{ _generate-fluid-spacing(var(--unitone--em1), var(--unitone--em6)) };
-  --unitone--s7m: #{ _generate-fluid-spacing(var(--unitone--em1), var(--unitone--em7)) };
-
-  /**
-   * Modular scales for padding.
-   *
-   * Left and right padding on mobile devices has a significant impact on readability.
-   * For this reason, we prepare special scales.
-   */
-  @function _generate-padding($max) {
-    $quotient: math.div(variables.$min-breakpoint, variables.$max-breakpoint);
-    $min: calc(var(--unitone--em1) + #{ $max } * #{ $quotient } * .2);
-    @return _generate-fluid-spacing(#{ $min }, #{ $max });
-  }
-  --unitone--p-2: var(--unitone--em-2);
-  --unitone--p-1: var(--unitone--em-1);
-  --unitone--p0: var(--unitone--em0);
-  --unitone--p1: var(--unitone--em1);
-  --unitone--p2: #{ _generate-padding(var(--unitone--em2)) };
-  --unitone--p3: #{ _generate-padding(var(--unitone--em3)) };
-  --unitone--p4: #{ _generate-padding(var(--unitone--em4)) };
-  --unitone--p5: #{ _generate-padding(var(--unitone--em5)) };
-  --unitone--p6: #{ _generate-padding(var(--unitone--em6)) };
-  --unitone--p7: #{ _generate-padding(var(--unitone--em7)) };
-
-  --unitone--p1s: var(--unitone--s1s);
-  --unitone--p2s: var(--unitone--s2s);
-  --unitone--p3s: var(--unitone--s3s);
-  --unitone--p4s: var(--unitone--s4s);
-  --unitone--p5s: var(--unitone--s5s);
-  --unitone--p6s: var(--unitone--s6s);
-  --unitone--p7s: var(--unitone--s7s);
-
-  --unitone--p2m: var(--unitone--s2m);
-  --unitone--p3m: var(--unitone--s3m);
-  --unitone--p4m: var(--unitone--s4m);
-  --unitone--p5m: var(--unitone--s5m);
-  --unitone--p6m: var(--unitone--s6m);
-  --unitone--p7m: var(--unitone--s7m);
-
-  /**
-   * Max width of the container.
-   */
-  --unitone--container-max-width: #{ variables.$container-max-width };
-
-  --unitone--grid-columns: #{ variables.$grid-columns };
-  --unitone--grid-rows: #{ variables.$grid-rows };
-  --unitone--grid-gap: var(--unitone--global--gap);
-
-  /**
-   * Grid sizes (% based).
-   */
-  --unitone--_pg-base: calc((100% - var(--unitone--grid-gap) * (var(--unitone--grid-columns) - 1)) / var(--unitone--grid-columns));
-  --unitone--pg0: 0%;
-  @for $i from 1 through variables.$grid-columns {
-    --unitone--pg#{ $i }: calc(var(--unitone--_pg-base) * #{ $i } + var(--unitone--grid-gap) * #{ $i - 1 });
-  }
-
-  /**
-   * Grid sizes (container based).
-   */
-  --unitone--_cg-base: calc((var(--unitone--container-max-width) - var(--unitone--grid-gap) * (var(--unitone--grid-columns) - 1)) / var(--unitone--grid-columns));
-  --unitone--cg0: 0%;
-  @for $i from 1 through variables.$grid-columns {
-    --unitone--cg#{ $i }: calc(var(--unitone--_cg-base) * #{ $i } + var(--unitone--grid-gap) * #{ $i - 1 });
-  }
 }
