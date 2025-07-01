@@ -240,7 +240,7 @@ export const stairsResizeObserver = (target) => {
   return observer;
 };
 
-const setColumnCountForVertical = (target) => {
+export const setColumnCountForVertical = (target) => {
   target.setAttribute(
     'data-unitone-layout',
     `${target.getAttribute('data-unitone-layout').replaceAll('vertical-writing:initialized', '').trim()}`,
