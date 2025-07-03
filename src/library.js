@@ -14,17 +14,17 @@ export const setDividerLinewrap = (target) => {
   if (!firstChild) {
     return;
   }
+
   let prevChild;
   const baseRect = firstChild.getBoundingClientRect();
 
-  target.setAttribute(
-    'data-unitone-layout',
-    target
-      .getAttribute('data-unitone-layout')
-      .split(' ')
-      .filter((value) => !['divider:initialized', '-stack'].includes(value))
-      .join(' '),
-  );
+  let currentLayoutArray = target.getAttribute('data-unitone-layout').split(/\s+/);
+  if (currentLayoutArray.some((value) => ['divider:initialized', '-stack'].includes(value))) {
+    currentLayoutArray = currentLayoutArray.filter(
+      (value) => !['divider:initialized', '-stack'].includes(value),
+    );
+    target.setAttribute('data-unitone-layout', currentLayoutArray.join(' '));
+  }
 
   const targetChildren = [].slice.call(target.children).filter((child) => {
     const position = window.getComputedStyle(child).getPropertyValue('position');
@@ -32,39 +32,32 @@ export const setDividerLinewrap = (target) => {
     return 'absolute' !== position && 'fixed' !== position && 'none' !== display;
   });
 
-  targetChildren.forEach((child) => {
-    const currentLayout = child.getAttribute('data-unitone-layout') || '';
-    const newLayout = currentLayout
-      .split(' ')
-      .filter((value) => !['-bol', '-linewrap'].includes(value))
-      .join(' ');
-
-    if (newLayout !== currentLayout) {
-      child.setAttribute('data-unitone-layout', newLayout);
-    }
-  });
-
   targetChildren.forEach((child, index) => {
+    let childCurrentLayoutArray = child.getAttribute('data-unitone-layout').split(/\s+/);
+    if (childCurrentLayoutArray.some((value) => ['-bol', '-linewrap'].includes(value))) {
+      childCurrentLayoutArray = childCurrentLayoutArray.filter(
+        (value) => !['-bol', '-linewrap'].includes(value),
+      );
+      child.setAttribute('data-unitone-layout', childCurrentLayoutArray.join(' '));
+    }
+
     const prevRect = prevChild?.getBoundingClientRect();
     const childRect = child.getBoundingClientRect();
 
-    const currentLayout = child.getAttribute('data-unitone-layout') || '';
-    const newLayout = currentLayout.split(' ');
+    let shouldUpdate = false;
 
     if (0 === index || (prevRect?.top < childRect.top && prevRect?.left >= childRect.left)) {
-      if (!newLayout.includes('-bol')) {
-        newLayout.push('-bol');
-      }
+      childCurrentLayoutArray.push('-bol');
+      shouldUpdate = true;
     }
 
     if (0 < index && baseRect.top < childRect.top) {
-      if (!newLayout.includes('-linewrap')) {
-        newLayout.push('-linewrap');
-      }
+      childCurrentLayoutArray.push('-linewrap');
+      shouldUpdate = true;
     }
 
-    if (newLayout !== currentLayout) {
-      child.setAttribute('data-unitone-layout', newLayout.filter(Boolean).join(' ') || '');
+    if (shouldUpdate) {
+      child.setAttribute('data-unitone-layout', childCurrentLayoutArray.join(' '));
     }
 
     prevChild = child;
@@ -74,16 +67,11 @@ export const setDividerLinewrap = (target) => {
     .call(targetChildren)
     .every((child) => child.getBoundingClientRect().left === baseRect.left);
   if (isStack) {
-    target.setAttribute(
-      'data-unitone-layout',
-      `${target.getAttribute('data-unitone-layout')} -stack`,
-    );
+    currentLayoutArray.push('-stack');
   }
 
-  target.setAttribute(
-    'data-unitone-layout',
-    `${target.getAttribute('data-unitone-layout')} divider:initialized`,
-  );
+  currentLayoutArray.push('divider:initialized');
+  target.setAttribute('data-unitone-layout', currentLayoutArray.join(' '));
 };
 
 export const dividersResizeObserver = (target, args = {}) => {
@@ -241,21 +229,22 @@ export const stairsResizeObserver = (target) => {
 };
 
 export const setColumnCountForVertical = (target) => {
-  target.setAttribute(
-    'data-unitone-layout',
-    `${target.getAttribute('data-unitone-layout').replaceAll('vertical-writing:initialized', '').trim()}`,
-  );
-
-  target.setAttribute(
-    'data-unitone-layout',
-    `${target.getAttribute('data-unitone-layout').replaceAll('vertical-writing:safari', '').trim()}`,
-  );
+  let currentLayoutArray = target.getAttribute('data-unitone-layout').split(/\s+/);
+  if (
+    currentLayoutArray.some((value) =>
+      ['vertical-writing:initialized', 'vertical-writing:safari', '-force-switch'].includes(value),
+    )
+  ) {
+    currentLayoutArray = currentLayoutArray.filter(
+      (value) =>
+        !['vertical-writing:initialized', 'vertical-writing:safari', '-force-switch'].includes(
+          value,
+        ),
+    );
+    target.setAttribute('data-unitone-layout', currentLayoutArray.join(' '));
+  }
 
   // Process of the threshold
-  target.setAttribute(
-    'data-unitone-layout',
-    target.getAttribute('data-unitone-layout').replace(' -force-switch', ''),
-  );
   const computedStyle = getComputedStyle(target);
   const threshold = String(computedStyle.getPropertyValue('--unitone--threshold')).trim();
   if (!!threshold) {
@@ -265,11 +254,8 @@ export const setColumnCountForVertical = (target) => {
     const forceSwitch = thresholder.offsetWidth >= target.offsetWidth;
     target.removeChild(thresholder);
     if (forceSwitch) {
-      target.setAttribute(
-        'data-unitone-layout',
-        `${target.getAttribute('data-unitone-layout')} -force-switch`,
-      );
-      return;
+      currentLayoutArray.push('-force-switch');
+      target.setAttribute('data-unitone-layout', currentLayoutArray.join(' '));
     }
   }
 
@@ -291,19 +277,15 @@ export const setColumnCountForVertical = (target) => {
     return;
   }
 
-  target.setAttribute(
-    'data-unitone-layout',
-    `${target.getAttribute('data-unitone-layout')} vertical-writing:initialized`,
-  );
+  currentLayoutArray.push('vertical-writing:initialized');
 
   // For Safari
   const maybeSafari = target.getBoundingClientRect().left > lastChild.getBoundingClientRect().left;
   if (maybeSafari) {
-    target.setAttribute(
-      'data-unitone-layout',
-      `${target.getAttribute('data-unitone-layout')} vertical-writing:safari`,
-    );
+    currentLayoutArray.push('vertical-writing:safari');
   }
+
+  target.setAttribute('data-unitone-layout', currentLayoutArray.join(' '));
 
   requestAnimationFrame(() => {
     const targetY = target.getBoundingClientRect().top + target.getBoundingClientRect().height;
