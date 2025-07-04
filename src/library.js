@@ -18,7 +18,7 @@ export const setDividerLinewrap = (target) => {
   let prevChild;
   const baseRect = firstChild.getBoundingClientRect();
 
-  let currentLayoutArray = target.getAttribute('data-unitone-layout').split(/\s+/);
+  let currentLayoutArray = (target.getAttribute('data-unitone-layout') ?? '').split(/\s+/);
   if (currentLayoutArray.some((value) => ['divider:initialized', '-stack'].includes(value))) {
     currentLayoutArray = currentLayoutArray.filter(
       (value) => !['divider:initialized', '-stack'].includes(value),
@@ -33,7 +33,7 @@ export const setDividerLinewrap = (target) => {
   });
 
   targetChildren.forEach((child, index) => {
-    let childCurrentLayoutArray = child.getAttribute('data-unitone-layout').split(/\s+/);
+    let childCurrentLayoutArray = (child.getAttribute('data-unitone-layout') ?? '').split(/\s+/);
     if (childCurrentLayoutArray.some((value) => ['-bol', '-linewrap'].includes(value))) {
       childCurrentLayoutArray = childCurrentLayoutArray.filter(
         (value) => !['-bol', '-linewrap'].includes(value),
@@ -229,7 +229,7 @@ export const stairsResizeObserver = (target) => {
 };
 
 export const setColumnCountForVertical = (target) => {
-  let currentLayoutArray = target.getAttribute('data-unitone-layout').split(/\s+/);
+  let currentLayoutArray = (target.getAttribute('data-unitone-layout') ?? '').split(/\s+/);
   if (
     currentLayoutArray.some((value) =>
       ['vertical-writing:initialized', 'vertical-writing:safari', '-force-switch'].includes(value),
