@@ -15,7 +15,7 @@
     flex-direction: row-reverse;
   }
 
-  &[data-unitone-layout*="-stairs\:"] {
+  &:where([data-unitone-layout*="-stairs\:"]) {
     --unitone--align-items: start;
 
     padding-bottom: calc(var(--unitone--stairs-step-overflow-volume, 0) * 1px);
@@ -25,10 +25,8 @@
       visibility: visible;
     }
 
-    > * {
-      --unitone--position: relative;
-
-      position: var(--unitone--position);
+    > :where([style*="--unitone--stairs-step:"]) {
+      position: relative;
     }
 
     &:where(:not([data-unitone-layout~="-revert"]):not([data-unitone-layout~="-stairs-up\:right"])),

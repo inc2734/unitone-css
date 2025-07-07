@@ -244,21 +244,6 @@ export const setColumnCountForVertical = (target) => {
     target.setAttribute('data-unitone-layout', currentLayoutArray.join(' '));
   }
 
-  // Process of the threshold
-  const computedStyle = getComputedStyle(target);
-  const threshold = String(computedStyle.getPropertyValue('--unitone--threshold')).trim();
-  if (!!threshold) {
-    const thresholder = document.createElement('div');
-    thresholder.setAttribute('data-unitone-layout', 'vertical-writing__thresholder');
-    target.appendChild(thresholder);
-    const forceSwitch = thresholder.offsetWidth >= target.offsetWidth;
-    target.removeChild(thresholder);
-    if (forceSwitch) {
-      currentLayoutArray.push('-force-switch');
-      target.setAttribute('data-unitone-layout', currentLayoutArray.join(' '));
-    }
-  }
-
   let lastChild;
   [].slice
     .call(target.children)
@@ -274,29 +259,53 @@ export const setColumnCountForVertical = (target) => {
     });
 
   if (!lastChild) {
+    currentLayoutArray.push('vertical-writing:initialized');
+    target.setAttribute('data-unitone-layout', currentLayoutArray.join(' '));
     return;
   }
 
-  currentLayoutArray.push('vertical-writing:initialized');
+  // Process of the threshold
+  const computedStyle = getComputedStyle(target);
+  const threshold = String(computedStyle.getPropertyValue('--unitone--threshold')).trim();
+  let forceSwitch = false;
 
-  // For Safari
-  const maybeSafari = target.getBoundingClientRect().left > lastChild.getBoundingClientRect().left;
-  if (maybeSafari) {
-    currentLayoutArray.push('vertical-writing:safari');
-  }
-
-  target.setAttribute('data-unitone-layout', currentLayoutArray.join(' '));
-
-  requestAnimationFrame(() => {
-    const targetY = target.getBoundingClientRect().top + target.getBoundingClientRect().height;
-    const lastChildY =
-      lastChild.getBoundingClientRect().top + lastChild.getBoundingClientRect().height;
-    if (targetY !== lastChildY) {
-      target.parentNode.style.height = `${Math.ceil(
-        lastChildY - target.getBoundingClientRect().top,
-      )}px`;
+  setTimeout(() => {
+    if (!!threshold) {
+      const thresholder = document.createElement('div');
+      thresholder.setAttribute('data-unitone-layout', 'vertical-writing__thresholder');
+      target.appendChild(thresholder);
+      forceSwitch = thresholder.offsetWidth >= target.offsetWidth;
+      target.removeChild(thresholder);
     }
-  });
+
+    if (forceSwitch) {
+      currentLayoutArray.push('-force-switch');
+      target.parentNode.style.height = '';
+    } else {
+      // For Safari
+      const maybeSafari =
+        target.getBoundingClientRect().left > lastChild.getBoundingClientRect().left;
+      if (maybeSafari) {
+        currentLayoutArray.push('vertical-writing:safari');
+      }
+
+      target.setAttribute('data-unitone-layout', currentLayoutArray.join(' '));
+
+      requestAnimationFrame(() => {
+        const targetRect = target.getBoundingClientRect();
+        const lastChildRect = lastChild.getBoundingClientRect();
+
+        const targetY = targetRect.top + targetRect.height;
+        const lastChildY = lastChildRect.top + lastChildRect.height;
+        if (targetY !== lastChildY) {
+          target.parentNode.style.height = `${Math.ceil(lastChildY - targetRect.top)}px`;
+        }
+      });
+    }
+
+    currentLayoutArray.push('vertical-writing:initialized');
+    target.setAttribute('data-unitone-layout', currentLayoutArray.join(' '));
+  }, 250);
 };
 
 export const verticalsResizeObserver = (target) => {

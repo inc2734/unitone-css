@@ -203,7 +203,7 @@
     }
   }
 
-  &[data-unitone-layout*="-stairs\:"] {
+  &:where([data-unitone-layout*="-stairs\:"]) {
     align-items: start;
     padding-bottom: calc(var(--unitone--stairs-step-overflow-volume, 0) * 1px);
     visibility: hidden;
@@ -212,7 +212,7 @@
       visibility: visible;
     }
 
-    > * {
+    > :where([style*="--unitone--stairs-step:"]) {
       position: relative;
     }
 
