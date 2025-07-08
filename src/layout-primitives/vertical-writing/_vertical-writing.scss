@@ -107,6 +107,11 @@
 }
 
 @mixin vertical-writing() {
+  [data-unitone-layout~="vertical-writing-wrapper"] {
+    display: flex;
+    flex-direction: column;
+  }
+
   [data-unitone-layout~="vertical-writing"] {
     @include abstract-vertical-writing();
   }

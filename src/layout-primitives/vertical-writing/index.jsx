@@ -16,7 +16,7 @@ export const VerticalWriting = ({
   };
 
   return (
-    <div>
+    <div data-unitone-layout="vertical-writing-wrapper">
       <div
         data-unitone-layout={[
           'vertical-writing',
