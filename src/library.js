@@ -229,6 +229,10 @@ export const stairsResizeObserver = (target) => {
 };
 
 export const setColumnCountForVertical = (target) => {
+  if (!target) {
+    return;
+  }
+
   let currentLayoutArray = (target.getAttribute('data-unitone-layout') ?? '').split(/\s+/);
   if (
     currentLayoutArray.some((value) =>
