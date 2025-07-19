@@ -34,6 +34,7 @@
     grid-row: var(--unitone--grid-row);
     align-self: var(--unitone--align-self);
     justify-self: var(--unitone--justify-self);
+    min-width: 0;
     mix-blend-mode: var(--unitone--mix-blend-mode);
   }
 

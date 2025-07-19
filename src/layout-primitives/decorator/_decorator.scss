@@ -61,10 +61,16 @@
     );
   }
 
-  &[data-unitone-layout*="-gap\:"],
-  &[data-unitone-layout*="-align-content\:"],
-  &[data-unitone-layout*="-justify-items\:"] {
+  &:where(
+    [data-unitone-layout*="-gap\:"],
+    [data-unitone-layout*="-align-content\:"],
+    [data-unitone-layout*="-justify-items\:"]
+  ) {
     display: grid;
+
+    > * {
+      min-width: 0;
+    }
   }
 
   &[data-unitone-layout*="-gap\:"] {
