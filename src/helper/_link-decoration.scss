@@ -1,0 +1,13 @@
+@mixin link-decoration() {
+  [data-unitone-layout~="-link-decoration\:none"] {
+    --unitone--link-decoration: none !important;
+  }
+
+  [data-unitone-layout~="-link-decoration\:line-through"] {
+    --unitone--link-decoration: line-through !important;
+  }
+
+  [data-unitone-layout~="-link-decoration\:underline"] {
+    --unitone--link-decoration: underline !important;
+  }
+}

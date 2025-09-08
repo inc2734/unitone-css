@@ -10,6 +10,7 @@
 @use 'justify-content';
 @use 'justify-items';
 @use 'justify-self';
+@use 'link-decoration';
 @use 'mix-blend-mode';
 @use 'overflow';
 @use 'padding';
@@ -30,6 +31,7 @@
 @include justify-content.justify-content();
 @include justify-items.justify-items();
 @include justify-self.justify-self();
+@include link-decoration.link-decoration();
 @include mix-blend-mode.mix-blend-mode();
 @include overflow.overflow();
 @include padding.padding();
