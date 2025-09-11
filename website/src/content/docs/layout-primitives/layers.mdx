@@ -187,6 +187,40 @@ The background image/video is enlarged according to the amount of content.
 	</Tabs.Tab>
 </Tabs>
 
+### <Badge>HTML</Badge> -fixed / <Badge>JSX</Badge> fixed
+
+The background image/video will be fixed.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="layers -fixed">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Layers } from '@inc2734/unitone-css';
+
+		<Layers fixed>
+			...
+		</Layers>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Layers fixed>
+				<img src="https://placehold.jp/400x300.jpg" alt="" />
+
+				<div data-unitone-layout="-align-self:end">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+				</div>
+			</Layers>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
 ### <Badge>HTML</Badge> -blur / <Badge>JSX</Badge> applyBlur
 
 Blur the background image/video.

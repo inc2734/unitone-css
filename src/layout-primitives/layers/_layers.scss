@@ -50,7 +50,8 @@
   }
 
   &[data-unitone-layout~="-cover"],
-  &[data-unitone-layout~="-fill"] {
+  &[data-unitone-layout~="-fill"],
+  &[data-unitone-layout~="-fixed"] {
     position: relative;
 
     > figure:first-child,
@@ -87,6 +88,25 @@
         position: relative;
       }
 
+      // @todo Since decorator's position is !important, it must be overridden by CSS variables.
+      :where(#{ & } > [data-unitone-layout~="decorator"]) {
+        --unitone--position: relative;
+      }
+    }
+  }
+
+  &[data-unitone-layout~="-fixed"] {
+    clip-path: inset(0);
+
+    > img:first-child,
+    > video:first-child,
+    > :first-child img,
+    > :first-child video {
+      position: fixed;
+      inset: 0;
+    }
+
+    @at-root {
       // @todo Since decorator's position is !important, it must be overridden by CSS variables.
       :where(#{ & } > [data-unitone-layout~="decorator"]) {
         --unitone--position: relative;

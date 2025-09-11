@@ -3,6 +3,7 @@ import React from 'react';
 export const Layers = ({
   cover,
   fill,
+  fixed,
   applyBlur,
   blur,
   portrait,
@@ -28,6 +29,7 @@ export const Layers = ({
         '' !== (gap ?? '') ? `-gap:${gap}` : undefined,
         cover ? '-cover' : undefined,
         fill ? '-fill' : undefined,
+        fixed ? '-fixed' : undefined,
         applyBlur ? '-blur' : undefined,
         portrait ? '-portrait' : undefined,
       ]
