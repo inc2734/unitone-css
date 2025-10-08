@@ -3,6 +3,8 @@
   --unitone--texture-gap: 50px;
   --unitone--texture-size: 1px;
 
+  background-position: center;
+
   &[data-unitone-layout~="-texture\:dots"] {
     background-image:
       radial-gradient(
