@@ -12,6 +12,7 @@
 @use 'justify-self';
 @use 'link-decoration';
 @use 'mix-blend-mode';
+@use 'negative-gap';
 @use 'overflow';
 @use 'padding';
 @use 'position';
@@ -33,6 +34,7 @@
 @include justify-self.justify-self();
 @include link-decoration.link-decoration();
 @include mix-blend-mode.mix-blend-mode();
+@include negative-gap.negative-gap();
 @include overflow.overflow();
 @include padding.padding();
 @include stairs.stairs();

@@ -1,5 +1,6 @@
 @mixin abstract-stack() {
   --unitone--gap: var(--unitone--global--text-gap);
+  --unitone--negative-gap: var(--unitone--global--text-gap);
 
   display: flex;
   flex-direction: column;
@@ -173,13 +174,13 @@
 
     &:where(:not([data-unitone-layout~="-revert"])) {
       > :not(:first-child) {
-        margin-top: calc(-1 * var(--unitone--gap));
+        margin-top: calc(-1 * var(--unitone--negative-gap));
       }
     }
 
     &:where([data-unitone-layout~="-revert"]) {
       > :not(:last-child) {
-        margin-top: calc(-1 * var(--unitone--gap));
+        margin-top: calc(-1 * var(--unitone--negative-gap));
       }
     }
   }

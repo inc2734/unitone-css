@@ -1,0 +1,19 @@
+@mixin negative-gap() {
+  @for $i from -2 through 7 {
+    [data-unitone-layout~="-negative"][data-unitone-layout~="-gap\:#{ $i }"] {
+      --unitone--negative-gap: var(--unitone--s#{ $i }) !important;
+    }
+  }
+
+  @for $i from 1 through 7 {
+    [data-unitone-layout~="-negative"][data-unitone-layout~="-gap\:#{ $i }s"] {
+      --unitone--negative-gap: var(--unitone--s#{ $i }s) !important;
+    }
+  }
+
+  @for $i from 2 through 7 {
+    [data-unitone-layout~="-negative"][data-unitone-layout~="-gap\:#{ $i }m"] {
+      --unitone--negative-gap: var(--unitone--s#{ $i }m) !important;
+    }
+  }
+}
