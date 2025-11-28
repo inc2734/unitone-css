@@ -372,12 +372,14 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 
 The direction of stairs. Default is `left`.
 
-`left` / `right`
+`left` / `right` / `up-down` / `down-up`
+
+##### left
 
 <Tabs items={['HTML', 'JSX', 'Preview']}>
 	<Tabs.Tab>
 		```html
-		<div data-unitone-layout="responsive-grid -stairs:1 -stairs-up:right">
+		<div data-unitone-layout="responsive-grid -stairs:1 -stairs-up:left" style="--unitone--column-min-width: 160px">
 			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
 			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
 			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
@@ -389,7 +391,7 @@ The direction of stairs. Default is `left`.
 		```jsx
 		import { ResponsiveGrid } from '@inc2734/unitone-css';
 
-		<ResponsiveGrid stairs={1} stairsUp="right">
+		<ResponsiveGrid stairs={1} stairsUp="left" columnMinWidth="160px">
 			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
 			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
 			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
@@ -399,11 +401,122 @@ The direction of stairs. Default is `left`.
 	</Tabs.Tab>
 	<Tabs.Tab>
 		<PreviewConainer>
-			<ResponsiveGrid stairs={1} stairsUp="right">
+			<ResponsiveGrid stairs={1} stairsUp="left" columnMinWidth="160px">
 				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
 				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
 				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
 				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			</ResponsiveGrid>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+##### right
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="responsive-grid -stairs:1 -stairs-up:right" style="--unitone--column-min-width: 160px">
+			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { ResponsiveGrid } from '@inc2734/unitone-css';
+
+		<ResponsiveGrid stairs={1} stairsUp="right" columnMinWidth="160px">
+			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+		</ResponsiveGrid>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<ResponsiveGrid stairs={1} stairsUp="right" columnMinWidth="160px">
+				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			</ResponsiveGrid>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+##### up-down
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="responsive-grid -stairs:1 -stairs-up:up-down" style="--unitone--column-min-width: 160px">
+			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { ResponsiveGrid } from '@inc2734/unitone-css';
+
+		<ResponsiveGrid stairs={1} stairsUp="up-down" columnMinWidth="160px">
+			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
+		</ResponsiveGrid>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<ResponsiveGrid stairs={1} stairsUp="up-down" columnMinWidth="160px">
+				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			</ResponsiveGrid>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+##### down-up
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="responsive-grid -stairs:1 -stairs-up:down-up" style="--unitone--column-min-width: 160px">
+			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { ResponsiveGrid } from '@inc2734/unitone-css';
+
+		<ResponsiveGrid stairs={1} stairsUp="down-up" columnMinWidth="160px">
+			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
+			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
+		</ResponsiveGrid>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<ResponsiveGrid stairs={1} stairsUp="down-up" columnMinWidth="160px">
+				<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
+				<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
+				<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
+				<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
 			</ResponsiveGrid>
 		</PreviewConainer>
 	</Tabs.Tab>

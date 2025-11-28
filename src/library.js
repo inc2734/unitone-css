@@ -171,6 +171,13 @@ export const setStairsStep = (target) => {
   let stairsStep = 0;
   let maxStairsStep = stairsStep;
 
+  const stairsUp = (target.getAttribute('data-unitone-layout') ?? '')
+    .split(/\s+/)
+    .find((value) => value.startsWith('-stairs-up:'))
+    ?.replace('-stairs-up:', '');
+
+  const isAlternatingStairs = ['up-down', 'down-up'].includes(stairsUp);
+
   const direction = window.getComputedStyle(target).getPropertyValue('flex-direction');
 
   children.forEach((child) => {
@@ -189,11 +196,13 @@ export const setStairsStep = (target) => {
 
     if (firstChild === child || isBol) {
       stairsStep = 0;
-      child.style.setProperty('--unitone--stairs-step', stairsStep);
+    } else if (isAlternatingStairs) {
+      stairsStep = 0 === stairsStep ? 1 : 0;
     } else {
       stairsStep++;
-      child.style.setProperty('--unitone--stairs-step', stairsStep);
     }
+
+    child.style.setProperty('--unitone--stairs-step', stairsStep);
 
     prevChild = child;
 

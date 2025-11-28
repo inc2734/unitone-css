@@ -42,6 +42,18 @@
         top: calc(var(--unitone--stairs-margin) * (var(--unitone--max-stairs-step) - var(--unitone--stairs-step)));
       }
     }
+
+    &:where([data-unitone-layout~="-stairs-up\:up-down"]) {
+      > * {
+        top: calc(var(--unitone--stairs-margin) * var(--unitone--stairs-step));
+      }
+    }
+
+    &:where([data-unitone-layout~="-stairs-up\:down-up"]) {
+      > * {
+        top: calc(var(--unitone--stairs-margin) * (var(--unitone--max-stairs-step) - var(--unitone--stairs-step)));
+      }
+    }
   }
 
   > * {

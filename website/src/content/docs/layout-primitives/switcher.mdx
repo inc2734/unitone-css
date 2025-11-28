@@ -197,14 +197,14 @@ If the box size is smaller than this value, it switches to one column.
 		```jsx
 		import { Switcher } from '@inc2734/unitone-css';
 
-		<Switcher thureshold="500px">
+		<Switcher threshold="500px">
 			...
 		</Switcher>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		<PreviewConainer>
-			<Switcher thureshold="500px">
+			<Switcher threshold="500px">
 				<Decorator backgroundColor="#3730a3" color="#fff" padding={1}>Lorem ipsum</Decorator>
 				<Decorator backgroundColor="#5b21b6" color="#fff" padding={1}>dolor sit</Decorator>
 				<Decorator backgroundColor="#6b21a8" color="#fff" padding={1}>amet consectetur</Decorator>
@@ -251,12 +251,18 @@ Alignment of the row direction.
 
 The direction of stairs. Default is `left`.
 
-`left` / `right`
+`left` / `right` / `up-down` / `down-up`
+
+##### left
 
 <Tabs items={['HTML', 'JSX', 'Preview']}>
 	<Tabs.Tab>
 		```html
-		<div data-unitone-layout="switcher -stairs:1 -stairs-up:right">
+		<div data-unitone-layout="switcher -stairs:1 -stairs-up:left" style="--unitone--threshold: 200px">
+			...
+		</div>
+
+		<div data-unitone-layout="switcher -stairs:1 -stairs-up:left -revert" style="--unitone--threshold: 200px">
 			...
 		</div>
 		```
@@ -265,17 +271,167 @@ The direction of stairs. Default is `left`.
 		```jsx
 		import { Switcher } from '@inc2734/unitone-css';
 
-		<Switcher stairs={1} stairsUp="right">
+		<Switcher stairs={1} stairsUp="left" threshold="200px">
+			...
+		</Switcher>
+
+		<Switcher stairs={1} stairsUp="left" threshold="200px" revert>
 			...
 		</Switcher>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		<PreviewConainer>
-			<Switcher stairs={1} stairsUp="right" revert>
-				<Decorator backgroundColor="#3730a3" color="#fff" padding={1}>Lorem ipsum</Decorator>
-				<Decorator backgroundColor="#5b21b6" color="#fff" padding={1}>Lorem ipsum<br />dolor sit</Decorator>
-				<Decorator backgroundColor="#6b21a8" color="#fff" padding={1}>amet consectetur</Decorator>
+			<Switcher stairs={1} stairsUp="left" threshold="200px">
+				<Decorator backgroundColor="#3730a3" color="#fff" padding={1} position="relative">Lorem ipsum</Decorator>
+				<Decorator backgroundColor="#5b21b6" color="#fff" padding={1} position="relative">Lorem ipsum<br />dolor sit</Decorator>
+				<Decorator backgroundColor="#6b21a8" color="#fff" padding={1} position="relative">amet consectetur</Decorator>
+			</Switcher>
+		</PreviewConainer>
+
+		<PreviewConainer>
+			<Switcher stairs={1} stairsUp="left" threshold="200px" revert>
+				<Decorator backgroundColor="#3730a3" color="#fff" padding={1} position="relative">Lorem ipsum</Decorator>
+				<Decorator backgroundColor="#5b21b6" color="#fff" padding={1} position="relative">Lorem ipsum<br />dolor sit</Decorator>
+				<Decorator backgroundColor="#6b21a8" color="#fff" padding={1} position="relative">amet consectetur</Decorator>
+			</Switcher>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+##### right
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="switcher -stairs:1 -stairs-up:right" style="--unitone--threshold: 200px">
+			...
+		</div>
+
+		<div data-unitone-layout="switcher -stairs:1 -stairs-up:right -revert" style="--unitone--threshold: 200px">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Switcher } from '@inc2734/unitone-css';
+
+		<Switcher stairs={1} stairsUp="right" threshold="200px">
+			...
+		</Switcher>
+
+		<Switcher stairs={1} stairsUp="right" threshold="200px" revert>
+			...
+		</Switcher>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Switcher stairs={1} stairsUp="right" threshold="200px" revert>
+				<Decorator backgroundColor="#3730a3" color="#fff" padding={1} position="relative">Lorem ipsum</Decorator>
+				<Decorator backgroundColor="#5b21b6" color="#fff" padding={1} position="relative">Lorem ipsum<br />dolor sit</Decorator>
+				<Decorator backgroundColor="#6b21a8" color="#fff" padding={1} position="relative">amet consectetur</Decorator>
+			</Switcher>
+		</PreviewConainer>
+
+		<PreviewConainer>
+			<Switcher stairs={1} stairsUp="right" threshold="200px" revert>
+				<Decorator backgroundColor="#3730a3" color="#fff" padding={1} position="relative">Lorem ipsum</Decorator>
+				<Decorator backgroundColor="#5b21b6" color="#fff" padding={1} position="relative">Lorem ipsum<br />dolor sit</Decorator>
+				<Decorator backgroundColor="#6b21a8" color="#fff" padding={1} position="relative">amet consectetur</Decorator>
+			</Switcher>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+##### up-down
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="switcher -stairs:1 -stairs-up:up-down" style="--unitone--threshold: 200px">
+			...
+		</div>
+
+		<div data-unitone-layout="switcher -stairs:1 -stairs-up:up-down -revert" style="--unitone--threshold: 200px">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Switcher } from '@inc2734/unitone-css';
+
+		<Switcher stairs={1} stairsUp="up-down" threshold="200px">
+			...
+		</Switcher>
+
+		<Switcher stairs={1} stairsUp="up-down" threshold="200px" revert>
+			...
+		</Switcher>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Switcher stairs={1} stairsUp="up-down" threshold="200px">
+				<Decorator backgroundColor="#3730a3" color="#fff" padding={1} position="relative">Lorem ipsum</Decorator>
+				<Decorator backgroundColor="#5b21b6" color="#fff" padding={1} position="relative">Lorem ipsum<br />dolor sit</Decorator>
+				<Decorator backgroundColor="#6b21a8" color="#fff" padding={1} position="relative">amet consectetur</Decorator>
+			</Switcher>
+		</PreviewConainer>
+
+		<PreviewConainer>
+			<Switcher stairs={1} stairsUp="up-down" threshold="200px" revert>
+				<Decorator backgroundColor="#3730a3" color="#fff" padding={1} position="relative">Lorem ipsum</Decorator>
+				<Decorator backgroundColor="#5b21b6" color="#fff" padding={1} position="relative">Lorem ipsum<br />dolor sit</Decorator>
+				<Decorator backgroundColor="#6b21a8" color="#fff" padding={1} position="relative">amet consectetur</Decorator>
+			</Switcher>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+##### down-up
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="switcher -stairs:1 -stairs-up:down-up" style="--unitone--threshold: 200px">
+			...
+		</div>
+
+		<div data-unitone-layout="switcher -stairs:1 -stairs-up:down-up -revert" style="--unitone--threshold: 200px">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Switcher } from '@inc2734/unitone-css';
+
+		<Switcher stairs={1} stairsUp="down-up" threshold="200px">
+			...
+		</Switcher>
+
+		<Switcher stairs={1} stairsUp="down-up" threshold="200px" revert>
+			...
+		</Switcher>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Switcher stairs={1} stairsUp="down-up" threshold="200px">
+				<Decorator backgroundColor="#3730a3" color="#fff" padding={1} position="relative">Lorem ipsum</Decorator>
+				<Decorator backgroundColor="#5b21b6" color="#fff" padding={1} position="relative">Lorem ipsum<br />dolor sit</Decorator>
+				<Decorator backgroundColor="#6b21a8" color="#fff" padding={1} position="relative">amet consectetur</Decorator>
+			</Switcher>
+		</PreviewConainer>
+
+		<PreviewConainer>
+			<Switcher stairs={1} stairsUp="down-up" threshold="200px" revert>
+				<Decorator backgroundColor="#3730a3" color="#fff" padding={1} position="relative">Lorem ipsum</Decorator>
+				<Decorator backgroundColor="#5b21b6" color="#fff" padding={1} position="relative">Lorem ipsum<br />dolor sit</Decorator>
+				<Decorator backgroundColor="#6b21a8" color="#fff" padding={1} position="relative">amet consectetur</Decorator>
 			</Switcher>
 		</PreviewConainer>
 	</Tabs.Tab>
