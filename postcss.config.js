@@ -7,6 +7,7 @@ module.exports = {
     require('cssnano')({
       preset: ['default', {
         calc: false,
+        convertValues: false,
       }],
     })
   ]
