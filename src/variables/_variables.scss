@@ -10,7 +10,7 @@ $_min-font-size: calc(var(--unitone--harmonic-sequence-base) / (var(--unitone--m
 $_slope: calc((#{ $_max-font-size } - #{ $_min-font-size }) / (#{ $max-breakpoint - $min-breakpoint }));
 $_intercept: calc(#{-1 * $min-breakpoint } * #{ $_slope } + #{ $_min-font-size });
 $_preferred-font-size: calc((#{ $_intercept } * 1rem) + (#{ $_slope } * 100vw));
-$_fluid-font-size: clamp(var(--unitone--fluid-font-size-min-length, calc(1rem * #{ $_min-font-size })), #{ $_preferred-font-size }, var(--unitone--fluid-font-size-max-length, calc(1rem * $_max-font-size)));
+$_font-size-fluid: clamp(var(--unitone--fluid-typography-min-length, calc(1rem * #{ $_min-font-size })), #{ $_preferred-font-size }, var(--unitone--fluid-typography-max-length, calc(1rem * $_max-font-size)));
 
 /**
  * The line-height slope. If smaller, the line-height is adjusted to a smaller value as the font size increases.
@@ -37,7 +37,7 @@ $_font-size-em: calc($_font-size-scale * 1em);
 @mixin typography {
   --unitone--font-size-rem: #{ $_font-size };
   --unitone--font-size-em: #{ $_font-size-em };
-  --unitone--fluid-font-size: #{ $_fluid-font-size };
+  --unitone--font-size-fluid: #{ $_font-size-fluid };
 
   --unitone--line-height: #{ $_line-height };
 
@@ -50,8 +50,8 @@ $_font-size-em: calc($_font-size-scale * 1em);
   line-height: var(--unitone--line-height);
 }
 
-@mixin fluid-font-size {
-  font-size:var(--unitone--fluid-font-size);
+@mixin fluid-typography {
+  font-size:var(--unitone--font-size-fluid);
 }
 
 $container-max-width: $max-breakpoint * 16px; // = 1280px

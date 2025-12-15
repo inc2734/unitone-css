@@ -15,6 +15,6 @@
   }
 
   [data-unitone-layout~="-fluid-typography"] {
-    @include variables.fluid-font-size();
+    @include variables.fluid-typography();
   }
 }
