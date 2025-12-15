@@ -7,6 +7,7 @@
   --unitone--max-height: none;
   --unitone--min-height: 0px;
   --unitone--max-width: 100%;
+  --unitone--min-width: 0;
   --unitone--padding: 0px;
   --unitone--padding-top: var(--unitone--padding);
   --unitone--padding-right: var(--unitone--padding);
@@ -37,7 +38,8 @@
   box-shadow: var(--unitone--box-shadow);
   max-height: var(--unitone--max-height);
   min-height: var(--unitone--min-height);
-  max-width: var(--unitone--max-width);
+  max-width: var(--unitone--max-width) !important;
+  min-width: var(--unitone--min-width) !important;
   padding-top: var(--unitone--padding-top);
   padding-right: var(--unitone--padding-right);
   padding-bottom: var(--unitone--padding-bottom);
