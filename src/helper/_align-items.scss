@@ -1,6 +1,16 @@
+$_values: (
+  auto: auto,
+  normal: normal,
+  start: start,
+  end: end,
+  center: center,
+  stretch: stretch,
+  baseline: 'last baseline',
+);
+
 @mixin align-items() {
-  @each $value in (start, center, end, stretch, baseline) {
-    [data-unitone-layout~="-align-items\:#{ $value }"] {
+  @each $key, $value in $_values {
+    [data-unitone-layout~="-align-items\:#{ $key }"] {
       --unitone--align-items: #{ $value } !important;
     }
   }
