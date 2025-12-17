@@ -39,6 +39,8 @@ $_font-size-em: calc($_font-size-scale * 1em);
   --unitone--font-size-em: #{ $_font-size-em };
   --unitone--font-size-fluid: #{ $_font-size-fluid };
 
+  --unitone--min-line-height: calc(1 + 2 * min(var(--unitone--min-half-leading), var(--unitone--half-leading)));
+  --unitone--max-line-height: calc(1 + 2 * var(--unitone--half-leading));
   --unitone--line-height: #{ $_line-height };
 
   font-size: var(--unitone--font-size-rem);
