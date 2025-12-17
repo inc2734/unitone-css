@@ -564,6 +564,59 @@ Position.
 	</Tabs.Tab>
 </Tabs>
 
+### -mix-blend-mode:\{value\}
+
+You can specify how the elements should look when stacked.
+
+`normal` / `multiply` / `screen` / `overlay` / `darken` / `lighten` / `color-dodge` / `color-burn` / `hard-light` / `soft-light` / `difference` / `exclusion` / `hue` / `saturation` / `color` / `luminosity`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="decorator -overflow:scroll" style="--unitone--max-height: 300px">
+			<div data-unitone-layout="decorator -mix-blend-mode:difference -position:sticky" style="--unitone--color: white; --unitone--z-inex: 1; --unitone--top: 0">
+				<b>Text</b>
+			</div>
+
+			<div data-unitone-layout="decorator" style="--unitone--min-height: 300px; --unitone--background-color: white"></div>
+			<div data-unitone-layout="decorator" style="--unitone--min-height: 300px; --unitone--background-color: black"></div>
+			<div data-unitone-layout="decorator" style="--unitone--min-height: 300px; --unitone--background-color: white"></div>
+			<div data-unitone-layout="decorator" style="--unitone--min-height: 300px; --unitone--background-color: black"></div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Decorator } from '@inc2734/unitone-css';
+
+		<Decorator overflow="scroll" maxHeight="300px">
+			<Decorator mixBlendMode="difference" position="sticky" color="white" zIndex="1" top="0">
+				<b>Text</b>
+			</Decorator>
+
+			<Decorator minHeight="300px" backgroundColor="white"></Decorator>
+			<Decorator minHeight="300px" backgroundColor="black"></Decorator>
+			<Decorator minHeight="300px" backgroundColor="white"></Decorator>
+			<Decorator minHeight="300px" backgroundColor="black"></Decorator>
+		</Decorator>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Decorator overflow="scroll" maxHeight="300px">
+				<Decorator mixBlendMode="difference" position="sticky" color="white" zIndex="1" top="0">
+					<b>Text</b>
+				</Decorator>
+
+				<Decorator minHeight="300px" backgroundColor="white"></Decorator>
+				<Decorator minHeight="300px" backgroundColor="black"></Decorator>
+				<Decorator minHeight="300px" backgroundColor="white"></Decorator>
+				<Decorator minHeight="300px" backgroundColor="black"></Decorator>
+			</Decorator>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
 ### <Badge>HTML</Badge> -overflow:\{value\} / <Badge>JSX</Badge> overflow=\{value\}
 
 Overflow.

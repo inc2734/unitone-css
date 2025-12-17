@@ -24,6 +24,7 @@ export const Decorator = ({
   bottom,
   left,
   zIndex,
+  mixBlendMode,
   overflow,
   backdropFilter,
   progressiveBackdropFilter,
@@ -72,6 +73,7 @@ export const Decorator = ({
         '' !== (paddingLeft ?? '') ? `-padding-left:${paddingLeft}` : undefined,
         shadow ? '-shadow' : undefined,
         '' !== (position ?? '') ? `-position:${position}` : undefined,
+        '' !== (mixBlendMode ?? '') ? `-mix-blend-mode:${mixBlendMode}` : undefined,
         '' !== (overflow ?? '') ? `-overflow:${overflow}` : undefined,
         progressiveBackdropFilter ? '-progressive-backdrop-filter' : undefined,
       ]
