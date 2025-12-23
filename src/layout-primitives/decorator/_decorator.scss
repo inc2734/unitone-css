@@ -39,6 +39,7 @@
   box-shadow: var(--unitone--box-shadow);
   max-height: var(--unitone--max-height);
   min-height: var(--unitone--min-height);
+  max-width: var(--unitone--max-width);
   padding-top: var(--unitone--padding-top);
   padding-right: var(--unitone--padding-right);
   padding-bottom: var(--unitone--padding-bottom);
@@ -53,10 +54,9 @@
   left: var(--unitone--left);
   z-index: var(--unitone--z-index);
 
-  // There are primitives that affect the max-width/min-width of child elements,
+  // There are primitives that affect the min-width of child elements,
   // so we will increase the specificity a little to avoid this effect.
   &:not(:root) {
-    max-width: var(--unitone--max-width);
     min-width: var(--unitone--min-width);
   }
 
