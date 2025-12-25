@@ -55,7 +55,7 @@ $_font-size-em: calc($_font-size-scale * 1em);
   // @todo In Firefox, using tan(atan2()) for line-height is considered invalid.
   // Therefore, a fallback line-height is applied.
   @supports (-moz-appearance: none) {
-    line-height: #{ $_line-height-for-firefox }
+    --unitone--line-height: #{ $_line-height-for-firefox };
   }
 }
 

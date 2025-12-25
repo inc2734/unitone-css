@@ -15,13 +15,13 @@
 }
 
 @property --unitone--result--1em-px {
-  syntax: "<number>";
+  syntax: "<number> | <length>";
   inherits: false;
   initial-value: 0;
 }
 
 @property --unitone--result--100vw-px {
-  syntax: "<number>";
+  syntax: "<number> | <length>";
   inherits: false;
   initial-value: 0;
 }
