@@ -6,6 +6,7 @@
   }
 
   [data-unitone-layout~="-typography"],
+  [data-unitone-layout~="-typography\:em"],
   [data-unitone-layout~="-typography\:rem"] {
     @include variables.typography();
   }

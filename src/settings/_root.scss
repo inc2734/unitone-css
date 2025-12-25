@@ -5,13 +5,13 @@
 @property --unitone--property--1em {
   syntax: "<length>";
   inherits: false;
-  initial-value: 0em;
+  initial-value: 0px;
 }
 
 @property --unitone--property--100vw {
   syntax: "<length>";
   inherits: false;
-  initial-value: 0vw;
+  initial-value: 0px;
 }
 
 @property --unitone--result--1em-px {

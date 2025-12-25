@@ -31,6 +31,12 @@ $_line-height: clamp(
   var(--unitone--max-line-height, calc(1 + 2 * var(--unitone--half-leading)))
 );
 
+$_line-height-for-firefox: clamp(
+  var(--unitone--min-line-height, calc(1 + 2 * min(var(--unitone--min-half-leading), var(--unitone--half-leading)))),
+  #{ $_line-height-slope } * #{ $_font-size-scale } + #{ $_line-height-intercept },
+  var(--unitone--max-line-height, calc(1 + 2 * var(--unitone--half-leading)))
+);
+
 $_font-size: calc($_font-size-scale * 1rem);
 $_font-size-em: calc($_font-size-scale * 1em);
 
@@ -45,11 +51,16 @@ $_font-size-em: calc($_font-size-scale * 1em);
 
   font-size: var(--unitone--font-size-rem);
   line-height: var(--unitone--line-height);
+
+  // @todo In Firefox, using tan(atan2()) for line-height is considered invalid.
+  // Therefore, a fallback line-height is applied.
+  @supports (-moz-appearance: none) {
+    line-height: #{ $_line-height-for-firefox }
+  }
 }
 
 @mixin typography-em {
   font-size: var(--unitone--font-size-em);
-  line-height: var(--unitone--line-height);
 }
 
 @mixin fluid-typography {
