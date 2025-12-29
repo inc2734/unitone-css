@@ -12,29 +12,35 @@ $_intercept: calc(#{-1 * $min-breakpoint } * #{ $_slope } + #{ $_min-font-size }
 $_preferred-font-size: calc((#{ $_intercept } * 1rem) + (#{ $_slope } * 100vw));
 $_font-size-fluid: clamp(var(--unitone--fluid-typography-min-length, calc(1rem * #{ $_min-font-size })), #{ $_preferred-font-size }, var(--unitone--fluid-typography-max-length, calc(1rem * $_max-font-size)));
 
-/**
- * The line-height slope. If smaller, the line-height is adjusted to a smaller value as the font size increases.
- *
- * A =(1, 1.6)  | 1rem, 1.6
- * B =(5, 1.15) | 5rem, 1.15
- * Line(A, B)   | y = -0.1125x + 1.7125 | y = line-height, x = Font size ratio
- *
- * @see https://www.geogebra.org/graphing?lang=ja
- */
-$_max-line-height-target-font-size-ratio: 5;
 $_font-size-scale: calc(var(--unitone--harmonic-sequence-base) / (var(--unitone--harmonic-sequence-base) - var(--unitone--font-size)));
-$_line-height-slope: calc((var(--unitone--min-line-height) - var(--unitone--max-line-height)) / (var(--unitone--max-line-height-target-font-size-ratio, 5) - 1));
-$_line-height-intercept: calc(var(--unitone--max-line-height) - #{ $_line-height-slope });
-$_line-height: clamp(
-  var(--unitone--min-line-height, calc(1 + 2 * min(var(--unitone--min-half-leading), var(--unitone--half-leading)))),
-  #{ $_line-height-slope } * (var(--unitone--result--1em-px) / var(--unitone--base-font-size)) + #{ $_line-height-intercept },
-  var(--unitone--max-line-height, calc(1 + 2 * var(--unitone--half-leading)))
-);
 
-$_line-height-for-firefox: clamp(
-  var(--unitone--min-line-height, calc(1 + 2 * min(var(--unitone--min-half-leading), var(--unitone--half-leading)))),
-  #{ $_line-height-slope } * #{ $_font-size-scale } + #{ $_line-height-intercept },
-  var(--unitone--max-line-height, calc(1 + 2 * var(--unitone--half-leading)))
+/**
+ * Line-height scaling (non-linear / hyperbolic reciprocal curve)
+ *
+ * This block computes a font-size–dependent line-height using a hyperbolic (reciprocal) curve:
+ *
+ * LH(fs) = Lmin' + K / (fs + C)
+ *
+ * ### Internal bias (-0.1) for the effective minimum (Lmin')
+ * We slightly lower the effective minimum to compensate for the
+ * asymptotic nature of the reciprocal curve. This makes the observed
+ * minimum in typical font-size ranges closer to the user’s expectation.
+ *
+ * ### C: Curvature / controls how quickly the curve approaches the minimum
+ * Larger C => slower decay (more generous line-height for larger text)
+ * Smaller C => faster decay (tighter line-height sooner)
+ *
+ * ### K: Amplitude / scale factor for the reciprocal term
+ * We compute K so that the curve respects the intended range between
+ * max-line-height and the biased minimum, and so that near the base
+ * font size the line-height stays close to max (and is clamped there).
+ */
+$_min-line-height: calc(var(--unitone--min-line-height) - 0.1);
+$_line-height-amplitude: calc((var(--unitone--max-line-height) - #{ $_min-line-height }) * (var(--unitone--base-font-size) + var(--unitone--line-height-curvature)));
+$_line-height: clamp(
+  var(--unitone--min-line-height),
+  (#{ $_min-line-height } + #{ $_line-height-amplitude } / (var(--unitone--result--1em-px) + var(--unitone--line-height-curvature))),
+  var(--unitone--max-line-height)
 );
 
 $_font-size: calc($_font-size-scale * 1rem);
@@ -55,7 +61,7 @@ $_font-size-em: calc($_font-size-scale * 1em);
   // @todo In Firefox, using tan(atan2()) for line-height is considered invalid.
   // Therefore, a fallback line-height is applied.
   @supports (-moz-appearance: none) {
-    --unitone--line-height: #{ $_line-height-for-firefox };
+    --unitone--result--1em-px: calc(#{ $_font-size-scale } * var(--unitone--base-font-size));
   }
 }
 
