@@ -72,6 +72,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+  const computedStyle = window.getComputedStyle(document.documentElement);
+  const isFirefox = computedStyle.getPropertyValue('--unitone--is-firefox').trim();
+  if (!isFirefox) {
+    return;
+  }
+
   const observer = new MutationObserver((entries) => {
     requestAnimationFrame(() => {
       for (const entry of entries) {

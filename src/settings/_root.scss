@@ -117,7 +117,7 @@
    * Gutter provided above and below the text in a line.
    */
   --unitone--half-leading: .3;
-  --unitone--min-half-leading: .05;
+  --unitone--min-half-leading: .025;
   --unitone--line-height-curvature: 6;
   --unitone--min-line-height: calc(1 + 2 * min(var(--unitone--min-half-leading), var(--unitone--half-leading))); // Fallback.
   --unitone--max-line-height: calc(1 + 2 * var(--unitone--half-leading)); // Fallback.
