@@ -92,14 +92,3 @@ document.addEventListener('DOMContentLoaded', () => {
     subtree: true,
   });
 });
-
-//   const selector = '';
-// const runSetResult1emPxForFireFox = () => {
-//   setResult1emPxForFireFox(document.documentElement);
-// };
-
-// if ('loading' === document.readyState) {
-//   document.addEventListener('DOMContentLoaded', runSetResult1emPxForFireFox);
-// } else {
-//   runSetResult1emPxForFireFox();
-// }
