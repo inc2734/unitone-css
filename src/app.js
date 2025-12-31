@@ -2,6 +2,7 @@ import {
   dividersResizeObserver,
   stairsResizeObserver,
   verticalsResizeObserver,
+  result1emPxForFireFoxObserver,
 } from '@inc2734/unitone-css/library';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -69,3 +70,36 @@ document.addEventListener('DOMContentLoaded', () => {
     subtree: true,
   });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const observer = new MutationObserver((entries) => {
+    requestAnimationFrame(() => {
+      for (const entry of entries) {
+        entry.addedNodes.forEach((addedNode) => {
+          const targets = addedNode.parentNode?.querySelectorAll(
+            '[style*="font-size:"], [data-unitone-layout~="-fluid-typography"]',
+          );
+          targets?.forEach((target) => {
+            result1emPxForFireFoxObserver(target);
+          });
+        });
+      }
+    });
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
+});
+
+//   const selector = '';
+// const runSetResult1emPxForFireFox = () => {
+//   setResult1emPxForFireFox(document.documentElement);
+// };
+
+// if ('loading' === document.readyState) {
+//   document.addEventListener('DOMContentLoaded', runSetResult1emPxForFireFox);
+// } else {
+//   runSetResult1emPxForFireFox();
+// }

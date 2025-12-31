@@ -397,3 +397,9 @@
   --unitone--color--dark-pink: #be185d;
   --unitone--color--heavy-pink: #500724;
 }
+
+@supports (-moz-appearance: none) {
+	:root {
+		--unitone--is-firefox: true;
+	}
+}

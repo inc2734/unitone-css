@@ -1,10 +1,11 @@
 export function debounce(fn, delay) {
   let timer;
 
-  return (...args) => {
+  return function (...args) {
+    const context = this;
     clearTimeout(timer);
     timer = setTimeout(() => {
-      fn.apply(this, args);
+      fn.apply(context, args);
     }, delay);
   };
 }
@@ -388,6 +389,64 @@ export const verticalsResizeObserver = (target) => {
     });
   });
 
+  mObserver.observe(target, mObserverArgs);
+
+  return {
+    resizeObserver: observer,
+    mutationObserver: mObserver,
+  };
+};
+
+export const setResult1emPxForFireFox = (target) => {
+  const ownerDocument = target.ownerDocument;
+  const defaultView = ownerDocument.defaultView;
+
+  const computedStyle = defaultView.getComputedStyle(target);
+  const fontSize = parseFloat(computedStyle.fontSize);
+  const result1emPx = parseFloat(computedStyle.getPropertyValue('--unitone--result--1em-px'));
+  if (fontSize === result1emPx) {
+    return;
+  }
+
+  target.style.setProperty('--unitone--result--1em-px', fontSize);
+};
+
+export const result1emPxForFireFoxObserver = (target) => {
+  const ownerDocument = target.ownerDocument;
+  const defaultView = ownerDocument.defaultView;
+  const computedStyle = defaultView.getComputedStyle(ownerDocument.documentElement);
+  const isFirefox = computedStyle.getPropertyValue('--unitone--is-firefox').trim();
+  if (!isFirefox) {
+    return;
+  }
+
+  let prevWidth = 0;
+
+  const observer = new ResizeObserver(
+    debounce((entries) => {
+      for (const entry of entries) {
+        const width = entry.borderBoxSize?.[0].inlineSize;
+        if (width !== prevWidth) {
+          setResult1emPxForFireFox(entry.target);
+          prevWidth = width;
+        }
+      }
+    }, 250),
+  );
+
+  const mObserverArgs = {
+    attributes: true,
+    attributeFilter: ['style', 'data-unitone-layout', 'class'],
+    characterData: true,
+  };
+
+  const mObserver = new MutationObserver(() => {
+    requestAnimationFrame(() => {
+      setResult1emPxForFireFox(target);
+    });
+  });
+
+  observer.observe(target);
   mObserver.observe(target, mObserverArgs);
 
   return {
