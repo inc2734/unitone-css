@@ -3,7 +3,7 @@ $_values: (
   normal: normal,
   start: start,
   end: end,
-  center: center,
+  center: safe center,
   stretch: stretch,
   baseline: baseline,
 );

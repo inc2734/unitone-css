@@ -1,6 +1,16 @@
+$_values: (
+  start: start,
+  center: safe center,
+  end: end,
+  space-between: space-between,
+  space-around: space-around,
+  space-evenly: space-evenly,
+  stretch: stretch,
+);
+
 @mixin align-content() {
-  @each $value in (start, center, end, space-between, space-around, space-evenly, stretch) {
-    [data-unitone-layout~="-align-content\:#{ $value }"] {
+  @each $key, $value in $_values {
+    [data-unitone-layout~="-align-content\:#{ $key }"] {
       --unitone--align-content: #{ $value } !important;
     }
   }

@@ -1,6 +1,13 @@
+$_values: (
+  start: start,
+  center: safe center,
+  end: end,
+  stretch: stretch,
+);
+
 @mixin justify-items() {
-  @each $value in (start, center, end, stretch) {
-    [data-unitone-layout~="-justify-items\:#{ $value }"] {
+  @each $key, $value in $_values {
+    [data-unitone-layout~="-justify-items\:#{ $key }"] {
       --unitone--justify-items: #{ $value } !important;
     }
   }
