@@ -2,10 +2,44 @@
   --unitone--texture-color: var(--unitone--color--light-gray);
   --unitone--texture-gap: 50px;
   --unitone--texture-size: 1px;
+	--unitone--texture-top: 0px;
+	--unitone--texture-right: 0px;
+	--unitone--texture-bottom: 0px;
+	--unitone--texture-left: 0px;
+	--unitone--texture-border-radius: 0px;
+	--unitone--texture-border-top-left-radius: var(--unitone--texture-border-radius);
+	--unitone--texture-border-top-right-radius: var(--unitone--texture-border-radius);
+	--unitone--texture-border-bottom-left-radius: var(--unitone--texture-border-radius);
+	--unitone--texture-border-bottom-right-radius: var(--unitone--texture-border-radius);
 
-  background-position: center;
+	position: relative;
 
-  &[data-unitone-layout~="-texture\:dots"] {
+  @at-root {
+    :where(#{ & } > *) {
+      --unitone--position: relative;
+
+      position: var(--unitone--position);
+    }
+  }
+
+	&::before {
+		content: '';
+		position: absolute;
+		inset:
+			var(--unitone--texture-top)
+			var(--unitone--texture-right)
+			var(--unitone--texture-bottom)
+			var(--unitone--texture-left);
+	  background-position: center;
+		border-radius:
+			var(--unitone--texture-border-top-left-radius)
+			var(--unitone--texture-border-top-right-radius)
+			var(--unitone--texture-border-bottom-right-radius)
+			var(--unitone--texture-border-bottom-left-radius);
+	}
+
+
+  &[data-unitone-layout~="-texture\:dots"]::before {
     background-image:
       radial-gradient(
         var(--unitone--texture-color) var(--unitone--texture-size),
@@ -16,7 +50,7 @@
       max(var(--unitone--texture-gap), var(--unitone--texture-size) * 2);
   }
 
-  &[data-unitone-layout~="-texture\:offset-dots"] {
+  &[data-unitone-layout~="-texture\:offset-dots"]::before {
     background-image:
       radial-gradient(
         var(--unitone--texture-color) var(--unitone--texture-size),
@@ -36,7 +70,7 @@
       max(var(--unitone--texture-gap), var(--unitone--texture-size) * 3);
   }
 
-  &[data-unitone-layout~="-texture\:grid"] {
+  &[data-unitone-layout~="-texture\:grid"]::before {
     background-image:
       linear-gradient(
         var(--unitone--texture-color) var(--unitone--texture-size),
@@ -52,7 +86,7 @@
       max(var(--unitone--texture-gap), var(--unitone--texture-size) * 2);
   }
 
-  &[data-unitone-layout~="-texture\:horizontal-stripe"] {
+  &[data-unitone-layout~="-texture\:horizontal-stripe"]::before {
     background-image:
       linear-gradient(
         var(--unitone--texture-color) var(--unitone--texture-size),
@@ -63,7 +97,7 @@
       max(var(--unitone--texture-gap), var(--unitone--texture-size) * 2);
   }
 
-  &[data-unitone-layout~="-texture\:vertical-stripe"] {
+  &[data-unitone-layout~="-texture\:vertical-stripe"]::before {
     background-image:
       linear-gradient(
         to right,
@@ -75,7 +109,7 @@
       max(var(--unitone--texture-gap), var(--unitone--texture-size) * 2);
   }
 
-  &[data-unitone-layout~="-texture\:checker-pattern"] {
+  &[data-unitone-layout~="-texture\:checker-pattern"]::before {
     background-image:
       repeating-linear-gradient(
         45deg,
@@ -103,7 +137,7 @@
       calc(var(--unitone--texture-gap) * 2);
   }
 
-  &[data-unitone-layout~="-texture\:graph-paper"] {
+  &[data-unitone-layout~="-texture\:graph-paper"]::before {
     background-image:
       linear-gradient(
         var(--unitone--texture-color) calc(var(--unitone--texture-size) * .8),
@@ -139,7 +173,7 @@
       calc(max(var(--unitone--texture-gap) * 3, var(--unitone--texture-size) * 30) / 5);
   }
 
-  &[data-unitone-layout~="-texture\:slash"] {
+  &[data-unitone-layout~="-texture\:slash"]::before {
     background-image:
       repeating-linear-gradient(
         135deg,
@@ -153,7 +187,7 @@
       max(var(--unitone--texture-gap), var(--unitone--texture-size) * 1.5 + 2px);
   }
 
-  &[data-unitone-layout~="-texture\:backslash"] {
+  &[data-unitone-layout~="-texture\:backslash"]::before {
     background-image:
       repeating-linear-gradient(
         45deg,
@@ -166,6 +200,32 @@
       max(var(--unitone--texture-gap), var(--unitone--texture-size) * 1.5 + 2px)
       max(var(--unitone--texture-gap), var(--unitone--texture-size) * 1.5 + 2px);
   }
+
+  &[data-unitone-layout~="-texture\:wave"]::before {
+		background-color: var(--unitone--texture-color);
+		border-radius: 0;
+		mask-image:
+			url('data:image/svg+xml,<svg viewBox="0 0 200 20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M200 0C173.236 0 146.472 2.68557 119.611 8.05762C79.8049 16.0189 39.9025 19.999 0 19.999V0H200Z"/></svg>'),
+			url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><rect x="0" y="0" height="100" width="100"/></svg>'),
+			url('data:image/svg+xml,<svg viewBox="0 0 200 20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M200 19.999H0C26.7642 19.999 53.5284 17.3134 80.3887 11.9414C120.195 3.98014 160.098 2.69917e-07 200 0V19.999Z"/></svg>');
+		mask-composite: exclude, subtract;
+		mask-position:
+			0 0,
+			0 0,
+			0 100%;
+		mask-size:
+			100% max(40px + var(--unitone--texture-size)),
+			100% 100%,
+			100% max(40px + var(--unitone--texture-size));
+		mask-repeat:
+			repeat-x,
+			repeat,
+			repeat-x;
+  }
+
+  &[data-unitone-layout~="-texture\:solid-color"]::before {
+		background-color: var(--unitone--texture-color);
+	}
 }
 
 @mixin texture() {

@@ -10,9 +10,11 @@ Display Texture.
 
 <PreviewConainer>
 	<Texture texture="dots">
-		<Decorator padding={1}>
-			<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
-		</Decorator>
+		<div>
+			<Decorator padding={1}>
+				<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+			</Decorator>
+		</div>
 	</Texture>
 </PreviewConainer>
 
@@ -20,8 +22,10 @@ Display Texture.
 	<Tabs.Tab>
 		```html
 		<div data-unitone-layout="texture -texture:dots">
-			<div data-unitone-layout="decorator -padding:1">
-				<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+			<div>
+				<div data-unitone-layout="decorator -padding:1">
+					<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+				</div>
 			</div>
 		</div>
 		```
@@ -31,9 +35,11 @@ Display Texture.
 		import { Texture, Decorator } from '@inc2734/unitone-css';
 
 		<Texture>
-			<Decorator padding={1}>
-				<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
-			</Decorator>
+			<div>
+				<Decorator padding={1}>
+					<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+				</Decorator>
+			</div>
 		</Text>
 		```
 	</Tabs.Tab>
@@ -45,7 +51,7 @@ Display Texture.
 
 Set any texture.
 
-`Dots` / `offset-dots` / `grid` / `horizontal-stripe` / `vertical-stripe` / `checker-pattern` / `graph-paper` / `slash` / `backslash`
+`Dots` / `offset-dots` / `grid` / `horizontal-stripe` / `vertical-stripe` / `checker-pattern` / `graph-paper` / `slash` / `backslash` / `wave` / `solid-color`
 
 <Tabs items={['HTML', 'JSX', 'Preview']}>
 	<Tabs.Tab>
@@ -67,9 +73,11 @@ Set any texture.
 	<Tabs.Tab>
 		<PreviewConainer>
 			<Texture texture="offset-dots">
-				<Decorator padding={1}>
-					<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
-				</Decorator>
+				<div>
+					<Decorator padding={1}>
+						<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+					</Decorator>
+				</div>
 			</Texture>
 		</PreviewConainer>
 	</Tabs.Tab>
@@ -99,9 +107,45 @@ Set texture color.
 	<Tabs.Tab>
 		<PreviewConainer>
 			<Texture texture="dots" textureColor="#2e1065">
-				<Decorator padding={1}>
-					<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
-				</Decorator>
+				<div>
+					<Decorator padding={1}>
+						<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+					</Decorator>
+				</div>
+			</Texture>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> --unitone--texture-gap / <Badge>JSX</Badge> textureGap=\{value\}
+
+Set texture gap.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="texture -texture:dots" style="--unitone--texture-gap: 10px">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Texture } from '@inc2734/unitone-css';
+
+		<Texture texture="dots" textureGap="10px">
+			...
+		</Texture>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Texture texture="dots" textureGap="10px">
+				<div>
+					<Decorator padding={1}>
+						<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+					</Decorator>
+				</div>
 			</Texture>
 		</PreviewConainer>
 	</Tabs.Tab>
@@ -114,7 +158,7 @@ Set texture size.
 <Tabs items={['HTML', 'JSX', 'Preview']}>
 	<Tabs.Tab>
 		```html
-		<div data-unitone-layout="texture -texture:dots" style="--unitone--texture-size: 25">
+		<div data-unitone-layout="texture -texture:dots" style="--unitone--texture-size: 10px">
 			...
 		</div>
 		```
@@ -123,17 +167,325 @@ Set texture size.
 		```jsx
 		import { Texture } from '@inc2734/unitone-css';
 
-		<Texture texture="dots" textureSize="25">
+		<Texture texture="dots" textureSize="10px">
 			...
 		</Texture>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		<PreviewConainer>
-			<Texture texture="dots" textureSize="25">
-				<Decorator padding={1}>
-					<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
-				</Decorator>
+			<Texture texture="dots" textureSize="10px">
+				<div>
+					<Decorator padding={1}>
+						<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+					</Decorator>
+				</div>
+			</Texture>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> --unitone--texture-top / <Badge>JSX</Badge> textureTop=\{value\}
+
+Set texture top offset.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="texture -texture:dots" style="--unitone--texture-top: 50px; --unitone--texture-gap: 2px">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Texture } from '@inc2734/unitone-css';
+
+		<Texture texture="dots" textureTop="50px" textureGap="2px">
+			...
+		</Texture>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Texture texture="dots" textureTop="50px" textureGap="2px">
+				<div>
+					<Decorator padding={1}>
+						<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+					</Decorator>
+				</div>
+			</Texture>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> --unitone--texture-right / <Badge>JSX</Badge> textureRight=\{value\}
+
+Set texture right offset.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="texture -texture:dots" style="--unitone--texture-right: 50px; --unitone--texture-gap: 2px">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Texture } from '@inc2734/unitone-css';
+
+		<Texture texture="dots" textureRight="50px" textureGap="2px">
+			...
+		</Texture>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Texture texture="dots" textureRight="50px" textureGap="2px">
+				<div>
+					<Decorator padding={1}>
+						<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+					</Decorator>
+				</div>
+			</Texture>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> --unitone--texture-bottom / <Badge>JSX</Badge> textureBottom=\{value\}
+
+Set texture bottom offset.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="texture -texture:dots" style="--unitone--texture-bottom: 50px; --unitone--texture-gap: 2px">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Texture } from '@inc2734/unitone-css';
+
+		<Texture texture="dots" textureBottom="50px" textureGap="2px">
+			...
+		</Texture>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Texture texture="dots" textureBottom="50px" textureGap="2px">
+				<div>
+					<Decorator padding={1}>
+						<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+					</Decorator>
+				</div>
+			</Texture>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> --unitone--texture-left / <Badge>JSX</Badge> textureLeft=\{value\}
+
+Set texture left offset.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="texture -texture:dots" style="--unitone--texture-left: 50px; --unitone--texture-gap: 2px">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Texture } from '@inc2734/unitone-css';
+
+		<Texture texture="dots" textureLeft="50px" textureGap="2px">
+			...
+		</Texture>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Texture texture="dots" textureLeft="50px" textureGap="2px">
+				<div>
+					<Decorator padding={1}>
+						<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+					</Decorator>
+				</div>
+			</Texture>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> --unitone--texture-border-radius / <Badge>JSX</Badge> textureBorderRadius=\{value\}
+
+Set texture border radius.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="texture -texture:dots" style="--unitone--texture-border-radius: 50px; --unitone--texture-gap: 2px">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Texture } from '@inc2734/unitone-css';
+
+		<Texture texture="dots" textureBorderRadius="50px" textureGap="2px">
+			...
+		</Texture>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Texture texture="dots" textureBorderRadius="50px" textureGap="2px">
+				<div>
+					<Decorator padding={1}>
+						<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+					</Decorator>
+				</div>
+			</Texture>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> --unitone--texture-border-top-left-radius / <Badge>JSX</Badge> textureBorderTopLeftRadius=\{value\}
+
+Set texture border top left radius.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="texture -texture:dots" style="--unitone--texture-border-top-left-radius: 50px; --unitone--texture-gap: 2px">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Texture } from '@inc2734/unitone-css';
+
+		<Texture texture="dots" textureBorderTopLeftRadius="50px" textureGap="2px">
+			...
+		</Texture>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Texture texture="dots" textureBorderTopLeftRadius="50px" textureGap="2px">
+				<div>
+					<Decorator padding={1}>
+						<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+					</Decorator>
+				</div>
+			</Texture>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> --unitone--texture-border-top-right-radius / <Badge>JSX</Badge> textureBorderTopRightRadius=\{value\}
+
+Set texture border top right radius.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="texture -texture:dots" style="--unitone--texture-border-top-right-radius: 50px; --unitone--texture-gap: 2px">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Texture } from '@inc2734/unitone-css';
+
+		<Texture texture="dots" textureBorderTopRightRadius="50px" textureGap="2px">
+			...
+		</Texture>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Texture texture="dots" textureBorderTopRightRadius="50px" textureGap="2px">
+				<div>
+					<Decorator padding={1}>
+						<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+					</Decorator>
+				</div>
+			</Texture>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> --unitone--texture-border-bottom-right-radius / <Badge>JSX</Badge> textureBorderBottomRightRadius=\{value\}
+
+Set texture border bottom right radius.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="texture -texture:dots" style="--unitone--texture-border-bottom-right-radius: 50px; --unitone--texture-gap: 2px">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Texture } from '@inc2734/unitone-css';
+
+		<Texture texture="dots" textureBorderBottomRightRadius="50px" textureGap="2px">
+			...
+		</Texture>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Texture texture="dots" textureBorderBottomRightRadius="50px" textureGap="2px">
+				<div>
+					<Decorator padding={1}>
+						<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+					</Decorator>
+				</div>
+			</Texture>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> --unitone--texture-border-bottom-left-radius / <Badge>JSX</Badge> textureBorderBottomLeftRadius=\{value\}
+
+Set texture border bottom left radius.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="texture -texture:dots" style="--unitone--texture-border-bottom-left-radius: 50px; --unitone--texture-gap: 2px">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Texture } from '@inc2734/unitone-css';
+
+		<Texture texture="dots" textureBorderBottomLeftRadius="50px" textureGap="2px">
+			...
+		</Texture>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Texture texture="dots" textureBorderBottomLeftRadius="50px" textureGap="2px">
+				<div>
+					<Decorator padding={1}>
+						<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+					</Decorator>
+				</div>
 			</Texture>
 		</PreviewConainer>
 	</Tabs.Tab>
