@@ -7,6 +7,7 @@ export const Cluster = ({
   columnGap,
   rowGap,
   justifyContent,
+  nowrap,
   tagName = 'div',
   style,
   ...props
@@ -23,6 +24,7 @@ export const Cluster = ({
         '' !== (rowGap ?? '') ? `-row-gap:${rowGap}` : undefined,
         '' !== (alignItems ?? '') ? `-align-items:${alignItems}` : undefined,
         '' !== (justifyContent ?? '') ? `-justify-content:${justifyContent}` : undefined,
+        nowrap ? '-nowrap' : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

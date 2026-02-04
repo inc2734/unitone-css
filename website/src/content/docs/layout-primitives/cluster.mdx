@@ -1,4 +1,4 @@
-import { Cluster } from '@inc2734/unitone-css';
+import { Cluster, Decorator } from '@inc2734/unitone-css';
 import { Tabs } from 'nextra/components';
 import { PreviewConainer, Badge } from '../../../components';
 
@@ -227,6 +227,48 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 				<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>adipisicing elit</div>
 				<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>sed do</div>
 			</Cluster>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+
+### <Badge>HTML</Badge> -nowrap / <Badge>JSX</Badge> nowrap
+
+Displays child elements without wrapping.
+
+The overhanging part will not automatically scroll horizontally, so if there is a possibility that it may overhang, it must be enclosed in a parent element that allows horizontal scrolling.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="decorator -overflow:auto -padding:-2">
+			<div data-unitone-layout="cluster -nowrap">
+				...
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Cluster } from '@inc2734/unitone-css';
+
+		<Decorator overflow="auto" padding="-2">
+			<Cluster nowrap>
+				...
+			</Cluster>
+		</Decorator>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Decorator overflow="auto" padding="-2">
+				<Cluster nowrap>
+					<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>Lorem ipsum</div>
+					<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>dolor sit<br />amet consectetur</div>
+					<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>adipisicing elit</div>
+					<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>sed do</div>
+				</Cluster>
+		</Decorator>
 		</PreviewConainer>
 	</Tabs.Tab>
 </Tabs>

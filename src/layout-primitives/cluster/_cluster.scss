@@ -18,6 +18,15 @@
     min-width: 0;
   }
 
+  &:where([data-unitone-layout~="-nowrap"]) {
+    flex-wrap: nowrap;
+    min-width: max-content;
+
+    > * {
+      flex-shrink: 0;
+    }
+  }
+
   &:where([data-unitone-layout*="-divider\:"]) {
     --unitone--divider-width: 1px;
     --unitone--divider-style: solid;
