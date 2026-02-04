@@ -7,6 +7,14 @@
   gap: var(--unitone--gap);
   overflow: clip;
 
+  &[data-unitone-layout~="-reverse"] {
+    flex-direction: row-reverse;
+
+    > [data-unitone-layout~="marquee:initialized"] {
+      animation-name: marquee-reverse;
+    }
+  }
+
   @media (any-hover: hover) {
     &[data-unitone-layout~="-pause-on-hover"]:hover {
       > [data-unitone-layout~="marquee:initialized"] {
@@ -56,4 +64,9 @@
 @keyframes marquee {
     0% { translate: 0; }
   100% { translate: calc(-100% - var(--unitone--gap)); }
+}
+
+@keyframes marquee-reverse {
+    0% { translate: 0; }
+  100% { translate: calc(100% + var(--unitone--gap)); }
 }

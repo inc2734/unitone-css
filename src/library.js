@@ -454,3 +454,89 @@ export const result1emPxForFireFoxObserver = (target) => {
     mutationObserver: mObserver,
   };
 };
+
+export const setMarquee = (target) => {
+  const addInitializedToken = (element) => {
+    const layout = element.getAttribute('data-unitone-layout') ?? '';
+    if (layout.split(/\s+/).includes('marquee:initialized')) {
+      return;
+    }
+    element.setAttribute('data-unitone-layout', `${layout} marquee:initialized`.trim());
+  };
+
+  const removeInitializedToken = (element) => {
+    const layout = element.getAttribute('data-unitone-layout') ?? '';
+    const next = layout
+      .split(/\s+/)
+      .filter((value) => value && 'marquee:initialized' !== value)
+      .join(' ');
+    element.setAttribute('data-unitone-layout', next);
+  };
+
+  const getMarquees = () => target.querySelectorAll(':scope > [data-unitone-layout~="marquee"]');
+  let marquees = getMarquees();
+  if (0 === marquees.length) {
+    return;
+  }
+
+  if (1 === target.childElementCount && 1 === marquees.length) {
+    const marquee = marquees[0];
+    const clonedMarquee = marquee.cloneNode(true);
+    clonedMarquee.setAttribute('aria-hidden', 'true');
+    marquee.after(clonedMarquee);
+  }
+
+  marquees = getMarquees();
+  marquees.forEach((marquee) => {
+    removeInitializedToken(marquee);
+  });
+
+  requestAnimationFrame(() => {
+    if (!target?.isConnected) {
+      return;
+    }
+    getMarquees().forEach((marquee) => {
+      addInitializedToken(marquee);
+    });
+  });
+};
+
+export const marqueeResizeObserver = (target) => {
+  let prevWidth = 0;
+
+  setMarquee(target);
+
+  const observer = new ResizeObserver(
+    debounce((entries) => {
+      for (const entry of entries) {
+        const width = entry.contentRect?.width;
+        if (parseInt(width) !== parseInt(prevWidth)) {
+          prevWidth = width;
+          setMarquee(entry.target);
+        }
+      }
+    }, 250),
+  );
+
+  observer.observe(target);
+
+  const mObserverArgs = {
+    childList: true,
+  };
+
+  const mObserver = new MutationObserver(() => {
+    requestAnimationFrame(() => {
+      if (!target?.isConnected) {
+        return;
+      }
+      setMarquee(target);
+    });
+  });
+
+  mObserver.observe(target, mObserverArgs);
+
+  return {
+    resizeObserver: observer,
+    mutationObserver: mObserver,
+  };
+};

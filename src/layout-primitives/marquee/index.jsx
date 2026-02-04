@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Marquee = ({ duration, gap, itemWidth, pauseOnHover, style, ...props }) => {
+export const Marquee = ({ duration, gap, itemWidth, reverse, pauseOnHover, style, ...props }) => {
   style = {
     ...style,
     '--unitone--animation-duration': '' !== duration ? duration : undefined,
@@ -9,7 +9,11 @@ export const Marquee = ({ duration, gap, itemWidth, pauseOnHover, style, ...prop
 
   return (
     <div
-      data-unitone-layout={['marquee-wrapper', pauseOnHover ? '-pause-on-hover' : undefined]
+      data-unitone-layout={[
+        'marquee-wrapper',
+        reverse ? '-reverse' : undefined,
+        pauseOnHover ? '-pause-on-hover' : undefined,
+      ]
         .filter(Boolean)
         .join(' ')}
       style={style}

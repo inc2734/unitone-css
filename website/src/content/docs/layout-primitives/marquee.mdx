@@ -4,7 +4,7 @@ import { PreviewConainer, Badge } from '../../../components';
 
 # Marquee
 
-Elements of different sizes are laid out without gaps.
+Displays child elements in a continuous horizontal scrolling format.
 
 ## Usage
 
@@ -46,6 +46,74 @@ Elements of different sizes are laid out without gaps.
 </Tabs>
 
 ## Props
+
+### <Badge>HTML</Badge> -reverse / <Badge>JSX</Badge> reverse
+
+Reverse direction.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="masonry -reverse">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Masonry } from '@inc2734/unitone-css';
+
+		<Masonry reverse>
+			...
+		</Masonry>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Marquee reverse>
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+			</Marquee>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -pause-on-hover / <Badge>JSX</Badge> pauseOnHover
+
+Pause on hover.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="masonry -pause-on-hover">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Masonry } from '@inc2734/unitone-css';
+
+		<Masonry pauseOnHover>
+			...
+		</Masonry>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Marquee pauseOnHover>
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+			</Marquee>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
 
 ### <Badge>HTML</Badge> --unitone--animation-duration / <Badge>JSX</Badge> duration=\{value\}
 
@@ -143,40 +211,6 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 	<Tabs.Tab>
 		<PreviewConainer>
 			<Marquee itemWidth="50px">
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
-			</Marquee>
-		</PreviewConainer>
-	</Tabs.Tab>
-</Tabs>
-
-### <Badge>HTML</Badge> -pause-on-hover / <Badge>JSX</Badge> pauseOnHover
-
-Pause on hover.
-
-<Tabs items={['HTML', 'JSX', 'Preview']}>
-	<Tabs.Tab>
-		```html
-		<div data-unitone-layout="masonry -pause-on-hover">
-			...
-		</div>
-		```
-	</Tabs.Tab>
-	<Tabs.Tab>
-		```jsx
-		import { Masonry } from '@inc2734/unitone-css';
-
-		<Masonry pauseOnHover>
-			...
-		</Masonry>
-		```
-	</Tabs.Tab>
-	<Tabs.Tab>
-		<PreviewConainer>
-			<Marquee pauseOnHover>
 				<img src="https://placehold.jp/100x60.jpg" alt="" />
 				<img src="https://placehold.jp/100x60.jpg" alt="" />
 				<img src="https://placehold.jp/100x60.jpg" alt="" />

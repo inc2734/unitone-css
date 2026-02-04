@@ -3,6 +3,7 @@ import {
   stairsResizeObserver,
   verticalsResizeObserver,
   result1emPxForFireFoxObserver,
+  marqueeResizeObserver,
 } from '@inc2734/unitone-css/library';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -108,27 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
             '[data-unitone-layout~="marquee-wrapper"]',
           );
           targets?.forEach((target) => {
-            if (1 === target.childElementCount) {
-              const marquee = target.querySelector(':scope > [data-unitone-layout~="marquee"]');
-              if (!marquee) {
-                return;
-              }
-
-              const addInitializedToken = (element) => {
-                const layout = element.getAttribute('data-unitone-layout') ?? '';
-                if (layout.split(/\s+/).includes('marquee:initialized')) {
-                  return;
-                }
-                element.setAttribute('data-unitone-layout', `${layout} marquee:initialized`.trim());
-              };
-
-              const clonedMarquee = marquee.cloneNode(true);
-              clonedMarquee.setAttribute('aria-hidden', 'true');
-              marquee.after(clonedMarquee);
-
-              addInitializedToken(marquee);
-              addInitializedToken(clonedMarquee);
-            }
+            marqueeResizeObserver(target);
           });
         });
       }
