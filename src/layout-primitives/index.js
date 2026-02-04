@@ -8,6 +8,7 @@ export { Float } from './float';
 export { Frame } from './frame';
 export { Gutters } from './gutters';
 export { Layers } from './layers';
+export { Marquee } from './marquee';
 export { Masonry } from './masonry';
 export { Reel } from './reel';
 export { ResponsiveGrid } from './responsive-grid';

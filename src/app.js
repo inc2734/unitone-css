@@ -98,3 +98,45 @@ document.addEventListener('DOMContentLoaded', () => {
     subtree: true,
   });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const observer = new MutationObserver((entries) => {
+    requestAnimationFrame(() => {
+      for (const entry of entries) {
+        entry.addedNodes.forEach((addedNode) => {
+          const targets = addedNode.parentNode?.querySelectorAll(
+            '[data-unitone-layout~="marquee-wrapper"]',
+          );
+          targets?.forEach((target) => {
+            if (1 === target.childElementCount) {
+              const marquee = target.querySelector(':scope > [data-unitone-layout~="marquee"]');
+              if (!marquee) {
+                return;
+              }
+
+              const addInitializedToken = (element) => {
+                const layout = element.getAttribute('data-unitone-layout') ?? '';
+                if (layout.split(/\s+/).includes('marquee:initialized')) {
+                  return;
+                }
+                element.setAttribute('data-unitone-layout', `${layout} marquee:initialized`.trim());
+              };
+
+              const clonedMarquee = marquee.cloneNode(true);
+              clonedMarquee.setAttribute('aria-hidden', 'true');
+              marquee.after(clonedMarquee);
+
+              addInitializedToken(marquee);
+              addInitializedToken(clonedMarquee);
+            }
+          });
+        });
+      }
+    });
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
+});

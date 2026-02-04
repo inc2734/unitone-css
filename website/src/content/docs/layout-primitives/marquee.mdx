@@ -1,0 +1,188 @@
+import { Marquee } from '@inc2734/unitone-css';
+import { Tabs } from 'nextra/components';
+import { PreviewConainer, Badge } from '../../../components';
+
+# Marquee
+
+Elements of different sizes are laid out without gaps.
+
+## Usage
+
+<PreviewConainer>
+	<Marquee>
+		<img src="https://placehold.jp/100x60.jpg" alt="" />
+		<img src="https://placehold.jp/100x60.jpg" alt="" />
+		<img src="https://placehold.jp/100x60.jpg" alt="" />
+		<img src="https://placehold.jp/100x60.jpg" alt="" />
+		<img src="https://placehold.jp/100x60.jpg" alt="" />
+	</Marquee>
+</PreviewConainer>
+
+<Tabs items={['HTML', 'JSX']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="marquee">
+			<img src="https://placehold.jp/100x60.jpg" alt="" />
+			<img src="https://placehold.jp/100x60.jpg" alt="" />
+			<img src="https://placehold.jp/100x60.jpg" alt="" />
+			<img src="https://placehold.jp/100x60.jpg" alt="" />
+			<img src="https://placehold.jp/100x60.jpg" alt="" />
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Marquee } from '@inc2734/unitone-css';
+
+		<Marquee>
+			<img src="https://placehold.jp/100x60.jpg" alt="" />
+			<img src="https://placehold.jp/100x60.jpg" alt="" />
+			<img src="https://placehold.jp/100x60.jpg" alt="" />
+			<img src="https://placehold.jp/100x60.jpg" alt="" />
+			<img src="https://placehold.jp/100x60.jpg" alt="" />
+		</Marquee>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Props
+
+### <Badge>HTML</Badge> --unitone--animation-duration / <Badge>JSX</Badge> duration=\{value\}
+
+Animation duration.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="marquee" style="--unitone--animation-duration: 5s">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Marquee } from '@inc2734/unitone-css';
+
+		<Marquee duration="5s">
+			...
+		</Marquee>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Marquee duration="5s">
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+			</Marquee>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -gap:\{variation\} / <Badge>JSX</Badge> gap=\{variation\}
+
+Gap.
+
+Can be set from `-2` to `7`. For variations `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens.
+If it is `1` or more, adding `s` will shrink it to size `-1` on mobile. (e.g. `1s`)
+If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m`)
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="masonry -gap:-2">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Marquee } from '@inc2734/unitone-css';
+
+		<Marquee gap={1}>
+			...
+		</Marquee>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Marquee gap={1}>
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+			</Marquee>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> --unitone--item-width / <Badge>JSX</Badge> itemWidth=\{value\}
+
+`width` of the items.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="marquee" style="--unitone--item-width: 50px">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Marquee } from '@inc2734/unitone-css';
+
+		<Marquee itemWidth="50px">
+			...
+		</Marquee>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Marquee itemWidth="50px">
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+			</Marquee>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -pause-on-hover / <Badge>JSX</Badge> pauseOnHover
+
+Pause on hover.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="masonry -pause-on-hover">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Masonry } from '@inc2734/unitone-css';
+
+		<Masonry pauseOnHover>
+			...
+		</Masonry>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Marquee pauseOnHover>
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+			</Marquee>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>

@@ -6,6 +6,7 @@
 @use 'float/float';
 @use 'frame/frame';
 @use 'layers/layers';
+@use 'marquee/marquee';
 @use 'masonry/masonry';
 @use 'reel/reel';
 @use 'responsive-grid/responsive-grid';
@@ -27,6 +28,7 @@
 @include float.float();
 @include frame.frame();
 @include layers.layers();
+@include marquee.marquee();
 @include masonry.masonry();
 @include reel.reel();
 @include responsive-grid.responsive-grid();
