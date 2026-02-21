@@ -47,6 +47,7 @@
 
   > * {
     flex: 0 0 var(--unitone--item-width);
+    max-width: var(--unitone--item-width);
     min-width: 0;
   }
 }
