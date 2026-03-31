@@ -39,10 +39,12 @@ To import JavaScript for unitone CSS, `@import` in your main JavaScript file. In
 	</Tabs.Tab>
 	<Tabs.Tab>
 		```html
-		<script src="/node_modules/@inc2734/unitone-css/dist/app.js"></script>
+		<script src="/node_modules/@inc2734/unitone-css/dist/app.js" defer></script>
 		```
 	</Tabs.Tab>
 </Tabs>
+
+When using server-side rendering frameworks, load this script with the framework's equivalent of `<script defer>`.
 
 ## Using Layout Primitives
 

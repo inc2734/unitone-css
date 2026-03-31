@@ -1,3 +1,69 @@
+const layoutAttributeName = 'data-unitone-layout';
+
+const getLayoutTokens = (element) =>
+  (element.getAttribute(layoutAttributeName) ?? '').split(/\s+/).filter(Boolean);
+
+const withoutLayoutTokens = (tokens, removedTokens) =>
+  tokens.filter((value) => !removedTokens.includes(value));
+
+const setLayoutTokens = (element, tokens) => {
+  const nextValue = tokens.filter(Boolean).join(' ');
+  if ((element.getAttribute(layoutAttributeName) ?? '') !== nextValue) {
+    element.setAttribute(layoutAttributeName, nextValue);
+  }
+};
+
+const createResizeObserver = (target, callback, { getValue, delay = 250 } = {}) => {
+  callback(target);
+
+  let prevValue;
+  let isFirstEntry = true;
+
+  const observer = new ResizeObserver(
+    debounce((entries) => {
+      for (const entry of entries) {
+        const currentValue = getValue?.(entry);
+        if (isFirstEntry) {
+          prevValue = currentValue;
+          isFirstEntry = false;
+          continue;
+        }
+
+        if (undefined === currentValue || currentValue !== prevValue) {
+          callback(entry.target, entry);
+          prevValue = currentValue;
+        }
+      }
+    }, delay),
+  );
+
+  observer.observe(target);
+
+  return observer;
+};
+
+const createMutationObserver = (target, options, callback) => {
+  const observer = new MutationObserver((entries) => {
+    requestAnimationFrame(() => {
+      if (!target?.isConnected) {
+        return;
+      }
+
+      callback(entries);
+    });
+  });
+
+  observer.observe(target, options);
+
+  return observer;
+};
+
+const getBorderBoxInlineSize = (entry) => entry.borderBoxSize?.[0].inlineSize;
+
+const getContentRectWidth = (entry) => parseInt(entry.contentRect?.width);
+
+const hasLayoutBox = (element) => !!element?.isConnected && 0 < element.getClientRects().length;
+
 export function debounce(fn, delay) {
   let timer;
 
@@ -11,85 +77,74 @@ export function debounce(fn, delay) {
 }
 
 export const setDividerLinewrap = (target) => {
-  const firstChild = [].slice.call(target?.children ?? [])?.[0];
+  const children = Array.from(target?.children ?? []);
+  const firstChild = children[0];
   if (!firstChild) {
     return;
   }
 
-  let prevChild;
-  const baseRect = firstChild.getBoundingClientRect();
+  const currentLayoutArray = withoutLayoutTokens(getLayoutTokens(target), [
+    'divider:initialized',
+    '-stack',
+  ]);
+  setLayoutTokens(target, currentLayoutArray);
 
-  let currentLayoutArray = (target.getAttribute('data-unitone-layout') ?? '').split(/\s+/);
-  if (currentLayoutArray.some((value) => ['divider:initialized', '-stack'].includes(value))) {
-    currentLayoutArray = currentLayoutArray.filter(
-      (value) => !['divider:initialized', '-stack'].includes(value),
-    );
-    target.setAttribute('data-unitone-layout', currentLayoutArray.join(' '));
+  const childLayoutMap = new Map();
+  children.forEach((child) => {
+    const layoutTokens = withoutLayoutTokens(getLayoutTokens(child), ['-bol', '-linewrap']);
+    childLayoutMap.set(child, layoutTokens);
+    setLayoutTokens(child, layoutTokens);
+  });
+
+  if (!hasLayoutBox(target)) {
+    return;
   }
 
-  const targetChildren = [].slice.call(target.children).filter((child) => {
+  const baseRect = firstChild.getBoundingClientRect();
+  const targetChildren = children.reduce((accumulator, child) => {
     const position = window.getComputedStyle(child).getPropertyValue('position');
     const display = window.getComputedStyle(child).getPropertyValue('display');
-    return 'absolute' !== position && 'fixed' !== position && 'none' !== display;
+    if ('absolute' !== position && 'fixed' !== position && 'none' !== display) {
+      accumulator.push({
+        child,
+        layoutTokens: childLayoutMap.get(child) ?? [],
+        rect: child.getBoundingClientRect(),
+      });
+    }
+    return accumulator;
+  }, []);
+
+  let prevRect;
+  const nextChildLayouts = targetChildren.map(({ child, layoutTokens, rect }, index) => {
+    const nextLayoutTokens = [...layoutTokens];
+
+    if (0 === index || (prevRect?.top < rect.top && prevRect?.left >= rect.left)) {
+      nextLayoutTokens.push('-bol');
+    }
+
+    if (0 < index && baseRect.top < rect.top) {
+      nextLayoutTokens.push('-linewrap');
+    }
+
+    prevRect = rect;
+    return { child, layoutTokens: nextLayoutTokens };
   });
 
-  targetChildren.forEach((child, index) => {
-    let childCurrentLayoutArray = (child.getAttribute('data-unitone-layout') ?? '').split(/\s+/);
-    if (childCurrentLayoutArray.some((value) => ['-bol', '-linewrap'].includes(value))) {
-      childCurrentLayoutArray = childCurrentLayoutArray.filter(
-        (value) => !['-bol', '-linewrap'].includes(value),
-      );
-      child.setAttribute('data-unitone-layout', childCurrentLayoutArray.join(' '));
-    }
-
-    const prevRect = prevChild?.getBoundingClientRect();
-    const childRect = child.getBoundingClientRect();
-
-    let shouldUpdate = false;
-
-    if (0 === index || (prevRect?.top < childRect.top && prevRect?.left >= childRect.left)) {
-      childCurrentLayoutArray.push('-bol');
-      shouldUpdate = true;
-    }
-
-    if (0 < index && baseRect.top < childRect.top) {
-      childCurrentLayoutArray.push('-linewrap');
-      shouldUpdate = true;
-    }
-
-    if (shouldUpdate) {
-      child.setAttribute('data-unitone-layout', childCurrentLayoutArray.join(' '));
-    }
-
-    prevChild = child;
+  nextChildLayouts.forEach(({ child, layoutTokens }) => {
+    setLayoutTokens(child, layoutTokens);
   });
 
-  const isStack = [].slice
-    .call(targetChildren)
-    .every((child) => child.getBoundingClientRect().left === baseRect.left);
+  const isStack = targetChildren.every(({ rect }) => rect.left === baseRect.left);
+  const nextTargetLayout = [...currentLayoutArray];
   if (isStack) {
-    currentLayoutArray.push('-stack');
+    nextTargetLayout.push('-stack');
   }
 
-  currentLayoutArray.push('divider:initialized');
-  target.setAttribute('data-unitone-layout', currentLayoutArray.join(' '));
+  nextTargetLayout.push('divider:initialized');
+  setLayoutTokens(target, nextTargetLayout);
 };
 
 export const dividersResizeObserver = (target, args = {}) => {
-  let prevWidth = 0;
-
-  const observer = new ResizeObserver(
-    debounce((entries) => {
-      for (const entry of entries) {
-        const width = entry.borderBoxSize?.[0].inlineSize;
-        if (width !== prevWidth) {
-          setDividerLinewrap(entry.target);
-          prevWidth = width;
-        }
-      }
-    }, 250),
-  );
-
   const mObserverArgs = {
     attributes: true,
     attributeFilter: ['style', 'data-unitone-layout', 'class'],
@@ -98,53 +153,52 @@ export const dividersResizeObserver = (target, args = {}) => {
     characterData: true,
   };
 
-  const mObserver = new MutationObserver((entries) => {
-    requestAnimationFrame(() => {
-      for (const entry of entries) {
-        if ('attributes' === entry.type && 'data-unitone-layout' === entry.attributeName) {
-          const ignoreUnitoneLayouts = [
-            ...(args?.ignore?.layout ?? []),
-            ...['divider:initialized', '-bol', '-linewrap', '-stack'],
-          ];
-
-          const current = (entry.target.getAttribute(entry.attributeName) ?? '')
-            .split(' ')
-            .filter((v) => !ignoreUnitoneLayouts.includes(v))
-            .join(' ');
-
-          const old = (entry.oldValue ?? '')
-            .split(' ')
-            .filter((v) => !ignoreUnitoneLayouts.includes(v))
-            .join(' ');
-
-          if (current !== old) {
-            setDividerLinewrap(target);
-          }
-        } else if ('attributes' === entry.type && 'class' === entry.attributeName) {
-          const ignoreClassNames = [...(args?.ignore?.className ?? [])];
-
-          const current = (entry.target.getAttribute(entry.attributeName) ?? '')
-            .split(' ')
-            .filter((v) => !ignoreClassNames.includes(v))
-            .join(' ');
-
-          const old = (entry.oldValue ?? '')
-            .split(' ')
-            .filter((v) => !ignoreClassNames.includes(v))
-            .join(' ');
-
-          if (current !== old) {
-            setDividerLinewrap(target);
-          }
-        } else if ('attributes' === entry.type && 'style' === entry.attributeName) {
-          setDividerLinewrap(target);
-        }
-      }
-    });
+  const observer = createResizeObserver(target, setDividerLinewrap, {
+    getValue: getBorderBoxInlineSize,
   });
 
-  observer.observe(target);
-  mObserver.observe(target, mObserverArgs);
+  const mObserver = createMutationObserver(target, mObserverArgs, (entries) => {
+    for (const entry of entries) {
+      if ('attributes' === entry.type && 'data-unitone-layout' === entry.attributeName) {
+        const ignoreUnitoneLayouts = [
+          ...(args?.ignore?.layout ?? []),
+          ...['divider:initialized', '-bol', '-linewrap', '-stack'],
+        ];
+
+        const current = (entry.target.getAttribute(entry.attributeName) ?? '')
+          .split(' ')
+          .filter((v) => !ignoreUnitoneLayouts.includes(v))
+          .join(' ');
+
+        const old = (entry.oldValue ?? '')
+          .split(' ')
+          .filter((v) => !ignoreUnitoneLayouts.includes(v))
+          .join(' ');
+
+        if (current !== old) {
+          setDividerLinewrap(target);
+        }
+      } else if ('attributes' === entry.type && 'class' === entry.attributeName) {
+        const ignoreClassNames = [...(args?.ignore?.className ?? [])];
+
+        const current = (entry.target.getAttribute(entry.attributeName) ?? '')
+          .split(' ')
+          .filter((v) => !ignoreClassNames.includes(v))
+          .join(' ');
+
+        const old = (entry.oldValue ?? '')
+          .split(' ')
+          .filter((v) => !ignoreClassNames.includes(v))
+          .join(' ');
+
+        if (current !== old) {
+          setDividerLinewrap(target);
+        }
+      } else if ('attributes' === entry.type && 'style' === entry.attributeName) {
+        setDividerLinewrap(target);
+      }
+    }
+  });
 
   return {
     resizeObserver: observer,
@@ -153,24 +207,26 @@ export const dividersResizeObserver = (target, args = {}) => {
 };
 
 export const setStairsStep = (target) => {
-  const children = [].slice.call(target.children);
-  const firstChild = children?.[0];
+  const children = Array.from(target.children);
+  const currentLayoutArray = withoutLayoutTokens(getLayoutTokens(target), ['stairs:initialized']);
+  setLayoutTokens(target, currentLayoutArray);
+
+  const firstChild = children[0];
   if (!firstChild) {
+    setLayoutTokens(target, [...currentLayoutArray, 'stairs:initialized']);
     return;
   }
 
   // Reset
   target.style.removeProperty('--unitone--stairs-step-overflow-volume');
   target.style.removeProperty('--unitone--max-stairs-step');
-  [].slice.call(target?.children ?? []).forEach((child) => {
+  children.forEach((child) => {
     child.style.removeProperty('--unitone--stairs-step');
   });
 
-  const filteredChildren = [];
-
-  let prevChild;
-  let stairsStep = 0;
-  let maxStairsStep = stairsStep;
+  if (!hasLayoutBox(target)) {
+    return;
+  }
 
   const stairsUp = (target.getAttribute('data-unitone-layout') ?? '')
     .split(/\s+/)
@@ -180,22 +236,30 @@ export const setStairsStep = (target) => {
   const isAlternatingStairs = ['up-down', 'down-up'].includes(stairsUp);
 
   const direction = window.getComputedStyle(target).getPropertyValue('flex-direction');
-
-  children.forEach((child) => {
+  const targetBottom = target.getBoundingClientRect().bottom;
+  const filteredChildren = children.reduce((accumulator, child) => {
     const position = window.getComputedStyle(child).getPropertyValue('position');
     const display = window.getComputedStyle(child).getPropertyValue('display');
     if ('absolute' === position || 'fixed' === position || 'none' === display) {
-      return;
+      return accumulator;
     }
 
-    filteredChildren.push(child);
+    accumulator.push({
+      child,
+      rect: child.getBoundingClientRect(),
+    });
+    return accumulator;
+  }, []);
 
+  let prevRect;
+  let stairsStep = 0;
+  let maxStairsStep = stairsStep;
+
+  const nextSteps = filteredChildren.map(({ child, rect }, index) => {
     const isBol =
-      'row-reverse' === direction
-        ? prevChild?.getBoundingClientRect()?.left <= child.getBoundingClientRect().left
-        : prevChild?.getBoundingClientRect()?.left >= child.getBoundingClientRect().left;
+      'row-reverse' === direction ? prevRect?.left <= rect.left : prevRect?.left >= rect.left;
 
-    if (firstChild === child || isBol) {
+    if (0 === index || (firstChild === child && !prevRect) || isBol) {
       stairsStep = 0;
     } else if (isAlternatingStairs) {
       stairsStep = 0 === stairsStep ? 1 : 0;
@@ -203,39 +267,35 @@ export const setStairsStep = (target) => {
       stairsStep++;
     }
 
-    child.style.setProperty('--unitone--stairs-step', stairsStep);
-
-    prevChild = child;
+    prevRect = rect;
 
     if (stairsStep > maxStairsStep) {
       maxStairsStep = stairsStep;
     }
+
+    return {
+      child,
+      stairsStep,
+    };
+  });
+
+  nextSteps.forEach(({ child, stairsStep }) => {
+    child.style.setProperty('--unitone--stairs-step', stairsStep);
   });
 
   target.style.setProperty('--unitone--max-stairs-step', maxStairsStep);
 
-  const targetBottom = target.getBoundingClientRect().bottom;
-  const overflowVolume = filteredChildren.reduce((accumulator, current) => {
-    const childBottom = current.getBoundingClientRect().bottom;
-    const overflow = childBottom - targetBottom;
+  const overflowVolume = filteredChildren.reduce((accumulator, { child }) => {
+    const overflow = child.getBoundingClientRect().bottom - targetBottom;
     return accumulator > overflow ? accumulator : overflow;
   }, 0);
 
   target.style.setProperty('--unitone--stairs-step-overflow-volume', overflowVolume);
+  setLayoutTokens(target, [...currentLayoutArray, 'stairs:initialized']);
 };
 
 export const stairsResizeObserver = (target) => {
-  const observer = new ResizeObserver(
-    debounce((entries) => {
-      for (const entry of entries) {
-        setStairsStep(entry.target);
-      }
-    }, 250),
-  );
-
-  observer.observe(target);
-
-  return observer;
+  return createResizeObserver(target, setStairsStep);
 };
 
 export const setColumnCountForVertical = (target) => {
@@ -420,34 +480,19 @@ export const result1emPxForFireFoxObserver = (target) => {
     return;
   }
 
-  let prevWidth = 0;
-
-  const observer = new ResizeObserver(
-    debounce((entries) => {
-      for (const entry of entries) {
-        const width = entry.borderBoxSize?.[0].inlineSize;
-        if (width !== prevWidth) {
-          setResult1emPxForFireFox(entry.target);
-          prevWidth = width;
-        }
-      }
-    }, 250),
-  );
-
   const mObserverArgs = {
     attributes: true,
     attributeFilter: ['style', 'data-unitone-layout', 'class'],
     characterData: true,
   };
 
-  const mObserver = new MutationObserver(() => {
-    requestAnimationFrame(() => {
-      setResult1emPxForFireFox(target);
-    });
+  const observer = createResizeObserver(target, setResult1emPxForFireFox, {
+    getValue: getBorderBoxInlineSize,
   });
 
-  observer.observe(target);
-  mObserver.observe(target, mObserverArgs);
+  const mObserver = createMutationObserver(target, mObserverArgs, () => {
+    setResult1emPxForFireFox(target);
+  });
 
   return {
     resizeObserver: observer,
@@ -456,6 +501,8 @@ export const result1emPxForFireFoxObserver = (target) => {
 };
 
 export const setMarquee = (target) => {
+  let clonedMarquee;
+
   const addInitializedToken = (element) => {
     const layout = element.getAttribute('data-unitone-layout') ?? '';
     if (layout.split(/\s+/).includes('marquee:initialized')) {
@@ -481,7 +528,7 @@ export const setMarquee = (target) => {
 
   if (1 === target.childElementCount && 1 === marquees.length) {
     const marquee = marquees[0];
-    const clonedMarquee = marquee.cloneNode(true);
+    clonedMarquee = marquee.cloneNode(true);
     clonedMarquee.setAttribute('aria-hidden', 'true');
     marquee.after(clonedMarquee);
   }
@@ -499,41 +546,46 @@ export const setMarquee = (target) => {
       addInitializedToken(marquee);
     });
   });
+
+  return clonedMarquee;
 };
 
 export const marqueeResizeObserver = (target) => {
-  let prevWidth = 0;
+  let clonedMarquee;
 
-  setMarquee(target);
+  const applyMarquee = (element) => {
+    clonedMarquee = setMarquee(element);
+  };
 
-  const observer = new ResizeObserver(
-    debounce((entries) => {
-      for (const entry of entries) {
-        const width = entry.contentRect?.width;
-        if (parseInt(width) !== parseInt(prevWidth)) {
-          prevWidth = width;
-          setMarquee(entry.target);
-        }
-      }
-    }, 250),
-  );
-
-  observer.observe(target);
+  const observer = createResizeObserver(target, applyMarquee, {
+    getValue: getContentRectWidth,
+  });
 
   const mObserverArgs = {
     childList: true,
   };
 
-  const mObserver = new MutationObserver(() => {
-    requestAnimationFrame(() => {
-      if (!target?.isConnected) {
-        return;
-      }
-      setMarquee(target);
-    });
-  });
+  const mObserver = createMutationObserver(target, mObserverArgs, (entries) => {
+    if (!target?.isConnected) {
+      return;
+    }
 
-  mObserver.observe(target, mObserverArgs);
+    const addedNodes = entries.flatMap((entry) => Array.from(entry.addedNodes ?? []));
+    const removedNodes = entries.flatMap((entry) => Array.from(entry.removedNodes ?? []));
+
+    if (
+      clonedMarquee?.isConnected &&
+      1 === addedNodes.length &&
+      0 === removedNodes.length &&
+      addedNodes[0] === clonedMarquee
+    ) {
+      clonedMarquee = null;
+      return;
+    }
+
+    clonedMarquee = null;
+    applyMarquee(target);
+  });
 
   return {
     resizeObserver: observer,
