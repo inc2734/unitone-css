@@ -1,4 +1,6 @@
 const layoutAttributeName = 'data-unitone-layout';
+const layoutIntersectionMargin = 200;
+const layoutIntersectionRootMargin = `${layoutIntersectionMargin}px 0px`;
 
 /**
  * Returns layout tokens from the target element.
@@ -38,18 +40,10 @@ const setLayoutTokens = (element, tokens) => {
  *
  * @param {Element} target Target element.
  * @param {(target: Element, entry?: ResizeObserverEntry) => void} callback Callback to run.
- * @param {{ getValue?: (entry: ResizeObserverEntry) => unknown, delay?: number, initialize?: boolean }} [options]
+ * @param {{ getValue?: (entry: ResizeObserverEntry) => unknown, delay?: number }} [options]
  * @returns {ResizeObserver} ResizeObserver instance.
  */
-const createResizeObserver = (
-  target,
-  callback,
-  { getValue, delay = 250, initialize = true } = {},
-) => {
-  if (initialize) {
-    callback(target);
-  }
-
+const createResizeObserver = (target, callback, { getValue, delay = 250 } = {}) => {
   let prevValue;
   let isFirstEntry = true;
 
@@ -101,26 +95,39 @@ const createMutationObserver = (target, options, callback) => {
 };
 
 /**
+ * Creates an IntersectionObserver for the target element.
+ *
+ * @param {Element} target Target element.
+ * @param {(entry: IntersectionObserverEntry) => void} callback Callback to run.
+ * @returns {IntersectionObserver} IntersectionObserver instance.
+ */
+const createIntersectionObserver = (target, callback) => {
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry) {
+        callback(entry);
+      }
+    },
+    { rootMargin: layoutIntersectionRootMargin },
+  );
+
+  observer.observe(target);
+
+  return observer;
+};
+
+/**
  * Returns a scheduler that coalesces re-application work into a single frame.
  *
  * @param {Element} target Target element.
  * @param {(target: Element) => void} callback Callback to run.
- * @returns {{ schedule: () => void, cancel: () => void }} Scheduler helpers.
+ * @returns {() => void} Schedule function.
  */
 const createScheduledTargetCallback = (target, callback) => {
   let rafId = 0;
   let defaultView;
 
-  const cancel = () => {
-    if (rafId && defaultView) {
-      defaultView.cancelAnimationFrame(rafId);
-    }
-
-    rafId = 0;
-    defaultView = null;
-  };
-
-  const schedule = () => {
+  return () => {
     defaultView = target?.ownerDocument?.defaultView;
     if (!defaultView?.requestAnimationFrame) {
       callback(target);
@@ -140,11 +147,6 @@ const createScheduledTargetCallback = (target, callback) => {
       }
     });
   };
-
-  return {
-    schedule,
-    cancel,
-  };
 };
 
 /**
@@ -152,18 +154,14 @@ const createScheduledTargetCallback = (target, callback) => {
  *
  * @param {Element} target Target element.
  * @param {(target: Element) => void} callback Callback to run.
- * @param {{ getValue?: (entry: ResizeObserverEntry) => unknown, delay?: number, onChildList?: (entries: MutationRecord[]) => void, initialize?: boolean }} [options]
+ * @param {{ getValue?: (entry: ResizeObserverEntry) => unknown, delay?: number, onChildList?: (entries: MutationRecord[]) => void }} [options]
  * @returns {{ resizeObserver: ResizeObserver, mutationObserver: MutationObserver }}
  */
 const createDirectChildrenResizeObserver = (
   target,
   callback,
-  { getValue, delay = 250, onChildList, initialize = true } = {},
+  { getValue, delay = 250, onChildList } = {},
 ) => {
-  if (initialize) {
-    callback(target);
-  }
-
   const prevValues = new WeakMap();
   const observedChildren = new Set();
 
@@ -288,17 +286,13 @@ const createDirectChildrenAttributeObserver = (
  * @param {{
  *   getResizeValue?: (entry: ResizeObserverEntry) => unknown,
  *   delay?: number,
+ *   observeResize?: boolean,
+ *   observeIntersection?: boolean,
  *   observeDirectChildrenResize?: boolean,
  *   targetMutation?: { options: MutationObserverInit, shouldApply?: (entries: MutationRecord[]) => boolean },
  *   directChildMutation?: { attributeFilter: string[], shouldApply: (entry: MutationRecord) => boolean, attributeOldValue?: boolean }
  * }} [options]
- * @returns {{
- *   resizeObserver: ResizeObserver,
- *   mutationObserver: MutationObserver | null,
- *   targetMutationObserver: MutationObserver | null,
- *   childMutationObserver: MutationObserver | null,
- *   cancelScheduledRefresh: () => void
- * }}
+ * @returns {void}
  */
 const createLayoutObserver = (
   target,
@@ -306,43 +300,89 @@ const createLayoutObserver = (
   {
     getResizeValue,
     delay = 250,
+    observeResize = true,
+    observeIntersection = false,
     observeDirectChildrenResize = false,
     targetMutation,
     directChildMutation,
   } = {},
 ) => {
-  const { schedule, cancel } = createScheduledTargetCallback(target, apply);
+  const shouldObserveIntersection =
+    observeIntersection && 'undefined' !== typeof IntersectionObserver;
+  let isIntersecting = !shouldObserveIntersection || isNearViewport(target);
+  let needsApply = shouldObserveIntersection && !isIntersecting;
+
+  const runApply = (element = target) => {
+    if (!element?.isConnected) {
+      return;
+    }
+
+    if (shouldObserveIntersection && !isIntersecting) {
+      needsApply = true;
+      return;
+    }
+
+    needsApply = false;
+    apply(element);
+  };
+
+  const schedule = createScheduledTargetCallback(target, runApply);
+  const scheduleApply = () => {
+    if (!target?.isConnected) {
+      return;
+    }
+
+    if (shouldObserveIntersection && !isIntersecting) {
+      needsApply = true;
+      return;
+    }
+
+    needsApply = true;
+    schedule();
+  };
 
   let syncDirectChildAttributes = () => {};
 
-  const resizeBundle = observeDirectChildrenResize
-    ? createDirectChildrenResizeObserver(target, schedule, {
-        getValue: getResizeValue,
-        delay,
-        initialize: false,
-        onChildList: () => {
-          syncDirectChildAttributes();
-        },
-      })
-    : {
-        resizeObserver: createResizeObserver(target, schedule, {
+  const resizeBundle = !observeResize
+    ? {
+        resizeObserver: null,
+        mutationObserver: null,
+      }
+    : observeDirectChildrenResize
+      ? createDirectChildrenResizeObserver(target, scheduleApply, {
           getValue: getResizeValue,
           delay,
-          initialize: false,
-        }),
-      };
+          onChildList: () => {
+            syncDirectChildAttributes();
+          },
+        })
+      : {
+          resizeObserver: createResizeObserver(target, scheduleApply, {
+            getValue: getResizeValue,
+            delay,
+          }),
+        };
 
-  const targetMutationObserver = targetMutation?.options
-    ? createMutationObserver(target, targetMutation.options, (entries) => {
-        if (targetMutation.shouldApply?.(entries) ?? 0 < entries.length) {
-          schedule();
-        }
-      })
-    : null;
+  if (shouldObserveIntersection) {
+    createIntersectionObserver(target, (entry) => {
+      isIntersecting = entry.isIntersecting;
+      if (isIntersecting && needsApply) {
+        scheduleApply();
+      }
+    });
+  }
+
+  if (targetMutation?.options) {
+    createMutationObserver(target, targetMutation.options, (entries) => {
+      if (targetMutation.shouldApply?.(entries) ?? 0 < entries.length) {
+        scheduleApply();
+      }
+    });
+  }
 
   const directChildAttributeBundle =
     directChildMutation?.attributeFilter && directChildMutation.shouldApply
-      ? createDirectChildrenAttributeObserver(target, schedule, {
+      ? createDirectChildrenAttributeObserver(target, scheduleApply, {
           attributeFilter: directChildMutation.attributeFilter,
           shouldApply: directChildMutation.shouldApply,
           attributeOldValue: directChildMutation.attributeOldValue,
@@ -353,29 +393,20 @@ const createLayoutObserver = (
     syncDirectChildAttributes = directChildAttributeBundle.syncObservedChildren;
   }
 
-  const childListObserver =
-    resizeBundle.mutationObserver ||
-    (directChildAttributeBundle
-      ? createMutationObserver(target, { childList: true }, (entries) => {
-          if (!entries.some((entry) => 'childList' === entry.type)) {
-            return;
-          }
+  if (!resizeBundle.mutationObserver && directChildAttributeBundle) {
+    createMutationObserver(target, { childList: true }, (entries) => {
+      if (!entries.some((entry) => 'childList' === entry.type)) {
+        return;
+      }
 
-          syncDirectChildAttributes();
-          schedule();
-        })
-      : null);
+      syncDirectChildAttributes();
+      scheduleApply();
+    });
+  }
 
-  apply(target);
-
-  return {
-    resizeObserver: resizeBundle.resizeObserver,
-    mutationObserver:
-      childListObserver ?? targetMutationObserver ?? directChildAttributeBundle?.observer ?? null,
-    targetMutationObserver,
-    childMutationObserver: directChildAttributeBundle?.observer ?? null,
-    cancelScheduledRefresh: cancel,
-  };
+  if (!shouldObserveIntersection || isIntersecting) {
+    runApply(target);
+  }
 };
 
 const getBorderBoxInlineSize = (entry) => entry.borderBoxSize?.[0].inlineSize;
@@ -383,6 +414,28 @@ const getBorderBoxInlineSize = (entry) => entry.borderBoxSize?.[0].inlineSize;
 const getContentRectWidth = (entry) => parseInt(entry.contentRect?.width);
 
 const hasLayoutBox = (element) => !!element?.isConnected && 0 < element.getClientRects().length;
+
+const isNearViewport = (element) => {
+  if (!hasLayoutBox(element)) {
+    return false;
+  }
+
+  const defaultView = element?.ownerDocument?.defaultView;
+  if (!defaultView) {
+    return true;
+  }
+
+  const rect = element.getBoundingClientRect();
+  const viewportWidth = defaultView.innerWidth;
+  const viewportHeight = defaultView.innerHeight;
+
+  return (
+    rect.bottom > -layoutIntersectionMargin &&
+    rect.right > 0 &&
+    rect.top < viewportHeight + layoutIntersectionMargin &&
+    rect.left < viewportWidth
+  );
+};
 
 /**
  * Returns whether the mutation list contains a matching attributes record.
@@ -492,13 +545,7 @@ export const setDividerLinewrap = (target) => {
  *
  * @param {Element} target Target element.
  * @param {{ ignore?: { layout?: string[], className?: string[] } }} [args]
- * @returns {{
- *   resizeObserver: ResizeObserver,
- *   mutationObserver: MutationObserver | null,
- *   targetMutationObserver: MutationObserver | null,
- *   childMutationObserver: MutationObserver | null,
- *   cancelScheduledRefresh: () => void
- * }}
+ * @returns {void}
  */
 export const dividersResizeObserver = (target, args = {}) => {
   const shouldRecalculateByAttributeMutation = (entry) => {
@@ -540,8 +587,9 @@ export const dividersResizeObserver = (target, args = {}) => {
     return 'style' === entry.attributeName;
   };
 
-  return createLayoutObserver(target, setDividerLinewrap, {
+  createLayoutObserver(target, setDividerLinewrap, {
     getResizeValue: getBorderBoxInlineSize,
+    observeIntersection: true,
     observeDirectChildrenResize: true,
     targetMutation: {
       options: {
@@ -661,16 +709,11 @@ export const setStairsStep = (target) => {
  * Creates the observer bundle for stairs layouts.
  *
  * @param {Element} target Target element.
- * @returns {{
- *   resizeObserver: ResizeObserver,
- *   mutationObserver: MutationObserver | null,
- *   targetMutationObserver: MutationObserver | null,
- *   childMutationObserver: MutationObserver | null,
- *   cancelScheduledRefresh: () => void
- * }}
+ * @returns {void}
  */
 export const stairsResizeObserver = (target) => {
-  return createLayoutObserver(target, setStairsStep, {
+  createLayoutObserver(target, setStairsStep, {
+    observeIntersection: true,
     observeDirectChildrenResize: true,
   });
 };
@@ -721,24 +764,20 @@ export const setColumnCountForVertical = (target) => {
     return;
   }
 
-  let currentLayoutArray = (target.getAttribute('data-unitone-layout') ?? '').split(/\s+/);
-  if (
-    currentLayoutArray.some((value) =>
-      ['vertical-writing:initialized', 'vertical-writing:safari', '-force-switch'].includes(value),
-    )
-  ) {
-    currentLayoutArray = currentLayoutArray.filter(
-      (value) =>
-        !['vertical-writing:initialized', 'vertical-writing:safari', '-force-switch'].includes(
-          value,
-        ),
-    );
-    target.setAttribute('data-unitone-layout', currentLayoutArray.join(' '));
-  }
+  const currentLayoutTokens = getLayoutTokens(target);
+  const baseLayoutTokens = withoutLayoutTokens(currentLayoutTokens, [
+    'vertical-writing:safari',
+    '-force-switch',
+  ]);
+  const nextLayoutTokens = withoutLayoutTokens(currentLayoutTokens, [
+    'vertical-writing:initialized',
+    'vertical-writing:safari',
+    '-force-switch',
+  ]);
+  setLayoutTokens(target, baseLayoutTokens);
 
   let lastChild;
-  [].slice
-    .call(target.children)
+  Array.from(target.children)
     .reverse()
     .some((child) => {
       if (
@@ -751,80 +790,61 @@ export const setColumnCountForVertical = (target) => {
     });
 
   if (!lastChild) {
-    currentLayoutArray.push('vertical-writing:initialized');
-    target.setAttribute('data-unitone-layout', currentLayoutArray.join(' '));
+    setLayoutTokens(target, [...nextLayoutTokens, 'vertical-writing:initialized']);
     return;
   }
 
-  // Process of the threshold
   const computedStyle = getComputedStyle(target);
   const threshold = String(computedStyle.getPropertyValue('--unitone--threshold')).trim();
   let forceSwitch = false;
 
-  setTimeout(() => {
+  if (threshold) {
+    const thresholder = target.ownerDocument.createElement('div');
+    thresholder.setAttribute(layoutAttributeName, 'vertical-writing__thresholder');
+    target.appendChild(thresholder);
+    forceSwitch = thresholder.offsetWidth >= target.offsetWidth;
+    thresholder.remove();
+  }
+
+  if (forceSwitch) {
+    nextLayoutTokens.push('-force-switch');
+  } else {
+    const maybeSafari =
+      target.getBoundingClientRect().left > lastChild.getBoundingClientRect().left;
+    if (maybeSafari) {
+      nextLayoutTokens.push('vertical-writing:safari');
+    }
+  }
+
+  setLayoutTokens(target, [...nextLayoutTokens, 'vertical-writing:initialized']);
+
+  requestAnimationFrame(() => {
     if (!target?.isConnected) {
       return;
     }
 
-    if (!!threshold) {
-      const thresholder = document.createElement('div');
-      thresholder.setAttribute('data-unitone-layout', 'vertical-writing__thresholder');
-      target.appendChild(thresholder);
-      forceSwitch = thresholder.offsetWidth >= target.offsetWidth;
-      if (thresholder.parentNode) {
-        thresholder.parentNode.removeChild(thresholder);
-      }
-    }
-
-    if (forceSwitch) {
-      currentLayoutArray.push('-force-switch');
-      if (target.parentNode?.style) {
+    if (target.parentNode?.style) {
+      if (forceSwitch) {
         target.parentNode.style.height = '';
-      }
-    } else {
-      // For Safari
-      const maybeSafari =
-        target.getBoundingClientRect().left > lastChild.getBoundingClientRect().left;
-      if (maybeSafari) {
-        currentLayoutArray.push('vertical-writing:safari');
+        return;
       }
 
-      target.setAttribute('data-unitone-layout', currentLayoutArray.join(' '));
+      const targetRect = target.getBoundingClientRect();
+      const lastChildRect = lastChild.getBoundingClientRect();
 
-      requestAnimationFrame(() => {
-        if (!target?.isConnected) {
-          return;
-        }
-
-        const targetRect = target.getBoundingClientRect();
-        const lastChildRect = lastChild.getBoundingClientRect();
-
-        const targetY = targetRect.top + targetRect.height;
-        const lastChildY = lastChildRect.top + lastChildRect.height;
-        if (targetY !== lastChildY) {
-          if (target.parentNode?.style) {
-            target.parentNode.style.height = `${Math.ceil(lastChildY - targetRect.top)}px`;
-          }
-        }
-      });
+      const targetY = targetRect.top + targetRect.height;
+      const lastChildY = lastChildRect.top + lastChildRect.height;
+      target.parentNode.style.height =
+        targetY !== lastChildY ? `${Math.ceil(lastChildY - targetRect.top)}px` : '';
     }
-
-    currentLayoutArray.push('vertical-writing:initialized');
-    target.setAttribute('data-unitone-layout', currentLayoutArray.join(' '));
-  }, 250);
+  });
 };
 
 /**
  * Creates the observer bundle for vertical-writing layouts.
  *
  * @param {Element} target Target element.
- * @returns {{
- *   resizeObserver: ResizeObserver,
- *   mutationObserver: MutationObserver | null,
- *   targetMutationObserver: MutationObserver | null,
- *   childMutationObserver: MutationObserver | null,
- *   cancelScheduledRefresh: () => void
- * }}
+ * @returns {void}
  */
 export const verticalsResizeObserver = (target) => {
   const applyVerticalColumns = (element) => {
@@ -835,8 +855,9 @@ export const verticalsResizeObserver = (target) => {
     setColumnCountForVertical(element);
   };
 
-  return createLayoutObserver(target, applyVerticalColumns, {
+  createLayoutObserver(target, applyVerticalColumns, {
     getResizeValue: getContentRectWidth,
+    observeIntersection: true,
     targetMutation: {
       options: {
         attributes: true,
@@ -873,13 +894,7 @@ export const setResult1emPxForFireFox = (target) => {
  * Creates the observer bundle for the Firefox 1em measurement workaround.
  *
  * @param {HTMLElement} target Target element.
- * @returns {{
- *   resizeObserver: ResizeObserver,
- *   mutationObserver: MutationObserver | null,
- *   targetMutationObserver: MutationObserver | null,
- *   childMutationObserver: MutationObserver | null,
- *   cancelScheduledRefresh: () => void
- * } | void}
+ * @returns {void}
  */
 export const result1emPxForFireFoxObserver = (target) => {
   const ownerDocument = target.ownerDocument;
@@ -890,7 +905,7 @@ export const result1emPxForFireFoxObserver = (target) => {
     return;
   }
 
-  return createLayoutObserver(target, setResult1emPxForFireFox, {
+  createLayoutObserver(target, setResult1emPxForFireFox, {
     getResizeValue: getBorderBoxInlineSize,
     targetMutation: {
       options: {
@@ -975,13 +990,7 @@ export const setMarquee = (target) => {
  * Creates the observer bundle for marquee layouts.
  *
  * @param {Element} target Target element.
- * @returns {{
- *   resizeObserver: null,
- *   mutationObserver: MutationObserver,
- *   targetMutationObserver: MutationObserver,
- *   childMutationObserver: MutationObserver | null,
- *   cancelScheduledRefresh: () => void
- * }}
+ * @returns {void}
  */
 export const marqueeResizeObserver = (target) => {
   let clonedMarquee;
@@ -990,31 +999,30 @@ export const marqueeResizeObserver = (target) => {
     clonedMarquee = setMarquee(element);
   };
 
-  const mutationObserver = createMutationObserver(target, { childList: true }, (entries) => {
-    const addedNodes = entries.flatMap((entry) => Array.from(entry.addedNodes ?? []));
-    const removedNodes = entries.flatMap((entry) => Array.from(entry.removedNodes ?? []));
+  createLayoutObserver(target, applyMarquee, {
+    observeResize: false,
+    observeIntersection: true,
+    targetMutation: {
+      options: {
+        childList: true,
+      },
+      shouldApply: (entries) => {
+        const addedNodes = entries.flatMap((entry) => Array.from(entry.addedNodes ?? []));
+        const removedNodes = entries.flatMap((entry) => Array.from(entry.removedNodes ?? []));
 
-    if (
-      clonedMarquee?.isConnected &&
-      1 === addedNodes.length &&
-      0 === removedNodes.length &&
-      addedNodes[0] === clonedMarquee
-    ) {
-      clonedMarquee = null;
-      return;
-    }
+        if (
+          clonedMarquee?.isConnected &&
+          1 === addedNodes.length &&
+          0 === removedNodes.length &&
+          addedNodes[0] === clonedMarquee
+        ) {
+          clonedMarquee = null;
+          return false;
+        }
 
-    clonedMarquee = null;
-    applyMarquee(target);
+        clonedMarquee = null;
+        return true;
+      },
+    },
   });
-
-  applyMarquee(target);
-
-  return {
-    resizeObserver: null,
-    mutationObserver,
-    targetMutationObserver: mutationObserver,
-    childMutationObserver: null,
-    cancelScheduledRefresh: () => {},
-  };
 };
