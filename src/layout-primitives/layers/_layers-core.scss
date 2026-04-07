@@ -1,0 +1,139 @@
+@mixin abstract-layers() {
+  --unitone--columns: var(--unitone--grid-columns);
+  --unitone--rows: var(--unitone--grid-rows);
+  --unitone--gap: var(--unitone--grid-gap);
+  --unitone--min-height: 0;
+  --unitone--blur: 75px;
+
+  display: grid;
+  grid-template-columns: repeat(var(--unitone--columns), 1fr);
+  grid-template-rows: repeat(var(--unitone--rows), 1fr);
+  gap: min(3.33333%, var(--unitone--gap));
+  min-height: var(--unitone--min-height);
+
+  @media (orientation: portrait) and (max-width: 599px) {
+    &[data-unitone-layout~="-portrait"] {
+      --unitone--columns: var(--unitone--grid-rows);
+      --unitone--rows: var(--unitone--grid-columns);
+    }
+  }
+
+  // @todo Firefox corrupts layout if % is used for gap
+  @-moz-document url-prefix() {
+    gap: min(3.33333vw, var(--unitone--gap));
+  }
+
+  > * {
+    --unitone--align-self: stretch;
+    --unitone--justify-self: stretch;
+    --unitone--grid-column: 1/-1;
+    --unitone--grid-row: 1/-1;
+    --unitone--mix-blend-mode: normal;
+
+    grid-column: var(--unitone--grid-column);
+    grid-row: var(--unitone--grid-row);
+    align-self: var(--unitone--align-self);
+    justify-self: var(--unitone--justify-self);
+    min-width: 0;
+    mix-blend-mode: var(--unitone--mix-blend-mode);
+  }
+
+  @at-root {
+    :where(#{ & } > *) {
+      --unitone--max-width: none;
+      --unitone--min-height: auto;
+
+      // position: relative;
+      max-width: var(--unitone--max-width);
+      min-height: var(--unitone--min-height);
+    }
+  }
+
+  &[data-unitone-layout~="-cover"],
+  &[data-unitone-layout~="-fill"],
+  &[data-unitone-layout~="-fixed"] {
+    position: relative;
+
+    > figure:first-child,
+    > :first-child figure {
+      margin: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    > img:first-child,
+    > video:first-child,
+    > :first-child img,
+    > :first-child video {
+      display: block;
+      object-fit: cover;
+      object-position: 50% 50%;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  &[data-unitone-layout~="-cover"] {
+    > img:first-child,
+    > video:first-child,
+    > :first-child img,
+    > :first-child video {
+      position: absolute;
+      inset: 0;
+    }
+
+    @at-root {
+      :where(#{ & } > *) {
+        position: relative;
+      }
+
+      // @todo Since decorator's position is !important, it must be overridden by CSS variables.
+      :where(#{ & } > [data-unitone-layout~="decorator"]) {
+        --unitone--position: relative;
+      }
+    }
+  }
+
+  &[data-unitone-layout~="-fixed"] {
+    clip-path: inset(0);
+
+    > img:first-child,
+    > video:first-child,
+    > :first-child img,
+    > :first-child video {
+      position: fixed;
+      inset: 0;
+    }
+
+    @at-root {
+      // @todo Since decorator's position is !important, it must be overridden by CSS variables.
+      :where(#{ & } > [data-unitone-layout~="decorator"]) {
+        --unitone--position: relative;
+      }
+    }
+  }
+
+  &[data-unitone-layout~="-blur"] {
+    overflow: hidden;
+
+    &[data-unitone-layout~="-cover"],
+    &[data-unitone-layout~="-fill"] {
+      > :where(img:first-child, video:first-child),
+      > :first-child :where(img, video) {
+        transform: scale(1.5);
+      }
+    }
+
+    > :where(img:first-child, video:first-child),
+    > :first-child :where(img, video) {
+      filter: blur(var(--unitone--blur));
+    }
+  }
+}
+
+@mixin layers() {
+  [data-unitone-layout~="layers"] {
+    @include abstract-layers();
+  }
+}

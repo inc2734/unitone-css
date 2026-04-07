@@ -1,22 +1,3 @@
-@mixin abstract-center() {
-  --unitone--gutters: 0px;
-  --unitone--max-width: var(--unitone--measure);
+@forward './center-core';
 
-  box-sizing: content-box;
-  margin-right: auto;
-  margin-left: auto;
-  max-width: var(--unitone--max-width);
-  padding-right: var(--unitone--gutters);
-  padding-left: var(--unitone--gutters);
-  width: fit-content;
-
-  &[data-unitone-layout~="-with-text"] {
-    text-align: center;
-  }
-}
-
-@mixin center() {
-  [data-unitone-layout~="center"] {
-    @include abstract-center();
-  }
-}
+@warn "Deprecated Sass entry '@inc2734/unitone-css/src/layout-primitives/center/center' will be removed in a future release. Use '@inc2734/unitone-css/src/layout-primitives/center' instead.";

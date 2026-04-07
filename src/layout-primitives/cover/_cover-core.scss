@@ -1,0 +1,80 @@
+@mixin abstract-cover() {
+  --unitone--gap: var(--unitone--global--gap);
+  --unitone--padding: var(--unitone--gap);
+  --unitone--padding-top: var(--unitone--padding);
+  --unitone--padding-right: var(--unitone--padding);
+  --unitone--padding-bottom: var(--unitone--padding);
+  --unitone--padding-left: var(--unitone--padding);
+  --unitone--min-height: 100svh;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--unitone--gap);
+  min-height: var(--unitone--min-height);
+  padding-top: var(--unitone--padding-top);
+  padding-right: var(--unitone--padding-right);
+  padding-bottom: var(--unitone--padding-bottom);
+  padding-left: var(--unitone--padding-left);
+
+  > * {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  // @deprecated
+  &[data-unitone-layout~="-no-padding"] {
+    padding: 0;
+  }
+}
+
+@mixin abstract-cover__content() {
+  --unitone--position: static;
+  --unitone--top: initial;
+  --unitone--right: initial;
+  --unitone--bottom: initial;
+  --unitone--left: initial;
+  --unitone--z-index: initial;
+
+  position: var(--unitone--position) !important;
+  top: var(--unitone--top);
+  right: var(--unitone--right);
+  bottom: var(--unitone--bottom);
+  left: var(--unitone--left);
+  z-index: var(--unitone--z-index);
+  margin-top: auto;
+  margin-bottom: auto;
+
+  &[data-unitone-layout~="-valign:top"] {
+    margin-top: 0;
+    margin-bottom: auto;
+  }
+
+  &[data-unitone-layout~="-valign:center"] {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  &[data-unitone-layout~="-valign:bottom"] {
+    margin-top: auto;
+    margin-bottom: 0;
+  }
+
+  &[data-unitone-layout~="-valign:top"] + &[data-unitone-layout~="-valign:center"] {
+    margin-top: 0;
+  }
+
+  &[data-unitone-layout~="-valign:center"] + &[data-unitone-layout~="-valign:bottom"] {
+    margin-top: 0;
+  }
+}
+
+@mixin cover() {
+  [data-unitone-layout~="cover"] {
+    @include abstract-cover();
+  }
+
+  [data-unitone-layout~="cover__content"] {
+    @include abstract-cover__content();
+  }
+}

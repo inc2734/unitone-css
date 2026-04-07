@@ -1,0 +1,169 @@
+@mixin abstract-text() {
+  --unitone--gutters: 0px;
+  --unitone--max-width: var(--unitone--measure);
+
+  box-sizing: content-box;
+  padding-right: var(--unitone--gutters);
+  padding-left: var(--unitone--gutters);
+  max-width: none;
+
+  &[data-unitone-layout*="-gap\:"] {
+    --unitone--gap: inherit !important;
+  }
+
+  @for $i from -2 through 7 {
+    &[data-unitone-layout~="-gap\:#{ $i }"] {
+      --unitone--column-gap: var(--unitone--s#{ $i }) !important;
+    }
+
+    &[data-unitone-layout~="-gap\:#{ $i }"] > * {
+      --unitone--text-gap: var(--unitone--s#{ $i }) !important;
+    }
+  }
+
+  @for $i from 1 through 7 {
+    &[data-unitone-layout~="-gap\:#{ $i }s"] {
+      --unitone--column-gap: var(--unitone--s#{ $i }s) !important;
+    }
+
+    &[data-unitone-layout~="-gap\:#{ $i }s"] > * {
+      --unitone--text-gap: var(--unitone--s#{ $i }s) !important;
+    }
+  }
+
+  @for $i from 2 through 7 {
+    &[data-unitone-layout~="-gap\:#{ $i }m"] {
+      --unitone--column-gap: var(--unitone--s#{ $i }m) !important;
+    }
+
+    &[data-unitone-layout~="-gap\:#{ $i }m"] > * {
+      --unitone--text-gap: var(--unitone--s#{ $i }m) !important;
+    }
+  }
+
+  @at-root {
+    :where(& > *) {
+      margin-right: auto;
+      margin-left: auto;
+      max-width: min(100%, var(--unitone--max-width));
+    }
+  }
+
+  > * {
+    --unitone--text-gap-scale: 1;
+    --unitone--text-gap: var(--unitone--global--text-gap);
+    --unitone--text-gap-increment: 0px;
+  }
+
+  > h1 {
+    --unitone--font-size: 4;
+  }
+
+  > h2 {
+    --unitone--font-size: 3;
+  }
+
+  > h3 {
+    --unitone--font-size: 2;
+  }
+
+  > h4 {
+    --unitone--font-size: 1;
+  }
+
+  > h5 {
+    --unitone--font-size: 0;
+  }
+
+  > h6 {
+    --unitone--font-size: 0;
+  }
+
+  :where(h1, h2, h3, h4, h5, h6) {
+    text-wrap: pretty;
+  }
+
+  &:lang(ja) {
+    font-feature-settings: "palt" 0;
+    font-kerning: none;
+
+    > :where(h1, h2, h3, h4, h5) {
+      font-feature-settings: "palt" 1;
+      font-kerning: normal;
+    }
+  }
+
+  &:where([data-unitone-layout~="-align\:start"]),
+  &:where([data-unitone-layout~="-align\:center"]),
+  &:where([data-unitone-layout~="-align\:end"]) {
+    max-width: var(--unitone--max-width);
+  }
+}
+
+@mixin abstract-text--gap() {
+  > * {
+    --unitone--margin-block: calc(var(--unitone--text-gap-scale) * var(--unitone--text-gap) + var(--unitone--text-gap-increment));
+
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  // We want to put a larger space than usual before and after paragraphs with large font sizes.
+  > * + :where(:not(:is(:last-child, h2, h3, h4, h5, h6))) {
+    margin-block-end: var(--unitone--margin-block);
+  }
+
+  > * + * {
+    margin-block-start: var(--unitone--margin-block);
+  }
+
+  > :where(h2, h3, h4, h5, h6) {
+    --unitone--text-gap-scale: 1.5;
+
+    & + :where(h2, h3, h4, h5, h6) {
+      --unitone--text-gap-scale: 1;
+    }
+  }
+
+  > h5 + * {
+    --unitone--text-gap-scale: .5;
+  }
+
+  > h6 + * {
+    --unitone--text-gap-scale: .5;
+  }
+}
+
+@mixin abstract-text--column() {
+  --unitone--column-gap: var(--unitone--text-gap);
+  --unitone--column-width: var(--unitone--measure);
+  --unitone--max-width: 100%;
+
+  margin-right: auto;
+  margin-left: auto;
+  column-width: var(--unitone--column-width);
+  column-gap: calc(var(--unitone--column-gap) + (1em * var(--unitone--half-leading)));
+  max-width: var(--unitone--max-width);
+
+  > * {
+    max-width: none;
+  }
+}
+
+@mixin text() {
+  [data-unitone-layout~="text"] {
+    @include abstract-text();
+  }
+
+  [data-unitone-layout~="text"]:where([data-unitone-layout~="-gap"]) {
+    @include abstract-text--gap();
+  }
+
+  [data-unitone-layout~="text"]:where([data-unitone-layout~="-column"]) {
+    @include abstract-text--column();
+  }
+
+  :where([data-unitone-layout~="text"][data-unitone-layout~="-center"]) > * {
+    width: fit-content;
+  }
+}

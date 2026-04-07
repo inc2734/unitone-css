@@ -1,10 +1,18 @@
-import { Marquee } from '@inc2734/unitone-css';
+import { Marquee } from '@inc2734/unitone-css/layout-primitives/marquee/react';
 import { Tabs } from 'nextra/components';
 import { PreviewConainer, Badge } from '../../../components';
 
 # Marquee
 
 Displays child elements in a continuous horizontal scrolling format.
+
+When you use Marquee in HTML, also load the JavaScript entry for it.
+
+```js
+import '@inc2734/unitone-css/layout-primitives/marquee/behavior';
+// or import '@inc2734/unitone-css/layout-primitives';
+// or import '@inc2734/unitone-css/app';
+```
 
 ## Usage
 
@@ -21,18 +29,20 @@ Displays child elements in a continuous horizontal scrolling format.
 <Tabs items={['HTML', 'JSX']}>
 	<Tabs.Tab>
 		```html
-		<div data-unitone-layout="marquee">
-			<img src="https://placehold.jp/100x60.jpg" alt="" />
-			<img src="https://placehold.jp/100x60.jpg" alt="" />
-			<img src="https://placehold.jp/100x60.jpg" alt="" />
-			<img src="https://placehold.jp/100x60.jpg" alt="" />
-			<img src="https://placehold.jp/100x60.jpg" alt="" />
+		<div data-unitone-layout="marquee-wrapper">
+			<div data-unitone-layout="marquee">
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<img src="https://placehold.jp/100x60.jpg" alt="" />
+			</div>
 		</div>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		```jsx
-		import { Marquee } from '@inc2734/unitone-css';
+		import { Marquee } from '@inc2734/unitone-css/layout-primitives/marquee/react';
 
 		<Marquee>
 			<img src="https://placehold.jp/100x60.jpg" alt="" />
@@ -54,18 +64,20 @@ Reverse direction.
 <Tabs items={['HTML', 'JSX', 'Preview']}>
 	<Tabs.Tab>
 		```html
-		<div data-unitone-layout="masonry -reverse">
-			...
+		<div data-unitone-layout="marquee-wrapper -reverse">
+			<div data-unitone-layout="marquee">
+				...
+			</div>
 		</div>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		```jsx
-		import { Masonry } from '@inc2734/unitone-css';
+		import { Marquee } from '@inc2734/unitone-css/layout-primitives/marquee/react';
 
-		<Masonry reverse>
+		<Marquee reverse>
 			...
-		</Masonry>
+		</Marquee>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
@@ -88,18 +100,20 @@ Pause on hover.
 <Tabs items={['HTML', 'JSX', 'Preview']}>
 	<Tabs.Tab>
 		```html
-		<div data-unitone-layout="masonry -pause-on-hover">
-			...
+		<div data-unitone-layout="marquee-wrapper -pause-on-hover">
+			<div data-unitone-layout="marquee">
+				...
+			</div>
 		</div>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		```jsx
-		import { Masonry } from '@inc2734/unitone-css';
+		import { Marquee } from '@inc2734/unitone-css/layout-primitives/marquee/react';
 
-		<Masonry pauseOnHover>
+		<Marquee pauseOnHover>
 			...
-		</Masonry>
+		</Marquee>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
@@ -122,14 +136,16 @@ Animation duration.
 <Tabs items={['HTML', 'JSX', 'Preview']}>
 	<Tabs.Tab>
 		```html
-		<div data-unitone-layout="marquee" style="--unitone--animation-duration: 5s">
-			...
+		<div data-unitone-layout="marquee-wrapper" style="--unitone--animation-duration: 5s">
+			<div data-unitone-layout="marquee">
+				...
+			</div>
 		</div>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		```jsx
-		import { Marquee } from '@inc2734/unitone-css';
+		import { Marquee } from '@inc2734/unitone-css/layout-primitives/marquee/react';
 
 		<Marquee duration="5s">
 			...
@@ -160,14 +176,16 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 <Tabs items={['HTML', 'JSX', 'Preview']}>
 	<Tabs.Tab>
 		```html
-		<div data-unitone-layout="masonry -gap:-2">
-			...
+		<div data-unitone-layout="marquee-wrapper">
+			<div data-unitone-layout="marquee -gap:-2">
+				...
+			</div>
 		</div>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		```jsx
-		import { Marquee } from '@inc2734/unitone-css';
+		import { Marquee } from '@inc2734/unitone-css/layout-primitives/marquee/react';
 
 		<Marquee gap={1}>
 			...
@@ -194,14 +212,16 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 <Tabs items={['HTML', 'JSX', 'Preview']}>
 	<Tabs.Tab>
 		```html
-		<div data-unitone-layout="marquee" style="--unitone--item-width: 50px">
-			...
+		<div data-unitone-layout="marquee-wrapper" style="--unitone--item-width: 50px">
+			<div data-unitone-layout="marquee">
+				...
+			</div>
 		</div>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		```jsx
-		import { Marquee } from '@inc2734/unitone-css';
+		import { Marquee } from '@inc2734/unitone-css/layout-primitives/marquee/react';
 
 		<Marquee itemWidth="50px">
 			...

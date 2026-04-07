@@ -1,0 +1,118 @@
+@mixin abstract-vertical-writing() {
+  --unitone--gap: var(--unitone--global--text-gap);
+  --unitone--column-gap: var(--unitone--global--gap);
+  --unitone--row-gap: var(--unitone--gap);
+
+  --unitone--max-height: var(--unitone--vertical-writing--max-height, 25rem);
+  --unitone--text-orientation: mixed;
+  --unitone--threshold: 0px;
+
+  position: relative;
+  writing-mode: vertical-rl;
+  column-count: 1;
+  column-gap: var(--unitone--column-gap);
+  text-orientation: var(--unitone--text-orientation);
+  visibility: hidden;
+
+  &[data-unitone-layout~="vertical-writing\:initialized"] {
+    visibility: visible;
+  }
+
+  &[data-unitone-layout~="vertical-writing\:safari"] {
+    column-count: 2
+  }
+
+  > * {
+    max-inline-size: var(--unitone--max-height);
+    box-sizing: content-box;
+  }
+
+  > [data-unitone-layout~="vertical-writing__thresholder"] {
+    height: 0 !important;
+    position: absolute !important;
+    inset: auto auto 0 0 !important;
+    z-index: -1 !important;
+    pointer-events: none !important;
+    width: var(--unitone--threshold) !important;
+  }
+
+  &[data-unitone-layout~="-force-switch"] {
+    column-count: auto;
+    writing-mode: horizontal-tb;
+
+    > * {
+      box-sizing: border-box;
+      max-inline-size: none;
+    }
+  }
+
+  @media (orientation: portrait) and (max-width: 599px) {
+    &[data-unitone-layout~="-switch"] {
+      column-count: auto;
+      writing-mode: horizontal-tb;
+
+      > * {
+        box-sizing: border-box;
+      }
+    }
+  }
+
+  > *:not(:first-child) {
+    margin-block-start: calc(var(--unitone--margin-block-start, 1) * var(--unitone--row-gap));
+  }
+
+  > *:not(:last-child) {
+    margin-block-end: calc(var(--unitone--margin-block-end, 1) * var(--unitone--row-gap));
+  }
+
+  > h1 {
+    --unitone--font-size: 4;
+  }
+
+  > :where(h2, h3, h4, h5, h6) {
+    --unitone--margin-block-start: 2;
+
+    & + :where(h2, h3, h4, h5, h6) {
+      --unitone--margin-block-start: 1;
+    }
+  }
+
+  > h2 {
+    --unitone--font-size: 3;
+  }
+
+  > h3 {
+    --unitone--font-size: 2;
+  }
+
+  > h4 {
+    --unitone--font-size: 1;
+  }
+
+  > h5 {
+    --unitone--font-size: 0;
+
+    & + * {
+      --unitone--margin-block-start: .5;
+    }
+  }
+
+  > h6 {
+    --unitone--font-size: 0;
+
+    & + * {
+      --unitone--margin-block-start: .5;
+    }
+  }
+}
+
+@mixin vertical-writing() {
+  [data-unitone-layout~="vertical-writing-wrapper"] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  [data-unitone-layout~="vertical-writing"] {
+    @include abstract-vertical-writing();
+  }
+}

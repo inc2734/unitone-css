@@ -1,0 +1,26 @@
+@mixin abstract-masonry() {
+  --unitone--gap: var(--unitone--s-2);
+  --unitone--column-width: calc(var(--unitone--measure) / 3);
+
+  display: block;
+  gap: var(--unitone--gap);
+  column-width: var(--unitone--column-width);
+
+  > * + * {
+    margin-top: var(--unitone--gap);
+  }
+
+  > figure,
+  > figure img,
+  > img {
+    width: 100%;
+    max-width: 100%;
+    break-inside: avoid;
+  }
+}
+
+@mixin masonry() {
+  [data-unitone-layout~="masonry"] {
+    @include abstract-masonry();
+  }
+}

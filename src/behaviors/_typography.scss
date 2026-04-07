@@ -1,4 +1,4 @@
-@use '../variables/variables' as variables;
+@use '../variables' as variables;
 
 @mixin typography() {
   [data-unitone-layout~="-root\:typography"] {

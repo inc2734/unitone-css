@@ -1,18 +1,3 @@
-@mixin abstract-container() {
-  --unitone--gutters: var(--unitone--global--gutters);
-  --unitone--max-width: var(--unitone--container-max-width);
+@forward './container-core';
 
-  box-sizing: content-box;
-  margin-right: auto;
-  margin-left: auto;
-  padding-right: var(--unitone--gutters);
-  padding-left: var(--unitone--gutters);
-  max-width: 100%;
-  width: min(100% - var(--unitone--gutters) * 2, var(--unitone--max-width));
-}
-
-@mixin container() {
-  [data-unitone-layout~="container"] {
-    @include abstract-container();
-  }
-}
+@warn "Deprecated Sass entry '@inc2734/unitone-css/src/layout-primitives/container/container' will be removed in a future release. Use '@inc2734/unitone-css/src/layout-primitives/container' instead.";

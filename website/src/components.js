@@ -1,4 +1,4 @@
-import { Decorator } from '@inc2734/unitone-css';
+import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
 import NextImage from 'next/image';
 import getConfig from 'next/config';
 

@@ -1,0 +1,70 @@
+@mixin abstract-switcher() {
+  --unitone--gap: var(--unitone--global--gap);
+  --unitone--column-gap: var(--unitone--gap);
+  --unitone--row-gap: var(--unitone--gap);
+  --unitone--threshold: var(--unitone--measure);
+  --unitone--align-items: stretch;
+
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--unitone--column-gap);
+  row-gap: var(--unitone--row-gap);
+  align-items: var(--unitone--align-items);
+
+  &[data-unitone-layout~="-revert"] {
+    flex-direction: row-reverse;
+  }
+
+  &:where([data-unitone-layout*="-stairs\:"]) {
+    --unitone--align-items: start;
+
+    padding-bottom: calc(var(--unitone--stairs-step-overflow-volume, 0) * 1px);
+    visibility: hidden;
+
+    &[data-unitone-layout~="stairs:initialized"] {
+      visibility: visible;
+    }
+
+    > :where([style*="--unitone--stairs-step:"]) {
+      position: relative;
+    }
+
+    &:where(:not([data-unitone-layout~="-revert"]):not([data-unitone-layout~="-stairs-up\:right"])),
+    &:where([data-unitone-layout~="-revert"][data-unitone-layout~="-stairs-up\:right"]) {
+      > * {
+        top: calc(var(--unitone--stairs-margin) * var(--unitone--stairs-step));
+      }
+    }
+
+    &:where(:not([data-unitone-layout~="-revert"])[data-unitone-layout~="-stairs-up\:right"]),
+    &:where([data-unitone-layout~="-revert"]:not([data-unitone-layout~="-stairs-up\:right"])) {
+      > * {
+        top: calc(var(--unitone--stairs-margin) * (var(--unitone--max-stairs-step) - var(--unitone--stairs-step)));
+      }
+    }
+
+    &:where([data-unitone-layout~="-stairs-up\:up-down"]) {
+      > * {
+        top: calc(var(--unitone--stairs-margin) * var(--unitone--stairs-step));
+      }
+    }
+
+    &:where([data-unitone-layout~="-stairs-up\:down-up"]) {
+      > * {
+        top: calc(var(--unitone--stairs-margin) * (var(--unitone--max-stairs-step) - var(--unitone--stairs-step)));
+      }
+    }
+  }
+
+  > * {
+    flex-grow: 1;
+    flex-basis: calc((var(--unitone--threshold) - 100%) * 999);
+    min-width: 0;
+  }
+}
+
+@mixin switcher() {
+  [data-unitone-layout~="switcher"] {
+    @include abstract-switcher();
+  }
+}

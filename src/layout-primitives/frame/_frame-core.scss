@@ -1,0 +1,36 @@
+@mixin abstract-frame() {
+  --unitone--ratio: 16/9;
+
+  position: relative;
+  aspect-ratio: var(--unitone--ratio) !important;
+  overflow: hidden;
+
+  > * {
+    height: 100%;
+    width: 100%;
+  }
+
+  img,
+  video {
+    height: 100% !important;
+    width: 100% !important;
+    max-height: 100% !important;
+    max-width: 100% !important;
+    min-height: 0 !important;
+    min-width: 0 !important;
+    object-fit: cover;
+    vertical-align: top;
+  }
+
+  @media (orientation: portrait) and (max-width: 599px) {
+    &[data-unitone-layout~="-switch"] {
+      aspect-ratio: calc(1 / (var(--unitone--ratio))) !important;
+    }
+  }
+}
+
+@mixin frame() {
+  [data-unitone-layout~="frame"] {
+    @include abstract-frame();
+  }
+}

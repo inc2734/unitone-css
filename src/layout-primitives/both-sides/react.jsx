@@ -1,0 +1,1 @@
+export { BothSides } from './index';

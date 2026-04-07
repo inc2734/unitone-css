@@ -1,0 +1,18 @@
+@mixin abstract-container() {
+  --unitone--gutters: var(--unitone--global--gutters);
+  --unitone--max-width: var(--unitone--container-max-width);
+
+  box-sizing: content-box;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: var(--unitone--gutters);
+  padding-left: var(--unitone--gutters);
+  max-width: 100%;
+  width: min(100% - var(--unitone--gutters) * 2, var(--unitone--max-width));
+}
+
+@mixin container() {
+  [data-unitone-layout~="container"] {
+    @include abstract-container();
+  }
+}

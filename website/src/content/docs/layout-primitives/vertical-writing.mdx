@@ -1,10 +1,18 @@
-import { VerticalWriting } from '@inc2734/unitone-css';
+import { VerticalWriting } from '@inc2734/unitone-css/layout-primitives/vertical-writing/react';
 import { Tabs } from 'nextra/components';
 import { PreviewConainer, Badge } from '../../../components';
 
 # Vertical Writing
 
 Make the text vertically written.
+
+When you use Vertical Writing in HTML, also load the JavaScript entry for it.
+
+```js
+import '@inc2734/unitone-css/layout-primitives/vertical-writing/behavior';
+// or import '@inc2734/unitone-css/layout-primitives';
+// or import '@inc2734/unitone-css/app';
+```
 
 ## Usage
 
@@ -42,7 +50,7 @@ Make the text vertically written.
 	</Tabs.Tab>
 	<Tabs.Tab>
 		```jsx
-		import { VerticalWriting } from '@inc2734/unitone-css';
+		import { VerticalWriting } from '@inc2734/unitone-css/layout-primitives/vertical-writing/react';
 
 		<VerticalWriting>
 			<p>するとどこかで見たわ姉は細い銀いろの空から、さっきの入口から暗い牛舎の前へまた来ました。そういうふうに、眼の前を通るのですから、この次の理科の時間にお話します。</p>
@@ -61,7 +69,7 @@ Make the text vertically written.
 
 ## Props
 
-### <Badge>HTML</Badge> --unitone--max-height / <Badge>JSX</Badge> maxHeigth=\{value\}
+### <Badge>HTML</Badge> --unitone--max-height / <Badge>JSX</Badge> maxHeight=\{value\}
 
 Rows height
 
@@ -77,7 +85,7 @@ Rows height
 	</Tabs.Tab>
 	<Tabs.Tab>
 		```jsx
-		import { VerticalWriting } from '@inc2734/unitone-css';
+		import { VerticalWriting } from '@inc2734/unitone-css/layout-primitives/vertical-writing/react';
 
 		<VerticalWriting maxHeight="10rem">
 			...
@@ -121,7 +129,7 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 	</Tabs.Tab>
 	<Tabs.Tab>
 		```jsx
-		import { VerticalWriting } from '@inc2734/unitone-css';
+		import { VerticalWriting } from '@inc2734/unitone-css/layout-primitives/vertical-writing/react';
 
 		<VerticalWriting gap={-2}>
 			...
@@ -163,7 +171,7 @@ Text orientation.
 	</Tabs.Tab>
 	<Tabs.Tab>
 		```jsx
-		import { VerticalWriting } from '@inc2734/unitone-css';
+		import { VerticalWriting } from '@inc2734/unitone-css/layout-primitives/vertical-writing/react';
 
 		<VerticalWriting textOrientation="sideways">
 			...
@@ -203,7 +211,7 @@ Switch writing mode when portrait and mobile width.
 	</Tabs.Tab>
 	<Tabs.Tab>
 		```jsx
-		import { VerticalWriting } from '@inc2734/unitone-css';
+		import { VerticalWriting } from '@inc2734/unitone-css/layout-primitives/vertical-writing/react';
 
 		<VerticalWriting switchWritingMode>
 			...
@@ -243,7 +251,7 @@ If the box size is smaller than this value, it switches writing mode.
 	</Tabs.Tab>
 	<Tabs.Tab>
 		```jsx
-		import { VerticalWriting } from '@inc2734/unitone-css';
+		import { VerticalWriting } from '@inc2734/unitone-css/layout-primitives/vertical-writing/react';
 
 		<VerticalWriting threshold="600px">
 			...

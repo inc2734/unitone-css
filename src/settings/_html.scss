@@ -1,4 +1,4 @@
-@use '../variables/variables' as variables;
+@use '../variables' as variables;
 
 html {
   font-size: #{ variables.$root-font-size };

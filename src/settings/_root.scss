@@ -1,6 +1,6 @@
 @use 'sass:list';
 @use 'sass:math';
-@use '../variables/variables' as variables;
+@use '../variables' as variables;
 
 @property --unitone--property--1em {
   syntax: "<length>";

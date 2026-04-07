@@ -5,9 +5,9 @@ import { Head } from 'nextra/components';
 import { getPageMap } from 'nextra/page-map';
 import 'nextra-theme-docs/style.css';
 
-import '../../../src/settings/_settings.scss';
-import '../../../src/layout-primitives/_layout-primitives.scss';
-import '../../../src/helper/_helper.scss';
+import '../../../src/settings/_index.scss';
+import '../../../src/layout-primitives/_index.scss';
+import '../../../src/behaviors/_index.scss';
 import '../../src/style.scss';
 
 export const metadata = {

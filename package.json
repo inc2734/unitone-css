@@ -9,11 +9,16 @@
   "volta": {
     "node": "20.11.1"
   },
-  "main": "dist/index.js",
   "exports": {
-    ".": "./dist/index.js",
     "./app": "./dist/app.js",
-    "./library": "./dist/library.js"
+    "./library": "./dist/library.js",
+    "./layout-primitives": "./dist/layout-primitives/index.js",
+    "./layout-primitives/*/react": "./dist/layout-primitives/*/react.js",
+    "./layout-primitives/*/behavior": "./dist/layout-primitives/*/behavior.js",
+    "./behaviors": "./dist/behaviors/index.js",
+    "./behaviors/*": "./dist/behaviors/*.js",
+    "./compatibility": "./dist/compatibility/index.js",
+    "./compatibility/*": "./dist/compatibility/*.js"
   },
   "license": "MIT",
   "repository": {

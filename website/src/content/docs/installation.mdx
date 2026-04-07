@@ -14,10 +14,24 @@ $ npm install --save-dev @inc2734/unitone-css
 
 To import CSS for unitone CSS, `@use` in your main SCSS file. In the case of HTML, you can also use `<link />` to load CSS.
 
-<Tabs items={['SCSS', 'HTML']}>
+<Tabs items={['All-in', 'Partial', 'Primitive', 'HTML']}>
 	<Tabs.Tab>
 		```scss
-		@use 'PATH/TO/node_modules/@inc2734/unitone-css/src/app';
+		@use '@inc2734/unitone-css/src/app';
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```scss
+		@use '@inc2734/unitone-css/src/settings';
+		@use '@inc2734/unitone-css/src/layout-primitives';
+		@use '@inc2734/unitone-css/src/behaviors';
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```scss
+		@use '@inc2734/unitone-css/src/layout-primitives/vertical-writing';
+
+		@include vertical-writing.vertical-writing();
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
@@ -27,14 +41,36 @@ To import CSS for unitone CSS, `@use` in your main SCSS file. In the case of HTM
 	</Tabs.Tab>
 </Tabs>
 
+The old Sass entry paths are still available for compatibility, but they are deprecated and emit warnings during Sass compilation. Migrate to the new paths below.
+
+```scss
+// Deprecated
+@use '@inc2734/unitone-css/src/settings/settings';
+@use '@inc2734/unitone-css/src/layout-primitives/layout-primitives';
+@use '@inc2734/unitone-css/src/helper';
+@use '@inc2734/unitone-css/src/helper/helper';
+
+// Recommended
+@use '@inc2734/unitone-css/src/settings';
+@use '@inc2734/unitone-css/src/layout-primitives';
+@use '@inc2734/unitone-css/src/behaviors';
+```
+
 ## Import JavaScript
 
-To import JavaScript for unitone CSS, `@import` in your main JavaScript file. In the case of HTML, you can also use `<script />` to load JavaScript.
+To import JavaScript for unitone CSS, `import` in your main JavaScript file. In the case of HTML, you can also use `<script />` to load JavaScript.
 
-<Tabs items={['JavaScript', 'HTML']}>
+<Tabs items={['All-in', 'Partial', 'HTML']}>
 	<Tabs.Tab>
 		```js
 		import '@inc2734/unitone-css/app';
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```js
+		import '@inc2734/unitone-css/layout-primitives';
+		import '@inc2734/unitone-css/behaviors';
+		import '@inc2734/unitone-css/compatibility';
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
@@ -45,6 +81,18 @@ To import JavaScript for unitone CSS, `@import` in your main JavaScript file. In
 </Tabs>
 
 When using server-side rendering frameworks, load this script with the framework's equivalent of `<script defer>`.
+The all-in entry loads the marquee and vertical-writing layout primitive scripts, the divider and stairs behaviors, and the fluid typography compatibility layer.
+Individual entries such as `@inc2734/unitone-css/layout-primitives/vertical-writing/behavior`, `@inc2734/unitone-css/behaviors/dividers`, and `@inc2734/unitone-css/compatibility/fluid-typography` are also available when you only need a specific entry.
+
+## Import React Components
+
+When you use layout primitives as React components, import each component from `@inc2734/unitone-css/layout-primitives/<name>/react`.
+These entries include the behaviors required by that component, so no additional behavior import is required for React usage.
+
+```jsx
+import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
+import { VerticalWriting } from '@inc2734/unitone-css/layout-primitives/vertical-writing/react';
+```
 
 ## Using Layout Primitives
 
@@ -62,7 +110,7 @@ For the detailed description of each layout primitives, see the [Layout Primitiv
 	</Tabs.Tab>
 	<Tabs.Tab>
 		```jsx
-		import { Decorator } from '@inc2734/unitone-css';
+		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
 
 		<Decorator padding={1}>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>

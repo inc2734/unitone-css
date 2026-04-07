@@ -1,0 +1,201 @@
+@mixin abstract-stack() {
+  --unitone--gap: var(--unitone--global--text-gap);
+  --unitone--negative-gap: var(--unitone--global--text-gap);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--unitone--gap);
+  list-style: none;
+
+  > * {
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
+
+  > li {
+    margin-left: 0;
+  }
+
+  &:only-child {
+    height: 100%;
+  }
+
+  &[data-unitone-layout~="-revert"] {
+    flex-direction: column-reverse;
+  }
+
+  &:where([data-unitone-layout*="-divider\:"]) {
+    --unitone--divider-width: 1px;
+    --unitone--divider-style: solid;
+    --unitone--divider-color: var(--unitone--color--gray);
+
+    gap: 0;
+
+    > * {
+      position: relative;
+    }
+
+    > ::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      user-select: none;
+      pointer-events: none;
+      border-width: 0;
+      border-style: var(--unitone--divider-style);
+      border-color: var(--unitone--divider-color);
+    }
+  }
+
+  &[data-unitone-layout~="-divider\:stripe"] {
+    > * {
+      padding: calc(var(--unitone--gap) + var(--unitone--divider-width)) 0;
+
+      &::before {
+        border-width: var(--unitone--divider-width) 0;
+      }
+    }
+
+    &:where(:not([data-unitone-layout~="-revert"])) {
+      > :not(:first-child) {
+        padding-top: var(--unitone--gap);
+
+        &::before {
+          border-top-width: 0;
+        }
+      }
+    }
+
+    &:where([data-unitone-layout~="-revert"]) {
+      > :not(:last-child) {
+        padding-top: var(--unitone--gap);
+
+        &::before {
+          border-top-width: 0;
+        }
+      }
+    }
+  }
+
+  &[data-unitone-layout~="-divider\:underline"] {
+    > * {
+      padding-top: var(--unitone--gap);
+      padding-bottom: calc(var(--unitone--gap) + var(--unitone--divider-width));
+
+      &::before {
+        border-width: 0 0 var(--unitone--divider-width);
+      }
+    }
+
+    &:where(:not([data-unitone-layout~="-revert"])) {
+      > :first-child {
+        padding-top: 0;
+      }
+    }
+
+    &:where([data-unitone-layout~="-revert"]) {
+      > :last-child {
+        padding-top: 0;
+      }
+    }
+  }
+
+  &[data-unitone-layout~="-divider\:bordered"] {
+    > * {
+      padding: calc(var(--unitone--gap) + var(--unitone--divider-width));
+
+      &::before {
+        border-width: var(--unitone--divider-width);
+      }
+    }
+
+    &:where(:not([data-unitone-layout~="-revert"])) {
+      > :not(:first-child) {
+        padding-top: var(--unitone--gap);
+
+        &::before {
+          border-top-width: 0;
+        }
+      }
+    }
+
+    &:where([data-unitone-layout~="-revert"]) {
+      > :not(:last-child) {
+        padding-top: var(--unitone--gap);
+
+        &::before {
+          border-top-width: 0;
+        }
+      }
+    }
+  }
+
+  &[data-unitone-layout~="-divider\:divide"] {
+    > * {
+      padding-top: var(--unitone--gap);
+      padding-bottom: calc(var(--unitone--gap) + var(--unitone--divider-width));
+    }
+
+    &:where(:not([data-unitone-layout~="-revert"])) {
+      > :first-child {
+        padding-top: 0;
+      }
+
+      > :last-child {
+        padding-bottom: 0;
+      }
+
+      > :not(:last-child) {
+        &::before {
+          border-width: 0 0 var(--unitone--divider-width);
+        }
+      }
+    }
+
+    &:where([data-unitone-layout~="-revert"]) {
+      > :first-child {
+        padding-bottom: 0;
+      }
+
+      > :last-child {
+        padding-top: 0;
+      }
+
+      > :not(:first-child) {
+        &::before {
+          border-width: 0 0 var(--unitone--divider-width);
+        }
+      }
+    }
+  }
+
+  &[data-unitone-layout~="-negative"] {
+    gap: 0;
+
+    &:where(:not([data-unitone-layout~="-revert"])) {
+      > :not(:first-child) {
+        margin-top: calc(-1 * var(--unitone--negative-gap));
+      }
+    }
+
+    &:where([data-unitone-layout~="-revert"]) {
+      > :not(:last-child) {
+        margin-top: calc(-1 * var(--unitone--negative-gap));
+      }
+    }
+  }
+}
+
+@mixin stack() {
+  [data-unitone-layout~="stack"] {
+    @include abstract-stack();
+
+    // @todo
+    // Specify a component whose width is specified by max-width of the child element, not by itself.
+    > [data-unitone-layout~="text"]:where(:not([data-unitone-layout*="align\:"])) {
+      margin-right: 0;
+      margin-left: 0;
+      max-width: none;
+    }
+  }
+}

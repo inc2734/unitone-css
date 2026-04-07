@@ -1,4 +1,5 @@
-import { Stack, WithSidebar } from '@inc2734/unitone-css';
+import { Stack } from '@inc2734/unitone-css/layout-primitives/stack/react';
+import { WithSidebar } from '@inc2734/unitone-css/layout-primitives/with-sidebar/react';
 import { PreviewConainer } from '../../components';
 
 # Typography
@@ -43,6 +44,14 @@ The half leading can be set. The default value is `0.3`.
 ## Fluid typography
 
 The default font size for unitone CSS is fluid typography, but by adding `data-unitone-layout="-fluid-typography"`, the `line-height` can also be scaled to an optimal value as the font size is scaled The `line-height` can also be adjusted to the optimum value as the font size expands and contracts.
+
+When you use this feature with partial JavaScript loading, also load the compatibility entry for Firefox.
+
+```js
+import '@inc2734/unitone-css/compatibility/fluid-typography';
+// or import '@inc2734/unitone-css/compatibility';
+// or import '@inc2734/unitone-css/app';
+```
 
 ```html
 <p style="--unitone--font-size: 7" data-unitone-layout="-fluid-typography">

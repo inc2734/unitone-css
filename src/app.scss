@@ -1,6 +1,6 @@
 @use "sass:meta";
-@use 'settings/settings';
+@use 'settings';
 
-@include meta.load-css("foundation/foundation");
-@include meta.load-css("layout-primitives/layout-primitives");
-@include meta.load-css("helper/helper");
+@include meta.load-css("foundation");
+@include meta.load-css("layout-primitives");
+@include meta.load-css("behaviors");

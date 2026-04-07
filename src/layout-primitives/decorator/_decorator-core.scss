@@ -1,0 +1,104 @@
+@mixin abstract-decorator() {
+  --unitone--background-color: transparent;
+  --unitone--color: inherit;
+  --unitone--border-color: transparent;
+  --unitone--border-width: 0;
+  --unitone--border-radius: 0;
+  --unitone--max-height: none;
+  --unitone--min-height: 0px;
+  --unitone--max-width: 100%;
+  --unitone--min-width: 0;
+  --unitone--padding: 0px;
+  --unitone--padding-top: var(--unitone--padding);
+  --unitone--padding-right: var(--unitone--padding);
+  --unitone--padding-bottom: var(--unitone--padding);
+  --unitone--padding-left: var(--unitone--padding);
+  --unitone--box-shadow: none;
+  --unitone--mix-blend-mode: normal;
+  --unitone--overflow: visible;
+  --unitone--backdrop-filter: none;
+
+  --unitone--align-content: normal;
+  --unitone--justify-items: legacy;
+  --unitone--gap: 0px;
+
+	--unitone--progressive-backdrop-filter-angle: 180deg;
+  --unitone--progressive-backdrop-filter-start: 0%;
+
+  --unitone--position: static;
+  --unitone--top: initial;
+  --unitone--right: initial;
+  --unitone--bottom: initial;
+  --unitone--left: initial;
+  --unitone--z-index: initial;
+
+  border: var(--unitone--border-width) solid var(--unitone--border-color);
+  border-radius: var(--unitone--border-radius);
+  color: var(--unitone--color);
+  background-color: var(--unitone--background-color);
+  box-shadow: var(--unitone--box-shadow);
+  max-height: var(--unitone--max-height);
+  min-height: var(--unitone--min-height);
+  max-width: var(--unitone--max-width);
+  padding-top: var(--unitone--padding-top);
+  padding-right: var(--unitone--padding-right);
+  padding-bottom: var(--unitone--padding-bottom);
+  padding-left: var(--unitone--padding-left);
+  mix-blend-mode: var(--unitone--mix-blend-mode);
+  overflow: var(--unitone--overflow);
+  backdrop-filter: var(--unitone--backdrop-filter);
+  position: var(--unitone--position) !important;
+  top: var(--unitone--top);
+  right: var(--unitone--right);
+  bottom: var(--unitone--bottom);
+  left: var(--unitone--left);
+  z-index: var(--unitone--z-index);
+
+  // There are primitives that affect the min-width of child elements,
+  // so we will increase the specificity a little to avoid this effect.
+  &:not(:root) {
+    min-width: var(--unitone--min-width);
+  }
+
+  &:where([data-unitone-layout~="-shadow"]) {
+    --unitone--box-shadow: var(--unitone--global--box-shadow);
+  }
+
+  &:where([data-unitone-layout~="-progressive-backdrop-filter"]) {
+    mask-image: linear-gradient(
+      var(--unitone--progressive-backdrop-filter-angle),
+      rgba(0 0 0 / 0%) calc(var(--unitone--progressive-backdrop-filter-start) - 20%),
+      rgba(0 0 0 / 100%) var(--unitone--progressive-backdrop-filter-start)
+    );
+  }
+
+  &:where(
+    [data-unitone-layout*="-gap\:"],
+    [data-unitone-layout*="-align-content\:"],
+    [data-unitone-layout*="-justify-items\:"]
+  ) {
+    display: grid;
+
+    > * {
+      min-width: 0;
+    }
+  }
+
+  &[data-unitone-layout*="-gap\:"] {
+    gap: var(--unitone--gap);
+  }
+
+  &[data-unitone-layout*="-align-content\:"] {
+    align-content: var(--unitone--align-content);
+  }
+
+  &[data-unitone-layout*="-justify-items\:"] {
+    justify-items: var(--unitone--justify-items);
+  }
+}
+
+@mixin decorator() {
+  [data-unitone-layout~="decorator"] {
+    @include abstract-decorator();
+  }
+}

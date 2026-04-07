@@ -1,29 +1,3 @@
-@mixin abstract-float() {
-  --unitone--gap: var(--unitone--global--gap);
-  --unitone--min-measure: calc(var(--unitone--measure) / 2);
-  --unitone--min-width: 33.33333%;
+@forward './float-core';
 
-  width: max(
-    min(var(--unitone--min-width), 100%),
-    min((var(--unitone--min-width) + var(--unitone--gap) + var(--unitone--min-measure) - 100%) * 999, 100%)
-  );
-
-  &[data-unitone-layout~="-position\:left"],
-  &:not([data-unitone-layout~="-position\:right"]) {
-    float: left;
-    margin-right: var(--unitone--gap);
-    margin-bottom: var(--unitone--gap);
-  }
-
-  &[data-unitone-layout~="-position\:right"] {
-    float: right;
-    margin-left: var(--unitone--gap);
-    margin-bottom: var(--unitone--gap);
-  }
-}
-
-@mixin float() {
-  [data-unitone-layout~="float"] {
-    @include abstract-float();
-  }
-}
+@warn "Deprecated Sass entry '@inc2734/unitone-css/src/layout-primitives/float/float' will be removed in a future release. Use '@inc2734/unitone-css/src/layout-primitives/float' instead.";
