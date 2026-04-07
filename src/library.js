@@ -935,6 +935,10 @@ export const setMarquee = (target) => {
     return;
   }
 
+  const shouldRestartAnimation = Array.from(marquees).some((marquee) =>
+    (marquee.getAttribute(layoutAttributeName) ?? '').split(/\s+/).includes('marquee:initialized'),
+  );
+
   if (1 === target.childElementCount && 1 === marquees.length) {
     const marquee = marquees[0];
     clonedMarquee = marquee.cloneNode(true);
@@ -943,6 +947,14 @@ export const setMarquee = (target) => {
   }
 
   marquees = getMarquees();
+
+  if (!shouldRestartAnimation) {
+    marquees.forEach((marquee) => {
+      addInitializedToken(marquee);
+    });
+    return clonedMarquee;
+  }
+
   marquees.forEach((marquee) => {
     removeInitializedToken(marquee);
   });
@@ -964,9 +976,9 @@ export const setMarquee = (target) => {
  *
  * @param {Element} target Target element.
  * @returns {{
- *   resizeObserver: ResizeObserver,
- *   mutationObserver: MutationObserver | null,
- *   targetMutationObserver: MutationObserver | null,
+ *   resizeObserver: null,
+ *   mutationObserver: MutationObserver,
+ *   targetMutationObserver: MutationObserver,
  *   childMutationObserver: MutationObserver | null,
  *   cancelScheduledRefresh: () => void
  * }}
@@ -978,29 +990,31 @@ export const marqueeResizeObserver = (target) => {
     clonedMarquee = setMarquee(element);
   };
 
-  return createLayoutObserver(target, applyMarquee, {
-    getResizeValue: getContentRectWidth,
-    targetMutation: {
-      options: {
-        childList: true,
-      },
-      shouldApply: (entries) => {
-        const addedNodes = entries.flatMap((entry) => Array.from(entry.addedNodes ?? []));
-        const removedNodes = entries.flatMap((entry) => Array.from(entry.removedNodes ?? []));
+  const mutationObserver = createMutationObserver(target, { childList: true }, (entries) => {
+    const addedNodes = entries.flatMap((entry) => Array.from(entry.addedNodes ?? []));
+    const removedNodes = entries.flatMap((entry) => Array.from(entry.removedNodes ?? []));
 
-        if (
-          clonedMarquee?.isConnected &&
-          1 === addedNodes.length &&
-          0 === removedNodes.length &&
-          addedNodes[0] === clonedMarquee
-        ) {
-          clonedMarquee = null;
-          return false;
-        }
+    if (
+      clonedMarquee?.isConnected &&
+      1 === addedNodes.length &&
+      0 === removedNodes.length &&
+      addedNodes[0] === clonedMarquee
+    ) {
+      clonedMarquee = null;
+      return;
+    }
 
-        clonedMarquee = null;
-        return true;
-      },
-    },
+    clonedMarquee = null;
+    applyMarquee(target);
   });
+
+  applyMarquee(target);
+
+  return {
+    resizeObserver: null,
+    mutationObserver,
+    targetMutationObserver: mutationObserver,
+    childMutationObserver: null,
+    cancelScheduledRefresh: () => {},
+  };
 };
