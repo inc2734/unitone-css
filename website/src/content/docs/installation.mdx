@@ -14,6 +14,8 @@ $ npm install --save-dev @inc2734/unitone-css
 
 To import CSS for unitone CSS, `@use` in your main SCSS file. In the case of HTML, you can also use `<link />` to load CSS.
 
+When you compile with the Dart Sass CLI directly, package specifiers such as `@inc2734/unitone-css/...` are not resolved automatically. Use either `--load-path=node_modules` or the Node package importer with `pkg:`.
+
 <Tabs items={['All-in', 'Partial', 'Primitive', 'HTML']}>
 	<Tabs.Tab>
 		```scss
@@ -40,6 +42,22 @@ To import CSS for unitone CSS, `@use` in your main SCSS file. In the case of HTM
 		```
 	</Tabs.Tab>
 </Tabs>
+
+Examples for the Dart Sass CLI:
+
+```bash
+sass --load-path=node_modules --no-source-map src/css/app/global-styles.scss:dist/css/app/global-styles.css
+```
+
+```scss
+@use 'pkg:@inc2734/unitone-css/src/settings';
+@use 'pkg:@inc2734/unitone-css/src/layout-primitives';
+@use 'pkg:@inc2734/unitone-css/src/behaviors';
+```
+
+```bash
+sass --pkg-importer=node --no-source-map src/css/app/global-styles.scss:dist/css/app/global-styles.css
+```
 
 The old Sass entry paths are still available for compatibility, but they are deprecated and emit warnings during Sass compilation. Migrate to the new paths below.
 
