@@ -1,6 +1,11 @@
 import nextra from 'nextra';
+import rehypeRestoreCssCustomProperties from './src/plugins/rehype-restore-css-custom-properties.mjs';
 
-const withNextra = nextra({});
+const withNextra = nextra({
+  mdxOptions: {
+    rehypePlugins: [rehypeRestoreCssCustomProperties],
+  },
+});
 
 const basePath = process.env.GITHUB_ACTIONS && '/unitone-css';
 
