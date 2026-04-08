@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Stack = ({ center, divider, gap, negative, revert, style, ...props }) => {
+export const Stack = ({ divider, gap, negative, revert, style, ...props }) => {
   style = {
     ...style,
   };

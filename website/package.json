@@ -14,8 +14,10 @@
   "license": "MIT",
   "homepage": "https://github.com/inc2734/unitone-css",
   "scripts": {
-    "dev": "npm run packages && open http://localhost:3000 && next",
-    "build": "npm run packages && npm run format && next build",
+    "dev": "npm run packages && npm run sync && open http://localhost:3000 && next",
+    "build": "npm run packages && npm run sync && npm run format && next build",
+    "sync:packages": "node bin/sync-package-docs.mjs",
+    "sync": "run-p sync:*",
     "format:js": "prettier './src/**/*.{js,jsx,mjs}' './*.config.{js,jsx,mjs}' --write",
     "format": "run-p format:*",
     "packages:unitone-css": "cpy \"../dist/**\" \"public/packages/@inc2734/unitone-css/dist\"",

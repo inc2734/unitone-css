@@ -41,6 +41,10 @@
     "css": "run-p css:*",
     "js": "rollup -c --bundleConfigAsCjs",
     "build": "run-s clean format css js",
+    "docs:start": "npm run dev -w website",
+    "docs:build": "npm run build -w website",
+    "mcp:check": "npm run check -w @inc2734/unitone-css-mcp",
+    "skills:install": "node packages/skills/bin/skillpack-install.mjs",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format:js": "prettier --write './src/**/*.{js,jsx}'",
     "format": "run-p format:*"
@@ -70,6 +74,7 @@
     "sass": "^1.99.0"
   },
   "workspaces": [
-    "website"
+    "website",
+    "packages/mcp"
   ]
 }
