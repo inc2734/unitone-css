@@ -1,0 +1,382 @@
+import {
+	Popover,
+	PopoverTrigger,
+	PopoverContent,
+	PopoverDialog,
+} from '@inc2734/unitone-css/layout-primitives/popover/react';
+
+import { Tabs } from 'nextra/components';
+import { PreviewConainer, Badge } from '../../../components';
+
+# Popover
+
+Displays floating content anchored to the trigger using Anchor Positioning and the Popover API.
+
+In HTML, set the native popover and anchor attributes manually.
+In React, also set `popoverTarget` and `id` manually.
+
+## Usage
+
+<PreviewConainer>
+	<Popover>
+		<PopoverTrigger>
+			<button popoverTarget="popover-preview-content" style={{backgroundColor: "var(--unitone--color--dark-indigo)", color: "#fff", padding: "calc(var(--unitone--s-1) / 2) var(--unitone--s-1)" }}>Open popover</button>
+		</PopoverTrigger>
+		<PopoverContent id="popover-preview-content">
+			<PopoverDialog>The content of the Popover.</PopoverDialog>
+		</PopoverContent>
+	</Popover>
+</PreviewConainer>
+
+<Tabs items={['HTML', 'JSX']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="popover">
+			<div data-unitone-layout="popover-trigger">
+				<button popoverTarget="popover-example-content">Open popover</button>
+			</div>
+			<div
+				id="popover-example-content"
+				data-unitone-layout="popover-content"
+				popover
+			>
+				<div data-unitone-layout="popover-dialog">
+					The content of the Popover.
+				</div>
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import {
+		  Popover,
+		  PopoverTrigger,
+		  PopoverContent,
+		  PopoverDialog,
+		} from '@inc2734/unitone-css/layout-primitives/popover/react';
+
+		<Popover>
+			<PopoverTrigger>
+				<button popoverTarget="popover-example-content" style={{backgroundColor: "var(--unitone--color--dark-indigo)", color: "#fff", padding: "calc(var(--unitone--s-1) / 2) var(--unitone--s-1)" }}>Open popover</button>
+			</PopoverTrigger>
+			<PopoverContent id="popover-example-content">
+				<PopoverDialog>
+					The content of the Popover.
+				</PopoverDialog>
+			</PopoverContent>
+		</Popover>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Props
+
+### <Badge>HTML</Badge> -gap:\{variation\} / <Badge>JSX</Badge> gap=\{variation\}
+
+Controls the distance between the trigger and the content.
+
+Can be set from `-2` to `7`. For variations `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens.
+If it is `1` or more, adding `s` will shrink it to size `-1` on mobile. (e.g. `1s`)
+If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m`)
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="popover -gap:1">
+			<div data-unitone-layout="popover-trigger">
+				<button popoverTarget="popover-gap-content">Open popover</button>
+			</div>
+			<div
+				id="popover-gap-content"
+				data-unitone-layout="popover-content"
+				popover
+			>
+				<div data-unitone-layout="popover-dialog">
+					The content of the Popover.
+				</div>
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import {
+		  Popover,
+		  PopoverTrigger,
+		  PopoverContent,
+		  PopoverDialog,
+		} from '@inc2734/unitone-css/layout-primitives/popover/react';
+
+		<Popover gap={1}>
+			<PopoverTrigger>
+				<button popoverTarget="popover-gap-content">Open popover</button>
+			</PopoverTrigger>
+			<PopoverContent id="popover-gap-content">
+				<PopoverDialog>
+					The content of the Popover.
+				</PopoverDialog>
+			</PopoverContent>
+		</Popover>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Popover gap={1}>
+				<PopoverTrigger>
+					<button popoverTarget="popover-gap-content-preview" style={{backgroundColor: "var(--unitone--color--dark-indigo)", color: "#fff", padding: "calc(var(--unitone--s-1) / 2) var(--unitone--s-1)" }}>Open popover</button>
+				</PopoverTrigger>
+				<PopoverContent id="popover-gap-content-preview">
+					<PopoverDialog>
+						The content of the Popover.
+					</PopoverDialog>
+				</PopoverContent>
+			</Popover>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -placement:\{value\} / <Badge>JSX</Badge> placement=\{value\}
+
+Popover placement.
+
+`top` / `right` / `bottom` / `left`
+
+#### top
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="popover">
+			<div data-unitone-layout="popover-trigger">
+				<button popoverTarget="popover-top-content">Open popover</button>
+			</div>
+			<div
+				id="popover-top-content"
+				data-unitone-layout="popover-content -placement:top"
+				popover
+				style="position-anchor: --popover-top-trigger;"
+			>
+				<div data-unitone-layout="popover-dialog">
+					The content of the Popover.
+				</div>
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import {
+		  Popover,
+		  PopoverTrigger,
+		  PopoverContent,
+			PopoverDialog,
+		} from '@inc2734/unitone-css/layout-primitives/popover/react';
+
+		<Popover>
+			<PopoverTrigger>
+				<button popoverTarget="popover-top-content">Open popover</button>
+			</PopoverTrigger>
+			<PopoverContent id="popover-top-content" placement="top">
+				<PopoverDialog>
+					The content of the Popover.
+				</PopoverDialog>
+			</PopoverContent>
+		</Popover>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Popover>
+				<PopoverTrigger>
+					<button popoverTarget="popover-top-content-preview" style={{backgroundColor: "var(--unitone--color--dark-indigo)", color: "#fff", padding: "calc(var(--unitone--s-1) / 2) var(--unitone--s-1)" }}>Open popover</button>
+				</PopoverTrigger>
+				<PopoverContent id="popover-top-content-preview" placement="top">
+					<PopoverDialog>
+						The content of the Popover.
+					</PopoverDialog>
+				</PopoverContent>
+			</Popover>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+#### right
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="popover">
+			<div data-unitone-layout="popover-trigger">
+				<button popoverTarget="popover-right-content">Open popover</button>
+			</div>
+			<div
+				id="popover-right-content"
+				data-unitone-layout="popover-content -placement:right"
+				popover
+			>
+				<div data-unitone-layout="popover-dialog">
+					The content of the Popover.
+				</div>
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import {
+		  Popover,
+		  PopoverTrigger,
+		  PopoverContent,
+			PopoverDialog,
+		} from '@inc2734/unitone-css/layout-primitives/popover/react';
+
+		<Popover>
+			<PopoverTrigger>
+				<button popoverTarget="popover-right-content">Open popover</button>
+			</PopoverTrigger>
+			<PopoverContent id="popover-right-content" placement="right">
+				<PopoverDialog>
+					The content of the Popover.
+				</PopoverDialog>
+			</PopoverContent>
+		</Popover>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Popover>
+				<PopoverTrigger>
+					<button popoverTarget="popover-right-content-preview" style={{backgroundColor: "var(--unitone--color--dark-indigo)", color: "#fff", padding: "calc(var(--unitone--s-1) / 2) var(--unitone--s-1)" }}>Open popover</button>
+				</PopoverTrigger>
+				<PopoverContent id="popover-right-content-preview" placement="right">
+					<PopoverDialog>
+						The content of the Popover.
+					</PopoverDialog>
+				</PopoverContent>
+			</Popover>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+#### bottom
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="popover">
+			<div data-unitone-layout="popover-trigger">
+				<button popoverTarget="popover-bottom-content">Open popover</button>
+			</div>
+			<div
+				id="popover-bottom-content"
+				data-unitone-layout="popover-content -placement:bottom"
+				popover
+			>
+				<div data-unitone-layout="popover-dialog">
+					The content of the Popover.
+				</div>
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import {
+		  Popover,
+		  PopoverTrigger,
+		  PopoverContent,
+			PopoverDialog,
+		} from '@inc2734/unitone-css/layout-primitives/popover/react';
+
+		<Popover>
+			<PopoverTrigger>
+				<button popoverTarget="popover-bottom-content">Open popover</button>
+			</PopoverTrigger>
+			<PopoverContent id="popover-bottom-content" placement="bottom">
+				<PopoverDialog>
+					The content of the Popover.
+				</PopoverDialog>
+			</PopoverContent>
+		</Popover>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Popover>
+				<PopoverTrigger>
+					<button popoverTarget="popover-bottom-content-preview" style={{backgroundColor: "var(--unitone--color--dark-indigo)", color: "#fff", padding: "calc(var(--unitone--s-1) / 2) var(--unitone--s-1)" }}>Open popover</button>
+				</PopoverTrigger>
+				<PopoverContent id="popover-bottom-content-preview" placement="bottom">
+					<PopoverDialog>
+						The content of the Popover.
+					</PopoverDialog>
+				</PopoverContent>
+			</Popover>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+#### left
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="popover">
+			<div data-unitone-layout="popover-trigger">
+				<button popoverTarget="popover-left-content">Open popover</button>
+			</div>
+			<div
+				id="popover-left-content"
+				data-unitone-layout="popover-content -placement:left"
+				popover
+			>
+				<div data-unitone-layout="popover-dialog">
+					The content of the Popover.
+				</div>
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import {
+		  Popover,
+		  PopoverTrigger,
+		  PopoverContent,
+			PopoverDialog,
+		} from '@inc2734/unitone-css/layout-primitives/popover/react';
+
+		<Popover>
+			<PopoverTrigger>
+				<button popoverTarget="popover-left-content">Open popover</button>
+			</PopoverTrigger>
+			<PopoverContent id="popover-left-content" placement="left">
+				<PopoverDialog>
+					The content of the Popover.
+				</PopoverDialog>
+			</PopoverContent>
+		</Popover>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Popover>
+				<PopoverTrigger>
+					<button popoverTarget="popover-left-content-preview" style={{backgroundColor: "var(--unitone--color--dark-indigo)", color: "#fff", padding: "calc(var(--unitone--s-1) / 2) var(--unitone--s-1)" }}>Open popover</button>
+				</PopoverTrigger>
+				<PopoverContent id="popover-left-content-preview" placement="left">
+					<PopoverDialog>
+						The content of the Popover.
+					</PopoverDialog>
+				</PopoverContent>
+			</Popover>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+## Notes
+
+- In HTML, set `id`, and `popoverTarget` manually.
+- In React, use a direct child element such as `<button>` inside `PopoverTrigger`.
+- This primitive depends on browser support for both the Popover API and Anchor Positioning.

@@ -10,6 +10,7 @@
 @use 'layers';
 @use 'marquee';
 @use 'masonry';
+@use 'popover';
 @use 'reel';
 @use 'responsive-grid';
 @use 'stack';
@@ -31,6 +32,7 @@
 @include layers.layers();
 @include marquee.marquee();
 @include masonry.masonry();
+@include popover.popover();
 @include reel.reel();
 @include responsive-grid.responsive-grid();
 @include stack.stack();

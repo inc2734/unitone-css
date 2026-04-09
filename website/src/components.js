@@ -5,7 +5,7 @@ import getConfig from 'next/config';
 export function PreviewConainer({ backgroundColor, color, ...props }) {
   return (
     <div style={{ marginBlock: '1rem' }}>
-      <div data-unitone-layout="-root:typography">
+      <div className="preview-container" data-unitone-layout="-root:typography">
         <Decorator
           backgroundColor={backgroundColor || '#fff'}
           color={color || 'var(--unitone--color--text)'}

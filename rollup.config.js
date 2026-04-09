@@ -17,11 +17,8 @@ const createConfig = ({ input, file, external = [], exports }) => ({
     resolve(),
     babel({
       babelHelpers: 'runtime',
-      exclude: "node_modules/**",
-      presets: [
-        '@babel/preset-env',
-        '@babel/preset-react',
-      ],
+      exclude: 'node_modules/**',
+      presets: ['@babel/preset-env', '@babel/preset-react'],
       plugins: ['@babel/plugin-transform-runtime'],
     }),
     commonjs({
@@ -36,18 +33,22 @@ const layoutPrimitivesDir = path.resolve('src/layout-primitives');
 const behaviorsDir = path.resolve('src/behaviors');
 const compatibilityDir = path.resolve('src/compatibility');
 
-const fileEntries = (dir) => fs.readdirSync(dir, { withFileTypes: true })
-  .filter((entry) => entry.isFile() && entry.name.endsWith('.js'))
-  .map((entry) => entry.name)
-  .sort();
+const fileEntries = (dir) =>
+  fs
+    .readdirSync(dir, { withFileTypes: true })
+    .filter((entry) => entry.isFile() && entry.name.endsWith('.js'))
+    .map((entry) => entry.name)
+    .sort();
 
-const reactEntries = fs.readdirSync(layoutPrimitivesDir, { withFileTypes: true })
+const reactEntries = fs
+  .readdirSync(layoutPrimitivesDir, { withFileTypes: true })
   .filter((entry) => entry.isDirectory())
   .map((entry) => entry.name)
   .filter((name) => fs.existsSync(path.join(layoutPrimitivesDir, name, 'react.jsx')))
   .sort();
 
-const behaviorEntries = fs.readdirSync(layoutPrimitivesDir, { withFileTypes: true })
+const behaviorEntries = fs
+  .readdirSync(layoutPrimitivesDir, { withFileTypes: true })
   .filter((entry) => entry.isDirectory())
   .map((entry) => entry.name)
   .filter((name) => fs.existsSync(path.join(layoutPrimitivesDir, name, 'behavior.js')))

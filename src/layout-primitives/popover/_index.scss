@@ -1,0 +1,72 @@
+@mixin abstract-popover() {
+  --unitone--gap: var(--unitone--s-2);
+}
+
+@mixin abstract-popover-trigger() {
+}
+
+@mixin abstract-popover-content() {
+  align-self: initial;
+  justify-self: anchor-center;
+  top: calc(anchor(bottom) + var(--unitone--gap));
+  background-color: transparent;
+
+  &::backdrop {
+    background: transparent;
+  }
+
+  &[data-unitone-layout~="-placement:top"] {
+    inset: auto;
+    bottom: calc(anchor(top) + var(--unitone--gap));
+  }
+
+  &[data-unitone-layout~="-placement:right"] {
+    align-self: anchor-center;
+    justify-self: initial;
+    inset: auto;
+    left: calc(anchor(right) + var(--unitone--gap));
+  }
+
+  &[data-unitone-layout~="-placement:bottom"] {
+    inset: auto;
+    top: calc(anchor(bottom) + var(--unitone--gap));
+  }
+
+  &[data-unitone-layout~="-placement:left"] {
+    align-self: anchor-center;
+    justify-self: initial;
+    inset: auto;
+    right: calc(anchor(left) + var(--unitone--gap));
+  }
+}
+
+@mixin abstract-popover-dialog() {
+  --unitone--background-color: var(--unitone--color--heavy-gray);
+  --unitone--color: #fff;
+  --unitone--border-radius: var(--unitone--global--border-radius);
+  --unitone--font-size: -1;
+  --unitone--padding: var(--unitone--s-1);
+
+  background-color: var(--unitone--background-color);
+  color: var(--unitone--color);
+  border-radius: var(--unitone--border-radius);
+  padding: calc(var(--unitone--padding) / 2) var(--unitone--padding);
+}
+
+@mixin popover() {
+  [data-unitone-layout~="popover"] {
+    @include abstract-popover();
+  }
+
+  [data-unitone-layout~="popover-trigger"] {
+    @include abstract-popover-trigger();
+  }
+
+  [data-unitone-layout~="popover-content"] {
+    @include abstract-popover-content();
+  }
+
+  [data-unitone-layout~="popover-dialog"] {
+    @include abstract-popover-dialog();
+  }
+}
