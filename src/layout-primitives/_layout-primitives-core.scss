@@ -4,6 +4,7 @@
 @use 'container';
 @use 'cover';
 @use 'decorator';
+@use 'dialog';
 @use 'float';
 @use 'frame';
 @use 'gutters';
@@ -26,6 +27,7 @@
 @include container.container();
 @include cover.cover();
 @include decorator.decorator();
+@include dialog.dialog();
 @include float.float();
 @include frame.frame();
 @include gutters.gutters();

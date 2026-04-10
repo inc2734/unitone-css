@@ -1,0 +1,38 @@
+@mixin abstract-dialog() {
+}
+
+@mixin abstract-dialog-trigger() {
+}
+
+@mixin abstract-dialog-content() {
+  --unitone--gutters: var(--unitone--global--gutters);
+  --unitone--max-width: var(--unitone--measure);
+
+  margin: auto !important;
+  background-color: transparent;
+  max-width: 100%;
+  width: min(100% - var(--unitone--gutters) * 2, var(--unitone--max-width));
+
+  &[open] {
+    display: grid;
+    place-content: center;
+  }
+
+  &::backdrop {
+    background-color: rgb(0 0 0 / 35%);
+  }
+}
+
+@mixin dialog() {
+  [data-unitone-layout~='dialog'] {
+    @include abstract-dialog();
+  }
+
+  [data-unitone-layout~='dialog-trigger'] {
+    @include abstract-dialog-trigger();
+  }
+
+  [data-unitone-layout~='dialog-content'] {
+    @include abstract-dialog-content();
+  }
+}

@@ -33,7 +33,7 @@ In React, also set `popoverTarget` and `id` manually.
 		```html
 		<div data-unitone-layout="popover">
 			<div data-unitone-layout="popover-trigger">
-				<button popoverTarget="popover-example-content">Open popover</button>
+				<button popovertarget="popover-example-content">Open popover</button>
 			</div>
 			<div
 				id="popover-example-content"
@@ -72,7 +72,9 @@ In React, also set `popoverTarget` and `id` manually.
 
 ## Props
 
-### <Badge>HTML</Badge> -gap:\{variation\} / <Badge>JSX</Badge> gap=\{variation\}
+### `Popover`
+
+#### <Badge>HTML</Badge> -gap:\{variation\} / <Badge>JSX</Badge> gap=\{variation\}
 
 Controls the distance between the trigger and the content.
 
@@ -85,7 +87,7 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 		```html
 		<div data-unitone-layout="popover -gap:1">
 			<div data-unitone-layout="popover-trigger">
-				<button popoverTarget="popover-gap-content">Open popover</button>
+				<button popovertarget="popover-gap-content">Open popover</button>
 			</div>
 			<div
 				id="popover-gap-content"
@@ -136,20 +138,22 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 	</Tabs.Tab>
 </Tabs>
 
-### <Badge>HTML</Badge> -placement:\{value\} / <Badge>JSX</Badge> placement=\{value\}
+### `PopoverContent`
+
+#### <Badge>HTML</Badge> -placement:\{value\} / <Badge>JSX</Badge> placement=\{value\}
 
 Popover placement.
 
 `top` / `right` / `bottom` / `left`
 
-#### top
+##### top
 
 <Tabs items={['HTML', 'JSX', 'Preview']}>
 	<Tabs.Tab>
 		```html
 		<div data-unitone-layout="popover">
 			<div data-unitone-layout="popover-trigger">
-				<button popoverTarget="popover-top-content">Open popover</button>
+				<button popovertarget="popover-top-content">Open popover</button>
 			</div>
 			<div
 				id="popover-top-content"
@@ -201,14 +205,14 @@ Popover placement.
 	</Tabs.Tab>
 </Tabs>
 
-#### right
+##### right
 
 <Tabs items={['HTML', 'JSX', 'Preview']}>
 	<Tabs.Tab>
 		```html
 		<div data-unitone-layout="popover">
 			<div data-unitone-layout="popover-trigger">
-				<button popoverTarget="popover-right-content">Open popover</button>
+				<button popovertarget="popover-right-content">Open popover</button>
 			</div>
 			<div
 				id="popover-right-content"
@@ -259,14 +263,14 @@ Popover placement.
 	</Tabs.Tab>
 </Tabs>
 
-#### bottom
+##### bottom
 
 <Tabs items={['HTML', 'JSX', 'Preview']}>
 	<Tabs.Tab>
 		```html
 		<div data-unitone-layout="popover">
 			<div data-unitone-layout="popover-trigger">
-				<button popoverTarget="popover-bottom-content">Open popover</button>
+				<button popovertarget="popover-bottom-content">Open popover</button>
 			</div>
 			<div
 				id="popover-bottom-content"
@@ -317,14 +321,14 @@ Popover placement.
 	</Tabs.Tab>
 </Tabs>
 
-#### left
+##### left
 
 <Tabs items={['HTML', 'JSX', 'Preview']}>
 	<Tabs.Tab>
 		```html
 		<div data-unitone-layout="popover">
 			<div data-unitone-layout="popover-trigger">
-				<button popoverTarget="popover-left-content">Open popover</button>
+				<button popovertarget="popover-left-content">Open popover</button>
 			</div>
 			<div
 				id="popover-left-content"
