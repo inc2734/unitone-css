@@ -12,7 +12,7 @@ import { PreviewConainer, Badge } from '../../../components';
 
 Displays floating content anchored to the trigger using Anchor Positioning and the Popover API.
 
-In HTML, set the native popover and anchor attributes manually.
+In HTML, set `popovertarget`, `popover`, and `id` manually.
 In React, also set `popoverTarget` and `id` manually.
 
 ## Usage
@@ -159,7 +159,6 @@ Popover placement.
 				id="popover-top-content"
 				data-unitone-layout="popover-content -placement:top"
 				popover
-				style="position-anchor: --popover-top-trigger;"
 			>
 				<div data-unitone-layout="popover-dialog">
 					The content of the Popover.
@@ -379,8 +378,70 @@ Popover placement.
 	</Tabs.Tab>
 </Tabs>
 
+### `PopoverDialog`
+
+#### <Badge>HTML</Badge> -shadow / <Badge>JSX</Badge> shadow
+
+Add the box shadow.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+			<div data-unitone-layout="popover">
+				<div data-unitone-layout="popover-trigger">
+					<button popovertarget="popover-shadow-content">Open popover</button>
+				</div>
+				<div
+					id="popover-shadow-content"
+					data-unitone-layout="popover-content"
+					popover
+				>
+					<div data-unitone-layout="popover-dialog -shadow">
+						The content of the Popover.
+					</div>
+				</div>
+			</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import {
+		  Popover,
+		  PopoverTrigger,
+		  PopoverContent,
+			PopoverDialog,
+		} from '@inc2734/unitone-css/layout-primitives/popover/react';
+
+		<Popover>
+			<PopoverTrigger>
+				<button popoverTarget="popover-shadow-content">Open popover</button>
+			</PopoverTrigger>
+			<PopoverContent id="popover-shadow-content">
+				<PopoverDialog shadow>
+					The content of the Popover.
+				</PopoverDialog>
+			</PopoverContent>
+		</Popover>
+		```
+	</Tabs.Tab>
+		<Tabs.Tab>
+			<PreviewConainer>
+				<Popover>
+					<PopoverTrigger>
+						<button popoverTarget="popover-shadow-content-preview" style={{backgroundColor: "var(--unitone--color--dark-indigo)", color: "#fff", padding: "calc(var(--unitone--s-1) / 2) var(--unitone--s-1)" }}>Open popover</button>
+					</PopoverTrigger>
+					<PopoverContent id="popover-shadow-content-preview">
+						<PopoverDialog shadow>
+							The content of the Popover.
+						</PopoverDialog>
+					</PopoverContent>
+				</Popover>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
 ## Notes
 
-- In HTML, set `id`, and `popoverTarget` manually.
+- In HTML, set `id`, `popovertarget`, and `popover` manually.
 - In React, use a direct child element such as `<button>` inside `PopoverTrigger`.
 - This primitive depends on browser support for both the Popover API and Anchor Positioning.

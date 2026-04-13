@@ -28,10 +28,9 @@ export const DialogTrigger = ({ tagName = 'div', style, ...props }) => {
   );
 };
 
-export const DialogContent = ({ maxWidth, closedBy = 'any', style, ...props }) => {
+export const DialogContent = ({ closedBy = 'any', style, ...props }) => {
   style = {
     ...style,
-    '--unitone--max-width': '' !== maxWidth ? maxWidth : undefined,
   };
 
   return (

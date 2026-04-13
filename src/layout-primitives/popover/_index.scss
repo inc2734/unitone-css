@@ -3,13 +3,23 @@
 }
 
 @mixin abstract-popover-trigger() {
+  width: fit-content;
+
+  > * {
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
 }
 
 @mixin abstract-popover-content() {
   align-self: initial;
   justify-self: anchor-center;
+  inset: auto;
   top: calc(anchor(bottom) + var(--unitone--gap));
   background-color: transparent;
+  border: none;
+  width: fit-content;
+  overflow: visible;
 
   &::backdrop {
     background: transparent;
@@ -38,19 +48,37 @@
     inset: auto;
     right: calc(anchor(left) + var(--unitone--gap));
   }
+
+  > * {
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
 }
 
 @mixin abstract-popover-dialog() {
-  --unitone--background-color: var(--unitone--color--heavy-gray);
+  --unitone--background-color: var(--unitone--color--dark-gray);
   --unitone--color: #fff;
   --unitone--border-radius: var(--unitone--global--border-radius);
+  --unitone--box-shadow: none;
   --unitone--font-size: -1;
   --unitone--padding: var(--unitone--s-1);
 
+  margin-inline: auto;
   background-color: var(--unitone--background-color);
+  box-shadow: var(--unitone--box-shadow);
   color: var(--unitone--color);
   border-radius: var(--unitone--border-radius);
   padding: calc(var(--unitone--padding) / 2) var(--unitone--padding);
+  width: fit-content;
+
+  &:where([data-unitone-layout~="-shadow"]) {
+    --unitone--box-shadow: var(--unitone--global--box-shadow);
+  }
+
+  > * {
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
 }
 
 @mixin popover() {

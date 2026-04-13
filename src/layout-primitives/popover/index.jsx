@@ -58,7 +58,7 @@ export const PopoverContent = ({ placement, tagName = 'div', style, ...props }) 
   );
 };
 
-export const PopoverDialog = ({ tagName = 'div', style, ...props }) => {
+export const PopoverDialog = ({ tagName = 'div', shadow, style, ...props }) => {
   const Tag = tagName;
 
   style = {
@@ -66,7 +66,13 @@ export const PopoverDialog = ({ tagName = 'div', style, ...props }) => {
   };
 
   return (
-    <Tag data-unitone-layout="popover-dialog" style={style} {...props}>
+    <Tag
+      data-unitone-layout={['popover-dialog', shadow ? '-shadow' : undefined]
+        .filter(Boolean)
+        .join(' ')}
+      style={style}
+      {...props}
+    >
       {props.children}
     </Tag>
   );

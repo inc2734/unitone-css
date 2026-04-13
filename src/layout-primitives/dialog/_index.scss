@@ -2,20 +2,22 @@
 }
 
 @mixin abstract-dialog-trigger() {
+  width: fit-content;
 }
 
 @mixin abstract-dialog-content() {
   --unitone--gutters: var(--unitone--global--gutters);
-  --unitone--max-width: var(--unitone--measure);
 
+  position: fixed;
   margin: auto !important;
   background-color: transparent;
-  max-width: 100%;
-  width: min(100% - var(--unitone--gutters) * 2, var(--unitone--max-width));
+  border: none;
+  max-width: calc(100% - var(--unitone--gutters));
+  max-height: calc(100% - var(--unitone--gutters));
+  overflow: visible;
 
   &[open] {
-    display: grid;
-    place-content: center;
+    outline: none;
   }
 
   &::backdrop {
@@ -24,15 +26,15 @@
 }
 
 @mixin dialog() {
-  [data-unitone-layout~='dialog'] {
+  [data-unitone-layout~="dialog"] {
     @include abstract-dialog();
   }
 
-  [data-unitone-layout~='dialog-trigger'] {
+  [data-unitone-layout~="dialog-trigger"] {
     @include abstract-dialog-trigger();
   }
 
-  [data-unitone-layout~='dialog-content'] {
+  [data-unitone-layout~="dialog-content"] {
     @include abstract-dialog-content();
   }
 }
