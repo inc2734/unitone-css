@@ -32,6 +32,7 @@
   --unitone--left: initial;
   --unitone--z-index: initial;
 
+  appearance: none;
   border: var(--unitone--border-width) solid var(--unitone--border-color);
   border-radius: var(--unitone--border-radius);
   color: var(--unitone--color);
@@ -46,6 +47,7 @@
   padding-left: var(--unitone--padding-left);
   mix-blend-mode: var(--unitone--mix-blend-mode);
   overflow: var(--unitone--overflow);
+  text-align: initial;
   backdrop-filter: var(--unitone--backdrop-filter);
   position: var(--unitone--position) !important;
   top: var(--unitone--top);
