@@ -18,11 +18,6 @@
     }
   }
 
-  // @todo Firefox corrupts layout if % is used for gap
-  @-moz-document url-prefix() {
-    gap: min(3.33333vw, var(--unitone--gap));
-  }
-
   > * {
     --unitone--align-self: stretch;
     --unitone--justify-self: stretch;
