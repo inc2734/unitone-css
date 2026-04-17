@@ -5,6 +5,9 @@ export const ResponsiveGrid = ({
   gap,
   autoRepeat,
   divider,
+  dividerWidth,
+  dividerStyle,
+  dividerColor,
   stairs,
   stairsUp,
   style,
@@ -13,6 +16,9 @@ export const ResponsiveGrid = ({
   style = {
     ...style,
     '--unitone--column-min-width': '' !== columnMinWidth ? columnMinWidth : undefined,
+    '--unitone--divider-width': '' !== dividerWidth ? dividerWidth : undefined,
+    '--unitone--divider-style': '' !== dividerStyle ? dividerStyle : undefined,
+    '--unitone--divider-color': '' !== dividerColor ? dividerColor : undefined,
   };
 
   return (

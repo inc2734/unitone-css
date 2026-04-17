@@ -11,6 +11,9 @@ export const WithSidebar = ({
   alignItems,
   overflow,
   divider,
+  dividerWidth,
+  dividerStyle,
+  dividerColor,
   style,
   ...props
 }) => {
@@ -18,6 +21,9 @@ export const WithSidebar = ({
     ...style,
     '--unitone--sidebar-width': '' !== sidebarWidth ? sidebarWidth : undefined,
     '--unitone--content-min-width': '' !== contentMinWidth ? contentMinWidth : undefined,
+    '--unitone--divider-width': '' !== dividerWidth ? dividerWidth : undefined,
+    '--unitone--divider-style': '' !== dividerStyle ? dividerStyle : undefined,
+    '--unitone--divider-color': '' !== dividerColor ? dividerColor : undefined,
   };
 
   return (

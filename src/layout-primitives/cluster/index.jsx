@@ -3,6 +3,9 @@ import React from 'react';
 export const Cluster = ({
   alignItems,
   divider,
+  dividerWidth,
+  dividerStyle,
+  dividerColor,
   gap,
   columnGap,
   rowGap,
@@ -13,6 +16,13 @@ export const Cluster = ({
   ...props
 }) => {
   const Tag = tagName;
+
+  style = {
+    ...style,
+    '--unitone--divider-width': '' !== dividerWidth ? dividerWidth : undefined,
+    '--unitone--divider-style': '' !== dividerStyle ? dividerStyle : undefined,
+    '--unitone--divider-color': '' !== dividerColor ? dividerColor : undefined,
+  };
 
   return (
     <Tag

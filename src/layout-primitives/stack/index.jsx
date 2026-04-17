@@ -1,12 +1,28 @@
 import React from 'react';
 
-export const Stack = ({ divider, gap, negative, revert, style, ...props }) => {
+export const Stack = ({
+  gap,
+  negative,
+  revert,
+  divider,
+  dividerWidth,
+  dividerStyle,
+  dividerColor,
+  tagName = 'div',
+  style,
+  ...props
+}) => {
+  const Tag = tagName;
+
   style = {
     ...style,
+    '--unitone--divider-width': '' !== dividerWidth ? dividerWidth : undefined,
+    '--unitone--divider-style': '' !== dividerStyle ? dividerStyle : undefined,
+    '--unitone--divider-color': '' !== dividerColor ? dividerColor : undefined,
   };
 
   return (
-    <div
+    <Tag
       data-unitone-layout={[
         'stack',
         revert ? '-revert' : undefined,
@@ -20,6 +36,6 @@ export const Stack = ({ divider, gap, negative, revert, style, ...props }) => {
       {...props}
     >
       {props.children}
-    </div>
+    </Tag>
   );
 };
