@@ -1,0 +1,12 @@
+@each $value in (
+  start,
+  center,
+  end,
+  space-between,
+  space-around,
+  space-evenly
+) {
+  .-justify-content\:#{ $value } {
+    justify-content: #{ $value };
+  }
+}

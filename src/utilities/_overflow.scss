@@ -1,0 +1,11 @@
+@each $value in (
+  visible,
+  hidden,
+  scroll,
+  auto,
+  clip
+) {
+  .-overflow\:#{ $value } {
+    overflow: #{ $value };
+  }
+}

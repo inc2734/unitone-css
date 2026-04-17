@@ -1,0 +1,11 @@
+@each $value in (
+  start,
+  center,
+  end,
+  baseline,
+  stretch
+) {
+  .-align-items\:#{ $value } {
+    align-items: #{ $value };
+  }
+}

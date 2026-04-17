@@ -17,10 +17,10 @@ If the requested UI matches an established composition pattern, prefer the docum
 - **Margins**: Prefer primitive composition and `gap` for spacing between sibling elements. Do not introduce ad-hoc margin utilities or custom margins when a primitive prop or composition can solve the layout more clearly.
 - **Padding**: Use the `padding` prop of a `Decorator` or other supporting primitives.
 - **Decorator**: Use `Decorator` for borders, background-colors, and internal padding.
-- **Utilities**: Small utility classes such as `-font-size:*`, `-padding:*`, `-gap:*`, `-color:*`, and `-background-color:*` are available. Use them mainly on non-primitive elements after checking whether primitive props or primitive composition would describe the intent more clearly.
+- **Utilities**: Small utility classes such as `-font-size:*`, `-padding:*`, `-gap:*`, `-color:*`, `-background-color:*`, `-align-items:*`, `-justify-content:*`, `-overflow:*`, and `-position:*` are available. Use them mainly on non-primitive elements after checking whether primitive props or primitive composition would describe the intent more clearly.
 
 ## 4. Typography and Scale
-- **Use Existing Utilities Only**: Do not invent utility classes such as `-fz:2` or `-fw:bold`. If you use utilities, stick to the ones provided by `src/utilities`, such as `-font-size:*`.
+- **Use Existing Utilities Only**: Do not invent utility classes such as `-fz:2` or `-fw:bold`. If you use utilities, stick to the ones provided by `src/utilities`, such as `-font-size:*`, `-align-items:*`, and `-overflow:*`.
 - **Scaling (CSS Variables)**:
   - Use `--unitone--font-size` for font-size.
   - **Avoid Redundancy**: Do not specify `--unitone--font-size: 0` if the default size (1rem) is sufficient.

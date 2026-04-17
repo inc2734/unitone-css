@@ -1,0 +1,13 @@
+@each $value in (
+  start,
+  center,
+  end,
+  space-between,
+  space-around,
+  space-evenly,
+  stretch
+) {
+  .-align-content\:#{ $value } {
+    align-content: #{ $value };
+  }
+}

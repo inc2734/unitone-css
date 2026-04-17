@@ -1,19 +1,28 @@
 # Utilities
 
-Small utility classes for typography, spacing, sizing, color, and simple decoration.
+Small utility classes for typography, spacing, color, alignment, positioning, overflow, and simple decoration.
 
 Utilities are available when you load `app.css`, and they can also be loaded explicitly from `src/utilities` in Sass-based setups.
 
 `src/utilities/_index.scss` currently assembles the following files:
 
+- `align-content`
+- `align-items`
+- `align-self`
 - `global`
-- `typography`
-- `font-size`
-- `gap`
-- `padding`
-- `display`
 - `color`
 - `background-color`
+- `display`
+- `font-size`
+- `gap`
+- `justify-content`
+- `justify-items`
+- `justify-self`
+- `mix-blend-mode`
+- `overflow`
+- `padding`
+- `position`
+- `typography`
 
 ## When to use
 
@@ -31,6 +40,8 @@ Utilities are especially useful for:
 
 - Small typographic adjustments on plain text elements
 - Minor spacing on non-primitive wrappers
+- Alignment and positioning on simple wrappers
+- Overflow and blend-mode control for decorative elements
 - Color and background-color assignment
 - Simple presentational helpers such as border radius or box shadow
 
@@ -45,6 +56,34 @@ Utilities are especially useful for:
 - `.-max-width:wide-size`
 
 These are simple presentation and wrapper helpers.
+
+### `align-content`
+
+- `.-align-content:start`
+- `.-align-content:center`
+- `.-align-content:end`
+- `.-align-content:space-between`
+- `.-align-content:space-around`
+- `.-align-content:space-evenly`
+- `.-align-content:stretch`
+
+Use these mainly on multi-row flex or grid wrappers when a full primitive is unnecessary.
+
+### `align-items`
+
+- `.-align-items:start`
+- `.-align-items:center`
+- `.-align-items:end`
+- `.-align-items:baseline`
+- `.-align-items:stretch`
+
+### `align-self`
+
+- `.-align-self:start`
+- `.-align-self:center`
+- `.-align-self:end`
+- `.-align-self:stretch`
+- `.-align-self:auto`
 
 ### `typography`
 
@@ -123,6 +162,69 @@ Supported variations are the same as the gap utilities.
 
 Use these on plain wrappers or interactive elements when a full primitive is unnecessary.
 
+### `justify-content`
+
+- `.-justify-content:start`
+- `.-justify-content:center`
+- `.-justify-content:end`
+- `.-justify-content:space-between`
+- `.-justify-content:space-around`
+- `.-justify-content:space-evenly`
+
+### `justify-items`
+
+- `.-justify-items:start`
+- `.-justify-items:center`
+- `.-justify-items:end`
+- `.-justify-items:stretch`
+
+### `justify-self`
+
+- `.-justify-self:start`
+- `.-justify-self:center`
+- `.-justify-self:end`
+- `.-justify-self:stretch`
+- `.-justify-self:auto`
+
+### `mix-blend-mode`
+
+- `.-mix-blend-mode:{value}`
+
+Supported values are:
+
+- `normal`
+- `multiply`
+- `screen`
+- `overlay`
+- `darken`
+- `lighten`
+- `color-dodge`
+- `color-burn`
+- `hard-light`
+- `soft-light`
+- `difference`
+- `exclusion`
+- `hue`
+- `saturation`
+- `color`
+- `luminosity`
+
+### `overflow`
+
+- `.-overflow:visible`
+- `.-overflow:hidden`
+- `.-overflow:scroll`
+- `.-overflow:auto`
+- `.-overflow:clip`
+
+### `position`
+
+- `.-position:static`
+- `.-position:relative`
+- `.-position:absolute`
+- `.-position:fixed`
+- `.-position:sticky`
+
 ### `color`
 
 - `.-color:{token}`
@@ -147,3 +249,4 @@ Available tokens include semantic colors and palette colors such as:
 - Do not use utilities as a substitute for a missing primitive structure.
 - If `app.css` is loaded, normal text already participates in the unitone typography system, so `data-unitone-layout="-typography"` is not required for every text node.
 - For borders, backgrounds, padding, and layout-affecting grouping, `Decorator` is often clearer than stacking multiple utility classes.
+- For alignment keywords, use `start` and `end` rather than `flex-start` and `flex-end`, matching the rest of unitone CSS.

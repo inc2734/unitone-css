@@ -19,7 +19,7 @@ compatibility: unitone-css repository.
    - Treat `patterns.mdx` as the default reference for multi-primitive page sections such as heroes, announcement lists, card grids, feature lists, and sidebar layouts.
 
 3. **Utilities Exist, But They Are Secondary**:
-   - `unitone-css` includes utility classes such as `-font-size:*`, `-padding:*`, `-gap:*`, `-color:*`, and `-background-color:*`.
+   - `unitone-css` includes utility classes such as `-font-size:*`, `-padding:*`, `-gap:*`, `-color:*`, `-background-color:*`, `-align-items:*`, `-justify-content:*`, `-overflow:*`, and `-position:*`.
    - Prefer primitive props and primitive composition first.
    - Use utilities mainly on non-primitive elements when they express a small presentational adjustment more clearly than custom CSS.
    - Do not pile utility classes onto a primitive when a primitive prop or an extra wrapper would be clearer.

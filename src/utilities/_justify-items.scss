@@ -1,0 +1,10 @@
+@each $value in (
+  start,
+  center,
+  end,
+  stretch
+) {
+  .-justify-items\:#{ $value } {
+    justify-items: #{ $value };
+  }
+}

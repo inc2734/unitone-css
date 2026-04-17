@@ -1,0 +1,11 @@
+@each $value in (
+  start,
+  center,
+  end,
+  stretch,
+  auto
+) {
+  .-align-self\:#{ $value } {
+    align-self: #{ $value };
+  }
+}
