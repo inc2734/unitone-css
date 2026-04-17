@@ -1,0 +1,149 @@
+# Utilities
+
+Small utility classes for typography, spacing, sizing, color, and simple decoration.
+
+Utilities are available when you load `app.css`, and they can also be loaded explicitly from `src/utilities` in Sass-based setups.
+
+`src/utilities/_index.scss` currently assembles the following files:
+
+- `global`
+- `typography`
+- `font-size`
+- `gap`
+- `padding`
+- `display`
+- `color`
+- `background-color`
+
+## When to use
+
+Use utilities only after checking whether a requirement can be solved more clearly by primitive props or primitive composition.
+
+Recommended priority:
+
+1. Primitive props
+2. Primitive composition
+3. Utilities on non-primitive elements
+4. Custom CSS
+5. Primitive overrides only when unavoidable
+
+Utilities are especially useful for:
+
+- Small typographic adjustments on plain text elements
+- Minor spacing on non-primitive wrappers
+- Color and background-color assignment
+- Simple presentational helpers such as border radius or box shadow
+
+## Available utilities
+
+### `global`
+
+- `.-box-shadow`
+- `.-border-radius`
+- `.-gutters`
+- `.-max-width:content-size`
+- `.-max-width:wide-size`
+
+These are simple presentation and wrapper helpers.
+
+### `typography`
+
+- `.-fluid-typography`
+
+This applies the shared fluid typography mixin.
+
+### `font-size`
+
+- `.-font-size:xs`
+- `.-font-size:s`
+- `.-font-size:m`
+- `.-font-size:l`
+- `.-font-size:xl`
+- `.-font-size:2xl`
+- `.-font-size:3xl`
+- `.-font-size:4xl`
+- `.-font-size:5xl`
+- `.-font-size:6xl`
+- `.-font-size:7xl`
+
+These utilities set `--unitone--font-size`, so they work with the typography system already provided by `app.css`.
+
+Named font-size utilities map to the internal numeric scale like this:
+
+- `xs` -> `-2`
+- `s` -> `-1`
+- `m` -> `0`
+- `l` -> `1`
+- `xl` -> `2`
+- `2xl` -> `3`
+- `3xl` -> `4`
+- `4xl` -> `5`
+- `5xl` -> `6`
+- `6xl` -> `7`
+- `7xl` -> `8`
+
+### `gap`
+
+- `.-gap:{variation}`
+- `.-column-gap:{variation}`
+- `.-row-gap:{variation}`
+
+Supported variations follow the spacing scale already used in primitives:
+
+- `-3` to `7`
+- `1s` to `7s`
+- `2m` to `7m`
+
+### `padding`
+
+- `.-padding:{variation}`
+- `.-padding-inline:{variation}`
+- `.-padding-inline-start:{variation}`
+- `.-padding-inline-end:{variation}`
+- `.-padding-block:{variation}`
+- `.-padding-block-start:{variation}`
+- `.-padding-block-end:{variation}`
+- `.-padding-top:{variation}`
+- `.-padding-right:{variation}`
+- `.-padding-bottom:{variation}`
+- `.-padding-left:{variation}`
+
+Supported variations are the same as the gap utilities.
+
+### `display`
+
+- `.-display:none`
+- `.-display:inline`
+- `.-display:inline-block`
+- `.-display:block`
+- `.-display:flex`
+- `.-display:grid`
+- `.-display:inline-flex`
+- `.-display:inline-grid`
+
+Use these on plain wrappers or interactive elements when a full primitive is unnecessary.
+
+### `color`
+
+- `.-color:{token}`
+
+### `background-color`
+
+- `.-background-color:{token}`
+
+Available tokens include semantic colors and palette colors such as:
+
+- `background`
+- `background-alt`
+- `text`
+- `text-alt`
+- `text-immutable`
+- `white`
+- `pale-gray` to `heavy-pink`
+
+## Usage notes
+
+- Prefer utilities on non-primitive elements.
+- Do not use utilities as a substitute for a missing primitive structure.
+- If `app.css` is loaded, normal text already participates in the unitone typography system, so `data-unitone-layout="-typography"` is not required for every text node.
+- For borders, backgrounds, padding, and layout-affecting grouping, `Decorator` is often clearer than stacking multiple utility classes.

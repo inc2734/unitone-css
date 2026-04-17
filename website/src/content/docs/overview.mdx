@@ -8,6 +8,7 @@ unitone CSS has the following features:
 
 - Intrinsic Web Design
 - Layout Primitives
+- Utilities
 - Typography
 - Fully CSS Variables
 
@@ -23,6 +24,12 @@ Layout is achieved by combining components with a single responsibility, such as
 
 This allows for flexible layout and CSS size reduction.
 
+### Utilities
+
+Utilities are available for small presentational adjustments such as font size, padding, gap, color, background color, border radius, and box shadow.
+
+They are intended for lightweight adjustments after checking whether a primitive prop or primitive composition would describe the layout more clearly.
+
 ### Typography
 
 Adopting and following some uniform standard results in a harmonious and orderly design. unitone CSS provides variations based on the harmonic sequence for font size and the Fibonacci sequence for margins as design tokens.
@@ -32,6 +39,16 @@ Also, if you follow the unitone CSS method of specifying font size, a balanced `
 ### Fully CSS variables
 
 CSS variables are used everywhere, including each design tokens and component properties.
+
+## Implementation Priority
+
+When implementing a design with unitone CSS, follow this priority:
+
+1.  **Primitive Props**: Use the built-in props/attributes of a single primitive (e.g., `<Stack gap={1} />`).
+2.  **Primitive Composition**: Combine multiple primitives to achieve more complex layouts (e.g., nesting a `Stack` inside a `Center`).
+3.  **Custom Styles/Classes**: If the above methods cannot solve the requirement, add custom classes or inline styles.
+
+Following this priority ensures that your layout remains consistent with the unitone CSS philosophy and maintains high portability.
 
 ## Inspirations
 

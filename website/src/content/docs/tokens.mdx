@@ -2,7 +2,7 @@ import { Stack } from '@inc2734/unitone-css/layout-primitives/stack/react';
 import { WithSidebar } from '@inc2734/unitone-css/layout-primitives/with-sidebar/react';
 import { PreviewConainer, ColorTile } from '../../components';
 
-# Global CSS Variables
+# Tokens (Global CSS Variables)
 
 ## Typography
 
@@ -55,7 +55,7 @@ Base `font-family`.
 
 ## Margin / Gap / Padding
 
-Space sizes are available in variations based on the Fibonacci sequence. Can be set from `-2` to `7`.
+Space sizes are available in variations based on the Fibonacci sequence. Can be set from `-3` to `7`.
 If it is `1` or more, adding `s` will shrink it to size `-1` on mobile. (e.g. `1s`)
 If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m`)
 
@@ -69,6 +69,7 @@ For variations `2` and above, clamp is used to adjust the margins so that they d
 
 | CSS variables | Specific value |
 | ---- | ---- |
+| `--unitone--s-3` | The default is about `0.3em`. |
 | `--unitone--s-2` | The default is about `0.53em`. |
 | `--unitone--s-1` | The default is about `1.07em`. |
 | `--unitone--s0` | `0em` |
@@ -82,6 +83,12 @@ For variations `2` and above, clamp is used to adjust the margins so that they d
 
 <PreviewConainer>
 	<Stack gap={-1}>
+		<WithSidebar sidebar="left" sidebarWidth="10rem" gap={-1}>
+			<div>`--unitone--s-3`</div>
+			<div>
+				<div style={{ width: 'var(--unitone--s-3)', backgroundColor: "#008AE6", height: "1.5rem" }} />
+			</div>
+		</WithSidebar>
 		<WithSidebar sidebar="left" sidebarWidth="10rem" gap={-1}>
 			<div>`--unitone--s-2`</div>
 			<div>
@@ -155,6 +162,7 @@ For variations `2` and above, clamp is used to adjust the margins so that they d
 
 | CSS variables | Specific value |
 | ---- | ---- |
+| `--unitone--p-3` | The default is about `0.3em`. |
 | `--unitone--p-2` | The default is about `0.53em`. |
 | `--unitone--p-1` | The default is about `1.07em`. |
 | `--unitone--p0` | `0em` |
@@ -168,6 +176,12 @@ For variations `2` and above, clamp is used to adjust the margins so that they d
 
 <PreviewConainer>
 	<Stack gap={-1}>
+		<WithSidebar sidebar="left" sidebarWidth="10rem" gap={-1}>
+			<div>`--unitone--p-3`</div>
+			<div>
+				<div style={{ width: 'var(--unitone--p-3)', backgroundColor: "#008AE6", height: "1.5rem" }} />
+			</div>
+		</WithSidebar>
 		<WithSidebar sidebar="left" sidebarWidth="10rem" gap={-1}>
 			<div>`--unitone--p-2`</div>
 			<div>
@@ -239,6 +253,7 @@ Changes in conjunction with `--unitone--half-leading` and `--unitone--base-font-
 
 | CSS variables | Specific value |
 | ---- | ---- |
+| `--unitone--em-3` | The default is about `0.3em`. |
 | `--unitone--em-2` | The default is about `0.53em`. |
 | `--unitone--em-1` | The default is about `1.07em`. |
 | `--unitone--em0` | `0em` |
@@ -258,6 +273,7 @@ Changes in conjunction with `--unitone--half-leading` and `--unitone--base-font-
 
 | CSS variables | Specific value |
 | ---- | ---- |
+| `--unitone--rem-3` | The default is about `0.3rem`. |
 | `--unitone--rem-2` | The default is about `0.53rem`. |
 | `--unitone--rem-1` | The default is about `1.07rem`. |
 | `--unitone--rem0` | `0rem` |
@@ -342,6 +358,12 @@ It is specified in the left and right margins of the container.
 | <ColorTile color="var(--unitone--color--text)" /> | For text | `--unitone--color--text` |
 | <ColorTile color="var(--unitone--color--text-alt)" /> | For text (Inversion color) | `--unitone--color--text-alt` |
 | <ColorTile color="var(--unitone--color--text-immutable)" /> | For text (Colors not inverted in dark mode) | `--unitone--color--text-immutable` |
+
+### White
+
+| Color | Description | CSS variables |
+| :----: | :---- | :---- |
+| <ColorTile color="var(--unitone--color--white)" /> | White | `--unitone--color--white` |
 
 ### Gray
 

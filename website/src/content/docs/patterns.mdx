@@ -1,0 +1,1351 @@
+import { Tabs } from 'nextra/components';
+import { PreviewConainer, Badge } from '../../components';
+
+import { Center } from '@inc2734/unitone-css/layout-primitives/center/react';
+import { Cluster } from '@inc2734/unitone-css/layout-primitives/cluster/react';
+import { Container } from '@inc2734/unitone-css/layout-primitives/container/react';
+import { Cover, CoverContent } from '@inc2734/unitone-css/layout-primitives/cover/react';
+import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
+import { Gutters } from '@inc2734/unitone-css/layout-primitives/gutters/react';
+import { Layers } from '@inc2734/unitone-css/layout-primitives/layers/react';
+import { ResponsiveGrid } from '@inc2734/unitone-css/layout-primitives/responsive-grid/react';
+import { Stack } from '@inc2734/unitone-css/layout-primitives/stack/react';
+import { Text } from '@inc2734/unitone-css/layout-primitives/text/react';
+import { WithSidebar } from '@inc2734/unitone-css/layout-primitives/with-sidebar/react';
+
+import {
+	Dialog,
+	DialogTrigger,
+	DialogContent,
+} from '@inc2734/unitone-css/layout-primitives/dialog/react';
+
+import {
+	Popover,
+	PopoverTrigger,
+	PopoverContent,
+	PopoverDialog,
+} from '@inc2734/unitone-css/layout-primitives/popover/react';
+
+# Patterns
+
+Practical composition patterns for `unitone-css`.
+
+Use this page as a reference when a layout can be solved by combining multiple primitives, and when you want to avoid unnecessary custom CSS, ad-hoc utility classes, or direct overrides on primitives.
+
+## Page Hero
+
+A first-view section with a large headline, supporting text, and enough surrounding space to establish visual hierarchy.
+
+<Tabs items={['Preview', 'HTML', 'JSX']}>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Cover minHeight="max(100svh, 667px)" padding="0">
+				<CoverContent valign="center">
+					<Container>
+						<Stack gap="3">
+							<Center>
+								<h2 data-unitone-layout="-fluid-typography" className="-font-size:4xl" style={{fontWeight: 'bold'}}>Clouds floated across the sky.</h2>
+							</Center>
+
+							<Center>
+								<p data-unitone-layout="-fluid-typography" className="-font-size:xl">雲間から月が顔を出し、静かな夜を淡く照らす。風が木々を揺らし。</p>
+							</Center>
+						</Stack>
+					</Container>
+				</CoverContent>
+			</Cover>
+		</PreviewConainer>
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="cover -padding:0" style="--unitone--min-height: max(100svh, 667px)">
+			<div data-unitone-layout="cover-content -valign:center">
+				<div data-unitone-layout="container">
+					<div data-unitone-layout="stack -gap:3">
+						<div data-unitone-layout="center">
+							<h2 data-unitone-layout="-fluid-typography" class="-font-size:4xl" style="font-weight: bold">Clouds floated across the sky.</h2>
+						</div>
+
+						<div data-unitone-layout="center">
+							<p data-unitone-layout="-fluid-typography" class="-font-size:xl">雲間から月が顔を出し、静かな夜を淡く照らす。風が木々を揺らし。</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Cover, CoverContent } from '@inc2734/unitone-css/layout-primitives/cover/react';
+		import { Container } from '@inc2734/unitone-css/layout-primitives/container/react';
+		import { Stack } from '@inc2734/unitone-css/layout-primitives/stack/react';
+		import { Center } from '@inc2734/unitone-css/layout-primitives/center/react';
+
+		<Cover minHeight="max(100svh, 667px)" padding="0">
+			<CoverContent valign="center">
+				<Container>
+					<Stack gap="3">
+						<Center>
+							<h2 data-unitone-layout="-fluid-typography" className="-font-size:4xl" style={{fontWeight: 'bold'}}>Clouds floated across the sky.</h2>
+						</Center>
+
+						<Center>
+							<p data-unitone-layout="-fluid-typography" className="-font-size:xl">雲間から月が顔を出し、静かな夜を淡く照らす。風が木々を揺らし。</p>
+						</Center>
+					</Stack>
+				</Container>
+			</CoverContent>
+		</Cover>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Hero With Action Buttons
+
+A hero block that places one or more call-to-action buttons below the main copy while keeping the text flow readable on small screens.
+
+<Tabs items={['Preview', 'HTML', 'JSX']}>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Cover minHeight="max(100svh, 667px)" padding="0">
+				<CoverContent valign="center">
+					<Container>
+						<Stack gap="3">
+							<Center>
+								<h2 data-unitone-layout="-fluid-typography" className="-font-size:4xl" style={{fontWeight: 'bold'}}>Clouds floated across the sky.</h2>
+							</Center>
+
+							<Center>
+								<p data-unitone-layout="-fluid-typography" className="-font-size:xl">雲間から月が顔を出し、静かな夜を淡く照らす。風が木々を揺らし。</p>
+							</Center>
+
+							<Center>
+								<Cluster>
+									<div>
+										<a href="#" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style={{width: '100%'}}><strong>無料で即時ダウンロード</strong></a>
+									</div>
+									<div>
+										<a href="#" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style={{width: '100%'}}><strong>今すぐウェブで試す</strong></a>
+									</div>
+								</Cluster>
+							</Center>
+						</Stack>
+					</Container>
+				</CoverContent>
+			</Cover>
+		</PreviewConainer>
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="cover -padding:0" style="--unitone--min-height: max(100svh, 667px)">
+			<div data-unitone-layout="cover-content -valign:center">
+				<div data-unitone-layout="container">
+					<div data-unitone-layout="stack -gap:3">
+						<div data-unitone-layout="center">
+							<h2 data-unitone-layout="-fluid-typography" class="-font-size:4xl" style="font-weight: bold">Clouds floated across the sky.</h2>
+						</div>
+
+						<div data-unitone-layout="center">
+							<p data-unitone-layout="-fluid-typography" class="-font-size:xl">雲間から月が顔を出し、静かな夜を淡く照らす。風が木々を揺らし。</p>
+						</div>
+
+						<div data-unitone-layout="center">
+							<div data-unitone-layout="cluster">
+								<div>
+									<a href="#" class="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style="width: 100%"><strong>無料で即時ダウンロード</strong></a>
+								</div>
+								<div>
+									<a href="#" class="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style="width: 100%"><strong>今すぐウェブで試す</strong></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Cover, CoverContent } from '@inc2734/unitone-css/layout-primitives/cover/react';
+		import { Container } from '@inc2734/unitone-css/layout-primitives/container/react';
+		import { Stack } from '@inc2734/unitone-css/layout-primitives/stack/react';
+		import { Center } from '@inc2734/unitone-css/layout-primitives/center/react';
+		import { Cluster } from '@inc2734/unitone-css/layout-primitives/cluster/react';
+
+		<Cover minHeight="max(100svh, 667px)" padding="0">
+			<CoverContent valign="center">
+				<Container>
+					<Stack gap="3">
+						<Center>
+							<h2 data-unitone-layout="-fluid-typography" className="-font-size:4xl" style={{fontWeight: 'bold'}}>Clouds floated across the sky.</h2>
+						</Center>
+
+						<Center>
+							<p data-unitone-layout="-fluid-typography" className="-font-size:xl">雲間から月が顔を出し、静かな夜を淡く照らす。風が木々を揺らし。</p>
+						</Center>
+
+						<Center>
+							<Cluster>
+								<div>
+									<a href="#" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style={{width: '100%'}}><strong>無料で即時ダウンロード</strong></a>
+								</div>
+								<div>
+									<a href="#" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style={{width: '100%'}}><strong>今すぐウェブで試す</strong></a>
+								</div>
+							</Cluster>
+						</Center>
+					</Stack>
+				</Container>
+			</CoverContent>
+		</Cover>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Announcement List
+
+A section with a heading and a vertical list of updates, where each item usually contains metadata such as a date and a short release note or title.
+
+<Tabs items={['Preview', 'HTML', 'JSX']}>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Decorator>
+				<Gutters>
+					<Container>
+						<Stack>
+							<Center maxWidth="100%">
+								<h2 data-unitone-layout="-fluid-typography" className="-font-size:3xl" style={{fontWeight: 'bold'}}>News</h2>
+							</Center>
+
+							<Stack gap="-1">
+								<WithSidebar sidebar="left" rowGap="-2">
+									<div className="-font-size:s">April 17, 2026</div>
+									<div>Lorem ipsum dolor sit amet</div>
+								</WithSidebar>
+								<WithSidebar sidebar="left" rowGap="-2">
+									<div className="-font-size:s">April 17, 2026</div>
+									<div>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</div>
+								</WithSidebar>
+								<WithSidebar sidebar="left" rowGap="-2">
+									<div className="-font-size:s">April 17, 2026</div>
+									<div>Ut enim ad minim veniam, quis nostrud exercitation</div>
+								</WithSidebar>
+							</Stack>
+						</Stack>
+					</Container>
+				</Gutters>
+			</Decorator>
+		</PreviewConainer>
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="decorator">
+			<div data-unitone-layout="gutters">
+				<div data-unitone-layout="container">
+					<div data-unitone-layout="stack">
+						<div data-unitone-layout="center" style="--unitone--maxWidth: 100%">
+							<h2 data-unitone-layout="-fluid-typography" class="-font-size:3xl" style="font-weight: bold">Lorem ipsum dolor sit amet</h2>
+						</div>
+
+						<div data-unitone-layout="stack -gap:-1">
+							<div data-unitone-layout="with-sidebar -row-gap:-2 -sidebar:left">
+								<div class="-font-size:s">April 17, 2026</div>
+								<div>Lorem ipsum dolor sit amet</div>
+							</div>
+							<div data-unitone-layout="with-sidebar -row-gap:-2 -sidebar:left">
+								<div class="-font-size:s">April 17, 2026</div>
+								<div>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</div>
+							</div>
+							<div data-unitone-layout="with-sidebar -row-gap:-2 -sidebar:left">
+								<div class="-font-size:s">April 17, 2026</div>
+								<div>Ut enim ad minim veniam, quis nostrud exercitation</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
+		import { Gutters } from '@inc2734/unitone-css/layout-primitives/gutters/react';
+		import { Container } from '@inc2734/unitone-css/layout-primitives/container/react';
+		import { Stack } from '@inc2734/unitone-css/layout-primitives/stack/react';
+		import { Center } from '@inc2734/unitone-css/layout-primitives/center/react';
+		import { Text } from '@inc2734/unitone-css/layout-primitives/text/react';
+		import { WithSidebar } from '@inc2734/unitone-css/layout-primitives/with-sidebar/react';
+
+		<Decorator>
+			<Gutters>
+				<Container>
+					<Stack>
+						<Center maxWidth="100%">
+							<h2 data-unitone-layout="-fluid-typography" className="-font-size:3xl" style={{fontWeight: 'bold'}}>News</h2>
+						</Center>
+
+						<Stack gap="-1">
+							<WithSidebar sidebar="left" rowGap="-2">
+								<div className="-font-size:s">April 17, 2026</div>
+								<div>Lorem ipsum dolor sit amet</div>
+							</WithSidebar>
+							<WithSidebar sidebar="left" rowGap="-2">
+								<div className="-font-size:s">April 17, 2026</div>
+								<div>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</div>
+							</WithSidebar>
+							<WithSidebar sidebar="left" rowGap="-2">
+								<div className="-font-size:s">April 17, 2026</div>
+								<div>Ut enim ad minim veniam, quis nostrud exercitation</div>
+							</WithSidebar>
+						</Stack>
+					</Stack>
+				</Container>
+			</Gutters>
+		</Decorator>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Card Grid
+
+A collection of repeated cards that wrap into responsive columns without relying on media-query-specific breakpoint layouts.
+
+<Tabs items={['Preview', 'HTML', 'JSX']}>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<ResponsiveGrid>
+				<Stack gap="-1">
+					<img src="https://placehold.jp/1024x768.jpg" alt="" style={{width: '100%'}} />
+					<h3 className="-font-size:l" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				</Stack>
+				<Stack gap="-1">
+					<img src="https://placehold.jp/1024x768.jpg" alt="" style={{width: '100%'}} />
+					<h3 className="-font-size:l" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				</Stack>
+			</ResponsiveGrid>
+		</PreviewConainer>
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="responsive-grid">
+			<div data-unitone-layout="stack -gap:-1">
+				<img src="https://placehold.jp/1024x768.jpg" alt="" style="width: 100%" />
+				<h3 class="-font-size:l" style="font-weight: bold">Lorem ipsum dolor sit amet</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</div>
+			<div data-unitone-layout="stack -gap:-1">
+				<img src="https://placehold.jp/1024x768.jpg" alt="" style="width: 100%" />
+				<h3 class="-font-size:l" style="font-weight: bold">Lorem ipsum dolor sit amet</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { ResponsiveGrid } from '@inc2734/unitone-css/layout-primitives/rsponsive-grid/react';
+		import { Stack } from '@inc2734/unitone-css/layout-primitives/stack/react';
+
+		<ResponsiveGrid>
+			<Stack gap="-1">
+				<img src="https://placehold.jp/1024x768.jpg" alt="" style={{width: '100%'}} />
+				<h3 className="-font-size:l" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</Stack>
+			<Stack gap="-1">
+				<img src="https://placehold.jp/1024x768.jpg" alt="" style={{width: '100%'}} />
+				<h3 className="-font-size:l" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</Stack>
+		</ResponsiveGrid>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Feature List
+
+A vertical or grid-based list of short feature descriptions, often combining a small heading, supporting text, and optional icon-like decoration.
+
+<Tabs items={['Preview', 'HTML', 'JSX']}>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<ResponsiveGrid>
+				<Stack gap="-1">
+					<WithSidebar gap="-2" sidebar="left">
+						<div style={{marginTop: 'calc((1lh - 1.3em) / 2)'}}>
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M11.6359 2.14462C11.8307 1.95214 12.1443 1.95196 12.339 2.14462L13.9572 3.74619C13.9808 3.76963 13.9999 3.79574 14.0177 3.82138C14.1154 3.84559 14.2124 3.87192 14.3087 3.89951C14.3377 3.88566 14.3693 3.87404 14.4025 3.86533L16.6036 3.2872C16.8687 3.21775 17.1407 3.37538 17.213 3.63974L17.8136 5.83505C17.8227 5.86865 17.8268 5.90221 17.8292 5.93466C17.9002 6.00321 17.9697 6.07364 18.0382 6.14462C18.0712 6.14698 18.1056 6.15188 18.1398 6.16122L20.3351 6.76181C20.5991 6.83429 20.7559 7.10534 20.6866 7.37021L20.1085 9.57236C20.0998 9.60552 20.0872 9.63619 20.0734 9.66513C20.1008 9.76082 20.1274 9.85714 20.1515 9.95419C20.178 9.97235 20.2045 9.99327 20.2286 10.0177L21.8292 11.6358C22.0217 11.8307 22.022 12.1442 21.8292 12.339L20.2286 13.9571C20.2046 13.9814 20.1778 14.0006 20.1515 14.0186C20.1273 14.116 20.1009 14.2127 20.0734 14.3087C20.0873 14.3378 20.0998 14.3691 20.1085 14.4024L20.6866 16.6036C20.756 16.8686 20.5993 17.1406 20.3351 17.213L18.1398 17.8136C18.1056 17.8229 18.0712 17.8268 18.0382 17.8292C17.9697 17.9001 17.9001 17.9697 17.8292 18.0382C17.8269 18.0712 17.8229 18.1056 17.8136 18.1397L17.213 20.3351C17.1406 20.5992 16.8686 20.756 16.6036 20.6866L14.4025 20.1085C14.3691 20.0997 14.3378 20.0873 14.3087 20.0733C14.2127 20.1009 14.1161 20.1273 14.0187 20.1515C14.0006 20.1778 13.9814 20.2046 13.9572 20.2286L12.339 21.8292C12.1443 22.0219 11.8307 22.0217 11.6359 21.8292L10.5001 20.7052V18.0831C10.5 16.0945 8.92707 14.5998 7.02747 14.5997C5.64574 14.5999 4.16684 15.4422 3.59778 16.8331H3.28333C3.26764 16.7594 3.26686 16.6814 3.28723 16.6036L3.86536 14.4024C3.87407 14.3693 3.8857 14.3376 3.89954 14.3087C3.87195 14.2124 3.84562 14.1153 3.82141 14.0177C3.79577 13.9999 3.76966 13.9807 3.74622 13.9571L2.14465 12.339C1.95199 12.1442 1.95219 11.8307 2.14465 11.6358L3.74622 10.0177C3.77 9.99364 3.79536 9.97315 3.82141 9.95517C3.84556 9.85779 3.87202 9.76114 3.89954 9.66513C3.8858 9.63634 3.87403 9.60532 3.86536 9.57236L3.28723 7.37021C3.21795 7.1052 3.3755 6.83408 3.63977 6.76181L5.83508 6.16122C5.86878 6.15202 5.90214 6.14703 5.93469 6.14462C6.00346 6.0734 6.07343 6.00343 6.14465 5.93466C6.14706 5.90212 6.15206 5.86874 6.16125 5.83505L6.76184 3.63974C6.83411 3.37547 7.10523 3.21792 7.37024 3.2872L9.57239 3.86533C9.60536 3.874 9.63637 3.88576 9.66516 3.89951C9.76118 3.87199 9.85781 3.84554 9.9552 3.82138C9.97318 3.79533 9.99368 3.76997 10.0177 3.74619L11.6359 2.14462ZM11.8683 8.46884C11.7348 8.46888 11.5948 8.56003 11.4484 8.74228C11.3182 8.905 11.1505 9.06295 10.9454 9.21591C10.7404 9.36886 10.5434 9.48774 10.3546 9.57236C10.1561 9.66024 10.0991 9.78397 10.1837 9.94345L10.5255 10.588C10.6036 10.7376 10.7193 10.78 10.8722 10.7149C10.9958 10.6629 11.118 10.5912 11.2384 10.5001C11.3588 10.409 11.4695 10.2998 11.5704 10.1729H11.59C11.577 10.3031 11.5704 10.4334 11.5704 10.5636V15.2071C11.5705 15.4023 11.6682 15.5001 11.8634 15.5001H12.6447C12.8398 15.5001 12.9376 15.4023 12.9376 15.2071V8.76181C12.9376 8.56653 12.8399 8.46887 12.6447 8.46884H11.8683Z" fill="black"/>
+								<path d="M7.96094 20.4164H9.25V18.0834C9.25 16.7991 8.25094 15.85 7.02734 15.85V14.6C8.92709 14.6 10.5 16.0947 10.5 18.0834V21.6664H6.9043C6.34804 23.0606 4.9082 24.0002 3.47266 24.0004C1.50177 24.0004 0 22.3327 0 20.4164V16.8334H3.59766C4.16663 15.4423 5.64552 14.6002 7.02734 14.6V15.85C5.8039 15.8502 4.60547 16.7993 4.60547 18.0834V20.4164C4.60547 21.194 4.21468 21.6604 3.47266 21.6606C2.82325 21.6606 2.5956 21.3039 2.54883 20.6938L2.53906 20.4164V18.0834H1.25V20.4164C1.25 21.7007 2.24906 22.7504 3.47266 22.7504C4.61958 22.7502 5.74463 21.8279 5.88086 20.6547L5.89453 20.4164V18.0834C5.89453 17.3058 6.28532 16.939 7.02734 16.9389C7.76965 16.9389 7.96094 17.3056 7.96094 18.0834V20.4164Z" fill="black"/>
+							</svg>
+						</div>
+						<h3 className="-font-size:l" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit</h3>
+					</WithSidebar>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				</Stack>
+				<Stack gap="-1">
+					<WithSidebar gap="-2" sidebar="left">
+						<div style={{marginTop: 'calc((1lh - 1.3em) / 2)'}}>
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M11.6359 2.14462C11.8307 1.95214 12.1443 1.95196 12.339 2.14462L13.9572 3.74619C13.9808 3.76963 13.9999 3.79574 14.0177 3.82138C14.1154 3.84559 14.2124 3.87192 14.3087 3.89951C14.3377 3.88566 14.3693 3.87404 14.4025 3.86533L16.6036 3.2872C16.8687 3.21775 17.1407 3.37538 17.213 3.63974L17.8136 5.83505C17.8227 5.86865 17.8268 5.90221 17.8292 5.93466C17.9002 6.00321 17.9697 6.07364 18.0382 6.14462C18.0712 6.14698 18.1056 6.15188 18.1398 6.16122L20.3351 6.76181C20.5991 6.83429 20.7559 7.10534 20.6866 7.37021L20.1085 9.57236C20.0998 9.60552 20.0872 9.63619 20.0734 9.66513C20.1008 9.76082 20.1274 9.85714 20.1515 9.95419C20.178 9.97235 20.2045 9.99327 20.2286 10.0177L21.8292 11.6358C22.0217 11.8307 22.022 12.1442 21.8292 12.339L20.2286 13.9571C20.2046 13.9814 20.1778 14.0006 20.1515 14.0186C20.1273 14.116 20.1009 14.2127 20.0734 14.3087C20.0873 14.3378 20.0998 14.3691 20.1085 14.4024L20.6866 16.6036C20.756 16.8686 20.5993 17.1406 20.3351 17.213L18.1398 17.8136C18.1056 17.8229 18.0712 17.8268 18.0382 17.8292C17.9697 17.9001 17.9001 17.9697 17.8292 18.0382C17.8269 18.0712 17.8229 18.1056 17.8136 18.1397L17.213 20.3351C17.1406 20.5992 16.8686 20.756 16.6036 20.6866L14.4025 20.1085C14.3691 20.0997 14.3378 20.0873 14.3087 20.0733C14.2127 20.1009 14.1161 20.1273 14.0187 20.1515C14.0006 20.1778 13.9814 20.2046 13.9572 20.2286L12.339 21.8292C12.1443 22.0219 11.8307 22.0217 11.6359 21.8292L10.5001 20.7052V18.0831C10.5 16.0945 8.92707 14.5998 7.02747 14.5997C5.64574 14.5999 4.16684 15.4422 3.59778 16.8331H3.28333C3.26764 16.7594 3.26686 16.6814 3.28723 16.6036L3.86536 14.4024C3.87407 14.3693 3.8857 14.3376 3.89954 14.3087C3.87195 14.2124 3.84562 14.1153 3.82141 14.0177C3.79577 13.9999 3.76966 13.9807 3.74622 13.9571L2.14465 12.339C1.95199 12.1442 1.95219 11.8307 2.14465 11.6358L3.74622 10.0177C3.77 9.99364 3.79536 9.97315 3.82141 9.95517C3.84556 9.85779 3.87202 9.76114 3.89954 9.66513C3.8858 9.63634 3.87403 9.60532 3.86536 9.57236L3.28723 7.37021C3.21795 7.1052 3.3755 6.83408 3.63977 6.76181L5.83508 6.16122C5.86878 6.15202 5.90214 6.14703 5.93469 6.14462C6.00346 6.0734 6.07343 6.00343 6.14465 5.93466C6.14706 5.90212 6.15206 5.86874 6.16125 5.83505L6.76184 3.63974C6.83411 3.37547 7.10523 3.21792 7.37024 3.2872L9.57239 3.86533C9.60536 3.874 9.63637 3.88576 9.66516 3.89951C9.76118 3.87199 9.85781 3.84554 9.9552 3.82138C9.97318 3.79533 9.99368 3.76997 10.0177 3.74619L11.6359 2.14462ZM11.8683 8.46884C11.7348 8.46888 11.5948 8.56003 11.4484 8.74228C11.3182 8.905 11.1505 9.06295 10.9454 9.21591C10.7404 9.36886 10.5434 9.48774 10.3546 9.57236C10.1561 9.66024 10.0991 9.78397 10.1837 9.94345L10.5255 10.588C10.6036 10.7376 10.7193 10.78 10.8722 10.7149C10.9958 10.6629 11.118 10.5912 11.2384 10.5001C11.3588 10.409 11.4695 10.2998 11.5704 10.1729H11.59C11.577 10.3031 11.5704 10.4334 11.5704 10.5636V15.2071C11.5705 15.4023 11.6682 15.5001 11.8634 15.5001H12.6447C12.8398 15.5001 12.9376 15.4023 12.9376 15.2071V8.76181C12.9376 8.56653 12.8399 8.46887 12.6447 8.46884H11.8683Z" fill="black"/>
+								<path d="M7.96094 20.4164H9.25V18.0834C9.25 16.7991 8.25094 15.85 7.02734 15.85V14.6C8.92709 14.6 10.5 16.0947 10.5 18.0834V21.6664H6.9043C6.34804 23.0606 4.9082 24.0002 3.47266 24.0004C1.50177 24.0004 0 22.3327 0 20.4164V16.8334H3.59766C4.16663 15.4423 5.64552 14.6002 7.02734 14.6V15.85C5.8039 15.8502 4.60547 16.7993 4.60547 18.0834V20.4164C4.60547 21.194 4.21468 21.6604 3.47266 21.6606C2.82325 21.6606 2.5956 21.3039 2.54883 20.6938L2.53906 20.4164V18.0834H1.25V20.4164C1.25 21.7007 2.24906 22.7504 3.47266 22.7504C4.61958 22.7502 5.74463 21.8279 5.88086 20.6547L5.89453 20.4164V18.0834C5.89453 17.3058 6.28532 16.939 7.02734 16.9389C7.76965 16.9389 7.96094 17.3056 7.96094 18.0834V20.4164Z" fill="black"/>
+							</svg>
+						</div>
+						<h3 className="-font-size:l" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit</h3>
+					</WithSidebar>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				</Stack>
+			</ResponsiveGrid>
+		</PreviewConainer>
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="responsive-grid">
+			<div data-unitone-layout="stack -gap:-1">
+				<div data-unitone-layout="with-sidebar -gap:-2 -sidebar:left">
+					<div style="margin-top: calc((1lh - 1.3em) / 2)">
+						<svg>...</svg>
+					</div>
+					<h3 className="-font-size:l" style="font-weight: bold">Lorem ipsum dolor sit</h3>
+				</div>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</div>
+			<div data-unitone-layout="stack -gap:-1">
+				<div data-unitone-layout="with-sidebar -gap:-2 -sidebar:left">
+					<div style="margin-top: calc((1lh - 1.3em) / 2)">
+						<svg>...</svg>
+					</div>
+					<h3 className="-font-size:l" style="font-weight: bold">Lorem ipsum dolor sit</h3>
+				</div>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { ResponsiveGrid } from '@inc2734/unitone-css/layout-primitives/rsponsive-grid/react';
+		import { Stack } from '@inc2734/unitone-css/layout-primitives/stack/react';
+		import { WithSidebar } from '@inc2734/unitone-css/layout-primitives/with-sidebar/react';
+
+		<ResponsiveGrid>
+			<Stack gap="-1">
+				<WithSidebar gap="-2" sidebar="left">
+					<div style={{marginTop: 'calc((1lh - 1.3em) / 2)'}}>
+						<svg>...</svg>
+					</div>
+					<h3 className="-font-size:l" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit</h3>
+				</WithSidebar>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</Stack>
+			<Stack gap="-1">
+				<WithSidebar gap="-2" sidebar="left">
+					<div style={{marginTop: 'calc((1lh - 1.3em) / 2)'}}>
+						<svg>...</svg>
+					</div>
+					<h3 className="-font-size:l" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit</h3>
+				</WithSidebar>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</Stack>
+		</ResponsiveGrid>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Sidebar Layout
+
+A layout where a narrow side column and a wider main column sit next to each other, while still collapsing naturally to one column when space is limited.
+
+<Tabs items={['Preview', 'HTML', 'JSX']}>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<WithSidebar sidebar="left">
+				<div>
+					<ul>
+						<li><a href="#">Item: A</a></li>
+						<li><a href="#">Item: B</a></li>
+						<li><a href="#">Item: C</a></li>
+					</ul>
+				</div>
+				<div>
+					<Text applyGap maxWidth="100%">
+						<h2>Lorem ipsum dolor sit amet</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+					</Text>
+				</div>
+			</WithSidebar>
+		</PreviewConainer>
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="with-sidebar -sidebar:left">
+			<div>
+				<ul>
+					<li><a href="#">Item: A</a></li>
+					<li><a href="#">Item: B</a></li>
+					<li><a href="#">Item: C</a></li>
+				</ul>
+			</div>
+			<div>
+				<div data-unitone-layout="text -gap" style="--unitone--max-Width: 100%">
+					<h2>Lorem ipsum dolor sit amet</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+				</div>
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { WithSidebar } from '@inc2734/unitone-css/layout-primitives/with-sidebar/react';
+		import { Text } from '@inc2734/unitone-css/layout-primitives/text/react';
+
+		<WithSidebar sidebar="left">
+			<div>
+				<ul>
+					<li><a href="#">Item: A</a></li>
+					<li><a href="#">Item: B</a></li>
+					<li><a href="#">Item: C</a></li>
+				</ul>
+			</div>
+			<div>
+				<Text applyGap maxWidth="100%">
+					<h2>Lorem ipsum dolor sit amet</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+				</Text>
+			</div>
+		</WithSidebar>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Centered Title Section
+
+A centrally positioned title and a content area the width of a container. A simple section.
+
+<Tabs items={['Preview', 'HTML', 'JSX']}>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Decorator>
+				<Gutters>
+					<Container>
+						<Stack>
+							<Center maxWidth="100%">
+								<h2 data-unitone-layout="-fluid-typography" className="-font-size:3xl" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h2>
+							</Center>
+
+							<Text applyGap maxWidth="100%">
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+							</Text>
+						</Stack>
+					</Container>
+				</Gutters>
+			</Decorator>
+		</PreviewConainer>
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="decorator">
+			<div data-unitone-layout="gutters">
+				<div data-unitone-layout="container">
+					<div data-unitone-layout="stack">
+						<div data-unitone-layout="center" style="--unitone--maxWidth: 100%">
+							<h2 data-unitone-layout="-fluid-typography" class="-font-size:3xl" style="font-weight: bold">Lorem ipsum dolor sit amet</h2>
+						</div>
+
+						<div data-unitone-layout="text -gap" style="--unitone--maxWidth: 100%">
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
+		import { Gutters } from '@inc2734/unitone-css/layout-primitives/gutters/react';
+		import { Container } from '@inc2734/unitone-css/layout-primitives/container/react';
+		import { Stack } from '@inc2734/unitone-css/layout-primitives/stack/react';
+		import { Center } from '@inc2734/unitone-css/layout-primitives/center/react';
+		import { Text } from '@inc2734/unitone-css/layout-primitives/text/react';
+
+		<Decorator>
+			<Gutters>
+				<Container>
+					<Stack>
+						<Center maxWidth="100%">
+							<h2 data-unitone-layout="-fluid-typography" className="-font-size:3xl" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h2>
+						</Center>
+
+						<Text applyGap maxWidth="100%">
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+						</Text>
+					</Stack>
+				</Container>
+			</Gutters>
+		</Decorator>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Centered CTA Section
+
+A centered call-to-action area that emphasizes a short message and one or more actions inside a constrained content width.
+
+<Tabs items={['Preview', 'HTML', 'JSX']}>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Decorator>
+				<Gutters>
+					<Container>
+						<Stack>
+							<Center withText>
+								<h2 data-unitone-layout="-fluid-typography" className="-font-size:5xl" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h2>
+							</Center>
+
+							<Center>
+								<p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							</Center>
+
+							<Center>
+								<Cluster>
+									<div>
+										<a href="#" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style={{width: '100%'}}><strong>無料で即時ダウンロード</strong></a>
+									</div>
+									<div>
+										<a href="#" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style={{width: '100%'}}><strong>今すぐウェブで試す</strong></a>
+									</div>
+								</Cluster>
+							</Center>
+						</Stack>
+					</Container>
+				</Gutters>
+			</Decorator>
+		</PreviewConainer>
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="decorator">
+			<div data-unitone-layout="gutters">
+				<div data-unitone-layout="container">
+					<div data-unitone-layout="stack">
+						<div data-unitone-layout="center -with-text">
+							<h2 data-unitone-layout="-fluid-typography" class="-font-size:5xl" style="font-weight: bold">Lorem ipsum dolor sit amet</h2>
+						</div>
+
+						<div data-unitone-layout="center">
+							<p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+						</div>
+
+						<div data-unitone-layout="center">
+							<div data-unitone-layout="cluster">
+								<div>
+									<a href="#" class="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style="width: 100%"><strong>無料で即時ダウンロード</strong></a>
+								</div>
+								<div>
+									<a href="#" class="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style="width: 100%"><strong>今すぐウェブで試す</strong></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
+		import { Gutters } from '@inc2734/unitone-css/layout-primitives/gutters/react';
+		import { Container } from '@inc2734/unitone-css/layout-primitives/container/react';
+		import { Stack } from '@inc2734/unitone-css/layout-primitives/stack/react';
+		import { Center } from '@inc2734/unitone-css/layout-primitives/center/react';
+		import { Cluster } from '@inc2734/unitone-css/layout-primitives/cluster/react';
+
+		<Decorator>
+			<Gutters>
+				<Container>
+					<Stack>
+						<Center withText>
+							<h2 data-unitone-layout="-fluid-typography" className="-font-size:5xl" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h2>
+						</Center>
+
+						<Center>
+							<p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+						</Center>
+
+						<Center>
+							<Cluster>
+								<div>
+									<a href="#" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style={{width: '100%'}}><strong>無料で即時ダウンロード</strong></a>
+								</div>
+								<div>
+									<a href="#" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style={{width: '100%'}}><strong>今すぐウェブで試す</strong></a>
+								</div>
+							</Cluster>
+						</Center>
+					</Stack>
+				</Container>
+			</Gutters>
+		</Decorator>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Article Header
+
+A top section for an article or post that combines title, metadata, summary, and sometimes category or author information in a readable hierarchy.
+
+<Tabs items={['Preview', 'HTML', 'JSX']}>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Decorator>
+				<Gutters padding="2">
+					<Container>
+						<Stack gap="1">
+							<Stack tagName="hgroup" gap="-2">
+								<h1 data-unitone-layout="-fluid-typography" className="-font-size:3xl"  style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h1>
+								<p style={{fontWeight: 'bold'}}>サブタイトル</p>
+							</Stack>
+
+							<Cluster gap="-1" divider="slash">
+								<div>inc2734</div>
+								<div>April 17, 2026</div>
+								<div>6min read</div>
+							</Cluster>
+						</Stack>
+					</Container>
+				</Gutters>
+			</Decorator>
+		</PreviewConainer>
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="decorator">
+			<div data-unitone-layout="gutters -padding:2">
+				<div data-unitone-layout="container">
+					<div data-unitone-layout="stack -gap:1">
+						<hgroup data-unitone-layout="stack -gap:-2">
+							<h1 data-unitone-layout="-fluid-typography" class="-font-size:3xl" style="font-weight: bold">Lorem ipsum dolor sit amet</h1>
+							<p style="font-weight: bold">サブタイトル</p>
+						</hgroup>
+
+						<div data-unitone-layout="cluster -gap:-1 -divider:slash">
+							<div>inc2734</div>
+							<div>April 17, 2026</div>
+							<div>6min read</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
+		import { Gutters } from '@inc2734/unitone-css/layout-primitives/gutters/react';
+		import { Container } from '@inc2734/unitone-css/layout-primitives/container/react';
+		import { Stack } from '@inc2734/unitone-css/layout-primitives/stack/react';
+		import { Cluster } from '@inc2734/unitone-css/layout-primitives/cluster/react';
+
+		<Decorator>
+			<Gutters padding="2">
+				<Container>
+					<Stack gap="1">
+						<Stack tagName="hgroup" gap="-2">
+							<h1 data-unitone-layout="-fluid-typography" className="-font-size:3xl"  style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h1>
+							<p style={{fontWeight: 'bold'}}>サブタイトル</p>
+						</Stack>
+
+						<Cluster gap="-1" divider="slash">
+							<div>inc2734</div>
+							<div>April 17, 2026</div>
+							<div>6min read</div>
+						</Cluster>
+					</Stack>
+				</Container>
+			</Gutters>
+		</Decorator>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Text Content Block
+
+A readable body-content section for headings, paragraphs, lists, and other long-form text elements with consistent spacing between them.
+
+<Tabs items={['Preview', 'HTML', 'JSX']}>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Text applyGap>
+				<h2>Lorem ipsum dolor sit amet</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+			</Text>
+		</PreviewConainer>
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="text -gap">
+			<h2>Lorem ipsum dolor sit amet</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Text } from '@inc2734/unitone-css/layout-primitives/text/react';
+
+		<Text applyGap>
+			<h2>Lorem ipsum dolor sit amet</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+		</Text>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Form Row
+
+A row that aligns a label, input, helper text, or action in a way that remains usable when the layout narrows.
+
+<Tabs items={['Preview', 'HTML', 'JSX']}>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<WithSidebar sidebar="left">
+				<div>Name</div>
+				<div>
+					<div data-unitone-layout="stack -gap:-2">
+						<input type="text" className="-padding:-2" />
+						<div className="-font-size:xs">Lorem ipsum dolor sit amet</div>
+					</div>
+				</div>
+			</WithSidebar>
+		</PreviewConainer>
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="with-sidebar -sidebar:left">
+			<div>Name</div>
+			<div>
+				<div data-unitone-layout="stack -gap:-2">
+					<input type="text" class="-padding:-2" />
+					<div class="-font-size:xs">Lorem ipsum dolor sit amet</div>
+				</div>
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { WithSidebar } from '@inc2734/unitone-css/layout-primitives/with-sidebar/react';
+
+		<WithSidebar sidebar="left">
+			<div>Name</div>
+			<div>
+				<div data-unitone-layout="stack -gap:-2">
+					<input type="text" className="-padding:-2" />
+					<div className="-font-size:xs">Lorem ipsum dolor sit amet</div>
+				</div>
+			</div>
+		</WithSidebar>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Button Group
+
+A horizontal set of related actions that can wrap cleanly and keep consistent spacing and alignment as the available width changes.
+
+<Tabs items={['Preview', 'HTML', 'JSX']}>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Cluster>
+				<div>
+					<a href="#" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style={{width: '100%'}}><strong>無料で即時ダウンロード</strong></a>
+				</div>
+				<div>
+					<a href="#" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style={{width: '100%'}}><strong>今すぐウェブで試す</strong></a>
+				</div>
+			</Cluster>
+		</PreviewConainer>
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="cluster">
+			<div>
+				<a href="#" class="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style="width: 100%"><strong>無料で即時ダウンロード</strong></a>
+			</div>
+			<div>
+				<a href="#" class="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style="width: 100%"><strong>今すぐウェブで試す</strong></a>
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Cluster } from '@inc2734/unitone-css/layout-primitives/cluster/react';
+
+		<Cluster>
+			<div>
+				<a href="#" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style={{width: '100%'}}><strong>無料で即時ダウンロード</strong></a>
+			</div>
+			<div>
+				<a href="#" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style={{width: '100%'}}><strong>今すぐウェブで試す</strong></a>
+			</div>
+		</Cluster>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Badge / Label Cluster
+
+A small group of badges, tags, or labels that should line up horizontally, wrap naturally, and remain visually balanced.
+
+<Tabs items={['Preview', 'HTML', 'JSX']}>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Cluster>
+				<span className="-display:inline-flex -border-radius -background-color:heavy-indigo -color:white -padding-block:-3 -padding-inline:-2">Item A</span>
+				<span className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-3 -padding-inline:-2">Item B</span>
+				<span className="-display:inline-flex -border-radius -background-color:heavy-purple -color:white -padding-block:-3 -padding-inline:-2">Item C</span>
+			</Cluster>
+		</PreviewConainer>
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="cluster">
+			<div>
+				<a href="#" class="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-3 -padding-inline:-2" style="width: 100%"><strong>無料で即時ダウンロード</strong></a>
+			</div>
+			<div>
+				<a href="#" class="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-3 -padding-inline:-2" style="width: 100%"><strong>今すぐウェブで試す</strong></a>
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Cluster } from '@inc2734/unitone-css/layout-primitives/cluster/react';
+
+		<Cluster>
+			<div>
+				<a href="#" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-3 -padding-inline:-2" style={{width: '100%'}}><strong>無料で即時ダウンロード</strong></a>
+			</div>
+			<div>
+				<a href="#" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-3 -padding-inline:-2" style={{width: '100%'}}><strong>今すぐウェブで試す</strong></a>
+			</div>
+		</Cluster>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Dialog Content Layout
+
+An internal dialog structure that separates heading, body, and actions so modal content remains readable and easy to scan.
+
+<Tabs items={['Preview', 'HTML', 'JSX']}>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Dialog>
+				<DialogTrigger>
+					<button command="show-modal" commandfor="dialog-example-content" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1">
+						Open dialog
+					</button>
+				</DialogTrigger>
+				<DialogContent id="dialog-example-content">
+					<Decorator backgroundColor="var(--unitone--color--background)" gap="1" padding="1s">
+						<Stack>
+							<h2 data-unitone-layout="-fluid-typography" className="-font-size:xl" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h2>
+							<p>The content of the Dialog.</p>
+							<div>
+								<button command="request-close" commandfor="dialog-example-content" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1">
+									Close
+								</button>
+							</div>
+						</Stack>
+					</Decorator>
+				</DialogContent>
+			</Dialog>
+		</PreviewConainer>
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="dialog">
+			<div data-unitone-layout="dialog-trigger">
+				<button command="show-modal" commandfor="dialog-example-content" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1">
+					Open dialog
+				</button>
+			</div>
+			<dialog
+				id="dialog-example-content"
+				data-unitone-layout="dialog-content"
+				closedby="any"
+			>
+				<div data-unitone-layout="decorator -gap:1 -padding:1s" style="--unitone--background--color: var(--unitone--color--background)">
+					<div data-unitone-layout="stack">
+						<h2 data-unitone-layout="-fluid-typography" class="-font-size:xl" style="font-weight: bold">Lorem ipsum dolor sit amet</h2>
+						<p>The content of the Dialog.</p>
+						<div>
+							<button command="request-close" commandfor="dialog-example-content" class="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1">
+								Close
+							</button>
+						</div>
+					</div>
+				</div>
+			</dialog>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import {
+		  Dialog,
+		  DialogTrigger,
+		  DialogContent,
+		} from '@inc2734/unitone-css/layout-primitives/dialog/react';
+
+		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
+		import { Stack } from '@inc2734/unitone-css/layout-primitives/stack/react';
+
+		<Dialog>
+			<DialogTrigger>
+				<button command="show-modal" commandfor="dialog-example-content" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1">
+					Open dialog
+				</button>
+			</DialogTrigger>
+			<DialogContent id="dialog-example-content">
+				<Decorator backgroundColor="var(--unitone--color--background)" gap="1" padding="1s">
+					<Stack>
+						<h2 data-unitone-layout="-fluid-typography" className="-font-size:xl" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h2>
+						<p>The content of the Dialog.</p>
+						<div>
+							<button command="request-close" commandfor="dialog-example-content" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1">
+								Close
+							</button>
+						</div>
+					</Stack>
+				</Decorator>
+			</DialogContent>
+		</Dialog>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Popover Content Layout
+
+A compact floating panel layout for short navigation, metadata, or actions where spacing and grouping matter more than large-scale composition.
+
+<Tabs items={['Preview', 'HTML', 'JSX']}>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Popover>
+				<PopoverTrigger>
+					<button popoverTarget="popover-example-content" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1">Open popover</button>
+				</PopoverTrigger>
+				<PopoverContent id="popover-example-content">
+					<Decorator backgroundColor="var(--unitone--color--pale-gray)" padding="-1">
+						<Stack gap="-2" divider="divide" dividerColor="var(--unitone--color--light-gray)">
+							<p>The content of the Popover.</p>
+							<div>
+								<button className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1">Open popover</button>
+							</div>
+						</Stack>
+					</Decorator>
+				</PopoverContent>
+			</Popover>
+		</PreviewConainer>
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="popover">
+			<div data-unitone-layout="popover-trigger">
+				<button popovertarget="popover-example-content" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1">>Open popover</button>
+			</div>
+			<div
+				id="popover-example-content"
+				data-unitone-layout="popover-content"
+				popover
+			>
+					<div data-unitone-layout="decorator -padding:-1" style="--unitone--background-color: var(--unitone--color--pale-gray)">
+						<div data-unitone-layout="stack -gap:-2 -divider:divide" style="--unitone--divider-color: var(--unitone--color--light-gray)">
+							<p>The content of the Popover.</p>
+							<div>
+								<button className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1">Open popover</button>
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import {
+			Popover,
+			PopoverTrigger,
+			PopoverContent,
+		} from '@inc2734/unitone-css/layout-primitives/popover/react';
+
+		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
+		import { Stack } from '@inc2734/unitone-css/layout-primitives/stack/react';
+
+		<Popover>
+			<PopoverTrigger>
+				<button popoverTarget="popover-example-content" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1">Open popover</button>
+			</PopoverTrigger>
+			<PopoverContent id="popover-example-content">
+				<PopoverContent id="popover-example-content">
+					<Decorator backgroundColor="var(--unitone--color--pale-gray)" padding="-1">
+						<Stack gap="-2" divider="divide" dividerColor="var(--unitone--color--light-gray)">
+							<p>The content of the Popover.</p>
+							<div>
+								<button className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1">Open popover</button>
+							</div>
+						</Stack>
+					</Decorator>
+				</PopoverContent>
+			</PopoverContent>
+		</Popover>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+
+## Section With Decorative Background
+
+A content section where the main structure is built with primitives, while decorative background treatment is layered behind or around the content.
+
+<Tabs items={['Preview', 'HTML', 'JSX']}>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Layers cover>
+				<img src="https://placehold.jp/1024x768.jpg" alt="" />
+
+				<Decorator position="relative">
+					<Gutters>
+						<Container>
+							<Stack>
+								<Center withText>
+									<h2 data-unitone-layout="-fluid-typography" className="-font-size:5xl" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h2>
+								</Center>
+
+								<Center>
+									<p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+								</Center>
+
+								<Center>
+									<Cluster>
+										<div>
+											<a href="#" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style={{width: '100%'}}><strong>無料で即時ダウンロード</strong></a>
+										</div>
+										<div>
+											<a href="#" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style={{width: '100%'}}><strong>今すぐウェブで試す</strong></a>
+										</div>
+									</Cluster>
+								</Center>
+							</Stack>
+						</Container>
+					</Gutters>
+				</Decorator>
+			</Layers>
+		</PreviewConainer>
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="layers -cover">
+			<img src="https://placehold.jp/1024x768.jpg" alt="" />
+
+			<div data-unitone-layout="decorator -position:relative">
+				<div data-unitone-layout="gutters">
+					<div data-unitone-layout="container">
+						<div data-unitone-layout="stack">
+							<div data-unitone-layout="center -with-text">
+								<h2 data-unitone-layout="-fluid-typography" class="-font-size:5xl" style="font-weight: bold">Lorem ipsum dolor sit amet</h2>
+							</div>
+
+							<div data-unitone-layout="center">
+								<p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							</div>
+
+							<div data-unitone-layout="center">
+								<div data-unitone-layout="cluster">
+									<div>
+										<a href="#" class="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style="width: 100%"><strong>無料で即時ダウンロード</strong></a>
+									</div>
+									<div>
+										<a href="#" class="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style="width: 100%"><strong>今すぐウェブで試す</strong></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Layers } from '@inc2734/unitone-css/layout-primitives/layers/react';
+		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
+		import { Gutters } from '@inc2734/unitone-css/layout-primitives/gutters/react';
+		import { Container } from '@inc2734/unitone-css/layout-primitives/container/react';
+		import { Stack } from '@inc2734/unitone-css/layout-primitives/stack/react';
+		import { Center } from '@inc2734/unitone-css/layout-primitives/center/react';
+		import { Cluster } from '@inc2734/unitone-css/layout-primitives/cluster/react';
+
+		<Layers cover>
+			<img src="https://placehold.jp/1024x768.jpg" alt="" />
+
+			<Decorator position="relative">
+				<Gutters>
+					<Container>
+						<Stack>
+							<Center withText>
+								<h2 data-unitone-layout="-fluid-typography" className="-font-size:5xl" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h2>
+							</Center>
+
+							<Center>
+								<p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							</Center>
+
+							<Center>
+								<Cluster>
+									<div>
+										<a href="#" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style={{width: '100%'}}><strong>無料で即時ダウンロード</strong></a>
+									</div>
+									<div>
+										<a href="#" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style={{width: '100%'}}><strong>今すぐウェブで試す</strong></a>
+									</div>
+								</Cluster>
+							</Center>
+						</Stack>
+					</Container>
+				</Gutters>
+			</Decorator>
+		</Layers>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Layered Hero
+
+A hero layout that combines foreground content and background visual elements in overlapping layers, while keeping the readable content structure separate.
+
+<Tabs items={['Preview', 'HTML', 'JSX']}>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Layers cover>
+				<img src="https://placehold.jp/1024x768.jpg" alt="" />
+
+				<Cover minHeight="max(100svh, 667px)" padding="0">
+					<CoverContent valign="center">
+						<Container>
+							<Stack gap="3">
+								<Center>
+									<h2 data-unitone-layout="-fluid-typography" className="-font-size:4xl" style={{fontWeight: 'bold'}}>Clouds floated across the sky.</h2>
+								</Center>
+
+								<Center>
+									<p data-unitone-layout="-fluid-typography" className="-font-size:xl">雲間から月が顔を出し、静かな夜を淡く照らす。風が木々を揺らし。</p>
+								</Center>
+
+								<Center>
+									<Cluster>
+										<div>
+											<a href="#" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style={{width: '100%'}}><strong>無料で即時ダウンロード</strong></a>
+										</div>
+										<div>
+											<a href="#" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style={{width: '100%'}}><strong>今すぐウェブで試す</strong></a>
+										</div>
+									</Cluster>
+								</Center>
+							</Stack>
+						</Container>
+					</CoverContent>
+				</Cover>
+			</Layers>
+		</PreviewConainer>
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="layers -cover">
+			<img src="https://placehold.jp/1024x768.jpg" alt="" />
+
+			<div data-unitone-layout="cover -padding:0" style="--unitone--min-height: max(100svh, 667px)">
+				<div data-unitone-layout="cover-content -valign:center">
+					<div data-unitone-layout="container">
+						<div data-unitone-layout="stack -gap:3">
+							<div data-unitone-layout="center">
+								<h2 data-unitone-layout="-fluid-typography" class="-font-size:4xl" style="font-weight: bold">Clouds floated across the sky.</h2>
+							</div>
+
+							<div data-unitone-layout="center">
+								<p data-unitone-layout="-fluid-typography" class="-font-size:xl">雲間から月が顔を出し、静かな夜を淡く照らす。風が木々を揺らし。</p>
+							</div>
+
+							<div data-unitone-layout="center">
+								<div data-unitone-layout="cluster">
+									<div>
+										<a href="#" class="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style="width: 100%"><strong>無料で即時ダウンロード</strong></a>
+									</div>
+									<div>
+										<a href="#" class="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style="width: 100%"><strong>今すぐウェブで試す</strong></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Layers } from '@inc2734/unitone-css/layout-primitives/layers/react';
+		import { Cover, CoverContent } from '@inc2734/unitone-css/layout-primitives/cover/react';
+		import { Container } from '@inc2734/unitone-css/layout-primitives/container/react';
+		import { Stack } from '@inc2734/unitone-css/layout-primitives/stack/react';
+		import { Center } from '@inc2734/unitone-css/layout-primitives/center/react';
+		import { Cluster } from '@inc2734/unitone-css/layout-primitives/cluster/react';
+
+		<Layers cover>
+			<img src="https://placehold.jp/1024x768.jpg" alt="" />
+
+			<Cover minHeight="max(100svh, 667px)" padding="0">
+				<CoverContent valign="center">
+					<Container>
+						<Stack gap="3">
+							<Center>
+								<h2 data-unitone-layout="-fluid-typography" className="-font-size:4xl" style={{fontWeight: 'bold'}}>Clouds floated across the sky.</h2>
+							</Center>
+
+							<Center>
+								<p data-unitone-layout="-fluid-typography" className="-font-size:xl">雲間から月が顔を出し、静かな夜を淡く照らす。風が木々を揺らし。</p>
+							</Center>
+
+							<Center>
+								<Cluster>
+									<div>
+										<a href="#" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style={{width: '100%'}}><strong>無料で即時ダウンロード</strong></a>
+									</div>
+									<div>
+										<a href="#" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1" style={{width: '100%'}}><strong>今すぐウェブで試す</strong></a>
+									</div>
+								</Cluster>
+							</Center>
+						</Stack>
+					</Container>
+				</CoverContent>
+			</Cover>
+		</Layers>
+		```
+	</Tabs.Tab>
+</Tabs>

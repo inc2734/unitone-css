@@ -14,8 +14,9 @@
   "license": "MIT",
   "homepage": "https://github.com/inc2734/unitone-css",
   "scripts": {
+    "clean": "rimraf .next out",
     "dev": "npm run packages && npm run sync && open http://localhost:3000 && next",
-    "build": "npm run packages && npm run sync && npm run format && next build",
+    "build": "npm run clean && npm run packages && npm run sync && npm run format && next build",
     "sync:packages": "node bin/sync-package-docs.mjs",
     "sync": "run-p sync:*",
     "format:js": "prettier './src/**/*.{js,jsx,mjs}' './*.config.{js,jsx,mjs}' --write",

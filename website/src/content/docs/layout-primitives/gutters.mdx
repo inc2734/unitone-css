@@ -4,9 +4,10 @@ import { PreviewConainer, Badge } from '../../../components';
 
 # Gutters
 
-Separate content with top and bottom padding.
+Adds vertical padding above and below a section.
+Use it to create consistent outer spacing without wrapping the content in ad-hoc margin utilities.
 
-# Usage
+## Usage
 
 <PreviewConainer>
 	<Gutters style={{ outline: '1px dotted #6366f1' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</Gutters>
@@ -37,7 +38,7 @@ Separate content with top and bottom padding.
 
 Top and bottom padding.
 
-Can be set from `-2` to `7`. For variations `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens.
+Can be set from `-3` to `7`. For variations `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens.
 If it is `1` or more, adding `s` will shrink it to size `-1` on mobile. (e.g. `1s`)
 If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m`)
 

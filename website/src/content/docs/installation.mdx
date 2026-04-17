@@ -27,6 +27,7 @@ When you compile with the Dart Sass CLI directly, package specifiers such as `@i
 		@use '@inc2734/unitone-css/src/settings';
 		@use '@inc2734/unitone-css/src/layout-primitives';
 		@use '@inc2734/unitone-css/src/behaviors';
+		@use '@inc2734/unitone-css/src/utilities';
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
@@ -53,6 +54,7 @@ sass --load-path=node_modules --no-source-map src/css/app/global-styles.scss:dis
 @use 'pkg:@inc2734/unitone-css/src/settings';
 @use 'pkg:@inc2734/unitone-css/src/layout-primitives';
 @use 'pkg:@inc2734/unitone-css/src/behaviors';
+@use 'pkg:@inc2734/unitone-css/src/utilities';
 ```
 
 ```bash
@@ -71,6 +73,7 @@ The old Sass entry paths are still available for compatibility, but they are dep
 @use '@inc2734/unitone-css/src/settings';
 @use '@inc2734/unitone-css/src/layout-primitives';
 @use '@inc2734/unitone-css/src/behaviors';
+@use '@inc2734/unitone-css/src/utilities';
 ```
 
 ## Import JavaScript
