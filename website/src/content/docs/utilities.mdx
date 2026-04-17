@@ -121,6 +121,23 @@ Named font-size utilities map to the internal numeric scale like this:
 - `6xl` -> `7`
 - `7xl` -> `8`
 
+Approximate font sizes with the default `--unitone--base-font-size: 16` are:
+
+| Utility class     | Numeric scale | Approx. rem | Approx. px |
+| ----------------- | ------------- | ----------- | ---------- |
+| `.-font-size:xs`  | `-2`          | `0.8rem`    | `12.8px`   |
+| `.-font-size:s`   | `-1`          | `0.889rem`  | `14.2px`   |
+| `.-font-size:m`   | `0`           | `1rem`      | `16px`     |
+| `.-font-size:l`   | `1`           | `1.143rem`  | `18.3px`   |
+| `.-font-size:xl`  | `2`           | `1.333rem`  | `21.3px`   |
+| `.-font-size:2xl` | `3`           | `1.6rem`    | `25.6px`   |
+| `.-font-size:3xl` | `4`           | `2rem`      | `32px`     |
+| `.-font-size:4xl` | `5`           | `2.667rem`  | `42.7px`   |
+| `.-font-size:5xl` | `6`           | `4rem`      | `64px`     |
+| `.-font-size:6xl` | `7`           | `8rem`      | `128px`    |
+
+For screenshot matching or visual approximation, it is usually better to pick the nearest row from this table first and only then fine-tune if needed. These values are approximate static sizes; `.-fluid-typography` changes the rendered size with the viewport.
+
 ### `gap`
 
 - `.-gap:{variation}`

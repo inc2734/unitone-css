@@ -35,6 +35,21 @@ Use this skill at the start of most `unitone-css` tasks when you need to classif
    - `unitone-css-doc-sync`
 5. Follow repository conventions already present in `src`.
 
+## Screenshot reproduction guidance
+
+Use this guidance when the user wants a screenshot or mockup reproduced with `unitone-css`.
+
+- Start from documented token and utility tables instead of guessing from class names.
+- For font size selection, choose the nearest documented size first.
+- For compact UI such as dates, metadata, notice rows, and side notes, prefer the smaller of two close font-size candidates.
+- Reserve larger font sizes mainly for obvious headings. Body-like content and list rows usually fit better in smaller steps.
+- Use `-fluid-typography` mainly for large headings that must remain responsive. Do not apply it automatically to every heading.
+- For spacing and padding, estimate the target size from the screenshot and then pick the nearest documented token step.
+- When a spacing or padding target looks between two steps, prefer the smaller step first because line-height and neighboring gaps can make spacing appear larger.
+- For color matching, compare palette tokens within the same hue family first, such as `light-*`, base, `dark-*`, and `heavy-*`.
+- Do not assume a semantic color token is always the closest visual match. Choose the visually closest existing token before introducing custom CSS.
+- Prefer primitive composition and documented utilities first. Use custom CSS only after the nearest `unitone-css` option is still visibly off.
+
 ## Verification
 
 - The selected workflow matches the files that will actually change.
