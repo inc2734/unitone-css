@@ -21,10 +21,12 @@ Use this skill at the start of most `unitone-css` tasks when you need to classif
 2. Use MCP tools when available:
    - `list_primitives`
    - `list_behaviors`
+   - `list_utilities`
    - `get_variables`
 3. Classify the request into one or more workflow types:
    - add or update a layout primitive
    - add or update a behavior
+   - update tokens or utilities
    - sync or expand documentation
    - inspect public API surface
 4. Route to the most relevant skill:

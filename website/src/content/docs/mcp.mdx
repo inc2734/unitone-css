@@ -22,7 +22,12 @@ That keeps MCP usage optional for framework users.
 | `list_primitives` | List available layout primitives under `src/layout-primitives`. |
 | `get_primitive` | Return file-level details for a specific layout primitive. |
 | `list_behaviors` | List available behaviors under `src/behaviors`. |
-| `get_variables` | Return Sass variable files and CSS custom property candidates from `src/variables` and `src/settings`. |
+| `list_utilities` | List available utility classes under `src/utilities`. |
+| `get_utilities` | Return file-level details for a specific utility class. |
+| `get_variables` | Return Sass variable files and tokens (Global CSS Variables) candidates from `src/variables` and `src/settings`. |
+| `list_docs` | List available MDX documentation files under `website/src/content/docs`. |
+| `get_doc` | Read the content of a specific documentation file. |
+| `search_docs` | Search documentation files by keyword or regex pattern. |
 
 ## Initial scope
 

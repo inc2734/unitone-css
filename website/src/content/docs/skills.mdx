@@ -10,6 +10,8 @@ These skills are written as portable Markdown-first instructions so they can be 
 - `unitone-css-add-layout-primitive`
 - `unitone-css-add-behavior`
 - `unitone-css-doc-sync`
+- `unitone-css-coding-assistant`
+- `unitone-css-vision-to-code`
 
 ## Source of truth
 
