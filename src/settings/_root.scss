@@ -132,6 +132,7 @@
  * Modular scales for spaces (em based).
  */
 :root {
+  --unitone--em-3: calc((1lh - 1em) / 2);
   --unitone--em-2: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 1) });
   --unitone--em-1: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 2) });
   --unitone--em0: 0em;
@@ -144,6 +145,7 @@
   --unitone--em7: calc(max(1lh, var(--unitone--min-line-height) * 1em) / 3 * #{ list.nth(variables.$fibonacci-sequence, 9) });
 
   @supports not (top: 1lh) {
+    --unitone--em-3: calc((var(--unitone--line-height) * 1em - 1em) / 2);
     --unitone--em-2: calc(var(--unitone--line-height) * 1em / 3 * #{ list.nth(variables.$fibonacci-sequence, 1) });
     --unitone--em-1: calc(var(--unitone--line-height) * 1em / 3 * #{ list.nth(variables.$fibonacci-sequence, 2) });
     --unitone--em1: calc(var(--unitone--line-height) * 1em / 3 * #{ list.nth(variables.$fibonacci-sequence, 3) });
@@ -160,6 +162,7 @@
  * Modular scales for spaces (rem based).
  */
 :root {
+  --unitone--rem-3: calc((1rlh - 1rem) / 2);
   --unitone--rem-2: calc(1rlh / 3 * #{ list.nth(variables.$fibonacci-sequence, 1) });
   --unitone--rem-1: calc(1rlh / 3 * #{ list.nth(variables.$fibonacci-sequence, 2) });
   --unitone--rem0: 0em;
@@ -172,6 +175,7 @@
   --unitone--rem7: calc(1rlh / 3 * #{ list.nth(variables.$fibonacci-sequence, 9) });
 
   @supports not (top: 1rlh) {
+    --unitone--rem-3: calc((var(--unitone--line-height) * 1rem - 1rem) / 2);
     --unitone--rem-2: calc(var(--unitone--line-height) * 1rem / 3 * #{ list.nth(variables.$fibonacci-sequence, 1) });
     --unitone--rem-1: calc(var(--unitone--line-height) * 1rem / 3 * #{ list.nth(variables.$fibonacci-sequence, 2) });
     --unitone--rem1: calc(var(--unitone--line-height) * 1rem / 3 * #{ list.nth(variables.$fibonacci-sequence, 3) });
@@ -188,6 +192,7 @@
  * Modular scales for spaces.
  */
 :root {
+  --unitone--s-3: var(--unitone--em-3);
   --unitone--s-2: var(--unitone--em-2);
   --unitone--s-1: var(--unitone--em-1);
   --unitone--s0: var(--unitone--em0);
@@ -222,6 +227,7 @@
  * For this reason, we prepare special scales.
  */
 :root {
+  --unitone--p-3: var(--unitone--em-3);
   --unitone--p-2: var(--unitone--em-2);
   --unitone--p-1: var(--unitone--em-1);
   --unitone--p0: var(--unitone--em0);
@@ -298,6 +304,8 @@
   --unitone--color--text: #222;
   --unitone--color--text-alt: #fff; // Inversion color
   --unitone--color--text-immutable: #222; // Colors not inverted in dark mode
+
+  --unitone--color--white: #fff;
 
   --unitone--color--pale-gray: #f9fafb;
   --unitone--color--bright-gray: #f3f4f6;
