@@ -1,0 +1,111 @@
+/**
+ * This color palette is based on Tailwind.
+ * @see https://tailwindcss.com/docs/customizing-colors
+ */
+.-background-color {
+  &\:background { background-color: var(--unitone--color--background); }
+  &\:background-alt { background-color: var(--unitone--color--background-alt); }
+  &\:text { background-color: var(--unitone--color--text); }
+  &\:text-alt { background-color: var(--unitone--color--text-alt); }
+  &\:text-immutable { background-color: var(--unitone--color--text-immutable); }
+
+  &\:white { background-color: var(--unitone--color--white); }
+
+  &\:pale-gray { background-color: var(--unitone--color--pale-gray); }
+  &\:bright-gray { background-color: var(--unitone--color--bright-gray); }
+  &\:light-gray { background-color: var(--unitone--color--light-gray); }
+  &\:gray { background-color: var(--unitone--color--gray); }
+  &\:dark-gray { background-color: var(--unitone--color--dark-gray); }
+  &\:heavy-gray { background-color: var(--unitone--color--heavy-gray); }
+
+  &\:twilight-light { background-color: var(--unitone--color--twilight-light); }
+  &\:twilight { background-color: var(--unitone--color--twilight); }
+  &\:twilight-heavy { background-color: var(--unitone--color--twilight-heavy); }
+  &\:dimmed-light { background-color: var(--unitone--color--dimmed-light); }
+  &\:dimmed { background-color: var(--unitone--color--dimmed); }
+  &\:dimmed-heavy { background-color: var(--unitone--color--dimmed-heavy); }
+
+  &\:pale-red { background-color: var(--unitone--color--pale-red); }
+  &\:bright-red { background-color: var(--unitone--color--bright-red); }
+  &\:light-red { background-color: var(--unitone--color--light-red); }
+  &\:red { background-color: var(--unitone--color--red); }
+  &\:dark-red { background-color: var(--unitone--color--dark-red); }
+  &\:heavy-red { background-color: var(--unitone--color--heavy-red); }
+
+  &\:pale-orange { background-color: var(--unitone--color--pale-orange); }
+  &\:bright-orange { background-color: var(--unitone--color--bright-orange); }
+  &\:light-orange { background-color: var(--unitone--color--light-orange); }
+  &\:orange { background-color: var(--unitone--color--orange); }
+  &\:dark-orange { background-color: var(--unitone--color--dark-orange); }
+  &\:heavy-orange { background-color: var(--unitone--color--heavy-orange); }
+
+  &\:pale-yellow { background-color: var(--unitone--color--pale-yellow); }
+  &\:bright-yellow { background-color: var(--unitone--color--bright-yellow); }
+  &\:light-yellow { background-color: var(--unitone--color--light-yellow); }
+  &\:yellow { background-color: var(--unitone--color--yellow); }
+  &\:dark-yellow { background-color: var(--unitone--color--dark-yellow); }
+  &\:heavy-yellow { background-color: var(--unitone--color--heavy-yellow); }
+
+  &\:pale-lime { background-color: var(--unitone--color--pale-lime); }
+  &\:bright-lime { background-color: var(--unitone--color--bright-lime); }
+  &\:light-lime { background-color: var(--unitone--color--light-lime); }
+  &\:lime { background-color: var(--unitone--color--lime); }
+  &\:dark-lime { background-color: var(--unitone--color--dark-lime); }
+  &\:heavy-lime { background-color: var(--unitone--color--heavy-lime); }
+
+  &\:pale-green { background-color: var(--unitone--color--pale-green); }
+  &\:bright-green { background-color: var(--unitone--color--bright-green); }
+  &\:light-green { background-color: var(--unitone--color--light-green); }
+  &\:green { background-color: var(--unitone--color--green); }
+  &\:dark-green { background-color: var(--unitone--color--dark-green); }
+  &\:heavy-green { background-color: var(--unitone--color--heavy-green); }
+
+  &\:pale-teal { background-color: var(--unitone--color--pale-teal); }
+  &\:bright-teal { background-color: var(--unitone--color--bright-teal); }
+  &\:light-teal { background-color: var(--unitone--color--light-teal); }
+  &\:teal { background-color: var(--unitone--color--teal); }
+  &\:dark-teal { background-color: var(--unitone--color--dark-teal); }
+  &\:heavy-teal { background-color: var(--unitone--color--heavy-teal); }
+
+  &\:pale-cyan { background-color: var(--unitone--color--pale-cyan); }
+  &\:bright-cyan { background-color: var(--unitone--color--bright-cyan); }
+  &\:light-cyan { background-color: var(--unitone--color--light-cyan); }
+  &\:cyan { background-color: var(--unitone--color--cyan); }
+  &\:dark-cyan { background-color: var(--unitone--color--dark-cyan); }
+  &\:heavy-cyan { background-color: var(--unitone--color--heavy-cyan); }
+
+  &\:pale-blue { background-color: var(--unitone--color--pale-blue); }
+  &\:bright-blue { background-color: var(--unitone--color--bright-blue); }
+  &\:light-blue { background-color: var(--unitone--color--light-blue); }
+  &\:blue { background-color: var(--unitone--color--blue); }
+  &\:dark-blue { background-color: var(--unitone--color--dark-blue); }
+  &\:heavy-blue { background-color: var(--unitone--color--heavy-blue); }
+
+  &\:pale-indigo { background-color: var(--unitone--color--pale-indigo); }
+  &\:bright-indigo { background-color: var(--unitone--color--bright-indigo); }
+  &\:light-indigo { background-color: var(--unitone--color--light-indigo); }
+  &\:indigo { background-color: var(--unitone--color--indigo); }
+  &\:dark-indigo { background-color: var(--unitone--color--dark-indigo); }
+  &\:heavy-indigo { background-color: var(--unitone--color--heavy-indigo); }
+
+  &\:pale-violet { background-color: var(--unitone--color--pale-violet); }
+  &\:bright-violet { background-color: var(--unitone--color--bright-violet); }
+  &\:light-violet { background-color: var(--unitone--color--light-violet); }
+  &\:violet { background-color: var(--unitone--color--violet); }
+  &\:dark-violet { background-color: var(--unitone--color--dark-violet); }
+  &\:heavy-violet { background-color: var(--unitone--color--heavy-violet); }
+
+  &\:pale-purple { background-color: var(--unitone--color--pale-purple); }
+  &\:bright-purple { background-color: var(--unitone--color--bright-purple); }
+  &\:light-purple { background-color: var(--unitone--color--light-purple); }
+  &\:purple { background-color: var(--unitone--color--purple); }
+  &\:dark-purple { background-color: var(--unitone--color--dark-purple); }
+  &\:heavy-purple { background-color: var(--unitone--color--heavy-purple); }
+
+  &\:pale-pink { background-color: var(--unitone--color--pale-pink); }
+  &\:bright-pink { background-color: var(--unitone--color--bright-pink); }
+  &\:light-pink { background-color: var(--unitone--color--light-pink); }
+  &\:pink { background-color: var(--unitone--color--pink); }
+  &\:dark-pink { background-color: var(--unitone--color--dark-pink); }
+  &\:heavy-pink { background-color: var(--unitone--color--heavy-pink); }
+}

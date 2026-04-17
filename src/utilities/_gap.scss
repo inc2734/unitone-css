@@ -1,0 +1,17 @@
+@for $i from -3 through 7 {
+  .-gap\:#{ $i } { gap: var(--unitone--s#{ $i }); }
+  .-column-gap\:#{ $i } { column-gap: var(--unitone--s#{ $i }); }
+  .-row-gap\:#{ $i } { row-gap: var(--unitone--s#{ $i }); }
+}
+
+@for $i from 1 through 7 {
+  .-gap\:#{ $i }s { gap: var(--unitone--s#{ $i }s); }
+  .-column-gap\:#{ $i }s { column-gap: var(--unitone--s#{ $i }s); }
+  .-row-gap\:#{ $i }s { row-gap: var(--unitone--s#{ $i }s); }
+}
+
+@for $i from 2 through 7 {
+  .-gap\:#{ $i }m { gap: var(--unitone--s#{ $i }m); }
+  .-column-gap\:#{ $i }m { column-gap: var(--unitone--s#{ $i }m); }
+  .-row-gap\:#{ $i }m { row-gap: var(--unitone--s#{ $i }m); }
+}

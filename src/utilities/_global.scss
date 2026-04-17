@@ -1,0 +1,19 @@
+.-box-shadow {
+  box-shadow: var(--unitone--global--box-shadow);
+}
+
+.-border-radius {
+  border-radius: var(--unitone--global--border-radius);
+}
+
+.-gutters {
+  padding-inline: var(--unitone--global--gutters);
+}
+
+.-max-width\:content-size {
+  max-width: var(--unitone--measure);
+}
+
+.-max-width\:wide-size {
+  max-width: var(--unitone--container-max-width);
+}

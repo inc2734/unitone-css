@@ -9,4 +9,13 @@
 
 .preview-container * {
   @include variables.typography();
+
+  button {
+    cursor: pointer;
+  }
+
+  input[type="text"] {
+    border: 1px solid var(--unitone--color--gray);
+    width: 100%;
+  }
 }

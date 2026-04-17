@@ -105,3 +105,31 @@ figcaption {
 pre {
   text-spacing-trim: space-all;
 }
+
+:where(
+  button,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"],
+  [role="button"],
+  [role="tab"],
+  [role="switch"],
+  label,
+  select,
+  input[type="checkbox"],
+  input[type="radio"],
+  input[type="range"], /* スライダー */
+  input[type="color"], /* カラーピッカー */
+  summary
+ ) {
+  cursor: pointer;
+}
+
+:where(
+  button:disabled,
+  input:disabled,
+  select:disabled,
+  [aria-disabled="true"]
+) {
+  cursor: not-allowed;
+}

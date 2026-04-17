@@ -1,0 +1,17 @@
+@each $key, $value in (
+  -2: xs,
+  -1: s,
+  0: m,
+  1: l,
+  2: xl,
+  3: 2xl,
+  4: 3xl,
+  5: 4xl,
+  6: 5xl,
+  7: 6xl,
+  8: 7xl,
+) {
+  .-font-size\:#{ $value } {
+    --unitone--font-size: #{ $key } !important;
+  }
+}

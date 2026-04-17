@@ -1,0 +1,50 @@
+@for $i from -3 through 7 {
+  .-padding\:#{ $i } { padding: var(--unitone--p#{ $i }); }
+
+  .-padding-inline\:#{ $i } { padding-inline: var(--unitone--p#{ $i }); }
+  .-padding-inline-start\:#{ $i } { padding-inline-start: var(--unitone--p#{ $i }); }
+  .-padding-inline-end\:#{ $i } { padding-inline-end: var(--unitone--p#{ $i }); }
+
+  .-padding-block\:#{ $i } { padding-block: var(--unitone--p#{ $i }); }
+  .-padding-block-start\:#{ $i } { padding-block-start: var(--unitone--p#{ $i }); }
+  .-padding-block-end\:#{ $i } { padding-block-end: var(--unitone--p#{ $i }); }
+
+  .-padding-top\:#{ $i } { padding-top: var(--unitone--p#{ $i }); }
+  .-padding-right\:#{ $i } { padding-right: var(--unitone--p#{ $i }); }
+  .-padding-bottom\:#{ $i } { padding-bottom: var(--unitone--p#{ $i }); }
+  .-padding-left\:#{ $i } { padding-left: var(--unitone--p#{ $i }); }
+}
+
+@for $i from 1 through 7 {
+  .-padding\:#{ $i }s { padding: var(--unitone--p#{ $i }s); }
+
+  .-padding-inline\:#{ $i }s { padding-inline: var(--unitone--p#{ $i }s); }
+  .-padding-inline-start\:#{ $i }s { padding-inline-start: var(--unitone--p#{ $i }s); }
+  .-padding-inline-end\:#{ $i }s { padding-inline-end: var(--unitone--p#{ $i }s); }
+
+  .-padding-block\:#{ $i }s { padding-block: var(--unitone--p#{ $i }s); }
+  .-padding-block-start\:#{ $i }s { padding-block-start: var(--unitone--p#{ $i }s); }
+  .-padding-block-end\:#{ $i }s { padding-block-end: var(--unitone--p#{ $i }s); }
+
+  .-padding-top\:#{ $i }s { padding-top: var(--unitone--p#{ $i }s); }
+  .-padding-right\:#{ $i }s { padding-right: var(--unitone--p#{ $i }s); }
+  .-padding-bottom\:#{ $i }s { padding-bottom: var(--unitone--p#{ $i }s); }
+  .-padding-left\:#{ $i }s { padding-left: var(--unitone--p#{ $i }s); }
+}
+
+@for $i from 2 through 7 {
+  .-padding\:#{ $i }m { padding: var(--unitone--p#{ $i }m); }
+
+  .-padding-inline\:#{ $i }m { padding-inline: var(--unitone--p#{ $i }m); }
+  .-padding-inline-start\:#{ $i }m { padding-inline-start: var(--unitone--p#{ $i }m); }
+  .-padding-inline-end\:#{ $i }m { padding-inline-end: var(--unitone--p#{ $i }m); }
+
+  .-padding-block\:#{ $i }m { padding-block: var(--unitone--p#{ $i }m); }
+  .-padding-block-start\:#{ $i }m { padding-block-start: var(--unitone--p#{ $i }m); }
+  .-padding-block-end\:#{ $i }m { padding-block-end: var(--unitone--p#{ $i }m); }
+
+  .-padding-top\:#{ $i }m { padding-top: var(--unitone--p#{ $i }m); }
+  .-padding-right\:#{ $i }m { padding-right: var(--unitone--p#{ $i }m); }
+  .-padding-bottom\:#{ $i }m { padding-bottom: var(--unitone--p#{ $i }m); }
+  .-padding-left\:#{ $i }m { padding-left: var(--unitone--p#{ $i }m); }
+}

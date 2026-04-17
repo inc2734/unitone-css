@@ -1,0 +1,14 @@
+@each $value in (
+  none,
+  inline,
+  inline-block,
+  block,
+  flex,
+  grid,
+  inline-flex,
+  inline-grid,
+) {
+  .-display\:#{ $value } {
+    display: #{ $value };
+  }
+}

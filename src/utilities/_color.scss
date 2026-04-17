@@ -1,0 +1,111 @@
+/**
+ * This color palette is based on Tailwind.
+ * @see https://tailwindcss.com/docs/customizing-colors
+ */
+.-color {
+  &\:background { color: var(--unitone--color--background); }
+  &\:background-alt { color: var(--unitone--color--background-alt); }
+  &\:text { color: var(--unitone--color--text); }
+  &\:text-alt { color: var(--unitone--color--text-alt); }
+  &\:text-immutable { color: var(--unitone--color--text-immutable); }
+
+  &\:white { color: var(--unitone--color--white); }
+
+  &\:pale-gray { color: var(--unitone--color--pale-gray); }
+  &\:bright-gray { color: var(--unitone--color--bright-gray); }
+  &\:light-gray { color: var(--unitone--color--light-gray); }
+  &\:gray { color: var(--unitone--color--gray); }
+  &\:dark-gray { color: var(--unitone--color--dark-gray); }
+  &\:heavy-gray { color: var(--unitone--color--heavy-gray); }
+
+  &\:twilight-light { color: var(--unitone--color--twilight-light); }
+  &\:twilight { color: var(--unitone--color--twilight); }
+  &\:twilight-heavy { color: var(--unitone--color--twilight-heavy); }
+  &\:dimmed-light { color: var(--unitone--color--dimmed-light); }
+  &\:dimmed { color: var(--unitone--color--dimmed); }
+  &\:dimmed-heavy { color: var(--unitone--color--dimmed-heavy); }
+
+  &\:pale-red { color: var(--unitone--color--pale-red); }
+  &\:bright-red { color: var(--unitone--color--bright-red); }
+  &\:light-red { color: var(--unitone--color--light-red); }
+  &\:red { color: var(--unitone--color--red); }
+  &\:dark-red { color: var(--unitone--color--dark-red); }
+  &\:heavy-red { color: var(--unitone--color--heavy-red); }
+
+  &\:pale-orange { color: var(--unitone--color--pale-orange); }
+  &\:bright-orange { color: var(--unitone--color--bright-orange); }
+  &\:light-orange { color: var(--unitone--color--light-orange); }
+  &\:orange { color: var(--unitone--color--orange); }
+  &\:dark-orange { color: var(--unitone--color--dark-orange); }
+  &\:heavy-orange { color: var(--unitone--color--heavy-orange); }
+
+  &\:pale-yellow { color: var(--unitone--color--pale-yellow); }
+  &\:bright-yellow { color: var(--unitone--color--bright-yellow); }
+  &\:light-yellow { color: var(--unitone--color--light-yellow); }
+  &\:yellow { color: var(--unitone--color--yellow); }
+  &\:dark-yellow { color: var(--unitone--color--dark-yellow); }
+  &\:heavy-yellow { color: var(--unitone--color--heavy-yellow); }
+
+  &\:pale-lime { color: var(--unitone--color--pale-lime); }
+  &\:bright-lime { color: var(--unitone--color--bright-lime); }
+  &\:light-lime { color: var(--unitone--color--light-lime); }
+  &\:lime { color: var(--unitone--color--lime); }
+  &\:dark-lime { color: var(--unitone--color--dark-lime); }
+  &\:heavy-lime { color: var(--unitone--color--heavy-lime); }
+
+  &\:pale-green { color: var(--unitone--color--pale-green); }
+  &\:bright-green { color: var(--unitone--color--bright-green); }
+  &\:light-green { color: var(--unitone--color--light-green); }
+  &\:green { color: var(--unitone--color--green); }
+  &\:dark-green { color: var(--unitone--color--dark-green); }
+  &\:heavy-green { color: var(--unitone--color--heavy-green); }
+
+  &\:pale-teal { color: var(--unitone--color--pale-teal); }
+  &\:bright-teal { color: var(--unitone--color--bright-teal); }
+  &\:light-teal { color: var(--unitone--color--light-teal); }
+  &\:teal { color: var(--unitone--color--teal); }
+  &\:dark-teal { color: var(--unitone--color--dark-teal); }
+  &\:heavy-teal { color: var(--unitone--color--heavy-teal); }
+
+  &\:pale-cyan { color: var(--unitone--color--pale-cyan); }
+  &\:bright-cyan { color: var(--unitone--color--bright-cyan); }
+  &\:light-cyan { color: var(--unitone--color--light-cyan); }
+  &\:cyan { color: var(--unitone--color--cyan); }
+  &\:dark-cyan { color: var(--unitone--color--dark-cyan); }
+  &\:heavy-cyan { color: var(--unitone--color--heavy-cyan); }
+
+  &\:pale-blue { color: var(--unitone--color--pale-blue); }
+  &\:bright-blue { color: var(--unitone--color--bright-blue); }
+  &\:light-blue { color: var(--unitone--color--light-blue); }
+  &\:blue { color: var(--unitone--color--blue); }
+  &\:dark-blue { color: var(--unitone--color--dark-blue); }
+  &\:heavy-blue { color: var(--unitone--color--heavy-blue); }
+
+  &\:pale-indigo { color: var(--unitone--color--pale-indigo); }
+  &\:bright-indigo { color: var(--unitone--color--bright-indigo); }
+  &\:light-indigo { color: var(--unitone--color--light-indigo); }
+  &\:indigo { color: var(--unitone--color--indigo); }
+  &\:dark-indigo { color: var(--unitone--color--dark-indigo); }
+  &\:heavy-indigo { color: var(--unitone--color--heavy-indigo); }
+
+  &\:pale-violet { color: var(--unitone--color--pale-violet); }
+  &\:bright-violet { color: var(--unitone--color--bright-violet); }
+  &\:light-violet { color: var(--unitone--color--light-violet); }
+  &\:violet { color: var(--unitone--color--violet); }
+  &\:dark-violet { color: var(--unitone--color--dark-violet); }
+  &\:heavy-violet { color: var(--unitone--color--heavy-violet); }
+
+  &\:pale-purple { color: var(--unitone--color--pale-purple); }
+  &\:bright-purple { color: var(--unitone--color--bright-purple); }
+  &\:light-purple { color: var(--unitone--color--light-purple); }
+  &\:purple { color: var(--unitone--color--purple); }
+  &\:dark-purple { color: var(--unitone--color--dark-purple); }
+  &\:heavy-purple { color: var(--unitone--color--heavy-purple); }
+
+  &\:pale-pink { color: var(--unitone--color--pale-pink); }
+  &\:bright-pink { color: var(--unitone--color--bright-pink); }
+  &\:light-pink { color: var(--unitone--color--light-pink); }
+  &\:pink { color: var(--unitone--color--pink); }
+  &\:dark-pink { color: var(--unitone--color--dark-pink); }
+  &\:heavy-pink { color: var(--unitone--color--heavy-pink); }
+}

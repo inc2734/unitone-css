@@ -8,6 +8,7 @@ import 'nextra-theme-docs/style.css';
 import '../../../src/settings/_index.scss';
 import '../../../src/layout-primitives/_index.scss';
 import '../../../src/behaviors/_index.scss';
+import '../../../src/utilities/_index.scss';
 import '../../src/style.scss';
 
 export const metadata = {
