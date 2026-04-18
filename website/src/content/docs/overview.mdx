@@ -40,13 +40,57 @@ Utilities are available for small presentational adjustments such as font size, 
 
 They are intended for lightweight adjustments after checking whether a primitive prop or primitive composition would describe the layout more clearly.
 
+## Key Terms
+
+### Layout primitives
+
+Reusable layout building blocks with a single responsibility.
+
+Examples:
+
+- `stack`: provide vertical space between children
+- `cluster`: place items in a horizontal group with wrapping and gaps
+- `center`: constrain width and center content
+
+### Props
+
+Configurable values exposed by a primitive.
+
+In React, these are passed as component props such as `<Stack gap={1} />`.
+In HTML, they are expressed either as hyphen-prefixed `data-unitone-layout` attribute values such as `-gap:1`, or as CSS custom properties such as `--unitone--sidebar-width`.
+
+### Design tokens
+
+Globally defined reusable values that make up the design system.
+
+Typical tokens include spacing, font size, color, container size, border radius, and box shadow.
+
+### Utilities
+
+Simple classes that apply a specific presentational property.
+
+Use them for lightweight adjustments such as font size, padding, gap, color, background color, border radius, and box shadow after checking whether primitive props or primitive composition describe the layout more clearly.
+
+### Behaviors
+
+Optional JavaScript-assisted features that enhance a layout or presentation pattern when CSS alone is not enough.
+
+Examples include features that depend on runtime measurement, initialization, or interaction support.
+
+### `data-unitone-layout`
+
+The main HTML entry point for unitone CSS primitives and primitive options.
+
+It is used both to select a primitive, such as `stack` or `with-sidebar`, and to attach primitive options such as `-gap:1` or `-sidebar:left`.
+
 ## Implementation Priority
 
 When implementing a design with unitone CSS, follow this priority:
 
 1.  **Primitive Props**: Use the built-in props/attributes of a single primitive (e.g., `<Stack gap={1} />`).
 2.  **Primitive Composition**: Combine multiple primitives to achieve more complex layouts (e.g., nesting a `Stack` inside a `Center`).
-3.  **Custom Styles/Classes**: If the above methods cannot solve the requirement, add custom classes or inline styles.
+3.  **Utilities**: Use utility classes for small presentational adjustments when a primitive prop would be less clear.
+4.  **Custom Styles/Classes**: If the above methods cannot solve the requirement, add custom classes or inline styles.
 
 Following this priority ensures that your layout remains consistent with the unitone CSS philosophy and maintains high portability.
 
