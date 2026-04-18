@@ -9,12 +9,14 @@ Utilities are available when you load `app.css`, and they can also be loaded exp
 - `align-content`
 - `align-items`
 - `align-self`
-- `global`
-- `color`
 - `background-color`
+- `color`
 - `display`
+- `flex-direction`
+- `flex-wrap`
 - `font-size`
 - `gap`
+- `global`
 - `justify-content`
 - `justify-items`
 - `justify-self`
@@ -22,6 +24,7 @@ Utilities are available when you load `app.css`, and they can also be loaded exp
 - `overflow`
 - `padding`
 - `position`
+- `text-align`
 - `typography`
 
 ## When to use
@@ -179,6 +182,22 @@ Supported variations are the same as the gap utilities.
 
 Use these on plain wrappers or interactive elements when a full primitive is unnecessary.
 
+### `flex-direction`
+
+- `.-flex-direction:row`
+- `.-flex-direction:row-reverse`
+- `.-flex-direction:column`
+- `.-flex-direction:column-reverse`
+
+Use these on flex wrappers when you only need to change the main axis direction.
+
+### `flex-wrap`
+
+- `.-flex-wrap:wrap`
+- `.-flex-wrap:nowrap`
+
+Use these on flex wrappers when you only need to control wrapping behavior.
+
 ### `justify-content`
 
 - `.-justify-content:start`
@@ -241,6 +260,17 @@ Supported values are:
 - `.-position:absolute`
 - `.-position:fixed`
 - `.-position:sticky`
+
+### `text-align`
+
+- `.-text-align:start`
+- `.-text-align:end`
+- `.-text-align:left`
+- `.-text-align:right`
+- `.-text-align:center`
+- `.-text-align:justify`
+
+Use these on text containers when a simple alignment utility is clearer than custom CSS.
 
 ### `color`
 

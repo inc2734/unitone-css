@@ -4,6 +4,8 @@
 @use './background-color';
 @use './color';
 @use './display';
+@use './flex-direction';
+@use './flex-wrap';
 @use './font-size';
 @use './gap';
 @use './global';
@@ -14,4 +16,5 @@
 @use './overflow';
 @use './padding';
 @use './position';
+@use './text-align';
 @use './typography';

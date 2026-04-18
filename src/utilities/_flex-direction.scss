@@ -1,0 +1,10 @@
+@each $value in (
+  row,
+  row-reverse,
+  column,
+  column-reverse
+) {
+  .-flex-direction\:#{ $value } {
+    flex-direction: #{ $value };
+  }
+}

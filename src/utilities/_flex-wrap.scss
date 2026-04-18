@@ -1,0 +1,8 @@
+@each $value in (
+  wrap,
+  nowrap
+) {
+  .-flex-wrap\:#{ $value } {
+    flex-wrap: #{ $value };
+  }
+}
