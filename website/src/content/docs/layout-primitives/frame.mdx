@@ -1,6 +1,6 @@
 import { Frame } from '@inc2734/unitone-css/layout-primitives/frame/react';
 import { Tabs } from 'nextra/components';
-import { PreviewConainer, Badge } from '../../../components';
+import { PreviewConainer, Badge, DummyImage } from '../../../components';
 
 # Frame
 
@@ -11,7 +11,7 @@ Overflow is cropped so images and videos fit cleanly within the frame.
 
 <PreviewConainer>
 	<Frame>
-		<img src="https://placehold.jp/1000x1000.jpg" alt="" />
+		<DummyImage />
 	</Frame>
 </PreviewConainer>
 
@@ -19,7 +19,7 @@ Overflow is cropped so images and videos fit cleanly within the frame.
 	<Tabs.Tab>
 		```html
 		<div data-unitone-layout="frame">
-			<img src="https://placehold.jp/1000x1000.jpg" alt="" style="width: 100%" />
+			<img src="..." alt="" style="width: 100%" />
 		</div>
 		```
 	</Tabs.Tab>
@@ -28,7 +28,7 @@ Overflow is cropped so images and videos fit cleanly within the frame.
 		import { Frame } from '@inc2734/unitone-css/layout-primitives/frame/react';
 
 		<Frame>
-			<img src="https://placehold.jp/1000x1000.jpg" alt="" />
+			<img src="..." alt="" />
 		</Frame>
 		```
 	</Tabs.Tab>
@@ -44,7 +44,7 @@ Aspect ratio.
 	<Tabs.Tab>
 		```html
 		<div data-unitone-layout="frame" style="--unitone--ratio: 4/3">
-			<img src="https://placehold.jp/1000x1000.jpg" alt="" style="width: 100%" />
+			<img src="..." alt="" style="width: 100%" />
 		</div>
 		```
 	</Tabs.Tab>
@@ -53,14 +53,14 @@ Aspect ratio.
 		import { Frame } from '@inc2734/unitone-css/layout-primitives/frame/react';
 
 		<Frame ratio="4/3">
-			<img src="https://placehold.jp/1000x1000.jpg" alt="" />
+			<img src="..." alt="" />
 		</Frame>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		<PreviewConainer>
 			<Frame ratio="4/3">
-				<img src="https://placehold.jp/1000x1000.jpg" alt="" />
+				<DummyImage />
 			</Frame>
 		</PreviewConainer>
 	</Tabs.Tab>
@@ -74,7 +74,7 @@ Switch aspect ratio when portrait and mobile width.
 	<Tabs.Tab>
 		```html
 		<div data-unitone-layout="frame -switch">
-			<img src="https://placehold.jp/1000x1000.jpg" alt="" style="width: 100%" />
+			<img src="..." alt="" style="width: 100%" />
 		</div>
 		```
 	</Tabs.Tab>
@@ -83,14 +83,14 @@ Switch aspect ratio when portrait and mobile width.
 		import { Frame } from '@inc2734/unitone-css/layout-primitives/frame/react';
 
 		<Frame switchRatio>
-			<img src="https://placehold.jp/1000x1000.jpg" alt="" />
+			<img src="..." alt="" />
 		</Frame>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		<PreviewConainer>
 			<Frame switchRatio>
-				<img src="https://placehold.jp/1000x1000.jpg" alt="" />
+				<DummyImage />
 			</Frame>
 		</PreviewConainer>
 	</Tabs.Tab>

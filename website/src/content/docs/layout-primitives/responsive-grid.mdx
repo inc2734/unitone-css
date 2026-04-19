@@ -1,6 +1,6 @@
 import { ResponsiveGrid } from '@inc2734/unitone-css/layout-primitives/responsive-grid/react';
 import { Tabs } from 'nextra/components';
-import { PreviewConainer, Badge } from '../../../components';
+import { PreviewConainer, Badge, DummyImage } from '../../../components';
 
 # Responsive Grid
 
@@ -11,9 +11,9 @@ Use it when you want card-like items to wrap into a simple grid without writing 
 
 <PreviewConainer>
 	<ResponsiveGrid>
-		<img src="https://placehold.jp/400x300.jpg" alt="" />
-		<img src="https://placehold.jp/400x300.jpg" alt="" />
-		<img src="https://placehold.jp/400x300.jpg" alt="" />
+		<DummyImage />
+		<DummyImage />
+		<DummyImage />
 	</ResponsiveGrid>
 </PreviewConainer>
 
@@ -21,9 +21,9 @@ Use it when you want card-like items to wrap into a simple grid without writing 
 	<Tabs.Tab>
 		```html
 		<div data-unitone-layout="responsive-grid">
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
 		</div>
 		```
 	</Tabs.Tab>
@@ -32,9 +32,9 @@ Use it when you want card-like items to wrap into a simple grid without writing 
 		import { ResponsiveGrid } from '@inc2734/unitone-css/layout-primitives/responsive-grid/react';
 
 		<ResponsiveGrid>
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
 		</ResponsiveGrid>
 		```
 	</Tabs.Tab>
@@ -54,9 +54,9 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 	<Tabs.Tab>
 		```html
 		<div data-unitone-layout="responsive-grid -gap:-2">
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
 		</div>
 		```
 	</Tabs.Tab>
@@ -65,18 +65,18 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 		import { ResponsiveGrid } from '@inc2734/unitone-css/layout-primitives/responsive-grid/react';
 
 		<ResponsiveGrid gap={-2}>
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
 		</ResponsiveGrid>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		<PreviewConainer>
 			<ResponsiveGrid gap={-2}>
-				<img src="https://placehold.jp/400x300.jpg" alt="" />
-				<img src="https://placehold.jp/400x300.jpg" alt="" />
-				<img src="https://placehold.jp/400x300.jpg" alt="" />
+				<DummyImage />
+				<DummyImage />
+				<DummyImage />
 			</ResponsiveGrid>
 		</PreviewConainer>
 	</Tabs.Tab>
@@ -90,9 +90,9 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 	<Tabs.Tab>
 		```html
 		<div data-unitone-layout="responsive-grid -auto-repeat:auto-fill">
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
 		</div>
 		```
 	</Tabs.Tab>
@@ -101,18 +101,18 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 		import { ResponsiveGrid } from '@inc2734/unitone-css/layout-primitives/responsive-grid/react';
 
 		<ResponsiveGrid autoRepeat="auto-fill">
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
 		</ResponsiveGrid>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		<PreviewConainer>
 			<ResponsiveGrid autoRepeat="auto-fill">
-				<img src="https://placehold.jp/400x300.jpg" alt="" />
-				<img src="https://placehold.jp/400x300.jpg" alt="" />
-				<img src="https://placehold.jp/400x300.jpg" alt="" />
+				<DummyImage />
+				<DummyImage />
+				<DummyImage />
 			</ResponsiveGrid>
 		</PreviewConainer>
 	</Tabs.Tab>
@@ -126,9 +126,9 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 	<Tabs.Tab>
 		```html
 		<div data-unitone-layout="responsive-grid" style="--unitone--column-min-width: 100px">
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
 		</div>
 		```
 	</Tabs.Tab>
@@ -137,18 +137,18 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 		import { ResponsiveGrid } from '@inc2734/unitone-css/layout-primitives/responsive-grid/react';
 
 		<ResponsiveGrid columnMinWidth="100px">
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
 		</ResponsiveGrid>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		<PreviewConainer>
 			<ResponsiveGrid columnMinWidth="100px">
-				<img src="https://placehold.jp/400x300.jpg" alt="" />
-				<img src="https://placehold.jp/400x300.jpg" alt="" />
-				<img src="https://placehold.jp/400x300.jpg" alt="" />
+				<DummyImage />
+				<DummyImage />
+				<DummyImage />
 			</ResponsiveGrid>
 		</PreviewConainer>
 	</Tabs.Tab>
@@ -162,9 +162,9 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 	<Tabs.Tab>
 		```html
 		<div data-unitone-layout="responsive-grid -divider:stripe">
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
 		</div>
 		```
 	</Tabs.Tab>
@@ -173,18 +173,18 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 		import { ResponsiveGrid } from '@inc2734/unitone-css/layout-primitives/responsive-grid/react';
 
 		<ResponsiveGrid divider="stripe">
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
 		</ResponsiveGrid>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		<PreviewConainer>
 			<ResponsiveGrid divider="stripe">
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+				<div><DummyImage /></div>
+				<div><DummyImage /></div>
+				<div><DummyImage /></div>
 			</ResponsiveGrid>
 		</PreviewConainer>
 	</Tabs.Tab>
@@ -196,9 +196,9 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 	<Tabs.Tab>
 		```html
 		<div data-unitone-layout="responsive-grid -divider:stripe-vertical">
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
 		</div>
 		```
 	</Tabs.Tab>
@@ -207,18 +207,18 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 		import { ResponsiveGrid } from '@inc2734/unitone-css/layout-primitives/responsive-grid/react';
 
 		<ResponsiveGrid divider="stripe-vertical">
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
 		</ResponsiveGrid>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		<PreviewConainer>
 			<ResponsiveGrid divider="stripe-vertical">
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+				<div><DummyImage /></div>
+				<div><DummyImage /></div>
+				<div><DummyImage /></div>
 			</ResponsiveGrid>
 		</PreviewConainer>
 	</Tabs.Tab>
@@ -230,9 +230,9 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 	<Tabs.Tab>
 		```html
 		<div data-unitone-layout="responsive-grid -divider:divide-vertical">
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
 		</div>
 		```
 	</Tabs.Tab>
@@ -241,18 +241,18 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 		import { ResponsiveGrid } from '@inc2734/unitone-css/layout-primitives/responsive-grid/react';
 
 		<ResponsiveGrid divider="divide-vertical">
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
 		</ResponsiveGrid>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		<PreviewConainer>
 			<ResponsiveGrid divider="divide-vertical">
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+				<div><DummyImage /></div>
+				<div><DummyImage /></div>
+				<div><DummyImage /></div>
 			</ResponsiveGrid>
 		</PreviewConainer>
 	</Tabs.Tab>
@@ -264,9 +264,9 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 	<Tabs.Tab>
 		```html
 		<div data-unitone-layout="responsive-grid -divider:underline">
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
 		</div>
 		```
 	</Tabs.Tab>
@@ -275,18 +275,18 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 		import { ResponsiveGrid } from '@inc2734/unitone-css/layout-primitives/responsive-grid/react';
 
 		<ResponsiveGrid divider="underline">
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
 		</ResponsiveGrid>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		<PreviewConainer>
 			<ResponsiveGrid divider="underline">
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+				<div><DummyImage /></div>
+				<div><DummyImage /></div>
+				<div><DummyImage /></div>
 			</ResponsiveGrid>
 		</PreviewConainer>
 	</Tabs.Tab>
@@ -298,9 +298,9 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 	<Tabs.Tab>
 		```html
 		<div data-unitone-layout="responsive-grid -divider:bordered">
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
 		</div>
 		```
 	</Tabs.Tab>
@@ -309,18 +309,18 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 		import { ResponsiveGrid } from '@inc2734/unitone-css/layout-primitives/responsive-grid/react';
 
 		<ResponsiveGrid divider="bordered">
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
 		</ResponsiveGrid>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		<PreviewConainer>
 			<ResponsiveGrid divider="bordered">
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+				<div><DummyImage /></div>
+				<div><DummyImage /></div>
+				<div><DummyImage /></div>
 			</ResponsiveGrid>
 		</PreviewConainer>
 	</Tabs.Tab>
@@ -338,10 +338,10 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 	<Tabs.Tab>
 		```html
 		<div data-unitone-layout="responsive-grid -stairs:1">
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
 		</div>
 		```
 	</Tabs.Tab>
@@ -350,20 +350,20 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 		import { ResponsiveGrid } from '@inc2734/unitone-css/layout-primitives/responsive-grid/react';
 
 		<ResponsiveGrid stairs={1}>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
 		</ResponsiveGrid>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		<PreviewConainer>
 			<ResponsiveGrid stairs={1}>
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+				<div><DummyImage /></div>
+				<div><DummyImage /></div>
+				<div><DummyImage /></div>
+				<div><DummyImage /></div>
 			</ResponsiveGrid>
 		</PreviewConainer>
 	</Tabs.Tab>
@@ -381,10 +381,10 @@ The direction of stairs. Default is `left`.
 	<Tabs.Tab>
 		```html
 		<div data-unitone-layout="responsive-grid -stairs:1 -stairs-up:left" style="--unitone--column-min-width: 160px">
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
 		</div>
 		```
 	</Tabs.Tab>
@@ -393,20 +393,20 @@ The direction of stairs. Default is `left`.
 		import { ResponsiveGrid } from '@inc2734/unitone-css/layout-primitives/responsive-grid/react';
 
 		<ResponsiveGrid stairs={1} stairsUp="left" columnMinWidth="160px">
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
 		</ResponsiveGrid>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		<PreviewConainer>
 			<ResponsiveGrid stairs={1} stairsUp="left" columnMinWidth="160px">
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+				<div><DummyImage /></div>
+				<div><DummyImage /></div>
+				<div><DummyImage /></div>
+				<div><DummyImage /></div>
 			</ResponsiveGrid>
 		</PreviewConainer>
 	</Tabs.Tab>
@@ -418,10 +418,10 @@ The direction of stairs. Default is `left`.
 	<Tabs.Tab>
 		```html
 		<div data-unitone-layout="responsive-grid -stairs:1 -stairs-up:right" style="--unitone--column-min-width: 160px">
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
 		</div>
 		```
 	</Tabs.Tab>
@@ -430,20 +430,20 @@ The direction of stairs. Default is `left`.
 		import { ResponsiveGrid } from '@inc2734/unitone-css/layout-primitives/responsive-grid/react';
 
 		<ResponsiveGrid stairs={1} stairsUp="right" columnMinWidth="160px">
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
 		</ResponsiveGrid>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		<PreviewConainer>
 			<ResponsiveGrid stairs={1} stairsUp="right" columnMinWidth="160px">
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+				<div><DummyImage /></div>
+				<div><DummyImage /></div>
+				<div><DummyImage /></div>
+				<div><DummyImage /></div>
 			</ResponsiveGrid>
 		</PreviewConainer>
 	</Tabs.Tab>
@@ -455,10 +455,10 @@ The direction of stairs. Default is `left`.
 	<Tabs.Tab>
 		```html
 		<div data-unitone-layout="responsive-grid -stairs:1 -stairs-up:up-down" style="--unitone--column-min-width: 160px">
-			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
 		</div>
 		```
 	</Tabs.Tab>
@@ -467,20 +467,20 @@ The direction of stairs. Default is `left`.
 		import { ResponsiveGrid } from '@inc2734/unitone-css/layout-primitives/responsive-grid/react';
 
 		<ResponsiveGrid stairs={1} stairsUp="up-down" columnMinWidth="160px">
-			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
 		</ResponsiveGrid>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		<PreviewConainer>
 			<ResponsiveGrid stairs={1} stairsUp="up-down" columnMinWidth="160px">
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
-				<div><img src="https://placehold.jp/400x300.jpg" alt="" /></div>
+				<div><DummyImage /></div>
+				<div><DummyImage /></div>
+				<div><DummyImage /></div>
+				<div><DummyImage /></div>
 			</ResponsiveGrid>
 		</PreviewConainer>
 	</Tabs.Tab>
@@ -492,10 +492,10 @@ The direction of stairs. Default is `left`.
 	<Tabs.Tab>
 		```html
 		<div data-unitone-layout="responsive-grid -stairs:1 -stairs-up:down-up" style="--unitone--column-min-width: 160px">
-			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
 		</div>
 		```
 	</Tabs.Tab>
@@ -504,20 +504,20 @@ The direction of stairs. Default is `left`.
 		import { ResponsiveGrid } from '@inc2734/unitone-css/layout-primitives/responsive-grid/react';
 
 		<ResponsiveGrid stairs={1} stairsUp="down-up" columnMinWidth="160px">
-			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
-			<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
+			<div><img src="..." alt="" /></div>
 		</ResponsiveGrid>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		<PreviewConainer>
 			<ResponsiveGrid stairs={1} stairsUp="down-up" columnMinWidth="160px">
-				<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
-				<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
-				<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
-				<div><img src="https://placehold.jp/200x160.jpg" alt="" /></div>
+				<div><DummyImage /></div>
+				<div><DummyImage /></div>
+				<div><DummyImage /></div>
+				<div><DummyImage /></div>
 			</ResponsiveGrid>
 		</PreviewConainer>
 	</Tabs.Tab>

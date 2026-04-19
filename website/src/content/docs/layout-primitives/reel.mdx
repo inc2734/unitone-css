@@ -1,6 +1,6 @@
 import { Reel } from '@inc2734/unitone-css/layout-primitives/reel/react';
 import { Tabs } from 'nextra/components';
-import { PreviewConainer, Badge } from '../../../components';
+import { PreviewConainer, Badge, DummyImage } from '../../../components';
 
 # Reel
 
@@ -10,9 +10,9 @@ Displays child elements in a simple horizontal scroll.
 
 <PreviewConainer>
 	<Reel>
-		<img src="https://placehold.jp/400x300.jpg" alt="" />
-		<img src="https://placehold.jp/400x300.jpg" alt="" />
-		<img src="https://placehold.jp/400x300.jpg" alt="" />
+		<DummyImage />
+		<DummyImage />
+		<DummyImage />
 	</Reel>
 </PreviewConainer>
 
@@ -20,9 +20,9 @@ Displays child elements in a simple horizontal scroll.
 	<Tabs.Tab>
 		```html
 		<div data-unitone-layout="reel">
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
 		</div>
 		```
 	</Tabs.Tab>
@@ -31,9 +31,9 @@ Displays child elements in a simple horizontal scroll.
 		import { Reel } from '@inc2734/unitone-css/layout-primitives/reel/react';
 
 		<Reel>
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
 		</Reel>
 		```
 	</Tabs.Tab>
@@ -65,9 +65,9 @@ Hide bar.
 	<Tabs.Tab>
 		<PreviewConainer>
 			<Reel noBar>
-				<img src="https://placehold.jp/400x300.jpg" alt="" />
-				<img src="https://placehold.jp/400x300.jpg" alt="" />
-				<img src="https://placehold.jp/400x300.jpg" alt="" />
+				<DummyImage />
+				<DummyImage />
+				<DummyImage />
 			</Reel>
 		</PreviewConainer>
 	</Tabs.Tab>
@@ -101,9 +101,9 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 	<Tabs.Tab>
 		<PreviewConainer>
 			<Reel gap={-2}>
-				<img src="https://placehold.jp/400x300.jpg" alt="" />
-				<img src="https://placehold.jp/400x300.jpg" alt="" />
-				<img src="https://placehold.jp/400x300.jpg" alt="" />
+				<DummyImage />
+				<DummyImage />
+				<DummyImage />
 			</Reel>
 		</PreviewConainer>
 	</Tabs.Tab>
@@ -133,9 +133,9 @@ Height.
 	<Tabs.Tab>
 		<PreviewConainer>
 			<Reel height="250px">
-				<img src="https://placehold.jp/400x300.jpg" alt="" />
-				<img src="https://placehold.jp/400x300.jpg" alt="" />
-				<img src="https://placehold.jp/400x300.jpg" alt="" />
+				<DummyImage />
+				<DummyImage />
+				<DummyImage />
 			</Reel>
 		</PreviewConainer>
 	</Tabs.Tab>
@@ -165,9 +165,9 @@ Height.
 	<Tabs.Tab>
 		<PreviewConainer>
 			<Reel itemWidth="250px">
-				<img src="https://placehold.jp/400x300.jpg" alt="" />
-				<img src="https://placehold.jp/400x300.jpg" alt="" />
-				<img src="https://placehold.jp/400x300.jpg" alt="" />
+				<DummyImage />
+				<DummyImage />
+				<DummyImage />
 			</Reel>
 		</PreviewConainer>
 	</Tabs.Tab>

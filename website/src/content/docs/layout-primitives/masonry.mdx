@@ -1,6 +1,6 @@
 import { Masonry } from '@inc2734/unitone-css/layout-primitives/masonry/react';
 import { Tabs } from 'nextra/components';
-import { PreviewConainer, Badge } from '../../../components';
+import { PreviewConainer, Badge, DummyImage } from '../../../components';
 
 # Masonry
 
@@ -10,16 +10,16 @@ Elements of different sizes are laid out without gaps.
 
 <PreviewConainer>
 	<Masonry>
-		<img src="https://placehold.jp/400x300.jpg" alt="" />
-		<img src="https://placehold.jp/300x400.jpg" alt="" />
-		<img src="https://placehold.jp/400x600.jpg" alt="" />
-		<img src="https://placehold.jp/600x800.jpg" alt="" />
-		<img src="https://placehold.jp/1024x640.jpg" alt="" />
-		<img src="https://placehold.jp/300x400.jpg" alt="" />
-		<img src="https://placehold.jp/1024x768.jpg" alt="" />
-		<img src="https://placehold.jp/1024x768.jpg" alt="" />
-		<img src="https://placehold.jp/400x300.jpg" alt="" />
-		<img src="https://placehold.jp/800x800.jpg" alt="" />
+		<DummyImage style={{aspectRatio: '3/4', objectFit: 'cover'}} />
+		<DummyImage />
+		<DummyImage />
+		<DummyImage />
+		<DummyImage style={{aspectRatio: '3/4', objectFit: 'cover'}} />
+		<DummyImage />
+		<DummyImage />
+		<DummyImage />
+		<DummyImage />
+		<DummyImage />
 	</Masonry>
 </PreviewConainer>
 
@@ -27,16 +27,16 @@ Elements of different sizes are laid out without gaps.
 	<Tabs.Tab>
 		```html
 		<div data-unitone-layout="masonry">
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
-			<img src="https://placehold.jp/300x400.jpg" alt="" />
-			<img src="https://placehold.jp/400x600.jpg" alt="" />
-			<img src="https://placehold.jp/600x800.jpg" alt="" />
-			<img src="https://placehold.jp/1024x640.jpg" alt="" />
-			<img src="https://placehold.jp/300x400.jpg" alt="" />
-			<img src="https://placehold.jp/1024x768.jpg" alt="" />
-			<img src="https://placehold.jp/1024x768.jpg" alt="" />
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
-			<img src="https://placehold.jp/800x800.jpg" alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
 		</div>
 		```
 	</Tabs.Tab>
@@ -45,16 +45,16 @@ Elements of different sizes are laid out without gaps.
 		import { Masonry } from '@inc2734/unitone-css/layout-primitives/masonry/react';
 
 		<Masonry>
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
-			<img src="https://placehold.jp/300x400.jpg" alt="" />
-			<img src="https://placehold.jp/400x600.jpg" alt="" />
-			<img src="https://placehold.jp/600x800.jpg" alt="" />
-			<img src="https://placehold.jp/1024x640.jpg" alt="" />
-			<img src="https://placehold.jp/300x400.jpg" alt="" />
-			<img src="https://placehold.jp/1024x768.jpg" alt="" />
-			<img src="https://placehold.jp/1024x768.jpg" alt="" />
-			<img src="https://placehold.jp/400x300.jpg" alt="" />
-			<img src="https://placehold.jp/800x800.jpg" alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
 		</Masonry>
 		```
 	</Tabs.Tab>
@@ -90,16 +90,16 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 	<Tabs.Tab>
 		<PreviewConainer>
 			<Masonry gap={1}>
-				<img src="https://placehold.jp/400x300.jpg" alt="" />
-				<img src="https://placehold.jp/300x400.jpg" alt="" />
-				<img src="https://placehold.jp/400x600.jpg" alt="" />
-				<img src="https://placehold.jp/600x800.jpg" alt="" />
-				<img src="https://placehold.jp/1024x640.jpg" alt="" />
-				<img src="https://placehold.jp/300x400.jpg" alt="" />
-				<img src="https://placehold.jp/1024x768.jpg" alt="" />
-				<img src="https://placehold.jp/1024x768.jpg" alt="" />
-				<img src="https://placehold.jp/400x300.jpg" alt="" />
-				<img src="https://placehold.jp/800x800.jpg" alt="" />
+				<DummyImage style={{aspectRatio: '3/4', objectFit: 'cover'}} />
+				<DummyImage />
+				<DummyImage />
+				<DummyImage />
+				<DummyImage style={{aspectRatio: '3/4', objectFit: 'cover'}} />
+				<DummyImage />
+				<DummyImage />
+				<DummyImage />
+				<DummyImage />
+				<DummyImage />
 			</Masonry>
 		</PreviewConainer>
 	</Tabs.Tab>
@@ -131,16 +131,16 @@ Column width.
 	<Tabs.Tab>
 		<PreviewConainer>
 			<Masonry columnWidth="250px">
-				<img src="https://placehold.jp/400x300.jpg" alt="" />
-				<img src="https://placehold.jp/300x400.jpg" alt="" />
-				<img src="https://placehold.jp/400x600.jpg" alt="" />
-				<img src="https://placehold.jp/600x800.jpg" alt="" />
-				<img src="https://placehold.jp/1024x640.jpg" alt="" />
-				<img src="https://placehold.jp/300x400.jpg" alt="" />
-				<img src="https://placehold.jp/1024x768.jpg" alt="" />
-				<img src="https://placehold.jp/1024x768.jpg" alt="" />
-				<img src="https://placehold.jp/400x300.jpg" alt="" />
-				<img src="https://placehold.jp/800x800.jpg" alt="" />
+				<DummyImage style={{aspectRatio: '3/4', objectFit: 'cover'}} />
+				<DummyImage />
+				<DummyImage />
+				<DummyImage />
+				<DummyImage style={{aspectRatio: '3/4', objectFit: 'cover'}} />
+				<DummyImage />
+				<DummyImage />
+				<DummyImage />
+				<DummyImage />
+				<DummyImage />
 			</Masonry>
 		</PreviewConainer>
 	</Tabs.Tab>

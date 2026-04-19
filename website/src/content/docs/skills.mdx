@@ -107,3 +107,5 @@ The install script copies skills directly from `packages/skills/` into the targe
 - Push deep reference material into `references/` only when needed.
 - Prefer deterministic helpers or MCP tools over free-form inference.
 - Ignore `dist`.
+
+For screenshot-to-code skills, local `references/` files are recommended when they help make primitive selection or token approximation more deterministic.

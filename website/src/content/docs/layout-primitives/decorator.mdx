@@ -1,7 +1,7 @@
 import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
 import { Layers } from '@inc2734/unitone-css/layout-primitives/layers/react';
 import { Tabs } from 'nextra/components';
-import { PreviewConainer, Badge } from '../../../components';
+import { PreviewConainer, Badge, DummyImage } from '../../../components';
 
 # Decorator
 
@@ -712,7 +712,7 @@ Backdrop filter.
 	<Tabs.Tab>
 		```html
 		<div data-unitone-layout="layers" -cover>
-			<img src="https://placehold.jp/1024x768.jpg" alt="" />
+			<img src="..." alt="" />
 
 			<div data-unitone-layout="decorator" style="--unitone--backdrop-filter: blur(6px)">
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
@@ -726,7 +726,7 @@ Backdrop filter.
 		import { Layers } from '@inc2734/unitone-css/layout-primitives/layers/react';
 
 		<Layers cover>
-			<img src="https://placehold.jp/1024x768.jpg" alt="" />
+			<img src="..." alt="" />
 
 			<Decorator backdropFilter="blur(6px)">
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
@@ -737,7 +737,7 @@ Backdrop filter.
 	<Tabs.Tab>
 		<PreviewConainer>
 			<Layers cover>
-				<img src="https://placehold.jp/1024x768.jpg" alt="" />
+				<DummyImage />
 
 				<Decorator backdropFilter="blur(6px)">
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
@@ -759,7 +759,7 @@ Progressive backdrop filter.
 	<Tabs.Tab>
 		```html
 		<div data-unitone-layout="layers" -cover>
-			<img src="https://placehold.jp/1024x768.jpg" alt="" />
+			<img src="..." alt="" />
 
 			<div data-unitone-layout="decorator -progressiveBackdropFilter" style="--unitone--backdrop-filter: blur(6px); --unitone--progressive-backdrop-filter-angle: 180deg; --unitone--progressive-backdrop-filter-start: 50%">
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
@@ -773,7 +773,7 @@ Progressive backdrop filter.
 		import { Layers } from '@inc2734/unitone-css/layout-primitives/layers/react';
 
 		<Layers cover>
-			<img src="https://placehold.jp/1024x768.jpg" alt="" />
+			<img src="..." alt="" />
 
 			<Decorator backdropFilter="blur(6px)" progressiveBackdropFilter progressiveBackdropFilterAngle="180deg" progressiveBackdropFilterStart="50%">
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
@@ -784,7 +784,7 @@ Progressive backdrop filter.
 	<Tabs.Tab>
 		<PreviewConainer>
 			<Layers cover>
-				<img src="https://placehold.jp/1024x768.jpg" alt="" />
+				<DummyImage />
 
 				<Decorator backdropFilter="blur(6px)" progressiveBackdropFilter progressiveBackdropFilterAngle="180deg" progressiveBackdropFilterStart="50%">
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill

@@ -1,6 +1,6 @@
 import { Float } from '@inc2734/unitone-css/layout-primitives/float/react';
 import { Tabs } from 'nextra/components';
-import { PreviewConainer, Badge } from '../../../components';
+import { PreviewConainer, Badge, DummyImage } from '../../../components';
 
 # Float
 
@@ -9,7 +9,7 @@ The Float places an element on the left or right side of its container, allowing
 ## Usage
 
 <PreviewConainer>
-	<Float><img src="https://placehold.jp/400x300.jpg" alt="" style={{ width: '100%' }} /></Float>
+	<Float><DummyImage style={{ width: '100%' }} /></Float>
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
 </PreviewConainer>
 
@@ -17,7 +17,7 @@ The Float places an element on the left or right side of its container, allowing
 	<Tabs.Tab>
 		```html
 		<div>
-			<div data-unitone-layout="float"><img src="https://placehold.jp/400x300.jpg" alt="" style="width: 100%" /></div>
+			<div data-unitone-layout="float"><img src="..." alt="" style="width: 100%" /></div>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
 		</div>
 		```
@@ -27,7 +27,7 @@ The Float places an element on the left or right side of its container, allowing
 		import { Float } from '@inc2734/unitone-css/layout-primitives/float/react';
 
 		<div>
-			<Float><img src="https://placehold.jp/400x300.jpg" alt="" style={{ width: '100%' }} /></Float>
+			<Float><img src="..." alt="" style={{ width: '100%' }} /></Float>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
 		</div>
 		```
@@ -46,7 +46,7 @@ Change floating position.
 	<Tabs.Tab>
 		```html
 		<div>
-			<div data-unitone-layout="float -position:right"><img src="https://placehold.jp/400x300.jpg" alt="" style="width: 100%" /></div>
+			<div data-unitone-layout="float -position:right"><img src="..." alt="" style="width: 100%" /></div>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
 		</div>
 		```
@@ -56,14 +56,14 @@ Change floating position.
 		import { Float } from '@inc2734/unitone-css/layout-primitives/float/react';
 
 		<div>
-			<Float position="right"><img src="https://placehold.jp/400x300.jpg" alt="" style={{ width: '100%' }} /></Float>
+			<Float position="right"><img src="..." alt="" style={{ width: '100%' }} /></Float>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
 		</div>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		<PreviewConainer>
-			<Float position="right"><img src="https://placehold.jp/400x300.jpg" alt="" style={{ width: '100%' }} /></Float>
+			<Float position="right"><DummyImage style={{ width: '100%' }} /></Float>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
 		</PreviewConainer>
 	</Tabs.Tab>
@@ -81,7 +81,7 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 	<Tabs.Tab>
 		```html
 		<div>
-			<div data-unitone-layout="float -gap:-2"><img src="https://placehold.jp/400x300.jpg" alt="" style="width: 100%" /></div>
+			<div data-unitone-layout="float -gap:-2"><img src="..." alt="" style="width: 100%" /></div>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
 		</div>
 		```
@@ -91,14 +91,14 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 		import { Float } from '@inc2734/unitone-css/layout-primitives/float/react';
 
 		<div>
-			<Float gap={-2}><img src="https://placehold.jp/400x300.jpg" alt="" style={{ width: '100%' }} /></Float>
+			<Float gap={-2}><img src="..." alt="" style={{ width: '100%' }} /></Float>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
 		</div>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		<PreviewConainer>
-			<Float gap={-2}><img src="https://placehold.jp/400x300.jpg" alt="" style={{ width: '100%' }} /></Float>
+			<Float gap={-2}><DummyImage style={{ width: '100%' }} /></Float>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
 		</PreviewConainer>
 	</Tabs.Tab>
@@ -113,7 +113,7 @@ Min width of the floating item.
 	<Tabs.Tab>
 		```html
 		<div>
-			<div data-unitone-layout="float" style="--unitone--min-width: 400px"><img src="https://placehold.jp/400x300.jpg" alt="" style="width: 100%" /></div>
+			<div data-unitone-layout="float" style="--unitone--min-width: 400px"><img src="..." alt="" style="width: 100%" /></div>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
 		</div>
 		```
@@ -123,14 +123,14 @@ Min width of the floating item.
 		import { Float } from '@inc2734/unitone-css/layout-primitives/float/react';
 
 		<div>
-			<Float minWidth="400px"><img src="https://placehold.jp/400x300.jpg" alt="" style={{ width: '100%' }} /></Float>
+			<Float minWidth="400px"><img src="..." alt="" style={{ width: '100%' }} /></Float>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
 		</div>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		<PreviewConainer>
-			<Float minWidth="400px"><img src="https://placehold.jp/400x300.jpg" alt="" style={{ width: '100%' }} /></Float>
+			<Float minWidth="400px"><DummyImage style={{ width: '100%' }} /></Float>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
 		</PreviewConainer>
 	</Tabs.Tab>
@@ -144,7 +144,7 @@ Min width of the item following the floating item.
 	<Tabs.Tab>
 		```html
 		<div>
-			<div data-unitone-layout="float" style="--unitone--min-measure: 400px"><img src="https://placehold.jp/400x300.jpg" alt="" style="width: 100%" /></div>
+			<div data-unitone-layout="float" style="--unitone--min-measure: 400px"><img src="..." alt="" style="width: 100%" /></div>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
 		</div>
 		```
@@ -154,14 +154,14 @@ Min width of the item following the floating item.
 		import { Float } from '@inc2734/unitone-css/layout-primitives/float/react';
 
 		<div>
-			<Float minMeasure="400px"><img src="https://placehold.jp/400x300.jpg" alt="" style={{ width: '100%' }} /></Float>
+			<Float minMeasure="400px"><img src="..." alt="" style={{ width: '100%' }} /></Float>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
 		</div>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		<PreviewConainer>
-			<Float minMeasure="400px"><img src="https://placehold.jp/400x300.jpg" alt="" style={{ width: '100%' }} /></Float>
+			<Float minMeasure="400px"><DummyImage style={{ width: '100%' }} /></Float>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
 		</PreviewConainer>
 	</Tabs.Tab>

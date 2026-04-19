@@ -1,6 +1,6 @@
 import { Marquee } from '@inc2734/unitone-css/layout-primitives/marquee/react';
 import { Tabs } from 'nextra/components';
-import { PreviewConainer, Badge } from '../../../components';
+import { PreviewConainer, Badge, DummyImage } from '../../../components';
 
 # Marquee
 
@@ -18,11 +18,11 @@ import '@inc2734/unitone-css/layout-primitives/marquee/behavior';
 
 <PreviewConainer>
 	<Marquee>
-		<img src="https://placehold.jp/100x60.jpg" alt="" />
-		<img src="https://placehold.jp/100x60.jpg" alt="" />
-		<img src="https://placehold.jp/100x60.jpg" alt="" />
-		<img src="https://placehold.jp/100x60.jpg" alt="" />
-		<img src="https://placehold.jp/100x60.jpg" alt="" />
+		<DummyImage width="200" />
+		<DummyImage width="200" />
+		<DummyImage width="200" />
+		<DummyImage width="200" />
+		<DummyImage width="200" />
 	</Marquee>
 </PreviewConainer>
 
@@ -31,11 +31,11 @@ import '@inc2734/unitone-css/layout-primitives/marquee/behavior';
 		```html
 		<div data-unitone-layout="marquee-wrapper">
 			<div data-unitone-layout="marquee">
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<img src="..." alt="" />
+				<img src="..." alt="" />
+				<img src="..." alt="" />
+				<img src="..." alt="" />
+				<img src="..." alt="" />
 			</div>
 		</div>
 		```
@@ -45,11 +45,11 @@ import '@inc2734/unitone-css/layout-primitives/marquee/behavior';
 		import { Marquee } from '@inc2734/unitone-css/layout-primitives/marquee/react';
 
 		<Marquee>
-			<img src="https://placehold.jp/100x60.jpg" alt="" />
-			<img src="https://placehold.jp/100x60.jpg" alt="" />
-			<img src="https://placehold.jp/100x60.jpg" alt="" />
-			<img src="https://placehold.jp/100x60.jpg" alt="" />
-			<img src="https://placehold.jp/100x60.jpg" alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
+			<img src="..." alt="" />
 		</Marquee>
 		```
 	</Tabs.Tab>
@@ -83,11 +83,11 @@ Reverse direction.
 	<Tabs.Tab>
 		<PreviewConainer>
 			<Marquee reverse>
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<DummyImage width="200" />
+				<DummyImage width="200" />
+				<DummyImage width="200" />
+				<DummyImage width="200" />
+				<DummyImage width="200" />
 			</Marquee>
 		</PreviewConainer>
 	</Tabs.Tab>
@@ -119,11 +119,11 @@ Pause on hover.
 	<Tabs.Tab>
 		<PreviewConainer>
 			<Marquee pauseOnHover>
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<DummyImage width="200" />
+				<DummyImage width="200" />
+				<DummyImage width="200" />
+				<DummyImage width="200" />
+				<DummyImage width="200" />
 			</Marquee>
 		</PreviewConainer>
 	</Tabs.Tab>
@@ -155,11 +155,11 @@ Animation duration.
 	<Tabs.Tab>
 		<PreviewConainer>
 			<Marquee duration="5s">
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<DummyImage width="200" />
+				<DummyImage width="200" />
+				<DummyImage width="200" />
+				<DummyImage width="200" />
+				<DummyImage width="200" />
 			</Marquee>
 		</PreviewConainer>
 	</Tabs.Tab>
@@ -195,11 +195,11 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 	<Tabs.Tab>
 		<PreviewConainer>
 			<Marquee gap={1}>
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<DummyImage width="200" />
+				<DummyImage width="200" />
+				<DummyImage width="200" />
+				<DummyImage width="200" />
+				<DummyImage width="200" />
 			</Marquee>
 		</PreviewConainer>
 	</Tabs.Tab>
@@ -231,11 +231,11 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 	<Tabs.Tab>
 		<PreviewConainer>
 			<Marquee itemWidth="50px">
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
-				<img src="https://placehold.jp/100x60.jpg" alt="" />
+				<DummyImage width="200" />
+				<DummyImage width="200" />
+				<DummyImage width="200" />
+				<DummyImage width="200" />
+				<DummyImage width="200" />
 			</Marquee>
 		</PreviewConainer>
 	</Tabs.Tab>

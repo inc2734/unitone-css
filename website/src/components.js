@@ -32,6 +32,18 @@ export function Image(props) {
   return <NextImage {...props} src={`${basePath}${props.src}`} />;
 }
 
+export function DummyImage(props) {
+  props = {
+    alt: '',
+    ...props,
+  };
+
+  const uniqueId = crypto.randomUUID();
+  return (
+    <img src={`https://unitone.2inc.org/wp-content/uploads/random/?r=${uniqueId}`} {...props} />
+  );
+}
+
 export function Badge(props) {
   return (
     <span
