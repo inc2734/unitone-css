@@ -15,6 +15,7 @@ Utilities are available when you load `app.css`, and they can also be loaded exp
 - `flex-direction`
 - `flex-wrap`
 - `font-size`
+- `font-weight`
 - `gap`
 - `global`
 - `justify-content`
@@ -47,6 +48,29 @@ Utilities are especially useful for:
 - Overflow and blend-mode control for decorative elements
 - Color and background-color assignment
 - Simple presentational helpers such as border radius or box shadow
+
+## How to apply utilities
+
+In plain HTML, utilities in this page are utility classes.
+Apply them with `class`, not `data-unitone-layout`.
+The leading `.` shown in CSS selector notation is not part of the class attribute value.
+
+```html
+<p class="-font-size:xl -color:dark-teal -fluid-typography">
+	...
+</p>
+```
+
+Use `data-unitone-layout` for layout primitives and their documented attribute-based modifiers.
+
+```html
+<div data-unitone-layout="stack -gap:1">
+	<p class="-font-size:xl -color:dark-teal">...</p>
+</div>
+```
+
+If a helper is documented on a primitive page as part of that primitive API, follow that primitive page.
+Otherwise, if it appears in `utilities.mdx`, treat it as a utility class.
 
 ## Available utilities
 
@@ -93,6 +117,8 @@ Use these mainly on multi-row flex or grid wrappers when a full primitive is unn
 - `.-fluid-typography`
 
 This applies the shared fluid typography mixin.
+In plain HTML, write it in `class`.
+Example: `class="-fluid-typography"`
 
 ### `font-size`
 
@@ -109,6 +135,8 @@ This applies the shared fluid typography mixin.
 - `.-font-size:7xl`
 
 These utilities set `--unitone--font-size`, so they work with the typography system already provided by `app.css`.
+In plain HTML, write them in `class`.
+Example: `class="-font-size:xl"`
 
 Named font-size utilities map to the internal numeric scale like this:
 
@@ -140,6 +168,14 @@ Approximate font sizes with the default `--unitone--base-font-size: 16` are:
 | `.-font-size:6xl` | `7`           | `8rem`      | `128px`    |
 
 For screenshot matching or visual approximation, it is usually better to pick the nearest row from this table first and only then fine-tune if needed. These values are approximate static sizes; `.-fluid-typography` changes the rendered size with the viewport.
+
+### `font-weight`
+
+- `.-font-weight:bold`
+
+Use this when a simple bold treatment is sufficient and introducing element-level styles would be excessive.
+In plain HTML, write it in `class`.
+Example: `class="-font-weight:bold"`
 
 ### `gap`
 

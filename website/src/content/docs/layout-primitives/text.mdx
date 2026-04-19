@@ -7,6 +7,38 @@ import { PreviewConainer, Badge } from '../../../components';
 Provides a readable text container with typography-oriented defaults.
 It can also apply appropriate spacing between headings, paragraphs, and other text elements.
 
+By default, `Text` is width-aware: its children are constrained to a readable line length based on `--unitone--measure`.
+That default is useful for prose, but it means `Text` is not a neutral width wrapper.
+
+## When not to use it as the outer width wrapper
+
+If the visible width of a section should be controlled by a surrounding primitive such as `Container`, `Layers`, `Center`, or `Decorator`, avoid placing `Text` directly in that width-defining position unless you intentionally want the section to collapse to the readable measure.
+
+This is especially important for:
+
+- hero copy
+- wide callout text
+- promotional panels
+- layered overlays
+
+In those cases, let the outer primitive own the visual width first, then place `Text` inside that wrapper only when you need heading/paragraph rhythm.
+
+Bad for wide hero copy:
+
+```html
+<div data-unitone-layout="container">
+	<div data-unitone-layout="text -gap">...</div>
+</div>
+```
+
+If you want to match the width of the parent element, specify the `max width` prop.
+
+```html
+<div data-unitone-layout="container">
+	<div data-unitone-layout="text -gap" style="--unitone--max-width: 100%">...</div>
+</div>
+```
+
 ## Usage
 
 <PreviewConainer>
