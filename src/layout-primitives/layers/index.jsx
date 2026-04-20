@@ -42,3 +42,40 @@ export const Layers = ({
     </div>
   );
 };
+
+export const Layer = ({
+  alignSelf,
+  justifySelf,
+  gridColumn,
+  gridRow,
+  mixBlendMode,
+  maxWidth,
+  maxHeight,
+  style,
+  ...props
+}) => {
+  style = {
+    ...style,
+    '--unitone--grid-column': '' !== gridColumn ? gridColumn : undefined,
+    '--unitone--grid-row': '' !== gridRow ? gridRow : undefined,
+    '--unitone--max-width': '' !== maxWidth ? maxWidth : undefined,
+    '--unitone--max-height': '' !== maxHeight ? maxHeight : undefined,
+  };
+
+  return (
+    <div
+      data-unitone-layout={[
+        'layer',
+        '' !== (alignSelf ?? '') ? `-align-self:${alignSelf}` : undefined,
+        '' !== (justifySelf ?? '') ? `-justify-self:${justifySelf}` : undefined,
+        '' !== (mixBlendMode ?? '') ? `-mix-blend-mode:${mixBlendMode}` : undefined,
+      ]
+        .filter(Boolean)
+        .join(' ')}
+      style={style}
+      {...props}
+    >
+      {props.children}
+    </div>
+  );
+};

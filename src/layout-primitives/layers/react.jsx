@@ -1,1 +1,1 @@
-export { Layers } from './index';
+export { Layers, Layer } from './index';
