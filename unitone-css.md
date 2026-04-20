@@ -25,7 +25,7 @@ If the requested UI matches an established composition pattern, prefer the docum
   - Use `--unitone--font-size` for font-size.
   - **Avoid Redundancy**: Do not specify `--unitone--font-size: 0` if the default size (1rem) is sufficient.
   ```jsx
-  <h2 style={{ '--unitone--font-size': 2, fontWeight: 'bold' }}>Title</h2>
+  <h2 style={{ '--unitone--font-size': 2 }}>Title</h2>
   ```
 - **Token Naming (Strict)**:
   - **Padding**: `--unitone--p{variation}` (e.g., `--unitone--p1`, `--unitone--p-1` for negative).

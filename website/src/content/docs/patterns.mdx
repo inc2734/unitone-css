@@ -9,7 +9,7 @@ import { Cover, CoverContent } from '@inc2734/unitone-css/layout-primitives/cove
 import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
 import { Frame } from '@inc2734/unitone-css/layout-primitives/frame/react';
 import { Gutters } from '@inc2734/unitone-css/layout-primitives/gutters/react';
-import { Layers } from '@inc2734/unitone-css/layout-primitives/layers/react';
+import { Layers, Layer } from '@inc2734/unitone-css/layout-primitives/layers/react';
 import { Reel } from '@inc2734/unitone-css/layout-primitives/reel/react';
 import { ResponsiveGrid } from '@inc2734/unitone-css/layout-primitives/responsive-grid/react';
 import { Stack } from '@inc2734/unitone-css/layout-primitives/stack/react';
@@ -47,10 +47,20 @@ Use this order before jumping into a specific example:
    stack, split, grid, layer, or float
 2. Decide which primitive should own width:
    usually `Container`, `Center`, `Cover`, `Layers`, or `Text`
-3. Decide whether overlap is real:
+3. Decide which primitive should own section spacing:
+   usually `Gutters` for the basic section padding
+4. Decide whether overlap is real:
    if yes, inspect `Layers` patterns before spacing-based alternatives
-4. Decide the repeated unit:
+5. Decide the repeated unit:
    rows, cards, chips, buttons, media tiles, or prose blocks
+
+In most sectioned pages:
+
+- `Container` owns width
+- `Gutters` owns the basic section inset and block padding
+- `Stack` owns explicit relationships between items inside a section
+
+Do not add a page-level `Stack` only to recreate the default spacing between sections when each section already has `Gutters`.
 
 ## Quick Pattern Map
 
@@ -99,6 +109,11 @@ Use `Switcher` when a small set of larger items primarily needs split-to-stack b
 `Text` is not a neutral wrapper.
 Use it when readable measure is intended, not by default for heroes or wide panels.
 
+### `Gutters` vs page-level `Stack`
+
+Use `Gutters` as the default owner of a section's basic padding.
+Use a page-level `Stack` only when the relationship between whole sections needs to be expressed explicitly, not as a substitute for ordinary section spacing.
+
 ## Page Hero
 
 A first-view section with a large headline, supporting text, and enough surrounding space to establish visual hierarchy.
@@ -111,7 +126,7 @@ A first-view section with a large headline, supporting text, and enough surround
 					<Container>
 						<Stack gap="3">
 							<Center>
-								<h2 data-unitone-layout="-fluid-typography" className="-font-size:4xl" style={{fontWeight: 'bold'}}>Clouds floated across the sky.</h2>
+								<h2 data-unitone-layout="-fluid-typography" className="-font-size:4xl -font-weight:bold">Clouds floated across the sky.</h2>
 							</Center>
 
 							<Center>
@@ -126,11 +141,11 @@ A first-view section with a large headline, supporting text, and enough surround
 	<Tabs.Tab>
 		```html
 		<div data-unitone-layout="cover -padding:0" style="--unitone--min-height: max(100svh, 667px)">
-			<div data-unitone-layout="cover-content -valign:center">
+			<div data-unitone-layout="cover__content -valign:center">
 				<div data-unitone-layout="container">
 					<div data-unitone-layout="stack -gap:3">
 						<div data-unitone-layout="center">
-							<h2 data-unitone-layout="-fluid-typography" class="-font-size:4xl" style="font-weight: bold">Clouds floated across the sky.</h2>
+							<h2 data-unitone-layout="-fluid-typography" class="-font-size:4xl -font-weight:bold" >Clouds floated across the sky.</h2>
 						</div>
 
 						<div data-unitone-layout="center">
@@ -154,7 +169,7 @@ A first-view section with a large headline, supporting text, and enough surround
 				<Container>
 					<Stack gap="3">
 						<Center>
-							<h2 data-unitone-layout="-fluid-typography" className="-font-size:4xl" style={{fontWeight: 'bold'}}>Clouds floated across the sky.</h2>
+							<h2 data-unitone-layout="-fluid-typography" className="-font-size:4xl -font-weight:bold">Clouds floated across the sky.</h2>
 						</Center>
 
 						<Center>
@@ -180,7 +195,7 @@ A hero block that places one or more call-to-action buttons below the main copy 
 					<Container>
 						<Stack gap="3">
 							<Center>
-								<h2 data-unitone-layout="-fluid-typography" className="-font-size:4xl" style={{fontWeight: 'bold'}}>Clouds floated across the sky.</h2>
+								<h2 data-unitone-layout="-fluid-typography" className="-font-size:4xl -font-weight:bold">Clouds floated across the sky.</h2>
 							</Center>
 
 							<Center>
@@ -206,11 +221,11 @@ A hero block that places one or more call-to-action buttons below the main copy 
 	<Tabs.Tab>
 		```html
 		<div data-unitone-layout="cover -padding:0" style="--unitone--min-height: max(100svh, 667px)">
-			<div data-unitone-layout="cover-content -valign:center">
+			<div data-unitone-layout="cover__content -valign:center">
 				<div data-unitone-layout="container">
 					<div data-unitone-layout="stack -gap:3">
 						<div data-unitone-layout="center">
-							<h2 data-unitone-layout="-fluid-typography" class="-font-size:4xl" style="font-weight: bold">Clouds floated across the sky.</h2>
+							<h2 data-unitone-layout="-fluid-typography" class="-font-size:4xl -font-weight:bold">Clouds floated across the sky.</h2>
 						</div>
 
 						<div data-unitone-layout="center">
@@ -246,7 +261,7 @@ A hero block that places one or more call-to-action buttons below the main copy 
 				<Container>
 					<Stack gap="3">
 						<Center>
-							<h2 data-unitone-layout="-fluid-typography" className="-font-size:4xl" style={{fontWeight: 'bold'}}>Clouds floated across the sky.</h2>
+							<h2 data-unitone-layout="-fluid-typography" className="-font-size:4xl -font-weight:bold">Clouds floated across the sky.</h2>
 						</Center>
 
 						<Center>
@@ -283,7 +298,7 @@ A section with a heading and a vertical list of updates, where each item usually
 					<Container>
 						<Stack>
 							<Center maxWidth="100%">
-								<h2 data-unitone-layout="-fluid-typography" className="-font-size:3xl" style={{fontWeight: 'bold'}}>News</h2>
+								<h2 data-unitone-layout="-fluid-typography" className="-font-size:3xl -font-weight:bold">News</h2>
 							</Center>
 
 							<Stack gap="-1">
@@ -313,7 +328,7 @@ A section with a heading and a vertical list of updates, where each item usually
 				<div data-unitone-layout="container">
 					<div data-unitone-layout="stack">
 						<div data-unitone-layout="center" style="--unitone--maxWidth: 100%">
-							<h2 data-unitone-layout="-fluid-typography" class="-font-size:3xl" style="font-weight: bold">Lorem ipsum dolor sit amet</h2>
+							<h2 data-unitone-layout="-fluid-typography" class="-font-size:3xl -font-weight:bold" >Lorem ipsum dolor sit amet</h2>
 						</div>
 
 						<div data-unitone-layout="stack -gap:-1">
@@ -351,7 +366,7 @@ A section with a heading and a vertical list of updates, where each item usually
 				<Container>
 					<Stack>
 						<Center maxWidth="100%">
-							<h2 data-unitone-layout="-fluid-typography" className="-font-size:3xl" style={{fontWeight: 'bold'}}>News</h2>
+							<h2 data-unitone-layout="-fluid-typography" className="-font-size:3xl -font-weight:bold">News</h2>
 						</Center>
 
 						<Stack gap="-1">
@@ -510,15 +525,15 @@ A collection of repeated cards that wrap into responsive columns without relying
 		<PreviewConainer>
 			<ResponsiveGrid>
 				<Stack gap="-1">
-					<h3 className="-font-size:l" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h3>
+					<h3 className="-font-size:l -font-weight:bold">Lorem ipsum dolor sit amet</h3>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 				</Stack>
 				<Stack gap="-1">
-					<h3 className="-font-size:l" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h3>
+					<h3 className="-font-size:l -font-weight:bold">Lorem ipsum dolor sit amet</h3>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 				</Stack>
 				<Stack gap="-1">
-					<h3 className="-font-size:l" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h3>
+					<h3 className="-font-size:l -font-weight:bold">Lorem ipsum dolor sit amet</h3>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 				</Stack>
 			</ResponsiveGrid>
@@ -528,15 +543,15 @@ A collection of repeated cards that wrap into responsive columns without relying
 		```html
 		<div data-unitone-layout="responsive-grid">
 			<div data-unitone-layout="stack -gap:-1">
-				<h3 class="-font-size:l" style="font-weight: bold">Lorem ipsum dolor sit amet</h3>
+				<h3 class="-font-size:l -font-weight:bold">Lorem ipsum dolor sit amet</h3>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 			</div>
 			<div data-unitone-layout="stack -gap:-1">
-				<h3 class="-font-size:l" style="font-weight: bold">Lorem ipsum dolor sit amet</h3>
+				<h3 class="-font-size:l -font-weight:bold">Lorem ipsum dolor sit amet</h3>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 			</div>
 			<div data-unitone-layout="stack -gap:-1">
-				<h3 class="-font-size:l" style="font-weight: bold">Lorem ipsum dolor sit amet</h3>
+				<h3 class="-font-size:l -font-weight:bold">Lorem ipsum dolor sit amet</h3>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 			</div>
 		</div>
@@ -549,15 +564,15 @@ A collection of repeated cards that wrap into responsive columns without relying
 
 		<ResponsiveGrid>
 			<Stack gap="-1">
-				<h3 className="-font-size:l" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h3>
+				<h3 className="-font-size:l -font-weight:bold">Lorem ipsum dolor sit amet</h3>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 			</Stack>
 			<Stack gap="-1">
-				<h3 className="-font-size:l" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h3>
+				<h3 className="-font-size:l -font-weight:bold">Lorem ipsum dolor sit amet</h3>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 			</Stack>
 			<Stack gap="-1">
-				<h3 className="-font-size:l" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h3>
+				<h3 className="-font-size:l -font-weight:bold">Lorem ipsum dolor sit amet</h3>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 			</Stack>
 		</ResponsiveGrid>
@@ -579,21 +594,21 @@ Use this pattern when media alignment is part of the visual rhythm, such as arti
 					<Frame ratio="4/3">
 						<DummyImage />
 					</Frame>
-					<h3 className="-font-size:l" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h3>
+					<h3 className="-font-size:l -font-weight:bold">Lorem ipsum dolor sit amet</h3>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 				</Stack>
 				<Stack gap="-1">
 					<Frame ratio="4/3">
 						<DummyImage />
 					</Frame>
-					<h3 className="-font-size:l" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h3>
+					<h3 className="-font-size:l -font-weight:bold">Lorem ipsum dolor sit amet</h3>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 				</Stack>
 				<Stack gap="-1">
 					<Frame ratio="4/3">
 						<DummyImage />
 					</Frame>
-					<h3 className="-font-size:l" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h3>
+					<h3 className="-font-size:l -font-weight:bold">Lorem ipsum dolor sit amet</h3>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 				</Stack>
 			</ResponsiveGrid>
@@ -606,21 +621,21 @@ Use this pattern when media alignment is part of the visual rhythm, such as arti
 				<div data-unitone-layout="frame" style="--unitone--ratio: 4/3">
 					<img src="..." alt="" />
 				</div>
-				<h3 class="-font-size:l" style="font-weight: bold">Lorem ipsum dolor sit amet</h3>
+				<h3 class="-font-size:l -font-weight:bold">Lorem ipsum dolor sit amet</h3>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 			</div>
 			<div data-unitone-layout="stack -gap:-1">
 				<div data-unitone-layout="frame" style="--unitone--ratio: 4/3">
 					<img src="..." alt="" />
 				</div>
-				<h3 class="-font-size:l" style="font-weight: bold">Lorem ipsum dolor sit amet</h3>
+				<h3 class="-font-size:l -font-weight:bold">Lorem ipsum dolor sit amet</h3>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 			</div>
 			<div data-unitone-layout="stack -gap:-1">
 				<div data-unitone-layout="frame" style="--unitone--ratio: 4/3">
 					<img src="..." alt="" />
 				</div>
-				<h3 class="-font-size:l" style="font-weight: bold">Lorem ipsum dolor sit amet</h3>
+				<h3 class="-font-size:l -font-weight:bold">Lorem ipsum dolor sit amet</h3>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 			</div>
 		</div>
@@ -637,21 +652,21 @@ Use this pattern when media alignment is part of the visual rhythm, such as arti
 				<Frame ratio="4/3">
 					<img src="..." alt="" />
 				</Frame>
-				<h3 className="-font-size:l" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h3>
+				<h3 className="-font-size:l -font-weight:bold">Lorem ipsum dolor sit amet</h3>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 			</Stack>
 			<Stack gap="-1">
 				<Frame ratio="4/3">
 					<img src="..." alt="" />
 				</Frame>
-				<h3 className="-font-size:l" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h3>
+				<h3 className="-font-size:l -font-weight:bold">Lorem ipsum dolor sit amet</h3>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 			</Stack>
 			<Stack gap="-1">
 				<Frame ratio="4/3">
 					<img src="..." alt="" />
 				</Frame>
-				<h3 className="-font-size:l" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h3>
+				<h3 className="-font-size:l -font-weight:bold">Lorem ipsum dolor sit amet</h3>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 			</Stack>
 		</ResponsiveGrid>
@@ -675,7 +690,7 @@ A vertical or grid-based list of short feature descriptions, often combining a s
 								<path d="M7.96094 20.4164H9.25V18.0834C9.25 16.7991 8.25094 15.85 7.02734 15.85V14.6C8.92709 14.6 10.5 16.0947 10.5 18.0834V21.6664H6.9043C6.34804 23.0606 4.9082 24.0002 3.47266 24.0004C1.50177 24.0004 0 22.3327 0 20.4164V16.8334H3.59766C4.16663 15.4423 5.64552 14.6002 7.02734 14.6V15.85C5.8039 15.8502 4.60547 16.7993 4.60547 18.0834V20.4164C4.60547 21.194 4.21468 21.6604 3.47266 21.6606C2.82325 21.6606 2.5956 21.3039 2.54883 20.6938L2.53906 20.4164V18.0834H1.25V20.4164C1.25 21.7007 2.24906 22.7504 3.47266 22.7504C4.61958 22.7502 5.74463 21.8279 5.88086 20.6547L5.89453 20.4164V18.0834C5.89453 17.3058 6.28532 16.939 7.02734 16.9389C7.76965 16.9389 7.96094 17.3056 7.96094 18.0834V20.4164Z" fill="black"/>
 							</svg>
 						</div>
-						<h3 className="-font-size:l" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit</h3>
+						<h3 className="-font-size:l -font-weight:bold">Lorem ipsum dolor sit</h3>
 					</WithSidebar>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 				</Stack>
@@ -687,7 +702,7 @@ A vertical or grid-based list of short feature descriptions, often combining a s
 								<path d="M7.96094 20.4164H9.25V18.0834C9.25 16.7991 8.25094 15.85 7.02734 15.85V14.6C8.92709 14.6 10.5 16.0947 10.5 18.0834V21.6664H6.9043C6.34804 23.0606 4.9082 24.0002 3.47266 24.0004C1.50177 24.0004 0 22.3327 0 20.4164V16.8334H3.59766C4.16663 15.4423 5.64552 14.6002 7.02734 14.6V15.85C5.8039 15.8502 4.60547 16.7993 4.60547 18.0834V20.4164C4.60547 21.194 4.21468 21.6604 3.47266 21.6606C2.82325 21.6606 2.5956 21.3039 2.54883 20.6938L2.53906 20.4164V18.0834H1.25V20.4164C1.25 21.7007 2.24906 22.7504 3.47266 22.7504C4.61958 22.7502 5.74463 21.8279 5.88086 20.6547L5.89453 20.4164V18.0834C5.89453 17.3058 6.28532 16.939 7.02734 16.9389C7.76965 16.9389 7.96094 17.3056 7.96094 18.0834V20.4164Z" fill="black"/>
 							</svg>
 						</div>
-						<h3 className="-font-size:l" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit</h3>
+						<h3 className="-font-size:l -font-weight:bold">Lorem ipsum dolor sit</h3>
 					</WithSidebar>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 				</Stack>
@@ -702,7 +717,7 @@ A vertical or grid-based list of short feature descriptions, often combining a s
 					<div style="margin-top: calc((1lh - 1.3em) / 2)">
 						<svg>...</svg>
 					</div>
-					<h3 className="-font-size:l" style="font-weight: bold">Lorem ipsum dolor sit</h3>
+					<h3 className="-font-size:l -font-weight:bold">Lorem ipsum dolor sit</h3>
 				</div>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 			</div>
@@ -711,7 +726,7 @@ A vertical or grid-based list of short feature descriptions, often combining a s
 					<div style="margin-top: calc((1lh - 1.3em) / 2)">
 						<svg>...</svg>
 					</div>
-					<h3 className="-font-size:l" style="font-weight: bold">Lorem ipsum dolor sit</h3>
+					<h3 className="-font-size:l -font-weight:bold">Lorem ipsum dolor sit</h3>
 				</div>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 			</div>
@@ -730,7 +745,7 @@ A vertical or grid-based list of short feature descriptions, often combining a s
 					<div style={{marginTop: 'calc((1lh - 1.3em) / 2)'}}>
 						<svg>...</svg>
 					</div>
-					<h3 className="-font-size:l" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit</h3>
+					<h3 className="-font-size:l -font-weight:bold">Lorem ipsum dolor sit</h3>
 				</WithSidebar>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 			</Stack>
@@ -739,7 +754,7 @@ A vertical or grid-based list of short feature descriptions, often combining a s
 					<div style={{marginTop: 'calc((1lh - 1.3em) / 2)'}}>
 						<svg>...</svg>
 					</div>
-					<h3 className="-font-size:l" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit</h3>
+					<h3 className="-font-size:l -font-weight:bold">Lorem ipsum dolor sit</h3>
 				</WithSidebar>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 			</Stack>
@@ -827,7 +842,7 @@ A centrally positioned title and a content area the width of a container. A simp
 					<Container>
 						<Stack>
 							<Center maxWidth="100%">
-								<h2 data-unitone-layout="-fluid-typography" className="-font-size:3xl" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h2>
+								<h2 data-unitone-layout="-fluid-typography" className="-font-size:3xl -font-weight:bold">Lorem ipsum dolor sit amet</h2>
 							</Center>
 
 							<Text applyGap maxWidth="100%">
@@ -846,7 +861,7 @@ A centrally positioned title and a content area the width of a container. A simp
 				<div data-unitone-layout="container">
 					<div data-unitone-layout="stack">
 						<div data-unitone-layout="center" style="--unitone--maxWidth: 100%">
-							<h2 data-unitone-layout="-fluid-typography" class="-font-size:3xl" style="font-weight: bold">Lorem ipsum dolor sit amet</h2>
+							<h2 data-unitone-layout="-fluid-typography" class="-font-size:3xl -font-weight:bold">Lorem ipsum dolor sit amet</h2>
 						</div>
 
 						<div data-unitone-layout="text -gap" style="--unitone--maxWidth: 100%">
@@ -872,7 +887,7 @@ A centrally positioned title and a content area the width of a container. A simp
 				<Container>
 					<Stack>
 						<Center maxWidth="100%">
-							<h2 data-unitone-layout="-fluid-typography" className="-font-size:3xl" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h2>
+							<h2 data-unitone-layout="-fluid-typography" className="-font-size:3xl -font-weight:bold">Lorem ipsum dolor sit amet</h2>
 						</Center>
 
 						<Text applyGap maxWidth="100%">
@@ -898,7 +913,7 @@ A centered call-to-action area that emphasizes a short message and one or more a
 					<Container>
 						<Stack>
 							<Center withText>
-								<h2 data-unitone-layout="-fluid-typography" className="-font-size:5xl" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h2>
+								<h2 data-unitone-layout="-fluid-typography" className="-font-size:5xl -font-weight:bold">Lorem ipsum dolor sit amet</h2>
 							</Center>
 
 							<Center>
@@ -928,7 +943,7 @@ A centered call-to-action area that emphasizes a short message and one or more a
 				<div data-unitone-layout="container">
 					<div data-unitone-layout="stack">
 						<div data-unitone-layout="center -with-text">
-							<h2 data-unitone-layout="-fluid-typography" class="-font-size:5xl" style="font-weight: bold">Lorem ipsum dolor sit amet</h2>
+							<h2 data-unitone-layout="-fluid-typography" class="-font-size:5xl -font-weight:bold">Lorem ipsum dolor sit amet</h2>
 						</div>
 
 						<div data-unitone-layout="center">
@@ -965,7 +980,7 @@ A centered call-to-action area that emphasizes a short message and one or more a
 				<Container>
 					<Stack>
 						<Center withText>
-							<h2 data-unitone-layout="-fluid-typography" className="-font-size:5xl" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h2>
+							<h2 data-unitone-layout="-fluid-typography" className="-font-size:5xl -font-weight:bold">Lorem ipsum dolor sit amet</h2>
 						</Center>
 
 						<Center>
@@ -1002,8 +1017,8 @@ A top section for an article or post that combines title, metadata, summary, and
 					<Container>
 						<Stack gap="1">
 							<Stack tagName="hgroup" gap="-2">
-								<h1 data-unitone-layout="-fluid-typography" className="-font-size:3xl"  style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h1>
-								<p style={{fontWeight: 'bold'}}>Short summary line</p>
+								<h1 data-unitone-layout="-fluid-typography" className="-font-size:3xl -font-weight:bold">Lorem ipsum dolor sit amet</h1>
+								<p className="-font-weight:bold">Short summary line</p>
 							</Stack>
 
 							<Cluster gap="-1" divider="slash">
@@ -1024,8 +1039,8 @@ A top section for an article or post that combines title, metadata, summary, and
 				<div data-unitone-layout="container">
 					<div data-unitone-layout="stack -gap:1">
 						<hgroup data-unitone-layout="stack -gap:-2">
-							<h1 data-unitone-layout="-fluid-typography" class="-font-size:3xl" style="font-weight: bold">Lorem ipsum dolor sit amet</h1>
-							<p style="font-weight: bold">Short summary line</p>
+							<h1 data-unitone-layout="-fluid-typography" class="-font-size:3xl -font-weight:bold">Lorem ipsum dolor sit amet</h1>
+							<p class="-font-weight:bold">Short summary line</p>
 						</hgroup>
 
 						<div data-unitone-layout="cluster -gap:-1 -divider:slash">
@@ -1052,8 +1067,8 @@ A top section for an article or post that combines title, metadata, summary, and
 				<Container>
 					<Stack gap="1">
 						<Stack tagName="hgroup" gap="-2">
-							<h1 data-unitone-layout="-fluid-typography" className="-font-size:3xl"  style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h1>
-							<p style={{fontWeight: 'bold'}}>Short summary line</p>
+							<h1 data-unitone-layout="-fluid-typography" className="-font-size:3xl -font-weight:bold">Lorem ipsum dolor sit amet</h1>
+							<p className="-font-weight:bold">Short summary line</p>
 						</Stack>
 
 						<Cluster gap="-1" divider="slash">
@@ -1281,6 +1296,248 @@ Use this pattern when content would otherwise be clipped or awkwardly wrapped, s
 	</Tabs.Tab>
 </Tabs>
 
+Use this pattern for larger card-like items too, not only simple images.
+
+<Tabs items={['Preview', 'HTML', 'JSX']}>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Reel noBar gap="1" itemWidth="min(28rem, 80vw)">
+				<Stack gap="-1">
+					<Frame ratio="16/9">
+						<DummyImage />
+					</Frame>
+					<Stack gap="-3">
+						<p className="-font-size:xs">INTERVIEW</p>
+						<h3 className="-font-size:l -font-weight:bold">Lorem ipsum dolor sit amet</h3>
+					</Stack>
+				</Stack>
+				<Stack gap="-1">
+					<Frame ratio="16/9">
+						<DummyImage />
+					</Frame>
+					<Stack gap="-3">
+						<p className="-font-size:xs">INTERVIEW</p>
+						<h3 className="-font-size:l -font-weight:bold">Consectetur adipisicing elit</h3>
+					</Stack>
+				</Stack>
+				<Stack gap="-1">
+					<Frame ratio="16/9">
+						<DummyImage />
+					</Frame>
+					<Stack gap="-3">
+						<p className="-font-size:xs">INTERVIEW</p>
+						<h3 className="-font-size:l -font-weight:bold">Sed do eiusmod tempor</h3>
+					</Stack>
+				</Stack>
+			</Reel>
+		</PreviewConainer>
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="reel -no-bar -gap:1" style="--unitone--item-width: min(28rem, 80vw)">
+			<div data-unitone-layout="stack -gap:-1">
+				<div data-unitone-layout="frame" style="--unitone--ratio: 16/9">
+					<img src="..." alt="" />
+				</div>
+				<div data-unitone-layout="stack -gap:-3">
+					<p class="-font-size:xs">INTERVIEW</p>
+					<h3 class="-font-size:l -font-weight:bold">Lorem ipsum dolor sit amet</h3>
+				</div>
+			</div>
+			<div data-unitone-layout="stack -gap:-1">
+				<div data-unitone-layout="frame" style="--unitone--ratio: 16/9">
+					<img src="..." alt="" />
+				</div>
+				<div data-unitone-layout="stack -gap:-3">
+					<p class="-font-size:xs">INTERVIEW</p>
+					<h3 class="-font-size:l -font-weight:bold">Consectetur adipisicing elit</h3>
+				</div>
+			</div>
+			<div data-unitone-layout="stack -gap:-1">
+				<div data-unitone-layout="frame" style="--unitone--ratio: 16/9">
+					<img src="..." alt="" />
+				</div>
+				<div data-unitone-layout="stack -gap:-3">
+					<p class="-font-size:xs">INTERVIEW</p>
+					<h3 class="-font-size:l -font-weight:bold">Sed do eiusmod tempor</h3>
+				</div>
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Reel } from '@inc2734/unitone-css/layout-primitives/reel/react';
+		import { Stack } from '@inc2734/unitone-css/layout-primitives/stack/react';
+		import { Frame } from '@inc2734/unitone-css/layout-primitives/frame/react';
+
+		<Reel noBar gap="1" itemWidth="min(28rem, 80vw)">
+			<Stack gap="-1">
+				<Frame ratio="16/9">
+					<img src="..." alt="" />
+				</Frame>
+				<Stack gap="-3">
+					<p className="-font-size:xs">INTERVIEW</p>
+					<h3 className="-font-size:l -font-weight:bold">Lorem ipsum dolor sit amet</h3>
+				</Stack>
+			</Stack>
+			<Stack gap="-1">
+				<Frame ratio="16/9">
+					<img src="..." alt="" />
+				</Frame>
+				<Stack gap="-3">
+					<p className="-font-size:xs">INTERVIEW</p>
+					<h3 className="-font-size:l -font-weight:bold">Consectetur adipisicing elit</h3>
+				</Stack>
+			</Stack>
+			<Stack gap="-1">
+				<Frame ratio="16/9">
+					<img src="..." alt="" />
+				</Frame>
+				<Stack gap="-3">
+					<p className="-font-size:xs">INTERVIEW</p>
+					<h3 className="-font-size:l -font-weight:bold">Sed do eiusmod tempor</h3>
+				</Stack>
+			</Stack>
+		</Reel>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+<Tabs items={['Preview', 'HTML', 'JSX']}>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Reel noBar gap="1" itemWidth="min(28rem, 80vw)">
+				<Layers fill>
+					<Frame ratio="16/9">
+						<DummyImage />
+					</Frame>
+
+					<Layer alignSelf="end">
+						<Decorator color="var(--unitone--color--white)" gap="-3" padding="-1">
+							<p className="-font-size:xs">INTERVIEW</p>
+							<h3 className="-font-size:xl -font-weight:bold">Lorem ipsum dolor sit amet</h3>
+						</Decorator>
+					</Layer>
+				</Layers>
+				<Layers fill>
+					<Frame ratio="16/9">
+						<DummyImage />
+					</Frame>
+
+					<Layer alignSelf="end">
+						<Decorator color="var(--unitone--color--white)" gap="-3" padding="-1">
+							<p className="-font-size:xs">INTERVIEW</p>
+							<h3 className="-font-size:xl -font-weight:bold">Consectetur adipisicing elit</h3>
+						</Decorator>
+					</Layer>
+				</Layers>
+				<Layers fill>
+					<Frame ratio="16/9">
+						<DummyImage />
+					</Frame>
+
+					<Layer alignSelf="end">
+						<Decorator color="var(--unitone--color--white)" gap="-3" padding="-1">
+							<p className="-font-size:xs">INTERVIEW</p>
+							<h3 className="-font-size:xl -font-weight:bold">Sed do eiusmod tempor</h3>
+						</Decorator>
+					</Layer>
+				</Layers>
+			</Reel>
+		</PreviewConainer>
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="reel -no-bar -gap:1" style="--unitone--item-width: min(28rem, 80vw)">
+			<div data-unitone-layout="layers -fill">
+				<div data-unitone-layout="frame" style="--unitone--ratio: 16/9">
+					<img src="..." alt="" />
+				</div>
+
+				<div data-unitone-layout="align-self:end">
+					<div data-unitone-layout="decorator -gap:-3 -padding:-1" style="color: var(--unitone--color--white)">
+						<p class="-font-size:xs">INTERVIEW</p>
+						<h3 class="-font-size:xl -font-weight:bold">Lorem ipsum dolor sit amet</h3>
+					</div>
+				</div>
+			</div>
+			<div data-unitone-layout="layers -fill">
+				<div data-unitone-layout="frame" style="--unitone--ratio: 16/9">
+					<img src="..." alt="" />
+				</div>
+
+				<div data-unitone-layout="align-self:end">
+					<div data-unitone-layout="decorator -gap:-3 -padding:-1" style="color: var(--unitone--color--white)">
+						<p class="-font-size:xs">INTERVIEW</p>
+						<h3 class="-font-size:xl -font-weight:bold">Consectetur adipisicing elit</h3>
+					</div>
+				</div>
+			</div>
+			<div data-unitone-layout="layers -fill">
+				<div data-unitone-layout="frame" style="--unitone--ratio: 16/9">
+					<img src="..." alt="" />
+				</div>
+
+				<div data-unitone-layout="align-self:end">
+					<div data-unitone-layout="decorator -gap:-3 -padding:-1" style="color: var(--unitone--color--white)">
+						<p class="-font-size:xs">INTERVIEW</p>
+						<h3 class="-font-size:xl -font-weight:bold">Sed do eiusmod tempor</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Reel } from '@inc2734/unitone-css/layout-primitives/reel/react';
+		import { Layers, Layer } from '@inc2734/unitone-css/layout-primitives/layers/react';
+		import { Frame } from '@inc2734/unitone-css/layout-primitives/frame/react';
+		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
+
+		<Reel noBar gap="1" itemWidth="min(28rem, 80vw)">
+			<Layers fill>
+				<Frame ratio="16/9">
+					<img src="..." alt="" />
+				</Frame>
+
+				<Layer alignSelf="end">
+					<Decorator color="var(--unitone--color--white)" gap="-3" padding="-1">
+						<p className="-font-size:xs">INTERVIEW</p>
+						<h3 className="-font-size:xl -font-weight:bold">Lorem ipsum dolor sit amet</h3>
+					</Decorator>
+				</Layer>
+			</Layers>
+			<Layers fill>
+				<Frame ratio="16/9">
+					<img src="..." alt="" />
+				</Frame>
+
+				<Layer alignSelf="end">
+					<Decorator color="var(--unitone--color--white)" gap="-3" padding="-1">
+						<p className="-font-size:xs">INTERVIEW</p>
+						<h3 className="-font-size:xl -font-weight:bold">Consectetur adipisicing elit</h3>
+					</Decorator>
+				</Layer>
+			</Layers>
+			<Layers fill>
+				<Frame ratio="16/9">
+					<img src="..." alt="" />
+				</Frame>
+
+				<Layer alignSelf="end">
+					<Decorator color="var(--unitone--color--white)" gap="-3" padding="-1">
+						<p className="-font-size:xs">INTERVIEW</p>
+						<h3 className="-font-size:xl -font-weight:bold">Sed do eiusmod tempor</h3>
+					</Decorator>
+				</Layer>
+			</Layers>
+		</Reel>
+		```
+	</Tabs.Tab>
+</Tabs>
+
 ## Decorated Surface Block
 
 A block where one primitive handles structure and `Decorator` provides the visual surface, such as padding, background, border radius, border, or shadow.
@@ -1293,7 +1550,7 @@ Use this pattern when you want to style a section, card, callout, or panel witho
 			<Decorator backgroundColor="var(--unitone--color--background-alt)" color="var(--unitone--color--text-alt)" borderRadius="var(--unitone--global--border-radius)" padding="1s">
 				<Stack>
 					<Center withText>
-						<h2 data-unitone-layout="-fluid-typography" className="-font-size:3xl" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h2>
+						<h2 data-unitone-layout="-fluid-typography" className="-font-size:3xl -font-weight:bold">Lorem ipsum dolor sit amet</h2>
 					</Center>
 
 					<Center>
@@ -1319,7 +1576,7 @@ Use this pattern when you want to style a section, card, callout, or panel witho
 		<div data-unitone-layout="decorator" style="--unitone--background-color: var(--unitone--color--background-alt); --unitone--color: var(--unitone--color--text-alt); --unitone--border-radius: var(--unitone--global--border-radius) --unitone--padding: var(--unitone--p1s)">
 			<div data-unitone-layout="stack">
 				<div data-unitone-layout="center -with-text">
-					<h2 data-unitone-layout="-fluid-typography" class="-font-size:5xl" style="font-weight: bold">Lorem ipsum dolor sit amet</h2>
+					<h2 data-unitone-layout="-fluid-typography" class="-font-size:5xl -font-weight:bold">Lorem ipsum dolor sit amet</h2>
 				</div>
 
 				<div data-unitone-layout="center">
@@ -1350,7 +1607,7 @@ Use this pattern when you want to style a section, card, callout, or panel witho
 		<Decorator backgroundColor="var(--unitone--color--background-alt)" color="var(--unitone--color--text-alt)" borderRadius="var(--unitone--global--border-radius)" padding="1s">
 			<Stack>
 				<Center withText>
-					<h2 data-unitone-layout="-fluid-typography" className="-font-size:3xl" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h2>
+					<h2 data-unitone-layout="-fluid-typography" className="-font-size:3xl -font-weight:bold">Lorem ipsum dolor sit amet</h2>
 				</Center>
 
 				<Center>
@@ -1389,7 +1646,7 @@ An internal dialog structure that separates heading, body, and actions so modal 
 				<DialogContent id="dialog-example-content">
 					<Decorator backgroundColor="var(--unitone--color--background)" gap="1" padding="1s">
 						<Stack>
-							<h2 data-unitone-layout="-fluid-typography" className="-font-size:xl" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h2>
+							<h2 data-unitone-layout="-fluid-typography" className="-font-size:xl -font-weight:bold">Lorem ipsum dolor sit amet</h2>
 							<p>The content of the Dialog.</p>
 							<div>
 								<button command="request-close" commandfor="dialog-example-content" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1">
@@ -1417,7 +1674,7 @@ An internal dialog structure that separates heading, body, and actions so modal 
 			>
 				<div data-unitone-layout="decorator -gap:1 -padding:1s" style="--unitone--background--color: var(--unitone--color--background)">
 					<div data-unitone-layout="stack">
-						<h2 data-unitone-layout="-fluid-typography" class="-font-size:xl" style="font-weight: bold">Lorem ipsum dolor sit amet</h2>
+						<h2 data-unitone-layout="-fluid-typography" class="-font-size:xl -font-weight:bold">Lorem ipsum dolor sit amet</h2>
 						<p>The content of the Dialog.</p>
 						<div>
 							<button command="request-close" commandfor="dialog-example-content" class="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1">
@@ -1433,9 +1690,9 @@ An internal dialog structure that separates heading, body, and actions so modal 
 	<Tabs.Tab>
 		```jsx
 		import {
-		  Dialog,
-		  DialogTrigger,
-		  DialogContent,
+			Dialog,
+			DialogTrigger,
+			DialogContent,
 		} from '@inc2734/unitone-css/layout-primitives/dialog/react';
 
 		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
@@ -1450,7 +1707,7 @@ An internal dialog structure that separates heading, body, and actions so modal 
 			<DialogContent id="dialog-example-content">
 				<Decorator backgroundColor="var(--unitone--color--background)" gap="1" padding="1s">
 					<Stack>
-						<h2 data-unitone-layout="-fluid-typography" className="-font-size:xl" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h2>
+						<h2 data-unitone-layout="-fluid-typography" className="-font-size:xl -font-weight:bold">Lorem ipsum dolor sit amet</h2>
 						<p>The content of the Dialog.</p>
 						<div>
 							<button command="request-close" commandfor="dialog-example-content" className="-display:inline-flex -border-radius -background-color:heavy-violet -color:white -padding-block:-2 -padding-inline:-1">
@@ -1559,7 +1816,7 @@ A content section where the main structure is built with primitives, while decor
 						<Container>
 							<Stack>
 								<Center withText>
-									<h2 data-unitone-layout="-fluid-typography" className="-font-size:5xl" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h2>
+									<h2 data-unitone-layout="-fluid-typography" className="-font-size:5xl -font-weight:bold">Lorem ipsum dolor sit amet</h2>
 								</Center>
 
 								<Center>
@@ -1593,7 +1850,7 @@ A content section where the main structure is built with primitives, while decor
 					<div data-unitone-layout="container">
 						<div data-unitone-layout="stack">
 							<div data-unitone-layout="center -with-text">
-								<h2 data-unitone-layout="-fluid-typography" class="-font-size:5xl" style="font-weight: bold">Lorem ipsum dolor sit amet</h2>
+								<h2 data-unitone-layout="-fluid-typography" class="-font-size:5xl -font-weight:bold">Lorem ipsum dolor sit amet</h2>
 							</div>
 
 							<div data-unitone-layout="center">
@@ -1635,7 +1892,7 @@ A content section where the main structure is built with primitives, while decor
 					<Container>
 						<Stack>
 							<Center withText>
-								<h2 data-unitone-layout="-fluid-typography" className="-font-size:5xl" style={{fontWeight: 'bold'}}>Lorem ipsum dolor sit amet</h2>
+								<h2 data-unitone-layout="-fluid-typography" className="-font-size:5xl -font-weight:bold">Lorem ipsum dolor sit amet</h2>
 							</Center>
 
 							<Center>
@@ -1676,7 +1933,7 @@ A hero layout that combines foreground content and background visual elements in
 						<Container>
 							<Stack gap="3">
 								<Center>
-									<h2 data-unitone-layout="-fluid-typography" className="-font-size:4xl" style={{fontWeight: 'bold'}}>Clouds floated across the sky.</h2>
+									<h2 data-unitone-layout="-fluid-typography" className="-font-size:4xl -font-weight:bold">Clouds floated across the sky.</h2>
 								</Center>
 
 								<Center>
@@ -1706,11 +1963,11 @@ A hero layout that combines foreground content and background visual elements in
 			<img src="..." alt="" />
 
 			<div data-unitone-layout="cover -padding:0" style="--unitone--min-height: max(100svh, 667px)">
-				<div data-unitone-layout="cover-content -valign:center">
+				<div data-unitone-layout="cover__content -valign:center">
 					<div data-unitone-layout="container">
 						<div data-unitone-layout="stack -gap:3">
 							<div data-unitone-layout="center">
-								<h2 data-unitone-layout="-fluid-typography" class="-font-size:4xl" style="font-weight: bold">Clouds floated across the sky.</h2>
+								<h2 data-unitone-layout="-fluid-typography" class="-font-size:4xl -font-weight:bold">Clouds floated across the sky.</h2>
 							</div>
 
 							<div data-unitone-layout="center">
@@ -1751,7 +2008,7 @@ A hero layout that combines foreground content and background visual elements in
 					<Container>
 						<Stack gap="3">
 							<Center>
-								<h2 data-unitone-layout="-fluid-typography" className="-font-size:4xl" style={{fontWeight: 'bold'}}>Clouds floated across the sky.</h2>
+								<h2 data-unitone-layout="-fluid-typography" className="-font-size:4xl -font-weight:bold">Clouds floated across the sky.</h2>
 							</Center>
 
 							<Center>
@@ -1772,6 +2029,66 @@ A hero layout that combines foreground content and background visual elements in
 					</Container>
 				</CoverContent>
 			</Cover>
+		</Layers>
+		```
+	</Tabs.Tab>
+</Tabs>
+
+## Text overwrap Hero
+
+A hero with text and an image overlapping, slightly misaligned. The elements are layered using layer primitives, and then offset using the `gridColumn` (`--unitone--grid-column`) / `gridRow` (`--unitone--grid-row`) properties of the child elements.
+
+
+<Tabs items={['Preview', 'HTML', 'JSX']}>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Layers portrait>
+				<Layer alignSelf="end" gridColumn="2/-1" gridRow="2/-1">
+					<Frame switchRatio ratio="16/9">
+						<DummyImage />
+					</Frame>
+				</Layer>
+				<Layer maxWidth="var(--unitone--measure)">
+					<Stack>
+						<h2 className="-font-size:3xl -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</h2>
+					</Stack>
+				</Layer>
+			</Layers>
+		</PreviewConainer>
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="layers -portrait">
+			<div data-unitone-layout="-align-self:end" style="--unitone--grid-column: 2/-1; --unitone--grid-row: 2/-1">
+				<div data-unitone-layout="frame -switch" style="--unitone--ratio: 16/9">
+					<img src="..." alt="" />
+				</div>
+			</div>
+			<div style=np"--unitone--max-width: var(--unitone--measure)">
+				<div data-unitone-layout="stack">
+					<h2 class="-font-size:3xl -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</h2>
+				</div>
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Layers, Layer } from '@inc2734/unitone-css/layout-primitives/layers/react';
+		import { Frame } from '@inc2734/unitone-css/layout-primitives/frame/react';
+		import { Stack } from '@inc2734/unitone-css/layout-primitives/stack/react';
+
+		<Layers portrait>
+			<Layer alignSelf="end" gridColumn="2/-1" gridRow="2/-1">
+				<Frame switchRatio ratio="16/9">
+					<DummyImage />
+				</Frame>
+			</Layer>
+			<Layer maxWidth="var(--unitone--measure)">
+				<Stack>
+					<h2 className="-font-size:3xl -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</h2>
+				</Stack>
+			</Layer>
 		</Layers>
 		```
 	</Tabs.Tab>

@@ -40,15 +40,16 @@ Elements on top of each other. Layers have a `12 x 7` (`7 x 12` in portrait mode
 Example:
 ```jsx
 <div data-unitone-layout="layers -cover">
-	<img src="..." alt="" style="--unitone--grid-row: 1 / -2" />
+	<div style="--unitone--grid-row: 1 / -2">
+		<img src="..." alt="" />
+	</div>
 
-	<div
-		data-unitone-layout="stack -gap:1"
-		style="--unitone--grid-column: 2 / -2; --unitone--grid-row: 2 / -1"
-	>
-		<div>Hero copy</div>
-		<div>Buttons</div>
-		<div>Notice card</div>
+	<div style="--unitone--grid-column: 2 / -2; --unitone--grid-row: 2 / -1">
+		<div data-unitone-layout="stack -gap:1">
+			<div>Hero copy</div>
+			<div>Buttons</div>
+			<div>Notice card</div>
+		</div>
 	</div>
 </div>
 ```
