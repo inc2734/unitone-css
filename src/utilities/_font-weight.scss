@@ -1,4 +1,5 @@
 @each $value in (
+  normal,
   bold,
 ) {
   .-font-weight\:#{ $value } {
