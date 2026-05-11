@@ -11,6 +11,8 @@
 	--unitone--texture-border-top-right-radius: var(--unitone--texture-border-radius);
 	--unitone--texture-border-bottom-left-radius: var(--unitone--texture-border-radius);
 	--unitone--texture-border-bottom-right-radius: var(--unitone--texture-border-radius);
+  --unitone--texture-band-top-size: 0px;
+  --unitone--texture-band-bottom-size: 0px;
 
 	position: relative;
 
@@ -203,7 +205,7 @@
 
   &[data-unitone-layout~="-texture\:wave"]::before {
 		background-color: var(--unitone--texture-color);
-		border-radius: 0;
+		border-radius: 0 !important;
 		mask-image:
 			url('data:image/svg+xml,<svg viewBox="0 0 200 20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M200 0C173.236 0 146.472 2.68557 119.611 8.05762C79.8049 16.0189 39.9025 19.999 0 19.999V0H200Z"/></svg>'),
 			url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><rect x="0" y="0" height="100" width="100"/></svg>'),
@@ -225,6 +227,40 @@
 
   &[data-unitone-layout~="-texture\:solid-color"]::before {
 		background-color: var(--unitone--texture-color);
+	}
+
+  &[data-unitone-layout~="-texture\:slash-shape"] {
+    --unitone--texture-band-top-size: 25%;
+    --unitone--texture-band-bottom-size: 25%;
+
+    &::before {
+      inset: 0 !important;
+      background-color: var(--unitone--texture-color);
+		  border-radius: 0 !important;
+      clip-path: polygon(
+        0 100%,
+        0 min(100%, calc(100% - var(--unitone--texture-band-bottom-size))),
+        100% 0,
+        100% max(0%, var(--unitone--texture-band-top-size))
+      );
+    }
+	}
+
+  &[data-unitone-layout~="-texture\:backslash-shape"] {
+    --unitone--texture-band-top-size: 25%;
+    --unitone--texture-band-bottom-size: 25%;
+
+    &::before {
+      inset: 0 !important;
+      background-color: var(--unitone--texture-color);
+		  border-radius: 0 !important;
+      clip-path: polygon(
+        min(0%, calc(-1 * var(--unitone--texture-band-top-size))) 0%,
+        100% 100%,
+        100% min(100%, calc(100% - var(--unitone--texture-band-bottom-size))),
+        0% 0%
+      );
+    }
 	}
 }
 

@@ -52,9 +52,50 @@ Use it to add dots, stripes, grids, and other patterned backgrounds without sepa
 
 ### <Badge>HTML</Badge> -texture:\{variation\} / <Badge>JSX</Badge> texture=\{variation\}
 
-Set any texture.
+Texture type.
 
-`Dots` / `offset-dots` / `grid` / `horizontal-stripe` / `vertical-stripe` / `checker-pattern` / `graph-paper` / `slash` / `backslash` / `wave` / `solid-color`
+The available props vary depending on the type.
+
+`dots` / `offset-dots` / `grid` / `horizontal-stripe` / `vertical-stripe` / `checker-pattern` / `graph-paper` / `slash` / `backslash` / `wave` / `solid-color` / `slash-shape`
+
+#### dots
+
+Support props: `textureColor`, `textureSize`, `textureGap`, `textureTop`, `textureRight`, `textureBottom`, `textureLeft`, `textureBorderRadius`, `textureBorderTopLeftRadius`, `textureBorderTopRightRadius`, `textureBorderBottomRightRadius`, `textureBorderBottomLeftRadius`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="texture -texture:dots">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Texture } from '@inc2734/unitone-css/layout-primitives/texture/react';
+		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
+
+		<Texture texture="dots">
+			...
+		</Texture>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Texture texture="dots">
+				<div>
+					<Decorator padding={1}>
+						<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+					</Decorator>
+				</div>
+			</Texture>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+#### offset-dots
+
+Support props: `textureColor`, `textureSize`, `textureGap`, `textureTop`, `textureRight`, `textureBottom`, `textureLeft`, `textureBorderRadius`, `textureBorderTopLeftRadius`, `textureBorderTopRightRadius`, `textureBorderBottomRightRadius`, `textureBorderBottomLeftRadius`
 
 <Tabs items={['HTML', 'JSX', 'Preview']}>
 	<Tabs.Tab>
@@ -77,6 +118,391 @@ Set any texture.
 	<Tabs.Tab>
 		<PreviewConainer>
 			<Texture texture="offset-dots">
+				<div>
+					<Decorator padding={1}>
+						<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+					</Decorator>
+				</div>
+			</Texture>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+#### grid
+
+Support props: `textureColor`, `textureSize`, `textureGap`, `textureTop`, `textureRight`, `textureBottom`, `textureLeft`, `textureBorderRadius`, `textureBorderTopLeftRadius`, `textureBorderTopRightRadius`, `textureBorderBottomRightRadius`, `textureBorderBottomLeftRadius`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="texture -texture:grid">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Texture } from '@inc2734/unitone-css/layout-primitives/texture/react';
+		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
+
+		<Texture texture="grid">
+			...
+		</Texture>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Texture texture="grid">
+				<div>
+					<Decorator padding={1}>
+						<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+					</Decorator>
+				</div>
+			</Texture>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+#### horizontal-stripe
+
+Support props: `textureColor`, `textureSize`, `textureGap`, `textureTop`, `textureRight`, `textureBottom`, `textureLeft`, `textureBorderRadius`, `textureBorderTopLeftRadius`, `textureBorderTopRightRadius`, `textureBorderBottomRightRadius`, `textureBorderBottomLeftRadius`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="texture -texture:horizontal-stripe">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Texture } from '@inc2734/unitone-css/layout-primitives/texture/react';
+		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
+
+		<Texture texture="horizontal-stripe">
+			...
+		</Texture>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Texture texture="horizontal-stripe">
+				<div>
+					<Decorator padding={1}>
+						<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+					</Decorator>
+				</div>
+			</Texture>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+#### vertical-stripe
+
+Support props: `textureColor`, `textureSize`, `textureGap`, `textureTop`, `textureRight`, `textureBottom`, `textureLeft`, `textureBorderRadius`, `textureBorderTopLeftRadius`, `textureBorderTopRightRadius`, `textureBorderBottomRightRadius`, `textureBorderBottomLeftRadius`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="texture -texture:vertical-stripe">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Texture } from '@inc2734/unitone-css/layout-primitives/texture/react';
+		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
+
+		<Texture texture="vertical-stripe">
+			...
+		</Texture>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Texture texture="vertical-stripe">
+				<div>
+					<Decorator padding={1}>
+						<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+					</Decorator>
+				</div>
+			</Texture>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+#### checker-pattern
+
+Support props: `textureColor`, `textureGap`, `textureTop`, `textureRight`, `textureBottom`, `textureLeft`, `textureBorderRadius`, `textureBorderTopLeftRadius`, `textureBorderTopRightRadius`, `textureBorderBottomRightRadius`, `textureBorderBottomLeftRadius`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="texture -texture:checker-pattern">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Texture } from '@inc2734/unitone-css/layout-primitives/texture/react';
+		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
+
+		<Texture texture="checker-pattern">
+			...
+		</Texture>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Texture texture="checker-pattern">
+				<div>
+					<Decorator padding={1}>
+						<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+					</Decorator>
+				</div>
+			</Texture>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+#### graph-paper
+
+Support props: `textureColor`, `textureSize`, `textureGap`, `textureTop`, `textureRight`, `textureBottom`, `textureLeft`, `textureBorderRadius`, `textureBorderTopLeftRadius`, `textureBorderTopRightRadius`, `textureBorderBottomRightRadius`, `textureBorderBottomLeftRadius`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="texture -texture:graph-paper">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Texture } from '@inc2734/unitone-css/layout-primitives/texture/react';
+		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
+
+		<Texture texture="graph-paper">
+			...
+		</Texture>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Texture texture="graph-paper">
+				<div>
+					<Decorator padding={1}>
+						<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+					</Decorator>
+				</div>
+			</Texture>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+#### slash
+
+Support props: `textureColor`, `textureSize`, `textureGap`, `textureTop`, `textureRight`, `textureBottom`, `textureLeft`, `textureBorderRadius`, `textureBorderTopLeftRadius`, `textureBorderTopRightRadius`, `textureBorderBottomRightRadius`, `textureBorderBottomLeftRadius`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="texture -texture:slash">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Texture } from '@inc2734/unitone-css/layout-primitives/texture/react';
+		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
+
+		<Texture texture="slash">
+			...
+		</Texture>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Texture texture="slash">
+				<div>
+					<Decorator padding={1}>
+						<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+					</Decorator>
+				</div>
+			</Texture>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+#### backslash
+
+Support props: `textureColor`, `textureSize`, `textureGap`, `textureTop`, `textureRight`, `textureBottom`, `textureLeft`, `textureBorderRadius`, `textureBorderTopLeftRadius`, `textureBorderTopRightRadius`, `textureBorderBottomRightRadius`, `textureBorderBottomLeftRadius`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="texture -texture:backslash">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Texture } from '@inc2734/unitone-css/layout-primitives/texture/react';
+		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
+
+		<Texture texture="backslash">
+			...
+		</Texture>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Texture texture="backslash">
+				<div>
+					<Decorator padding={1}>
+						<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+					</Decorator>
+				</div>
+			</Texture>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+#### wave
+
+Support props: `textureColor`, `textureSize`, `textureTop`, `textureRight`, `textureBottom`, `textureLeft`, `textureTop`, `textureRight`, `textureBottom`, `textureLeft`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="texture -texture:wave">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Texture } from '@inc2734/unitone-css/layout-primitives/texture/react';
+		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
+
+		<Texture texture="wave">
+			...
+		</Texture>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Texture texture="wave">
+				<div>
+					<Decorator padding={1}>
+						<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+					</Decorator>
+				</div>
+			</Texture>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+#### solid-color
+
+Support props: `textureColor`, `textureTop`, `textureRight`, `textureBottom`, `textureLeft`, `textureBorderRadius`, `textureBorderTopLeftRadius`, `textureBorderTopRightRadius`, `textureBorderBottomRightRadius`, `textureBorderBottomLeftRadius`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="texture -texture:solid-color">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Texture } from '@inc2734/unitone-css/layout-primitives/texture/react';
+		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
+
+		<Texture texture="solid-color">
+			...
+		</Texture>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Texture texture="solid-color">
+				<div>
+					<Decorator padding={1}>
+						<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+					</Decorator>
+				</div>
+			</Texture>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+#### slash-shape
+
+Support props: `textureColor`, `textureBandTopSize`, `textureBandBottomSize`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="texture -texture:slash-shape">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Texture } from '@inc2734/unitone-css/layout-primitives/texture/react';
+		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
+
+		<Texture texture="slash-shape">
+			...
+		</Texture>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Texture texture="slash-shape">
+				<div>
+					<Decorator padding={1}>
+						<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+					</Decorator>
+				</div>
+			</Texture>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+#### backslash-shape
+
+Support props: `textureColor`, `textureBandTopSize`, `textureBandBottomSize`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="texture -texture:backslash-shape">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Texture } from '@inc2734/unitone-css/layout-primitives/texture/react';
+		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
+
+		<Texture texture="backslash-shape">
+			...
+		</Texture>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Texture texture="backslash-shape">
 				<div>
 					<Decorator padding={1}>
 						<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
@@ -497,6 +923,76 @@ Set texture border bottom left radius.
 	<Tabs.Tab>
 		<PreviewConainer>
 			<Texture texture="dots" textureBorderBottomLeftRadius="50px" textureGap="2px">
+				<div>
+					<Decorator padding={1}>
+						<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+					</Decorator>
+				</div>
+			</Texture>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> --unitone--texture-band-top-size / <Badge>JSX</Badge> textureBandTopSize=\{value\}
+
+Set the size of the top of the band.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="texture -texture:slash-shape" style="--unitone--texture-band-top-size: 1%">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Texture } from '@inc2734/unitone-css/layout-primitives/texture/react';
+		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
+
+		<Texture texture="slash-shape" textureBandTopSize="1%">
+			...
+		</Texture>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Texture texture="slash-shape" textureBandTopSize="1%">
+				<div>
+					<Decorator padding={1}>
+						<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
+					</Decorator>
+				</div>
+			</Texture>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> --unitone--texture-band-bottom-size / <Badge>JSX</Badge> textureBandBottomSize=\{value\}
+
+Set the size of the bottom of the band.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="texture -texture:slash-shape" style="--unitone--texture-band-bottom-size: 1%">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Texture } from '@inc2734/unitone-css/layout-primitives/texture/react';
+		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
+
+		<Texture texture="slash-shape" textureBandBottomSize="1%">
+			...
+		</Texture>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Texture texture="slash-shape" textureBandBottomSize="1%">
 				<div>
 					<Decorator padding={1}>
 						<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill</p>
