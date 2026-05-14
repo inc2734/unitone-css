@@ -10,7 +10,6 @@
   5: 4xl,
   6: 5xl,
   7: 6xl,
-  8: 7xl,
 ) {
   .-font-size\:#{ $value } {
     --unitone--font-size: #{ $key } !important;
