@@ -14,6 +14,7 @@ Approximate font sizes with the default `--unitone--base-font-size: 16` are:
 
 | `--unitone--font-size` | Utility class     | Approx. rem | Approx. px |
 | ---------------------- | ----------------- | ----------- | ---------- |
+| `-3`                   | `.-font-size:2xs` | `0.727rem`  | `11.6px`   |
 | `-2`                   | `.-font-size:xs`  | `0.8rem`    | `12.8px`   |
 | `-1`                   | `.-font-size:s`   | `0.889rem`  | `14.2px`   |
 | `0`                    | `.-font-size:m`   | `1rem`      | `16px`     |
@@ -51,6 +52,7 @@ The leading `.` seen in CSS selector notation is not included in the class attri
 
 <PreviewConainer>
 	<Stack>
+		<p data-unitone-layout="-typography" style={{ '--unitone--font-size': -3 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 		<p data-unitone-layout="-typography" style={{ '--unitone--font-size': -2 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 		<p data-unitone-layout="-typography" style={{ '--unitone--font-size': -1 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 		<p data-unitone-layout="-typography" style={{ '--unitone--font-size': 0 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
@@ -82,6 +84,7 @@ Approximate fluid font-size ranges with the default `--unitone--base-font-size: 
 
 | `--unitone--font-size` | Utility class     | Min rem    | Min px   | Max rem    | Max px   |
 | ---------------------- | ----------------- | ---------- | -------- | ---------- | -------- |
+| `-3`                   | `.-font-size:2xs` | `0.727rem` | `11.6px` | `0.727rem` | `11.6px` |
 | `-2`                   | `.-font-size:xs`  | `0.8rem`   | `12.8px` | `0.8rem`   | `12.8px` |
 | `-1`                   | `.-font-size:s`   | `0.889rem` | `14.2px` | `0.889rem` | `14.2px` |
 | `0`                    | `.-font-size:m`   | `1rem`     | `16px`   | `1rem`     | `16px`   |
@@ -121,6 +124,7 @@ import '@inc2734/unitone-css/compatibility/fluid-typography';
 
 <PreviewConainer>
 	<Stack>
+		<p data-unitone-layout="-typography -fluid-typography" style={{ '--unitone--font-size': -3 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 		<p data-unitone-layout="-typography -fluid-typography" style={{ '--unitone--font-size': -2 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 		<p data-unitone-layout="-typography -fluid-typography" style={{ '--unitone--font-size': -1 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 		<p data-unitone-layout="-typography -fluid-typography" style={{ '--unitone--font-size': 0 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
