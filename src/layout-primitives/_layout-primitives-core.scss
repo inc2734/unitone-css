@@ -5,6 +5,7 @@
 @use 'cover';
 @use 'decorator';
 @use 'dialog';
+@use 'divider';
 @use 'float';
 @use 'frame';
 @use 'gutters';
@@ -28,6 +29,7 @@
 @include cover.cover();
 @include decorator.decorator();
 @include dialog.dialog();
+@include divider.divider();
 @include float.float();
 @include frame.frame();
 @include gutters.gutters();

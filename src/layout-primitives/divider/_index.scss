@@ -1,0 +1,62 @@
+@mixin abstract-divider() {
+  --unitone--divider-color: currentColor;
+  --unitone--divider-type: solid;
+  --unitone--divider-size: 1px;
+
+  align-self: stretch;
+  align-content: center;
+  overflow: clip;
+
+  &::before {
+    content: '';
+    display: block;
+    border-block-start: var(--unitone--divider-size) var(--unitone--divider-type) var(--unitone--divider-color);
+    inline-size: 100%;
+  }
+
+  &[data-unitone-layout~="-direction\:horizontal"] {
+  }
+
+  &[data-unitone-layout~="-direction\:vertical"] {
+    writing-mode: vertical-rl;
+  }
+
+  @each $value in (solid, dashed, dotted) {
+    &[data-unitone-layout~="-type\:#{ $value }"] {
+      --unitone--divider-type: #{ $value } !important;
+    }
+  }
+
+  &[data-unitone-layout~="-type\:slash"] {
+    --unitone--divider-size: .5em;
+
+    &::before {
+      background-color: var(--unitone--divider-color);
+      mask-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%208.5%208.5'%3E%3Cpath%20d='M6.25%20-2L-2%206.25M10.5%202.25L2.25%2010.5'%20fill='none'%20stroke='currentColor'%20stroke-width='1'%20stroke-linecap='butt'%20vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+      mask-repeat: repeat;
+      mask-size: 8.5px 8.5px;
+      border: none !important;
+      block-size: var(--unitone--divider-size);
+    }
+  }
+
+  &[data-unitone-layout~="-type\:stripe"] {
+    --unitone--divider-size: .5em;
+
+    &::before {
+      background-color: var(--unitone--divider-color);
+      mask-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%205%201'%3E%3Cpath%20d='M.5%20-1V2'%20fill='none'%20stroke='currentColor'%20stroke-width='1.5'%20stroke-linecap='butt'%20vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+      mask-repeat: repeat;
+      mask-size: 5px 1px;
+      mask-position: .5px;
+      border: none !important;
+      block-size: var(--unitone--divider-size);
+    }
+  }
+}
+
+@mixin divider() {
+  [data-unitone-layout~="divider"] {
+    @include abstract-divider();
+  }
+}

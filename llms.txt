@@ -25,6 +25,9 @@ Adds visual decoration and supporting layout controls to a block. Use it for bac
 ### Dialog
 Displays modal dialog content using the native `<dialog>` element. Open and close are controlled with `command`, `commandfor`, and `id`, without JavaScript.
 
+### Divider
+Displays divider line between elements.
+
 ### Float
 The Float places an element on the left or right side of its container, allowing text and inline elements to wrap around it.
 
