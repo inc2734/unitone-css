@@ -19,6 +19,7 @@
 @use 'switcher';
 @use 'text';
 @use 'texture';
+@use 'vertical-ends';
 @use 'vertical-writing';
 @use 'with-sidebar';
 
@@ -43,5 +44,6 @@
 @include switcher.switcher();
 @include text.text();
 @include texture.texture();
+@include vertical-ends.vertical-ends();
 @include vertical-writing.vertical-writing();
 @include with-sidebar.with-sidebar();

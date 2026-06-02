@@ -98,6 +98,9 @@ Example:
 ### Texture
 Applies a decorative texture behind its contents. Use it to add dots, stripes, grids, and other patterned backgrounds without separate image assets.
 
+### Vertical Ends
+This places child elements at the beginning or end of the vertical layout.
+
 ### Vertical Writing
 Make the text vertically written. When you use Vertical Writing in HTML, also load the JavaScript entry for it.
 

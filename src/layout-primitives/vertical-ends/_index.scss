@@ -1,0 +1,18 @@
+@mixin abstract-vertical-ends() {
+  --unitone--gap: var(--unitone--global--text-gap);
+  --unitone--align-items: stretch;
+
+  display: flex;
+  gap: var(--unitone--gap);
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: var(--unitone--align-items);
+  justify-content: space-between;
+  min-height: 100%;
+}
+
+@mixin vertical-ends() {
+  [data-unitone-layout~="vertical-ends"] {
+    @include abstract-vertical-ends();
+  }
+}

@@ -1,0 +1,1 @@
+export { VerticalEnds } from './index';
