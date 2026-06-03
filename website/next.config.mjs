@@ -11,12 +11,12 @@ const basePath = process.env.GITHUB_ACTIONS && '/unitone-css';
 
 export default withNextra({
   output: 'export',
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath || '',
+  },
   images: {
     unoptimized: true,
   },
   basePath,
   trailingSlash: true,
-  publicRuntimeConfig: {
-    basePath,
-  },
 });

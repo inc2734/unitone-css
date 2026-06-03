@@ -1,6 +1,5 @@
 import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
 import NextImage from 'next/image';
-import getConfig from 'next/config';
 
 export function PreviewConainer({ backgroundColor, color, ...props }) {
   return (
@@ -26,8 +25,7 @@ export function PreviewConainer({ backgroundColor, color, ...props }) {
 }
 
 export function Image(props) {
-  const { publicRuntimeConfig } = getConfig();
-  const basePath = publicRuntimeConfig?.basePath ?? '';
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 
   return <NextImage {...props} src={`${basePath}${props.src}`} />;
 }

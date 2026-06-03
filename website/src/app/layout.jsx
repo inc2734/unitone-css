@@ -1,5 +1,3 @@
-import getConfig from 'next/config';
-
 import { Footer, Layout, Navbar } from 'nextra-theme-docs';
 import { Head } from 'nextra/components';
 import { getPageMap } from 'nextra/page-map';
@@ -16,8 +14,7 @@ export const metadata = {
   // For more information on metadata API, see: https://nextjs.org/docs/app/building-your-application/optimizing/metadata
 };
 
-const { publicRuntimeConfig } = getConfig();
-const basePath = publicRuntimeConfig?.basePath ?? '';
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 
 const head = (
   <>
