@@ -374,14 +374,14 @@ Number of grid rows.
 	</Tabs.Tab>
 </Tabs>
 
-### <Badge>HTML</Badge> --unitone--repeat-row-height / <Badge>JSX</Badge> repeatRowHeight=\{value\}
+### <Badge>HTML</Badge> --unitone--row-track-size / <Badge>JSX</Badge> rowTrackSize=\{value\}
 
-Row height.
+The track size used for each repeated row.
 
 <Tabs items={['HTML', 'JSX', 'Preview']}>
 	<Tabs.Tab>
 		```html
-		<div data-unitone-layout="layers" style="--unitone--repeat-row-height: 50px">
+		<div data-unitone-layout="layers" style="--unitone--row-track-size: 50px">
 			...
 		</div>
 		```
@@ -390,14 +390,14 @@ Row height.
 		```jsx
 		import { Layers } from '@inc2734/unitone-css/layout-primitives/layers/react';
 
-		<Layers repeatRowHeight="50px">
+		<Layers rowTrackSize="50px">
 			...
 		</Layers>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		<PreviewConainer>
-			<Layers repeatRowHeight="50px">
+			<Layers rowTrackSize="50px">
 				<DummyImage />
 
 				<Layer gridRow="auto">

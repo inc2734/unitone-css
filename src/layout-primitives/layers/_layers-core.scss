@@ -1,10 +1,10 @@
 @mixin abstract-layers() {
   --unitone--columns: var(--unitone--grid-columns);
   --unitone--rows: var(--unitone--grid-rows);
-  --unitone--repeat-row-height: 1fr;
-  --unitone--gap: var(--unitone--global--text-gap);
-  --unitone--column-gap: var(--unitone--gap);
-  --unitone--row-gap: 1lh;
+  --unitone--row-track-size: 1fr;
+  --unitone--gap: initial;
+  --unitone--column-gap: var(--unitone--gap, var(--unitone--global--text-gap));
+  --unitone--row-gap: var(--unitone--gap, 1lh);
   --unitone--min-height: 0;
   --unitone--blur: 75px;
 
@@ -12,7 +12,7 @@
   grid-template-columns: repeat(var(--unitone--columns), 1fr);
   grid-template-rows: repeat(
     var(--unitone--rows),
-    var(--unitone--repeat-row-height)
+    var(--unitone--row-track-size)
   );
   column-gap: min(3.33333%, var(--unitone--column-gap));
   row-gap: var(--unitone--row-gap);

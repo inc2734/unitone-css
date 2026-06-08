@@ -13,7 +13,7 @@ export const Layers = ({
   minHeight,
   columns,
   rows,
-  repeatRowHeight,
+  rowTrackSize,
   style,
   ...props
 }) => {
@@ -22,7 +22,7 @@ export const Layers = ({
     '--unitone--min-height': '' !== minHeight ? minHeight : undefined,
     '--unitone--columns': '' !== columns ? columns : undefined,
     '--unitone--rows': '' !== rows ? rows : undefined,
-    '--unitone--repeat-row-height': '' !== repeatRowHeight ? repeatRowHeight : undefined,
+    '--unitone--row-track-size': '' !== rowTrackSize ? rowTrackSize : undefined,
     '--unitone--blur': '' !== blur ? blur : undefined,
   };
 
@@ -56,7 +56,6 @@ export const Layer = ({
   gridRow,
   mixBlendMode,
   maxWidth,
-  maxHeight,
   style,
   ...props
 }) => {
@@ -65,7 +64,6 @@ export const Layer = ({
     '--unitone--grid-column': '' !== gridColumn ? gridColumn : undefined,
     '--unitone--grid-row': '' !== gridRow ? gridRow : undefined,
     '--unitone--max-width': '' !== maxWidth ? maxWidth : undefined,
-    '--unitone--max-height': '' !== maxHeight ? maxHeight : undefined,
   };
 
   return (
