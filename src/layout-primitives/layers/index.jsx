@@ -8,9 +8,12 @@ export const Layers = ({
   blur,
   portrait,
   gap,
+  rowGap,
+  columnGap,
   minHeight,
   columns,
   rows,
+  repeatRowHeight,
   style,
   ...props
 }) => {
@@ -19,6 +22,7 @@ export const Layers = ({
     '--unitone--min-height': '' !== minHeight ? minHeight : undefined,
     '--unitone--columns': '' !== columns ? columns : undefined,
     '--unitone--rows': '' !== rows ? rows : undefined,
+    '--unitone--repeat-row-height': '' !== repeatRowHeight ? repeatRowHeight : undefined,
     '--unitone--blur': '' !== blur ? blur : undefined,
   };
 
@@ -26,12 +30,14 @@ export const Layers = ({
     <div
       data-unitone-layout={[
         'layers',
-        '' !== (gap ?? '') ? `-gap:${gap}` : undefined,
         cover ? '-cover' : undefined,
         fill ? '-fill' : undefined,
         fixed ? '-fixed' : undefined,
         applyBlur ? '-blur' : undefined,
         portrait ? '-portrait' : undefined,
+        '' !== (gap ?? '') ? `-gap:${gap}` : undefined,
+        '' !== (columnGap ?? '') ? `-column-gap:${columnGap}` : undefined,
+        '' !== (rowGap ?? '') ? `-row-gap:${rowGap}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

@@ -92,78 +92,6 @@ If you move the notice card outside `Layers`, the overlap becomes a spacing effe
 
 ## Props
 
-### <Badge>HTML</Badge> -gap:\{variation\} / <Badge>JSX</Badge> gap=\{variation\}
-
-Gap.
-
-Can be set from `-3` to `7`. For variations `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens.
-If it is `1` or more, adding `s` will shrink it to size `-1` on mobile. (e.g. `1s`)
-If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m`)
-
-<Tabs items={['HTML', 'JSX', 'Preview']}>
-	<Tabs.Tab>
-		```html
-		<div data-unitone-layout="layers -gap:-2">
-			...
-		</div>
-		```
-	</Tabs.Tab>
-	<Tabs.Tab>
-		```jsx
-		import { Layers } from '@inc2734/unitone-css/layout-primitives/layers/react';
-
-		<Layers gap={-2}>
-			...
-		</Layers>
-		```
-	</Tabs.Tab>
-	<Tabs.Tab>
-		<PreviewConainer>
-			<Layers gap={-2}>
-				<DummyImage />
-
-				<Layer alignSelf="end">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
-				</Layer>
-			</Layers>
-		</PreviewConainer>
-	</Tabs.Tab>
-</Tabs>
-
-### <Badge>HTML</Badge> --unitone--min-height / <Badge>JSX</Badge> minHeight=\{value\}
-
-Min height.
-
-<Tabs items={['HTML', 'JSX', 'Preview']}>
-	<Tabs.Tab>
-		```html
-		<div data-unitone-layout="layers" style="--unitone--min-height: 360px">
-			...
-		</div>
-		```
-	</Tabs.Tab>
-	<Tabs.Tab>
-		```jsx
-		import { Layers } from '@inc2734/unitone-css/layout-primitives/layers/react';
-
-		<Layers minHeight="360px">
-			...
-		</Layers>
-		```
-	</Tabs.Tab>
-	<Tabs.Tab>
-		<PreviewConainer>
-			<Layers minHeight="360px">
-				<DummyImage />
-
-				<Layer alignSelf="end">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
-				</Layer>
-			</Layers>
-		</PreviewConainer>
-	</Tabs.Tab>
-</Tabs>
-
 ### <Badge>HTML</Badge> -cover / <Badge>JSX</Badge> cover
 
 Background image/video is sized to maintain its aspect ratio while filling the element's entire content box. If the object's aspect ratio does not match the aspect ratio of its box, then the object will be clipped to fit.
@@ -436,6 +364,196 @@ Number of grid rows.
 	<Tabs.Tab>
 		<PreviewConainer>
 			<Layers rows="20">
+				<DummyImage />
+
+				<Layer alignSelf="end">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+				</Layer>
+			</Layers>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> --unitone--repeat-row-height / <Badge>JSX</Badge> repeatRowHeight=\{value\}
+
+Row height.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="layers" style="--unitone--repeat-row-height: 50px">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Layers } from '@inc2734/unitone-css/layout-primitives/layers/react';
+
+		<Layers repeatRowHeight="50px">
+			...
+		</Layers>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Layers repeatRowHeight="50px">
+				<DummyImage />
+
+				<Layer gridRow="auto">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+				</Layer>
+
+				<Layer gridRow="auto">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+				</Layer>
+			</Layers>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -gap:\{variation\} / <Badge>JSX</Badge> gap=\{variation\}
+
+Gap.
+
+Can be set from `-3` to `7`. For variations `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens.
+If it is `1` or more, adding `s` will shrink it to size `-1` on mobile. (e.g. `1s`)
+If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m`)
+
+Column gaps are limited to a certain size because if they become too large, data may spill out.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="layers -gap:-2">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Layers } from '@inc2734/unitone-css/layout-primitives/layers/react';
+
+		<Layers gap={-2}>
+			...
+		</Layers>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Layers gap={-2}>
+				<DummyImage />
+
+				<Layer alignSelf="end">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+				</Layer>
+			</Layers>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -column-gap:\{variation\} / <Badge>JSX</Badge> columnGap=\{variation\}
+
+Column gap.
+
+Can be set from `-3` to `7`. For variations `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens.
+If it is `1` or more, adding `s` will shrink it to size `-1` on mobile. (e.g. `1s`)
+If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m`)
+
+Column gaps are limited to a certain size because if they become too large, data may spill out.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="layers -column-gap:-2">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Layers } from '@inc2734/unitone-css/layout-primitives/layers/react';
+
+		<Layers columnGap={-2}>
+			...
+		</Layers>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Layers columnGap={-2}>
+				<DummyImage />
+
+				<Layer alignSelf="end">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+				</Layer>
+			</Layers>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -row-gap:\{variation\} / <Badge>JSX</Badge> rowGap=\{variation\}
+
+Row gap.
+
+Can be set from `-3` to `7`. For variations `2` and above, `clamp` is used to adjust the margins so that they do not become too large on small screens.
+If it is `1` or more, adding `s` will shrink it to size `-1` on mobile. (e.g. `1s`)
+If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m`)
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="layers -row-gap:-2">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Layers } from '@inc2734/unitone-css/layout-primitives/layers/react';
+
+		<Layers rowGap={-2}>
+			...
+		</Layers>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Layers rowGap={-2}>
+				<DummyImage />
+
+				<Layer alignSelf="end">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
+				</Layer>
+			</Layers>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> --unitone--min-height / <Badge>JSX</Badge> minHeight=\{value\}
+
+Min height.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="layers" style="--unitone--min-height: 360px">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Layers } from '@inc2734/unitone-css/layout-primitives/layers/react';
+
+		<Layers minHeight="360px">
+			...
+		</Layers>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Layers minHeight="360px">
 				<DummyImage />
 
 				<Layer alignSelf="end">

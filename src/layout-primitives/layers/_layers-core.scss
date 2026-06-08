@@ -1,14 +1,21 @@
 @mixin abstract-layers() {
   --unitone--columns: var(--unitone--grid-columns);
   --unitone--rows: var(--unitone--grid-rows);
-  --unitone--gap: var(--unitone--grid-gap);
+  --unitone--repeat-row-height: 1fr;
+  --unitone--gap: var(--unitone--global--text-gap);
+  --unitone--column-gap: var(--unitone--gap);
+  --unitone--row-gap: 1lh;
   --unitone--min-height: 0;
   --unitone--blur: 75px;
 
   display: grid;
   grid-template-columns: repeat(var(--unitone--columns), 1fr);
-  grid-template-rows: repeat(var(--unitone--rows), 1fr);
-  gap: min(3.33333%, var(--unitone--gap));
+  grid-template-rows: repeat(
+    var(--unitone--rows),
+    var(--unitone--repeat-row-height)
+  );
+  column-gap: min(3.33333%, var(--unitone--column-gap));
+  row-gap: var(--unitone--row-gap);
   min-height: var(--unitone--min-height);
 
   @media (orientation: portrait) and (max-width: 599px) {
