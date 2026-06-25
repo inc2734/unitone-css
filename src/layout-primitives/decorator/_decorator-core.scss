@@ -75,6 +75,7 @@
 
   &:where(
     [data-unitone-layout*="-gap\:"],
+    [style*="--unitone--gap\:"],
     [data-unitone-layout*="-align-content\:"],
     [data-unitone-layout*="-justify-items\:"]
   ) {
@@ -85,15 +86,18 @@
     }
   }
 
-  &[data-unitone-layout*="-gap\:"] {
+  &:where(
+    [data-unitone-layout*="-gap\:"],
+    [style*="--unitone--gap\:"]
+  ) {
     gap: var(--unitone--gap);
   }
 
-  &[data-unitone-layout*="-align-content\:"] {
+  &:where([data-unitone-layout*="-align-content\:"]) {
     align-content: var(--unitone--align-content);
   }
 
-  &[data-unitone-layout*="-justify-items\:"] {
+  &:where([data-unitone-layout*="-justify-items\:"]) {
     justify-items: var(--unitone--justify-items);
   }
 }
