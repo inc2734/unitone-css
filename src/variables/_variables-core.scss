@@ -50,12 +50,13 @@ $_font-size-em: calc($_font-size-scale * 1em);
   --unitone--font-size-rem: #{ $_font-size };
   --unitone--font-size-em: #{ $_font-size-em };
   --unitone--font-size-fluid: #{ $_font-size-fluid };
+  --unitone--calculated-font-size: var(--unitone--font-size-rem);
 
   --unitone--min-line-height: calc(1 + 2 * min(var(--unitone--min-half-leading), var(--unitone--half-leading)));
   --unitone--max-line-height: calc(1 + 2 * var(--unitone--half-leading));
   --unitone--line-height: #{ $_line-height };
 
-  font-size: var(--unitone--font-size-rem);
+  font-size: var(--unitone--calculated-font-size);
   line-height: var(--unitone--line-height);
 
   // @todo In Firefox, using tan(atan2()) for line-height is considered invalid.
@@ -66,11 +67,11 @@ $_font-size-em: calc($_font-size-scale * 1em);
 }
 
 @mixin typography-em {
-  font-size: var(--unitone--font-size-em);
+  --unitone--calculated-font-size: var(--unitone--font-size-em);
 }
 
 @mixin fluid-typography {
-  font-size:var(--unitone--font-size-fluid);
+  --unitone--calculated-font-size: var(--unitone--font-size-fluid);
 }
 
 $container-max-width: $max-breakpoint * 16px; // = 1280px

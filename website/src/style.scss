@@ -7,7 +7,7 @@
   color: rgba(243, 244, 246, var(--tw-text-opacity));
 }
 
-.preview-container * {
+:where(.preview-container) * {
   @include variables.typography();
 
   button {
