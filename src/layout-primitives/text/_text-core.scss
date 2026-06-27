@@ -1,6 +1,7 @@
 @mixin abstract-text() {
   --unitone--gutters: 0px;
   --unitone--max-width: var(--unitone--measure);
+  --unitone--text-gap: var(--unitone--global--text-gap);
 
   box-sizing: content-box;
   padding-right: var(--unitone--gutters);
@@ -8,37 +9,11 @@
   max-width: none;
 
   &[data-unitone-layout*="-gap\:"] {
-    --unitone--gap: inherit !important;
+    --unitone--text-gap: var(--unitone--gap);
   }
 
-  @for $i from -3 through 7 {
-    &[data-unitone-layout~="-gap\:#{ $i }"] {
-      --unitone--column-gap: var(--unitone--s#{ $i }) !important;
-    }
-
-    &[data-unitone-layout~="-gap\:#{ $i }"] > * {
-      --unitone--text-gap: var(--unitone--s#{ $i }) !important;
-    }
-  }
-
-  @for $i from 1 through 7 {
-    &[data-unitone-layout~="-gap\:#{ $i }s"] {
-      --unitone--column-gap: var(--unitone--s#{ $i }s) !important;
-    }
-
-    &[data-unitone-layout~="-gap\:#{ $i }s"] > * {
-      --unitone--text-gap: var(--unitone--s#{ $i }s) !important;
-    }
-  }
-
-  @for $i from 2 through 7 {
-    &[data-unitone-layout~="-gap\:#{ $i }m"] {
-      --unitone--column-gap: var(--unitone--s#{ $i }m) !important;
-    }
-
-    &[data-unitone-layout~="-gap\:#{ $i }m"] > * {
-      --unitone--text-gap: var(--unitone--s#{ $i }m) !important;
-    }
+  &[data-unitone-layout*="-gap\:"] > * {
+    --unitone--text-gap: inherit !important;
   }
 
   @at-root {
@@ -51,7 +26,7 @@
 
   > * {
     --unitone--text-gap-scale: 1;
-    --unitone--text-gap: var(--unitone--global--text-gap);
+    --unitone--text-gap: inherit;
     --unitone--text-gap-increment: 0px;
   }
 

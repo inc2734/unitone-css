@@ -5,6 +5,7 @@
 @use './auto-repeat';
 @use './auto-phrase';
 @use './background-clip';
+@use './divider';
 @use './gap';
 @use './gutters';
 @use './justify-content';
@@ -27,6 +28,7 @@
 @include auto-repeat.auto-repeat();
 @include auto-phrase.auto-phrase();
 @include background-clip.background-clip();
+@include divider.divider();
 @include gap.gap();
 @include gutters.gutters();
 @include justify-content.justify-content();
