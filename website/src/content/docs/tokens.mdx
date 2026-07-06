@@ -45,13 +45,53 @@ line-height: calc(1 + 2 * var(--unitone--min-half-leading));
 
 This value can be customized.
 
-### --unitone--base-font-size
+### --unitone--root-font-size
 
-Base font size. Specified numerically.
+Root font size. The default is `16px`.
+
+Because this value is a length, it can use fluid CSS values such as `clamp()`.
+
+```css
+:root {
+	--unitone--root-font-size: clamp(16px, 1vw + 12px, 20px);
+}
+```
 
 ### --unitone--font-family
 
 Base `font-family`.
+
+### --unitone--font-size-\{variation\}
+
+Font-size tokens generated from the harmonic sequence. These tokens are intended to be used with the `font-size` property.
+
+```css
+.foo {
+	font-size: var(--unitone--font-size-xl);
+}
+```
+
+| CSS variable                    | Numeric scale |
+| ------------------------------- | ------------- |
+| `--unitone--font-size-2xs`      | `-3`          |
+| `--unitone--font-size-xs`       | `-2`          |
+| `--unitone--font-size-s`        | `-1`          |
+| `--unitone--font-size-m`        | `0`           |
+| `--unitone--font-size-l`        | `1`           |
+| `--unitone--font-size-xl`       | `2`           |
+| `--unitone--font-size-2xl`      | `3`           |
+| `--unitone--font-size-3xl`      | `4`           |
+| `--unitone--font-size-4xl`      | `5`           |
+| `--unitone--font-size-5xl`      | `6`           |
+| `--unitone--font-size-6xl`      | `7`           |
+
+Fluid tokens are also available with the same variation names plus `-fluid`.
+
+```css
+.foo {
+	font-size: var(--unitone--font-size-xl-fluid);
+}
+```
 
 ## Margin / Gap / Padding
 
@@ -63,7 +103,7 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 
 Standard. Mainly for `margin` / `gap`.
 
-Changes in conjunction with `--unitone--half-leading` and `--unitone--base-font-size`.
+Changes in conjunction with `--unitone--half-leading` and the computed `1rem` size.
 
 For variations `2` and above, clamp is used to adjust the margins so that they do not become too large on small screens.
 
@@ -156,7 +196,7 @@ For variations `2` and above, clamp is used to adjust the margins so that they d
 
 For padding.
 
-Changes in conjunction with `--unitone--half-leading` and `--unitone--base-font-size`.
+Changes in conjunction with `--unitone--half-leading` and the computed `1rem` size.
 
 For variations `2` and above, clamp is used to adjust the margins so that they do not become too large on small screens (`--unitone--s{variation}` will also be adjusted, but with a larger reduction).
 
@@ -249,7 +289,7 @@ For variations `2` and above, clamp is used to adjust the margins so that they d
 
 `em` base.
 
-Changes in conjunction with `--unitone--half-leading` and `--unitone--base-font-size`.
+Changes in conjunction with `--unitone--half-leading`.
 
 | CSS variables     | Specific value                  |
 | ----------------- | ------------------------------- |
@@ -269,7 +309,7 @@ Changes in conjunction with `--unitone--half-leading` and `--unitone--base-font-
 
 `rem` base.
 
-Changes in conjunction with `--unitone--half-leading` and `--unitone--base-font-size`.
+Changes in conjunction with `--unitone--half-leading` and `--unitone--root-font-size`.
 
 | CSS variables      | Specific value                   |
 | ------------------ | -------------------------------- |

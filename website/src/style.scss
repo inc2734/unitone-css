@@ -8,7 +8,7 @@
 }
 
 :where(.preview-container) * {
-  @include variables.typography();
+  @include variables.line-height();
 
   button {
     cursor: pointer;

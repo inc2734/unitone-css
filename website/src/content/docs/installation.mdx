@@ -61,21 +61,6 @@ sass --load-path=node_modules --no-source-map src/css/app/global-styles.scss:dis
 sass --pkg-importer=node --no-source-map src/css/app/global-styles.scss:dist/css/app/global-styles.css
 ```
 
-The old Sass entry paths are still available for compatibility, but they are deprecated and emit warnings during Sass compilation. Migrate to the new paths below.
-
-```scss
-// Deprecated
-@use '@inc2734/unitone-css/src/settings/settings';
-@use '@inc2734/unitone-css/src/layout-primitives/layout-primitives';
-@use '@inc2734/unitone-css/src/helper/helper';
-
-// Recommended
-@use '@inc2734/unitone-css/src/settings';
-@use '@inc2734/unitone-css/src/layout-primitives';
-@use '@inc2734/unitone-css/src/behaviors';
-@use '@inc2734/unitone-css/src/utilities';
-```
-
 ## Import JavaScript
 
 To import JavaScript for unitone CSS, `import` in your main JavaScript file. In the case of HTML, you can also use `<script />` to load JavaScript.
@@ -90,7 +75,6 @@ To import JavaScript for unitone CSS, `import` in your main JavaScript file. In 
 		```js
 		import '@inc2734/unitone-css/layout-primitives';
 		import '@inc2734/unitone-css/behaviors';
-		import '@inc2734/unitone-css/compatibility';
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
@@ -101,8 +85,8 @@ To import JavaScript for unitone CSS, `import` in your main JavaScript file. In 
 </Tabs>
 
 When using server-side rendering frameworks, load this script with the framework's equivalent of `<script defer>`.
-The all-in entry loads the marquee and vertical-writing layout primitive scripts, the divider and stairs behaviors, and the fluid typography compatibility layer.
-Individual entries such as `@inc2734/unitone-css/layout-primitives/vertical-writing/behavior`, `@inc2734/unitone-css/behaviors/dividers`, and `@inc2734/unitone-css/compatibility/fluid-typography` are also available when you only need a specific entry.
+The all-in entry loads the marquee and vertical-writing layout primitive scripts, plus the divider and stairs behaviors.
+Individual entries such as `@inc2734/unitone-css/layout-primitives/vertical-writing/behavior` and `@inc2734/unitone-css/behaviors/dividers` are also available when you only need a specific entry.
 
 ## Import React Components
 

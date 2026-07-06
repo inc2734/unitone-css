@@ -21,11 +21,16 @@ If the requested UI matches an established composition pattern, prefer the docum
 
 ## 4. Typography and Scale
 - **Use Existing Utilities Only**: Do not invent utility classes such as `-fz:2` or `-fw:bold`. If you use utilities, stick to the ones provided by `src/utilities`, such as `-font-size:*`, `-align-items:*`, and `-overflow:*`.
-- **Scaling (CSS Variables)**:
-  - Use `--unitone--font-size` for font-size.
-  - **Avoid Redundancy**: Do not specify `--unitone--font-size: 0` if the default size (1rem) is sufficient.
+- **Scaling (Font Size Tokens)**:
+  - Use font-size tokens such as `--unitone--font-size-xl` with the `font-size` property.
+  - Prefer `-font-size:*` utilities for plain elements when utilities are available.
   ```jsx
-  <h2 style={{ '--unitone--font-size': 2 }}>Title</h2>
+  <h2 className="-font-size:xl">Title</h2>
+  ```
+  ```css
+  .title {
+    font-size: var(--unitone--font-size-xl);
+  }
   ```
 - **Token Naming (Strict)**:
   - **Padding**: `--unitone--p{variation}` (e.g., `--unitone--p1`, `--unitone--p-1` for negative).

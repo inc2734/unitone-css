@@ -16,9 +16,7 @@
     "./layout-primitives/*/react": "./dist/layout-primitives/*/react.js",
     "./layout-primitives/*/behavior": "./dist/layout-primitives/*/behavior.js",
     "./behaviors": "./dist/behaviors/index.js",
-    "./behaviors/*": "./dist/behaviors/*.js",
-    "./compatibility": "./dist/compatibility/index.js",
-    "./compatibility/*": "./dist/compatibility/*.js"
+    "./behaviors/*": "./dist/behaviors/*.js"
   },
   "license": "MIT",
   "repository": {

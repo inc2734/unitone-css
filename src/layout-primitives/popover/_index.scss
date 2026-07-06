@@ -60,7 +60,6 @@
   --unitone--color: #fff;
   --unitone--border-radius: var(--unitone--global--border-radius);
   --unitone--box-shadow: none;
-  --unitone--font-size: -1;
   --unitone--padding: var(--unitone--s-1);
 
   margin-inline: auto;
@@ -70,6 +69,7 @@
   border-radius: var(--unitone--border-radius);
   padding: calc(var(--unitone--padding) / 2) var(--unitone--padding);
   width: fit-content;
+  font-size: var(--unitone--font-size-s);
 
   &:where([data-unitone-layout~="-shadow"]) {
     --unitone--box-shadow: var(--unitone--global--box-shadow);

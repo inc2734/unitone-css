@@ -6,43 +6,34 @@ import { PreviewConainer } from '../../components';
 
 ## Font size
 
-You can scale the font size with the CSS custom property `--unitone--font-size`. Variations on font size are available based on the harmonic sequence. The minimum value is `-2` and the maximum value is `7`.
+Use font-size tokens or the `-font-size:*` utility to scale text. Variations are generated from the harmonic sequence, and they update when `--unitone--harmonic-sequence-base` or `--unitone--root-font-size` changes.
 
-If you scale the font size with this CSS custom property, the `line-height` will be automatically set to an appropriate value (By default, it scales from `1.1`(= `1 + var(--unitone--min-half-leading) * 2`) to `1.6`(= `1 + var(--unitone--half-leading) * 2`), depending on font size.).
+The automatic `line-height` optimization still follows the rendered font size. By default, it scales from `1.1`(= `1 + var(--unitone--min-half-leading) * 2`) to `1.6`(= `1 + var(--unitone--half-leading) * 2`).
 
-Approximate font sizes with the default `--unitone--base-font-size: 16` are:
+Approximate font sizes with the default `--unitone--root-font-size: 16px` are:
 
-| `--unitone--font-size` | Utility class     | Approx. rem | Approx. px |
-| ---------------------- | ----------------- | ----------- | ---------- |
-| `-3`                   | `.-font-size:2xs` | `0.727rem`  | `11.6px`   |
-| `-2`                   | `.-font-size:xs`  | `0.8rem`    | `12.8px`   |
-| `-1`                   | `.-font-size:s`   | `0.889rem`  | `14.2px`   |
-| `0`                    | `.-font-size:m`   | `1rem`      | `16px`     |
-| `1`                    | `.-font-size:l`   | `1.143rem`  | `18.3px`   |
-| `2`                    | `.-font-size:xl`  | `1.333rem`  | `21.3px`   |
-| `3`                    | `.-font-size:2xl` | `1.6rem`    | `25.6px`   |
-| `4`                    | `.-font-size:3xl` | `2rem`      | `32px`     |
-| `5`                    | `.-font-size:4xl` | `2.667rem`  | `42.7px`   |
-| `6`                    | `.-font-size:5xl` | `4rem`      | `64px`     |
-| `7`                    | `.-font-size:6xl` | `8rem`      | `128px`    |
+| Token                         | Utility class     | Approx. rem | Approx. px |
+| ----------------------------- | ----------------- | ----------- | ---------- |
+| `--unitone--font-size-2xs`    | `.-font-size:2xs` | `0.727rem`  | `11.6px`   |
+| `--unitone--font-size-xs`     | `.-font-size:xs`  | `0.8rem`    | `12.8px`   |
+| `--unitone--font-size-s`      | `.-font-size:s`   | `0.889rem`  | `14.2px`   |
+| `--unitone--font-size-m`      | `.-font-size:m`   | `1rem`      | `16px`     |
+| `--unitone--font-size-l`      | `.-font-size:l`   | `1.143rem`  | `18.3px`   |
+| `--unitone--font-size-xl`     | `.-font-size:xl`  | `1.333rem`  | `21.3px`   |
+| `--unitone--font-size-2xl`    | `.-font-size:2xl` | `1.6rem`    | `25.6px`   |
+| `--unitone--font-size-3xl`    | `.-font-size:3xl` | `2rem`      | `32px`     |
+| `--unitone--font-size-4xl`    | `.-font-size:4xl` | `2.667rem`  | `42.7px`   |
+| `--unitone--font-size-5xl`    | `.-font-size:5xl` | `4rem`      | `64px`     |
+| `--unitone--font-size-6xl`    | `.-font-size:6xl` | `8rem`      | `128px`    |
 
 These are static size approximations. When `-fluid-typography` is used, the actual rendered size changes within a range depending on the viewport.
 
 When using large font sizes such as `2xl` and above, combining them with `-fluid-typography` is recommended. This helps prevent oversized text from breaking the layout on mobile screens.
 
-For plain HTML, there are two valid entry points:
+For plain HTML, use the utility class from `utilities.mdx`, such as `class="-font-size:xl"`.
 
-- set `--unitone--font-size` directly in `style`
-- use the utility class from `utilities.mdx`, such as `class="-font-size:xl"`
-
-When you use the utility version, apply it with `class`, not `data-unitone-layout`.
+When utilities are not loaded but the font-size behavior is loaded, use the `data-unitone-layout` version.
 The leading `.` seen in CSS selector notation is not included in the class attribute value.
-
-```html
-<p style="--unitone--font-size: 2">
-	...
-</p>
-```
 
 ```html
 <p class="-font-size:xl">
@@ -50,19 +41,33 @@ The leading `.` seen in CSS selector notation is not included in the class attri
 </p>
 ```
 
+```html
+<p data-unitone-layout="-font-size:xl">
+	...
+</p>
+```
+
+In custom CSS, set the `font-size` property directly.
+
+```css
+.foo {
+	font-size: var(--unitone--font-size-xl);
+}
+```
+
 <PreviewConainer>
 	<Stack>
-		<p data-unitone-layout="-typography" style={{ '--unitone--font-size': -3 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-		<p data-unitone-layout="-typography" style={{ '--unitone--font-size': -2 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-		<p data-unitone-layout="-typography" style={{ '--unitone--font-size': -1 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-		<p data-unitone-layout="-typography" style={{ '--unitone--font-size': 0 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-		<p data-unitone-layout="-typography" style={{ '--unitone--font-size': 1 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-		<p data-unitone-layout="-typography" style={{ '--unitone--font-size': 2 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-		<p data-unitone-layout="-typography" style={{ '--unitone--font-size': 3 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-		<p data-unitone-layout="-typography" style={{ '--unitone--font-size': 4 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-		<p data-unitone-layout="-typography" style={{ '--unitone--font-size': 5 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-		<p data-unitone-layout="-typography" style={{ '--unitone--font-size': 6 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-		<p data-unitone-layout="-typography" style={{ '--unitone--font-size': 7 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p className="-font-size:2xs">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p className="-font-size:xs">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p className="-font-size:s">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p className="-font-size:m">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p className="-font-size:l">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p className="-font-size:xl">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p className="-font-size:2xl">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p className="-font-size:3xl">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p className="-font-size:4xl">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p className="-font-size:5xl">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p className="-font-size:6xl">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 	</Stack>
 </PreviewConainer>
 
@@ -78,23 +83,23 @@ The half leading can be set. The default value is `0.3`.
 
 ## Fluid typography
 
-The default font size for unitone CSS is fluid typography, but by adding `data-unitone-layout="-fluid-typography"`, the `line-height` can also be scaled to an optimal value as the font size is scaled The `line-height` can also be adjusted to the optimum value as the font size expands and contracts.
+Combine a font-size utility with `-fluid-typography` to switch from the static token to the matching fluid token.
 
-Approximate fluid font-size ranges with the default `--unitone--base-font-size: 16` are:
+Approximate fluid font-size ranges with the default `--unitone--root-font-size: 16px` are:
 
-| `--unitone--font-size` | Utility class     | Min rem    | Min px   | Max rem    | Max px   |
-| ---------------------- | ----------------- | ---------- | -------- | ---------- | -------- |
-| `-3`                   | `.-font-size:2xs` | `0.727rem` | `11.6px` | `0.727rem` | `11.6px` |
-| `-2`                   | `.-font-size:xs`  | `0.8rem`   | `12.8px` | `0.8rem`   | `12.8px` |
-| `-1`                   | `.-font-size:s`   | `0.889rem` | `14.2px` | `0.889rem` | `14.2px` |
-| `0`                    | `.-font-size:m`   | `1rem`     | `16px`   | `1rem`     | `16px`   |
-| `1`                    | `.-font-size:l`   | `1.089rem` | `17.4px` | `1.143rem` | `18.3px` |
-| `2`                    | `.-font-size:xl`  | `1.2rem`   | `19.2px` | `1.333rem` | `21.3px` |
-| `3`                    | `.-font-size:2xl` | `1.343rem` | `21.5px` | `1.6rem`   | `25.6px` |
-| `4`                    | `.-font-size:3xl` | `1.533rem` | `24.5px` | `2rem`     | `32px`   |
-| `5`                    | `.-font-size:4xl` | `1.8rem`   | `28.8px` | `2.667rem` | `42.7px` |
-| `6`                    | `.-font-size:5xl` | `2.2rem`   | `35.2px` | `4rem`     | `64px`   |
-| `7`                    | `.-font-size:6xl` | `2.867rem` | `45.9px` | `8rem`     | `128px`  |
+| Fluid token                   | Utility class     | Min rem    | Min px   | Max rem    | Max px   |
+| ----------------------------- | ----------------- | ---------- | -------- | ---------- | -------- |
+| `--unitone--font-size-2xs-fluid` | `.-font-size:2xs` | `0.727rem` | `11.6px` | `0.727rem` | `11.6px` |
+| `--unitone--font-size-xs-fluid`  | `.-font-size:xs`  | `0.8rem`   | `12.8px` | `0.8rem`   | `12.8px` |
+| `--unitone--font-size-s-fluid`   | `.-font-size:s`   | `0.889rem` | `14.2px` | `0.889rem` | `14.2px` |
+| `--unitone--font-size-m-fluid`   | `.-font-size:m`   | `1rem`     | `16px`   | `1rem`     | `16px`   |
+| `--unitone--font-size-l-fluid`   | `.-font-size:l`   | `1.089rem` | `17.4px` | `1.143rem` | `18.3px` |
+| `--unitone--font-size-xl-fluid`  | `.-font-size:xl`  | `1.2rem`   | `19.2px` | `1.333rem` | `21.3px` |
+| `--unitone--font-size-2xl-fluid` | `.-font-size:2xl` | `1.343rem` | `21.5px` | `1.6rem`   | `25.6px` |
+| `--unitone--font-size-3xl-fluid` | `.-font-size:3xl` | `1.533rem` | `24.5px` | `2rem`     | `32px`   |
+| `--unitone--font-size-4xl-fluid` | `.-font-size:4xl` | `1.8rem`   | `28.8px` | `2.667rem` | `42.7px` |
+| `--unitone--font-size-5xl-fluid` | `.-font-size:5xl` | `2.2rem`   | `35.2px` | `4rem`     | `64px`   |
+| `--unitone--font-size-6xl-fluid` | `.-font-size:6xl` | `2.867rem` | `45.9px` | `8rem`     | `128px`  |
 
 These values are the approximate minimum and maximum lengths generated by `clamp()` across the default viewport range.
 
@@ -108,33 +113,35 @@ In plain HTML, the utility version is a class:
 </p>
 ```
 
-When you use this feature with partial JavaScript loading, also load the compatibility entry for Firefox.
-
-```js
-import '@inc2734/unitone-css/compatibility/fluid-typography';
-// or import '@inc2734/unitone-css/compatibility';
-// or import '@inc2734/unitone-css/app';
-```
+The same combination can be written with `data-unitone-layout`.
 
 ```html
-<p style="--unitone--font-size: 7" data-unitone-layout="-fluid-typography">
+<p data-unitone-layout="-font-size:6xl -fluid-typography">
 	...
 </p>
 ```
 
+In custom CSS, use the fluid token directly.
+
+```css
+.foo {
+	font-size: var(--unitone--font-size-6xl-fluid);
+}
+```
+
 <PreviewConainer>
 	<Stack>
-		<p data-unitone-layout="-typography -fluid-typography" style={{ '--unitone--font-size': -3 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-		<p data-unitone-layout="-typography -fluid-typography" style={{ '--unitone--font-size': -2 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-		<p data-unitone-layout="-typography -fluid-typography" style={{ '--unitone--font-size': -1 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-		<p data-unitone-layout="-typography -fluid-typography" style={{ '--unitone--font-size': 0 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-		<p data-unitone-layout="-typography -fluid-typography" style={{ '--unitone--font-size': 1 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-		<p data-unitone-layout="-typography -fluid-typography" style={{ '--unitone--font-size': 2 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-		<p data-unitone-layout="-typography -fluid-typography" style={{ '--unitone--font-size': 3 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-		<p data-unitone-layout="-typography -fluid-typography" style={{ '--unitone--font-size': 4 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-		<p data-unitone-layout="-typography -fluid-typography" style={{ '--unitone--font-size': 5 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-		<p data-unitone-layout="-typography -fluid-typography" style={{ '--unitone--font-size': 6 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-		<p data-unitone-layout="-typography -fluid-typography" style={{ '--unitone--font-size': 7 }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p className="-font-size:2xs -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p className="-font-size:xs -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p className="-font-size:s -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p className="-font-size:m -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p className="-font-size:l -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p className="-font-size:xl -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p className="-font-size:2xl -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p className="-font-size:3xl -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p className="-font-size:4xl -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p className="-font-size:5xl -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p className="-font-size:6xl -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 	</Stack>
 </PreviewConainer>
 

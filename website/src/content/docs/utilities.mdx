@@ -26,7 +26,6 @@ Utilities are available when you load `app.css`, and they can also be loaded exp
 - `padding`
 - `position`
 - `text-align`
-- `typography`
 
 ## When to use
 
@@ -112,14 +111,6 @@ Use these mainly on multi-row flex or grid wrappers when a full primitive is unn
 - `.-align-self:stretch`
 - `.-align-self:auto`
 
-### `typography`
-
-- `.-fluid-typography`
-
-This applies the shared fluid typography mixin.
-In plain HTML, write it in `class`.
-Example: `class="-fluid-typography"`
-
 ### `font-size`
 
 - `.-font-size:2xs`
@@ -134,25 +125,28 @@ Example: `class="-fluid-typography"`
 - `.-font-size:5xl`
 - `.-font-size:6xl`
 
-These utilities set `--unitone--font-size`, so they work with the typography system already provided by `app.css`.
+These utilities set the `font-size` property to the matching font-size token.
 In plain HTML, write them in `class`.
 Example: `class="-font-size:xl"`
 
-Named font-size utilities map to the internal numeric scale like this:
+The same names can also be used with `data-unitone-layout` when you load the font-size behavior without the utility classes.
+Example: `data-unitone-layout="-font-size:xl"`
 
-- `2xs` -> `-3`
-- `xs` -> `-2`
-- `s` -> `-1`
-- `m` -> `0`
-- `l` -> `1`
-- `xl` -> `2`
-- `2xl` -> `3`
-- `3xl` -> `4`
-- `4xl` -> `5`
-- `5xl` -> `6`
-- `6xl` -> `7`
+Named font-size utilities map to font-size tokens like this:
 
-Approximate font sizes with the default `--unitone--base-font-size: 16` are:
+- `2xs` -> `--unitone--font-size-2xs`
+- `xs` -> `--unitone--font-size-xs`
+- `s` -> `--unitone--font-size-s`
+- `m` -> `--unitone--font-size-m`
+- `l` -> `--unitone--font-size-l`
+- `xl` -> `--unitone--font-size-xl`
+- `2xl` -> `--unitone--font-size-2xl`
+- `3xl` -> `--unitone--font-size-3xl`
+- `4xl` -> `--unitone--font-size-4xl`
+- `5xl` -> `--unitone--font-size-5xl`
+- `6xl` -> `--unitone--font-size-6xl`
+
+Approximate font sizes with the default `--unitone--root-font-size: 16px` are:
 
 | Utility class     | Numeric scale | Approx. rem | Approx. px |
 | ----------------- | ------------- | ----------- | ---------- |
@@ -168,7 +162,10 @@ Approximate font sizes with the default `--unitone--base-font-size: 16` are:
 | `.-font-size:5xl` | `6`           | `4rem`      | `64px`     |
 | `.-font-size:6xl` | `7`           | `8rem`      | `128px`    |
 
-For screenshot matching or visual approximation, it is usually better to pick the nearest row from this table first and only then fine-tune if needed. These values are approximate static sizes; `.-fluid-typography` changes the rendered size with the viewport.
+For screenshot matching or visual approximation, it is usually better to pick the nearest row from this table first and only then fine-tune if needed. These values are approximate static sizes.
+
+Add `.-fluid-typography` together with a `.-font-size:*` utility to switch to the matching fluid token, such as `--unitone--font-size-xl-fluid`.
+The `.-fluid-typography` class is a modifier for font-size utilities and has no standalone effect.
 
 ### `font-weight`
 
@@ -331,6 +328,6 @@ Available tokens include semantic colors and palette colors such as:
 
 - Prefer utilities on non-primitive elements.
 - Do not use utilities as a substitute for a missing primitive structure.
-- If `app.css` is loaded, normal text already participates in the unitone typography system, so `data-unitone-layout="-typography"` is not required for every text node.
+- If `app.css` is loaded, normal text already participates in the unitone line-height system, so typography helpers are not required for every text node.
 - For borders, backgrounds, padding, and layout-affecting grouping, `Decorator` is often clearer than stacking multiple utility classes.
 - For alignment keywords, use `start` and `end` rather than `flex-start` and `flex-end`, matching the rest of unitone CSS.

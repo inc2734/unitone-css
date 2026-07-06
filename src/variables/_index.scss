@@ -1,1 +1,83 @@
-@forward './variables-core';
+$fibonacci-sequence: 1, 2, 3, 5, 8, 13, 21, 34, 55;
+
+$min-breakpoint: 27; // = 432px
+$max-breakpoint: 80; // = 1280px
+
+$root-font-size: var(--unitone--root-font-size);
+
+@function _max-font-size($level) {
+  @return calc(var(--unitone--harmonic-sequence-base) / (var(--unitone--max-harmonic-sequence-base) - (#{ $level })));
+}
+
+@function _min-font-size($level) {
+  @return calc(var(--unitone--harmonic-sequence-base) / (var(--unitone--min-harmonic-sequence-base) - (#{ $level })) + 1 - (var(--unitone--harmonic-sequence-base) / var(--unitone--min-harmonic-sequence-base)));
+}
+
+@function _font-size-scale($level) {
+  @return calc(var(--unitone--harmonic-sequence-base) / (var(--unitone--harmonic-sequence-base) - (#{ $level })));
+}
+
+@function font-size-rem($level) {
+  @return calc(#{ _font-size-scale($level) } * 1rem);
+}
+
+@function font-size-fluid($level) {
+  $max-font-size: _max-font-size($level);
+  $min-font-size: _min-font-size($level);
+  $slope: calc((#{ $max-font-size } - #{ $min-font-size }) / (#{ $max-breakpoint - $min-breakpoint }));
+  $intercept: calc(#{-1 * $min-breakpoint } * #{ $slope } + #{ $min-font-size });
+  $preferred-font-size: calc((#{ $intercept } * 1rem) + (#{ $slope } * 100vw));
+
+  @return clamp(var(--unitone--fluid-typography-min-length, calc(1rem * #{ $min-font-size })), #{ $preferred-font-size }, var(--unitone--fluid-typography-max-length, calc(1rem * #{ $max-font-size })));
+}
+
+/**
+ * Line-height scaling (non-linear / hyperbolic reciprocal curve)
+ *
+ * This block computes a font-size–dependent line-height using a hyperbolic (reciprocal) curve:
+ *
+ * LH(fs) = Lmin' + K / (fs + C)
+ *
+ * ### Internal bias (-0.1) for the effective minimum (Lmin')
+ * We slightly lower the effective minimum to compensate for the
+ * asymptotic nature of the reciprocal curve. This makes the observed
+ * minimum in typical font-size ranges closer to the user’s expectation.
+ *
+ * ### C: Curvature / controls how quickly the curve approaches the minimum
+ * Larger C => slower decay (more generous line-height for larger text)
+ * Smaller C => faster decay (tighter line-height sooner)
+ *
+ * ### K: Amplitude / scale factor for the reciprocal term
+ * We compute K so that the curve respects the intended range between
+ * max-line-height and the biased minimum, and so that near the base
+ * font size the line-height stays close to max (and is clamped there).
+ */
+$_min-line-height: calc(var(--unitone--min-line-height) - 0.1);
+$_line-height-amplitude: calc((var(--unitone--max-line-height) - #{ $_min-line-height }) * (var(--unitone--result--1rem-px) + var(--unitone--line-height-curvature)));
+$_line-height: clamp(
+  var(--unitone--min-line-height),
+  (#{ $_min-line-height } + #{ $_line-height-amplitude } / (var(--unitone--result--1em-px) + var(--unitone--line-height-curvature))),
+  var(--unitone--max-line-height)
+);
+
+@mixin line-height {
+  --unitone--min-line-height: calc(1 + 2 * min(var(--unitone--min-half-leading), var(--unitone--half-leading)));
+  --unitone--max-line-height: calc(1 + 2 * var(--unitone--half-leading));
+  --unitone--line-height: #{ $_line-height };
+
+  line-height: var(--unitone--line-height);
+
+  // @todo In Firefox, using tan(atan2()) for line-height is considered invalid.
+  // Therefore, a fallback line-height is applied.
+  @supports (-moz-appearance: none) {
+    line-height: clamp(
+      calc(var(--unitone--min-line-height) * 1em),
+      calc((var(--unitone--min-line-height) - 0.1) * 1em + (var(--unitone--max-line-height) - (var(--unitone--min-line-height) - 0.1)) * 1rem),
+      calc(var(--unitone--max-line-height) * 1em)
+    );
+  }
+}
+
+$container-max-width: $max-breakpoint * 16px; // = 1280px
+$grid-columns: 12;
+$grid-rows: 7;

@@ -1,0 +1,11 @@
+@mixin font-size() {
+  @each $name in 2xs, xs, s, m, l, xl, 2xl, 3xl, 4xl, 5xl, 6xl {
+    [data-unitone-layout~="-font-size\:#{ $name }"] {
+      font-size: var(--unitone--font-size-#{ $name });
+    }
+
+    [data-unitone-layout~="-font-size\:#{ $name }"][data-unitone-layout~="-fluid-typography"] {
+      font-size: var(--unitone--font-size-#{ $name }-fluid);
+    }
+  }
+}

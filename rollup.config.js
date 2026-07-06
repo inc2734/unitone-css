@@ -31,7 +31,6 @@ const createConfig = ({ input, file, external = [], exports }) => ({
 
 const layoutPrimitivesDir = path.resolve('src/layout-primitives');
 const behaviorsDir = path.resolve('src/behaviors');
-const compatibilityDir = path.resolve('src/compatibility');
 
 const fileEntries = (dir) =>
   fs
@@ -56,7 +55,6 @@ const behaviorEntries = fs
 
 const layoutPrimitiveRootEntries = fileEntries(layoutPrimitivesDir);
 const sharedBehaviorEntries = fileEntries(behaviorsDir);
-const compatibilityEntries = fileEntries(compatibilityDir);
 
 export default [
   createConfig({
@@ -77,12 +75,6 @@ export default [
     createConfig({
       input: `src/behaviors/${fileName}`,
       file: `dist/behaviors/${fileName}`,
-    }),
-  ),
-  ...compatibilityEntries.map((fileName) =>
-    createConfig({
-      input: `src/compatibility/${fileName}`,
-      file: `dist/compatibility/${fileName}`,
     }),
   ),
   ...behaviorEntries.map((name) =>

@@ -1,0 +1,237 @@
+# Migration Guide v1
+
+This guide covers the breaking changes when migrating from unitone CSS v0 to v1.0.0.
+
+The v1 release removes deprecated Sass entry files and redesigns the font-size API around explicit `font-size` tokens.
+
+## Sass Entry Files
+
+Use only the canonical Sass entry files.
+
+```scss
+@use '@inc2734/unitone-css/src/app';
+```
+
+For partial loading:
+
+```scss
+@use '@inc2734/unitone-css/src/settings';
+@use '@inc2734/unitone-css/src/layout-primitives';
+@use '@inc2734/unitone-css/src/behaviors';
+@use '@inc2734/unitone-css/src/utilities';
+```
+
+Primitive-specific Sass entries also use the directory entry.
+
+```scss
+@use '@inc2734/unitone-css/src/layout-primitives/vertical-writing';
+
+@include vertical-writing.vertical-writing();
+```
+
+The deprecated compatibility files have been removed.
+
+| v0 entry | v1 entry |
+| -------- | -------- |
+| `@inc2734/unitone-css/src/settings/settings` | `@inc2734/unitone-css/src/settings` |
+| `@inc2734/unitone-css/src/layout-primitives/layout-primitives` | `@inc2734/unitone-css/src/layout-primitives` |
+| `@inc2734/unitone-css/src/foundation/foundation` | `@inc2734/unitone-css/src/foundation` |
+| `@inc2734/unitone-css/src/variables/variables` | `@inc2734/unitone-css/src/variables` |
+| `@inc2734/unitone-css/src/helper/helper` | `@inc2734/unitone-css/src/behaviors` |
+| `@inc2734/unitone-css/src/layout-primitives/stack/stack` | `@inc2734/unitone-css/src/layout-primitives/stack` |
+| `@inc2734/unitone-css/src/layout-primitives/<name>/<name>` | `@inc2734/unitone-css/src/layout-primitives/<name>` |
+
+Internal `*-core.scss` files have also been removed. Use the public directory entry instead.
+
+## Font Size API
+
+v0 changed text size by setting `--unitone--font-size`.
+
+```css
+.foo {
+	--unitone--font-size: 2;
+}
+```
+
+v1 uses explicit font-size tokens with the `font-size` property.
+
+```css
+.foo {
+	font-size: var(--unitone--font-size-xl);
+}
+```
+
+The old `--unitone--font-size` custom property is no longer defined by unitone CSS and no longer changes text size.
+
+### Removed Sass Typography APIs
+
+The old Sass typography APIs that depended on `--unitone--font-size` have been removed.
+
+Removed function:
+
+- `font-size-em()`
+
+Removed mixins:
+
+- `typography()`
+- `typography-em()`
+- `fluid-typography()`
+
+Use font-size tokens directly instead.
+
+```scss
+.foo {
+	font-size: var(--unitone--font-size-xl);
+}
+```
+
+If you only need unitone's automatic line-height, use the `line-height()` mixin.
+
+```scss
+.foo {
+	@include variables.line-height();
+}
+```
+
+### Mapping
+
+| v0 value | v1 token |
+| -------- | -------- |
+| `--unitone--font-size: -3` | `font-size: var(--unitone--font-size-2xs)` |
+| `--unitone--font-size: -2` | `font-size: var(--unitone--font-size-xs)` |
+| `--unitone--font-size: -1` | `font-size: var(--unitone--font-size-s)` |
+| `--unitone--font-size: 0` | `font-size: var(--unitone--font-size-m)` |
+| `--unitone--font-size: 1` | `font-size: var(--unitone--font-size-l)` |
+| `--unitone--font-size: 2` | `font-size: var(--unitone--font-size-xl)` |
+| `--unitone--font-size: 3` | `font-size: var(--unitone--font-size-2xl)` |
+| `--unitone--font-size: 4` | `font-size: var(--unitone--font-size-3xl)` |
+| `--unitone--font-size: 5` | `font-size: var(--unitone--font-size-4xl)` |
+| `--unitone--font-size: 6` | `font-size: var(--unitone--font-size-5xl)` |
+| `--unitone--font-size: 7` | `font-size: var(--unitone--font-size-6xl)` |
+
+## Font Size Utilities
+
+The `-font-size:*` utility names are unchanged, but their implementation changed.
+
+```html
+<p class="-font-size:xl">...</p>
+```
+
+In v0, these utilities set `--unitone--font-size`. In v1, they set the `font-size` property directly.
+
+When utilities are not loaded but the font-size behavior is loaded, use the `data-unitone-layout` form.
+
+```html
+<p data-unitone-layout="-font-size:xl">...</p>
+```
+
+## Fluid Typography
+
+Fluid font-size tokens are now available directly.
+
+```css
+.foo {
+	font-size: var(--unitone--font-size-6xl-fluid);
+}
+```
+
+With utilities, combine the font-size utility with `-fluid-typography`.
+
+```html
+<p class="-font-size:6xl -fluid-typography">...</p>
+```
+
+The same combination can be written with `data-unitone-layout`.
+
+```html
+<p data-unitone-layout="-font-size:6xl -fluid-typography">...</p>
+```
+
+The `@inc2734/unitone-css/compatibility/fluid-typography` JavaScript entry has been removed.
+The root `@inc2734/unitone-css/compatibility` JavaScript entry remains importable as a no-op, but it is no longer required.
+The Sass `fluid-typography()` mixin has also been removed. Use a `--unitone--font-size-*-fluid` token directly, or combine `-font-size:*` with `-fluid-typography`.
+
+## Removed Typography Behavior Helpers
+
+The following `data-unitone-layout` helpers have been removed from the behavior stylesheet:
+
+- `-root:typography`
+- `-typography`
+- `-typography:em`
+- `-typography:rem`
+
+Use font-size tokens, `-font-size:*`, or `data-unitone-layout="-font-size:*"` instead.
+
+```html
+<p class="-font-size:xl">...</p>
+<p data-unitone-layout="-font-size:xl">...</p>
+```
+
+## Foundation Typography
+
+v0 applied `font-size` to many elements through the foundation layer. v1 stops doing that so normal CSS inheritance works as expected.
+
+The default font size is now set on `body`.
+
+```css
+body {
+	font-size: var(--unitone--font-size-m);
+}
+```
+
+The automatic line-height optimization is still applied by the foundation layer.
+
+If you previously relied on setting `--unitone--font-size` on a wrapper and having it affect descendant block elements, set `font-size` on the wrapper instead.
+
+```css
+.section {
+	font-size: var(--unitone--font-size-xl);
+}
+```
+
+## Root Font Size Token
+
+The unitless `--unitone--base-font-size` token has been removed.
+
+In v0, the root font size was configured with a unitless px number.
+
+```css
+:root {
+	--unitone--base-font-size: 16;
+}
+```
+
+In v1, use the length-based `--unitone--root-font-size` token.
+
+```css
+:root {
+	--unitone--root-font-size: 16px;
+}
+```
+
+Because `--unitone--root-font-size` accepts a CSS length, fluid root font sizes are also supported.
+
+```css
+:root {
+	--unitone--root-font-size: clamp(16px, 1vw + 12px, 20px);
+}
+```
+
+Internal spacing and line-height calculations now use the computed `1rem` size instead of reading a public unitless base-font-size token.
+
+## Layout Primitive Internals
+
+Layout primitives now use font-size tokens internally instead of setting `--unitone--font-size`. This affects headings in primitives such as `text` and `vertical-writing`, plus small text surfaces such as `figcaption` and `popover`.
+
+If you overrode primitive typography by targeting `--unitone--font-size`, migrate those overrides to `font-size`.
+
+## Migration Checklist
+
+1. Replace removed Sass entry paths with canonical directory entries.
+2. Remove imports of `src/helper/helper` and use `src/behaviors` where needed.
+3. Replace direct `--unitone--font-size` usage with `font-size: var(--unitone--font-size-*)`.
+4. Replace removed Sass typography APIs such as `typography()`, `typography-em()`, `fluid-typography()`, and `font-size-em()`.
+5. Replace `data-unitone-layout="-typography"` usage with `-font-size:*` or a token-backed `font-size`.
+6. Check large headings that used fluid typography and migrate to `-font-size:* -fluid-typography` or a `*-fluid` token.
+7. Replace `--unitone--base-font-size` with `--unitone--root-font-size` and add a unit, such as `16px`.
+8. Recheck any wrapper-level typography assumptions because v1 follows normal `font-size` inheritance.

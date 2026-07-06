@@ -871,54 +871,6 @@ export const verticalsResizeObserver = (target) => {
 };
 
 /**
- * Writes the computed 1em value to a CSS custom property for Firefox.
- *
- * @param {HTMLElement} target Target element.
- * @returns {void}
- */
-export const setResult1emPxForFireFox = (target) => {
-  const ownerDocument = target.ownerDocument;
-  const defaultView = ownerDocument.defaultView;
-
-  const computedStyle = defaultView.getComputedStyle(target);
-  const fontSize = parseFloat(computedStyle.fontSize);
-  const result1emPx = parseFloat(computedStyle.getPropertyValue('--unitone--result--1em-px'));
-  if (fontSize === result1emPx) {
-    return;
-  }
-
-  target.style.setProperty('--unitone--result--1em-px', fontSize);
-};
-
-/**
- * Creates the observer bundle for the Firefox 1em measurement workaround.
- *
- * @param {HTMLElement} target Target element.
- * @returns {void}
- */
-export const result1emPxForFireFoxObserver = (target) => {
-  const ownerDocument = target.ownerDocument;
-  const defaultView = ownerDocument.defaultView;
-  const computedStyle = defaultView.getComputedStyle(ownerDocument.documentElement);
-  const isFirefox = computedStyle.getPropertyValue('--unitone--is-firefox').trim();
-  if (!isFirefox) {
-    return;
-  }
-
-  createLayoutObserver(target, setResult1emPxForFireFox, {
-    getResizeValue: getBorderBoxInlineSize,
-    targetMutation: {
-      options: {
-        attributes: true,
-        attributeFilter: ['style', 'data-unitone-layout', 'class'],
-        characterData: true,
-      },
-      shouldApply: () => true,
-    },
-  });
-};
-
-/**
  * Creates duplicated marquee content and refreshes initialization markers.
  *
  * @param {Element} target Target element.

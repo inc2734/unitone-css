@@ -8,6 +8,12 @@
   initial-value: 0px;
 }
 
+@property --unitone--property--1rem {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
 @property --unitone--property--100vw {
   syntax: "<length>";
   inherits: false;
@@ -15,6 +21,12 @@
 }
 
 @property --unitone--result--1em-px {
+  syntax: "<number> | <length>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --unitone--result--1rem-px {
   syntax: "<number> | <length>";
   inherits: false;
   initial-value: 0;
@@ -29,7 +41,7 @@
 @function _generate-fluid-spacing($min, $max) {
   @return clamp(
     #{ $min },
-    #{ $min } + ((#{ $max } - #{ $min }) / (#{ variables.$max-breakpoint - variables.$min-breakpoint } * var(--unitone--base-font-size)) * (var(--unitone--result--100vw-px) - (#{ variables.$min-breakpoint } * var(--unitone--base-font-size)))),
+    #{ $min } + ((#{ $max } - #{ $min }) / (#{ variables.$max-breakpoint - variables.$min-breakpoint } * var(--unitone--result--1rem-px)) * (var(--unitone--result--100vw-px) - (#{ variables.$min-breakpoint } * var(--unitone--result--1rem-px)))),
     #{ $max }
   );
 }
@@ -46,16 +58,38 @@
   @return _generate-fluid-spacing(#{ $min }, #{ $max });
 }
 
+$font-sizes: (
+  -3: 2xs,
+  -2: xs,
+  -1: s,
+  0: m,
+  1: l,
+  2: xl,
+  3: 2xl,
+  4: 3xl,
+  5: 4xl,
+  6: 5xl,
+  7: 6xl,
+);
+
 * {
   /**
    * A value to get the unitless px value in trigonometric functions. (For Safari)
    */
   --unitone--property--1em: 1em;
+  --unitone--property--1rem: 1rem;
 
   /**
    * em unitless px real value
    */
   --unitone--result--1em-px: calc(tan(atan2(var(--unitone--property--1em), 1px)));
+
+  /**
+   * rem unitless px real value
+   */
+  --unitone--result--1rem-px: calc(tan(atan2(var(--unitone--property--1rem), 1px)));
+
+  @include variables.line-height();
 }
 
 /**
@@ -99,15 +133,9 @@
   --unitone--measure: 42rem;
 
   /**
-   * Font size level.
-   * It is not recommended to override this value with :root in order to have the size determined based on 0.
+   * Root font size.
    */
-  --unitone--font-size: 0;
-
-  /**
-   * The 1rem px font size (no units).
-   */
-  --unitone--base-font-size: 16;
+  --unitone--root-font-size: 100%;
 
   --unitone--harmonic-sequence-base: 8;
   --unitone--min-harmonic-sequence-base: 10;
@@ -126,6 +154,16 @@
    * Font family
    */
   --unitone--font-family: sans-serif;
+}
+
+/**
+ * Font size tokens.
+ */
+:root {
+  @each $level, $name in $font-sizes {
+    --unitone--font-size-#{ $name }: #{ variables.font-size-rem($level) };
+    --unitone--font-size-#{ $name }-fluid: #{ variables.font-size-fluid($level) };
+  }
 }
 
 /**
