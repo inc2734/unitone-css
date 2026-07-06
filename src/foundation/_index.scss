@@ -54,6 +54,17 @@ a {
   margin-inline-start: 1.5em;
 }
 
+:where(
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6
+) {
+  font-size: 100%;
+}
+
 small {
   font-size: smaller;
 }
