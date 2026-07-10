@@ -1,6 +1,5 @@
 @mixin abstract-stack() {
   --unitone--gap: var(--unitone--global--text-gap);
-  --unitone--negative-gap: var(--unitone--global--text-gap);
 
   display: flex;
   flex-direction: column;

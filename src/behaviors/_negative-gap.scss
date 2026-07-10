@@ -1,5 +1,5 @@
 @mixin negative-gap() {
-  [data-unitone-layout~="-negative"][data-unitone-layout*="-gap\:"] {
+  [data-unitone-layout~="-negative"] {
     --unitone--negative-gap: var(--unitone--gap) !important;
   }
 }
