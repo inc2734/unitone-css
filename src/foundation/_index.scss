@@ -70,23 +70,15 @@ small {
 }
 
 sup {
-  font-size: smaller;
-
-  @supports (font-variant-position: super) {
-    font-variant-position: super;
-    vertical-align: baseline;
-    font-size: inherit;
-  }
+  position: relative;
+  top: -.6em;
+  vertical-align: baseline;
+  font-size: .7em;
 }
 
 sub {
-  font-size: smaller;
-
-  @supports (font-variant-position: sub) {
-    font-variant-position: sub;
-    vertical-align: baseline;
-    font-size: inherit;
-  }
+  vertical-align: baseline;
+  font-size: .7em;
 }
 
 img,
