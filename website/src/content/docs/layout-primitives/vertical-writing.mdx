@@ -235,6 +235,42 @@ Switch writing mode when portrait and mobile width.
 	</Tabs.Tab>
 </Tabs>
 
+Set the query context to `container` to make the responsive behavior depend on the containing element's width instead of the viewport width.
+For HTML, add `@container` to `data-unitone-layout`. For React, set `queryContext="container"`.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="vertical-writing-wrapper" style="max-width: 375px; container-type: inline-size">
+			<div data-unitone-layout="vertical-writing -switch @container">
+				...
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { VerticalWriting } from '@inc2734/unitone-css/layout-primitives/vertical-writing/react';
+
+		<div style={{ maxWidth: '375px', containerType: 'inline-size' }}>
+			<VerticalWriting switchWritingMode queryContext="container">
+				...
+			</VerticalWriting>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<div style={{ maxWidth: '375px', containerType: 'inline-size' }}>
+				<VerticalWriting switchWritingMode queryContext="container">
+					<p>するとどこかで見たわ姉は細い銀いろの空から、さっきの入口から暗い牛舎の前へまた来ました。</p>
+					<p>ジョバンニは、いつか町はずれのポプラの木が幾本も幾本も四方へ出るのでした。</p>
+				</VerticalWriting>
+			</div>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
 ### <Badge>HTML</Badge> --unitone--threshold / <Badge>JSX</Badge> threshold=\{value\}
 
 If the box size is smaller than this value, it switches writing mode.

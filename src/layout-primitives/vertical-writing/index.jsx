@@ -7,6 +7,7 @@ export const VerticalWriting = ({
   switchWritingMode,
   threshold,
   style,
+  queryContext,
   ...props
 }) => {
   style = {
@@ -23,6 +24,7 @@ export const VerticalWriting = ({
           '' !== (textOrientation ?? '') ? `-text-orientation:${textOrientation}` : undefined,
           '' !== (gap ?? '') ? `-gap:${gap}` : undefined,
           switchWritingMode ? '-switch' : undefined,
+          queryContext ? `@${queryContext}` : undefined,
         ]
           .filter(Boolean)
           .join(' ')}

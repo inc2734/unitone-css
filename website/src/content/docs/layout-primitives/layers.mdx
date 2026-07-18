@@ -262,6 +262,45 @@ Switch vertical and horizontal grid lines direction when portrait and mobile wid
 	</Tabs.Tab>
 </Tabs>
 
+Set the query context to `container` to make the responsive behavior depend on the containing element's width instead of the viewport width.
+For HTML, add `@container` to `data-unitone-layout`. For React, set `queryContext="container"`.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div style="max-width: 375px; container-type: inline-size">
+			<div data-unitone-layout="layers -portrait @container">
+				...
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Layers } from '@inc2734/unitone-css/layout-primitives/layers/react';
+
+		<div style={{ maxWidth: '375px', containerType: 'inline-size' }}>
+			<Layers portrait queryContext="container">
+				...
+			</Layers>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<div style={{ maxWidth: '375px', containerType: 'inline-size' }}>
+				<Layers portrait queryContext="container">
+					<DummyImage />
+
+					<Layer alignSelf="end">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+					</Layer>
+				</Layers>
+			</div>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
 ### -mix-blend-mode:\{value\}
 
 You can specify how the elements should look when stacked.

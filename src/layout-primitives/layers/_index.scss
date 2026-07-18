@@ -18,10 +18,19 @@
   row-gap: var(--unitone--row-gap);
   min-height: var(--unitone--min-height);
 
-  @media (orientation: portrait) and (max-width: 599px) {
-    &[data-unitone-layout~="-portrait"] {
-      --unitone--columns: var(--unitone--grid-rows);
-      --unitone--rows: var(--unitone--grid-columns);
+  &[data-unitone-layout~="-portrait"] {
+    &:where(:not([data-unitone-layout~="@container"])) {
+      @media (orientation: portrait) and (width < 600px) {
+        --unitone--columns: var(--unitone--grid-rows);
+        --unitone--rows: var(--unitone--grid-columns);
+      }
+    }
+
+    &:where([data-unitone-layout~="@container"]) {
+      @container (width < 600px) {
+        --unitone--columns: var(--unitone--grid-rows);
+        --unitone--rows: var(--unitone--grid-columns);
+      }
     }
   }
 

@@ -46,13 +46,18 @@
     }
   }
 
-  @media (orientation: portrait) and (max-width: 599px) {
-    &[data-unitone-layout~="-switch"] {
-      column-count: auto;
-      writing-mode: horizontal-tb;
+  &[data-unitone-layout~="-switch"] {
+    &:where(:not([data-unitone-layout~="@container"])) {
+      @media (orientation: portrait) and (width < 600px) {
+        column-count: auto;
+        writing-mode: horizontal-tb;
+      }
+    }
 
-      > * {
-        box-sizing: border-box;
+    &:where([data-unitone-layout~="@container"]) {
+      @container (width < 600px) {
+        column-count: auto;
+        writing-mode: horizontal-tb;
       }
     }
   }

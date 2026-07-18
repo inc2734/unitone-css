@@ -95,3 +95,38 @@ Switch aspect ratio when portrait and mobile width.
 		</PreviewConainer>
 	</Tabs.Tab>
 </Tabs>
+
+Set the query context to `container` to make the responsive behavior depend on the containing element's width instead of the viewport width.
+For HTML, add `@container` to `data-unitone-layout`. For React, set `queryContext="container"`.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div style="max-width: 375px; container-type: inline-size">
+			<div data-unitone-layout="frame -switch @container">
+				<img src="..." alt="" style="width: 100%" />
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Frame } from '@inc2734/unitone-css/layout-primitives/frame/react';
+
+		<div style={{ maxWidth: '375px', containerType: 'inline-size' }}>
+			<Frame switchRatio queryContext="container">
+				<img src="..." alt="" />
+			</Frame>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<div style={{ maxWidth: '375px', containerType: 'inline-size' }}>
+				<Frame switchRatio queryContext="container">
+					<DummyImage />
+				</Frame>
+			</div>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>

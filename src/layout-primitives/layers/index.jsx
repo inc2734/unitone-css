@@ -14,6 +14,7 @@ export const Layers = ({
   columns,
   rows,
   rowTrackSize,
+  queryContext,
   style,
   ...props
 }) => {
@@ -38,6 +39,7 @@ export const Layers = ({
         '' !== (gap ?? '') ? `-gap:${gap}` : undefined,
         '' !== (columnGap ?? '') ? `-column-gap:${columnGap}` : undefined,
         '' !== (rowGap ?? '') ? `-row-gap:${rowGap}` : undefined,
+        queryContext ? `@${queryContext}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

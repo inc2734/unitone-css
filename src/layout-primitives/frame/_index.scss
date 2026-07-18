@@ -10,8 +10,10 @@
     width: 100%;
   }
 
-  img,
-  video {
+  :is(
+    img,
+    video
+  ) {
     height: 100% !important;
     width: 100% !important;
     max-height: 100% !important;
@@ -22,9 +24,17 @@
     vertical-align: top;
   }
 
-  @media (orientation: portrait) and (max-width: 599px) {
-    &[data-unitone-layout~="-switch"] {
-      aspect-ratio: calc(1 / (var(--unitone--ratio))) !important;
+  &[data-unitone-layout~="-switch"] {
+    &:where(:not([data-unitone-layout~="@container"])) {
+      @media (orientation: portrait) and (width < 600px) {
+        aspect-ratio: calc(1 / (var(--unitone--ratio))) !important;
+      }
+    }
+
+    &:where([data-unitone-layout~="@container"]) {
+      @container (width < 600px) {
+        aspect-ratio: calc(1 / (var(--unitone--ratio))) !important;
+      }
     }
   }
 }
