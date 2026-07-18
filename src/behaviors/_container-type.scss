@@ -1,0 +1,11 @@
+$_values: (
+  inline-size: inline-size,
+);
+
+@mixin container-type() {
+  @each $key, $value in $_values {
+    [data-unitone-layout~="-container-type\:#{ $key }"] {
+      --unitone--container-type: #{ $value } !important;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
-import { Layers } from '@inc2734/unitone-css/layout-primitives/layers/react';
+import { Layers, Layer } from '@inc2734/unitone-css/layout-primitives/layers/react';
 import { Tabs } from 'nextra/components';
 import { PreviewConainer, Badge, DummyImage } from '../../../components';
 
@@ -321,6 +321,51 @@ Align content.
 				<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
 					sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 				</div>
+			</Decorator>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -container-type:\{value\} / <Badge>JSX</Badge> containerType=\{value\}
+
+Establishes the Decorator as a query container for its descendants.
+
+Currently supported values are:
+
+- `inline-size`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="decorator -container-type:inline-size" style="--unitone--max-width: 375px">
+			<div data-unitone-layout="layers -portrait @container">
+				...
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
+		import { Layers } from '@inc2734/unitone-css/layout-primitives/layers/react';
+
+		<Decorator containerType="inline-size" maxWidth="375px">
+			<Layers portrait queryContext="container">
+				...
+			</Layers>
+		</Decorator>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Decorator containerType="inline-size" maxWidth="375px">
+				<Layers portrait queryContext="container">
+					<DummyImage />
+
+					<Layer alignSelf="end">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+					</Layer>
+				</Layers>
 			</Decorator>
 		</PreviewConainer>
 	</Tabs.Tab>

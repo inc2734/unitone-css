@@ -32,6 +32,8 @@
   --unitone--left: initial;
   --unitone--z-index: initial;
 
+  --unitone--container-type: initial;
+
   appearance: none;
   border: var(--unitone--border-width) solid var(--unitone--border-color);
   border-radius: var(--unitone--border-radius);
@@ -54,6 +56,7 @@
   bottom: var(--unitone--bottom);
   left: var(--unitone--left);
   z-index: var(--unitone--z-index);
+  container-type: var(--unitone--container-type);
 
   // There are primitives that affect the min-width of child elements,
   // so we will increase the specificity a little to avoid this effect.

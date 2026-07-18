@@ -1,0 +1,7 @@
+@each $value in (
+  inline-size,
+) {
+  .-container-type\:#{ $value } {
+    container-type: #{ $value };
+  }
+}

@@ -5,6 +5,7 @@
 @use './auto-repeat';
 @use './auto-phrase';
 @use './background-clip';
+@use './container-type';
 @use './divider';
 @use './font-size';
 @use './gap';
@@ -28,6 +29,7 @@
 @include auto-repeat.auto-repeat();
 @include auto-phrase.auto-phrase();
 @include background-clip.background-clip();
+@include container-type.container-type();
 @include divider.divider();
 @include font-size.font-size();
 @include gap.gap();

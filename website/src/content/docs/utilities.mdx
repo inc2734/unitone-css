@@ -11,6 +11,7 @@ Utilities are available when you load `app.css`, and they can also be loaded exp
 - `align-self`
 - `background-color`
 - `color`
+- `container-type`
 - `display`
 - `flex-direction`
 - `flex-wrap`
@@ -110,6 +111,16 @@ Use these mainly on multi-row flex or grid wrappers when a full primitive is unn
 - `.-align-self:end`
 - `.-align-self:stretch`
 - `.-align-self:auto`
+
+### `container-type`
+
+- `.-container-type:{value}`
+
+Currently supported values are:
+
+- `inline-size`
+
+Use this on an ancestor whose descendants use container queries. When the `container-type` behavior is loaded, the same values can be used with `data-unitone-layout`, for example `data-unitone-layout="-container-type:inline-size"`.
 
 ### `font-size`
 

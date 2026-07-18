@@ -1,4 +1,5 @@
 import { Frame } from '@inc2734/unitone-css/layout-primitives/frame/react';
+import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
 import { Tabs } from 'nextra/components';
 import { PreviewConainer, Badge, DummyImage } from '../../../components';
 
@@ -98,11 +99,12 @@ Switch aspect ratio when portrait and mobile width.
 
 Set the query context to `container` to make the responsive behavior depend on the containing element's width instead of the viewport width.
 For HTML, add `@container` to `data-unitone-layout`. For React, set `queryContext="container"`.
+Establish an ancestor query container with `-container-type:inline-size` in HTML or `<Decorator containerType="inline-size">` in React.
 
 <Tabs items={['HTML', 'JSX', 'Preview']}>
 	<Tabs.Tab>
 		```html
-		<div style="max-width: 375px; container-type: inline-size">
+		<div data-unitone-layout="decorator -container-type:inline-size" style="--unitone--max-width: 375px">
 			<div data-unitone-layout="frame -switch @container">
 				<img src="..." alt="" style="width: 100%" />
 			</div>
@@ -111,22 +113,23 @@ For HTML, add `@container` to `data-unitone-layout`. For React, set `queryContex
 	</Tabs.Tab>
 	<Tabs.Tab>
 		```jsx
+		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
 		import { Frame } from '@inc2734/unitone-css/layout-primitives/frame/react';
 
-		<div style={{ maxWidth: '375px', containerType: 'inline-size' }}>
+		<Decorator maxWidth="375px" containerType="inline-size">
 			<Frame switchRatio queryContext="container">
 				<img src="..." alt="" />
 			</Frame>
-		</div>
+		</Decorator>
 		```
 	</Tabs.Tab>
 	<Tabs.Tab>
 		<PreviewConainer>
-			<div style={{ maxWidth: '375px', containerType: 'inline-size' }}>
+			<Decorator maxWidth="375px" containerType="inline-size">
 				<Frame switchRatio queryContext="container">
 					<DummyImage />
 				</Frame>
-			</div>
+			</Decorator>
 		</PreviewConainer>
 	</Tabs.Tab>
 </Tabs>
