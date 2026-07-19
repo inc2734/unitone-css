@@ -51,6 +51,11 @@
       @media (orientation: portrait) and (width < 600px) {
         column-count: auto;
         writing-mode: horizontal-tb;
+
+        > * {
+          box-sizing: border-box;
+          max-inline-size: none;
+        }
       }
     }
 
@@ -58,6 +63,11 @@
       @container (width < 600px) {
         column-count: auto;
         writing-mode: horizontal-tb;
+
+        > * {
+          box-sizing: border-box;
+          max-inline-size: none;
+        }
       }
     }
   }
@@ -115,6 +125,7 @@
   [data-unitone-layout~="vertical-writing-wrapper"] {
     display: flex;
     flex-direction: column;
+    overflow: clip;
   }
 
   [data-unitone-layout~="vertical-writing"] {
