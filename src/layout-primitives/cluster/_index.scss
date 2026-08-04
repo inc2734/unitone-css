@@ -56,6 +56,27 @@
     }
   }
 
+  &[data-unitone-layout~="-divider\:divide"] {
+    column-gap: 0 !important;
+    align-items: stretch;
+
+    > * {
+      padding: 0 0 0 var(--unitone--column-gap);
+    }
+
+    > :is(:first-child, [data-unitone-layout~="-bol"]) {
+      padding-left: 0;
+    }
+
+    > :not(:last-child, :has(+ [data-unitone-layout~="-bol"])) {
+      padding-right: calc(var(--unitone--column-gap) + var(--unitone--divider-width));
+
+      &::before {
+        border-right-width: var(--unitone--divider-width);
+      }
+    }
+  }
+
   &[data-unitone-layout~="-divider\:slash"] {
     column-gap: calc(var(--unitone--column-gap) * 2 + var(--unitone--divider-width));
     align-items: stretch;

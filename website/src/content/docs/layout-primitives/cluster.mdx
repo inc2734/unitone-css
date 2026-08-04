@@ -316,6 +316,39 @@ The overhanging part will not automatically scroll horizontally, so if there is 
 	</Tabs.Tab>
 </Tabs>
 
+#### divide
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="cluster -divider:divide">
+			...
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Cluster } from '@inc2734/unitone-css/layout-primitives/cluster/react';
+		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
+
+		<Cluster divider="divide">
+			...
+		</Cluster>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Cluster divider="divide">
+				<div>Lorem ipsum</div>
+				<div>dolor sit</div>
+				<div>amet consectetur</div>
+				<div>adipisicing elit</div>
+				<div>sed do</div>
+			</Cluster>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
 #### slash
 
 <Tabs items={['HTML', 'JSX', 'Preview']}>
