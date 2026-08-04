@@ -1,6 +1,7 @@
 const layoutAttributeName = 'data-unitone-layout';
 const layoutIntersectionMargin = 200;
 const layoutIntersectionRootMargin = `${layoutIntersectionMargin}px 0px`;
+const layoutPositionTolerance = 0.5;
 
 /**
  * Returns layout tokens from the target element.
@@ -438,6 +439,35 @@ const isNearViewport = (element) => {
 };
 
 /**
+ * Returns the target rectangle's start and end positions along the layout's inline flow.
+ *
+ * @param {DOMRect} rect Target rectangle.
+ * @param {{ direction?: string, flexDirection?: string, writingMode?: string }} flow Layout flow.
+ * @returns {{ start: number, end: number }} Normalized inline positions.
+ */
+const getNormalizedInlineRect = (
+  rect,
+  { direction = 'ltr', flexDirection = 'row', writingMode = 'horizontal-tb' } = {},
+) => {
+  const isVertical = !writingMode.startsWith('horizontal');
+  const isSidewaysLr = 'sideways-lr' === writingMode;
+  const isInlineReverse = ('rtl' === direction) !== isSidewaysLr;
+
+  let start = isVertical ? rect.top : rect.left;
+  let end = isVertical ? rect.bottom : rect.right;
+
+  if (isInlineReverse) {
+    [start, end] = [-end, -start];
+  }
+
+  if ('row-reverse' === flexDirection) {
+    [start, end] = [-end, -start];
+  }
+
+  return { start, end };
+};
+
+/**
  * Returns whether the mutation list contains a matching attributes record.
  *
  * @param {MutationRecord[]} entries Mutation records.
@@ -474,63 +504,107 @@ export function debounce(fn, delay) {
  */
 export const setDividerLinewrap = (target) => {
   const children = Array.from(target?.children ?? []);
-  const firstChild = children[0];
-  if (!firstChild) {
-    return;
-  }
-
   const currentLayoutArray = withoutLayoutTokens(getLayoutTokens(target), [
     'divider:initialized',
     '-stack',
   ]);
   setLayoutTokens(target, currentLayoutArray);
 
-  const childLayoutMap = new Map();
-  children.forEach((child) => {
-    const layoutTokens = withoutLayoutTokens(getLayoutTokens(child), ['-bol', '-linewrap']);
-    childLayoutMap.set(child, layoutTokens);
-    setLayoutTokens(child, layoutTokens);
-  });
+  const childLayouts = children.map((child) => ({
+    child,
+    layoutTokens: withoutLayoutTokens(getLayoutTokens(child), ['-bol', '-linewrap']),
+  }));
 
-  if (!hasLayoutBox(target)) {
+  const resetChildLayouts = () => {
+    childLayouts.forEach(({ child, layoutTokens }) => {
+      setLayoutTokens(child, layoutTokens);
+    });
+  };
+
+  if (!currentLayoutArray.some((value) => value.startsWith('-divider:'))) {
+    resetChildLayouts();
     return;
   }
 
-  const baseRect = firstChild.getBoundingClientRect();
-  const targetChildren = children.reduce((accumulator, child) => {
-    const position = window.getComputedStyle(child).getPropertyValue('position');
-    const display = window.getComputedStyle(child).getPropertyValue('display');
+  if (0 === children.length) {
+    setLayoutTokens(target, [...currentLayoutArray, 'divider:initialized']);
+    return;
+  }
+
+  if (!hasLayoutBox(target)) {
+    resetChildLayouts();
+    return;
+  }
+
+  const defaultView =
+    target?.ownerDocument?.defaultView ?? ('undefined' !== typeof window ? window : undefined);
+  if (!defaultView?.getComputedStyle) {
+    resetChildLayouts();
+    return;
+  }
+
+  const targetStyle = defaultView.getComputedStyle(target);
+  const flow = {
+    direction: targetStyle.getPropertyValue('direction'),
+    flexDirection: targetStyle.getPropertyValue('flex-direction'),
+    writingMode: targetStyle.getPropertyValue('writing-mode'),
+  };
+
+  const targetChildren = childLayouts.reduce((accumulator, { child, layoutTokens }) => {
+    const style = defaultView.getComputedStyle(child);
+    const position = style.getPropertyValue('position');
+    const display = style.getPropertyValue('display');
     if ('absolute' !== position && 'fixed' !== position && 'none' !== display) {
+      const rect = child.getBoundingClientRect();
       accumulator.push({
         child,
-        layoutTokens: childLayoutMap.get(child) ?? [],
-        rect: child.getBoundingClientRect(),
+        layoutTokens,
+        inlineRect: getNormalizedInlineRect(rect, flow),
       });
     }
     return accumulator;
   }, []);
 
-  let prevRect;
-  const nextChildLayouts = targetChildren.map(({ child, layoutTokens, rect }, index) => {
-    const nextLayoutTokens = [...layoutTokens];
+  if (0 === targetChildren.length) {
+    resetChildLayouts();
+    setLayoutTokens(target, [...currentLayoutArray, 'divider:initialized']);
+    return;
+  }
 
-    if (0 === index || (prevRect?.top < rect.top && prevRect?.left >= rect.left)) {
+  let prevInlineRect;
+  let hasWrapped = false;
+  let isStack = true;
+  const nextChildLayouts = targetChildren.map(({ child, layoutTokens, inlineRect }, index) => {
+    const nextLayoutTokens = [...layoutTokens];
+    const isBeginningOfLine =
+      0 === index ||
+      inlineRect.start < prevInlineRect.end - layoutPositionTolerance ||
+      inlineRect.start <= prevInlineRect.start + layoutPositionTolerance;
+
+    if (isBeginningOfLine) {
       nextLayoutTokens.push('-bol');
+      if (0 < index) {
+        hasWrapped = true;
+      }
+    } else {
+      isStack = false;
     }
 
-    if (0 < index && baseRect.top < rect.top) {
+    if (hasWrapped) {
       nextLayoutTokens.push('-linewrap');
     }
 
-    prevRect = rect;
+    prevInlineRect = inlineRect;
     return { child, layoutTokens: nextLayoutTokens };
   });
 
-  nextChildLayouts.forEach(({ child, layoutTokens }) => {
-    setLayoutTokens(child, layoutTokens);
+  const nextChildLayoutMap = new Map(
+    nextChildLayouts.map(({ child, layoutTokens }) => [child, layoutTokens]),
+  );
+  childLayouts.forEach(({ child, layoutTokens }) => {
+    setLayoutTokens(child, nextChildLayoutMap.get(child) ?? layoutTokens);
   });
 
-  const isStack = targetChildren.every(({ rect }) => rect.left === baseRect.left);
   const nextTargetLayout = [...currentLayoutArray];
   if (isStack) {
     nextTargetLayout.push('-stack');
@@ -584,7 +658,7 @@ export const dividersResizeObserver = (target, args = {}) => {
       return current !== old;
     }
 
-    return 'style' === entry.attributeName;
+    return ['style', 'dir'].includes(entry.attributeName);
   };
 
   createLayoutObserver(target, setDividerLinewrap, {
@@ -594,7 +668,7 @@ export const dividersResizeObserver = (target, args = {}) => {
     targetMutation: {
       options: {
         attributes: true,
-        attributeFilter: ['style', 'data-unitone-layout', 'class'],
+        attributeFilter: ['style', 'dir', 'data-unitone-layout', 'class'],
         attributeOldValue: true,
       },
       shouldApply: (entries) =>
