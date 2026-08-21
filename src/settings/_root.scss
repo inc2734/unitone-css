@@ -163,6 +163,7 @@ $font-sizes: (
   @each $level, $name in $font-sizes {
     --unitone--font-size-#{ $name }: #{ variables.font-size-rem($level) };
     --unitone--font-size-#{ $name }-fluid: #{ variables.font-size-fluid($level) };
+    --unitone--font-size-#{ $name }-fluid-c: #{ variables.font-size-fluid($level, 'container') };
   }
 }
 

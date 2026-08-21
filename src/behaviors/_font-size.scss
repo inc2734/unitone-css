@@ -7,5 +7,14 @@
     [data-unitone-layout~="-font-size\:#{ $name }"][data-unitone-layout~="-fluid-typography"] {
       font-size: var(--unitone--font-size-#{ $name }-fluid);
     }
+
+    :where(
+      [data-unitone-layout~="-container-type\:inline-size"],
+      .-container-type\:inline-size
+    ) {
+      [data-unitone-layout~="-font-size\:#{ $name }"][data-unitone-layout~="-fluid-typography"] {
+        font-size: var(--unitone--font-size-#{ $name }-fluid-c);
+      }
+    }
   }
 }

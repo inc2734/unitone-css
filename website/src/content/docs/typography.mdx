@@ -1,3 +1,4 @@
+import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
 import { Stack } from '@inc2734/unitone-css/layout-primitives/stack/react';
 import { WithSidebar } from '@inc2734/unitone-css/layout-primitives/with-sidebar/react';
 import { PreviewConainer } from '../../components';
@@ -143,6 +144,46 @@ In custom CSS, use the fluid token directly.
 		<p className="-font-size:5xl -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 		<p className="-font-size:6xl -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 	</Stack>
+</PreviewConainer>
+
+If the query context is a container, it automatically switches to container-width-based fluid typography.
+
+Please use a behavior or utility to specify the query context.
+
+```html
+<div data-unitone-layout="-container-type:inline-size">
+	<p data-unitone-layout="-font-size:6xl -fluid-typography">
+		...
+	</p>
+</div>
+```
+
+or
+
+```html
+<div class="-container-type:inline-size">
+	<p class="-font-size:6xl -fluid-typography">
+		...
+	</p>
+</div>
+```
+
+<PreviewConainer>
+	<Decorator containerType="inline-size">
+		<Stack>
+			<p className="-font-size:2xs -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			<p className="-font-size:xs -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			<p className="-font-size:s -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			<p className="-font-size:m -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			<p className="-font-size:l -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			<p className="-font-size:xl -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			<p className="-font-size:2xl -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			<p className="-font-size:3xl -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			<p className="-font-size:4xl -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			<p className="-font-size:5xl -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			<p className="-font-size:6xl -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		</Stack>
+	</Decorator>
 </PreviewConainer>
 
 ## Auto line breaks

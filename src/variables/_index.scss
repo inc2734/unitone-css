@@ -21,12 +21,17 @@ $root-font-size: var(--unitone--root-font-size);
   @return calc(#{ _font-size-scale($level) } * 1rem);
 }
 
-@function font-size-fluid($level) {
+@function font-size-fluid($level, $context: 'viewport') {
+  $width: 100vw;
+  @if $context == 'container' {
+    $width: 100cqw;
+  }
+
   $max-font-size: _max-font-size($level);
   $min-font-size: _min-font-size($level);
   $slope: calc((#{ $max-font-size } - #{ $min-font-size }) / (#{ $max-breakpoint - $min-breakpoint }));
   $intercept: calc(#{-1 * $min-breakpoint } * #{ $slope } + #{ $min-font-size });
-  $preferred-font-size: calc((#{ $intercept } * 1rem) + (#{ $slope } * 100vw));
+  $preferred-font-size: calc((#{ $intercept } * 1rem) + (#{ $slope } * #{ $width }));
 
   @return clamp(var(--unitone--fluid-typography-min-length, calc(1rem * #{ $min-font-size })), #{ $preferred-font-size }, var(--unitone--fluid-typography-max-length, calc(1rem * #{ $max-font-size })));
 }
