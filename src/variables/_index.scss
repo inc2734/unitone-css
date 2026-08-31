@@ -125,6 +125,9 @@ $_line-height: clamp(
   // @todo In Firefox, using tan(atan2()) for line-height is considered invalid.
   // Therefore, a fallback line-height is applied.
   @supports (-moz-appearance: none) {
+    // Break the registered 1em dependency; otherwise Firefox may invalidate font-size: var(...).
+    --unitone--result--1em-px: 0;
+
     line-height: clamp(
       calc(var(--unitone--min-line-height) * 1em),
       calc((var(--unitone--min-line-height) - 0.1) * 1em + (var(--unitone--max-line-height) - (var(--unitone--min-line-height) - 0.1)) * 1rem),

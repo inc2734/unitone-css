@@ -58,6 +58,10 @@
 
   /**
    * em unitless px real value
+   *
+   * Firefox may invalidate font-size: var(...) when this registered custom
+   * property depends on 1em. It is reset to 0 in the Firefox fallback in
+   * variables.line-height().
    */
   --unitone--result--1em-px: calc(tan(atan2(var(--unitone--property--1em), 1px)));
 
