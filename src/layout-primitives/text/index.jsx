@@ -8,6 +8,8 @@ export const Text = ({
   gutters,
   maxWidth,
   columnWidth,
+  containerType,
+  fluidReference,
   style,
   ...props
 }) => {
@@ -26,6 +28,8 @@ export const Text = ({
         applyGap ? '-gap' : undefined,
         '' !== (gap ?? '') ? `-gap:${gap}` : undefined,
         '' !== (gutters ?? '') ? `-gutters:${gutters}` : undefined,
+        '' !== (containerType ?? '') ? `-container-type:${containerType}` : undefined,
+        '' !== (fluidReference ?? '') ? `-fluid-reference:${fluidReference}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

@@ -1,6 +1,13 @@
 import React from 'react';
 
-export const VerticalEnds = ({ gap, alignItems, style, ...props }) => {
+export const VerticalEnds = ({
+  gap,
+  alignItems,
+  containerType,
+  fluidReference,
+  style,
+  ...props
+}) => {
   style = {
     ...style,
   };
@@ -11,6 +18,8 @@ export const VerticalEnds = ({ gap, alignItems, style, ...props }) => {
         'vertical-ends',
         '' !== (gap ?? '') ? `-gap:${gap}` : undefined,
         '' !== (alignItems ?? '') ? `-align-items:${alignItems}` : undefined,
+        '' !== (containerType ?? '') ? `-container-type:${containerType}` : undefined,
+        '' !== (fluidReference ?? '') ? `-fluid-reference:${fluidReference}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

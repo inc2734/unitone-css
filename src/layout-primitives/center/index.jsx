@@ -1,6 +1,14 @@
 import React from 'react';
 
-export const Center = ({ withText, gutters, maxWidth, style, ...props }) => {
+export const Center = ({
+  withText,
+  gutters,
+  maxWidth,
+  containerType,
+  fluidReference,
+  style,
+  ...props
+}) => {
   style = {
     ...style,
     '--unitone--max-width': '' !== maxWidth ? maxWidth : undefined,
@@ -12,6 +20,8 @@ export const Center = ({ withText, gutters, maxWidth, style, ...props }) => {
         'center',
         true === withText ? `-with-text` : undefined,
         '' !== (gutters ?? '') ? `-gutters:${gutters}` : undefined,
+        '' !== (containerType ?? '') ? `-container-type:${containerType}` : undefined,
+        '' !== (fluidReference ?? '') ? `-fluid-reference:${fluidReference}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

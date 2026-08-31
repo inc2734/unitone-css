@@ -326,51 +326,6 @@ Align content.
 	</Tabs.Tab>
 </Tabs>
 
-### <Badge>HTML</Badge> -container-type:\{value\} / <Badge>JSX</Badge> containerType=\{value\}
-
-Establishes the Decorator as a query container for its descendants.
-
-Currently supported values are:
-
-- `inline-size`
-
-<Tabs items={['HTML', 'JSX', 'Preview']}>
-	<Tabs.Tab>
-		```html
-		<div data-unitone-layout="decorator -container-type:inline-size" style="--unitone--max-width: 375px">
-			<div data-unitone-layout="layers -portrait @container">
-				...
-			</div>
-		</div>
-		```
-	</Tabs.Tab>
-	<Tabs.Tab>
-		```jsx
-		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
-		import { Layers } from '@inc2734/unitone-css/layout-primitives/layers/react';
-
-		<Decorator containerType="inline-size" maxWidth="375px">
-			<Layers portrait queryContext="container">
-				...
-			</Layers>
-		</Decorator>
-		```
-	</Tabs.Tab>
-	<Tabs.Tab>
-		<PreviewConainer>
-			<Decorator containerType="inline-size" maxWidth="375px">
-				<Layers portrait queryContext="container">
-					<DummyImage />
-
-					<Layer alignSelf="end">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-					</Layer>
-				</Layers>
-			</Decorator>
-		</PreviewConainer>
-	</Tabs.Tab>
-</Tabs>
-
 ### <Badge>HTML</Badge> -justify-items:\{value\} / <Badge>JSX</Badge> justifyItems=\{value\}
 
 Justify items.
@@ -835,6 +790,98 @@ Progressive backdrop filter.
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill
 				</Decorator>
 			</Layers>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -container-type:\{value\} / <Badge>JSX</Badge> containerType=\{value\}
+
+Establishes the Decorator as a query container for its descendants.
+
+Currently supported values are:
+
+- `inline-size`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="decorator -container-type:inline-size" style="--unitone--max-width: 375px">
+			<div data-unitone-layout="layers -portrait @container">
+				...
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
+		import { Layers } from '@inc2734/unitone-css/layout-primitives/layers/react';
+
+		<Decorator containerType="inline-size" maxWidth="375px">
+			<Layers portrait queryContext="container">
+				...
+			</Layers>
+		</Decorator>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Decorator containerType="inline-size" maxWidth="375px">
+				<Layers portrait queryContext="container">
+					<DummyImage />
+
+					<Layer alignSelf="end">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+					</Layer>
+				</Layers>
+			</Decorator>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -fluid-reference:\{value\} / <Badge>JSX</Badge> fluidReference=\{value\}
+
+Uses a query container's inline size as the reference for fluid typography, spacing, padding, and gutters.
+
+Currently supported values are:
+
+- `cqw`
+
+Place the Decorator inside an ancestor with `container-type: inline-size`.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="decorator -container-type:inline-size">
+			<div data-unitone-layout="decorator -fluid-reference:cqw -padding:3m" gap="3m">
+				...
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
+
+		<Decorator containerType="inline-size">
+			<Decorator fluidReference="cqw" padding="3m" gap="3m">
+				...
+			</Decorator>
+		</Decorator>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Decorator containerType="inline-size">
+				<Decorator fluidReference="cqw" padding="3m" gap="3m">
+					<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit
+					</div>
+					<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+						sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+					</div>
+				</Decorator>
+			</Decorator>
 		</PreviewConainer>
 	</Tabs.Tab>
 </Tabs>

@@ -7,6 +7,7 @@
 @use './background-clip';
 @use './container-type';
 @use './divider';
+@use './fluid-reference';
 @use './font-size';
 @use './gap';
 @use './gutters';
@@ -31,6 +32,7 @@
 @include background-clip.background-clip();
 @include container-type.container-type();
 @include divider.divider();
+@include fluid-reference.fluid-reference();
 @include font-size.font-size();
 @include gap.gap();
 @include gutters.gutters();

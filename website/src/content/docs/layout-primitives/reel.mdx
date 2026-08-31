@@ -172,3 +172,83 @@ Height.
 		</PreviewConainer>
 	</Tabs.Tab>
 </Tabs>
+
+### <Badge>HTML</Badge> -container-type:\{value\} / <Badge>JSX</Badge> containerType=\{value\}
+
+Establishes the Reel as a query container for its descendants.
+
+Currently supported values are:
+
+- `inline-size`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="reel -container-type:inline-size">
+			<div>...</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Reel } from '@inc2734/unitone-css/layout-primitives/reel/react';
+
+		<Reel containerType="inline-size">
+			<div>...</div>
+		</Reel>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Reel containerType="inline-size">
+				<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit
+				</div>
+			</Reel>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -fluid-reference:\{value\} / <Badge>JSX</Badge> fluidReference=\{value\}
+
+Uses a query container's inline size as the reference for fluid typography, spacing, padding, and gutters.
+
+Currently supported values are:
+
+- `cqw`
+
+Place the Reel inside an ancestor with `container-type: inline-size`.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="reel -container-type:inline-size">
+			<div data-unitone-layout="reel -fluid-reference:cqw">
+				...
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Reel } from '@inc2734/unitone-css/layout-primitives/reel/react';
+
+		<Reel containerType="inline-size">
+			<Reel fluidReference="cqw">
+				...
+			</Reel>
+		</Reel>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Reel containerType="inline-size">
+				<Reel fluidReference="cqw">
+					<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit
+					</div>
+				</Reel>
+			</Reel>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>

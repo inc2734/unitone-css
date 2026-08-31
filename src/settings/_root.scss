@@ -1,5 +1,4 @@
 @use 'sass:list';
-@use 'sass:math';
 @use '../variables' as variables;
 
 @property --unitone--property--1em {
@@ -15,6 +14,12 @@
 }
 
 @property --unitone--property--100vw {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --unitone--property--100cqw {
   syntax: "<length>";
   inherits: false;
   initial-value: 0px;
@@ -38,39 +43,11 @@
   initial-value: 0;
 }
 
-@function _generate-fluid-spacing($min, $max) {
-  @return clamp(
-    #{ $min },
-    #{ $min } + ((#{ $max } - #{ $min }) / (#{ variables.$max-breakpoint - variables.$min-breakpoint } * var(--unitone--result--1rem-px)) * (var(--unitone--result--100vw-px) - (#{ variables.$min-breakpoint } * var(--unitone--result--1rem-px)))),
-    #{ $max }
-  );
+@property --unitone--result--100cqw-px {
+  syntax: "<number> | <length>";
+  inherits: false;
+  initial-value: 0;
 }
-
-@function _generate-spacing($max) {
-  $quotient: math.div(variables.$min-breakpoint, variables.$max-breakpoint);
-  $min: calc(var(--unitone--em1) + #{ $max } * #{ $quotient });
-  @return _generate-fluid-spacing(#{ $min }, #{ $max });
-}
-
-@function _generate-padding($max) {
-  $quotient: math.div(variables.$min-breakpoint, variables.$max-breakpoint);
-  $min: calc(var(--unitone--em1) + #{ $max } * #{ $quotient } * .2);
-  @return _generate-fluid-spacing(#{ $min }, #{ $max });
-}
-
-$font-sizes: (
-  -3: 2xs,
-  -2: xs,
-  -1: s,
-  0: m,
-  1: l,
-  2: xl,
-  3: 2xl,
-  4: 3xl,
-  5: 4xl,
-  6: 5xl,
-  7: 6xl,
-);
 
 * {
   /**
@@ -160,11 +137,7 @@ $font-sizes: (
  * Font size tokens.
  */
 :root {
-  @each $level, $name in $font-sizes {
-    --unitone--font-size-#{ $name }: #{ variables.font-size-rem($level) };
-    --unitone--font-size-#{ $name }-fluid: #{ variables.font-size-fluid($level) };
-    --unitone--font-size-#{ $name }-fluid-c: #{ variables.font-size-fluid($level, 'container') };
-  }
+  @include variables.font-size-tokens();
 }
 
 /**
@@ -231,32 +204,7 @@ $font-sizes: (
  * Modular scales for spaces.
  */
 :root {
-  --unitone--s-3: var(--unitone--em-3);
-  --unitone--s-2: var(--unitone--em-2);
-  --unitone--s-1: var(--unitone--em-1);
-  --unitone--s0: var(--unitone--em0);
-  --unitone--s1: var(--unitone--em1);
-  --unitone--s2: #{ _generate-spacing(var(--unitone--em2)) };
-  --unitone--s3: #{ _generate-spacing(var(--unitone--em3)) };
-  --unitone--s4: #{ _generate-spacing(var(--unitone--em4)) };
-  --unitone--s5: #{ _generate-spacing(var(--unitone--em5)) };
-  --unitone--s6: #{ _generate-spacing(var(--unitone--em6)) };
-  --unitone--s7: #{ _generate-spacing(var(--unitone--em7)) };
-
-  --unitone--s1s: #{ _generate-fluid-spacing(var(--unitone--em-1), var(--unitone--em1)) };
-  --unitone--s2s: #{ _generate-fluid-spacing(var(--unitone--em-1), var(--unitone--em2)) };
-  --unitone--s3s: #{ _generate-fluid-spacing(var(--unitone--em-1), var(--unitone--em3)) };
-  --unitone--s4s: #{ _generate-fluid-spacing(var(--unitone--em-1), var(--unitone--em4)) };
-  --unitone--s5s: #{ _generate-fluid-spacing(var(--unitone--em-1), var(--unitone--em5)) };
-  --unitone--s6s: #{ _generate-fluid-spacing(var(--unitone--em-1), var(--unitone--em6)) };
-  --unitone--s7s: #{ _generate-fluid-spacing(var(--unitone--em-1), var(--unitone--em7)) };
-
-  --unitone--s2m: #{ _generate-fluid-spacing(var(--unitone--em1), var(--unitone--em2)) };
-  --unitone--s3m: #{ _generate-fluid-spacing(var(--unitone--em1), var(--unitone--em3)) };
-  --unitone--s4m: #{ _generate-fluid-spacing(var(--unitone--em1), var(--unitone--em4)) };
-  --unitone--s5m: #{ _generate-fluid-spacing(var(--unitone--em1), var(--unitone--em5)) };
-  --unitone--s6m: #{ _generate-fluid-spacing(var(--unitone--em1), var(--unitone--em6)) };
-  --unitone--s7m: #{ _generate-fluid-spacing(var(--unitone--em1), var(--unitone--em7)) };
+  @include variables.spacing-tokens();
 }
 
 /**
@@ -266,32 +214,7 @@ $font-sizes: (
  * For this reason, we prepare special scales.
  */
 :root {
-  --unitone--p-3: var(--unitone--em-3);
-  --unitone--p-2: var(--unitone--em-2);
-  --unitone--p-1: var(--unitone--em-1);
-  --unitone--p0: var(--unitone--em0);
-  --unitone--p1: var(--unitone--em1);
-  --unitone--p2: #{ _generate-padding(var(--unitone--em2)) };
-  --unitone--p3: #{ _generate-padding(var(--unitone--em3)) };
-  --unitone--p4: #{ _generate-padding(var(--unitone--em4)) };
-  --unitone--p5: #{ _generate-padding(var(--unitone--em5)) };
-  --unitone--p6: #{ _generate-padding(var(--unitone--em6)) };
-  --unitone--p7: #{ _generate-padding(var(--unitone--em7)) };
-
-  --unitone--p1s: var(--unitone--s1s);
-  --unitone--p2s: var(--unitone--s2s);
-  --unitone--p3s: var(--unitone--s3s);
-  --unitone--p4s: var(--unitone--s4s);
-  --unitone--p5s: var(--unitone--s5s);
-  --unitone--p6s: var(--unitone--s6s);
-  --unitone--p7s: var(--unitone--s7s);
-
-  --unitone--p2m: var(--unitone--s2m);
-  --unitone--p3m: var(--unitone--s3m);
-  --unitone--p4m: var(--unitone--s4m);
-  --unitone--p5m: var(--unitone--s5m);
-  --unitone--p6m: var(--unitone--s6m);
-  --unitone--p7m: var(--unitone--s7m);
+  @include variables.padding-tokens();
 }
 
 /**
@@ -301,7 +224,7 @@ $font-sizes: (
   /**
    * Default gutters
    */
-  --unitone--global--gutters: max(min(6vw, var(--unitone--rem2)), env(safe-area-inset-right), env(safe-area-inset-left));
+  --unitone--global--gutters: #{ variables.generate-global-gutters() };
 
   /**
    * Max width of the container.

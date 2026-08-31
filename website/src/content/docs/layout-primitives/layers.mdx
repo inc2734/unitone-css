@@ -652,3 +652,83 @@ You can set the position of child elements with the associated properties of the
 		</PreviewConainer>
 	</Tabs.Tab>
 </Tabs>
+
+### <Badge>HTML</Badge> -container-type:\{value\} / <Badge>JSX</Badge> containerType=\{value\}
+
+Establishes the Layers as a query container for its descendants.
+
+Currently supported values are:
+
+- `inline-size`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="layers -container-type:inline-size">
+			<div>...</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Layers } from '@inc2734/unitone-css/layout-primitives/layers/react';
+
+		<Layers containerType="inline-size">
+			<div>...</div>
+		</Layers>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Layers containerType="inline-size">
+				<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit
+				</div>
+			</Layers>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -fluid-reference:\{value\} / <Badge>JSX</Badge> fluidReference=\{value\}
+
+Uses a query container's inline size as the reference for fluid typography, spacing, padding, and gutters.
+
+Currently supported values are:
+
+- `cqw`
+
+Place the Layers inside an ancestor with `container-type: inline-size`.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="layers -container-type:inline-size">
+			<div data-unitone-layout="layers -fluid-reference:cqw">
+				...
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Layers } from '@inc2734/unitone-css/layout-primitives/layers/react';
+
+		<Layers containerType="inline-size">
+			<Layers fluidReference="cqw">
+				...
+			</Layers>
+		</Layers>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Layers containerType="inline-size">
+				<Layers fluidReference="cqw">
+					<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit
+					</div>
+				</Layers>
+			</Layers>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>

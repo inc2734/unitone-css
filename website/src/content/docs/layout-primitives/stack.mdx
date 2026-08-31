@@ -262,3 +262,83 @@ The way child elements are displayed is reversed.
 		</PreviewConainer>
 	</Tabs.Tab>
 </Tabs>
+
+### <Badge>HTML</Badge> -container-type:\{value\} / <Badge>JSX</Badge> containerType=\{value\}
+
+Establishes the Stack as a query container for its descendants.
+
+Currently supported values are:
+
+- `inline-size`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="stack -container-type:inline-size">
+			<div>...</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Stack } from '@inc2734/unitone-css/layout-primitives/stack/react';
+
+		<Stack containerType="inline-size">
+			<div>...</div>
+		</Stack>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Stack containerType="inline-size">
+				<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit
+				</div>
+			</Stack>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -fluid-reference:\{value\} / <Badge>JSX</Badge> fluidReference=\{value\}
+
+Uses a query container's inline size as the reference for fluid typography, spacing, padding, and gutters.
+
+Currently supported values are:
+
+- `cqw`
+
+Place the Stack inside an ancestor with `container-type: inline-size`.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="stack -container-type:inline-size">
+			<div data-unitone-layout="stack -fluid-reference:cqw">
+				...
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Stack } from '@inc2734/unitone-css/layout-primitives/stack/react';
+
+		<Stack containerType="inline-size">
+			<Stack fluidReference="cqw">
+				...
+			</Stack>
+		</Stack>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Stack containerType="inline-size">
+				<Stack fluidReference="cqw">
+					<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit
+					</div>
+				</Stack>
+			</Stack>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>

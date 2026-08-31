@@ -1,6 +1,15 @@
 import React from 'react';
 
-export const Reel = ({ gap, height, itemWidth, noBar, style, ...props }) => {
+export const Reel = ({
+  gap,
+  height,
+  itemWidth,
+  noBar,
+  containerType,
+  fluidReference,
+  style,
+  ...props
+}) => {
   style = {
     ...style,
     '--unitone--height': '' !== height ? height : undefined,
@@ -13,6 +22,8 @@ export const Reel = ({ gap, height, itemWidth, noBar, style, ...props }) => {
         'reel',
         '' !== (gap ?? '') ? `-gap:${gap}` : undefined,
         noBar ? '-no-bar' : undefined,
+        '' !== (containerType ?? '') ? `-container-type:${containerType}` : undefined,
+        '' !== (fluidReference ?? '') ? `-fluid-reference:${fluidReference}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

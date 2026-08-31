@@ -1,9 +1,59 @@
+@use 'sass:math';
+
 $fibonacci-sequence: 1, 2, 3, 5, 8, 13, 21, 34, 55;
 
 $min-breakpoint: 27; // = 432px
 $max-breakpoint: 80; // = 1280px
 
 $root-font-size: var(--unitone--root-font-size);
+
+$font-sizes: (
+  -3: 2xs,
+  -2: xs,
+  -1: s,
+  0: m,
+  1: l,
+  2: xl,
+  3: 2xl,
+  4: 3xl,
+  5: 4xl,
+  6: 5xl,
+  7: 6xl,
+);
+
+@function generate-global-gutters($context: 'viewport') {
+  $width: var(--unitone--property--100vw);
+  @if $context == 'container' {
+    $width: var(--unitone--property--100cqw);
+  }
+
+  @return max(min(#{ $width } * .06, var(--unitone--rem2)), env(safe-area-inset-right), env(safe-area-inset-left));
+}
+
+@function generate-fluid-spacing($min, $max, $context: 'viewport') {
+  $width: var(--unitone--result--100vw-px);
+  @if $context == 'container' {
+    $width: var(--unitone--result--100cqw-px);
+  }
+
+  @return clamp(
+    #{ $min },
+    #{ $min } + ((#{ $max } - #{ $min }) / (#{ $max-breakpoint - $min-breakpoint } * var(--unitone--result--1rem-px)) * (#{ $width } - (#{ $min-breakpoint } * var(--unitone--result--1rem-px)))),
+    #{ $max }
+  );
+}
+
+@function generate-spacing($max, $context: 'viewport') {
+  $quotient: math.div($min-breakpoint, $max-breakpoint);
+  $min: calc(var(--unitone--em1) + #{ $max } * #{ $quotient });
+  @return generate-fluid-spacing(#{ $min }, #{ $max }, $context);
+}
+
+@function generate-padding($max, $context: 'viewport') {
+  $quotient: math.div($min-breakpoint, $max-breakpoint);
+  $min: calc(var(--unitone--em1) + #{ $max } * #{ $quotient } * .2);
+  @return generate-fluid-spacing(#{ $min }, #{ $max }, $context);
+}
 
 @function _max-font-size($level) {
   @return calc(var(--unitone--harmonic-sequence-base) / (var(--unitone--max-harmonic-sequence-base) - (#{ $level })));
@@ -24,7 +74,7 @@ $root-font-size: var(--unitone--root-font-size);
 @function font-size-fluid($level, $context: 'viewport') {
   $width: 100vw;
   @if $context == 'container' {
-    $width: 100cqw;
+    $width: var(--unitone--property--100cqw);
   }
 
   $max-font-size: _max-font-size($level);
@@ -86,3 +136,77 @@ $_line-height: clamp(
 $container-max-width: $max-breakpoint * 16px; // = 1280px
 $grid-columns: 12;
 $grid-rows: 7;
+
+@mixin spacing-tokens($context: 'viewport') {
+  @if $context == 'viewport' {
+    --unitone--s-3: var(--unitone--em-3);
+    --unitone--s-2: var(--unitone--em-2);
+    --unitone--s-1: var(--unitone--em-1);
+    --unitone--s0: var(--unitone--em0);
+    --unitone--s1: var(--unitone--em1);
+  }
+
+  --unitone--s2: #{ generate-spacing(var(--unitone--em2), $context) };
+  --unitone--s3: #{ generate-spacing(var(--unitone--em3), $context) };
+  --unitone--s4: #{ generate-spacing(var(--unitone--em4), $context) };
+  --unitone--s5: #{ generate-spacing(var(--unitone--em5), $context) };
+  --unitone--s6: #{ generate-spacing(var(--unitone--em6), $context) };
+  --unitone--s7: #{ generate-spacing(var(--unitone--em7), $context) };
+
+  --unitone--s1s: #{ generate-fluid-spacing(var(--unitone--em-1), var(--unitone--em1), $context) };
+  --unitone--s2s: #{ generate-fluid-spacing(var(--unitone--em-1), var(--unitone--em2), $context) };
+  --unitone--s3s: #{ generate-fluid-spacing(var(--unitone--em-1), var(--unitone--em3), $context) };
+  --unitone--s4s: #{ generate-fluid-spacing(var(--unitone--em-1), var(--unitone--em4), $context) };
+  --unitone--s5s: #{ generate-fluid-spacing(var(--unitone--em-1), var(--unitone--em5), $context) };
+  --unitone--s6s: #{ generate-fluid-spacing(var(--unitone--em-1), var(--unitone--em6), $context) };
+  --unitone--s7s: #{ generate-fluid-spacing(var(--unitone--em-1), var(--unitone--em7), $context) };
+
+  --unitone--s2m: #{ generate-fluid-spacing(var(--unitone--em1), var(--unitone--em2), $context) };
+  --unitone--s3m: #{ generate-fluid-spacing(var(--unitone--em1), var(--unitone--em3), $context) };
+  --unitone--s4m: #{ generate-fluid-spacing(var(--unitone--em1), var(--unitone--em4), $context) };
+  --unitone--s5m: #{ generate-fluid-spacing(var(--unitone--em1), var(--unitone--em5), $context) };
+  --unitone--s6m: #{ generate-fluid-spacing(var(--unitone--em1), var(--unitone--em6), $context) };
+  --unitone--s7m: #{ generate-fluid-spacing(var(--unitone--em1), var(--unitone--em7), $context) };
+}
+
+@mixin padding-tokens($context: 'viewport') {
+  @if $context == 'viewport' {
+    --unitone--p-3: var(--unitone--em-3);
+    --unitone--p-2: var(--unitone--em-2);
+    --unitone--p-1: var(--unitone--em-1);
+    --unitone--p0: var(--unitone--em0);
+    --unitone--p1: var(--unitone--em1);
+  }
+
+  --unitone--p2: #{ generate-padding(var(--unitone--em2), $context) };
+  --unitone--p3: #{ generate-padding(var(--unitone--em3), $context) };
+  --unitone--p4: #{ generate-padding(var(--unitone--em4), $context) };
+  --unitone--p5: #{ generate-padding(var(--unitone--em5), $context) };
+  --unitone--p6: #{ generate-padding(var(--unitone--em6), $context) };
+  --unitone--p7: #{ generate-padding(var(--unitone--em7), $context) };
+
+  --unitone--p1s: var(--unitone--s1s);
+  --unitone--p2s: var(--unitone--s2s);
+  --unitone--p3s: var(--unitone--s3s);
+  --unitone--p4s: var(--unitone--s4s);
+  --unitone--p5s: var(--unitone--s5s);
+  --unitone--p6s: var(--unitone--s6s);
+  --unitone--p7s: var(--unitone--s7s);
+
+  --unitone--p2m: var(--unitone--s2m);
+  --unitone--p3m: var(--unitone--s3m);
+  --unitone--p4m: var(--unitone--s4m);
+  --unitone--p5m: var(--unitone--s5m);
+  --unitone--p6m: var(--unitone--s6m);
+  --unitone--p7m: var(--unitone--s7m);
+}
+
+@mixin font-size-tokens($context: 'viewport') {
+  @each $level, $name in $font-sizes {
+    @if $context == 'viewport' {
+      --unitone--font-size-#{ $name }: #{ font-size-rem($level) };
+    }
+
+    --unitone--font-size-#{ $name }-fluid: #{ font-size-fluid($level, $context) };
+  }
+}

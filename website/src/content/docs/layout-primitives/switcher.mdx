@@ -448,3 +448,83 @@ The direction of stairs. Default is `left`.
 		</PreviewConainer>
 	</Tabs.Tab>
 </Tabs>
+
+### <Badge>HTML</Badge> -container-type:\{value\} / <Badge>JSX</Badge> containerType=\{value\}
+
+Establishes the Switcher as a query container for its descendants.
+
+Currently supported values are:
+
+- `inline-size`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="switcher -container-type:inline-size">
+			<div>...</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Switcher } from '@inc2734/unitone-css/layout-primitives/switcher/react';
+
+		<Switcher containerType="inline-size">
+			<div>...</div>
+		</Switcher>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Switcher containerType="inline-size">
+				<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit
+				</div>
+			</Switcher>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -fluid-reference:\{value\} / <Badge>JSX</Badge> fluidReference=\{value\}
+
+Uses a query container's inline size as the reference for fluid typography, spacing, padding, and gutters.
+
+Currently supported values are:
+
+- `cqw`
+
+Place the Switcher inside an ancestor with `container-type: inline-size`.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="switcher -container-type:inline-size">
+			<div data-unitone-layout="switcher -fluid-reference:cqw">
+				...
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Switcher } from '@inc2734/unitone-css/layout-primitives/switcher/react';
+
+		<Switcher containerType="inline-size">
+			<Switcher fluidReference="cqw">
+				...
+			</Switcher>
+		</Switcher>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Switcher containerType="inline-size">
+				<Switcher fluidReference="cqw">
+					<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit
+					</div>
+				</Switcher>
+			</Switcher>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>

@@ -379,3 +379,83 @@ Alignment of the row direction.
 		</PreviewConainer>
 	</Tabs.Tab>
 </Tabs>
+
+### <Badge>HTML</Badge> -container-type:\{value\} / <Badge>JSX</Badge> containerType=\{value\}
+
+Establishes the VerticalEnds as a query container for its descendants.
+
+Currently supported values are:
+
+- `inline-size`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="vertical-ends -container-type:inline-size">
+			<div>...</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { VerticalEnds } from '@inc2734/unitone-css/layout-primitives/vertical-ends/react';
+
+		<VerticalEnds containerType="inline-size">
+			<div>...</div>
+		</VerticalEnds>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<VerticalEnds containerType="inline-size">
+				<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit
+				</div>
+			</VerticalEnds>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -fluid-reference:\{value\} / <Badge>JSX</Badge> fluidReference=\{value\}
+
+Uses a query container's inline size as the reference for fluid typography, spacing, padding, and gutters.
+
+Currently supported values are:
+
+- `cqw`
+
+Place the VerticalEnds inside an ancestor with `container-type: inline-size`.
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="vertical-ends -container-type:inline-size">
+			<div data-unitone-layout="vertical-ends -fluid-reference:cqw">
+				...
+			</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { VerticalEnds } from '@inc2734/unitone-css/layout-primitives/vertical-ends/react';
+
+		<VerticalEnds containerType="inline-size">
+			<VerticalEnds fluidReference="cqw">
+				...
+			</VerticalEnds>
+		</VerticalEnds>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<VerticalEnds containerType="inline-size">
+				<VerticalEnds fluidReference="cqw">
+					<div style={{ outline: '1px dotted #6366f1', padding: '1em' }}>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit
+					</div>
+				</VerticalEnds>
+			</VerticalEnds>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>

@@ -10,6 +10,8 @@ export const ResponsiveGrid = ({
   dividerColor,
   stairs,
   stairsUp,
+  containerType,
+  fluidReference,
   style,
   ...props
 }) => {
@@ -30,6 +32,8 @@ export const ResponsiveGrid = ({
         '' !== (divider ?? '') ? `-divider:${divider}` : undefined,
         '' !== (stairs ?? '') ? `-stairs:${stairs}` : undefined,
         '' !== (stairsUp ?? '') ? `-stairs-up:${stairsUp}` : undefined,
+        '' !== (containerType ?? '') ? `-container-type:${containerType}` : undefined,
+        '' !== (fluidReference ?? '') ? `-fluid-reference:${fluidReference}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

@@ -1,6 +1,16 @@
 import React from 'react';
 
-export const Marquee = ({ duration, gap, itemWidth, reverse, pauseOnHover, style, ...props }) => {
+export const Marquee = ({
+  duration,
+  gap,
+  itemWidth,
+  reverse,
+  pauseOnHover,
+  containerType,
+  fluidReference,
+  style,
+  ...props
+}) => {
   style = {
     ...style,
     '--unitone--animation-duration': '' !== duration ? duration : undefined,
@@ -13,6 +23,8 @@ export const Marquee = ({ duration, gap, itemWidth, reverse, pauseOnHover, style
         'marquee-wrapper',
         reverse ? '-reverse' : undefined,
         pauseOnHover ? '-pause-on-hover' : undefined,
+        '' !== (containerType ?? '') ? `-container-type:${containerType}` : undefined,
+        '' !== (fluidReference ?? '') ? `-fluid-reference:${fluidReference}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

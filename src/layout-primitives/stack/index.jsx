@@ -8,6 +8,8 @@ export const Stack = ({
   dividerWidth,
   dividerStyle,
   dividerColor,
+  containerType,
+  fluidReference,
   tagName = 'div',
   style,
   ...props
@@ -29,6 +31,8 @@ export const Stack = ({
         '' !== (divider ?? '') ? `-divider:${divider}` : undefined,
         '' !== (gap ?? '') ? `-gap:${gap}` : undefined,
         negative ? '-negative' : undefined,
+        '' !== (containerType ?? '') ? `-container-type:${containerType}` : undefined,
+        '' !== (fluidReference ?? '') ? `-fluid-reference:${fluidReference}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

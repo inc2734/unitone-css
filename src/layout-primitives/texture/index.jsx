@@ -16,6 +16,8 @@ export const Texture = ({
   textureBorderBottomRightRadius,
   textureBandTopSize,
   textureBandBottomSize,
+  containerType,
+  fluidReference,
   style,
   ...props
 }) => {
@@ -45,7 +47,12 @@ export const Texture = ({
 
   return (
     <div
-      data-unitone-layout={['texture', '' !== (texture ?? '') ? `-texture:${texture}` : undefined]
+      data-unitone-layout={[
+        'texture',
+        '' !== (texture ?? '') ? `-texture:${texture}` : undefined,
+        '' !== (containerType ?? '') ? `-container-type:${containerType}` : undefined,
+        '' !== (fluidReference ?? '') ? `-fluid-reference:${fluidReference}` : undefined,
+      ]
         .filter(Boolean)
         .join(' ')}
       style={style}

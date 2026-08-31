@@ -11,6 +11,8 @@ export const Cluster = ({
   rowGap,
   justifyContent,
   nowrap,
+  containerType,
+  fluidReference,
   tagName = 'div',
   style,
   ...props
@@ -34,6 +36,8 @@ export const Cluster = ({
         '' !== (rowGap ?? '') ? `-row-gap:${rowGap}` : undefined,
         '' !== (alignItems ?? '') ? `-align-items:${alignItems}` : undefined,
         '' !== (justifyContent ?? '') ? `-justify-content:${justifyContent}` : undefined,
+        '' !== (containerType ?? '') ? `-container-type:${containerType}` : undefined,
+        '' !== (fluidReference ?? '') ? `-fluid-reference:${fluidReference}` : undefined,
         nowrap ? '-nowrap' : undefined,
       ]
         .filter(Boolean)

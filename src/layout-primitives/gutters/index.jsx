@@ -1,9 +1,14 @@
 import React from 'react';
 
-export const Gutters = ({ padding, style, ...props }) => {
+export const Gutters = ({ padding, containerType, fluidReference, style, ...props }) => {
   return (
     <div
-      data-unitone-layout={['gutters', '' !== (padding ?? '') ? `-padding:${padding}` : undefined]
+      data-unitone-layout={[
+        'gutters',
+        '' !== (padding ?? '') ? `-padding:${padding}` : undefined,
+        '' !== (containerType ?? '') ? `-container-type:${containerType}` : undefined,
+        '' !== (fluidReference ?? '') ? `-fluid-reference:${fluidReference}` : undefined,
+      ]
         .filter(Boolean)
         .join(' ')}
       style={style}

@@ -15,6 +15,8 @@ export const Layers = ({
   rows,
   rowTrackSize,
   queryContext,
+  containerType,
+  fluidReference,
   style,
   ...props
 }) => {
@@ -40,6 +42,8 @@ export const Layers = ({
         '' !== (columnGap ?? '') ? `-column-gap:${columnGap}` : undefined,
         '' !== (rowGap ?? '') ? `-row-gap:${rowGap}` : undefined,
         queryContext ? `@${queryContext}` : undefined,
+        '' !== (containerType ?? '') ? `-container-type:${containerType}` : undefined,
+        '' !== (fluidReference ?? '') ? `-fluid-reference:${fluidReference}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}
