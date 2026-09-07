@@ -1,26 +1,13 @@
-@use '../variables' as variables;
+@use './responsive-context';
 
-/**
- * Spacing tokens require a unitless real-number value of 100cqw,
- * so they cannot be defined at :root.
- */
+// @deprecated Kept for backward compatibility.
+// Use responsive-context instead.
 @mixin fluid-reference() {
+  /**
+   * @deprecated Kept for backward compatibility.
+   * Use -responsive-context:container on an ancestor instead.
+   */
   [data-unitone-layout~="-fluid-reference\:cqw"] {
-
-    /**
-     * A value to get the unitless px value in trigonometric functions. (For Safari)
-     */
-    --unitone--property--100cqw: 100cqw;
-
-    /**
-     * 100cqw unitless px real value.
-     */
-    --unitone--result--100cqw-px: calc(tan(atan2(var(--unitone--property--100cqw), 1px)));
-
-    --unitone--global--gutters: #{ variables.generate-global-gutters('container') };
-
-    @include variables.font-size-tokens('container');
-    @include variables.spacing-tokens('container');
-    @include variables.padding-tokens('container');
+    @include responsive-context.fluid-tokens();
   }
 }

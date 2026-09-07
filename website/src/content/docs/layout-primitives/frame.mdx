@@ -97,15 +97,13 @@ Switch aspect ratio when portrait and mobile width.
 	</Tabs.Tab>
 </Tabs>
 
-Set the query context to `container` to make the responsive behavior depend on the containing element's width instead of the viewport width.
-For HTML, add `@container` to `data-unitone-layout`. For React, set `queryContext="container"`.
-Establish an ancestor query container with `-container-type:inline-size` in HTML or `<Decorator containerType="inline-size">` in React.
+Pair `responsiveContext="container"` with `containerType="inline-size"` on an ancestor to make the responsive behavior depend on the container width. Both props must be set on the same ancestor for its context to become active. If `containerType="inline-size"` is omitted there, `responsiveContext="container"` is ignored and the existing responsive context remains active. See [Responsive context utilities](/utilities#responsive-context) for examples.
 
 <Tabs items={['HTML', 'JSX', 'Preview']}>
 	<Tabs.Tab>
 		```html
-		<div data-unitone-layout="decorator -container-type:inline-size" style="--unitone--max-width: 375px">
-			<div data-unitone-layout="frame -switch @container">
+		<div data-unitone-layout="decorator -container-type:inline-size -responsive-context:container" style="--unitone--max-width: 375px">
+			<div data-unitone-layout="frame -switch">
 				<img src="..." alt="" style="width: 100%" />
 			</div>
 		</div>
@@ -116,8 +114,8 @@ Establish an ancestor query container with `-container-type:inline-size` in HTML
 		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
 		import { Frame } from '@inc2734/unitone-css/layout-primitives/frame/react';
 
-		<Decorator maxWidth="375px" containerType="inline-size">
-			<Frame switchRatio queryContext="container">
+		<Decorator maxWidth="375px" containerType="inline-size" responsiveContext="container">
+			<Frame switchRatio>
 				<img src="..." alt="" />
 			</Frame>
 		</Decorator>
@@ -125,11 +123,15 @@ Establish an ancestor query container with `-container-type:inline-size` in HTML
 	</Tabs.Tab>
 	<Tabs.Tab>
 		<PreviewConainer>
-			<Decorator maxWidth="375px" containerType="inline-size">
-				<Frame switchRatio queryContext="container">
+			<Decorator maxWidth="375px" containerType="inline-size" responsiveContext="container">
+				<Frame switchRatio>
 					<DummyImage />
 				</Frame>
 			</Decorator>
 		</PreviewConainer>
 	</Tabs.Tab>
 </Tabs>
+
+### <Badge>HTML</Badge> @container / <Badge>JSX</Badge> queryContext="container"
+
+`queryContext="container"` selects container queries for this Frame's responsive behavior. An eligible ancestor query container is required; otherwise, the responsive change is not applied. It does not change fluid values or establish a responsive context for descendants.

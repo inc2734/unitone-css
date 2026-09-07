@@ -16,7 +16,8 @@ export const Layers = ({
   rowTrackSize,
   queryContext,
   containerType,
-  fluidReference,
+  responsiveContext,
+  fluidReference, // @deprecated Kept for backward compatibility. Use responsiveContext on an ancestor instead.
   style,
   ...props
 }) => {
@@ -41,8 +42,9 @@ export const Layers = ({
         '' !== (gap ?? '') ? `-gap:${gap}` : undefined,
         '' !== (columnGap ?? '') ? `-column-gap:${columnGap}` : undefined,
         '' !== (rowGap ?? '') ? `-row-gap:${rowGap}` : undefined,
-        queryContext ? `@${queryContext}` : undefined,
+        'container' === queryContext ? '@container' : undefined,
         '' !== (containerType ?? '') ? `-container-type:${containerType}` : undefined,
+        'container' === responsiveContext ? '-responsive-context:container' : undefined,
         '' !== (fluidReference ?? '') ? `-fluid-reference:${fluidReference}` : undefined,
       ]
         .filter(Boolean)

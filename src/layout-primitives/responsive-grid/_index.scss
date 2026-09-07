@@ -4,7 +4,9 @@
   --unitone--gap: var(--unitone--global--gap);
   --unitone--column-gap: var(--unitone--gap);
   --unitone--row-gap: var(--unitone--gap);
+  --unitone--container-type: initial;
 
+  container-type: var(--unitone--container-type);
   display: grid;
   column-gap: var(--unitone--column-gap);
   row-gap: var(--unitone--row-gap);

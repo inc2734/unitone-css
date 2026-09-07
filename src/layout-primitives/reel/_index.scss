@@ -4,7 +4,9 @@
   --unitone--item-width: calc(var(--unitone--measure) / 2);
   --unitone--scrollbar-thumb-color: #ddd;
   --unitone--scrollbar-track-color: transparent;
+  --unitone--container-type: initial;
 
+  container-type: var(--unitone--container-type);
   display: flex;
   gap: var(--unitone--gap);
   height: var(--unitone--height);

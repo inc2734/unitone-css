@@ -9,7 +9,8 @@ export const Stack = ({
   dividerStyle,
   dividerColor,
   containerType,
-  fluidReference,
+  responsiveContext,
+  fluidReference, // @deprecated Kept for backward compatibility. Use responsiveContext on an ancestor instead.
   tagName = 'div',
   style,
   ...props
@@ -32,6 +33,7 @@ export const Stack = ({
         '' !== (gap ?? '') ? `-gap:${gap}` : undefined,
         negative ? '-negative' : undefined,
         '' !== (containerType ?? '') ? `-container-type:${containerType}` : undefined,
+        'container' === responsiveContext ? '-responsive-context:container' : undefined,
         '' !== (fluidReference ?? '') ? `-fluid-reference:${fluidReference}` : undefined,
       ]
         .filter(Boolean)

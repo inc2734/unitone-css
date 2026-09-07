@@ -1,7 +1,9 @@
 @mixin abstract-vertical-ends() {
   --unitone--gap: var(--unitone--global--text-gap);
   --unitone--align-items: stretch;
+  --unitone--container-type: initial;
 
+  container-type: var(--unitone--container-type);
   display: flex;
   gap: var(--unitone--gap);
   flex-direction: column;

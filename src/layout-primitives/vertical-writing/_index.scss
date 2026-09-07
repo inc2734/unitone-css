@@ -1,3 +1,5 @@
+@use '../../behaviors/responsive-context';
+
 @mixin abstract-vertical-writing() {
   --unitone--gap: var(--unitone--global--text-gap);
   --unitone--column-gap: var(--unitone--global--gap);
@@ -41,33 +43,19 @@
     writing-mode: horizontal-tb;
 
     > * {
-      box-sizing: border-box;
       max-inline-size: none;
+      box-sizing: border-box;
     }
   }
 
   &[data-unitone-layout~="-switch"] {
-    &:where(:not([data-unitone-layout~="@container"])) {
-      @media (orientation: portrait) and (width < 600px) {
-        column-count: auto;
-        writing-mode: horizontal-tb;
+    @include responsive-context.responsive-query('(width < 600px)') {
+      column-count: auto;
+      writing-mode: horizontal-tb;
 
-        > * {
-          box-sizing: border-box;
-          max-inline-size: none;
-        }
-      }
-    }
-
-    &:where([data-unitone-layout~="@container"]) {
-      @container (width < 600px) {
-        column-count: auto;
-        writing-mode: horizontal-tb;
-
-        > * {
-          box-sizing: border-box;
-          max-inline-size: none;
-        }
+      > * {
+        max-inline-size: none;
+        box-sizing: border-box;
       }
     }
   }

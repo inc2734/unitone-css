@@ -2,7 +2,9 @@
   --unitone--gutters: 0px;
   --unitone--max-width: var(--unitone--measure);
   --unitone--text-gap: var(--unitone--global--text-gap);
+  --unitone--container-type: initial;
 
+  container-type: var(--unitone--container-type);
   box-sizing: content-box;
   padding-right: var(--unitone--gutters);
   padding-left: var(--unitone--gutters);

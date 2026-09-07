@@ -1,3 +1,5 @@
+@use '../../behaviors/responsive-context';
+
 @mixin abstract-frame() {
   --unitone--ratio: 16/9;
 
@@ -25,16 +27,8 @@
   }
 
   &[data-unitone-layout~="-switch"] {
-    &:where(:not([data-unitone-layout~="@container"])) {
-      @media (orientation: portrait) and (width < 600px) {
-        aspect-ratio: calc(1 / (var(--unitone--ratio))) !important;
-      }
-    }
-
-    &:where([data-unitone-layout~="@container"]) {
-      @container (width < 600px) {
-        aspect-ratio: calc(1 / (var(--unitone--ratio))) !important;
-      }
+    @include responsive-context.responsive-query('(width < 600px)') {
+      aspect-ratio: calc(1 / (var(--unitone--ratio))) !important;
     }
   }
 }

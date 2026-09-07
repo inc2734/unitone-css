@@ -805,8 +805,8 @@ Currently supported values are:
 <Tabs items={['HTML', 'JSX', 'Preview']}>
 	<Tabs.Tab>
 		```html
-		<div data-unitone-layout="decorator -container-type:inline-size" style="--unitone--max-width: 375px">
-			<div data-unitone-layout="layers -portrait @container">
+		<div data-unitone-layout="decorator -container-type:inline-size -responsive-context:container" style="--unitone--max-width: 375px">
+			<div data-unitone-layout="layers -portrait">
 				...
 			</div>
 		</div>
@@ -817,8 +817,8 @@ Currently supported values are:
 		import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';
 		import { Layers } from '@inc2734/unitone-css/layout-primitives/layers/react';
 
-		<Decorator containerType="inline-size" maxWidth="375px">
-			<Layers portrait queryContext="container">
+		<Decorator containerType="inline-size" responsiveContext="container" maxWidth="375px">
+			<Layers portrait>
 				...
 			</Layers>
 		</Decorator>
@@ -826,8 +826,8 @@ Currently supported values are:
 	</Tabs.Tab>
 	<Tabs.Tab>
 		<PreviewConainer>
-			<Decorator containerType="inline-size" maxWidth="375px">
-				<Layers portrait queryContext="container">
+			<Decorator containerType="inline-size" responsiveContext="container" maxWidth="375px">
+				<Layers portrait>
 					<DummyImage />
 
 					<Layer alignSelf="end">
@@ -839,7 +839,14 @@ Currently supported values are:
 	</Tabs.Tab>
 </Tabs>
 
-### <Badge>HTML</Badge> -fluid-reference:\{value\} / <Badge>JSX</Badge> fluidReference=\{value\}
+### <Badge>HTML</Badge> -responsive-context:\{value\} / <Badge>JSX</Badge> responsiveContext=\{value\}
+
+Sets the responsive context for descendants to `container`, the only supported value. It does not affect the Decorator element itself.
+Use `responsiveContext="container"` together with `containerType="inline-size"` on this element (HTML: `-responsive-context:container -container-type:inline-size`). The default is viewport-based behavior, and there is no viewport override inside a container context. The context becomes active only when both markers are on the same element. If `containerType="inline-size"` is omitted, `responsiveContext="container"` is ignored and the existing responsive context remains active. See [Responsive context utilities](/utilities#responsive-context) for examples.
+
+### <Badge>Deprecated</Badge> <Badge>HTML</Badge> -fluid-reference:\{value\} / <Badge>JSX</Badge> fluidReference=\{value\}
+
+Deprecated. Use `responsiveContext="container"` on an ancestor instead.
 
 Uses a query container's inline size as the reference for fluid typography, spacing, padding, and gutters.
 

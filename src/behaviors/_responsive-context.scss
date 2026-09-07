@@ -1,0 +1,96 @@
+@use '../variables' as variables;
+
+// Declaration-only entrypoint, also used by the legacy fluid-reference behavior.
+// Keep measurements and their consumers on the same element: registered
+// measurements do not inherit, and var() is resolved before inheritance.
+@mixin fluid-tokens() {
+  /**
+   * A value to get the unitless px value in trigonometric functions. (For Safari)
+   */
+  --unitone--property--100cqw: 100cqw;
+
+  /**
+   * 100cqw unitless px real value.
+   */
+  --unitone--result--100cqw-px: calc(tan(atan2(var(--unitone--property--100cqw), 1px)));
+
+  --unitone--global--gutters: #{ variables.generate-global-gutters($width: var(--unitone--property--100cqw)) };
+
+  @include variables.font-size-tokens(
+    $width: var(--unitone--property--100cqw),
+    $include-static: false
+  );
+
+  @include variables.spacing-tokens(
+    $width: var(--unitone--result--100cqw-px),
+    $include-static: false
+  );
+
+  @include variables.padding-tokens(
+    $width: var(--unitone--result--100cqw-px),
+    $include-static: false
+  );
+}
+
+@mixin responsive-context() {
+  /**
+   * Pair the container context with -container-type:inline-size:
+   * <div class="-container-type:inline-size -responsive-context:container">
+   *   <div data-unitone-layout="frame -switch">...</div>
+   * </div>
+   * The context is active only when both markers are on the same element.
+   * An unpaired context marker is ignored; the existing context continues
+   * to apply, using the viewport when there is no active ancestor context.
+   * Nested pairs use the nearest eligible query container for descendants.
+   * The selectors check markers, not the computed container-type property.
+   * Without an eligible query container, 100cqw uses 100svw, and container
+   * size queries do not match. There is no automatic media-query fallback.
+   */
+  // Recalculate fluid values at each boundary; static tokens remain inherited.
+  :is(
+    [data-unitone-layout~="-responsive-context:container"],
+    .-responsive-context\:container
+  ):where(
+    [data-unitone-layout~="-container-type:inline-size"],
+    .-container-type\:inline-size
+  ) > * {
+    @include fluid-tokens();
+  }
+}
+
+// Query the primitive itself. If it is also a query container, use inherited
+// custom properties to keep its children's layout tied to the same result.
+@mixin responsive-query($condition) {
+  // Exclude descendants of paired contexts from media queries even when their
+  // container query does not match. A context does not affect itself.
+  &:where(:not(
+    [data-unitone-layout~="@container"],
+    :is(
+      [data-unitone-layout~="-responsive-context:container"],
+      .-responsive-context\:container
+    ):where(
+      [data-unitone-layout~="-container-type:inline-size"],
+      .-container-type\:inline-size
+    ) *
+  )) {
+    @media #{ $condition } {
+      @content;
+    }
+  }
+
+  // Select container queries explicitly or through an ancestor context.
+  &:where(
+    [data-unitone-layout~="@container"],
+    :is(
+      [data-unitone-layout~="-responsive-context:container"],
+      .-responsive-context\:container
+    ):where(
+      [data-unitone-layout~="-container-type:inline-size"],
+      .-container-type\:inline-size
+    ) *
+  ) {
+    @container #{ $condition } {
+      @content;
+    }
+  }
+}

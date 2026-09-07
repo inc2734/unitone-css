@@ -11,7 +11,8 @@ export const Switcher = ({
   stairs,
   stairsUp,
   containerType,
-  fluidReference,
+  responsiveContext,
+  fluidReference, // @deprecated Kept for backward compatibility. Use responsiveContext on an ancestor instead.
   style,
   ...props
 }) => {
@@ -32,6 +33,7 @@ export const Switcher = ({
         '' !== (stairs ?? '') ? `-stairs:${stairs}` : undefined,
         '' !== (stairsUp ?? '') ? `-stairs-up:${stairsUp}` : undefined,
         '' !== (containerType ?? '') ? `-container-type:${containerType}` : undefined,
+        'container' === responsiveContext ? '-responsive-context:container' : undefined,
         '' !== (fluidReference ?? '') ? `-fluid-reference:${fluidReference}` : undefined,
       ]
         .filter(Boolean)

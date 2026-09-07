@@ -11,7 +11,7 @@ export const Frame = ({ ratio, switchRatio, queryContext, style, ...props }) => 
       data-unitone-layout={[
         'frame',
         switchRatio ? `-switch` : undefined,
-        queryContext ? `@${queryContext}` : undefined,
+        'container' === queryContext ? '@container' : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

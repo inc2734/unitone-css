@@ -12,7 +12,8 @@ export const Cluster = ({
   justifyContent,
   nowrap,
   containerType,
-  fluidReference,
+  responsiveContext,
+  fluidReference, // @deprecated Kept for backward compatibility. Use responsiveContext on an ancestor instead.
   tagName = 'div',
   style,
   ...props
@@ -37,6 +38,7 @@ export const Cluster = ({
         '' !== (alignItems ?? '') ? `-align-items:${alignItems}` : undefined,
         '' !== (justifyContent ?? '') ? `-justify-content:${justifyContent}` : undefined,
         '' !== (containerType ?? '') ? `-container-type:${containerType}` : undefined,
+        'container' === responsiveContext ? '-responsive-context:container' : undefined,
         '' !== (fluidReference ?? '') ? `-fluid-reference:${fluidReference}` : undefined,
         nowrap ? '-nowrap' : undefined,
       ]

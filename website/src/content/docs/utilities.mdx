@@ -4,7 +4,7 @@ Small utility classes for typography, spacing, color, alignment, positioning, ov
 
 Utilities are available when you load `app.css`, and they can also be loaded explicitly from `src/utilities` in Sass-based setups.
 
-`src/utilities/_index.scss` currently assembles the following files:
+`src/utilities/_index.scss` assembles the following utilities:
 
 - `align-content`
 - `align-items`
@@ -120,7 +120,89 @@ Currently supported values are:
 
 - `inline-size`
 
-Use this on an ancestor whose descendants use container queries. When the `container-type` behavior is loaded, the same values can be used with `data-unitone-layout`, for example `data-unitone-layout="-container-type:inline-size"`.
+Use this on an ancestor whose descendants use container queries. Supported layout primitives can use the equivalent `containerType="inline-size"` prop or `data-unitone-layout` token. Use the utility class for other HTML elements.
+
+### `responsive-context`
+
+- `.-responsive-context:container`
+
+This class is provided by the responsive-context behavior, which also handles the equivalent `data-unitone-layout` token. Load `app.css` or include the behavior through `src/behaviors`; loading `src/utilities` alone does not include it.
+
+The default responsive context is the viewport. Setting `-responsive-context:container` together with `-container-type:inline-size` on the same element switches descendants to container-based fluid typography, spacing, padding, gutters, and responsive CSS. Only `container` is supported; there is no context setting that restores viewport behavior inside a container context.
+
+Both markers must be on the same element for the context to become active. The first selects the responsive context for descendants; the second establishes the query container that supplies its width. Setting either marker alone does not change the responsive context. Classes and `data-unitone-layout` tokens can be combined on the same supported primitive.
+
+```html
+<!-- No container context: switches when the viewport width is below 600px. -->
+<div data-unitone-layout="frame -switch">...</div>
+
+<div class="-container-type:inline-size -responsive-context:container">
+	<!-- Switches when the container width is below 600px. -->
+	<div data-unitone-layout="frame -switch">...</div>
+</div>
+```
+
+The context applies only to descendants, not to the element carrying it. Use a wrapper when the target element itself also needs to switch contexts. Fluid tokens are recalculated for the direct children and inherited by their descendants. Static tokens keep their inherited values.
+
+Use the equivalent `data-unitone-layout` tokens on a supported layout primitive:
+
+```html
+<div data-unitone-layout="container -container-type:inline-size -responsive-context:container">
+	<div data-unitone-layout="frame -switch">...</div>
+</div>
+```
+
+In JSX, pair `responsiveContext="container"` with `containerType="inline-size"` on a supported layout primitive.
+
+#### Nested containers
+
+Container contexts can be nested. Set both markers on each context element. Descendants use the nearest eligible query container; the context element itself continues to use its ancestor's context.
+
+```html
+<div
+	class="-container-type:inline-size -responsive-context:container"
+	style="width: 800px"
+>
+	<!-- Uses the 800px-wide container and keeps its base aspect ratio. -->
+	<div data-unitone-layout="frame -switch">...</div>
+
+	<div
+		class="-container-type:inline-size -responsive-context:container"
+		style="width: 320px"
+	>
+		<!-- Uses the 320px-wide container and switches. -->
+		<div data-unitone-layout="frame -switch">...</div>
+	</div>
+</div>
+```
+
+#### When the markers are not paired
+
+If `-container-type:inline-size` is missing from the element carrying `-responsive-context:container`, that context marker is ignored. A container marker on a different element, or `container-type` set only through custom CSS, does not activate it.
+
+The existing responsive context remains active. Without an active ancestor context, fluid values use the viewport and responsive changes use media queries. Inside an active ancestor context, its fluid values remain inherited and responsive changes continue to use container queries.
+
+```html
+<!-- No active ancestor context; this unpaired marker has no effect. -->
+<div class="-responsive-context:container">
+	<!-- Fluid typography uses the viewport width. -->
+	<p class="-font-size:6xl -fluid-typography">...</p>
+	<!-- Switches when the viewport width is below 600px. -->
+	<div data-unitone-layout="frame -switch">...</div>
+</div>
+
+<!-- Markers on separate elements do not activate a context either. -->
+<div class="-container-type:inline-size" style="width: 320px">
+	<div class="-responsive-context:container">
+		<!-- Still switches based on the viewport width. -->
+		<div data-unitone-layout="frame -switch">...</div>
+	</div>
+</div>
+```
+
+The selectors check marker presence, not the computed `container-type` property. If both markers are present but custom CSS disables the query container and no eligible ancestor container exists, `100cqw` resolves to the small viewport width (`100svw`) and container size queries do not match. In that case, there is no automatic fallback to media queries.
+
+The `@container` token (JSX: `queryContext="container"`) selects container queries for the responsive behavior of the Frame, Layers, or VerticalWriting primitive carrying it. The only supported `queryContext` value is `container`. It requires an eligible ancestor query container and does not change fluid values or establish a context for descendants.
 
 ### `font-size`
 

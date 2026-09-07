@@ -1,3 +1,5 @@
+@use '../../behaviors/responsive-context';
+
 @mixin abstract-layers() {
   --unitone--columns: var(--unitone--grid-columns);
   --unitone--rows: var(--unitone--grid-rows);
@@ -7,7 +9,9 @@
   --unitone--row-gap: var(--unitone--gap, 1lh);
   --unitone--min-height: 0;
   --unitone--blur: 75px;
+  --unitone--container-type: initial;
 
+  container-type: var(--unitone--container-type);
   display: grid;
   grid-template-columns: repeat(var(--unitone--columns), 1fr);
   grid-template-rows: repeat(
@@ -19,18 +23,9 @@
   min-height: var(--unitone--min-height);
 
   &[data-unitone-layout~="-portrait"] {
-    &:where(:not([data-unitone-layout~="@container"])) {
-      @media (orientation: portrait) and (width < 600px) {
-        --unitone--columns: var(--unitone--grid-rows);
-        --unitone--rows: var(--unitone--grid-columns);
-      }
-    }
-
-    &:where([data-unitone-layout~="@container"]) {
-      @container (width < 600px) {
-        --unitone--columns: var(--unitone--grid-rows);
-        --unitone--rows: var(--unitone--grid-columns);
-      }
+    @include responsive-context.responsive-query('(width < 600px)') {
+      --unitone--columns: var(--unitone--grid-rows);
+      --unitone--rows: var(--unitone--grid-columns);
     }
   }
 

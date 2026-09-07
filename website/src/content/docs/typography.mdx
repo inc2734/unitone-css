@@ -27,7 +27,7 @@ Approximate font sizes with the default `--unitone--root-font-size: 16px` are:
 | `--unitone--font-size-5xl`    | `.-font-size:5xl` | `4rem`      | `64px`     |
 | `--unitone--font-size-6xl`    | `.-font-size:6xl` | `8rem`      | `128px`    |
 
-These are static size approximations. When `-fluid-typography` is used, the actual rendered size changes within a range depending on the viewport.
+These are static size approximations. When `-fluid-typography` is used, the actual rendered size changes within a range based on the active responsive context, which is the viewport by default.
 
 When using large font sizes such as `2xl` and above, combining them with `-fluid-typography` is recommended. This helps prevent oversized text from breaking the layout on mobile screens.
 
@@ -146,12 +146,12 @@ In custom CSS, use the fluid token directly.
 	</Stack>
 </PreviewConainer>
 
-If the query context is a container, it automatically switches to container-width-based fluid typography.
+Use `-responsive-context:container` together with `-container-type:inline-size` on the same ancestor to switch its descendants to container-width-based fluid typography.
 
-Please use a behavior or utility to specify the query context.
+Both markers must be on the same element for the context to become active. An unpaired context marker is ignored: fluid typography keeps using the existing context, which is the viewport by default. Only the container context is supported. See [Responsive context utilities](/utilities#responsive-context) for examples and the behavior when markers are missing or separated.
 
 ```html
-<div data-unitone-layout="-container-type:inline-size">
+<div data-unitone-layout="decorator -container-type:inline-size -responsive-context:container">
 	<p data-unitone-layout="-font-size:6xl -fluid-typography">
 		...
 	</p>
@@ -161,7 +161,7 @@ Please use a behavior or utility to specify the query context.
 or
 
 ```html
-<div class="-container-type:inline-size">
+<div class="-container-type:inline-size -responsive-context:container">
 	<p class="-font-size:6xl -fluid-typography">
 		...
 	</p>
@@ -169,7 +169,7 @@ or
 ```
 
 <PreviewConainer>
-	<Decorator containerType="inline-size">
+	<Decorator containerType="inline-size" responsiveContext="container">
 		<Stack>
 			<p className="-font-size:2xs -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 			<p className="-font-size:xs -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>

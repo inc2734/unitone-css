@@ -65,6 +65,12 @@ Globally defined reusable values that make up the design system.
 
 Typical tokens include spacing, font size, color, container size, border radius, and box shadow.
 
+### Responsive contexts
+
+`responsiveContext="container"` on a supported primitive, or `.-responsive-context:container` on a plain element, switches descendants to container-based fluid tokens and responsive CSS only when `containerType="inline-size"` or `.-container-type:inline-size` is set on the same element. An unpaired context marker is ignored, leaving the existing responsive context active.
+
+The default context is the viewport, and `container` is the only supported context value. The context applies only to descendants. Container contexts can be nested, with descendants using the nearest eligible query container. There is no viewport override inside a container context. See [Responsive context utilities](/utilities#responsive-context) for examples and the behavior when the container setup is missing.
+
 ### Utilities
 
 Simple classes that apply a specific presentational property.

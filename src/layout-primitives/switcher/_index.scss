@@ -4,7 +4,9 @@
   --unitone--row-gap: var(--unitone--gap);
   --unitone--threshold: var(--unitone--measure);
   --unitone--align-items: stretch;
+  --unitone--container-type: initial;
 
+  container-type: var(--unitone--container-type);
   display: flex;
   flex-wrap: wrap;
   column-gap: var(--unitone--column-gap);

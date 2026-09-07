@@ -2,7 +2,9 @@
   --unitone--animation-duration: 20s;
   --unitone--gap: var(--unitone--global--text-gap);
   --unitone--item-width: auto;
+  --unitone--container-type: initial;
 
+  container-type: var(--unitone--container-type);
   display: flex;
   gap: var(--unitone--gap);
   overflow: clip;

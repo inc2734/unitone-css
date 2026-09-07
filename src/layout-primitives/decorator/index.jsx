@@ -17,7 +17,8 @@ export const Decorator = ({
   gap,
   alignContent,
   containerType,
-  fluidReference,
+  responsiveContext,
+  fluidReference, // @deprecated Kept for backward compatibility. Use responsiveContext on an ancestor instead.
   justifyItems,
   shadow,
   position,
@@ -68,6 +69,7 @@ export const Decorator = ({
         '' !== (gap ?? '') ? `-gap:${gap}` : undefined,
         '' !== (alignContent ?? '') ? `-align-content:${alignContent}` : undefined,
         '' !== (containerType ?? '') ? `-container-type:${containerType}` : undefined,
+        'container' === responsiveContext ? '-responsive-context:container' : undefined,
         '' !== (fluidReference ?? '') ? `-fluid-reference:${fluidReference}` : undefined,
         '' !== (justifyItems ?? '') ? `-justify-items:${justifyItems}` : undefined,
         '' !== (padding ?? '') ? `-padding:${padding}` : undefined,
