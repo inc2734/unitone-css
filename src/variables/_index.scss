@@ -29,7 +29,7 @@ $font-sizes: (
     }
   }
 
-  @return max(min(#{ $width } * .06, var(--unitone--rem2)), env(safe-area-inset-right), env(safe-area-inset-left));
+  @return max(min($width * .06, var(--unitone--rem2)), env(safe-area-inset-right), env(safe-area-inset-left));
 }
 
 @function generate-fluid-spacing($min, $max, $context: 'viewport', $width: null) {
@@ -41,38 +41,38 @@ $font-sizes: (
   }
 
   @return clamp(
-    #{ $min },
-    #{ $min } + ((#{ $max } - #{ $min }) / (#{ $max-breakpoint - $min-breakpoint } * var(--unitone--result--1rem-px)) * (#{ $width } - (#{ $min-breakpoint } * var(--unitone--result--1rem-px)))),
-    #{ $max }
+    $min,
+    $min + (($max - $min) / (($max-breakpoint - $min-breakpoint) * var(--unitone--result--1rem-px)) * ($width - ($min-breakpoint * var(--unitone--result--1rem-px)))),
+    $max
   );
 }
 
 @function generate-spacing($max, $context: 'viewport', $width: null) {
   $quotient: math.div($min-breakpoint, $max-breakpoint);
-  $min: calc(var(--unitone--em1) + #{ $max } * #{ $quotient });
-  @return generate-fluid-spacing(#{ $min }, #{ $max }, $context, $width);
+  $min: calc(var(--unitone--em1) + $max * $quotient);
+  @return generate-fluid-spacing($min, $max, $context, $width);
 }
 
 @function generate-padding($max, $context: 'viewport', $width: null) {
   $quotient: math.div($min-breakpoint, $max-breakpoint);
-  $min: calc(var(--unitone--em1) + #{ $max } * #{ $quotient } * .2);
-  @return generate-fluid-spacing(#{ $min }, #{ $max }, $context, $width);
+  $min: calc(var(--unitone--em1) + $max * $quotient * .2);
+  @return generate-fluid-spacing($min, $max, $context, $width);
 }
 
 @function _max-font-size($level) {
-  @return calc(var(--unitone--harmonic-sequence-base) / (var(--unitone--max-harmonic-sequence-base) - (#{ $level })));
+  @return calc(var(--unitone--harmonic-sequence-base) / (var(--unitone--max-harmonic-sequence-base) - ($level)));
 }
 
 @function _min-font-size($level) {
-  @return calc(var(--unitone--harmonic-sequence-base) / (var(--unitone--min-harmonic-sequence-base) - (#{ $level })) + 1 - (var(--unitone--harmonic-sequence-base) / var(--unitone--min-harmonic-sequence-base)));
+  @return calc(var(--unitone--harmonic-sequence-base) / (var(--unitone--min-harmonic-sequence-base) - ($level)) + 1 - (var(--unitone--harmonic-sequence-base) / var(--unitone--min-harmonic-sequence-base)));
 }
 
 @function _font-size-scale($level) {
-  @return calc(var(--unitone--harmonic-sequence-base) / (var(--unitone--harmonic-sequence-base) - (#{ $level })));
+  @return calc(var(--unitone--harmonic-sequence-base) / (var(--unitone--harmonic-sequence-base) - ($level)));
 }
 
 @function font-size-rem($level) {
-  @return calc(#{ _font-size-scale($level) } * 1rem);
+  @return calc(_font-size-scale($level) * 1rem);
 }
 
 @function font-size-fluid($level, $context: 'viewport') {
@@ -89,14 +89,14 @@ $font-sizes: (
 }
 
 @function _font-size-slope($min-font-size, $max-font-size) {
-  @return calc((#{ $max-font-size } - #{ $min-font-size }) / (#{ $max-breakpoint - $min-breakpoint }));
+  @return calc(($max-font-size - $min-font-size) / ($max-breakpoint - $min-breakpoint));
 }
 
 @function _fluid-font-size($min-font-size, $max-font-size, $slope, $width) {
-  $intercept: calc(#{-1 * $min-breakpoint } * #{ $slope } + #{ $min-font-size });
-  $preferred-font-size: calc((#{ $intercept } * 1rem) + (#{ $slope } * #{ $width }));
+  $intercept: calc((-1 * $min-breakpoint) * $slope + $min-font-size);
+  $preferred-font-size: calc(($intercept * 1rem) + ($slope * $width));
 
-  @return clamp(var(--unitone--fluid-typography-min-length, calc(1rem * #{ $min-font-size })), #{ $preferred-font-size }, var(--unitone--fluid-typography-max-length, calc(1rem * #{ $max-font-size })));
+  @return clamp(var(--unitone--fluid-typography-min-length, calc(1rem * $min-font-size)), $preferred-font-size, var(--unitone--fluid-typography-max-length, calc(1rem * $max-font-size)));
 }
 
 /**
@@ -121,10 +121,10 @@ $font-sizes: (
  * font size the line-height stays close to max (and is clamped there).
  */
 $_min-line-height: calc(var(--unitone--min-line-height) - 0.1);
-$_line-height-amplitude: calc((var(--unitone--max-line-height) - #{ $_min-line-height }) * (var(--unitone--result--1rem-px) + var(--unitone--line-height-curvature)));
+$_line-height-amplitude: calc((var(--unitone--max-line-height) - $_min-line-height) * (var(--unitone--result--1rem-px) + var(--unitone--line-height-curvature)));
 $_line-height: clamp(
   var(--unitone--min-line-height),
-  (#{ $_min-line-height } + #{ $_line-height-amplitude } / (var(--unitone--result--1em-px) + var(--unitone--line-height-curvature))),
+  ($_min-line-height + $_line-height-amplitude / (var(--unitone--result--1em-px) + var(--unitone--line-height-curvature))),
   var(--unitone--max-line-height)
 );
 
