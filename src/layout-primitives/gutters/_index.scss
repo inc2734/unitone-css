@@ -1,8 +1,6 @@
 @mixin abstract-gutters() {
   --unitone--padding: var(--unitone--s4);
-  --unitone--container-type: initial;
 
-  container-type: var(--unitone--container-type);
   padding-top: var(--unitone--padding);
   padding-bottom: var(--unitone--padding);
 

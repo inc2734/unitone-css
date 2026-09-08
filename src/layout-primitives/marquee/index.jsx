@@ -1,17 +1,6 @@
 import React from 'react';
 
-export const Marquee = ({
-  duration,
-  gap,
-  itemWidth,
-  reverse,
-  pauseOnHover,
-  containerType,
-  responsiveContext,
-  fluidReference, // @deprecated Kept for backward compatibility. Use responsiveContext on an ancestor instead.
-  style,
-  ...props
-}) => {
+export const Marquee = ({ duration, gap, itemWidth, reverse, pauseOnHover, style, ...props }) => {
   style = {
     ...style,
     '--unitone--animation-duration': '' !== duration ? duration : undefined,
@@ -24,9 +13,6 @@ export const Marquee = ({
         'marquee-wrapper',
         reverse ? '-reverse' : undefined,
         pauseOnHover ? '-pause-on-hover' : undefined,
-        '' !== (containerType ?? '') ? `-container-type:${containerType}` : undefined,
-        'container' === responsiveContext ? '-responsive-context:container' : undefined,
-        '' !== (fluidReference ?? '') ? `-fluid-reference:${fluidReference}` : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

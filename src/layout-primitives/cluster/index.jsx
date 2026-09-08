@@ -11,9 +11,6 @@ export const Cluster = ({
   rowGap,
   justifyContent,
   nowrap,
-  containerType,
-  responsiveContext,
-  fluidReference, // @deprecated Kept for backward compatibility. Use responsiveContext on an ancestor instead.
   tagName = 'div',
   style,
   ...props
@@ -37,9 +34,6 @@ export const Cluster = ({
         '' !== (rowGap ?? '') ? `-row-gap:${rowGap}` : undefined,
         '' !== (alignItems ?? '') ? `-align-items:${alignItems}` : undefined,
         '' !== (justifyContent ?? '') ? `-justify-content:${justifyContent}` : undefined,
-        '' !== (containerType ?? '') ? `-container-type:${containerType}` : undefined,
-        'container' === responsiveContext ? '-responsive-context:container' : undefined,
-        '' !== (fluidReference ?? '') ? `-fluid-reference:${fluidReference}` : undefined,
         nowrap ? '-nowrap' : undefined,
       ]
         .filter(Boolean)
