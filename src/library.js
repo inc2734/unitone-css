@@ -944,111 +944,227 @@ export const verticalsResizeObserver = (target) => {
   });
 };
 
+const marqueeClones = new WeakSet();
+
+const getMarquees = (target) =>
+  Array.from(target.querySelectorAll(':scope > [data-unitone-layout~="marquee"]'));
+
+const getMarqueeAnimation = (element) =>
+  element
+    ?.getAnimations()
+    .find(({ animationName }) => ['marquee', 'marquee-reverse'].includes(animationName));
+
 /**
- * Creates duplicated marquee content and refreshes initialization markers.
+ * Measures layout width without including transforms or rounding fractional pixels.
  *
- * @param {Element} target Target element.
- * @returns {Element | undefined} The duplicated marquee element, if created.
+ * @param {Element} element Target element.
+ * @param {boolean} borderBox Whether to include padding and borders.
+ * @returns {number} Width in CSS pixels.
  */
-export const setMarquee = (target) => {
-  let clonedMarquee;
-
-  const addInitializedToken = (element) => {
-    const layout = element.getAttribute('data-unitone-layout') ?? '';
-    if (layout.split(/\s+/).includes('marquee:initialized')) {
-      return;
-    }
-    element.setAttribute('data-unitone-layout', `${layout} marquee:initialized`.trim());
-  };
-
-  const removeInitializedToken = (element) => {
-    const layout = element.getAttribute('data-unitone-layout') ?? '';
-    const next = layout
-      .split(/\s+/)
-      .filter((value) => value && 'marquee:initialized' !== value)
-      .join(' ');
-    element.setAttribute('data-unitone-layout', next);
-  };
-
-  const getMarquees = () => target.querySelectorAll(':scope > [data-unitone-layout~="marquee"]');
-  let marquees = getMarquees();
-  if (0 === marquees.length) {
-    return;
-  }
-
-  const shouldRestartAnimation = Array.from(marquees).some((marquee) =>
-    (marquee.getAttribute(layoutAttributeName) ?? '').split(/\s+/).includes('marquee:initialized'),
+const getMarqueeWidth = (element, borderBox) => {
+  const style = element.ownerDocument.defaultView.getComputedStyle(element);
+  const edges = ['paddingLeft', 'paddingRight', 'borderLeftWidth', 'borderRightWidth'].reduce(
+    (total, property) => total + (parseFloat(style[property]) || 0),
+    0,
   );
-
-  if (1 === target.childElementCount && 1 === marquees.length) {
-    const marquee = marquees[0];
-    clonedMarquee = marquee.cloneNode(true);
-    clonedMarquee.setAttribute('aria-hidden', 'true');
-    marquee.after(clonedMarquee);
-  }
-
-  marquees = getMarquees();
-
-  if (!shouldRestartAnimation) {
-    marquees.forEach((marquee) => {
-      addInitializedToken(marquee);
-    });
-    return clonedMarquee;
-  }
-
-  marquees.forEach((marquee) => {
-    removeInitializedToken(marquee);
-  });
-
-  requestAnimationFrame(() => {
-    if (!target?.isConnected) {
-      return;
-    }
-    getMarquees().forEach((marquee) => {
-      addInitializedToken(marquee);
-    });
-  });
-
-  return clonedMarquee;
+  const width = parseFloat(style.width) || 0;
+  return width + (borderBox ? edges : 0) - ('border-box' === style.boxSizing ? edges : 0);
 };
 
 /**
- * Creates the observer bundle for marquee layouts.
+ * Updates generated copies and synchronizes them with the original animation.
+ *
+ * @param {Element} target Marquee wrapper.
+ * @param {boolean} refreshClones Whether source content has changed.
+ * @returns {Element | undefined} The first newly created copy, if any.
+ */
+const updateMarquee = (target, refreshClones = false) => {
+  const marquees = getMarquees(target);
+  const originals = marquees.filter((element) => !marqueeClones.has(element));
+  let clones = Array.from(target.children).filter((element) => marqueeClones.has(element));
+  const original = originals[0];
+
+  if (refreshClones || 1 !== originals.length) {
+    clones.forEach((clone) => clone.remove());
+    clones = [];
+  }
+
+  if (!original || !hasLayoutBox(target)) {
+    return;
+  }
+
+  const wrapperWidth = getMarqueeWidth(target, false);
+  const width = getMarqueeWidth(original, true);
+  const columnGap = target.ownerDocument.defaultView.getComputedStyle(target).columnGap;
+  const gap = (parseFloat(columnGap) || 0) * (columnGap.endsWith('%') ? wrapperWidth / 100 : 1);
+  const gapValue = `${gap}px`;
+  if (target.style.getPropertyValue('--unitone--marquee-gap') !== gapValue) {
+    target.style.setProperty('--unitone--marquee-gap', gapValue);
+  }
+
+  // Keep author-provided sibling content intact instead of treating it as a generated copy.
+  const canClone = 1 === originals.length && target.childElementCount - clones.length === 1;
+  const count =
+    canClone && 0 < wrapperWidth && 0 < width ? Math.ceil((wrapperWidth + gap) / (width + gap)) : 0;
+
+  clones.splice(count).forEach((clone) => clone.remove());
+
+  const lastMarquee = clones.at(-1) ?? original;
+  let firstClone;
+  const fragment = target.ownerDocument.createDocumentFragment();
+  while (clones.length < count) {
+    const clone = original.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    clone.setAttribute('inert', '');
+    marqueeClones.add(clone);
+    clones.push(clone);
+    fragment.append(clone);
+    firstClone ??= clone;
+  }
+  if (firstClone) {
+    lastMarquee.after(fragment);
+  }
+
+  [...originals, ...clones].forEach((element) => {
+    const tokens = getLayoutTokens(element);
+    if (!tokens.includes('marquee:initialized')) {
+      setLayoutTokens(element, [...tokens, 'marquee:initialized']);
+    }
+  });
+
+  const animation = getMarqueeAnimation(original);
+  if (animation) {
+    const syncAnimations = () => {
+      if (!original.isConnected || getMarqueeAnimation(original) !== animation) {
+        return;
+      }
+      [...originals.slice(1), ...clones].forEach((element) => {
+        const copyAnimation = getMarqueeAnimation(element);
+        if (!element.isConnected || !copyAnimation) {
+          return;
+        }
+
+        const syncTime = () => {
+          if (element.isConnected && getMarqueeAnimation(original) === animation) {
+            copyAnimation.currentTime = animation.currentTime;
+          }
+        };
+        syncTime();
+        // A pending play or pause task can otherwise apply an outdated hold time.
+        if (copyAnimation.pending) {
+          copyAnimation.ready.then(syncTime, () => {});
+        }
+      });
+    };
+    syncAnimations();
+    if (animation.pending) {
+      animation.ready.then(syncAnimations, () => {});
+    }
+  }
+
+  return firstClone;
+};
+
+/**
+ * Refreshes marquee copies while retaining the original animation's progress.
+ *
+ * @param {Element} target Target element.
+ * @returns {Element | undefined} The first newly created copy, if any.
+ */
+export const setMarquee = (target) => updateMarquee(target, true);
+
+/**
+ * Observes marquee size and content changes without delaying resize updates.
  *
  * @param {Element} target Target element.
  * @returns {void}
  */
 export const marqueeResizeObserver = (target) => {
-  let clonedMarquee;
+  let isIntersecting = 'undefined' === typeof IntersectionObserver || isNearViewport(target);
+  let refreshClones = false;
+  const observedOriginals = new Set();
 
-  const applyMarquee = (element) => {
-    clonedMarquee = setMarquee(element);
+  const observeMutations = () => {
+    mutationObserver.observe(target, { attributes: true, childList: true });
+    observedOriginals.forEach((element) => {
+      mutationObserver.observe(element, {
+        attributes: true,
+        childList: true,
+        characterData: true,
+        subtree: true,
+      });
+    });
   };
 
-  createLayoutObserver(target, applyMarquee, {
-    observeResize: false,
-    observeIntersection: true,
-    targetMutation: {
-      options: {
-        childList: true,
-      },
-      shouldApply: (entries) => {
-        const addedNodes = entries.flatMap((entry) => Array.from(entry.addedNodes ?? []));
-        const removedNodes = entries.flatMap((entry) => Array.from(entry.removedNodes ?? []));
+  const apply = () => {
+    if (!target.isConnected || !isIntersecting) {
+      return;
+    }
 
-        if (
-          clonedMarquee?.isConnected &&
-          1 === addedNodes.length &&
-          0 === removedNodes.length &&
-          addedNodes[0] === clonedMarquee
-        ) {
-          clonedMarquee = null;
-          return false;
-        }
+    // Preserve pending author edits, then exclude our own DOM writes from observation.
+    refreshClones ||= mutationObserver
+      .takeRecords()
+      .some(
+        (entry) =>
+          entry.target !== target ||
+          ('childList' === entry.type &&
+            [...entry.addedNodes, ...entry.removedNodes].some((node) => !marqueeClones.has(node))),
+      );
+    mutationObserver.disconnect();
+    updateMarquee(target, refreshClones);
+    refreshClones = false;
 
-        clonedMarquee = null;
-        return true;
-      },
-    },
+    const originals = getMarquees(target).filter((element) => !marqueeClones.has(element));
+    observedOriginals.forEach((element) => {
+      if (!originals.includes(element)) {
+        resizeObserver.unobserve(element);
+        observedOriginals.delete(element);
+      }
+    });
+    originals.forEach((element) => {
+      if (!observedOriginals.has(element)) {
+        resizeObserver.observe(element, { box: 'border-box' });
+        observedOriginals.add(element);
+      }
+    });
+    observeMutations();
+  };
+
+  const scheduleApply = createScheduledTargetCallback(target, apply);
+  const mutationObserver = new MutationObserver((entries) => {
+    const relevantEntries = entries.filter(
+      (entry) =>
+        entry.target !== target ||
+        'childList' !== entry.type ||
+        [...entry.addedNodes, ...entry.removedNodes].some((node) => !marqueeClones.has(node)),
+    );
+    if (0 === relevantEntries.length) {
+      return;
+    }
+    refreshClones ||= relevantEntries.some(
+      (entry) => entry.target !== target || 'childList' === entry.type,
+    );
+    scheduleApply();
   });
+  const resizeObserver = new ResizeObserver(apply);
+  resizeObserver.observe(target);
+  observeMutations();
+
+  if ('undefined' !== typeof IntersectionObserver) {
+    createIntersectionObserver(target, (entry) => {
+      isIntersecting = entry.isIntersecting;
+      if (isIntersecting) {
+        apply();
+      }
+    });
+  }
+
+  // Re-sync copies created while CSS has paused the original animation.
+  ['pointerenter', 'pointerleave', 'focusin', 'focusout'].forEach((eventName) => {
+    target.addEventListener(eventName, scheduleApply);
+  });
+
+  // Media queries can change only the gap while both marquee widths remain unchanged.
+  resizeObserver.observe(target.ownerDocument.documentElement);
+  apply();
 };

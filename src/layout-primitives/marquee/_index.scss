@@ -36,7 +36,6 @@
   gap: inherit;
   align-items: center;
   justify-content: space-around;
-  min-width: 100%;
 
   &[data-unitone-layout~="marquee:initialized"] {
     animation-name: marquee;
@@ -64,10 +63,10 @@
 
 @keyframes marquee {
     0% { translate: 0; }
-  100% { translate: calc(-100% - var(--unitone--gap)); }
+  100% { translate: calc(-100% - var(--unitone--marquee-gap, var(--unitone--gap))); }
 }
 
 @keyframes marquee-reverse {
     0% { translate: 0; }
-  100% { translate: calc(100% + var(--unitone--gap)); }
+  100% { translate: calc(100% + var(--unitone--marquee-gap, var(--unitone--gap))); }
 }

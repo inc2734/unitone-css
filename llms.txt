@@ -58,7 +58,7 @@ Example:
 ```
 
 ### Marquee
-Displays child elements in a continuous horizontal scrolling format. When you use Marquee in HTML, also load the JavaScript entry for it.
+Displays child elements in a continuous horizontal scrolling format. Content is repeated as many times as needed to fill the visible area, even when there are only a few items. Copies are updated when the container or content size changes, without restarting the animation. The animation duration is the time taken to move one content group and the gap between groups. Shorter content therefore moves more slowly at the same duration. When you use Marquee in HTML, also load the JavaScript entry for it.
 
 Example:
 ```jsx
