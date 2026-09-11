@@ -1,3 +1,5 @@
+import { createObserverScope } from './observer-scope';
+
 const layoutAttributeName = 'data-unitone-layout';
 const layoutIntersectionMargin = 200;
 const layoutIntersectionRootMargin = `${layoutIntersectionMargin}px 0px`;
@@ -40,31 +42,38 @@ const setLayoutTokens = (element, tokens) => {
  * Observes target resizes and invokes the callback when a relevant change is detected.
  *
  * @param {Element} target Target element.
- * @param {(target: Element, entry?: ResizeObserverEntry) => void} callback Callback to run.
+ * @param {(target: Element) => void} callback Callback to run.
+ * @param {ReturnType<typeof createObserverScope>} scope Observer lifetime.
  * @param {{ getValue?: (entry: ResizeObserverEntry) => unknown, delay?: number }} [options]
  * @returns {ResizeObserver} ResizeObserver instance.
  */
-const createResizeObserver = (target, callback, { getValue, delay = 250 } = {}) => {
-  let prevValue;
-  let isFirstEntry = true;
+const createResizeObserver = (target, callback, scope, { getValue, delay = 250 } = {}) => {
+  const prevValues = new WeakMap();
+  const onResize = debounce(() => callback(target), delay);
+  const observer = new ResizeObserver((entries) => {
+    if (scope.disposed) {
+      return;
+    }
 
-  const observer = new ResizeObserver(
-    debounce((entries) => {
-      for (const entry of entries) {
-        const currentValue = getValue?.(entry);
-        if (isFirstEntry) {
-          prevValue = currentValue;
-          isFirstEntry = false;
-          continue;
-        }
-
-        if (undefined === currentValue || currentValue !== prevValue) {
-          callback(entry.target, entry);
-          prevValue = currentValue;
-        }
+    let changed = false;
+    for (const entry of entries) {
+      const currentValue = getValue?.(entry);
+      if (
+        !prevValues.has(entry.target) ||
+        undefined === currentValue ||
+        currentValue !== prevValues.get(entry.target)
+      ) {
+        changed = true;
       }
-    }, delay),
-  );
+      prevValues.set(entry.target, currentValue);
+    }
+
+    if (changed) {
+      onResize();
+    }
+  });
+  scope.addCleanup(onResize.cancel);
+  scope.addCleanup(() => observer.disconnect());
 
   observer.observe(target);
 
@@ -77,20 +86,18 @@ const createResizeObserver = (target, callback, { getValue, delay = 250 } = {}) 
  * @param {Node} target Target node.
  * @param {MutationObserverInit} options Observer options.
  * @param {(entries: MutationRecord[]) => void} callback Callback to run.
+ * @param {ReturnType<typeof createObserverScope>} scope Observer lifetime.
  * @returns {MutationObserver} MutationObserver instance.
  */
-const createMutationObserver = (target, options, callback) => {
+const createMutationObserver = (target, options, callback, scope) => {
   const observer = new MutationObserver((entries) => {
-    requestAnimationFrame(() => {
-      if (!target?.isConnected) {
-        return;
-      }
-
+    if (!scope.disposed && target.isConnected) {
       callback(entries);
-    });
+    }
   });
 
   observer.observe(target, options);
+  scope.addCleanup(() => observer.disconnect());
 
   return observer;
 };
@@ -100,12 +107,13 @@ const createMutationObserver = (target, options, callback) => {
  *
  * @param {Element} target Target element.
  * @param {(entry: IntersectionObserverEntry) => void} callback Callback to run.
+ * @param {ReturnType<typeof createObserverScope>} scope Observer lifetime.
  * @returns {IntersectionObserver} IntersectionObserver instance.
  */
-const createIntersectionObserver = (target, callback) => {
+const createIntersectionObserver = (target, callback, scope) => {
   const observer = new IntersectionObserver(
     ([entry]) => {
-      if (entry) {
+      if (entry && !scope.disposed) {
         callback(entry);
       }
     },
@@ -113,6 +121,7 @@ const createIntersectionObserver = (target, callback) => {
   );
 
   observer.observe(target);
+  scope.addCleanup(() => observer.disconnect());
 
   return observer;
 };
@@ -122,27 +131,19 @@ const createIntersectionObserver = (target, callback) => {
  *
  * @param {Element} target Target element.
  * @param {(target: Element) => void} callback Callback to run.
+ * @param {ReturnType<typeof createObserverScope>} scope Observer lifetime.
  * @returns {() => void} Schedule function.
  */
-const createScheduledTargetCallback = (target, callback) => {
+const createScheduledTargetCallback = (target, callback, scope) => {
   let rafId = 0;
-  let defaultView;
 
   return () => {
-    defaultView = target?.ownerDocument?.defaultView;
-    if (!defaultView?.requestAnimationFrame) {
-      callback(target);
+    if (scope.disposed || rafId) {
       return;
     }
 
-    if (rafId) {
-      return;
-    }
-
-    rafId = defaultView.requestAnimationFrame(() => {
+    rafId = scope.requestAnimationFrame(() => {
       rafId = 0;
-      defaultView = null;
-
       if (target?.isConnected) {
         callback(target);
       }
@@ -155,47 +156,25 @@ const createScheduledTargetCallback = (target, callback) => {
  *
  * @param {Element} target Target element.
  * @param {(target: Element) => void} callback Callback to run.
+ * @param {ReturnType<typeof createObserverScope>} scope Observer lifetime.
  * @param {{ getValue?: (entry: ResizeObserverEntry) => unknown, delay?: number, onChildList?: (entries: MutationRecord[]) => void }} [options]
  * @returns {{ resizeObserver: ResizeObserver, mutationObserver: MutationObserver }}
  */
 const createDirectChildrenResizeObserver = (
   target,
   callback,
+  scope,
   { getValue, delay = 250, onChildList } = {},
 ) => {
-  const prevValues = new WeakMap();
   const observedChildren = new Set();
-
-  const observer = new ResizeObserver(
-    debounce((entries) => {
-      let shouldApply = false;
-
-      for (const entry of entries) {
-        const currentValue = getValue?.(entry);
-        if (!prevValues.has(entry.target)) {
-          prevValues.set(entry.target, currentValue);
-          continue;
-        }
-
-        if (undefined === currentValue || currentValue !== prevValues.get(entry.target)) {
-          shouldApply = true;
-        }
-
-        prevValues.set(entry.target, currentValue);
-      }
-
-      if (shouldApply) {
-        callback(target);
-      }
-    }, delay),
-  );
+  scope.addCleanup(() => observedChildren.clear());
+  const observer = createResizeObserver(target, callback, scope, { getValue, delay });
 
   const syncObservedChildren = () => {
     Array.from(observedChildren).forEach((child) => {
       if (child.parentElement !== target) {
         observer.unobserve(child);
         observedChildren.delete(child);
-        prevValues.delete(child);
       }
     });
 
@@ -209,18 +188,18 @@ const createDirectChildrenResizeObserver = (
     });
   };
 
-  observer.observe(target);
   syncObservedChildren();
 
-  const mutationObserver = createMutationObserver(target, { childList: true }, (entries) => {
-    if (!entries.some((entry) => 'childList' === entry.type)) {
-      return;
-    }
-
-    syncObservedChildren();
-    onChildList?.(entries);
-    callback(target);
-  });
+  const mutationObserver = createMutationObserver(
+    target,
+    { childList: true },
+    (entries) => {
+      syncObservedChildren();
+      onChildList?.(entries);
+      callback(target);
+    },
+    scope,
+  );
 
   return {
     resizeObserver: observer,
@@ -233,31 +212,27 @@ const createDirectChildrenResizeObserver = (
  *
  * @param {Element} target Target element.
  * @param {(target: Element) => void} callback Callback to run.
+ * @param {ReturnType<typeof createObserverScope>} scope Observer lifetime.
  * @param {{ attributeFilter: string[], shouldApply: (entry: MutationRecord) => boolean, attributeOldValue?: boolean }} options
  * @returns {{ observer: MutationObserver, syncObservedChildren: () => void }}
  */
 const createDirectChildrenAttributeObserver = (
   target,
   callback,
+  scope,
   { attributeFilter, shouldApply, attributeOldValue = true } = {},
 ) => {
   const observer = new MutationObserver((entries) => {
-    requestAnimationFrame(() => {
-      if (!target?.isConnected) {
-        return;
-      }
-
-      if (
-        entries.some(
-          (entry) =>
-            'attributes' === entry.type &&
-            entry.target.parentElement === target &&
-            shouldApply(entry),
-        )
-      ) {
-        callback(target);
-      }
-    });
+    if (
+      !scope.disposed &&
+      target.isConnected &&
+      hasAttributeMutation(
+        entries,
+        (entry) => entry.target.parentElement === target && shouldApply(entry),
+      )
+    ) {
+      callback(target);
+    }
   });
 
   const syncObservedChildren = () => {
@@ -272,6 +247,7 @@ const createDirectChildrenAttributeObserver = (
   };
 
   syncObservedChildren();
+  scope.addCleanup(() => observer.disconnect());
 
   return {
     observer,
@@ -283,17 +259,16 @@ const createDirectChildrenAttributeObserver = (
  * Creates a bundled observer setup for layout re-application.
  *
  * @param {Element} target Target element.
- * @param {(target: Element) => void} apply Apply function.
+ * @param {(target: Element, scope: ReturnType<typeof createObserverScope>) => void} apply Apply function.
  * @param {{
  *   getResizeValue?: (entry: ResizeObserverEntry) => unknown,
  *   delay?: number,
- *   observeResize?: boolean,
  *   observeIntersection?: boolean,
  *   observeDirectChildrenResize?: boolean,
  *   targetMutation?: { options: MutationObserverInit, shouldApply?: (entries: MutationRecord[]) => boolean },
  *   directChildMutation?: { attributeFilter: string[], shouldApply: (entry: MutationRecord) => boolean, attributeOldValue?: boolean }
  * }} [options]
- * @returns {void}
+ * @returns {() => void} Stops observation and cancels queued work.
  */
 const createLayoutObserver = (
   target,
@@ -301,20 +276,20 @@ const createLayoutObserver = (
   {
     getResizeValue,
     delay = 250,
-    observeResize = true,
     observeIntersection = false,
     observeDirectChildrenResize = false,
     targetMutation,
     directChildMutation,
   } = {},
 ) => {
+  const scope = createObserverScope(target);
   const shouldObserveIntersection =
     observeIntersection && 'undefined' !== typeof IntersectionObserver;
   let isIntersecting = !shouldObserveIntersection || isNearViewport(target);
   let needsApply = shouldObserveIntersection && !isIntersecting;
 
   const runApply = (element = target) => {
-    if (!element?.isConnected) {
+    if (scope.disposed || !element?.isConnected) {
       return;
     }
 
@@ -324,12 +299,12 @@ const createLayoutObserver = (
     }
 
     needsApply = false;
-    apply(element);
+    apply(element, scope);
   };
 
-  const schedule = createScheduledTargetCallback(target, runApply);
+  const schedule = createScheduledTargetCallback(target, runApply, scope);
   const scheduleApply = () => {
-    if (!target?.isConnected) {
+    if (scope.disposed || !target?.isConnected) {
       return;
     }
 
@@ -344,46 +319,45 @@ const createLayoutObserver = (
 
   let syncDirectChildAttributes = () => {};
 
-  const resizeBundle = !observeResize
-    ? {
-        resizeObserver: null,
-        mutationObserver: null,
-      }
-    : observeDirectChildrenResize
-      ? createDirectChildrenResizeObserver(target, scheduleApply, {
-          getValue: getResizeValue,
-          delay,
-          onChildList: () => {
-            syncDirectChildAttributes();
-          },
-        })
-      : {
-          resizeObserver: createResizeObserver(target, scheduleApply, {
-            getValue: getResizeValue,
-            delay,
-          }),
-        };
+  if (observeDirectChildrenResize) {
+    createDirectChildrenResizeObserver(target, scheduleApply, scope, {
+      getValue: getResizeValue,
+      delay,
+      onChildList: () => syncDirectChildAttributes(),
+    });
+  } else {
+    createResizeObserver(target, scheduleApply, scope, { getValue: getResizeValue, delay });
+  }
 
   if (shouldObserveIntersection) {
-    createIntersectionObserver(target, (entry) => {
-      isIntersecting = entry.isIntersecting;
-      if (isIntersecting && needsApply) {
-        scheduleApply();
-      }
-    });
+    createIntersectionObserver(
+      target,
+      (entry) => {
+        isIntersecting = entry.isIntersecting;
+        if (isIntersecting && needsApply) {
+          scheduleApply();
+        }
+      },
+      scope,
+    );
   }
 
   if (targetMutation?.options) {
-    createMutationObserver(target, targetMutation.options, (entries) => {
-      if (targetMutation.shouldApply?.(entries) ?? 0 < entries.length) {
-        scheduleApply();
-      }
-    });
+    createMutationObserver(
+      target,
+      targetMutation.options,
+      (entries) => {
+        if (targetMutation.shouldApply?.(entries) ?? 0 < entries.length) {
+          scheduleApply();
+        }
+      },
+      scope,
+    );
   }
 
   const directChildAttributeBundle =
     directChildMutation?.attributeFilter && directChildMutation.shouldApply
-      ? createDirectChildrenAttributeObserver(target, scheduleApply, {
+      ? createDirectChildrenAttributeObserver(target, scheduleApply, scope, {
           attributeFilter: directChildMutation.attributeFilter,
           shouldApply: directChildMutation.shouldApply,
           attributeOldValue: directChildMutation.attributeOldValue,
@@ -394,20 +368,11 @@ const createLayoutObserver = (
     syncDirectChildAttributes = directChildAttributeBundle.syncObservedChildren;
   }
 
-  if (!resizeBundle.mutationObserver && directChildAttributeBundle) {
-    createMutationObserver(target, { childList: true }, (entries) => {
-      if (!entries.some((entry) => 'childList' === entry.type)) {
-        return;
-      }
-
-      syncDirectChildAttributes();
-      scheduleApply();
-    });
-  }
-
   if (!shouldObserveIntersection || isIntersecting) {
     runApply(target);
   }
+
+  return scope.dispose;
 };
 
 const getBorderBoxInlineSize = (entry) => entry.borderBoxSize?.[0].inlineSize;
@@ -468,32 +433,51 @@ const getNormalizedInlineRect = (
 };
 
 /**
- * Returns whether the mutation list contains a matching attributes record.
+ * Compares each attribute before the batch with its final value, ignoring intermediate writes.
  *
  * @param {MutationRecord[]} entries Mutation records.
  * @param {(entry: MutationRecord) => boolean} predicate Match predicate.
  * @returns {boolean} Whether a matching attributes mutation exists.
  */
-const hasAttributeMutation = (entries, predicate) =>
-  entries.some((entry) => 'attributes' === entry.type && predicate(entry));
+const hasAttributeMutation = (entries, predicate) => {
+  const seen = new Map();
+  return entries.some((entry) => {
+    if ('attributes' !== entry.type) {
+      return false;
+    }
+    const attributes = seen.get(entry.target) ?? new Set();
+    if (attributes.has(entry.attributeName)) {
+      return false;
+    }
+    attributes.add(entry.attributeName);
+    seen.set(entry.target, attributes);
+    return predicate(entry);
+  });
+};
 
 /**
  * Coalesces repeated calls into the final call within the delay window.
  *
  * @param {Function} fn Function to wrap.
  * @param {number} delay Delay in milliseconds.
- * @returns {Function} Debounced function.
+ * @returns {Function & { cancel: () => void }} Debounced function with cancellation.
  */
 export function debounce(fn, delay) {
   let timer;
 
-  return function (...args) {
+  const debounced = function (...args) {
     const context = this;
     clearTimeout(timer);
     timer = setTimeout(() => {
+      timer = undefined;
       fn.apply(context, args);
     }, delay);
   };
+  debounced.cancel = () => {
+    clearTimeout(timer);
+    timer = undefined;
+  };
+  return debounced;
 }
 
 /**
@@ -619,7 +603,7 @@ export const setDividerLinewrap = (target) => {
  *
  * @param {Element} target Target element.
  * @param {{ ignore?: { layout?: string[], className?: string[] } }} [args]
- * @returns {void}
+ * @returns {() => void} Stops observation and cancels queued work.
  */
 export const dividersResizeObserver = (target, args = {}) => {
   const shouldRecalculateByAttributeMutation = (entry) => {
@@ -658,10 +642,13 @@ export const dividersResizeObserver = (target, args = {}) => {
       return current !== old;
     }
 
-    return ['style', 'dir'].includes(entry.attributeName);
+    return (
+      ['style', 'dir'].includes(entry.attributeName) &&
+      (entry.target.getAttribute(entry.attributeName) ?? '') !== (entry.oldValue ?? '')
+    );
   };
 
-  createLayoutObserver(target, setDividerLinewrap, {
+  return createLayoutObserver(target, setDividerLinewrap, {
     getResizeValue: getBorderBoxInlineSize,
     observeIntersection: true,
     observeDirectChildrenResize: true,
@@ -696,13 +683,12 @@ export const setStairsStep = (target) => {
   const currentLayoutArray = withoutLayoutTokens(getLayoutTokens(target), ['stairs:initialized']);
   setLayoutTokens(target, currentLayoutArray);
 
-  const firstChild = children[0];
-  if (!firstChild) {
+  if (0 === children.length) {
     setLayoutTokens(target, [...currentLayoutArray, 'stairs:initialized']);
     return;
   }
 
-  // Reset
+  // Measure the unshifted layout before applying steps and measuring their overflow.
   target.style.removeProperty('--unitone--stairs-step-overflow-volume');
   target.style.removeProperty('--unitone--max-stairs-step');
   children.forEach((child) => {
@@ -723,8 +709,9 @@ export const setStairsStep = (target) => {
   const direction = window.getComputedStyle(target).getPropertyValue('flex-direction');
   const targetBottom = target.getBoundingClientRect().bottom;
   const filteredChildren = children.reduce((accumulator, child) => {
-    const position = window.getComputedStyle(child).getPropertyValue('position');
-    const display = window.getComputedStyle(child).getPropertyValue('display');
+    const style = window.getComputedStyle(child);
+    const position = style.getPropertyValue('position');
+    const display = style.getPropertyValue('display');
     if ('absolute' === position || 'fixed' === position || 'none' === display) {
       return accumulator;
     }
@@ -744,7 +731,7 @@ export const setStairsStep = (target) => {
     const isBol =
       'row-reverse' === direction ? prevRect?.left <= rect.left : prevRect?.left >= rect.left;
 
-    if (0 === index || (firstChild === child && !prevRect) || isBol) {
+    if (0 === index || isBol) {
       stairsStep = 0;
     } else if (isAlternatingStairs) {
       stairsStep = 0 === stairsStep ? 1 : 0;
@@ -783,10 +770,10 @@ export const setStairsStep = (target) => {
  * Creates the observer bundle for stairs layouts.
  *
  * @param {Element} target Target element.
- * @returns {void}
+ * @returns {() => void} Stops observation and cancels queued work.
  */
 export const stairsResizeObserver = (target) => {
-  createLayoutObserver(target, setStairsStep, {
+  return createLayoutObserver(target, setStairsStep, {
     observeIntersection: true,
     observeDirectChildrenResize: true,
   });
@@ -800,11 +787,7 @@ export const stairsResizeObserver = (target) => {
  */
 const isIgnoredVerticalWritingMutationNode = (node) =>
   node?.nodeType === Node.ELEMENT_NODE &&
-  [
-    'vertical-writing__thresholder',
-    'vertical-writing:initialized',
-    'vertical-writing:safari',
-  ].includes(node.getAttribute('data-unitone-layout'));
+  'vertical-writing__thresholder' === node.getAttribute(layoutAttributeName);
 
 /**
  * Returns whether vertical-writing mutations require re-application.
@@ -831,9 +814,10 @@ const shouldApplyVerticalWritingMutation = (entries) =>
  * Recalculates column count and height for vertical-writing layouts.
  *
  * @param {Element} target Target element.
+ * @param {ReturnType<typeof createObserverScope>} [scope] Observer lifetime.
  * @returns {void}
  */
-export const setColumnCountForVertical = (target) => {
+const updateColumnCountForVertical = (target, scope) => {
   if (!target) {
     return;
   }
@@ -854,10 +838,8 @@ export const setColumnCountForVertical = (target) => {
   Array.from(target.children)
     .reverse()
     .some((child) => {
-      if (
-        !['absolute', 'fixed'].includes(getComputedStyle(child).position) &&
-        'none' !== getComputedStyle(child).display
-      ) {
+      const style = getComputedStyle(child);
+      if (!['absolute', 'fixed'].includes(style.position) && 'none' !== style.display) {
         lastChild = child;
         return true;
       }
@@ -872,7 +854,7 @@ export const setColumnCountForVertical = (target) => {
   const threshold = String(computedStyle.getPropertyValue('--unitone--threshold')).trim();
   let forceSwitch = false;
 
-  if (threshold) {
+  if (threshold && !/^[+-]?(?:0+\.?0*|\.0+)(?:[a-z]+|%)?$/i.test(threshold)) {
     const thresholder = target.ownerDocument.createElement('div');
     thresholder.setAttribute(layoutAttributeName, 'vertical-writing__thresholder');
     target.appendChild(thresholder);
@@ -892,7 +874,10 @@ export const setColumnCountForVertical = (target) => {
 
   setLayoutTokens(target, [...nextLayoutTokens, 'vertical-writing:initialized']);
 
-  requestAnimationFrame(() => {
+  const schedule = scope
+    ? (callback) => scope.requestAnimationFrame(callback)
+    : (callback) => target.ownerDocument.defaultView.requestAnimationFrame(callback);
+  schedule(() => {
     if (!target?.isConnected) {
       return;
     }
@@ -915,21 +900,29 @@ export const setColumnCountForVertical = (target) => {
 };
 
 /**
- * Creates the observer bundle for vertical-writing layouts.
+ * Recalculates vertical-writing columns without creating persistent observers.
  *
  * @param {Element} target Target element.
  * @returns {void}
  */
+export const setColumnCountForVertical = (target) => updateColumnCountForVertical(target);
+
+/**
+ * Creates the observer bundle for vertical-writing layouts.
+ *
+ * @param {Element} target Target element.
+ * @returns {() => void} Stops observation and cancels queued work.
+ */
 export const verticalsResizeObserver = (target) => {
-  const applyVerticalColumns = (element) => {
+  const applyVerticalColumns = (element, scope) => {
     if (element.parentNode?.style) {
       element.parentNode.style.height = '';
     }
 
-    setColumnCountForVertical(element);
+    updateColumnCountForVertical(element, scope);
   };
 
-  createLayoutObserver(target, applyVerticalColumns, {
+  return createLayoutObserver(target, applyVerticalColumns, {
     getResizeValue: getContentRectWidth,
     observeIntersection: true,
     targetMutation: {
@@ -945,6 +938,7 @@ export const verticalsResizeObserver = (target) => {
 };
 
 const marqueeClones = new WeakSet();
+const marqueeStates = new WeakMap();
 
 const getMarquees = (target) =>
   Array.from(target.querySelectorAll(':scope > [data-unitone-layout~="marquee"]'));
@@ -957,12 +951,11 @@ const getMarqueeAnimation = (element) =>
 /**
  * Measures layout width without including transforms or rounding fractional pixels.
  *
- * @param {Element} element Target element.
+ * @param {CSSStyleDeclaration} style Computed style.
  * @param {boolean} borderBox Whether to include padding and borders.
  * @returns {number} Width in CSS pixels.
  */
-const getMarqueeWidth = (element, borderBox) => {
-  const style = element.ownerDocument.defaultView.getComputedStyle(element);
+const getMarqueeWidth = (style, borderBox) => {
   const edges = ['paddingLeft', 'paddingRight', 'borderLeftWidth', 'borderRightWidth'].reduce(
     (total, property) => total + (parseFloat(style[property]) || 0),
     0,
@@ -972,17 +965,67 @@ const getMarqueeWidth = (element, borderBox) => {
 };
 
 /**
+ * Synchronizes existing animations without measuring or rebuilding copies.
+ *
+ * @param {Element[]} marquees Original and copied marquees.
+ * @param {ReturnType<typeof createObserverScope>} [scope] Observer lifetime.
+ * @returns {void}
+ */
+const syncMarqueeAnimations = ([original, ...copies], scope) => {
+  const animation = getMarqueeAnimation(original);
+  if (animation) {
+    const syncAnimations = () => {
+      if (scope?.disposed || !original.isConnected || getMarqueeAnimation(original) !== animation) {
+        return;
+      }
+      copies.forEach((element) => {
+        const copyAnimation = getMarqueeAnimation(element);
+        if (!element.isConnected || !copyAnimation) {
+          return;
+        }
+
+        const syncTime = () => {
+          if (
+            !scope?.disposed &&
+            element.isConnected &&
+            getMarqueeAnimation(original) === animation
+          ) {
+            copyAnimation.currentTime = animation.currentTime;
+          }
+        };
+        syncTime();
+        // A pending play or pause task can otherwise apply an outdated hold time.
+        if (copyAnimation.pending) {
+          copyAnimation.ready.then(syncTime, () => {});
+        }
+      });
+    };
+    syncAnimations();
+    if (animation.pending) {
+      animation.ready.then(syncAnimations, () => {});
+    }
+  }
+};
+
+/**
  * Updates generated copies and synchronizes them with the original animation.
  *
  * @param {Element} target Marquee wrapper.
- * @param {boolean} refreshClones Whether source content has changed.
+ * @param {boolean} [refreshClones] Whether source content has changed; omitted for manual detection.
+ * @param {ReturnType<typeof createObserverScope>} [scope] Observer lifetime.
  * @returns {Element | undefined} The first newly created copy, if any.
  */
-const updateMarquee = (target, refreshClones = false) => {
+const updateMarquee = (target, refreshClones, scope) => {
   const marquees = getMarquees(target);
   const originals = marquees.filter((element) => !marqueeClones.has(element));
   let clones = Array.from(target.children).filter((element) => marqueeClones.has(element));
   const original = originals[0];
+  const state = marqueeStates.get(target);
+  // Observer calls know whether content changed; manual calls compare the saved markup.
+  // Form control state can change without changing its HTML attributes.
+  refreshClones ??=
+    state?.source !== original?.outerHTML || !!original?.querySelector('input, textarea, select');
+  refreshClones ||= state?.original !== original;
 
   if (refreshClones || 1 !== originals.length) {
     clones.forEach((clone) => clone.remove());
@@ -990,12 +1033,16 @@ const updateMarquee = (target, refreshClones = false) => {
   }
 
   if (!original || !hasLayoutBox(target)) {
+    marqueeStates.delete(target);
     return;
   }
 
-  const wrapperWidth = getMarqueeWidth(target, false);
-  const width = getMarqueeWidth(original, true);
-  const columnGap = target.ownerDocument.defaultView.getComputedStyle(target).columnGap;
+  const defaultView = target.ownerDocument.defaultView;
+  const wrapperStyle = defaultView.getComputedStyle(target);
+  const originalStyle = defaultView.getComputedStyle(original);
+  const wrapperWidth = getMarqueeWidth(wrapperStyle, false);
+  const width = getMarqueeWidth(originalStyle, true);
+  const columnGap = wrapperStyle.columnGap;
   const gap = (parseFloat(columnGap) || 0) * (columnGap.endsWith('%') ? wrapperWidth / 100 : 1);
   const gapValue = `${gap}px`;
   if (target.style.getPropertyValue('--unitone--marquee-gap') !== gapValue) {
@@ -1032,35 +1079,14 @@ const updateMarquee = (target, refreshClones = false) => {
     }
   });
 
-  const animation = getMarqueeAnimation(original);
-  if (animation) {
-    const syncAnimations = () => {
-      if (!original.isConnected || getMarqueeAnimation(original) !== animation) {
-        return;
-      }
-      [...originals.slice(1), ...clones].forEach((element) => {
-        const copyAnimation = getMarqueeAnimation(element);
-        if (!element.isConnected || !copyAnimation) {
-          return;
-        }
-
-        const syncTime = () => {
-          if (element.isConnected && getMarqueeAnimation(original) === animation) {
-            copyAnimation.currentTime = animation.currentTime;
-          }
-        };
-        syncTime();
-        // A pending play or pause task can otherwise apply an outdated hold time.
-        if (copyAnimation.pending) {
-          copyAnimation.ready.then(syncTime, () => {});
-        }
-      });
-    };
-    syncAnimations();
-    if (animation.pending) {
-      animation.ready.then(syncAnimations, () => {});
-    }
-  }
+  marqueeStates.set(target, {
+    original,
+    wrapperWidth,
+    width,
+    vertical: !originalStyle.writingMode.startsWith('horizontal'),
+    source: refreshClones || !state ? original.outerHTML : state.source,
+  });
+  syncMarqueeAnimations([...originals, ...clones], scope);
 
   return firstClone;
 };
@@ -1071,18 +1097,23 @@ const updateMarquee = (target, refreshClones = false) => {
  * @param {Element} target Target element.
  * @returns {Element | undefined} The first newly created copy, if any.
  */
-export const setMarquee = (target) => updateMarquee(target, true);
+export const setMarquee = (target) => updateMarquee(target);
 
 /**
  * Observes marquee size and content changes without delaying resize updates.
  *
  * @param {Element} target Target element.
- * @returns {void}
+ * @returns {() => void} Stops observation and cancels queued work.
  */
 export const marqueeResizeObserver = (target) => {
+  const scope = createObserverScope(target);
   let isIntersecting = 'undefined' === typeof IntersectionObserver || isNearViewport(target);
-  let refreshClones = false;
+  let refreshClones = true;
   const observedOriginals = new Set();
+  scope.addCleanup(() => {
+    observedOriginals.clear();
+    marqueeStates.delete(target);
+  });
 
   const observeMutations = () => {
     mutationObserver.observe(target, { attributes: true, childList: true });
@@ -1097,7 +1128,7 @@ export const marqueeResizeObserver = (target) => {
   };
 
   const apply = () => {
-    if (!target.isConnected || !isIntersecting) {
+    if (scope.disposed || !target.isConnected || !isIntersecting) {
       return;
     }
 
@@ -1111,7 +1142,7 @@ export const marqueeResizeObserver = (target) => {
             [...entry.addedNodes, ...entry.removedNodes].some((node) => !marqueeClones.has(node))),
       );
     mutationObserver.disconnect();
-    updateMarquee(target, refreshClones);
+    updateMarquee(target, refreshClones, scope);
     refreshClones = false;
 
     const originals = getMarquees(target).filter((element) => !marqueeClones.has(element));
@@ -1130,7 +1161,7 @@ export const marqueeResizeObserver = (target) => {
     observeMutations();
   };
 
-  const scheduleApply = createScheduledTargetCallback(target, apply);
+  const scheduleApply = createScheduledTargetCallback(target, apply, scope);
   const mutationObserver = new MutationObserver((entries) => {
     const relevantEntries = entries.filter(
       (entry) =>
@@ -1146,25 +1177,67 @@ export const marqueeResizeObserver = (target) => {
     );
     scheduleApply();
   });
-  const resizeObserver = new ResizeObserver(apply);
+  const resizeObserver = new ResizeObserver((entries) => {
+    // Measurements already applied by a mutation callback need no second update.
+    const state = marqueeStates.get(target);
+    if (
+      !state ||
+      entries.some((entry) => {
+        if (entry.target === target) {
+          return Math.abs(entry.contentRect.width - state.wrapperWidth) > 0.01;
+        }
+        const box = entry.borderBoxSize?.[0];
+        const width = state.vertical ? box?.blockSize : box?.inlineSize;
+        return (
+          entry.target !== state.original ||
+          undefined === width ||
+          Math.abs(width - state.width) > 0.01
+        );
+      })
+    ) {
+      apply();
+    }
+  });
+  scope.addCleanup(() => mutationObserver.disconnect());
+  scope.addCleanup(() => resizeObserver.disconnect());
   resizeObserver.observe(target);
   observeMutations();
 
   if ('undefined' !== typeof IntersectionObserver) {
-    createIntersectionObserver(target, (entry) => {
-      isIntersecting = entry.isIntersecting;
-      if (isIntersecting) {
-        apply();
-      }
-    });
+    createIntersectionObserver(
+      target,
+      (entry) => {
+        const wasIntersecting = isIntersecting;
+        isIntersecting = entry.isIntersecting;
+        if (isIntersecting && !wasIntersecting) {
+          apply();
+        }
+      },
+      scope,
+    );
   }
 
   // Re-sync copies created while CSS has paused the original animation.
+  const scheduleSync = createScheduledTargetCallback(
+    target,
+    () => syncMarqueeAnimations(getMarquees(target), scope),
+    scope,
+  );
+  const onPauseChange = () => {
+    if (getLayoutTokens(target).includes('-pause-on-hover')) {
+      scheduleSync();
+    }
+  };
   ['pointerenter', 'pointerleave', 'focusin', 'focusout'].forEach((eventName) => {
-    target.addEventListener(eventName, scheduleApply);
+    target.addEventListener(eventName, onPauseChange);
+    scope.addCleanup(() => target.removeEventListener(eventName, onPauseChange));
   });
 
-  // Media queries can change only the gap while both marquee widths remain unchanged.
-  resizeObserver.observe(target.ownerDocument.documentElement);
+  // Viewport media queries can change only the gap, without resizing either marquee box.
+  const defaultView = target.ownerDocument.defaultView;
+  defaultView.addEventListener('resize', scheduleApply);
+  scope.addCleanup(() => defaultView.removeEventListener('resize', scheduleApply));
   apply();
+
+  return scope.dispose;
 };

@@ -88,6 +88,21 @@ When using server-side rendering frameworks, load this script with the framework
 The all-in entry loads the marquee and vertical-writing layout primitive scripts, plus the divider and stairs behaviors.
 Individual entries such as `@inc2734/unitone-css/layout-primitives/vertical-writing/behavior` and `@inc2734/unitone-css/behaviors/dividers` are also available when you only need a specific entry.
 
+These entries automatically stop observing removed elements and initialize them again when they are reinserted. Moving an element within the document in the same DOM update keeps its existing observers.
+
+If you call `dividersResizeObserver`, `stairsResizeObserver`, `verticalsResizeObserver`, or `marqueeResizeObserver` directly from `@inc2734/unitone-css/library`, the returned function stops observation and cancels queued updates. Existing calls that ignore the return value continue to work. Direct calls manage their own lifetime:
+
+```js
+import { marqueeResizeObserver } from '@inc2734/unitone-css/library';
+
+const stopObserving = marqueeResizeObserver(element);
+
+// Call when the manually initialized element is no longer needed.
+stopObserving();
+```
+
+Stopping observation leaves the current styles and generated content in place. Call the observer function again to resume updates. The returned cleanup function can be called more than once.
+
 ## Import React Components
 
 When you use layout primitives as React components, import each component from `@inc2734/unitone-css/layout-primitives/<name>/react`.

@@ -23,7 +23,7 @@ const getRegistry = () => {
 };
 
 const initializeInitializer = (initializer, root) => {
-  if (!initializer.enabled() || root?.nodeType !== Node.ELEMENT_NODE) {
+  if (!root?.isConnected || !initializer.enabled() || root.nodeType !== Node.ELEMENT_NODE) {
     return;
   }
 
@@ -42,8 +42,11 @@ const initializeInitializer = (initializer, root) => {
       return;
     }
 
-    initializer.initialize(target);
+    const cleanup = initializer.initialize(target);
     initializer.initialized.add(target);
+    if ('function' === typeof cleanup) {
+      initializer.cleanups.set(target, cleanup);
+    }
   });
 };
 
@@ -55,6 +58,27 @@ const initializeNode = (root) => {
 
   registry.initializers.forEach((initializer) => {
     initializeInitializer(initializer, root);
+  });
+};
+
+// Inspect detached subtrees without relying on selectors that may have changed before removal.
+const disposeNode = (root) => {
+  const registry = getRegistry();
+  if (!registry || root?.isConnected || root?.nodeType !== Node.ELEMENT_NODE) {
+    return;
+  }
+
+  [root, ...root.querySelectorAll('*')].forEach((target) => {
+    registry.initializers.forEach((initializer) => {
+      const cleanup = initializer.cleanups?.get(target);
+      if (!cleanup || target.isConnected) {
+        return;
+      }
+
+      initializer.cleanups.delete(target);
+      initializer.initialized.delete(target);
+      cleanup();
+    });
   });
 };
 
@@ -82,11 +106,18 @@ const observeDocument = () => {
 
   registry.observer = new MutationObserver((entries) => {
     entries.forEach((entry) => {
+      entry.removedNodes.forEach(disposeNode);
       entry.addedNodes.forEach((addedNode) => {
-        if (addedNode?.nodeType === Node.ELEMENT_NODE) {
+        if (addedNode?.isConnected && addedNode.nodeType === Node.ELEMENT_NODE) {
           registry.pendingNodes.add(addedNode);
         }
       });
+    });
+
+    registry.pendingNodes.forEach((node) => {
+      if (!node.isConnected) {
+        registry.pendingNodes.delete(node);
+      }
     });
 
     if (!registry.rafId && 0 < registry.pendingNodes.size) {
@@ -111,6 +142,7 @@ export const registerLayoutInitializer = ({ key, selector, initialize, enabled =
     initialize,
     enabled,
     initialized: new WeakSet(),
+    cleanups: new WeakMap(),
   };
 
   registry.initializers.set(key, initializer);
