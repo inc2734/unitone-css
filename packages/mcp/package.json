@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "MCP server for unitone-css repository structure and API discovery.",
   "type": "module",
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/inc2734/unitone-css"
@@ -23,6 +26,8 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.27.1",
+    "postcss": "^8.5.15",
+    "sass": "^1.100.0",
     "zod": "^3.25.76"
   },
   "license": "MIT"

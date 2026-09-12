@@ -1,126 +1,38 @@
 ---
 name: unitone-css-router
-description: Route unitone-css tasks to the correct workflow by inspecting primitives, utilities, tokens, behaviors, and documentation first.
-compatibility: unitone-css repository with bash plus node. Ignore dist.
+description: Select the unitone-css workflow when a request spans framework source, consuming markup, visual reproduction, or documentation, or when the appropriate workflow is unclear.
+compatibility: Requires unitone-css source or documentation access. Ignore dist and .export.
 ---
 
 # unitone-css Router
 
-## When to use
+## Select the workflow
 
-Use this skill at the start of most `unitone-css` tasks.
+First distinguish changes to the framework itself from code that uses it. If the target and workflow are already clear, go directly to that workflow without repeating discovery.
 
-Its role is not to solve the task directly. Its role is to decide:
+| Request | Workflow | First relevant source |
+| --- | --- | --- |
+| Screenshot, mockup, or visual description | `unitone-css-vision-to-code`, then `unitone-css-coding-assistant` if implementing | Matching sections of `patterns.mdx` and primitive docs |
+| HTML or React code using unitone-css | `unitone-css-coding-assistant` | Existing consuming code and relevant primitive docs |
+| Add or change a framework primitive | `unitone-css-add-layout-primitive` | Closest directory under `src/layout-primitives` |
+| Add or change shared or primitive-specific behavior | `unitone-css-add-behavior` | `src/behaviors` or the primitive's `behavior.js` |
+| Change tokens, settings, or utilities | Inspect the affected source directly, then `unitone-css-doc-sync` | `src/variables`, `src/settings`, or `src/utilities` |
+| Review public imports or exports | Inspect `package.json`, `rollup.config.js`, and source entrypoints; use `unitone-css-doc-sync` for documentation changes | Requested import path and its source entrypoint |
+| Documentation or skill drift | `unitone-css-doc-sync` | Changed source and the documentation's maintained original |
 
-1. what kind of task this is
-2. which documented surface is relevant
-3. which skill should do the implementation work
+A review request remains a review. Select the relevant workflow for inspection; implementation steps apply only when changes are requested and authorized.
 
-## Required inputs
+## Inspect only what selects the route
 
-- repository root
-- user request
+- Use the corresponding MCP tools when available: `list_primitives` / `get_primitive`, `list_behaviors`, `list_utilities` / `get_utilities`, or `get_variables`.
+- Use `list_docs`, `search_docs`, or `get_doc` to locate relevant documentation. Do not enumerate every API family for an already-scoped task.
+- Without MCP, read the corresponding source directories and `website/src/content/docs` in the framework checkout. A consuming project may need a separate framework checkout or documentation access.
+- Do not treat MCP file metadata as a prop or import specification; inspect the relevant source or documentation before using an API.
 
-## First inspection
+For mixed tasks, establish the primitive structure and public API first, then behavior, then documentation. Carry forward inspected docs and decisions; do not ask the next workflow to repeat them.
 
-Inspect the current source and docs before deciding anything.
+## Handoff
 
-Use MCP tools when available:
+State the selected workflow and any material uncertainty briefly. Leave visual analysis and code-generation rules to the selected skill; no separate routing memo is required.
 
-- `list_primitives`
-- `list_behaviors`
-- `list_utilities`
-- `get_variables`
-- `list_docs`
-
-For screenshot or mockup work, also inspect these docs first:
-
-- `patterns.mdx`
-- `tokens.mdx`
-- `utilities.mdx`
-- the relevant primitive page when one is likely involved
-
-## Task classification
-
-Classify the request into one or more of these buckets:
-
-- screenshot or mockup reproduction
-- add or update a layout primitive
-- add or update a behavior
-- update tokens, variables, or utilities
-- sync documentation
-- inspect public API surface
-
-## Routing rules
-
-- Screenshot or mockup reproduction:
-  use `unitone-css-vision-to-code` first, then `unitone-css-coding-assistant`
-- Writing or revising actual React / JSX / HTML with `unitone-css`:
-  use `unitone-css-coding-assistant`
-- Primitive source work:
-  use `unitone-css-add-layout-primitive`
-- Behavior source work:
-  use `unitone-css-add-behavior`
-- Doc drift or skill drift:
-  use `unitone-css-doc-sync`
-
-If the request spans multiple areas, process them in this order:
-
-1. primitive or layout structure
-2. behavior
-3. docs and skills
-
-## Screenshot-specific routing memo
-
-When the user wants a screenshot reproduced, write a short routing memo before implementing:
-
-- `Target entry point`: React or plain HTML
-- `Likely primitives`: 2 to 5 candidates
-- `Likely docs`: exact doc files to consult
-- `Main risk`: width control, overlap, repeated cards, sidebar collapse, decorative-only effects, or typography scale
-
-If this memo is vague, inspect more docs before proceeding.
-
-## Screenshot-to-primitive hints
-
-Use these as routing defaults before free-form invention.
-
-- centered hero: `Cover` + `Container` + `Stack` + `Center`
-- hero with background image: compare `Layers` and `Cover`
-- card crossing image or section edge: compare `Layers` and `Float`
-- left label + right content: compare `BothSides` and `WithSidebar`
-- responsive card list: compare `ResponsiveGrid`, `Switcher`, and `Masonry`
-- row metadata + body: compare `WithSidebar`, `BothSides`, and `Stack`
-- button row or tag row: `Cluster`
-- framed media: `Frame`
-- article copy: `Text`
-- broad section spacing: `Gutters` and `Container`
-- surface decoration: `Decorator`
-
-## Decision standards
-
-Choose the route that:
-
-- uses existing primitives before custom CSS
-- matches the actual files that need to change
-- leans on current docs instead of memory
-- does not depend on `dist`
-
-## Failure modes
-
-- jumping into code before reading `patterns.mdx` for common compositions
-- treating screenshot work as pure decoration instead of structure mapping
-- skipping `tokens.mdx` and then guessing scale values
-- using `unitone-css-coding-assistant` alone for screenshot work without `unitone-css-vision-to-code`
-- routing a docs drift problem as if it were only source work
-
-## Verification
-
-- the selected workflow matches the intended file changes
-- the docs consulted are named explicitly
-- screenshot tasks are routed through both structure mapping and implementation guidance
-- `dist` is ignored
-
-## Escalation
-
-Ask one short clarifying question only if the intended entry point or change target cannot be inferred from the request and repository.
+Ask for missing information only when it changes the target, public behavior, or intended output and cannot be inferred from the repository or request.

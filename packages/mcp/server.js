@@ -1,5 +1,9 @@
+#!/usr/bin/env node
+
 import fs from "node:fs";
 import path from "node:path";
+import { compile } from "sass";
+import postcss from "postcss";
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
@@ -50,12 +54,11 @@ function listPrimitives(repoRoot) {
 }
 
 function getPrimitive(repoRoot, name) {
-  const primitiveRoot = path.join(repoRoot, "src", "layout-primitives", name);
-
-  if (!fs.existsSync(primitiveRoot)) {
+  if (!listPrimitives(repoRoot).includes(name)) {
     throw new Error(`Unknown primitive: ${name}`);
   }
 
+  const primitiveRoot = path.join(repoRoot, "src", "layout-primitives", name);
   const files = listFiles(primitiveRoot).map((file) =>
     path.posix.join("src", "layout-primitives", name, file)
   );
@@ -78,6 +81,20 @@ function listBehaviors(repoRoot) {
     .sort();
 }
 
+function compileStylesheet(repoRoot, relativePath) {
+  const filePath = path.resolve(repoRoot, relativePath);
+  const result = compile(filePath, {
+    sourceMap: true,
+    sourceMapIncludeSources: true,
+  });
+
+  // Keep generated CSS in memory and map results back to the Sass source.
+  return postcss.parse(result.css, {
+    from: filePath,
+    map: { prev: result.sourceMap },
+  });
+}
+
 function getVariables(repoRoot) {
   const variableRoot = path.join(repoRoot, "src", "variables");
   const settingsRoot = path.join(repoRoot, "src", "settings");
@@ -88,19 +105,24 @@ function getVariables(repoRoot) {
     path.posix.join("src", "settings", file)
   );
 
-  const cssCustomPropertyCandidates = [...variableFiles, ...settingsFiles].flatMap(
-    (relativePath) => {
-      const absolutePath = path.join(repoRoot, relativePath);
-      const source = fs.readFileSync(absolutePath, "utf8");
-      const matches = source.match(/--[a-z0-9-_]+/gi) || [];
-      return matches;
+  const css = compileStylesheet(repoRoot, "src/settings/_index.scss");
+  const cssCustomPropertyCandidates = new Set();
+  css.walkDecls((declaration) => {
+    if (declaration.prop.startsWith("--")) {
+      cssCustomPropertyCandidates.add(declaration.prop);
     }
-  );
+    for (const name of declaration.value.match(/--[a-z0-9_-]+/gi) || []) {
+      cssCustomPropertyCandidates.add(name);
+    }
+  });
+  css.walkAtRules("property", (rule) => {
+    cssCustomPropertyCandidates.add(rule.params);
+  });
 
   return {
     variableFiles,
     settingsFiles,
-    cssCustomPropertyCandidates: [...new Set(cssCustomPropertyCandidates)].sort(),
+    cssCustomPropertyCandidates: [...cssCustomPropertyCandidates].sort(),
     scannedFileCount: variableFiles.length + settingsFiles.length,
   };
 }
@@ -110,114 +132,56 @@ function getUtilityFiles(repoRoot) {
   return listFiles(utilityRoot).map((file) => path.posix.join("src", "utilities", file));
 }
 
-function extractUtilitiesFromSource(source) {
-  const utilities = new Set();
-  const lines = source.split("\n");
-  let nestedPrefix = null;
-
-  for (const line of lines) {
-    const directMatches = line.match(/\.-[a-z0-9\\:-]+/gi) || [];
-    for (const match of directMatches) {
-      utilities.add(match.slice(1));
-    }
-
-    const prefixMatch = line.match(/^\s*\.(\-[a-z0-9\\:-]+)\s*\{\s*$/i);
-    if (prefixMatch) {
-      nestedPrefix = prefixMatch[1];
-      continue;
-    }
-
-    if (nestedPrefix) {
-      const nestedMatch = line.match(/&((?:\\:[a-z0-9-]+)+)\s*\{/i);
-      if (nestedMatch) {
-        utilities.add(`${nestedPrefix}${nestedMatch[1]}`);
-      }
-
-      if (line.trim() === "}") {
-        nestedPrefix = null;
-      }
-    }
-  }
-
-  return [...utilities].sort();
-}
-
-function findUtilityMatches(source, name) {
-  const escapedName = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const lines = source.split("\n");
-  const results = [];
-
-  lines.forEach((line, index) => {
-    if (new RegExp(`\\.${escapedName}(?=\\s*\\{|\\s|$)`).test(line)) {
-      results.push({
-        line: index + 1,
-        text: line.trim(),
-      });
-    }
-
-    const prefixMatch = line.match(/^\s*\.(\-[a-z0-9\\:-]+)\s*\{\s*$/i);
-    if (!prefixMatch) {
-      return;
-    }
-
-    const prefix = prefixMatch[1];
-    if (!name.startsWith(`${prefix}\\:`)) {
-      return;
-    }
-
-    const suffix = name.slice(prefix.length);
-    const target = `&${suffix}`;
-    for (let cursor = index + 1; cursor < lines.length; cursor += 1) {
-      const nestedLine = lines[cursor];
-      if (nestedLine.trim() === "}") {
-        break;
-      }
-
-      if (nestedLine.includes(target)) {
-        results.push({
-          line: cursor + 1,
-          text: nestedLine.trim(),
-        });
-        break;
-      }
-    }
-  });
-
-  return results;
+function utilityClasses(selector) {
+  return (selector.match(/\.-[a-z0-9\\:-]+/gi) || []).map((name) => name.slice(1));
 }
 
 function listUtilities(repoRoot) {
   const utilityFiles = getUtilityFiles(repoRoot);
-  const utilityCandidates = utilityFiles.flatMap((relativePath) => {
-    const absolutePath = path.join(repoRoot, relativePath);
-    return extractUtilitiesFromSource(fs.readFileSync(absolutePath, "utf8"));
+  const utilityCandidates = new Set();
+  const css = compileStylesheet(repoRoot, "src/utilities/_index.scss");
+  css.walkRules((rule) => {
+    for (const name of utilityClasses(rule.selector)) {
+      utilityCandidates.add(name);
+    }
   });
 
   return {
     utilityFiles,
-    utilityClassCandidates: [...new Set(utilityCandidates)].sort(),
+    utilityClassCandidates: [...utilityCandidates].sort(),
     scannedFileCount: utilityFiles.length,
   };
 }
 
 function getUtility(repoRoot, name) {
-  const normalizedName = name.startsWith(".") ? name.slice(1) : name;
-  const utilityFiles = getUtilityFiles(repoRoot);
-  const files = utilityFiles
-    .map((relativePath) => {
-      const absolutePath = path.join(repoRoot, relativePath);
-      const matches = findUtilityMatches(fs.readFileSync(absolutePath, "utf8"), normalizedName);
+  const normalizedName = name.replace(/^\./, "").replace(/\\?:/g, "\\:");
+  const css = compileStylesheet(repoRoot, "src/utilities/_index.scss");
+  const matchesByFile = new Map();
 
-      if (matches.length === 0) {
-        return null;
-      }
+  css.walkRules((rule) => {
+    if (!utilityClasses(rule.selector).includes(normalizedName)) {
+      return;
+    }
 
-      return {
-        path: relativePath,
-        matches,
-      };
-    })
-    .filter(Boolean);
+    const { input, start } = rule.source;
+    const origin = input.origin(start.line, start.column);
+    if (!origin?.file || !origin.line || !origin.source) {
+      throw new Error(`Missing Sass source location for utility: ${name}`);
+    }
+
+    const relativePath = path.relative(path.resolve(repoRoot), origin.file).split(path.sep).join("/");
+    const matches = matchesByFile.get(relativePath) || new Map();
+    matches.set(origin.line, {
+      line: origin.line,
+      text: origin.source.split("\n")[origin.line - 1].trim(),
+    });
+    matchesByFile.set(relativePath, matches);
+  });
+
+  const files = [...matchesByFile].sort(([a], [b]) => a.localeCompare(b)).map(([file, matches]) => ({
+    path: file,
+    matches: [...matches.values()].sort((a, b) => a.line - b.line),
+  }));
 
   if (files.length === 0) {
     throw new Error(`Unknown utility: ${name}`);
@@ -386,7 +350,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         properties: {
           name: {
             type: "string",
-            description: "Utility class name such as -box-shadow or -color\\:text.",
+            description: "Utility class name such as -box-shadow or -color:text. CSS-escaped colons and a leading dot are also accepted.",
           },
         },
         required: ["name"],

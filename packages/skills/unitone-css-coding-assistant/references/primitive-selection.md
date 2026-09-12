@@ -1,6 +1,6 @@
 # Primitive Selection
 
-Use this table before inventing wrappers or layout CSS.
+Use the relevant rows when choosing a primitive or replacing ad hoc layout CSS. Confirm the chosen primitive's props and responsive behavior in current docs; the table is a selection aid, not an API specification.
 
 ## Core mapping
 
@@ -38,7 +38,7 @@ Prefer `WithSidebar` when:
 - one side is clearly secondary
 - metadata sits beside main content
 - media sits beside primary copy
-- one side should collapse away more naturally
+- one side has a distinct width requirement and the pair should stack when space is insufficient
 
 ### `Cover` vs `Layers`
 
@@ -71,3 +71,5 @@ Prefer `Switcher` when:
 - `Text` is not a neutral wrapper
 - `Container`, `Center`, `Cover`, and `Layers` often own width before inner text wrappers do
 - use `Text` for prose rhythm, not by default for heroes or wide cards
+
+For section spacing, distinguish `Container` for width, `Gutters` for insets, and `Stack` for explicit sibling relationships. Add a page-level `Stack` only when the relationship between whole sections requires one.

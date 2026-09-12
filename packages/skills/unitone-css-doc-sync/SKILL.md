@@ -1,105 +1,47 @@
 ---
 name: unitone-css-doc-sync
-description: Compare unitone-css source structure with repository documentation and update docs when layout primitives, tokens, utilities, behaviors, or public exports have drifted.
-compatibility: unitone-css repository with bash plus node. Ignore dist.
+description: Review or synchronize unitone-css documentation and distributed skills after source, token, utility, behavior, export, or assistant-workflow changes, including generated documentation copies.
+compatibility: Requires the unitone-css checkout and Node.js for generation scripts. Ignore dist and .export as inspection sources.
 ---
 
 # unitone-css Doc Sync
 
-## When to use
+## Establish the affected surface
 
-Use this skill when documentation may be out of date with the current `unitone-css` source tree.
+Start from the changed source or the requested review scope. Compare public behavior, names, props, and imports against the relevant documentation. Review-only requests produce findings; editing and generation steps apply when changes are requested and authorized.
 
-Typical triggers:
+Use relevant MCP discovery tools and `get_doc` / `search_docs` when available, or read the source and docs directly. Do not enumerate every primitive, utility, and token for a change confined to one feature. Verify API details in source; file-level MCP metadata is not a complete API description.
 
-- `src/layout-primitives` changed
-- `src/settings` changed
-- `src/utilities` changed
-- `src/behaviors` changed
-- public exports or package entry points changed
+## Choose the maintained original
 
-## Inputs required
+| Change | Maintained source / documentation | Related updates when affected |
+| --- | --- | --- |
+| Primitive structure or props | `src/layout-primitives` and `website/src/content/docs/layout-primitives/*.mdx` | `patterns.mdx`, `overview.mdx`, primitive-selection guidance |
+| Tokens or variables | `src/variables`, `src/settings`, and `website/src/content/docs/tokens.mdx` | `utilities.mdx`, examples, token-approximation guidance |
+| Utility classes | `src/utilities` and `website/src/content/docs/utilities.mdx` | Equivalent behavior, patterns, coding guidance |
+| Behavior or public imports | `src/behaviors`, primitive `behavior.js`, `package.json`, and `rollup.config.js` | Relevant primitive docs, root `README.md`, `unitone-css.md` |
+| MCP usage | `packages/mcp/README.md` | Generated `website/src/content/docs/mcp.mdx` |
+| Skill distribution or installation | `packages/skills/README.md` and `packages/skills/dependencies.json` | Generated `website/src/content/docs/skills.mdx`, installer checks |
+| Assistant decisions or workflow | `packages/skills/*/SKILL.md` and their `references/` | Dependency manifest and evaluation scenarios when references or responsibilities change |
 
-- Repository root
-- Target documentation scope, if known
+Treat distributed skills as documentation when they guide user-facing code generation. Update the relevant reference as well as the skill entrypoint when a recommendation or token approximation changes.
 
-## Procedure
+Do not edit generated `mcp.mdx` or `skills.mdx` as their maintained originals: the package README files overwrite them during synchronization. Installed agent skill directories are copies of `packages/skills`; refresh an intended installation with the installer rather than maintaining separate wording there.
 
-1. Inspect the changed source area first.
-   - `src/layout-primitives` for primitive additions, removals, renames, or API changes
-   - `src/settings` and `src/variables` for token or Global CSS Variable changes
-   - `src/utilities` for utility class additions, removals, or naming changes
-   - `src/behaviors` for behavior additions or API changes
-   - `package.json` exports when public import paths may have changed
-2. Use MCP tools when available:
-   - `list_primitives`
-   - `get_primitive`
-   - `list_behaviors`
-   - `list_utilities`
-   - `get_utilities`
-   - `get_variables`
-   - `list_docs`
-   - `get_doc`
-3. Map source changes to likely documentation targets.
-   - Primitive changes usually affect:
-     - `website/src/content/docs/layout-primitives/*.mdx`
-     - `website/src/content/docs/patterns.mdx`
-     - `website/src/content/docs/overview.mdx`
-     - skills or MCP docs when the public assistant workflow changed
-     - `packages/skills/unitone-css-vision-to-code/SKILL.md` when primitive recommendation coverage or visual-to-primitive mapping changed
-     - `packages/skills/unitone-css-coding-assistant/SKILL.md` when the recommended composition rules changed
-   - Token changes usually affect:
-     - `website/src/content/docs/tokens.mdx`
-     - `website/src/content/docs/overview.mdx`
-     - any docs that mention naming or available scales
-     - `packages/skills/unitone-css-vision-to-code/SKILL.md` when token-first guidance for visual matching should change
-     - `packages/skills/unitone-css-coding-assistant/SKILL.md` when preferred typography, color, or spacing guidance changed
-   - Utility changes usually affect:
-     - `website/src/content/docs/utilities.mdx`
-     - `website/src/content/docs/patterns.mdx`
-     - MCP docs if utility inspection tools are documented
-     - `packages/skills/unitone-css-vision-to-code/SKILL.md` when visual refinement guidance should prefer the new or renamed utilities
-     - `packages/skills/unitone-css-coding-assistant/SKILL.md` when code-generation guidance should prefer the new or renamed utilities
-   - Behavior and export changes may also affect:
-     - `README.md`
-     - `unitone-css.md`
-     - `website/src/content/docs/mcp.mdx`
-     - `website/src/content/docs/skills.mdx`
-4. Treat `packages/skills/` as documentation too when those skills shape user-facing assistant behavior.
-   - Do not limit the sync target to `/website`.
-   - Update skill files when source changes would otherwise leave stale primitive recommendations, token guidance, utility guidance, or verification rules.
-5. Compare the documented surface against the current source structure.
-6. Update only the documentation that is actually affected by the code changes.
-7. Keep descriptions concrete and based on the current source.
-8. If docs that feed AI artifacts changed, regenerate derived files.
-   - regenerate `llms.txt`
-   - keep examples and guidance aligned with current source naming
+## Update and synchronize
+
+1. Update only affected maintained files. Remove stale names and examples, and keep descriptions tied to the actual public API.
+2. When package README files change, run `npm run sync:packages -w website` from the repository root.
+3. When documentation consumed by the AI summary changes, run `node bin/generate-llms-txt.mjs` after package-document synchronization. Review any generated diff; regeneration can legitimately produce no change.
+4. When skill references or dependencies change, check links in a temporary installation and update `dependencies.json` if needed. A standalone skill edit does not by itself require rebuilding website docs.
 
 ## Verification
 
-- Added user-facing primitives, tokens, utilities, or behaviors are documented.
-- Removed or renamed public features are not still documented under old names.
-- Documentation examples match the current API shape and naming.
-- `utilities.mdx` matches `src/utilities`.
-- `tokens.mdx` matches current token names and scales from `src/settings` / `src/variables`.
-- `patterns.mdx` still reflects the recommended primitive / utility composition style.
-- Relevant skill docs under `packages/skills/` still reflect the current recommended assistant workflow.
-- `llms.txt` is regenerated when relevant docs changed.
-- Run the smallest useful verification command after edits.
-  - `node bin/generate-llms-txt.mjs`
-  - `npm run build -w website` when website docs or MDX structure changed
-  - narrower checks are preferred when they are sufficient
+- Confirm examples use exported imports, supported props/tokens, and the documented spelling of utility classes.
+- Check that renamed or removed APIs are absent from the affected examples and skill references.
+- Ensure generated copies match their maintained originals and no unrelated files changed during generation.
+- Run `node --test tests/skillpack-install.test.mjs` when distribution or dependency changes affect installation.
+- For skill behavior changes, use the relevant evaluation scenarios and assess the resulting API and layout choices, not just memo headings.
+- Build the website with `npm run build -w website` when MDX structure, imports, or rendering changed; prefer synchronization and diff checks for prose-only updates. Inspect build scripts before running commands that also format or regenerate unrelated files.
 
-## Failure modes
-
-- Updating code without updating user-facing examples
-- Leaving stale names in README or website pages
-- Documenting behavior that is not actually exported
-- Forgetting to update `utilities.mdx` after changing utility class names
-- Forgetting to update `tokens.mdx` after changing token names or scales
-- Regenerating nothing after changing docs that feed `llms.txt`
-- Updating docs in ways that contradict the current recommended composition patterns
-
-## Escalation
-
-- If the intended public positioning is unclear, ask whether the feature is meant to be documented now or kept internal.
+Report the affected maintained files, generated updates, verification, and any remaining mismatch. Ask about public positioning only when it cannot be inferred and materially changes what should be documented.

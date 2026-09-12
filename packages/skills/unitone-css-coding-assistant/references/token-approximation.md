@@ -5,7 +5,7 @@ Do not start from guessed px values unless the docs provide a direct mapping.
 
 ## Font-size approximation
 
-Use these defaults first.
+Use these defaults as initial candidates. Pixel approximations assume a 16px root font size and static tokens; project overrides and fluid typography change the rendered values. Confirm the current scale in `tokens.mdx` and `utilities.mdx`.
 
 | Visual role | First candidates | Approx. size |
 | --- | --- | --- |
@@ -20,8 +20,8 @@ Use these defaults first.
 Rules:
 
 - prefer the smaller of two close candidates first
-- `6xl` and above are exceptional
-- use `-fluid-typography` mainly on large headings
+- `6xl` is the largest named size in the current documented scale; do not invent larger names
+- pair `-fluid-typography` with a `-font-size:*` class, mainly on large headings
 
 ## Spacing approximation
 
@@ -69,9 +69,3 @@ For card-like or panel-like surfaces:
 - choose padding from the documented scale
 - prefer documented background and color tokens
 - only add shadow or border-radius when they are structurally visible
-
-## Width and measure reminders
-
-- use `Text` when readable measure is intended
-- do not let `Text` accidentally constrain heroes or wide panels
-- use `Container`, `Center`, `Cover`, or `Layers` for width ownership first

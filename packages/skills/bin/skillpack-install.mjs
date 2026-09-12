@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const VALID_TARGETS = [
   "codex",
@@ -10,6 +11,14 @@ const VALID_TARGETS = [
   "cursor",
   "cursor-global",
 ];
+
+function parseList(value, option) {
+  const entries = value.split(",").map((entry) => entry.trim());
+  if (entries.some((entry) => !entry)) {
+    throw new Error(`${option} requires a non-empty comma-separated list.`);
+  }
+  return [...new Set(entries)];
+}
 
 function parseArgs(argv) {
   const args = {
@@ -24,9 +33,9 @@ function parseArgs(argv) {
     if (arg.startsWith("--dest=")) {
       args.dest = arg.slice("--dest=".length);
     } else if (arg.startsWith("--targets=")) {
-      args.targets = arg.slice("--targets=".length).split(",").filter(Boolean);
+      args.targets = parseList(arg.slice("--targets=".length), "--targets");
     } else if (arg.startsWith("--skills=")) {
-      args.skills = arg.slice("--skills=".length).split(",").filter(Boolean);
+      args.skills = parseList(arg.slice("--skills=".length), "--skills");
     } else if (arg.startsWith("--mode=")) {
       args.mode = arg.slice("--mode=".length);
     } else if (arg === "--dry-run") {
@@ -49,6 +58,10 @@ function printUsage() {
       "  node packages/skills/bin/skillpack-install.mjs --dest=/path/to/repo [--targets=codex,claude,cursor,vscode]",
       "",
       "Installs skills directly from packages/skills into agent-specific directories.",
+      "Required skill dependencies are included automatically.",
+      `Targets: ${VALID_TARGETS.join(", ")}`,
+      "Options: --skills=name[,name] --mode=replace|merge --dry-run",
+      "Relative --dest paths are resolved from the current working directory.",
       "",
     ].join("\n")
   );
@@ -104,15 +117,40 @@ function destinationRoot(destRepo, target) {
   }
 }
 
-function installTarget({ sourceRoot, destRepo, target, skills, mode, dryRun }) {
-  const destRoot = destinationRoot(destRepo, target);
-  let skillDirs = listSkillDirs(sourceRoot);
+function resolveSkills(sourceRoot, requested) {
+  const available = new Map(listSkillDirs(sourceRoot).map((dir) => [path.basename(dir), dir]));
+  if (available.size === 0) {
+    throw new Error(`No skills found in: ${sourceRoot}`);
+  }
+  const dependencies = JSON.parse(fs.readFileSync(path.join(sourceRoot, "dependencies.json"), "utf8"));
+  const selected = new Set();
 
-  if (skills.length > 0) {
-    const requested = new Set(skills);
-    skillDirs = skillDirs.filter((dir) => requested.has(path.basename(dir)));
+  function include(name) {
+    if (!available.has(name)) {
+      throw new Error(`Unknown skill: ${name}`);
+    }
+    if (selected.has(name)) {
+      return;
+    }
+    selected.add(name);
+    const required = dependencies[name] ?? [];
+    if (!Array.isArray(required) || required.some((dependency) => typeof dependency !== "string")) {
+      throw new Error(`Invalid dependencies for skill: ${name}`);
+    }
+    for (const dependency of required) {
+      include(dependency);
+    }
   }
 
+  for (const name of requested.length > 0 ? requested : available.keys()) {
+    include(name);
+  }
+
+  return [...selected].sort().map((name) => available.get(name));
+}
+
+function installTarget({ destRepo, target, skillDirs, mode, dryRun }) {
+  const destRoot = destinationRoot(destRepo, target);
   if (dryRun) {
     process.stdout.write(`[dry-run] ${target} -> ${destRoot}\n`);
     for (const skillDir of skillDirs) {
@@ -139,8 +177,11 @@ function installTarget({ sourceRoot, destRepo, target, skills, mode, dryRun }) {
 
 function main() {
   const args = parseArgs(process.argv.slice(2));
-  const repoRoot = process.cwd();
-  const sourceRoot = path.join(repoRoot, "packages", "skills");
+  const sourceRoot = fileURLToPath(new URL("../", import.meta.url));
+
+  if (!["replace", "merge"].includes(args.mode)) {
+    throw new Error(`Invalid mode: ${args.mode}. Expected replace or merge.`);
+  }
 
   for (const target of args.targets) {
     if (!VALID_TARGETS.includes(target)) {
@@ -155,18 +196,24 @@ function main() {
     throw new Error("--dest is required unless only using global targets.");
   }
 
-  const destRepo = args.dest ? path.resolve(repoRoot, args.dest) : repoRoot;
+  // Resolve the complete selection before creating or replacing any files.
+  const skillDirs = resolveSkills(sourceRoot, args.skills);
+  const destRepo = args.dest ? path.resolve(args.dest) : process.cwd();
 
   for (const target of args.targets) {
     installTarget({
-      sourceRoot,
       destRepo,
       target,
-      skills: args.skills,
+      skillDirs,
       mode: args.mode,
       dryRun: args.dryRun,
     });
   }
 }
 
-main();
+try {
+  main();
+} catch (error) {
+  process.stderr.write(`${error.message}\n`);
+  process.exitCode = 1;
+}

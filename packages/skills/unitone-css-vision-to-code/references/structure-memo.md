@@ -1,131 +1,30 @@
 # Structure Memo
 
-Write this memo before implementing screenshot-based code.
+Use a compact memo for a complex visual composition or an unclear hierarchy. Select only the fields that affect the design; these are prompts for decisions, not mandatory output headings.
 
-Keep it short, but not vague.
+| Decision | Record |
+| --- | --- |
+| Main blocks | Major sections in visual order |
+| Dominant relationship | Stack, split, repeated grid, layer, or float |
+| Width ownership | The outer width constraint and any separate prose measure |
+| Overlap | Which elements cross a boundary, or that there is no overlap |
+| Repeated unit | Card, row, pricing column, chip, or another concrete unit |
+| Image role | Backdrop, framed media, side visual, or decorative layer |
+| Typography | Heading, body, metadata, and other relevant roles |
+| Responsive behavior | Observed changes and material assumptions for unseen widths |
 
-## Required headings
+After consulting the relevant docs, append the primitive composition and token choices to the same memo. Include an alternative and its tradeoff only when it helps resolve an actual ambiguity.
 
-- `Main blocks`
-- `Dominant relationship`
-- `Width owner`
-- `Overlap`
-- `Repeated patterns`
-- `Image role`
-- `Typography tiers`
+Example:
 
-## What each heading must contain
-
-### `Main blocks`
-
-List the main sections from top to bottom.
-
-Good:
-
-- hero
-- feature grid
-- testimonial strip
-- footer CTA
-
-Bad:
-
-- some cards
-- content area
-
-### `Dominant relationship`
-
-Name the actual layout logic:
-
-- stack
-- split
-- grid
-- layer
-- float
-
-If more than one applies, say which one dominates.
-
-### `Width owner`
-
-For each major block, name the primitive that should own width.
-
-Examples:
-
-- hero copy width: `Container`
-- article body width: `Text`
-- card grid width: `Container`
-
-Do not leave width ownership implicit.
-
-### `Overlap`
-
-Say whether overlap is:
-
-- real overlap
-- only spacing / separation
-
-If it is real overlap, identify which elements cross the boundary.
-
-### `Repeated patterns`
-
-Name the repeated unit.
-
-Examples:
-
-- news row
-- feature card
-- pricing column
-- chip row
-
-### `Image role`
-
-Pick one of:
-
-- background image
-- framed media
-- side visual
-- decorative layer
-
-### `Typography tiers`
-
-Identify likely roles:
-
-- hero heading
-- section heading
-- card title
-- body copy
-- metadata
-- helper text
-
-## Minimum acceptable memo
-
-```md
-Main blocks
-- hero
-- feature grid
-- footer CTA
-
-Dominant relationship
-- hero = layer
-- feature grid = grid
-- footer CTA = stack
-
-Width owner
-- hero = Container
-- feature grid = Container
-- footer CTA = Center
-
-Overlap
-- hero card overlaps background image
-
-Repeated patterns
-- feature card
-
-Image role
-- hero image = background image
-
-Typography tiers
-- hero heading
-- body copy
-- card title
-- metadata
+```text
+Hero: foreground copy over a photo, with three cards crossing its lower edge.
+Structure: Layers for the overlap; Container for copy width; ResponsiveGrid for cards.
+Width: Text only for the paragraph, not the whole hero.
+Docs: patterns.mdx (Layered Hero), plus the selected primitive pages.
+Typography: 4xl/5xl heading with fluid typography; m body.
+Spacing: choose the closest documented gap/padding step after checking the image.
+Responsive assumption: cards stack when the documented column minimum no longer fits.
 ```
+
+Resolve missing facts that materially change the layout before committing to that part of the structure. Minor assumptions do not require stopping the rest of the work. Carry this memo into implementation without repeating it as a separate final report.

@@ -58,7 +58,7 @@ This installs skills to `~/.cursor/skills/`.
 # Preview installation without writing files
 node packages/skills/bin/skillpack-install.mjs --dest=../your-project --targets=codex,claude --dry-run
 
-# Install selected skills only
+# Install selected skills and their required dependencies
 node packages/skills/bin/skillpack-install.mjs --dest=../your-project --targets=codex,claude --skills=unitone-css-router
 
 # Merge into an existing skills directory instead of replacing target skill folders
@@ -79,9 +79,28 @@ Supported install modes:
 - `replace`
 - `merge`
 
+Invalid modes, unknown skill names, and empty `--skills` or `--targets` lists fail before any destination files are changed. Omitting `--skills` installs all skills.
+
+The source directory is resolved relative to the installer, so the script can be invoked by its absolute path from any working directory. Relative `--dest` paths are resolved from the current working directory.
+
+## Skill dependencies
+
+The installer includes required skills automatically, using `dependencies.json`:
+
+- `unitone-css-coding-assistant` can be installed on its own and contains the shared primitive-selection and token-approximation references.
+- `unitone-css-vision-to-code` includes `unitone-css-coding-assistant` for those references and implementation rules.
+- `unitone-css-add-layout-primitive` includes `unitone-css-add-behavior` and `unitone-css-doc-sync` for behavior and documentation changes.
+- `unitone-css-add-behavior` includes `unitone-css-doc-sync`.
+- `unitone-css-router` includes all skills it can route to.
+- `unitone-css-doc-sync` can be installed on its own.
+
+`--dry-run` lists the complete selection, including dependencies. The chosen `replace` or `merge` mode applies to every skill in that selection.
+
 ## Manual installation
 
 If you do not want to use the scripts, copy any skill directory from `packages/skills/` into the agent-specific skills directory you use.
+
+Also copy its dependencies listed above into the same parent directory, including each skill's `references/` files. Preserve the skill directory names so relative links resolve correctly.
 
 Examples:
 
@@ -100,6 +119,8 @@ packages/skills/unitone-css-add-layout-primitive/
 ```
 
 The install script copies skills directly from `packages/skills/` into the target repository or global directory.
+
+Run `node --test tests/skillpack-install.test.mjs` from the repository root to verify selection, dependencies, argument validation, and installation modes in temporary directories.
 
 ## Design rules
 

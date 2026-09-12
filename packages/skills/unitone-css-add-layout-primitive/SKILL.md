@@ -1,46 +1,41 @@
 ---
 name: unitone-css-add-layout-primitive
-description: Add or update a layout primitive in unitone-css while preserving existing file structure, naming, exports, and documentation expectations.
-compatibility: unitone-css repository with bash plus node. Ignore dist.
+description: Add or modify unitone-css framework primitives, including their Sass mixins, React components, public entrypoints, and optional behavior. Use for framework source changes rather than consuming markup.
+compatibility: Requires the unitone-css checkout and its Node.js toolchain. Ignore dist and .export as inspection sources.
 ---
 
 # unitone-css Add Layout Primitive
 
-## When to use
+## Inspect the closest implementation
 
-Use this skill when adding a new primitive under `src/layout-primitives` or reshaping an existing one.
+Use `list_primitives` / `get_primitive` when MCP is available, or inspect `src/layout-primitives` directly. Read the closest primitive and its documentation before choosing files and naming. Directory metadata alone does not describe the API.
 
-## Inputs required
+## Source and public entrypoints
 
-- Primitive name
-- Intended behavior
-- Closest existing primitive, if known
+| Surface | Convention |
+| --- | --- |
+| `src/layout-primitives/<name>/_index.scss` | Define the primitive's mixin and selectors following the closest implementation |
+| `src/layout-primitives/_index.scss` | Add both `@use` and the corresponding mixin `@include` when exposing the primitive in the full stylesheet |
+| `<name>/index.jsx` | Implement the React component and its prop-to-attribute / custom-property mapping |
+| `<name>/react.jsx` | Export the component and import any required behavior side effects |
+| `<name>/behavior.js` | Add only when JavaScript initialization is needed |
+| `src/layout-primitives/index.js` | Import primitive-specific behavior needed by the full application entrypoint; this is not a barrel of React components |
+| `rollup.config.js` and `package.json` | Confirm build discovery and public import patterns |
 
-## Procedure
+Rollup discovers per-primitive `react.jsx` and `behavior.js` files automatically. Existing wildcard exports cover their standard public paths; change build configuration or exports only for an entrypoint those patterns do not cover.
 
-1. Use `list_primitives` and `get_primitive` to find the closest existing pattern.
-2. Inspect the chosen primitive and copy only the structure that is actually needed.
-3. Create or update the expected files under `src/layout-primitives/<name>/`.
-4. Keep naming aligned with the directory name:
-   - `index.jsx`
-   - `react.jsx` when a React wrapper is expected
-   - `_index.scss`
-5. Update shared entrypoints or indexes if the primitive must be publicly reachable.
-6. Check whether related behavior modules or documentation also need changes.
+## Implement
 
-## Verification
+1. Define the intended layout behavior and public props using the closest primitive as the naming reference. Explain a new API concept before implementing it.
+2. Keep Sass selectors, layout tokens, CSS custom properties, and React props aligned. React prop handling must preserve valid values such as numeric `0` and omit absent modifiers.
+3. Follow the existing stylesheet inclusion and React wrapper conventions; do not add JavaScript solely to mirror a CSS-only primitive.
+4. For initialization or observer changes, follow `unitone-css-add-behavior`, including cleanup and reinsertion behavior.
+5. Update the primitive page and any affected compositions through `unitone-css-doc-sync`.
 
-- The primitive directory structure matches existing conventions.
-- Public exports are updated where needed.
-- Any React wrapper remains aligned with the primitive API.
-- The change does not depend on `dist`.
+## Verify the changed surface
 
-## Failure modes
-
-- Missing shared index updates
-- Missing React wrapper for a primitive that follows the standard wrapper pattern
-- Naming drift between directory name and stylesheet names
-
-## Escalation
-
-- If the primitive introduces a new public API concept, document the naming and export decision before continuing.
+- Confirm both full-application and per-primitive entrypoints include what they need.
+- Check rendered React attributes and styles against the plain HTML API when props change.
+- Compile Sass when selectors or mixins change; check JavaScript bundling when entrypoints change, using the repository scripts and inspecting source/configuration rather than treating generated output as the source of truth.
+- Run relevant behavior tests when lifecycle code changes. For responsive layout changes, inspect appropriate viewport or container widths when a rendering environment is available.
+- Limit verification to the affected surface and report anything not exercised.

@@ -29,6 +29,13 @@ That keeps MCP usage optional for framework users.
 | `get_doc` | Read the content of a specific documentation file. |
 | `search_docs` | Search documentation files by keyword or regex pattern. |
 
+Utility and token discovery compiles the local Sass entrypoints in memory, including loops, interpolation, and nested selectors. It does not read or write `dist`.
+
+- `list_utilities` returns CSS-escaped class names, such as `-font-size\:xl`, without a leading dot.
+- `get_utilities` accepts both HTML class names (`-font-size:xl`) and CSS-escaped names (`-font-size\:xl`), with or without a leading dot. Results include the original Sass file paths, line numbers, and source lines.
+- `get_variables` returns complete custom property names from compiled settings, including named font sizes and their fluid variants.
+- `get_primitive` accepts only directory names returned by `list_primitives`.
+
 ## Initial scope
 
 This server is intentionally narrow.
@@ -38,6 +45,8 @@ This server is intentionally narrow.
 - It does not try to explain design intent beyond what can be derived from the file tree.
 
 ## Example setup
+
+Requires Node.js 20.19.0 or later and a local checkout of the `unitone-css` repository containing `src` and `website/src/content/docs`. The MCP package includes Sass and PostCSS as runtime dependencies; the repository's build output is not required.
 
 ### Local repository usage
 
@@ -109,6 +118,7 @@ If published to npm, the configuration can be simplified to:
 ## Notes
 
 - Run `npm run check` inside `packages/mcp` for a basic syntax check.
+- Run `node --test tests/mcp.test.mjs` from the repository root for MCP integration checks.
 - The default repository root is the current working directory.
 - You can override the repository root with `UNITONE_CSS_ROOT`.
 - The server is read-only and intentionally ignores `dist`.

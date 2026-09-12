@@ -1,337 +1,56 @@
 ---
 name: unitone-css-vision-to-code
-description: Convert screenshots or visual descriptions into structurally accurate unitone-css code by choosing primitives, tokens, and utilities deterministically.
-compatibility: unitone-css repository. Requires access to unitone-css docs or MCP tools. Ignore dist.
+description: Analyze screenshots, mockups, and visual descriptions for unitone-css, mapping structure to primitives and documented tokens before HTML or React implementation.
+compatibility: Requires visual input and access to unitone-css docs or source. Ignore dist and .export.
 ---
 
 # unitone-css Vision to Code
 
-## When to use
+## Scope
 
-Use this skill when the user provides:
+Recover the visual structure, choose documented primitives and tokens, and hand the decisions to `unitone-css-coding-assistant` when implementation is requested. For analysis-only requests, return the mapping without code.
 
-- a screenshot
-- a mockup
-- a visual composition
-- a design description that should be implemented with `unitone-css`
+Infer React versus plain HTML from the consuming project when possible. Distinguish observed facts from assumptions; ask only about uncertainty that would materially change the structure or behavior.
 
-If the task proceeds to actual HTML or React code, also apply `unitone-css-coding-assistant`.
+## Read references as needed
 
-## Required inputs
+Use matching documentation under `website/src/content/docs` in the framework checkout, or MCP `get_doc` / `search_docs`. Do not assume these files are present in a consuming project's root.
 
-- target entry point: React or plain HTML
-- one of:
-  - screenshot
-  - mockup
-  - visual description
-- repository docs access
+- For a new composition, scan `Quick Pattern Map` in `patterns.mdx`, then read the relevant pattern and primitive sections. Read `How To Read This Page` when its conventions are unfamiliar.
+- Use [structure memo](references/structure-memo.md) to organize a complex page or an unclear hierarchy; a simple component needs only a short note.
+- Use [primitive selection](../unitone-css-coding-assistant/references/primitive-selection.md) when deciding between plausible structures.
+- Use [token approximation](../unitone-css-coding-assistant/references/token-approximation.md) and the relevant sections of `tokens.mdx` / `utilities.mdx` when estimating visual values.
+- Use [evaluation scenarios](references/evaluation-scenarios.md) when revising this skill or comparing its output, not during ordinary implementation.
 
-If the entry point is not stated but can be inferred from the surrounding task, infer it once and continue.
-If the visual input is too incomplete to identify the block structure, do not jump to code.
+Reuse references and decisions already inspected in the current task. Current source and docs override reference defaults.
 
-## Goal
+## Analyze and map
 
-Your goal is not pixel-perfect imitation by any means necessary.
-Your goal is:
+1. Identify the main blocks, split or repeated relationships, width ownership, image roles, and any real overlap. Record typography tiers when they matter.
+2. Select a matching documented pattern where one exists. Compare alternatives when a split, overlap, or responsive transition is genuinely ambiguous; do not force a second candidate for an obvious structure.
+3. Map each major block to a primitive composition. Record the important choice and its reason, for example `Feature cards = ResponsiveGrid + Stack`.
+4. Select documented typography, spacing, and color candidates. Record a plausible alternative when useful; do not start from arbitrary pixel values.
+5. Pass the composition, selected props/tokens, relevant doc locations, and unresolved material assumptions to `unitone-css-coding-assistant` for implementation.
 
-1. recover the real visual structure
-2. map that structure to documented `unitone-css` primitives
-3. choose the nearest documented token or utility values
-4. keep decorative compromise acceptable, but do not lose structural fidelity
+These decisions must exist before markup, but they can be one compact memo. Exact headings, a fixed number of bullets, and a separate seven-part report are not required.
 
-For screenshot work, structure is more important than decoration.
+## Visual interpretation
 
-## Mandatory references
+- Distinguish section width, prose measure, and internal padding. `Container` commonly controls page width, `Gutters` supplies section insets, and `Stack` controls sibling gaps. Do not introduce a page-level `Stack` solely to duplicate section padding.
+- `Text` is width-aware; do not accidentally use it as the width controller for a broad hero or promotional panel.
+- In `WithSidebar`, the narrower side is normally the sidebar. Choose `sidebar="left"` or `sidebar="right"` from the structural width relationship, not DOM convenience.
+- Treat an element crossing another block's edge as real overlap. Prefer a shared `Layers` composition when appropriate and decide placement explicitly; smaller floating elements may suit `Float`.
+- Distinguish a backdrop, framed media, side visual, and decorative texture before selecting the image's primitive. Revisit the composition if text and media need to overlap.
+- When only one viewport is shown, infer a conservative responsive arrangement from the documented primitive behavior. State material assumptions instead of claiming an unseen mobile design was reproduced.
 
-Before implementing, inspect these local references first:
+## Implementation constraints
 
-- [references/structure-memo.md](./references/structure-memo.md)
-- [references/primitive-selection.md](./references/primitive-selection.md)
-- [references/token-approximation.md](./references/token-approximation.md)
+Follow `unitone-css-coding-assistant` for markup, props, imports, styling, and verification. Retain its first-pass restriction on custom classes, selectors, and decorative inline styles. Structural fidelity comes first; explain material decorative omissions instead of silently treating them as complete.
 
-Then inspect these docs in this order:
+Do not invent APIs or force a layout choice when critical visual information is absent. Continue portions that are clear; ask about the missing structural decision, or provide a provisional mapping if that is the requested output. The number of assumptions alone is not a reason to stop.
 
-- `patterns.mdx`
-- `tokens.mdx`
-- `utilities.mdx`
+## Deliver and verify
 
-From `patterns.mdx`, read:
+For a mapping request, show the proposed composition and important choices. For an implementation request, report the result with only the decisions, assumptions, omissions, and checks needed to assess it. Provide a detailed memo only when useful or requested.
 
-1. `How To Read This Page`
-2. `Quick Pattern Map`
-3. the exact pattern sections that best match the target
-
-Then inspect the primitive docs that match the chosen structure.
-At minimum, inspect the docs for any primitive you expect to use for:
-
-- the outer section skeleton
-- the main repeated pattern
-- any real overlap
-
-Do not rely on memory when `patterns.mdx` already has a matching example.
-
-## Hard rules
-
-- Do not invent primitives, utilities, tokens, or prop names.
-- Prefer documented primitives over ad hoc flex or grid wrappers.
-- In the first pass, do not write custom CSS when primitives, utilities, and documented primitive props can express the structure.
-- Do not create custom classes in the first pass.
-- Do not create custom CSS selectors in the first pass.
-- Decorative effects may be dropped if the documented system cannot express them cleanly.
-- Documented primitive-specific style values are allowed when the docs support them.
-- Arbitrary `style` usage for decoration is not allowed in the first pass.
-
-Allowed `style` in the first pass means only:
-
-- documented primitive-specific custom properties
-- documented size values such as `minHeight`, `sidebarWidth`, `columnMinWidth`
-- documented grid placement values such as `--unitone--grid-column` and `--unitone--grid-row`
-
-Not allowed in the first pass:
-
-- one-off gradient tuning
-- ad hoc transform positioning
-- decorative shadows, masks, filters, or overlays that require invented CSS
-- writing a CSS block just to compensate for a missed primitive or missed utility class
-
-## Two-pass workflow
-
-### Pass 1: structure recovery
-
-Write the memo using [references/structure-memo.md](./references/structure-memo.md).
-
-If this memo is vague, do not implement yet.
-
-After the memo, write a `Pattern lookup` block before any code or final mapping.
-This block must name:
-
-- `Dominant pattern from patterns.mdx`
-- `Compared patterns`
-- `Why the winner fits better`
-
-Minimum example:
-
-```md
-Pattern lookup
-- Dominant pattern from patterns.mdx: `Layered Hero`
-- Compared patterns: `Page Hero`, `Section With Decorative Background`
-- Why the winner fits better: the foreground content and the cards cross the image boundary, so overlap is part of the composition rather than decoration
-```
-
-### Pass 2: primitive mapping
-
-For each major block, write one short line in this format before finalizing code:
-
-- `Hero = Cover + Container + Stack + Center`
-- `Feature grid = ResponsiveGrid + Stack`
-- `News row = WithSidebar`
-
-For any non-trivial split or overlap, compare at least 2 candidates before choosing.
-
-Example:
-
-- `Candidate A: WithSidebar because one side is structurally secondary`
-- `Candidate B: BothSides because both columns are peers`
-- `Choice: WithSidebar`
-
-After the primitive skeleton, write a `Token plan` block.
-This block must include at least:
-
-- heading scale candidates
-- body scale candidates
-- gap or padding candidates
-- color family candidates when color is visually important
-- utility classes to use for typography or simple color/background treatment
-
-Use documented token families and utility classes only.
-
-## Primitive selection defaults
-
-Use [references/primitive-selection.md](./references/primitive-selection.md) as the default mapping table unless the screenshot clearly contradicts it.
-
-## Critical interpretation rules
-
-### Implementation gate
-
-Do not emit code or final markup until all items below exist:
-
-1. structure memo
-2. pattern lookup with exact `patterns.mdx` section names
-3. primitive skeleton for each major block
-4. token plan
-
-If one of these is missing, stop and complete it first.
-
-### Width ownership
-
-Decide what owns width before adding text wrappers.
-
-- `Text` is not a neutral wrapper
-- use `Text` for readable prose rhythm
-- do not let `Text` accidentally define the width of a hero, promo panel, or wide card
-- when broad width is needed, let `Container`, `Center`, `Cover`, `Layers`, or another outer primitive own that width first
-
-### Section spacing ownership
-
-For ordinary page sections, let `Gutters` provide the basic section padding first.
-
-- `Container` owns width
-- `Gutters` owns the section's basic inset and block padding
-- `Stack` owns explicit relationships between siblings
-
-Do not wrap the whole page in an outer `Stack` just to recreate the default spacing between sections when each section already uses `Gutters`.
-Use an outer `Stack` only when the relationship between whole sections is itself the intended structure.
-
-### Utility-first visual approximation
-
-Before considering custom CSS, exhaust these levers first:
-
-1. primitive composition
-2. primitive modifiers and documented props
-3. utility classes from `utilities.mdx`
-
-For screenshot work, typography should usually be expressed with:
-
-- `-fluid-typography`
-- `-font-size:*`
-- `-font-weight:bold`
-
-Simple color and surface treatment should usually be expressed with:
-
-- `-color:*`
-- `-background-color:*`
-- `-padding:*`
-
-If the output is missing these obvious utilities and instead reaches for custom CSS, stop and refactor.
-
-### Sidebar semantics
-
-For `WithSidebar`, treat the narrower side as the sidebar by default.
-
-- narrower left side -> `sidebar="left"`
-- narrower right side -> `sidebar="right"`
-
-Do not choose the sidebar side based on DOM order convenience alone.
-Choose it based on the structural width relationship visible in the screenshot.
-
-### Overlap
-
-If a card, badge, panel, or CTA crosses another block's edge, treat that as real overlap.
-
-- keep the overlapping pieces inside the same `Layers` composition when possible
-- use explicit `grid-column` and `grid-row` placement when the overlap boundary matters
-- do not fake the overlap with unrelated section spacing if the screenshot clearly overlaps
-
-### Image role
-
-- background image behind foreground content: compare `Layers` and `Cover`
-- framed thumbnail or card media: `Frame`
-- side visual beside copy: compare `WithSidebar` and `BothSides`
-- purely decorative texture or pattern: consider `Texture`
-
-If text and image visually overlap, start from `Layers`.
-Do not fake that relationship with a background image plus unrelated spacing wrappers.
-
-## Token approximation bias
-
-Do not guess raw px first.
-Choose the nearest documented step first by using [references/token-approximation.md](./references/token-approximation.md).
-
-If two candidates are close, prefer the smaller documented step first and record both candidates in the `Token plan`.
-
-## HTML and React output rules
-
-- In React, use primitive components and props.
-- Do not manually write primitive `data-unitone-layout` attributes in JSX when a React primitive exists.
-- In plain HTML, use `data-unitone-layout` for primitives and `class` for utility families from `utilities.mdx`.
-- Do not include the leading `.` when writing utility classes in `class`.
-
-## Ambiguity control
-
-Do not silently invent structure when the visual evidence is weak.
-
-If any of these remain ambiguous after reading the references and docs:
-
-- dominant relationship
-- width owner
-- whether overlap is real
-- repeated unit
-- image role
-
-then do one of these instead of forcing code:
-
-1. return the structure memo and primitive candidates only
-2. ask one short clarifying question if the missing detail is critical
-
-When you proceed anyway, explicitly list the assumption in `Assumptions used`.
-
-Keep `Assumptions used` short.
-If it would exceed 2 bullets, stop before code and return structure only.
-
-## Final response contract
-
-For screenshot or mockup work, present the result in this order:
-
-1. `Structure memo`
-2. `Pattern lookup`
-3. `Primitive skeleton`
-4. `Token plan`
-5. `Assumptions used`
-6. `Decorative omissions`
-7. final code or final implementation mapping
-
-`Assumptions used` may be `none`.
-`Decorative omissions` may be `none`.
-
-## What to omit
-
-If a decorative effect requires invented CSS, omit it in the first pass.
-
-Examples:
-
-- custom gradient meshes
-- image filters not covered by documented props or utilities
-- one-off transforms for nudging decoration
-- decorative borders or masks that are not part of the documented system
-
-Keep the structural version correct instead.
-
-This skill is not trying to reproduce a polished component library.
-It is trying to recover layout structure with primitives.
-If structure is right and decorative finish is rough, that is acceptable.
-
-## Verification checklist
-
-- a structure memo was written first
-- a `Pattern lookup` block named the exact `patterns.mdx` sections consulted
-- `patterns.mdx`, `tokens.mdx`, and `utilities.mdx` were inspected
-- at least 2 candidates were considered for non-trivial split or overlap decisions
-- each major section has an explicit primitive skeleton
-- a `Token plan` was written before final code
-- width ownership is explicit
-- section spacing ownership is explicit
-- `Text` is not accidentally acting as the main width controller of a non-prose section
-- real overlap stays inside one `Layers` composition when appropriate
-- typography uses documented scale steps first
-- spacing uses documented scale steps first
-- colors are chosen from existing token families
-- obvious typography and color choices use utility classes before custom CSS
-- `WithSidebar` uses the narrower side as `sidebar="left"` or `sidebar="right"`
-- no custom classes or custom selectors were introduced in the first pass
-- `style` is limited to documented primitive-specific values (Props) only
-- assumptions are explicit and limited
-- if ambiguity stayed high, the response stopped at structure-only output instead of inventing details
-
-## Failure modes
-
-- trying to chase polish before the block hierarchy is right
-- skipping `patterns.mdx` examples that already match the target
-- using generic wrappers instead of a documented primitive
-- guessing px values instead of choosing the nearest token step
-- writing custom CSS before using the obvious utility classes
-- using a page-level `Stack` to recreate section spacing that `Gutters` should already own
-- choosing `WithSidebar` side from source order instead of visible narrow-side semantics
-- using `Text` as a neutral wrapper and unintentionally narrowing the layout
-- recreating overlap with spacing instead of `Layers`
-- using arbitrary `style` values for visual tuning in the first pass
-- hiding uncertainty instead of reporting assumptions or stopping at structure only
+Review the output against the visual input: hierarchy, width, actual overlap, repeated units, and responsive transitions. Verify the documented API with the coding skill, and inspect rendered output at relevant widths when possible. Distinguish source/API checks from visual verification.
