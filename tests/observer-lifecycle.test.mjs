@@ -158,7 +158,7 @@ test('legacy initializers without cleanup keep their existing one-time behavior'
 });
 
 test('cleanup cancels an observer callback queued before a synchronous reinsertion', () => {
-  const env = createEnvironment();
+  const env = createEnvironment({ intersection: false });
   const target = env.element();
   env.registerLayoutInitializer({
     key: 'test',

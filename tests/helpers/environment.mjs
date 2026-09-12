@@ -8,7 +8,7 @@ const source = ['observer-scope.js', 'library.js', 'register-layout-initializer.
   .replace(/^export /gm, '');
 
 // Run the source with controlled browser scheduling; no timers or observers escape a test.
-export const createEnvironment = () => {
+export const createEnvironment = ({ intersection = true } = {}) => {
   const frames = new Map();
   const timers = new Map();
   const observers = [];
@@ -94,7 +94,7 @@ export const createEnvironment = () => {
     Node: { ELEMENT_NODE: 1 },
     ResizeObserver: makeObserver('resize'),
     MutationObserver: makeObserver('mutation'),
-    IntersectionObserver: makeObserver('intersection'),
+    IntersectionObserver: intersection ? makeObserver('intersection') : undefined,
     requestAnimationFrame: (callback) => {
       const id = nextId++;
       frames.set(id, callback);
@@ -115,7 +115,7 @@ export const createEnvironment = () => {
   vm.runInContext(
     `${source}\nglobalThis.api = {
     createObserverScope, debounce, registerLayoutInitializer,
-    createLayoutObserver, createResizeObserver, createDirectChildrenResizeObserver, hasAttributeMutation,
+    createLayoutObserver, createResizeObserver, hasAttributeMutation,
     dividersResizeObserver, stairsResizeObserver, verticalsResizeObserver, marqueeResizeObserver,
   };`,
     context,
