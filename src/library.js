@@ -1,5 +1,14 @@
 import { createObserverScope } from './observer-scope';
 
+import {
+  getMarqueeParts,
+  isReactMarquee,
+  markMarqueeCopy,
+  measureMarquee,
+  observeMarquee,
+  requestMarqueeRefresh,
+} from './layout-primitives/marquee/layout';
+
 const layoutAttributeName = 'data-unitone-layout';
 const layoutIntersectionMargin = 200;
 const layoutIntersectionRootMargin = `${layoutIntersectionMargin}px 0px`;
@@ -827,301 +836,94 @@ export const verticalsResizeObserver = (target) => {
   });
 };
 
-const marqueeClones = new WeakSet();
 const marqueeStates = new WeakMap();
 
-const getMarquees = (target) =>
-  Array.from(target.querySelectorAll(':scope > [data-unitone-layout~="marquee"]'));
+/** Updates copied items while keeping the original nodes and animation intact. */
+const updateMarquee = (target) => {
+  let parts = getMarqueeParts(target);
+  const { marquee, originals } = parts;
+  if (!marquee) return;
+  const state = marqueeStates.get(target);
+  const source = originals.map((item) => item.outerHTML).join('');
+  // Snapshots exclude generated nodes, so author additions after copies are detected too.
+  if (
+    state?.marquee !== marquee ||
+    state?.source !== source ||
+    originals.some(
+      (item) =>
+        item.matches('input, textarea, select') || item.querySelector('input, textarea, select'),
+    )
+  ) {
+    parts.copies.forEach((copy) => copy.remove());
+    parts.copies = [];
+  }
 
-const getMarqueeAnimation = (element) =>
-  element
-    ?.getAnimations()
-    .find(({ animationName }) => ['marquee', 'marquee-reverse'].includes(animationName));
+  let firstClone;
+  const renderCopies = (groups) => {
+    const count = groups * originals.length;
+    parts.copies.splice(count).forEach((copy) => copy.remove());
+    const fragment = target.ownerDocument.createDocumentFragment();
+    while (parts.copies.length < count) {
+      const copy = originals[parts.copies.length % originals.length].cloneNode(true);
+      markMarqueeCopy(copy);
+      parts.copies.push(copy);
+      fragment.append(copy);
+      firstClone ??= copy;
+    }
+    if (fragment.childNodes.length) marquee.append(fragment);
+  };
 
-/**
- * Measures layout width without including transforms or rounding fractional pixels.
- *
- * @param {CSSStyleDeclaration} style Computed style.
- * @param {boolean} borderBox Whether to include padding and borders.
- * @returns {number} Width in CSS pixels.
- */
-const getMarqueeWidth = (style, borderBox) => {
-  const edges = ['paddingLeft', 'paddingRight', 'borderLeftWidth', 'borderRightWidth'].reduce(
-    (total, property) => total + (parseFloat(style[property]) || 0),
-    0,
-  );
-  const width = parseFloat(style.width) || 0;
-  return width + (borderBox ? edges : 0) - ('border-box' === style.boxSizing ? edges : 0);
-};
-
-/**
- * Synchronizes existing animations without measuring or rebuilding copies.
- *
- * @param {Element[]} marquees Original and copied marquees.
- * @param {ReturnType<typeof createObserverScope>} [scope] Observer lifetime.
- * @returns {void}
- */
-const syncMarqueeAnimations = ([original, ...copies], scope) => {
-  const animation = getMarqueeAnimation(original);
-  if (animation) {
-    const syncAnimations = () => {
-      if (scope?.disposed || !original.isConnected || getMarqueeAnimation(original) !== animation) {
-        return;
-      }
-      copies.forEach((element) => {
-        const copyAnimation = getMarqueeAnimation(element);
-        if (!element.isConnected || !copyAnimation) {
-          return;
-        }
-
-        const syncTime = () => {
-          if (
-            !scope?.disposed &&
-            element.isConnected &&
-            getMarqueeAnimation(original) === animation
-          ) {
-            copyAnimation.currentTime = animation.currentTime;
-          }
-        };
-        syncTime();
-        // A pending play or pause task can otherwise apply an outdated hold time.
-        if (copyAnimation.pending) {
-          copyAnimation.ready.then(syncTime, () => {});
-        }
-      });
-    };
-    syncAnimations();
-    if (animation.pending) {
-      animation.ready.then(syncAnimations, () => {});
+  let layout = measureMarquee(target, parts);
+  if (layout.groups && !parts.copies.length) {
+    renderCopies(1);
+    layout = measureMarquee(target, parts);
+  }
+  renderCopies(layout.groups);
+  if (marquee) {
+    const travel = `${layout.rtl ? layout.distance : -layout.distance}px`;
+    if (marquee.style.getPropertyValue('--unitone--marquee-travel') !== travel) {
+      marquee.style.setProperty('--unitone--marquee-travel', travel);
+    }
+    if (layout.distance > 0) {
+      const tokens = getLayoutTokens(marquee);
+      if (!tokens.includes('marquee:initialized'))
+        setLayoutTokens(marquee, [...tokens, 'marquee:initialized']);
     }
   }
+  marqueeStates.set(target, { marquee, source });
+  return firstClone?.isConnected ? firstClone : undefined;
 };
 
 /**
- * Updates generated copies and synchronizes them with the original animation.
+ * Refreshes copied items without restarting the animation.
+ * React-owned marquees receive a refresh request and render copies through React.
  *
  * @param {Element} target Marquee wrapper.
- * @param {boolean} [refreshClones] Whether source content has changed; omitted for manual detection.
- * @param {ReturnType<typeof createObserverScope>} [scope] Observer lifetime.
- * @returns {{ originals: Element[], firstClone?: Element }} Sources and the first new copy.
+ * @returns {Element | undefined} The first newly created HTML item copy, if any.
  */
-const updateMarquee = (target, refreshClones, scope) => {
-  const originals = [];
-  const clones = [];
-  for (const child of target.children) {
-    if (marqueeClones.has(child)) {
-      clones.push(child);
-    } else if (child.matches('[data-unitone-layout~="marquee"]')) {
-      originals.push(child);
-    }
+export const setMarquee = (target) => {
+  if (isReactMarquee(target)) {
+    requestMarqueeRefresh(target);
+    return;
   }
-  const original = originals[0];
-  const state = marqueeStates.get(target);
-  // Observer calls know whether content changed; manual calls compare the saved markup.
-  // Form control state can change without changing its HTML attributes.
-  refreshClones ??=
-    state?.source !== original?.outerHTML || !!original?.querySelector('input, textarea, select');
-  refreshClones ||= state?.original !== original;
-
-  if (refreshClones || 1 !== originals.length) {
-    clones.forEach((clone) => clone.remove());
-    clones.length = 0;
-  }
-
-  if (!original || !hasLayoutBox(target)) {
-    marqueeStates.delete(target);
-    return { originals };
-  }
-
-  const wrapperStyle = getElementStyle(target);
-  const originalStyle = getElementStyle(original);
-  const wrapperWidth = getMarqueeWidth(wrapperStyle, false);
-  const width = getMarqueeWidth(originalStyle, true);
-  const columnGap = wrapperStyle.columnGap;
-  const gap = (parseFloat(columnGap) || 0) * (columnGap.endsWith('%') ? wrapperWidth / 100 : 1);
-  const gapValue = `${gap}px`;
-  if (target.style.getPropertyValue('--unitone--marquee-gap') !== gapValue) {
-    target.style.setProperty('--unitone--marquee-gap', gapValue);
-  }
-
-  // Keep author-provided sibling content intact instead of treating it as a generated copy.
-  const canClone = 1 === originals.length && target.childElementCount - clones.length === 1;
-  const count =
-    canClone && 0 < wrapperWidth && 0 < width ? Math.ceil((wrapperWidth + gap) / (width + gap)) : 0;
-
-  clones.splice(count).forEach((clone) => clone.remove());
-
-  const lastMarquee = clones.at(-1) ?? original;
-  let firstClone;
-  const fragment = target.ownerDocument.createDocumentFragment();
-  while (clones.length < count) {
-    const clone = original.cloneNode(true);
-    clone.setAttribute('aria-hidden', 'true');
-    clone.setAttribute('inert', '');
-    marqueeClones.add(clone);
-    clones.push(clone);
-    fragment.append(clone);
-    firstClone ??= clone;
-  }
-  if (firstClone) {
-    lastMarquee.after(fragment);
-  }
-
-  [...originals, ...clones].forEach((element) => {
-    const tokens = getLayoutTokens(element);
-    if (!tokens.includes('marquee:initialized')) {
-      setLayoutTokens(element, [...tokens, 'marquee:initialized']);
-    }
-  });
-
-  marqueeStates.set(target, {
-    original,
-    wrapperWidth,
-    width,
-    vertical: !originalStyle.writingMode.startsWith('horizontal'),
-    source: refreshClones || !state ? original.outerHTML : state.source,
-  });
-  syncMarqueeAnimations([...originals, ...clones], scope);
-
-  return { originals, firstClone };
+  return updateMarquee(target);
 };
 
 /**
- * Refreshes marquee copies while retaining the original animation's progress.
+ * Observes marquee and original item sizes and content changes.
+ * React components own their observer lifetime and generated children.
  *
- * @param {Element} target Target element.
- * @returns {Element | undefined} The first newly created copy, if any.
- */
-export const setMarquee = (target) => updateMarquee(target).firstClone;
-
-/**
- * Observes marquee size and content changes without delaying resize updates.
- *
- * @param {Element} target Target element.
+ * @param {Element} target Marquee wrapper.
  * @returns {() => void} Stops observation and cancels queued work.
  */
 export const marqueeResizeObserver = (target) => {
-  const scope = createObserverScope(target);
-  let isIntersecting = 'undefined' === typeof IntersectionObserver || isNearViewport(target);
-  let refreshClones = true;
-  const observedOriginals = new Set();
-  scope.addCleanup(() => {
-    observedOriginals.clear();
-    marqueeStates.delete(target);
-  });
-
-  const observeMutations = () => {
-    mutationObserver.observe(target, { attributes: true, childList: true });
-    observedOriginals.forEach((element) => {
-      mutationObserver.observe(element, {
-        attributes: true,
-        childList: true,
-        characterData: true,
-        subtree: true,
-      });
-    });
-  };
-
-  const changesSource = (entry) =>
-    entry.target !== target ||
-    ('childList' === entry.type &&
-      [...entry.addedNodes, ...entry.removedNodes].some((node) => !marqueeClones.has(node)));
-
-  const apply = () => {
-    if (scope.disposed || !target.isConnected || !isIntersecting) {
-      return;
-    }
-
-    // Preserve pending author edits, then exclude our own DOM writes from observation.
-    refreshClones ||= mutationObserver.takeRecords().some(changesSource);
-    mutationObserver.disconnect();
-    const { originals } = updateMarquee(target, refreshClones, scope);
-    refreshClones = false;
-
-    observedOriginals.forEach((element) => {
-      if (!originals.includes(element)) {
-        resizeObserver.unobserve(element);
-        observedOriginals.delete(element);
-      }
-    });
-    originals.forEach((element) => {
-      if (!observedOriginals.has(element)) {
-        resizeObserver.observe(element, { box: 'border-box' });
-        observedOriginals.add(element);
-      }
-    });
-    observeMutations();
-  };
-
-  const scheduleApply = createScheduledTargetCallback(target, apply, scope);
-  const mutationObserver = new MutationObserver((entries) => {
-    if (!entries.some((entry) => 'childList' !== entry.type || changesSource(entry))) {
-      return;
-    }
-    refreshClones ||= entries.some(changesSource);
-    scheduleApply();
-  });
-  const resizeObserver = new ResizeObserver((entries) => {
-    // Measurements already applied by a mutation callback need no second update.
-    const state = marqueeStates.get(target);
-    if (
-      !state ||
-      entries.some((entry) => {
-        if (entry.target === target) {
-          return Math.abs(entry.contentRect.width - state.wrapperWidth) > 0.01;
-        }
-        const box = entry.borderBoxSize?.[0];
-        const width = state.vertical ? box?.blockSize : box?.inlineSize;
-        return (
-          entry.target !== state.original ||
-          undefined === width ||
-          Math.abs(width - state.width) > 0.01
-        );
-      })
-    ) {
-      apply();
-    }
-  });
-  scope.addCleanup(() => mutationObserver.disconnect());
-  scope.addCleanup(() => resizeObserver.disconnect());
-  resizeObserver.observe(target);
-  observeMutations();
-
-  if ('undefined' !== typeof IntersectionObserver) {
-    createIntersectionObserver(
-      target,
-      (entry) => {
-        const wasIntersecting = isIntersecting;
-        isIntersecting = entry.isIntersecting;
-        if (isIntersecting && !wasIntersecting) {
-          apply();
-        }
-      },
-      scope,
-    );
+  if (isReactMarquee(target)) {
+    return observeMarquee(target, () => requestMarqueeRefresh(target), { listenForRefresh: false })
+      .dispose;
   }
-
-  // Re-sync copies created while CSS has paused the original animation.
-  const scheduleSync = createScheduledTargetCallback(
-    target,
-    () => syncMarqueeAnimations(getMarquees(target), scope),
-    scope,
-  );
-  const onPauseChange = () => {
-    if (getLayoutTokens(target).includes('-pause-on-hover')) {
-      scheduleSync();
-    }
+  const controller = observeMarquee(target, () => updateMarquee(target));
+  return () => {
+    controller.dispose();
+    marqueeStates.delete(target);
   };
-  ['pointerenter', 'pointerleave', 'focusin', 'focusout'].forEach((eventName) => {
-    target.addEventListener(eventName, onPauseChange);
-    scope.addCleanup(() => target.removeEventListener(eventName, onPauseChange));
-  });
-
-  // Viewport media queries can change only the gap, without resizing either marquee box.
-  const defaultView = target.ownerDocument.defaultView;
-  defaultView.addEventListener('resize', scheduleApply);
-  scope.addCleanup(() => defaultView.removeEventListener('resize', scheduleApply));
-  apply();
-
-  return scope.dispose;
 };

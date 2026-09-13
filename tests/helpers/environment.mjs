@@ -1,10 +1,15 @@
 import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 
-const source = ['observer-scope.js', 'library.js', 'register-layout-initializer.js']
+const source = [
+  'observer-scope.js',
+  'layout-primitives/marquee/layout.js',
+  'library.js',
+  'register-layout-initializer.js',
+]
   .map((file) => readFileSync(new URL(`../../src/${file}`, import.meta.url), 'utf8'))
   .join('\n')
-  .replace(/^import .*;\n/gm, '')
+  .replace(/^import[\s\S]*?;\n/gm, '')
   .replace(/^export /gm, '');
 
 // Run the source with controlled browser scheduling; no timers or observers escape a test.

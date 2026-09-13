@@ -8,7 +8,15 @@ Displays child elements in a continuous horizontal scrolling format.
 
 Content is repeated as many times as needed to fill the visible area, even when there are only a few items. Copies are updated when the container or content size changes, without restarting the animation.
 
+One marquee stays at the wrapper's content width. Its original items remain in place, followed by copies of the item sequence in the same flex row. Percentages in item widths resolve against this fixed width. CSS gap applies between all items, including the boundary between the original sequence and its copies. The start-to-start distance from the first original item to its first copy determines the repeat distance.
+
 The animation duration is the time taken to move one content group and the gap between groups. Shorter content therefore moves more slowly at the same duration.
+
+Only the single marquee animates. Reverse changes movement direction without reversing item order, and horizontal RTL layouts are supported. Copies are hidden from assistive technology and inert.
+
+The behavior observes the wrapper and original items for size changes, including image and font loading, and watches content, attributes, ancestor attributes, and viewport resizing. Regular CSS animation does not trigger measurements on every frame. For changes through CSSOM or other mechanisms that do not trigger observation, call `setMarquee(wrapper)` from `@inc2734/unitone-css/library`. In HTML, its return value is the first newly created item copy, or `undefined`; it no longer returns a copied marquee container.
+
+Measurements support translation and positive, axis-aligned scaling on the wrapper and its ancestors. Rotation, skew, perspective, reflections, vertical writing modes, and additional transforms on the marquee or its direct items are outside the supported layout. Apply visual transforms inside an item instead. Keep the marquee's width, content box, row direction, and item order unchanged. Items must be elements and must have matching sizes in the original and copied sequences; avoid item margins and position-dependent selectors such as `:nth-child()` that give copies different dimensions.
 
 When you use Marquee in HTML, also load the JavaScript entry for it.
 
@@ -17,6 +25,10 @@ import '@inc2734/unitone-css/layout-primitives/marquee/behavior';
 // or import '@inc2734/unitone-css/layout-primitives';
 // or import '@inc2734/unitone-css/app';
 ```
+
+The React component renders its own copies after mounting; the HTML behavior skips React-owned wrappers, including before hydration. A hidden boundary element separates original and copied items without adding a flex item or a gap. React retains ownership of all item nodes, while the behavior applies the accessibility attributes to copied elements. Fragments and components returning multiple element roots are supported. Refs on supplied React elements are cleared in their copies, and their `autoFocus` props are disabled.
+
+Each copied React component is a separate instance with its own state and Effects. Use presentational items, or pass shared display state from a parent when originals and copies must match. Effects also run for copied instances, so avoid focus-changing effects or sharing external DOM refs between instances. Local state, uncontrolled input values, canvas drawings, and media playback are not automatically mirrored. For a React-owned wrapper, `setMarquee(wrapper)` requests a React update and returns `undefined`; `marqueeResizeObserver(wrapper)` creates an independent observer that requests those updates and returns its own cleanup function. Normal React usage manages observation and cleanup automatically.
 
 ## Usage
 
@@ -212,6 +224,8 @@ If it is `2` or more, adding `m` will shrink it to size `1` on mobile. (e.g. `2m
 ### <Badge>HTML</Badge> --unitone--item-width / <Badge>JSX</Badge> itemWidth=\{value\}
 
 `width` of the items.
+
+Accepts `auto`, lengths such as `px` and `vw`, percentages, and CSS math functions. With a wrapper content width of 1,200px, four items, `max(300px, 30%)`, and a 10px gap, each item is 360px wide and the repeat distance is 1,480px. The marquee itself remains 1,200px wide.
 
 <Tabs items={['HTML', 'JSX', 'Preview']}>
 	<Tabs.Tab>

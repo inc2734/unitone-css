@@ -10,6 +10,7 @@ const createConfig = ({ input, file, external = [], exports }) => ({
   output: {
     file,
     format: 'cjs',
+    ...(input === 'src/layout-primitives/marquee/react.jsx' ? { banner: '"use client";' } : {}),
     ...(exports ? { exports } : {}),
   },
   external,
@@ -25,7 +26,11 @@ const createConfig = ({ input, file, external = [], exports }) => ({
       requireReturnsDefault: 'esmExternals',
       extensions: ['.js', '.jsx'],
     }),
-    terser(),
+    terser(
+      input === 'src/layout-primitives/marquee/react.jsx'
+        ? { compress: { directives: false } }
+        : {},
+    ),
   ],
 });
 
