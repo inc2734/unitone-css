@@ -1,21 +1,31 @@
-import React from 'react';
+'use client';
 
-export const ResponsiveGrid = ({
-  columnMinWidth,
-  gap,
-  autoRepeat,
-  divider,
-  dividerWidth,
-  dividerStyle,
-  dividerColor,
-  stairs,
-  stairsUp,
-  containerType,
-  responsiveContext,
-  fluidReference, // @deprecated Kept for backward compatibility. Use responsiveContext on an ancestor instead.
-  style,
-  ...props
-}) => {
+import React from 'react';
+import { useLayoutBehaviors } from '../../use-layout-behaviors';
+
+export const ResponsiveGrid = React.forwardRef(function ResponsiveGrid(
+  {
+    columnMinWidth,
+    gap,
+    autoRepeat,
+    divider,
+    dividerWidth,
+    dividerStyle,
+    dividerColor,
+    stairs,
+    stairsUp,
+    containerType,
+    responsiveContext,
+    fluidReference, // @deprecated Kept for backward compatibility. Use responsiveContext on an ancestor instead.
+    style,
+    ...props
+  },
+  forwardedRef,
+) {
+  const layoutRef = useLayoutBehaviors(
+    { divider: '' !== (divider ?? ''), stairs: '' !== (stairs ?? '') },
+    forwardedRef,
+  );
   style = {
     ...style,
     '--unitone--column-min-width': '' !== columnMinWidth ? columnMinWidth : undefined,
@@ -41,8 +51,10 @@ export const ResponsiveGrid = ({
         .join(' ')}
       style={style}
       {...props}
+      ref={layoutRef}
+      data-unitone-react-layout=""
     >
       {props.children}
     </div>
   );
-};
+});

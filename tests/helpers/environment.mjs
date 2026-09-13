@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 
 const source = [
+  'layout-behavior-state.js',
   'observer-scope.js',
   'layout-primitives/marquee/layout.js',
   'library.js',

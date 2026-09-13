@@ -88,7 +88,7 @@ When using server-side rendering frameworks, load this script with the framework
 The all-in entry loads the marquee and vertical-writing layout primitive scripts, plus the divider and stairs behaviors.
 Individual entries such as `@inc2734/unitone-css/layout-primitives/vertical-writing/behavior` and `@inc2734/unitone-css/behaviors/dividers` are also available when you only need a specific entry.
 
-These entries automatically stop observing removed elements and initialize them again when they are reinserted. Moving an element within the document in the same DOM update keeps its existing observers.
+These entries initialize divider and stairs behaviors when their layout attributes are added to an existing element, and stop and clear their generated state when the behavior is removed. They also automatically stop observing removed elements and initialize them again when they are reinserted. Moving an element within the document in the same DOM update keeps its existing observers.
 
 If you call `dividersResizeObserver`, `stairsResizeObserver`, `verticalsResizeObserver`, or `marqueeResizeObserver` directly from `@inc2734/unitone-css/library`, the returned function stops observation and cancels queued updates. Existing calls that ignore the return value continue to work. Direct calls manage their own lifetime:
 
@@ -107,6 +107,14 @@ Stopping observation leaves the current styles and generated content in place. C
 
 When you use layout primitives as React components, import each component from `@inc2734/unitone-css/layout-primitives/<name>/react`.
 These entries include the behaviors required by that component, so no additional behavior import is required for React usage.
+
+`Stack`, `Cluster`, `WithSidebar`, `ResponsiveGrid`, `Switcher`, `VerticalWriting`, and `Marquee` are client entries and can be imported from React Server Components. CSS-only primitives remain usable as Server Components. Props passed across a server-to-client boundary must follow React's serialization rules; define event handlers and custom `tagName` components inside a client module.
+
+The JavaScript-backed React components manage their own observers after hydration and refresh their layouts after React commits. Divider and stairs props can be enabled, changed, disabled, and enabled again without remounting. Removing a component stops its observers and cancels queued updates. Forwarded refs follow the current DOM element, including changes to `tagName`; the `VerticalWriting` ref targets the inner writing element.
+
+The HTML auto-initializers skip elements marked as React-managed, so importing the all-in script alongside these components does not initialize them twice or modify their server HTML before hydration. Calling a layout setter or observer helper on a React-managed element requests a refresh from its component; a manually returned cleanup does not stop the component's own observers. Before hydration, such requests leave the server HTML unchanged.
+
+These guarantees apply to the provided React components. Handwritten JSX using `data-unitone-layout` needs explicit coordination between hydration and any HTML behavior initialization.
 
 ```jsx
 import { Decorator } from '@inc2734/unitone-css/layout-primitives/decorator/react';

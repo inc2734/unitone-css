@@ -1,15 +1,13 @@
-import React from 'react';
+'use client';
 
-export const VerticalWriting = ({
-  textOrientation,
-  gap,
-  maxHeight,
-  switchWritingMode,
-  threshold,
-  queryContext,
-  style,
-  ...props
-}) => {
+import React from 'react';
+import { useLayoutBehaviors } from '../../use-layout-behaviors';
+
+export const VerticalWriting = React.forwardRef(function VerticalWriting(
+  { textOrientation, gap, maxHeight, switchWritingMode, threshold, queryContext, style, ...props },
+  forwardedRef,
+) {
+  const layoutRef = useLayoutBehaviors({ vertical: true }, forwardedRef);
   style = {
     ...style,
     '--unitone--max-height': '' !== maxHeight ? maxHeight : undefined,
@@ -30,9 +28,11 @@ export const VerticalWriting = ({
           .join(' ')}
         style={style}
         {...props}
+        ref={layoutRef}
+        data-unitone-react-layout=""
       >
         {props.children}
       </div>
     </div>
   );
-};
+});

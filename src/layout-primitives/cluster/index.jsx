@@ -1,20 +1,27 @@
-import React from 'react';
+'use client';
 
-export const Cluster = ({
-  alignItems,
-  divider,
-  dividerWidth,
-  dividerStyle,
-  dividerColor,
-  gap,
-  columnGap,
-  rowGap,
-  justifyContent,
-  nowrap,
-  tagName = 'div',
-  style,
-  ...props
-}) => {
+import React from 'react';
+import { useLayoutBehaviors } from '../../use-layout-behaviors';
+
+export const Cluster = React.forwardRef(function Cluster(
+  {
+    alignItems,
+    divider,
+    dividerWidth,
+    dividerStyle,
+    dividerColor,
+    gap,
+    columnGap,
+    rowGap,
+    justifyContent,
+    nowrap,
+    tagName = 'div',
+    style,
+    ...props
+  },
+  forwardedRef,
+) {
+  const layoutRef = useLayoutBehaviors({ divider: '' !== (divider ?? '') }, forwardedRef);
   const Tag = tagName;
 
   style = {
@@ -40,8 +47,10 @@ export const Cluster = ({
         .join(' ')}
       style={style}
       {...props}
+      ref={layoutRef}
+      data-unitone-react-layout=""
     >
       {props.children}
     </Tag>
   );
-};
+});

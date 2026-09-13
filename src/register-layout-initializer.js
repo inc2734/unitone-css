@@ -22,32 +22,29 @@ const getRegistry = () => {
   return globalThis[INITIALIZER_REGISTRY_KEY];
 };
 
-const initializeInitializer = (initializer, root) => {
-  if (!root?.isConnected || !initializer.enabled() || root.nodeType !== Node.ELEMENT_NODE) {
+const initializeTarget = (initializer, target) => {
+  if (!target?.isConnected || target.nodeType !== Node.ELEMENT_NODE) return;
+  if (!initializer.enabled() || !target.matches?.(initializer.selector)) {
+    if (initializer.initialized.has(target)) {
+      initializer.cleanups.get(target)?.();
+      initializer.cleanups.delete(target);
+      initializer.initialized.delete(target);
+      initializer.reset?.(target);
+    }
     return;
   }
+  if (initializer.initialized.has(target)) return;
+  const cleanup = initializer.initialize(target);
+  initializer.initialized.add(target);
+  if (typeof cleanup === 'function') initializer.cleanups.set(target, cleanup);
+};
 
-  const targets = new Set();
-
-  if (root.matches?.(initializer.selector)) {
-    targets.add(root);
-  }
-
-  root.querySelectorAll?.(initializer.selector).forEach((target) => {
-    targets.add(target);
-  });
-
-  targets.forEach((target) => {
-    if (initializer.initialized.has(target)) {
-      return;
-    }
-
-    const cleanup = initializer.initialize(target);
-    initializer.initialized.add(target);
-    if ('function' === typeof cleanup) {
-      initializer.cleanups.set(target, cleanup);
-    }
-  });
+const initializeInitializer = (initializer, root) => {
+  if (!root?.isConnected || root.nodeType !== Node.ELEMENT_NODE) return;
+  initializeTarget(initializer, root);
+  root
+    .querySelectorAll?.(initializer.selector)
+    .forEach((target) => initializeTarget(initializer, target));
 };
 
 const initializeNode = (root) => {
@@ -106,6 +103,10 @@ const observeDocument = () => {
 
   registry.observer = new MutationObserver((entries) => {
     entries.forEach((entry) => {
+      if (entry.type === 'attributes') {
+        registry.initializers.forEach((initializer) => initializeTarget(initializer, entry.target));
+        return;
+      }
       entry.removedNodes.forEach(disposeNode);
       entry.addedNodes.forEach((addedNode) => {
         if (addedNode?.isConnected && addedNode.nodeType === Node.ELEMENT_NODE) {
@@ -126,12 +127,20 @@ const observeDocument = () => {
   });
 
   registry.observer.observe(document.body, {
+    attributes: true,
+    attributeFilter: ['data-unitone-layout', 'data-unitone-react-layout'],
     childList: true,
     subtree: true,
   });
 };
 
-export const registerLayoutInitializer = ({ key, selector, initialize, enabled = () => true }) => {
+export const registerLayoutInitializer = ({
+  key,
+  selector,
+  initialize,
+  reset,
+  enabled = () => true,
+}) => {
   const registry = getRegistry();
   if (!registry || registry.initializers.has(key)) {
     return;
@@ -140,6 +149,7 @@ export const registerLayoutInitializer = ({ key, selector, initialize, enabled =
   const initializer = {
     selector,
     initialize,
+    reset,
     enabled,
     initialized: new WeakSet(),
     cleanups: new WeakMap(),

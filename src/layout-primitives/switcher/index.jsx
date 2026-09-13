@@ -1,21 +1,28 @@
-import React from 'react';
+'use client';
 
-export const Switcher = ({
-  gap,
-  columnGap,
-  rowGap,
-  limit,
-  revert,
-  threshold,
-  alignItems,
-  stairs,
-  stairsUp,
-  containerType,
-  responsiveContext,
-  fluidReference, // @deprecated Kept for backward compatibility. Use responsiveContext on an ancestor instead.
-  style,
-  ...props
-}) => {
+import React from 'react';
+import { useLayoutBehaviors } from '../../use-layout-behaviors';
+
+export const Switcher = React.forwardRef(function Switcher(
+  {
+    gap,
+    columnGap,
+    rowGap,
+    limit,
+    revert,
+    threshold,
+    alignItems,
+    stairs,
+    stairsUp,
+    containerType,
+    responsiveContext,
+    fluidReference, // @deprecated Kept for backward compatibility. Use responsiveContext on an ancestor instead.
+    style,
+    ...props
+  },
+  forwardedRef,
+) {
+  const layoutRef = useLayoutBehaviors({ stairs: '' !== (stairs ?? '') }, forwardedRef);
   style = {
     ...style,
     '--unitone--threshold': '' !== threshold ? threshold : undefined,
@@ -40,8 +47,10 @@ export const Switcher = ({
         .join(' ')}
       style={style}
       {...props}
+      ref={layoutRef}
+      data-unitone-react-layout=""
     >
       {props.children}
     </div>
   );
-};
+});

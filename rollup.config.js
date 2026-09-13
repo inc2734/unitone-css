@@ -5,12 +5,24 @@ import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import terser from '@rollup/plugin-terser';
 
+const clientPrimitives = [
+  'marquee',
+  'stack',
+  'cluster',
+  'with-sidebar',
+  'responsive-grid',
+  'switcher',
+  'vertical-writing',
+];
+const isClientEntry = (input) =>
+  clientPrimitives.some((name) => input === `src/layout-primitives/${name}/react.jsx`);
+
 const createConfig = ({ input, file, external = [], exports }) => ({
   input,
   output: {
     file,
     format: 'cjs',
-    ...(input === 'src/layout-primitives/marquee/react.jsx' ? { banner: '"use client";' } : {}),
+    ...(isClientEntry(input) ? { banner: '"use client";' } : {}),
     ...(exports ? { exports } : {}),
   },
   external,
@@ -26,11 +38,7 @@ const createConfig = ({ input, file, external = [], exports }) => ({
       requireReturnsDefault: 'esmExternals',
       extensions: ['.js', '.jsx'],
     }),
-    terser(
-      input === 'src/layout-primitives/marquee/react.jsx'
-        ? { compress: { directives: false } }
-        : {},
-    ),
+    terser(isClientEntry(input) ? { compress: { directives: false } } : {}),
   ],
 });
 

@@ -1,22 +1,29 @@
-import React from 'react';
+'use client';
 
-export const WithSidebar = ({
-  gap,
-  columnGap,
-  rowGap,
-  contentMinWidth,
-  revert,
-  sidebar,
-  sidebarWidth,
-  alignItems,
-  overflow,
-  divider,
-  dividerWidth,
-  dividerStyle,
-  dividerColor,
-  style,
-  ...props
-}) => {
+import React from 'react';
+import { useLayoutBehaviors } from '../../use-layout-behaviors';
+
+export const WithSidebar = React.forwardRef(function WithSidebar(
+  {
+    gap,
+    columnGap,
+    rowGap,
+    contentMinWidth,
+    revert,
+    sidebar,
+    sidebarWidth,
+    alignItems,
+    overflow,
+    divider,
+    dividerWidth,
+    dividerStyle,
+    dividerColor,
+    style,
+    ...props
+  },
+  forwardedRef,
+) {
+  const layoutRef = useLayoutBehaviors({ divider: '' !== (divider ?? '') }, forwardedRef);
   style = {
     ...style,
     '--unitone--sidebar-width': '' !== sidebarWidth ? sidebarWidth : undefined,
@@ -43,8 +50,10 @@ export const WithSidebar = ({
         .join(' ')}
       style={style}
       {...props}
+      ref={layoutRef}
+      data-unitone-react-layout=""
     >
       {props.children}
     </div>
   );
-};
+});

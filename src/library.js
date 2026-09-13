@@ -1,3 +1,4 @@
+import { requestReactLayoutRefresh } from './layout-behavior-state';
 import { createObserverScope } from './observer-scope';
 
 import {
@@ -164,9 +165,17 @@ const createScheduledTargetCallback = (target, callback, scope) => {
  * @param {(target: Element) => void} callback Callback to run.
  * @param {ReturnType<typeof createObserverScope>} scope Observer lifetime.
  * @param {{ attributeFilter: string[], shouldApply: (entry: MutationRecord) => boolean }} [attributes]
+ * @param {(entries: MutationRecord[]) => boolean} [shouldApplyChildList] Filters temporary children.
  * @returns {void}
  */
-const observeLayoutChildren = (target, resizeObserver, callback, scope, attributes) => {
+const observeLayoutChildren = (
+  target,
+  resizeObserver,
+  callback,
+  scope,
+  attributes,
+  shouldApplyChildList,
+) => {
   const observedChildren = new Set();
   const attributeObserver = attributes
     ? new MutationObserver((entries) => {
@@ -213,9 +222,9 @@ const observeLayoutChildren = (target, resizeObserver, callback, scope, attribut
   createMutationObserver(
     target,
     { childList: true },
-    () => {
+    (entries) => {
       syncChildren();
-      callback(target);
+      if (!shouldApplyChildList || shouldApplyChildList(entries)) callback(target);
     },
     scope,
   );
@@ -230,14 +239,21 @@ const observeLayoutChildren = (target, resizeObserver, callback, scope, attribut
  *   getResizeValue?: (entry: ResizeObserverEntry) => unknown,
  *   observeDirectChildrenResize?: boolean,
  *   targetMutation?: { options: MutationObserverInit, shouldApply: (entries: MutationRecord[]) => boolean },
- *   directChildMutation?: { attributeFilter: string[], shouldApply: (entry: MutationRecord) => boolean }
+ *   directChildMutation?: { attributeFilter: string[], shouldApply: (entry: MutationRecord) => boolean },
+ *   shouldApplyChildList?: (entries: MutationRecord[]) => boolean
  * }} [options]
  * @returns {() => void} Stops observation and cancels queued work.
  */
 const createLayoutObserver = (
   target,
   apply,
-  { getResizeValue, observeDirectChildrenResize = false, targetMutation, directChildMutation } = {},
+  {
+    getResizeValue,
+    observeDirectChildrenResize = false,
+    targetMutation,
+    directChildMutation,
+    shouldApplyChildList,
+  } = {},
 ) => {
   const scope = createObserverScope(target);
   const shouldObserveIntersection = 'undefined' !== typeof IntersectionObserver;
@@ -272,7 +288,14 @@ const createLayoutObserver = (
 
   const resizeObserver = createResizeObserver(target, scheduleApply, scope, getResizeValue);
   if (observeDirectChildrenResize) {
-    observeLayoutChildren(target, resizeObserver, scheduleApply, scope, directChildMutation);
+    observeLayoutChildren(
+      target,
+      resizeObserver,
+      scheduleApply,
+      scope,
+      directChildMutation,
+      shouldApplyChildList,
+    );
   }
 
   if (shouldObserveIntersection) {
@@ -305,12 +328,11 @@ const createLayoutObserver = (
     runApply();
   }
 
-  return scope.dispose;
+  // Keep the public callable disposer; React also uses its internal refresh operation.
+  return Object.assign(scope.dispose, { refresh: runApply });
 };
 
 const getBorderBoxInlineSize = (entry) => entry.borderBoxSize?.[0].inlineSize;
-
-const getContentRectWidth = (entry) => parseInt(entry.contentRect?.width);
 
 const getElementStyle = (element) =>
   (element.ownerDocument.defaultView ?? window).getComputedStyle(element);
@@ -427,7 +449,7 @@ export function debounce(fn, delay) {
  * @param {Element} target Target element.
  * @returns {void}
  */
-export const setDividerLinewrap = (target) => {
+const updateDividerLinewrap = (target) => {
   const children = Array.from(target?.children ?? []);
   const currentLayoutArray = withoutLayoutTokens(getLayoutTokens(target), [
     'divider:initialized',
@@ -525,7 +547,23 @@ export const setDividerLinewrap = (target) => {
 };
 
 const withoutAttributeTokens = (value, ignoredTokens) =>
-  withoutLayoutTokens((value ?? '').split(' '), ignoredTokens).join(' ');
+  withoutLayoutTokens((value ?? '').split(/\s+/).filter(Boolean), ignoredTokens)
+    .sort()
+    .join(' ');
+
+const hasChangedAttribute = (entry) => {
+  const current = entry.target.getAttribute(entry.attributeName);
+  // Behaviors may append their tokens in different orders on the same element.
+  if (['data-unitone-layout', 'class'].includes(entry.attributeName)) {
+    return withoutAttributeTokens(current, []) !== withoutAttributeTokens(entry.oldValue, []);
+  }
+  return (current ?? '') !== (entry.oldValue ?? '');
+};
+
+/** Refreshes the layout, deferring React-managed targets to their component. */
+export const setDividerLinewrap = (target) => {
+  if (!requestReactLayoutRefresh(target)) updateDividerLinewrap(target);
+};
 
 /**
  * Creates the observer bundle for divider layouts.
@@ -535,12 +573,13 @@ const withoutAttributeTokens = (value, ignoredTokens) =>
  * @returns {() => void} Stops observation and cancels queued work.
  */
 export const dividersResizeObserver = (target, args = {}) => {
+  if (!args.reactOwned && requestReactLayoutRefresh(target)) return () => {};
   const shouldRecalculateByAttributeMutation = (entry) => {
     const { attributeName, oldValue } = entry;
     const currentValue = entry.target.getAttribute(attributeName);
     const ignoredTokens =
       layoutAttributeName === attributeName
-        ? [...(args?.ignore?.layout ?? []), 'divider:initialized', '-bol', '-linewrap', '-stack']
+        ? [...(args?.ignore?.layout ?? [])]
         : 'class' === attributeName
           ? [...(args?.ignore?.className ?? [])]
           : null;
@@ -555,7 +594,7 @@ export const dividersResizeObserver = (target, args = {}) => {
     return ['style', 'dir'].includes(attributeName) && (currentValue ?? '') !== (oldValue ?? '');
   };
 
-  return createLayoutObserver(target, setDividerLinewrap, {
+  return createLayoutObserver(target, updateDividerLinewrap, {
     getResizeValue: getBorderBoxInlineSize,
     observeDirectChildrenResize: true,
     targetMutation: {
@@ -583,7 +622,7 @@ export const dividersResizeObserver = (target, args = {}) => {
  * @param {Element} target Target element.
  * @returns {void}
  */
-export const setStairsStep = (target) => {
+const updateStairsStep = (target) => {
   const children = Array.from(target.children);
   const currentLayoutArray = withoutLayoutTokens(getLayoutTokens(target), ['stairs:initialized']);
   setLayoutTokens(target, currentLayoutArray);
@@ -668,15 +707,33 @@ export const setStairsStep = (target) => {
   setLayoutTokens(target, [...currentLayoutArray, 'stairs:initialized']);
 };
 
+/** Refreshes the layout, deferring React-managed targets to their component. */
+export const setStairsStep = (target) => {
+  if (!requestReactLayoutRefresh(target)) updateStairsStep(target);
+};
+
 /**
  * Creates the observer bundle for stairs layouts.
  *
  * @param {Element} target Target element.
  * @returns {() => void} Stops observation and cancels queued work.
  */
-export const stairsResizeObserver = (target) => {
-  return createLayoutObserver(target, setStairsStep, {
+export const stairsResizeObserver = (target, args = {}) => {
+  if (!args.reactOwned && requestReactLayoutRefresh(target)) return () => {};
+  return createLayoutObserver(target, updateStairsStep, {
     observeDirectChildrenResize: true,
+    targetMutation: {
+      options: {
+        attributes: true,
+        attributeFilter: ['style', 'class', 'dir', 'data-unitone-layout'],
+        attributeOldValue: true,
+      },
+      shouldApply: (entries) => hasAttributeMutation(entries, hasChangedAttribute),
+    },
+    directChildMutation: {
+      attributeFilter: ['style', 'class', 'dir', 'data-unitone-layout'],
+      shouldApply: hasChangedAttribute,
+    },
   });
 };
 
@@ -697,10 +754,9 @@ const isIgnoredVerticalWritingMutationNode = (node) =>
  * @returns {boolean} Whether re-application is required.
  */
 const shouldApplyVerticalWritingMutation = (entries) =>
+  hasAttributeMutation(entries, hasChangedAttribute) ||
   entries.some((entry) => {
-    if ('attributes' === entry.type) {
-      return true;
-    }
+    if ('characterData' === entry.type) return true;
 
     if ('childList' !== entry.type) {
       return false;
@@ -805,7 +861,9 @@ const updateColumnCountForVertical = (target, scope) => {
  * @param {Element} target Target element.
  * @returns {void}
  */
-export const setColumnCountForVertical = (target) => updateColumnCountForVertical(target);
+export const setColumnCountForVertical = (target) => {
+  if (!requestReactLayoutRefresh(target)) updateColumnCountForVertical(target);
+};
 
 /**
  * Creates the observer bundle for vertical-writing layouts.
@@ -813,7 +871,8 @@ export const setColumnCountForVertical = (target) => updateColumnCountForVertica
  * @param {Element} target Target element.
  * @returns {() => void} Stops observation and cancels queued work.
  */
-export const verticalsResizeObserver = (target) => {
+export const verticalsResizeObserver = (target, args = {}) => {
+  if (!args.reactOwned && requestReactLayoutRefresh(target)) return () => {};
   const applyVerticalColumns = (element, scope) => {
     if (element.parentNode?.style) {
       element.parentNode.style.height = '';
@@ -823,11 +882,14 @@ export const verticalsResizeObserver = (target) => {
   };
 
   return createLayoutObserver(target, applyVerticalColumns, {
-    getResizeValue: getContentRectWidth,
+    observeDirectChildrenResize: true,
+    shouldApplyChildList: shouldApplyVerticalWritingMutation,
     targetMutation: {
       options: {
         attributes: true,
-        attributeFilter: ['style'],
+        attributeFilter: ['style', 'class', 'dir', 'data-unitone-layout'],
+        attributeOldValue: true,
+        characterData: true,
         childList: true,
         subtree: true,
       },

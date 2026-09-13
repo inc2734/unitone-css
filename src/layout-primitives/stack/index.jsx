@@ -1,20 +1,27 @@
-import React from 'react';
+'use client';
 
-export const Stack = ({
-  gap,
-  negative,
-  revert,
-  divider,
-  dividerWidth,
-  dividerStyle,
-  dividerColor,
-  containerType,
-  responsiveContext,
-  fluidReference, // @deprecated Kept for backward compatibility. Use responsiveContext on an ancestor instead.
-  tagName = 'div',
-  style,
-  ...props
-}) => {
+import React from 'react';
+import { useLayoutBehaviors } from '../../use-layout-behaviors';
+
+export const Stack = React.forwardRef(function Stack(
+  {
+    gap,
+    negative,
+    revert,
+    divider,
+    dividerWidth,
+    dividerStyle,
+    dividerColor,
+    containerType,
+    responsiveContext,
+    fluidReference, // @deprecated Kept for backward compatibility. Use responsiveContext on an ancestor instead.
+    tagName = 'div',
+    style,
+    ...props
+  },
+  forwardedRef,
+) {
+  const layoutRef = useLayoutBehaviors({ divider: '' !== (divider ?? '') }, forwardedRef);
   const Tag = tagName;
 
   style = {
@@ -40,8 +47,10 @@ export const Stack = ({
         .join(' ')}
       style={style}
       {...props}
+      ref={layoutRef}
+      data-unitone-react-layout=""
     >
       {props.children}
     </Tag>
   );
-};
+});

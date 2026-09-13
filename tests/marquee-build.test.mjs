@@ -41,3 +41,50 @@ test('the published marquee entry preserves its client directive and renders wit
     await bundle.close();
   }
 });
+
+for (const name of [
+  'stack',
+  'cluster',
+  'with-sidebar',
+  'responsive-grid',
+  'switcher',
+  'vertical-writing',
+]) {
+  test(`the ${name} entry preserves its client boundary and supports SSR`, async () => {
+    const { output: outputOptions, ...inputOptions } = configs.find(
+      ({ input }) => input === `src/layout-primitives/${name}/react.jsx`,
+    );
+    const bundle = await rollup({
+      ...inputOptions,
+      onwarn(warning, warn) {
+        if (warning.code !== 'MODULE_LEVEL_DIRECTIVE') warn(warning);
+      },
+    });
+    try {
+      const { output } = await bundle.generate(outputOptions);
+      assert.match(output[0].code, /^['"]use client['"];\s*['"]use strict['"];/);
+      const module = { exports: {} };
+      vm.runInNewContext(output[0].code, {
+        module,
+        exports: module.exports,
+        require: createRequire(import.meta.url),
+      });
+      const Component = Object.values(module.exports)[0];
+      const html = renderToString(
+        React.createElement(
+          Component,
+          name === 'vertical-writing'
+            ? {}
+            : name === 'switcher'
+              ? { stairs: 1 }
+              : { divider: 'divide' },
+          React.createElement('p', null, 'Content'),
+        ),
+      );
+      assert(html.includes('data-unitone-react-layout=""'));
+      assert(!html.includes(':initialized'));
+    } finally {
+      await bundle.close();
+    }
+  });
+}

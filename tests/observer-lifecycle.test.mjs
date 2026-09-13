@@ -182,3 +182,36 @@ test('cleanup cancels an observer callback queued before a synchronous reinserti
     env.observers.some((observer) => observer !== childObserver && observer.targets.has(target)),
   );
 });
+
+test('attribute changes activate, stop and reset an existing target without duplicate initialization', () => {
+  const env = createEnvironment();
+  const target = env.element();
+  target.fixture = false;
+  let initialized = 0;
+  let disposed = 0;
+  let reset = 0;
+  env.registerLayoutInitializer({
+    key: 'attribute-fixture',
+    selector: '.fixture',
+    initialize: () => {
+      initialized++;
+      return () => disposed++;
+    },
+    reset: () => reset++,
+  });
+  const observer = env.observers.find((item) => item.options.get(env.document.body)?.subtree);
+  const notify = () =>
+    observer.callback([{ type: 'attributes', target, attributeName: 'data-unitone-layout' }]);
+  target.fixture = true;
+  notify();
+  notify();
+  assert.equal(initialized, 1);
+  target.fixture = false;
+  notify();
+  notify();
+  assert.equal(disposed, 1);
+  assert.equal(reset, 1);
+  target.fixture = true;
+  notify();
+  assert.equal(initialized, 2);
+});

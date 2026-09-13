@@ -1,8 +1,10 @@
+import { resetLayoutBehavior } from '../../layout-behavior-state';
 import { verticalsResizeObserver } from '../../library';
 import { registerLayoutInitializer } from '../../register-layout-initializer';
 
 registerLayoutInitializer({
   key: 'layout-primitives/vertical-writing',
-  selector: '[data-unitone-layout~="vertical-writing"]',
+  selector: '[data-unitone-layout~="vertical-writing"]:not([data-unitone-react-layout])',
+  reset: (target) => resetLayoutBehavior(target, 'vertical'),
   initialize: verticalsResizeObserver,
 });
