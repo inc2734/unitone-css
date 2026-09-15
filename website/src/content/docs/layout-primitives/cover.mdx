@@ -320,6 +320,47 @@ Min height.
 	</Tabs.Tab>
 </Tabs>
 
+### <Badge>HTML</Badge> -container-type:\{value\} / <Badge>JSX</Badge> containerType=\{value\}
+
+Establishes the Cover as a query container for its descendants.
+
+Currently supported values are:
+
+- `inline-size`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="cover -container-type:inline-size" style="--unitone--min-height: 240px">
+			<div data-unitone-layout="cover__content">...</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { Cover, CoverContent } from '@inc2734/unitone-css/layout-primitives/cover/react';
+
+		<Cover containerType="inline-size" minHeight="240px">
+			<CoverContent>...</CoverContent>
+		</Cover>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<Cover containerType="inline-size" minHeight="240px">
+				<CoverContent>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit
+				</CoverContent>
+			</Cover>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -responsive-context:\{value\} / <Badge>JSX</Badge> responsiveContext=\{value\}
+
+Sets the responsive context for descendants to `container`, the only supported value. It does not affect the Cover element itself.
+Use `responsiveContext="container"` together with `containerType="inline-size"` on this element (HTML: `-responsive-context:container -container-type:inline-size`). The default is viewport-based behavior, and there is no viewport override inside a container context. The context becomes active only when both markers are on the same element. If `containerType="inline-size"` is omitted, `responsiveContext="container"` is ignored and the existing responsive context remains active. See [Responsive context utilities](/utilities#responsive-context) for examples.
+
 ### -valign:\{value\}
 
 You can specify the vertical alignment of a child element.

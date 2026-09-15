@@ -535,3 +535,47 @@ Overflow.
 		</PreviewConainer>
 	</Tabs.Tab>
 </Tabs>
+
+### <Badge>HTML</Badge> -container-type:\{value\} / <Badge>JSX</Badge> containerType=\{value\}
+
+Establishes the With Sidebar as a query container for its descendants.
+
+Currently supported values are:
+
+- `inline-size`
+
+<Tabs items={['HTML', 'JSX', 'Preview']}>
+	<Tabs.Tab>
+		```html
+		<div data-unitone-layout="with-sidebar -container-type:inline-size">
+			<div>Main content</div>
+			<div>Sidebar</div>
+		</div>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		```jsx
+		import { WithSidebar } from '@inc2734/unitone-css/layout-primitives/with-sidebar/react';
+
+		<WithSidebar containerType="inline-size">
+			<div>Main content</div>
+			<div>Sidebar</div>
+		</WithSidebar>
+		```
+	</Tabs.Tab>
+	<Tabs.Tab>
+		<PreviewConainer>
+			<WithSidebar containerType="inline-size">
+				<div>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit
+				</div>
+				<div>Sidebar</div>
+			</WithSidebar>
+		</PreviewConainer>
+	</Tabs.Tab>
+</Tabs>
+
+### <Badge>HTML</Badge> -responsive-context:\{value\} / <Badge>JSX</Badge> responsiveContext=\{value\}
+
+Sets the responsive context for descendants to `container`, the only supported value. It does not affect the With Sidebar element itself.
+Use `responsiveContext="container"` together with `containerType="inline-size"` on this element (HTML: `-responsive-context:container -container-type:inline-size`). The default is viewport-based behavior, and there is no viewport override inside a container context. The context becomes active only when both markers are on the same element. If `containerType="inline-size"` is omitted, `responsiveContext="container"` is ignored and the existing responsive context remains active. See [Responsive context utilities](/utilities#responsive-context) for examples.

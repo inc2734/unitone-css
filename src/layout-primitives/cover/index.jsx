@@ -10,6 +10,8 @@ export const Cover = ({
   paddingBottom,
   paddingLeft,
   noPadding,
+  containerType,
+  responsiveContext,
   style,
   ...props
 }) => {
@@ -29,6 +31,8 @@ export const Cover = ({
         '' !== (paddingRight ?? '') ? `-padding-right:${paddingRight}` : undefined,
         '' !== (paddingBottom ?? '') ? `-padding-bottom:${paddingBottom}` : undefined,
         '' !== (paddingLeft ?? '') ? `-padding-left:${paddingLeft}` : undefined,
+        '' !== (containerType ?? '') ? `-container-type:${containerType}` : undefined,
+        'container' === responsiveContext ? '-responsive-context:container' : undefined,
       ]
         .filter(Boolean)
         .join(' ')}

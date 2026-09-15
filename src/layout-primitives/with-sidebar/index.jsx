@@ -18,6 +18,8 @@ export const WithSidebar = React.forwardRef(function WithSidebar(
     dividerWidth,
     dividerStyle,
     dividerColor,
+    containerType,
+    responsiveContext,
     style,
     ...props
   },
@@ -45,6 +47,8 @@ export const WithSidebar = React.forwardRef(function WithSidebar(
         '' !== (alignItems ?? '') ? `-align-items:${alignItems}` : undefined,
         '' !== (overflow ?? '') ? `-overflow:${overflow}` : undefined,
         '' !== (divider ?? '') ? `-divider:${divider}` : undefined,
+        '' !== (containerType ?? '') ? `-container-type:${containerType}` : undefined,
+        'container' === responsiveContext ? '-responsive-context:container' : undefined,
       ]
         .filter(Boolean)
         .join(' ')}
