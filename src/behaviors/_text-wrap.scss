@@ -1,0 +1,12 @@
+@mixin text-wrap() {
+  @each $value in (
+    wrap,
+    nowrap,
+    balance,
+    pretty
+  ) {
+    [data-unitone-layout~="-text-wrap\:#{ $value }"] {
+      text-wrap: #{ $value } !important;
+    }
+  }
+}

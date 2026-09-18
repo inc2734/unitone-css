@@ -213,9 +213,46 @@ or
 	</Decorator>
 </PreviewConainer>
 
+## Text wrapping
+
+Use `-text-wrap:*` to control text wrapping with the CSS `text-wrap` property. It is available as both a behavior in `data-unitone-layout` and a utility class.
+
+| Value | Effect |
+| --- | --- |
+| `wrap` | Wrap text normally when it reaches the available width. |
+| `nowrap` | Disable automatic wrapping. Explicit line breaks such as `br` still apply. |
+| `balance` | Adjust line breaks to make line lengths more even, for example in headings. |
+| `pretty` | Favor better line breaks over speed, for example to avoid a very short last line in a paragraph. |
+
+The exact line breaks produced by `balance` and `pretty` depend on the browser. See the [CSS text wrapping specification](https://drafts.csswg.org/css-text-4/#text-wrap) for details.
+
+Use the behavior when specifying wrapping through `data-unitone-layout`:
+
+```html
+<h2 data-unitone-layout="-text-wrap:balance">
+	A heading with more evenly balanced lines
+</h2>
+```
+
+Use the utility class on plain text elements:
+
+```html
+<p class="-text-wrap:pretty">
+	A paragraph whose line breaks are adjusted for readability.
+</p>
+```
+
+Both forms support all four values. The behavior sets `text-wrap` with `!important`; the utility sets it without `!important`.
+
+Headings inside the `text` primitive already use `text-wrap: pretty`. Apply `-text-wrap:*` directly to a heading to override that default.
+
 ## Auto line breaks
 
-Use `overflow-wrap: anywhere` + `word-break: keep-all` for automatic line breaks. Use `wbr` to indicate a line break at an arbitrary position.
+Use `-auto-phrase` for automatic line breaks. It combines `overflow-wrap: anywhere` with `word-break: auto-phrase` to keep natural phrases together where supported. Browsers that do not support the `auto-phrase` value fall back to `word-break: keep-all`.
+
+The behavior declares `keep-all` before `auto-phrase`, so browsers that do not recognize the latter ignore it. If a browser recognizes `auto-phrase` but cannot detect phrase boundaries for the content language, it behaves like `normal`, as defined in the [CSS specification](https://www.w3.org/TR/css-text-4/#valdef-word-break-auto-phrase).
+
+Use `wbr` to indicate a line break opportunity at an arbitrary position.
 
 ```html
 <p data-unitone-layout="-auto-phrase">

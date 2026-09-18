@@ -23,6 +23,7 @@
 @use './responsive-context';
 @use './stairs';
 @use './text-orientation';
+@use './text-wrap';
 
 @include align-content.align-content();
 @include align-items.align-items();
@@ -49,3 +50,4 @@
 @include responsive-context.responsive-context();
 @include stairs.stairs();
 @include text-orientation.text-orientation();
+@include text-wrap.text-wrap();
