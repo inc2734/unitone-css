@@ -239,6 +239,18 @@ $grid-rows: 7;
   }
 }
 
+// Resolve bounds on the consuming element while inheriting the scale and
+// interpolation from the active reference boundary. Bounds never alter the slope.
+@mixin fluid-font-size-tokens() {
+  @each $level, $name in $font-sizes {
+    --unitone--font-size-#{ $name }-fluid: clamp(
+      var(--unitone--fluid-typography-min-length, calc(1rem * var(--unitone--_fs-#{ $name }-min))),
+      var(--unitone--_fs-#{ $name }-prf),
+      var(--unitone--fluid-typography-max-length, calc(1rem * var(--unitone--_fs-#{ $name }-max)))
+    );
+  }
+}
+
 @mixin font-size-tokens(
   $context: 'viewport',
   $width: null,
@@ -256,10 +268,21 @@ $grid-rows: 7;
   }
 
   @each $level, $name in $font-sizes {
-    $min: _min-font-size($level);
-    $max: _max-font-size($level);
-    $slope: _font-size-slope($min, $max);
+    $min: var(--unitone--_fs-#{ $name }-min);
+    $max: var(--unitone--_fs-#{ $name }-max);
+    $slope: var(--unitone--_fs-#{ $name }-slp);
+    $intercept: calc((-1 * $min-breakpoint) * $slope + $min);
+    $preferred-font-size: calc(($intercept * 1rem) + ($slope * $width));
 
-    --unitone--font-size-#{ $name }-fluid: #{ _fluid-font-size($min, $max, $slope, $width) };
+    // Share unitless scale values instead of expanding them in every expression.
+    --unitone--_fs-#{ $name }-min: #{ _min-font-size($level) };
+    --unitone--_fs-#{ $name }-max: #{ _max-font-size($level) };
+    --unitone--_fs-#{ $name }-slp: #{ _font-size-slope($min, $max) };
+
+    // Capture registered container measurements here: they do not inherit.
+    // Keep the preferred value unclamped so local bounds can expand the range.
+    --unitone--_fs-#{ $name }-prf: #{ $preferred-font-size };
   }
+
+  @include fluid-font-size-tokens();
 }

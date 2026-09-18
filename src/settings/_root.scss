@@ -71,6 +71,10 @@
   --unitone--result--1rem-px: calc(tan(atan2(var(--unitone--property--1rem), 1px)));
 
   @include variables.line-height();
+
+  // Public fluid tokens must resolve local bounds before they are inherited.
+  // Their interpolation inputs still come from the root or a container boundary.
+  @include variables.fluid-font-size-tokens();
 }
 
 /**

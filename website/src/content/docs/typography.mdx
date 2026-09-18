@@ -130,6 +130,33 @@ In custom CSS, use the fluid token directly.
 }
 ```
 
+### Custom minimum and maximum sizes
+
+Set `--unitone--fluid-typography-min-length` and/or `--unitone--fluid-typography-max-length` on the element that uses fluid typography. These bounds work with attributes, utility classes, and direct fluid-token references.
+
+```html
+<div
+	data-unitone-layout="-font-size:3xl -fluid-typography"
+	style="--unitone--fluid-typography-min-length:28px"
+>
+	Text
+</div>
+```
+
+```css
+.example {
+	--unitone--fluid-typography-min-length: 28px;
+	--unitone--fluid-typography-max-length: 30px;
+	font-size: var(--unitone--font-size-3xl-fluid);
+}
+```
+
+With a 16px root font size and a 400px viewport, these examples render at 28px. The bounds only change the limits of `clamp()`; they do not change the interpolation slope. Omitted bounds use the original scale limits. Bounds inherit from ancestors, can be overridden on descendants, and update when their declarations change or are removed.
+
+The active reference stays the same: the viewport by default, or the width captured at a `responsiveContext` or legacy `fluidReference` boundary. Deep descendants keep that reference until another boundary changes it. Bounds are evaluated on each element, including when it directly references a public `--unitone--font-size-*-fluid` token.
+
+Fluid tokens are now declared on every element to support local bounds. If custom CSS replaces a public fluid token itself, apply that replacement to the consuming elements; a replacement declared only on an ancestor no longer overrides their local tokens. Static font-size tokens retain their existing inheritance.
+
 <PreviewConainer>
 	<Stack>
 		<p className="-font-size:2xs -fluid-typography">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>

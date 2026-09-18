@@ -142,7 +142,7 @@ Both markers must be on the same element for the context to become active. The f
 </div>
 ```
 
-The context applies only to descendants, not to the element carrying it. Use a wrapper when the target element itself also needs to switch contexts. Fluid tokens are recalculated for the direct children and inherited by their descendants. Static tokens keep their inherited values.
+The context applies only to descendants, not to the element carrying it. Use a wrapper when the target element itself also needs to switch contexts. Fluid typography captures its scale and interpolation inputs on the direct children and inherits those inputs through deeper descendants; each element applies its own minimum and maximum bounds. Fluid spacing, padding, and gutter tokens are recalculated for the direct children and inherited by their descendants. Static tokens keep their inherited values.
 
 Use the equivalent `data-unitone-layout` tokens on a supported layout primitive:
 

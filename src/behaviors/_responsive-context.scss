@@ -46,7 +46,8 @@
    * Without an eligible query container, 100cqw uses 100svw, and container
    * size queries do not match. There is no automatic media-query fallback.
    */
-  // Recalculate fluid values at each boundary; static tokens remain inherited.
+  // Capture interpolation inputs at each boundary; descendants reapply their
+  // own typography bounds without changing this reference. Static tokens inherit.
   :is(
     [data-unitone-layout~="-responsive-context:container"],
     .-responsive-context\:container
