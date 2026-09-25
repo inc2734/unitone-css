@@ -11,8 +11,8 @@
 	--unitone--texture-border-top-right-radius: var(--unitone--texture-border-radius);
 	--unitone--texture-border-bottom-left-radius: var(--unitone--texture-border-radius);
 	--unitone--texture-border-bottom-right-radius: var(--unitone--texture-border-radius);
-  --unitone--texture-band-top-size: 0px;
-  --unitone--texture-band-bottom-size: 0px;
+  --unitone--texture-band-top-size: 0px; // Deprecated.
+  --unitone--texture-band-bottom-size: 0px; // Deprecated.
 
 	position: relative;
 
@@ -230,35 +230,55 @@
 	}
 
   &[data-unitone-layout~="-texture\:slash-shape"] {
-    --unitone--texture-band-top-size: 25%;
-    --unitone--texture-band-bottom-size: 25%;
+    --unitone--texture-band-top-size: 25%; // Deprecated.
+    --unitone--texture-band-bottom-size: 25%; // Deprecated.
+    --unitone--texture-shape-top-left-y: calc(100% - var(--unitone--texture-band-bottom-size));
+    --unitone--texture-shape-bottom-left-y: 100%;
+    --unitone--texture-shape-top-right-y: 0%;
+    --unitone--texture-shape-bottom-right-y: var(--unitone--texture-band-top-size);
 
     &::before {
       inset: 0 !important;
       background-color: var(--unitone--texture-color);
 		  border-radius: 0 !important;
       clip-path: polygon(
-        0 100%,
-        0 min(100%, calc(100% - var(--unitone--texture-band-bottom-size))),
-        100% 0,
-        100% max(0%, var(--unitone--texture-band-top-size))
+        0 min(
+          var(--unitone--texture-shape-top-left-y),
+          var(--unitone--texture-shape-bottom-left-y)
+        ),
+        100% min(
+          var(--unitone--texture-shape-top-right-y, 0%),
+          var(--unitone--texture-shape-bottom-right-y)
+        ),
+        100% var(--unitone--texture-shape-bottom-right-y),
+        0 var(--unitone--texture-shape-bottom-left-y)
       );
     }
 	}
 
   &[data-unitone-layout~="-texture\:backslash-shape"] {
-    --unitone--texture-band-top-size: 25%;
-    --unitone--texture-band-bottom-size: 25%;
+    --unitone--texture-band-top-size: 25%; // Deprecated.
+    --unitone--texture-band-bottom-size: 25%; // Deprecated.
+    --unitone--texture-shape-top-left-y: 0%;
+    --unitone--texture-shape-bottom-left-y: var(--unitone--texture-band-top-size);
+    --unitone--texture-shape-top-right-y: calc(100% - var(--unitone--texture-band-bottom-size));
+    --unitone--texture-shape-bottom-right-y: 100%;
 
     &::before {
       inset: 0 !important;
       background-color: var(--unitone--texture-color);
 		  border-radius: 0 !important;
       clip-path: polygon(
-        min(0%, calc(-1 * var(--unitone--texture-band-top-size))) 0%,
-        100% 100%,
-        100% min(100%, calc(100% - var(--unitone--texture-band-bottom-size))),
-        0% 0%
+        0 min(
+          var(--unitone--texture-shape-top-left-y),
+          var(--unitone--texture-shape-bottom-left-y)
+        ),
+        100% min(
+          var(--unitone--texture-shape-top-right-y),
+          var(--unitone--texture-shape-bottom-right-y)
+        ),
+        100% var(--unitone--texture-shape-bottom-right-y),
+        0 var(--unitone--texture-shape-bottom-left-y)
       );
     }
 	}

@@ -16,6 +16,10 @@ export const Texture = ({
   textureBorderBottomRightRadius,
   textureBandTopSize,
   textureBandBottomSize,
+  textureShapeTopLeftY,
+  textureShapeBottomLeftY,
+  textureShapeTopRightY,
+  textureShapeBottomRightY,
   style,
   ...props
 }) => {
@@ -41,6 +45,14 @@ export const Texture = ({
     '--unitone--texture-band-top-size': '' !== textureBandTopSize ? textureBandTopSize : undefined,
     '--unitone--texture-band-bottom-size':
       '' !== textureBandBottomSize ? textureBandBottomSize : undefined,
+    '--unitone--texture-shape-top-left-y':
+      '' !== textureShapeTopLeftY ? textureShapeTopLeftY : undefined,
+    '--unitone--texture-shape-bottom-left-y':
+      '' !== textureShapeBottomLeftY ? textureShapeBottomLeftY : undefined,
+    '--unitone--texture-shape-top-right-y':
+      '' !== textureShapeTopRightY ? textureShapeTopRightY : undefined,
+    '--unitone--texture-shape-bottom-right-y':
+      '' !== textureShapeBottomRightY ? textureShapeBottomRightY : undefined,
   };
 
   return (
