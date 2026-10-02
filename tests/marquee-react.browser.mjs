@@ -57,6 +57,12 @@ test(
     await bundle.close();
     const browser = await launchChrome();
     t.after(() => browser.close());
+    const setMotion = async (value) => {
+      await browser.command('Emulation.setEmulatedMedia', {
+        features: [{ name: 'prefers-reduced-motion', value }],
+      });
+    };
+    await setMotion('no-preference');
     await browser.command('Emulation.setDeviceMetricsOverride', {
       width: 1600,
       height: 1000,
@@ -272,6 +278,173 @@ test(
         assert((await run('metrics()')).inaccessible);
         await run('stopDirectObserver(); stopDirectObserver(); setMarquee(view()); await settle()');
         near((await run('metrics()')).distance, 1480);
+      },
+    );
+
+    await t.test(
+      'initial reduced motion keeps React-owned copies and the same row layout',
+      async () => {
+        await setMotion('reduce');
+        try {
+          for (const dir of ['ltr', 'rtl']) {
+            for (const reverse of [false, true]) {
+              await run(
+                `mount(h(Marquee, { dir: '${dir}', reverse: ${reverse}, style: { width: 1200, '--unitone--gap': '10px' }, itemWidth: '100px' }, h(Item, { id: 'a', label: 'A' })))`,
+              );
+              const result = await run('metrics()');
+              assert.equal(result.copies, 11);
+              assert(result.inaccessible);
+              near(result.width, 1200);
+              near(result.widths[0], 100);
+              near(result.distance, 110);
+              near(result.boundary, 10);
+              assert.equal(await run('parts().marquee.getAnimations().length'), 0);
+              assert.equal(await run('getComputedStyle(parts().marquee).translate'), 'none');
+              assert.equal(await run('getComputedStyle(view()).scrollbarWidth'), 'none');
+              near(await run('view().getBoundingClientRect().height'), 40);
+              const position = await run('parts().originals[0].getBoundingClientRect().left');
+              await run('settle()');
+              near(await run('parts().originals[0].getBoundingClientRect().left'), position);
+            }
+          }
+        } finally {
+          await setMotion('no-preference');
+          await run('settle()');
+        }
+      },
+    );
+
+    await t.test(
+      'motion changes preserve copies, original state and access to all content',
+      async () => {
+        await run(`
+        await mount(h(App));
+        flushSync(() => setSettings({ reverse: true, pauseOnHover: true, duration: '5s' }));
+        await settle();
+        window.motionOriginals = parts().originals;
+        window.motionCopies = parts().copies;
+        motionOriginals[0].click();
+        await settle();
+      `);
+        for (let cycle = 0; cycle < 2; cycle++) {
+          await run(
+            'parts().marquee.getAnimations()[0].pause(); parts().marquee.getAnimations()[0].currentTime = 2500',
+          );
+          assert(
+            Math.abs(await run('parseFloat(getComputedStyle(parts().marquee).translate)')) > 0,
+          );
+          await setMotion('reduce');
+          await run('settle()');
+          assert.equal(await run('parts().marquee.getAnimations().length'), 0);
+          assert.equal(await run('getComputedStyle(parts().marquee).translate'), 'none');
+          near(await run('view().scrollLeft'), 0);
+          near(
+            await run(
+              'motionOriginals[0].getBoundingClientRect().left - view().getBoundingClientRect().left',
+            ),
+            0,
+          );
+          assert(
+            await run(
+              'parts().originals.every((item, i) => item === motionOriginals[i]) && parts().copies.every((item, i) => item === motionCopies[i])',
+            ),
+          );
+          assert.equal(await run('motionOriginals[0].textContent'), 'A:1');
+          await run('view().scrollLeft = 270; await settle()');
+          near(await run('view().scrollLeft'), 270);
+          assert(
+            await run(`
+          motionOriginals.at(-1).getBoundingClientRect().left >= view().getBoundingClientRect().left - 1 &&
+          motionOriginals.at(-1).getBoundingClientRect().right <= view().getBoundingClientRect().right + 1
+        `),
+          );
+          assert((await run('metrics()')).inaccessible);
+          await setMotion('no-preference');
+          await run('settle()');
+          near(await run('view().scrollLeft'), 0);
+          assert.equal(await run('parts().marquee.getAnimations().length'), 1);
+          assert.equal(
+            await run('parts().marquee.getAnimations()[0].effect.getComputedTiming().duration'),
+            5000,
+          );
+          assert.equal(
+            await run('getComputedStyle(parts().marquee).animationDirection'),
+            'reverse',
+          );
+          assert.equal(await run('parts().marquee.getAnimations()[0].playState'), 'running');
+        }
+        await browser.command('Input.dispatchMouseEvent', { type: 'mouseMoved', x: 30, y: 20 });
+        await run('settle()');
+        assert.equal(await run('parts().marquee.getAnimations()[0].playState'), 'paused');
+        await browser.command('Input.dispatchMouseEvent', { type: 'mouseMoved', x: 1500, y: 900 });
+        await run('settle()');
+        assert.equal(await run('parts().marquee.getAnimations()[0].playState'), 'running');
+      },
+    );
+
+    await t.test(
+      'reduced motion updates and setting changes preserve input refs, focus and values',
+      async () => {
+        await run(
+          'mount(inputTree()); window.motionInput = inputRef.current; motionInput.value = "edited"',
+        );
+        await setMotion('reduce');
+        await run('settle()');
+        assert.equal(await run('parts().marquee.getAnimations().length'), 0);
+        await run(`
+        view().style.width = '1600px';
+        setMarquee(view());
+        await settle();
+        flushSync(() => root.render(h(React.StrictMode, null, inputTree())));
+        await settle();
+      `);
+        assert(
+          await run(
+            'inputRef.current === motionInput && document.activeElement === motionInput && motionInput.value === "edited"',
+          ),
+        );
+        assert((await run('metrics()')).inaccessible);
+        await setMotion('no-preference');
+        await run('settle()');
+        assert(
+          await run(
+            'inputRef.current === motionInput && document.activeElement === motionInput && motionInput.value === "edited"',
+          ),
+        );
+        assert.equal(await run('parts().marquee.getAnimations()[0].playState'), 'paused');
+      },
+    );
+
+    await t.test(
+      'reduced-motion hydration keeps server originals and renders copies through React',
+      async () => {
+        await setMotion('reduce');
+        await run(`
+        flushSync(() => root.unmount()); window.root = null;
+        document.body.innerHTML = '<div id="root"></div>';
+        window.serverTree = h(React.StrictMode, null, h(App));
+        document.getElementById('root').innerHTML = renderToString(serverTree);
+        window.serverMarkup = document.getElementById('root').innerHTML;
+        window.serverItem = parts().originals[0];
+        window.stopDirectObserver = marqueeResizeObserver(view());
+        await settle();
+      `);
+        assert(await run('document.getElementById("root").innerHTML === serverMarkup'));
+        await run(`
+        window.root = hydrateRoot(document.getElementById('root'), serverTree, { onRecoverableError: error => errors.push(error.message) });
+        await settle();
+      `);
+        assert(await run('parts().originals[0] === serverItem'));
+        assert.equal((await run('metrics()')).copies, 4);
+        assert((await run('metrics()')).inaccessible);
+        assert.equal(await run('parts().marquee.getAnimations().length'), 0);
+        await run('flushSync(() => setList(["d", "a", "e", "c"])); await settle()');
+        assert(await run('parts().originals[1] === serverItem'));
+        assert.deepEqual((await run('metrics()')).copyIds, ['d', 'a', 'e', 'c']);
+        await run('stopDirectObserver(); stopDirectObserver()');
+        await setMotion('no-preference');
+        await run('settle()');
+        assert.equal(await run('parts().marquee.getAnimations().length'), 1);
       },
     );
 

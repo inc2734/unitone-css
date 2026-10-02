@@ -9,6 +9,12 @@ import { launchChrome } from './helpers/chrome.mjs';
 test('marquee item copies and observer integration in Chrome', { timeout: 60000 }, async (t) => {
   const browser = await launchChrome();
   t.after(() => browser.close());
+  const setMotion = async (value) => {
+    await browser.command('Emulation.setEmulatedMedia', {
+      features: [{ name: 'prefers-reduced-motion', value }],
+    });
+  };
+  await setMotion('no-preference');
   await browser.command('Emulation.setDeviceMetricsOverride', {
     width: 1600,
     height: 1000,
@@ -433,6 +439,146 @@ test('marquee item copies and observer integration in Chrome', { timeout: 60000 
     );
     times.forEach((current) => near(current, times[0], 0.01));
   });
+
+  await t.test('initial reduced motion retains static copies and the original layout', async () => {
+    await setMotion('reduce');
+    try {
+      for (const rtl of [false, true]) {
+        for (const reverse of [false, true]) {
+          await run(
+            `fixture({ observe: true, count: 1, itemWidth: '100px', rtl: ${rtl}, reverse: ${reverse} })`,
+          );
+          const result = await run('metrics()');
+          assert.equal(result.copies, 11);
+          assert(result.identities && result.accessible);
+          near(result.widths[0], 100);
+          near(result.distance, 110);
+          near(result.boundary, 10);
+          near(result.height, 40);
+          await run('assertCoverage()');
+          assert.equal(await run('original.getAnimations().length'), 0);
+          assert.equal(await run('getComputedStyle(original).translate'), 'none');
+          assert.equal(await run('getComputedStyle(wrapper).scrollbarWidth'), 'none');
+          const position = await run('items[0].getBoundingClientRect().left');
+          await run('settle()');
+          near(await run('items[0].getBoundingClientRect().left'), position);
+        }
+      }
+    } finally {
+      await setMotion('no-preference');
+      await run('settle()');
+    }
+  });
+
+  await t.test(
+    'reduced motion exposes every original, including oversized items, by manual scrolling',
+    async () => {
+      await setMotion('reduce');
+      try {
+        for (const rtl of [false, true]) {
+          await run(`fixture({ observe: true, rtl: ${rtl} })`);
+          await browser.command('Input.dispatchMouseEvent', {
+            type: 'mouseWheel',
+            x: 100,
+            y: 20,
+            deltaX: rtl ? -270 : 270,
+            deltaY: 0,
+          });
+          await run(`
+          await settle();
+          items.at(-1).tabIndex = 0;
+          items.at(-1).focus({ preventScroll: true });
+          await settle();
+        `);
+          const access = await run(`({
+            focused: document.activeElement === items.at(-1),
+            scrolled: Math.abs(wrapper.scrollLeft) > 0,
+            left: items.at(-1).getBoundingClientRect().left - wrapper.getBoundingClientRect().left,
+            right: items.at(-1).getBoundingClientRect().right - wrapper.getBoundingClientRect().right,
+          })`);
+          assert(
+            access.focused && access.scrolled && access.left >= -1 && access.right <= 1,
+            JSON.stringify({ rtl, ...access }),
+          );
+          assert((await run('metrics()')).identities);
+          assert((await run('metrics()')).accessible);
+          assert.equal(await run('original.getAnimations().length'), 0);
+
+          await run(`fixture({ observe: true, count: 1, itemWidth: '1500px', rtl: ${rtl} })`);
+          await browser.command('Input.dispatchMouseEvent', {
+            type: 'mouseWheel',
+            x: 100,
+            y: 20,
+            deltaX: rtl ? -300 : 300,
+            deltaY: 0,
+          });
+          await run('settle()');
+          near(Math.abs(await run('wrapper.scrollLeft')), 300, 1);
+          assert(
+            await run(`
+          ${rtl ? 'items[0].getBoundingClientRect().left >= wrapper.getBoundingClientRect().left - 1' : 'items[0].getBoundingClientRect().right <= wrapper.getBoundingClientRect().right + 1'}
+        `),
+          );
+          assert.equal(await run('original.getAnimations().length'), 0);
+        }
+      } finally {
+        await setMotion('no-preference');
+        await run('settle()');
+      }
+    },
+  );
+
+  await t.test(
+    'live motion changes reset travel and manual scrolling, then restore animation settings',
+    async () => {
+      await run(
+        `fixture({ observe: true, reverse: true, extra: '--unitone--animation-duration: 5s;' })`,
+      );
+      await run(`
+      wrapper.dataset.unitoneLayout += ' -pause-on-hover';
+      window.savedCopies = getMarqueeParts(wrapper).copies;
+    `);
+      for (let cycle = 0; cycle < 2; cycle++) {
+        await run(
+          'original.getAnimations()[0].pause(); original.getAnimations()[0].currentTime = 2500',
+        );
+        assert(Math.abs(await run('parseFloat(getComputedStyle(original).translate)')) > 0);
+        await setMotion('reduce');
+        await run('settle()');
+        assert.equal(await run('original.getAnimations().length'), 0);
+        assert.equal(await run('getComputedStyle(original).translate'), 'none');
+        near(
+          await run('items[0].getBoundingClientRect().left - wrapper.getBoundingClientRect().left'),
+          0,
+        );
+        assert(
+          await run('getMarqueeParts(wrapper).copies.every((copy, i) => copy === savedCopies[i])'),
+        );
+        assert((await run('metrics()')).identities);
+        await run('wrapper.scrollLeft = 270; await settle()');
+        near(await run('wrapper.scrollLeft'), 270);
+        await setMotion('no-preference');
+        await run('settle()');
+        near(await run('wrapper.scrollLeft'), 0);
+        assert.equal(await run('original.getAnimations().length'), 1);
+        assert.equal(
+          await run('original.getAnimations()[0].effect.getComputedTiming().duration'),
+          5000,
+        );
+        assert.equal(await run('getComputedStyle(original).animationDirection'), 'reverse');
+        assert.equal(await run('original.getAnimations()[0].playState'), 'running');
+        assert(
+          await run('getMarqueeParts(wrapper).copies.every((copy, i) => copy === savedCopies[i])'),
+        );
+      }
+      await browser.command('Input.dispatchMouseEvent', { type: 'mouseMoved', x: 30, y: 20 });
+      await run('settle()');
+      assert.equal(await run('original.getAnimations()[0].playState'), 'paused');
+      await browser.command('Input.dispatchMouseEvent', { type: 'mouseMoved', x: 1500, y: 900 });
+      await run('settle()');
+      assert.equal(await run('original.getAnimations()[0].playState'), 'running');
+    },
+  );
 
   await t.test(
     'regular animation does not measure each frame and cleanup cancels updates',

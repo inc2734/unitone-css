@@ -69,6 +69,41 @@ for (const name of [
   });
 }
 
+test('marquee motion changes reset scrolling and disposal removes the preference listener', () => {
+  const env = createEnvironment();
+  const target = env.element();
+  const listeners = new Set();
+  env.context.matchMedia = (query) => {
+    assert.equal(query, '(prefers-reduced-motion: reduce)');
+    return {
+      addEventListener: (name, callback) => {
+        assert.equal(name, 'change');
+        listeners.add(callback);
+      },
+      removeEventListener: (name, callback) => {
+        assert.equal(name, 'change');
+        listeners.delete(callback);
+      },
+    };
+  };
+  const stop = env.marqueeResizeObserver(target);
+  assert.equal(listeners.size, 1);
+  const change = [...listeners][0];
+  target.scrollLeft = 150;
+  change();
+  assert.equal(target.scrollLeft, 0);
+  target.remove();
+  target.scrollLeft = 100;
+  change();
+  assert.equal(target.scrollLeft, 100);
+  stop();
+  stop();
+  assert.equal(listeners.size, 0);
+  env.document.body.append(target);
+  change();
+  assert.equal(target.scrollLeft, 100);
+});
+
 test('removing an ancestor disposes all initialized descendants and permits reinsertion', () => {
   const env = createEnvironment();
   const parent = env.element();

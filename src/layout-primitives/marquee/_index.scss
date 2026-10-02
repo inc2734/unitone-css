@@ -7,6 +7,13 @@
   gap: var(--unitone--gap);
   overflow: clip;
 
+  @media (prefers-reduced-motion: reduce) {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    scroll-behavior: auto;
+  }
+
   &[data-unitone-layout~="-reverse"] {
     > [data-unitone-layout~="marquee:initialized"] {
       animation-direction: reverse;
@@ -46,6 +53,11 @@
     animation-timing-function: linear;
     animation-duration: var(--unitone--animation-duration);
     animation-iteration-count: infinite;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+      translate: none;
+    }
   }
 
   > [data-unitone-marquee-boundary] {

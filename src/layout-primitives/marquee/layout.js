@@ -97,6 +97,7 @@ export const observeMarquee = (target, update, { listenForRefresh = true } = {})
       mutations.observe(ancestor, { attributes: true });
     }
   };
+
   const refresh = () => {
     if (scope.disposed || !target.isConnected) return;
     mutations.disconnect();
@@ -121,6 +122,7 @@ export const observeMarquee = (target, update, { listenForRefresh = true } = {})
       observeMutations();
     }
   };
+
   const schedule = () => {
     if (scope.disposed || frame) return;
     frame = scope.requestAnimationFrame(() => {
@@ -128,6 +130,7 @@ export const observeMarquee = (target, update, { listenForRefresh = true } = {})
       refresh();
     });
   };
+
   const mutations = new MutationObserver(schedule);
   const resizes = new ResizeObserver((entries) => {
     let changed = false;
@@ -144,16 +147,27 @@ export const observeMarquee = (target, update, { listenForRefresh = true } = {})
     }
     if (changed) refresh();
   });
+
   const view = target.ownerDocument.defaultView;
+  const motion = view.matchMedia?.('(prefers-reduced-motion: reduce)');
+  // A scroll offset can survive overflow: clip and reappear when scrolling is enabled again.
+  const resetScroll = () => {
+    if (!scope.disposed && target.isConnected) target.scrollLeft = 0;
+  };
+
   view.addEventListener('resize', schedule);
+  motion?.addEventListener('change', resetScroll);
   if (listenForRefresh) target.addEventListener(marqueeRefreshEvent, refresh);
+
   scope.addCleanup(() => {
     mutations.disconnect();
     resizes.disconnect();
     observed.clear();
     view.removeEventListener('resize', schedule);
+    motion?.removeEventListener('change', resetScroll);
     if (listenForRefresh) target.removeEventListener(marqueeRefreshEvent, refresh);
   });
+
   refresh();
   return { refresh, dispose: scope.dispose };
 };
