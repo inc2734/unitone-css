@@ -16,9 +16,25 @@ const clientPrimitives = [
 ];
 const isClientEntry = (input) =>
   clientPrimitives.some((name) => input === `src/layout-primitives/${name}/react.jsx`);
+const clientDirectiveModules = new Set([
+  path.resolve('src/use-layout-behaviors.js'),
+  ...clientPrimitives.map((name) => path.resolve(`src/layout-primitives/${name}/index.jsx`)),
+]);
 
 const createConfig = ({ input, file, external = [], exports }) => ({
   input,
+  onwarn(warning, warn) {
+    if (
+      isClientEntry(input) &&
+      warning.code === 'MODULE_LEVEL_DIRECTIVE' &&
+      warning.message.includes('"use client"') &&
+      clientDirectiveModules.has(warning.id)
+    ) {
+      // Client entry banners restore this directive after bundling.
+      return;
+    }
+    warn(warning);
+  },
   output: {
     file,
     format: 'cjs',

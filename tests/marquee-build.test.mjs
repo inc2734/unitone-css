@@ -13,8 +13,8 @@ test('the published marquee entry preserves its client directive and renders wit
   );
   const bundle = await rollup({
     ...inputOptions,
-    onwarn(warning, warn) {
-      if (warning.code !== 'MODULE_LEVEL_DIRECTIVE') warn(warning);
+    onwarn(warning) {
+      inputOptions.onwarn(warning, (unhandled) => assert.fail(unhandled.message));
     },
   });
   try {
@@ -56,8 +56,8 @@ for (const name of [
     );
     const bundle = await rollup({
       ...inputOptions,
-      onwarn(warning, warn) {
-        if (warning.code !== 'MODULE_LEVEL_DIRECTIVE') warn(warning);
+      onwarn(warning) {
+        inputOptions.onwarn(warning, (unhandled) => assert.fail(unhandled.message));
       },
     });
     try {
