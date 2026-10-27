@@ -3,11 +3,11 @@
   "version": "1.7.1",
   "description": "",
   "engines": {
-    "node": ">=20.19.0",
-    "npm": ">=10.2.3"
+    "node": ">=24.22.1",
+    "npm": ">=11.19.1"
   },
   "volta": {
-    "node": "24.14.1"
+    "node": "24.22.1"
   },
   "exports": {
     "./app": "./dist/app.js",

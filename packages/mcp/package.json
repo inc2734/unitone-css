@@ -4,7 +4,7 @@
   "description": "MCP server for unitone-css repository structure and API discovery.",
   "type": "module",
   "engines": {
-    "node": ">=20.19.0"
+    "node": ">=24.22.1"
   },
   "repository": {
     "type": "git",

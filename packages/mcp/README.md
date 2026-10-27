@@ -46,7 +46,7 @@ This server is intentionally narrow.
 
 ## Example setup
 
-Requires Node.js 20.19.0 or later and a local checkout of the `unitone-css` repository containing `src` and `website/src/content/docs`. The MCP package includes Sass and PostCSS as runtime dependencies; the repository's build output is not required.
+Requires Node.js 24.22.1 or later and a local checkout of the `unitone-css` repository containing `src` and `website/src/content/docs`. The MCP package includes Sass and PostCSS as runtime dependencies; the repository's build output is not required.
 
 ### Local repository usage
 
