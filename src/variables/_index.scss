@@ -177,6 +177,7 @@ $grid-rows: 7;
   --unitone--s6: #{ generate-spacing(var(--unitone--em6), $context, $width) };
   --unitone--s7: #{ generate-spacing(var(--unitone--em7), $context, $width) };
 
+  --unitone--s-1xs: #{ generate-fluid-spacing(var(--unitone--em-2), var(--unitone--em-1), $context, $width) };
   --unitone--s1xs: #{ generate-fluid-spacing(var(--unitone--em-2), var(--unitone--em1), $context, $width) };
   --unitone--s2xs: #{ generate-fluid-spacing(var(--unitone--em-2), var(--unitone--em2), $context, $width) };
   --unitone--s3xs: #{ generate-fluid-spacing(var(--unitone--em-2), var(--unitone--em3), $context, $width) };
@@ -225,6 +226,7 @@ $grid-rows: 7;
   --unitone--p6: #{ generate-padding(var(--unitone--em6), $context, $width) };
   --unitone--p7: #{ generate-padding(var(--unitone--em7), $context, $width) };
 
+  --unitone--p-1xs: var(--unitone--s-1xs);
   --unitone--p1xs: var(--unitone--s1xs);
   --unitone--p2xs: var(--unitone--s2xs);
   --unitone--p3xs: var(--unitone--s3xs);

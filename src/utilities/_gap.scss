@@ -4,7 +4,7 @@
   .-row-gap\:#{ $i } { row-gap: var(--unitone--s#{ $i }); }
 }
 
-@for $i from 1 through 7 {
+@each $i in -1, 1, 2, 3, 4, 5, 6, 7 {
   .-gap\:#{ $i }xs { gap: var(--unitone--s#{ $i }xs); }
   .-column-gap\:#{ $i }xs { column-gap: var(--unitone--s#{ $i }xs); }
   .-row-gap\:#{ $i }xs { row-gap: var(--unitone--s#{ $i }xs); }

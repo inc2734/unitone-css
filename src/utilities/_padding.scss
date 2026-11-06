@@ -15,7 +15,7 @@
   .-padding-left\:#{ $i } { padding-left: var(--unitone--p#{ $i }); }
 }
 
-@for $i from 1 through 7 {
+@each $i in -1, 1, 2, 3, 4, 5, 6, 7 {
   .-padding\:#{ $i }xs { padding: var(--unitone--p#{ $i }xs); }
 
   .-padding-inline\:#{ $i }xs { padding-inline: var(--unitone--p#{ $i }xs); }

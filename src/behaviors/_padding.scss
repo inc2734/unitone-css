@@ -21,7 +21,7 @@
     }
   }
 
-  @for $i from 1 through 7 {
+  @each $i in -1, 1, 2, 3, 4, 5, 6, 7 {
     [data-unitone-layout~="-padding\:#{ $i }xs"] {
       --unitone--padding: var(--unitone--p#{ $i }xs) !important;
     }

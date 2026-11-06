@@ -5,7 +5,7 @@
     }
   }
 
-  @for $i from 1 through 7 {
+  @each $i in -1, 1, 2, 3, 4, 5, 6, 7 {
     [data-unitone-layout~="-stairs\:#{ $i }xs"] {
       --unitone--stairs-margin: var(--unitone--s#{ $i }xs) !important;
     }

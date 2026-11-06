@@ -28,6 +28,7 @@ Rules:
 Use the existing scale first:
 
 - `-3` to `7`
+- `-1xs`
 - `1xs` to `7xs`
 - `1s` to `7s`
 - `2m` to `7m`
