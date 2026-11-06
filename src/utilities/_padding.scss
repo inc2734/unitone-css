@@ -48,3 +48,20 @@
   .-padding-bottom\:#{ $i }m { padding-bottom: var(--unitone--p#{ $i }m); }
   .-padding-left\:#{ $i }m { padding-left: var(--unitone--p#{ $i }m); }
 }
+
+@for $i from 1 through 7 {
+  .-padding\:#{ $i }xs { padding: var(--unitone--p#{ $i }xs); }
+
+  .-padding-inline\:#{ $i }xs { padding-inline: var(--unitone--p#{ $i }xs); }
+  .-padding-inline-start\:#{ $i }xs { padding-inline-start: var(--unitone--p#{ $i }xs); }
+  .-padding-inline-end\:#{ $i }xs { padding-inline-end: var(--unitone--p#{ $i }xs); }
+
+  .-padding-block\:#{ $i }xs { padding-block: var(--unitone--p#{ $i }xs); }
+  .-padding-block-start\:#{ $i }xs { padding-block-start: var(--unitone--p#{ $i }xs); }
+  .-padding-block-end\:#{ $i }xs { padding-block-end: var(--unitone--p#{ $i }xs); }
+
+  .-padding-top\:#{ $i }xs { padding-top: var(--unitone--p#{ $i }xs); }
+  .-padding-right\:#{ $i }xs { padding-right: var(--unitone--p#{ $i }xs); }
+  .-padding-bottom\:#{ $i }xs { padding-bottom: var(--unitone--p#{ $i }xs); }
+  .-padding-left\:#{ $i }xs { padding-left: var(--unitone--p#{ $i }xs); }
+}

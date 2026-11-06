@@ -17,6 +17,12 @@
     }
   }
 
+  @for $i from 1 through 7 {
+    [data-unitone-layout~="-gutters\:#{ $i }xs"] {
+      --unitone--gutters: var(--unitone--s#{ $i }xs) !important;
+    }
+  }
+
   [data-unitone-layout~="-gutters\:root"] {
     --unitone--gutters: var(--unitone--global--gutters) !important;
   }

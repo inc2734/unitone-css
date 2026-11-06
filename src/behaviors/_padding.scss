@@ -64,4 +64,26 @@
       --unitone--padding-left: var(--unitone--p#{ $i }m) !important;
     }
   }
+
+  @for $i from 1 through 7 {
+    [data-unitone-layout~="-padding\:#{ $i }xs"] {
+      --unitone--padding: var(--unitone--p#{ $i }xs) !important;
+    }
+
+    [data-unitone-layout~="-padding-top\:#{ $i }xs"] {
+      --unitone--padding-top: var(--unitone--p#{ $i }xs) !important;
+    }
+
+    [data-unitone-layout~="-padding-right\:#{ $i }xs"] {
+      --unitone--padding-right: var(--unitone--p#{ $i }xs) !important;
+    }
+
+    [data-unitone-layout~="-padding-bottom\:#{ $i }xs"] {
+      --unitone--padding-bottom: var(--unitone--p#{ $i }xs) !important;
+    }
+
+    [data-unitone-layout~="-padding-left\:#{ $i }xs"] {
+      --unitone--padding-left: var(--unitone--p#{ $i }xs) !important;
+    }
+  }
 }

@@ -30,12 +30,13 @@ Use the existing scale first:
 - `-3` to `7`
 - `1s` to `7s`
 - `2m` to `7m`
+- `1xs` to `7xs`
 
 Rules:
 
 - choose the smaller plausible step first
 - large whitespace often comes from line-height plus gap, not gap alone
-- use `s` and `m` variants when mobile reduction is desirable
+- use `xs`, `s`, and `m` suffixes when mobile reduction is desirable
 - use gap for relationships between siblings
 - use padding for surface internals
 

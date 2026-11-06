@@ -191,6 +191,14 @@ $grid-rows: 7;
   --unitone--s5m: #{ generate-fluid-spacing(var(--unitone--em1), var(--unitone--em5), $context, $width) };
   --unitone--s6m: #{ generate-fluid-spacing(var(--unitone--em1), var(--unitone--em6), $context, $width) };
   --unitone--s7m: #{ generate-fluid-spacing(var(--unitone--em1), var(--unitone--em7), $context, $width) };
+
+  --unitone--s1xs: #{ generate-fluid-spacing(var(--unitone--em-2), var(--unitone--em1), $context, $width) };
+  --unitone--s2xs: #{ generate-fluid-spacing(var(--unitone--em-2), var(--unitone--em2), $context, $width) };
+  --unitone--s3xs: #{ generate-fluid-spacing(var(--unitone--em-2), var(--unitone--em3), $context, $width) };
+  --unitone--s4xs: #{ generate-fluid-spacing(var(--unitone--em-2), var(--unitone--em4), $context, $width) };
+  --unitone--s5xs: #{ generate-fluid-spacing(var(--unitone--em-2), var(--unitone--em5), $context, $width) };
+  --unitone--s6xs: #{ generate-fluid-spacing(var(--unitone--em-2), var(--unitone--em6), $context, $width) };
+  --unitone--s7xs: #{ generate-fluid-spacing(var(--unitone--em-2), var(--unitone--em7), $context, $width) };
 }
 
 @mixin static-padding-tokens() {
@@ -231,6 +239,14 @@ $grid-rows: 7;
   --unitone--p5m: var(--unitone--s5m);
   --unitone--p6m: var(--unitone--s6m);
   --unitone--p7m: var(--unitone--s7m);
+
+  --unitone--p1xs: var(--unitone--s1xs);
+  --unitone--p2xs: var(--unitone--s2xs);
+  --unitone--p3xs: var(--unitone--s3xs);
+  --unitone--p4xs: var(--unitone--s4xs);
+  --unitone--p5xs: var(--unitone--s5xs);
+  --unitone--p6xs: var(--unitone--s6xs);
+  --unitone--p7xs: var(--unitone--s7xs);
 }
 
 @mixin static-font-size-tokens() {

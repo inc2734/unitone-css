@@ -29,7 +29,7 @@ async function call(name, args = {}) {
 
 test('MCP lists expanded utility classes without Sass prefixes', async () => {
   const { utilityClassCandidates: classes } = await call('list_utilities');
-  for (const name of ['-font-size:xl', '-font-size:6xl', '-padding:-3', '-padding:7m', '-gap:1s', '-color:text-alt']) {
+  for (const name of ['-font-size:xl', '-font-size:6xl', '-padding:-3', '-padding:7m', '-gap:1s', '-gap:7xs', '-padding:1xs', '-color:text-alt']) {
     assert(classes.includes(name.replaceAll(':', '\\:')), name);
   }
   for (const name of ['-color', '-font-size\\:', '-padding\\:', '-gap\\:']) {
@@ -42,8 +42,10 @@ test('MCP utility lookups accept markup and selector names and return original S
     ['-font-size:xl', '_font-size.scss'],
     ['-padding:1', '_padding.scss'],
     ['-padding-inline:7m', '_padding.scss'],
+    ['-padding-block-end:7xs', '_padding.scss'],
     ['-gap:-3', '_gap.scss'],
     ['-gap:7s', '_gap.scss'],
+    ['-row-gap:1xs', '_gap.scss'],
     ['-color:text', '_color.scss'],
     ['-color:text-alt', '_color.scss'],
     ['-box-shadow', '_global.scss'],
@@ -66,7 +68,7 @@ test('MCP utility lookups accept markup and selector names and return original S
       assert(result.files[0].matches.some((match) => match.text.includes('#{ $name }')));
     }
   }
-  for (const name of ['-color:te', '-font-size:7xl', '-padding:8', '-color']) {
+  for (const name of ['-color:te', '-font-size:7xl', '-padding:8', '-padding:12xs', '-gap:72xs', '-color']) {
     await assert.rejects(call('get_utilities', { name }), /Unknown utility/);
   }
 });
@@ -78,6 +80,12 @@ test('MCP expands named font-size tokens and preserves static tokens', async () 
     assert(tokens.includes(`--unitone--font-size-${name}-fluid`), name);
   }
   assert(tokens.includes('--unitone--p1'));
+  for (const prefix of ['s', 'p']) {
+    for (let level = 1; level <= 7; level++) {
+      assert(tokens.includes(`--unitone--${prefix}${level}xs`));
+      assert(!tokens.includes(`--unitone--${prefix}${level}2xs`));
+    }
+  }
   assert(tokens.includes('--unitone--color--text'));
   assert(!tokens.includes('--unitone--font-size-'));
 });

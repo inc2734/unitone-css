@@ -15,3 +15,9 @@
   .-column-gap\:#{ $i }m { column-gap: var(--unitone--s#{ $i }m); }
   .-row-gap\:#{ $i }m { row-gap: var(--unitone--s#{ $i }m); }
 }
+
+@for $i from 1 through 7 {
+  .-gap\:#{ $i }xs { gap: var(--unitone--s#{ $i }xs); }
+  .-column-gap\:#{ $i }xs { column-gap: var(--unitone--s#{ $i }xs); }
+  .-row-gap\:#{ $i }xs { row-gap: var(--unitone--s#{ $i }xs); }
+}
