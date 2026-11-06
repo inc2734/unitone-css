@@ -4,7 +4,10 @@
   balance,
   pretty
 ) {
-  .-text-wrap\:#{ $value } {
+  .-text-wrap\:#{ $value }:where(:not(
+    [data-unitone-layout~="-text-overflow\:ellipsis"],
+    .-text-overflow\:ellipsis
+  )) {
     text-wrap: #{ $value };
   }
 }

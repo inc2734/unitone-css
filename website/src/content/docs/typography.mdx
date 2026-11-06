@@ -268,6 +268,8 @@ Use the utility class on plain text elements:
 
 Constrain the available width of the block container holding the text; this helper does not set a width. It supports single-line truncation only.
 
+When `-text-overflow:ellipsis` is present on an element, `-text-wrap:*` and the default heading wrapping inside the `text` primitive do not apply to that element. This also applies when behavior attributes and utility classes are combined.
+
 ## Auto line breaks
 
 Use `-auto-phrase` for automatic line breaks. It combines `overflow-wrap: anywhere` with `word-break: auto-phrase` to keep natural phrases together where supported. Browsers that do not support the `auto-phrase` value fall back to `word-break: keep-all`.
