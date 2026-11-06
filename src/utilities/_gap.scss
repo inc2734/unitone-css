@@ -5,6 +5,12 @@
 }
 
 @for $i from 1 through 7 {
+  .-gap\:#{ $i }xs { gap: var(--unitone--s#{ $i }xs); }
+  .-column-gap\:#{ $i }xs { column-gap: var(--unitone--s#{ $i }xs); }
+  .-row-gap\:#{ $i }xs { row-gap: var(--unitone--s#{ $i }xs); }
+}
+
+@for $i from 1 through 7 {
   .-gap\:#{ $i }s { gap: var(--unitone--s#{ $i }s); }
   .-column-gap\:#{ $i }s { column-gap: var(--unitone--s#{ $i }s); }
   .-row-gap\:#{ $i }s { row-gap: var(--unitone--s#{ $i }s); }
@@ -14,10 +20,4 @@
   .-gap\:#{ $i }m { gap: var(--unitone--s#{ $i }m); }
   .-column-gap\:#{ $i }m { column-gap: var(--unitone--s#{ $i }m); }
   .-row-gap\:#{ $i }m { row-gap: var(--unitone--s#{ $i }m); }
-}
-
-@for $i from 1 through 7 {
-  .-gap\:#{ $i }xs { gap: var(--unitone--s#{ $i }xs); }
-  .-column-gap\:#{ $i }xs { column-gap: var(--unitone--s#{ $i }xs); }
-  .-row-gap\:#{ $i }xs { row-gap: var(--unitone--s#{ $i }xs); }
 }

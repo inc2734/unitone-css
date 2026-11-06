@@ -11,6 +11,12 @@
   }
 
   @for $i from 1 through 7 {
+    &[data-unitone-layout~="-padding\:#{ $i }xs"] {
+      --unitone--padding: var(--unitone--s#{ $i }xs) !important;
+    }
+  }
+
+  @for $i from 1 through 7 {
     &[data-unitone-layout~="-padding\:#{ $i }s"] {
       --unitone--padding: var(--unitone--s#{ $i }s) !important;
     }
@@ -19,12 +25,6 @@
   @for $i from 2 through 7 {
     &[data-unitone-layout~="-padding\:#{ $i }m"] {
       --unitone--padding: var(--unitone--s#{ $i }m) !important;
-    }
-  }
-
-  @for $i from 1 through 7 {
-    &[data-unitone-layout~="-padding\:#{ $i }xs"] {
-      --unitone--padding: var(--unitone--s#{ $i }xs) !important;
     }
   }
 }
