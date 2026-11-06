@@ -246,6 +246,28 @@ Both forms support all four values. The behavior sets `text-wrap` with `!importa
 
 Headings inside the `text` primitive already use `text-wrap: pretty`. Apply `-text-wrap:*` directly to a heading to override that default.
 
+## Text overflow
+
+Use `-text-overflow:ellipsis` to truncate overflowing text on a single line with an ellipsis. It is available as both a behavior in `data-unitone-layout` and a utility class.
+
+Use the behavior through `data-unitone-layout`:
+
+```html
+<p data-unitone-layout="-text-overflow:ellipsis" style="max-width: 20rem">
+	A long title that is truncated with an ellipsis when it exceeds the available width.
+</p>
+```
+
+Use the utility class on plain text elements:
+
+```html
+<p class="-text-overflow:ellipsis" style="max-width: 20rem">
+	A long title that is truncated with an ellipsis when it exceeds the available width.
+</p>
+```
+
+Constrain the available width of the block container holding the text; this helper does not set a width. It supports single-line truncation only.
+
 ## Auto line breaks
 
 Use `-auto-phrase` for automatic line breaks. It combines `overflow-wrap: anywhere` with `word-break: auto-phrase` to keep natural phrases together where supported. Browsers that do not support the `auto-phrase` value fall back to `word-break: keep-all`.

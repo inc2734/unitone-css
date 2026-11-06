@@ -1,0 +1,7 @@
+@mixin text-overflow() {
+  [data-unitone-layout~="-text-overflow\:ellipsis"] {
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+    overflow: clip !important;
+  }
+}
